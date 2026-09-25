@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Engineering Interview Questions Company Wise</title>
+    <meta name="description" content="AI 工程面试题库：跨公司 AI Engineer / LLM / Agent / MLOps / RAG 面试准备中文入口" />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg2: #111827;
+        --panel: #121a2b;
+        --panel-2: #1b2438;
+        --text: #e5edf9;
+        --muted: #a8bdd8;
+        --accent: #67d6ff;
+        --accent-2: #7ef0c7;
+        --border: rgba(255,255,255,0.09);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+        color: var(--text);
+        line-height: 1.7;
+      }
+      .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+      .hero {
+        background: rgba(18, 26, 43, 0.8);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 28px 22px;
+        box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        line-height: 1.15;
+      }
+      .subtitle {
+        color: var(--muted);
+        margin: 0 0 18px;
+        font-size: 1.05rem;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 12px 0 18px;
+      }
+      .badge {
+        display: inline-block;
+        padding: 7px 12px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--text);
+        background: rgba(103, 214, 255, 0.1);
+        border: 1px solid rgba(103, 214, 255, 0.35);
+        font-size: 0.9rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+      .card {
+        background: rgba(27, 36, 56, 0.9);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+      }
+      .card h2 {
+        margin-top: 0;
+        font-size: 1.12rem;
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+      a {
+        color: var(--accent);
+      }
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 16px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .primary {
+        color: #061320;
+        background: linear-gradient(120deg, var(--accent), #9e9bff);
+      }
+      .secondary {
+        border: 1px solid var(--border);
+        color: var(--text);
+        background: rgba(255,255,255,0.02);
+      }
+      @media (max-width: 640px) {
+        .container { padding-top: 20px; }
+        .hero { padding: 22px 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <h1>AI Engineering Interview Questions Company Wise</h1>
+        <p class="subtitle">
+          面向 AI Engineer、LLM Engineer、RAG、Agent、Inference、MLOps 与 Applied AI 岗位的公司级面试题库。
+        </p>
+
+        <div class="badges">
+          <a class="badge" href="https://github.com/wonschangge/ai-engineering-interview-questions-company-wise">GitHub 仓库</a>
+          <a class="badge" href="../README.md">English README</a>
+          <a class="badge" href="../README.zh-CN.md">中文说明</a>
+        </div>
+
+        <p>
+          这个仓库按公司整理了真实 AI 工程面试题，并尽量附上答案、参考文章与知识点链接。它适合作为高频复习清单、知识地图和定向面试准备资料。
+        </p>
+
+        <div class="cta">
+          <a class="button primary" href="https://github.com/wonschangge/ai-engineering-interview-questions-company-wise">查看仓库</a>
+          <a class="button secondary" href="../README.zh-CN.md">中文导读</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>核心主题</h2>
+          <ul>
+            <li>LLM 内部机制与架构</li>
+            <li>Inference / Serving / GPU Performance</li>
+            <li>RAG 与检索</li>
+            <li>Agents 与 Tool Use</li>
+            <li>Fine-Tuning / Post-Training / Alignment</li>
+            <li>Evaluation / Observability</li>
+            <li>Safety / Security / Responsible AI</li>
+            <li>Multimodal / Speech / Voice AI</li>
+            <li>AI System Design</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>公司覆盖</h2>
+          <ul>
+            <li>Anthropic、OpenAI、Meta、Google DeepMind、xAI</li>
+            <li>Amazon、Microsoft、Apple、NVIDIA、Tesla</li>
+            <li>Databricks、Groq、Together AI、Hugging Face</li>
+            <li>Cursor、Glean、Harvey、ElevenLabs、Character.AI</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>推荐学习顺序</h2>
+          <ul>
+            <li>先学 Transformer / Attention / RoPE / KV Cache</li>
+            <li>再看推理优化、量化、Prefill 与 Decode</li>
+            <li>再补 RAG、Agent、评测与安全知识</li>
+            <li>最后按目标公司刷专项题目</li>
+          </ul>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
