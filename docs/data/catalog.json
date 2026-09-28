@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T06:19:19.449Z",
+  "generated": "2026-09-28T07:01:02.622Z",
   "stats": {
     "topics": 1,
-    "questions": 3,
+    "questions": 16,
     "planned": 598
   },
   "topics": [
@@ -10,7 +10,7 @@
       "id": "llm-internals",
       "title": "LLM 内部原理与架构",
       "order": 1,
-      "summary": "从 attention 的数学一路到 KV cache、位置编码与 MoE，覆盖大模型内部结构的面试主线；也是其它所有专题的前置知识。",
+      "summary": "从 attention 的数学一路到 KV cache、位置编码、MoE 与逐张量的前向传播，覆盖大模型内部结构的面试主线；也是其它所有专题的前置知识。",
       "declaredTotal": 16,
       "updated": "2026-09-28",
       "dir": "LLM 内部原理与架构",
@@ -134,6 +134,648 @@
           ],
           "updated": "2026-09-28",
           "chars": 4886
+        },
+        {
+          "id": "llm-internals-04",
+          "order": 4,
+          "title": "什么是 Multi-head Latent Attention（MLA）？DeepSeek 为什么引入它？",
+          "titleEn": "What is Multi-head Latent Attention (MLA) and why did DeepSeek introduce it?",
+          "file": "LLM 内部原理与架构/04-什么是 Multi-head Latent Attention（MLA）？DeepSeek 为什么引入它.md",
+          "level": "高阶",
+          "tags": [
+            "mla",
+            "kv-cache",
+            "deepseek",
+            "低秩压缩"
+          ],
+          "askedAt": [
+            "DeepSeek",
+            "Moonshot AI"
+          ],
+          "related": [
+            "llm-internals-02",
+            "llm-internals-03",
+            "llm-internals-10"
+          ],
+          "sources": [
+            {
+              "title": "KV Cache Compression",
+              "url": "https://outcomeschool.com/blog/kv-cache-compression",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model（延伸）",
+              "url": "https://arxiv.org/abs/2405.04434",
+              "author": "DeepSeek-AI",
+              "published": "2024-05-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7379
+        },
+        {
+          "id": "llm-internals-05",
+          "order": 5,
+          "title": "解释 FlashAttention。它并没有减少 FLOPs，那为什么更快？",
+          "titleEn": "Explain FlashAttention. It does not reduce FLOPs, so why is it faster?",
+          "file": "LLM 内部原理与架构/05-解释 FlashAttention。它并没有减少 FLOPs，那为什么更快.md",
+          "level": "进阶",
+          "tags": [
+            "flashattention",
+            "io-aware",
+            "online-softmax",
+            "kernel"
+          ],
+          "askedAt": [
+            "Together AI"
+          ],
+          "related": [
+            "llm-internals-01",
+            "llm-internals-02",
+            "inference-serving-01"
+          ],
+          "sources": [
+            {
+              "title": "Decoding Flash Attention in LLMs",
+              "url": "https://outcomeschool.com/blog/decoding-flash-attention",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-11"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Tri Dao et al.",
+              "published": "2022-05-27"
+            },
+            {
+              "title": "FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning（延伸）",
+              "url": "https://arxiv.org/abs/2307.08691",
+              "author": "Tri Dao",
+              "published": "2023-07-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8468
+        },
+        {
+          "id": "llm-internals-06",
+          "order": 6,
+          "title": "Byte Pair Encoding 是如何工作的？它有哪些失效场景（数字、代码、非拉丁文字）？",
+          "titleEn": "How does Byte Pair Encoding work, and what are its failure modes (numbers, code, non-Latin scripts)?",
+          "file": "LLM 内部原理与架构/06-Byte Pair Encoding 是如何工作的？它有哪些失效场景（数字、代码、非拉丁文字）.md",
+          "level": "进阶",
+          "tags": [
+            "bpe",
+            "tokenizer",
+            "多语言",
+            "代码"
+          ],
+          "askedAt": [
+            "阿里巴巴",
+            "Sarvam AI",
+            "Hugging Face"
+          ],
+          "related": [
+            "llm-internals-07",
+            "llm-internals-16",
+            "rag"
+          ],
+          "sources": [
+            {
+              "title": "Byte Pair Encoding",
+              "url": "https://outcomeschool.com/blog/bpe-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）",
+              "url": "https://arxiv.org/abs/1508.07909",
+              "author": "Sennrich, Haddow, Birch",
+              "published": "2015-08-31"
+            },
+            {
+              "title": "SentencePiece: A simple and language independent subword tokenizer（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo, Richardson",
+              "published": "2018-08-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 12062
+        },
+        {
+          "id": "llm-internals-07",
+          "order": 7,
+          "title": "什么是 transformer 中的位置编码？它是如何演进的（sinusoidal → learned → RoPE → ALiBi）？",
+          "titleEn": "What is positional encoding in transformers, and how has it evolved?",
+          "file": "LLM 内部原理与架构/07-什么是 transformer 中的位置编码？它是如何演进的.md",
+          "level": "进阶",
+          "tags": [
+            "位置编码",
+            "rope",
+            "alibi",
+            "长上下文"
+          ],
+          "askedAt": [],
+          "related": [
+            "llm-internals-08",
+            "llm-internals-01",
+            "llm-internals-16"
+          ],
+          "sources": [
+            {
+              "title": "Positional Embeddings in LLMs",
+              "url": "https://outcomeschool.substack.com/p/positional-embeddings-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Math Behind RoPE (Rotary Position Embedding)",
+              "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation（延伸）",
+              "url": "https://arxiv.org/abs/2108.12409",
+              "author": "Ofir Press et al.",
+              "published": "2021-08-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8755
+        },
+        {
+          "id": "llm-internals-08",
+          "order": 8,
+          "title": "解释 RoPE，以及位置插值 / YaRN 如何把上下文扩展到训练长度之外。",
+          "titleEn": "Explain RoPE and how position interpolation / YaRN extend context beyond the trained length.",
+          "file": "LLM 内部原理与架构/08-解释 RoPE，以及位置插值、YaRN 如何把上下文扩展到训练长度之外.md",
+          "level": "高阶",
+          "tags": [
+            "rope",
+            "yarn",
+            "长上下文",
+            "外推"
+          ],
+          "askedAt": [
+            "Meta",
+            "Moonshot AI",
+            "阿里巴巴"
+          ],
+          "related": [
+            "llm-internals-07",
+            "llm-internals-13",
+            "llm-internals-16"
+          ],
+          "sources": [
+            {
+              "title": "Math Behind RoPE (Rotary Position Embedding)",
+              "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-23"
+            },
+            {
+              "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding（延伸）",
+              "url": "https://arxiv.org/abs/2104.09864",
+              "author": "Jianlin Su et al.",
+              "published": "2021-04-20"
+            },
+            {
+              "title": "YaRN: Efficient Context Window Extension of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2309.00071",
+              "author": "Bowen Peng et al.",
+              "published": "2023-08-31"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7757
+        },
+        {
+          "id": "llm-internals-09",
+          "order": 9,
+          "title": "Chinchilla 缩放定律说了什么？它与更早的缩放直觉有何不同？",
+          "titleEn": "What do the Chinchilla scaling laws say, and how do they differ from earlier scaling intuitions?",
+          "file": "LLM 内部原理与架构/09-Chinchilla 缩放定律说了什么？它与更早的缩放直觉有何不同.md",
+          "level": "进阶",
+          "tags": [
+            "scaling-law",
+            "chinchilla",
+            "训练"
+          ],
+          "askedAt": [
+            "Anthropic"
+          ],
+          "related": [
+            "llm-internals-10",
+            "llm-internals-11"
+          ],
+          "sources": [
+            {
+              "title": "Scaling Laws for Neural Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2001.08361",
+              "author": "Kaplan et al. (OpenAI)",
+              "published": "2020-01-23"
+            },
+            {
+              "title": "Training Compute-Optimal Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2203.15556",
+              "author": "Hoffmann et al. (DeepMind)",
+              "published": "2022-03-29"
+            },
+            {
+              "title": "Beyond Chinchilla-Optimal: Accounting for Inference in Language Model Scaling Laws（延伸）",
+              "url": "https://arxiv.org/abs/2401.00448",
+              "author": "Sardana et al.",
+              "published": "2023-12-31"
+            },
+            {
+              "title": "Llama 3 Model Card（延伸）",
+              "url": "https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md",
+              "author": "AI@Meta",
+              "published": "2024-04-18"
+            },
+            {
+              "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models（延伸）",
+              "url": "https://arxiv.org/abs/2307.09288",
+              "author": "Touvron et al. (Meta AI)",
+              "published": "2023-07-18"
+            },
+            {
+              "title": "LLaMA: Open and Efficient Foundation Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2302.13971",
+              "author": "Touvron et al. (Meta AI)",
+              "published": "2023-02-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8347
+        },
+        {
+          "id": "llm-internals-10",
+          "order": 10,
+          "title": "什么是 mixture-of-experts 架构？它如何在不增加 FLOPs 的情况下扩展容量？",
+          "titleEn": "What is a mixture-of-experts architecture and how does it scale capacity without scaling FLOPs?",
+          "file": "LLM 内部原理与架构/10-什么是 mixture-of-experts 架构？它如何在不增加 FLOPs 的情况下扩展容量.md",
+          "level": "进阶",
+          "tags": [
+            "moe",
+            "稀疏激活",
+            "路由",
+            "负载均衡"
+          ],
+          "askedAt": [
+            "Mistral AI",
+            "Cohere",
+            "DeepSeek",
+            "Moonshot AI",
+            "智谱 AI",
+            "阿里巴巴"
+          ],
+          "related": [
+            "llm-internals-04",
+            "llm-internals-09",
+            "llm-internals-16"
+          ],
+          "sources": [
+            {
+              "title": "Mixture of Experts Explained",
+              "url": "https://outcomeschool.com/blog/mixture-of-experts",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity（延伸）",
+              "url": "https://arxiv.org/abs/2101.03961",
+              "author": "Fedus et al.",
+              "published": "2021-01-11"
+            },
+            {
+              "title": "Mixtral of Experts（延伸）",
+              "url": "https://arxiv.org/abs/2401.04088",
+              "author": "Jiang et al. (Mistral AI)",
+              "published": "2024-01-08"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8594
+        },
+        {
+          "id": "llm-internals-11",
+          "order": 11,
+          "title": "解释 pre-training、supervised fine-tuning 与 preference optimisation 之间的区别。",
+          "titleEn": "Explain the difference between pre-training, supervised fine-tuning and preference optimisation.",
+          "file": "LLM 内部原理与架构/11-解释 pre-training、supervised fine-tuning 与 preference optimisation 的区别.md",
+          "level": "进阶",
+          "tags": [
+            "预训练",
+            "sft",
+            "rlhf",
+            "dpo"
+          ],
+          "askedAt": [
+            "Meta",
+            "Scale AI"
+          ],
+          "related": [
+            "llm-internals-12",
+            "llm-internals-09"
+          ],
+          "sources": [
+            {
+              "title": "Decoding InstructGPT",
+              "url": "https://outcomeschool.com/blog/decoding-instructgpt",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Reinforcement Learning from Human Feedback (RLHF)",
+              "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Training language models to follow instructions with human feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (OpenAI)",
+              "published": "2022-03-04"
+            },
+            {
+              "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model（延伸）",
+              "url": "https://arxiv.org/abs/2305.18290",
+              "author": "Rafailov et al.",
+              "published": "2023-05-29"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9408
+        },
+        {
+          "id": "llm-internals-12",
+          "order": 12,
+          "title": "比较 greedy、beam search、top-k、top-p 与 temperature 采样。它们各自在什么情况下会失败？",
+          "titleEn": "Compare greedy, beam search, top-k, top-p and temperature sampling. When does each fail?",
+          "file": "LLM 内部原理与架构/12-比较 greedy、beam search、top-k、top-p 与 temperature 采样.md",
+          "level": "进阶",
+          "tags": [
+            "解码",
+            "采样",
+            "temperature",
+            "top-p"
+          ],
+          "askedAt": [
+            "Google DeepMind",
+            "Apple",
+            "Perplexity"
+          ],
+          "related": [
+            "llm-internals-16",
+            "llm-internals-11"
+          ],
+          "sources": [
+            {
+              "title": "How does Temperature control LLM output?",
+              "url": "https://outcomeschool.com/blog/how-does-temperature-control-llm-output",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-15"
+            },
+            {
+              "title": "How do Top-k and Top-p Sampling work?",
+              "url": "https://outcomeschool.com/blog/how-do-top-k-and-top-p-sampling-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-19"
+            },
+            {
+              "title": "The Curious Case of Neural Text Degeneration（延伸）",
+              "url": "https://arxiv.org/abs/1904.09751",
+              "author": "Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, Yejin Choi",
+              "published": "2019-04-22"
+            },
+            {
+              "title": "Six Challenges for Neural Machine Translation（延伸）",
+              "url": "https://arxiv.org/abs/1706.03872",
+              "author": "Philipp Koehn, Rebecca Knowles",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "Google's Neural Machine Translation System（延伸）",
+              "url": "https://arxiv.org/abs/1609.08144",
+              "author": "Yonghui Wu et al. (Google)",
+              "published": "2016-09-26"
+            },
+            {
+              "title": "Turning Up the Heat：Min-p Sampling for Creative and Coherent LLM Outputs（延伸）",
+              "url": "https://arxiv.org/abs/2407.01082",
+              "author": "Minh Nhat Nguyen, Andrew Baker, Clement Neo, Allen Roush, Andreas Kirsch, Ravid Shwartz-Ziv",
+              "published": "2024-07-01"
+            },
+            {
+              "title": "Competition-Level Code Generation with AlphaCode（延伸）",
+              "url": "https://arxiv.org/abs/2203.07814",
+              "author": "Yujia Li et al. (DeepMind)",
+              "published": "2022-02-08"
+            },
+            {
+              "title": "CTRL：A Conditional Transformer Language Model for Controllable Generation（延伸）",
+              "url": "https://arxiv.org/abs/1909.05858",
+              "author": "Nitish Shirish Keskar, Bryan McCann, Lav R. Varshney, Caiming Xiong, Richard Socher",
+              "published": "2019-09-11"
+            },
+            {
+              "title": "transformers 的采样实现（generation/utils.py）（延伸）",
+              "url": "https://github.com/huggingface/transformers/blob/main/src/transformers/generation/utils.py",
+              "author": "Hugging Face",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11483
+        },
+        {
+          "id": "llm-internals-13",
+          "order": 13,
+          "title": "长上下文中的 lost-in-the-middle 问题是什么？该如何解决？",
+          "titleEn": "What is the lost-in-the-middle problem in long contexts and how do you address it?",
+          "file": "LLM 内部原理与架构/13-长上下文中的 lost-in-the-middle 问题是什么？该如何解决.md",
+          "level": "进阶",
+          "tags": [
+            "长上下文",
+            "rag",
+            "位置偏差",
+            "评测"
+          ],
+          "askedAt": [
+            "Moonshot AI"
+          ],
+          "related": [
+            "llm-internals-08",
+            "rag",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "The Lost in the Middle Problem in LLMs",
+              "url": "https://outcomeschool.com/blog/lost-in-the-middle-problem-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-08-19"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, Liang",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "RULER: What's the Real Context Size of Your Long-Context Language Models?（延伸）",
+              "url": "https://arxiv.org/abs/2404.06654",
+              "author": "Hsieh, Sun, Kriman, Acharya, Rekesh, Jia, Zhang, Ginsburg",
+              "published": "2024-04-09"
+            },
+            {
+              "title": "MoBA: Mixture of Block Attention for Long-Context LLMs（延伸）",
+              "url": "https://arxiv.org/abs/2502.13189",
+              "author": "Lu et al. (Moonshot AI)",
+              "published": "2025-02-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8272
+        },
+        {
+          "id": "llm-internals-14",
+          "order": 14,
+          "title": "为什么现代 transformer 把 LayerNorm 放在 pre-block 位置？RMSNorm 是什么？",
+          "titleEn": "Why is LayerNorm placed pre-block in modern transformers, and what is RMSNorm?",
+          "file": "LLM 内部原理与架构/14-为什么现代 transformer 把 LayerNorm 放在 pre-block 位置？RMSNorm 是什么.md",
+          "level": "进阶",
+          "tags": [
+            "layernorm",
+            "rmsnorm",
+            "pre-ln",
+            "训练稳定性"
+          ],
+          "askedAt": [],
+          "related": [
+            "llm-internals-15",
+            "llm-internals-16"
+          ],
+          "sources": [
+            {
+              "title": "RMSNorm (Root Mean Square Layer Normalization)",
+              "url": "https://outcomeschool.com/blog/rmsnorm-root-mean-square-layer-normalization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "On Layer Normalization in the Transformer Architecture（延伸）",
+              "url": "https://arxiv.org/abs/2002.04745",
+              "author": "Xiong et al.",
+              "published": "2020-02-11"
+            },
+            {
+              "title": "Root Mean Square Layer Normalization（延伸）",
+              "url": "https://arxiv.org/abs/1910.07467",
+              "author": "Zhang, Sennrich",
+              "published": "2019-10-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7773
+        },
+        {
+          "id": "llm-internals-15",
+          "order": 15,
+          "title": "解释 SwiGLU，以及为什么现代 LLM 的 MLP 模块中用门控激活取代了 ReLU/GELU。",
+          "titleEn": "Explain SwiGLU and why gated activations replaced ReLU/GELU in modern LLM MLP blocks.",
+          "file": "LLM 内部原理与架构/15-解释 SwiGLU，以及为什么现代 LLM 的 MLP 模块中用门控激活取代了 ReLU、GELU.md",
+          "level": "进阶",
+          "tags": [
+            "swiglu",
+            "ffn",
+            "激活函数",
+            "llama"
+          ],
+          "askedAt": [
+            "Meta"
+          ],
+          "related": [
+            "llm-internals-14",
+            "llm-internals-16",
+            "llm-internals-10"
+          ],
+          "sources": [
+            {
+              "title": "Feed-Forward Networks in LLMs",
+              "url": "https://outcomeschool.com/blog/feed-forward-networks-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-13"
+            },
+            {
+              "title": "GLU Variants Improve Transformer（延伸）",
+              "url": "https://arxiv.org/abs/2002.05202",
+              "author": "Noam Shazeer",
+              "published": "2020-02-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6831
+        },
+        {
+          "id": "llm-internals-16",
+          "order": 16,
+          "title": "请逐个张量地讲一遍 decoder-only transformer 一次前向传播中发生的过程。",
+          "titleEn": "Walk me through what happens, tensor by tensor, in one forward pass of a decoder-only transformer.",
+          "file": "LLM 内部原理与架构/16-逐个张量地讲一遍 decoder-only transformer 的一次前向传播.md",
+          "level": "高阶",
+          "tags": [
+            "前向传播",
+            "张量形状",
+            "综合题"
+          ],
+          "askedAt": [
+            "Anthropic"
+          ],
+          "related": [
+            "llm-internals-01",
+            "llm-internals-14",
+            "llm-internals-15",
+            "inference-serving-01"
+          ],
+          "sources": [
+            {
+              "title": "Decoding Transformer Architecture",
+              "url": "https://outcomeschool.com/blog/decoding-transformer-architecture",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-07"
+            },
+            {
+              "title": "LLaMA 2：Open Foundation and Fine-Tuned Chat Models（延伸）",
+              "url": "https://arxiv.org/abs/2307.09288",
+              "author": "Hugo Touvron et al. (Meta AI)",
+              "published": "2023-07-18"
+            },
+            {
+              "title": "RoFormer：Enhanced Transformer with Rotary Position Embedding（延伸）",
+              "url": "https://arxiv.org/abs/2104.09864",
+              "author": "Jianlin Su et al.",
+              "published": "2021-04-20"
+            },
+            {
+              "title": "Root Mean Square Layer Normalization（延伸）",
+              "url": "https://arxiv.org/abs/1910.07467",
+              "author": "Biao Zhang, Rico Sennrich",
+              "published": "2019-10-16"
+            },
+            {
+              "title": "GLU Variants Improve Transformer（延伸）",
+              "url": "https://arxiv.org/abs/2002.05202",
+              "author": "Noam Shazeer",
+              "published": "2020-02-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9425
         }
       ]
     }

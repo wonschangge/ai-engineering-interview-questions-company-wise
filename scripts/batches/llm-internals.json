@@ -1,0 +1,342 @@
+{
+  "topic": "LLM 内部原理与架构",
+  "topic_id": "llm-internals",
+  "guide": "scripts/DOC-GUIDE.md",
+  "all_questions": [
+    { "id": "llm-internals-01", "order": 1, "title": "解释 scaled dot-product attention，以及为什么 1/sqrt(d_k) 缩放因子很重要。" },
+    { "id": "llm-internals-02", "order": 2, "title": "什么是 KV cache？它在规模化场景下的内存影响是什么？请推导公式。" },
+    { "id": "llm-internals-03", "order": 3, "title": "什么是 Multi-Query Attention（MQA）和 Grouped-Query Attention（GQA）？它们牺牲了什么？" },
+    { "id": "llm-internals-04", "order": 4, "title": "什么是 Multi-head Latent Attention（MLA）？DeepSeek 为什么引入它？" },
+    { "id": "llm-internals-05", "order": 5, "title": "解释 FlashAttention。它并没有减少 FLOPs，那为什么更快？" },
+    { "id": "llm-internals-06", "order": 6, "title": "Byte Pair Encoding 是如何工作的？它有哪些失效场景（数字、代码、非拉丁文字）？" },
+    { "id": "llm-internals-07", "order": 7, "title": "什么是 transformer 中的位置编码？它是如何演进的（sinusoidal → learned → RoPE → ALiBi）？" },
+    { "id": "llm-internals-08", "order": 8, "title": "解释 RoPE，以及位置插值 / YaRN 如何把上下文扩展到训练长度之外。" },
+    { "id": "llm-internals-09", "order": 9, "title": "Chinchilla 缩放定律说了什么？它与更早的缩放直觉有何不同？" },
+    { "id": "llm-internals-10", "order": 10, "title": "什么是 mixture-of-experts 架构？它如何在不增加 FLOPs 的情况下扩展容量？" },
+    { "id": "llm-internals-11", "order": 11, "title": "解释 pre-training、supervised fine-tuning 与 preference optimisation 之间的区别。" },
+    { "id": "llm-internals-12", "order": 12, "title": "比较 greedy、beam search、top-k、top-p 与 temperature 采样。它们各自在什么情况下会失败？" },
+    { "id": "llm-internals-13", "order": 13, "title": "长上下文中的 lost-in-the-middle 问题是什么？该如何解决？" },
+    { "id": "llm-internals-14", "order": 14, "title": "为什么现代 transformer 把 LayerNorm 放在 pre-block 位置？RMSNorm 是什么？" },
+    { "id": "llm-internals-15", "order": 15, "title": "解释 SwiGLU，以及为什么现代 LLM 的 MLP 模块中用门控激活取代了 ReLU/GELU。" },
+    { "id": "llm-internals-16", "order": 16, "title": "请逐个张量地讲一遍 decoder-only transformer 一次前向传播中发生的过程。" }
+  ],
+  "questions": [
+    {
+      "id": "llm-internals-04",
+      "order": 4,
+      "file": "docs/LLM 内部原理与架构/04-什么是 Multi-head Latent Attention（MLA）？DeepSeek 为什么引入它.md",
+      "question": "什么是 Multi-head Latent Attention（MLA）？DeepSeek 为什么引入它？",
+      "question_en": "What is Multi-head Latent Attention (MLA) and why did DeepSeek introduce it?",
+      "asked_at": ["DeepSeek", "Moonshot AI"],
+      "level": "高阶",
+      "tags": ["mla", "kv-cache", "deepseek", "低秩压缩"],
+      "sources": [
+        { "title": "KV Cache Compression", "url": "https://outcomeschool.com/blog/kv-cache-compression", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model（延伸）", "url": "https://arxiv.org/abs/2405.04434", "author": "DeepSeek-AI", "published": "2024-05-07" }
+      ],
+      "related": ["llm-internals-02", "llm-internals-03", "llm-internals-10"],
+      "brief": [
+        "先说清 MLA 要解决什么：KV cache 随序列长度线性膨胀，GQA/MQA 靠减少 KV 头数来压缩，但那是「减少视角」；MLA 换成「低秩压缩」，把每层每 token 的 K/V 压成一个 latent 向量 c_t^KV（维度 d_c 远小于 H·d_head），用时再上投影还原。",
+        "写出压缩与还原的式子：c_t^{KV} = W^{DKV} h_t（down-projection），k_t = W^{UK} c_t^{KV}，v_t = W^{UV} c_t^{KV}（up-projection）。推理时 W^{UK}、W^{UV} 可以吸收进相邻的投影矩阵，所以生成时不需要真的把 K/V 展开存下来——cache 里只有 latent。",
+        "给量化对比：DeepSeek-V2 的配置（d_c 与 KV cache 压缩比，论文里给出相对 MHA 约 93% 的 KV cache 削减、吞吐提升数倍）。自己按公式复算一遍「每 token 存多少元素」，与 MHA/GQA 并列成表。",
+        "讲清 decoupled RoPE：RoPE 作用在 Q/K 上是位置相关的旋转，如果直接对低秩压缩后的 K 做，会和「吸收进矩阵」的推理优化冲突。MLA 的做法是额外带一小段（d_h 维）专门承载 RoPE 的键，其余维度走 latent——这就是「解耦」。这一点几乎是必问的追问。",
+        "与 GQA/MQA/量化压缩放在同一张表里比较：压缩对象、是否需要重训、能压多少、是否损失质量、能否与其它手段叠加。",
+        "说明代价：训练时多了一些投影与额外维度，收益主要落在推理期显存与吞吐；DeepSeek 使用它也与 MoE 架构（[[llm-internals-10]]）配套。"
+      ]
+    },
+    {
+      "id": "llm-internals-05",
+      "order": 5,
+      "file": "docs/LLM 内部原理与架构/05-解释 FlashAttention。它并没有减少 FLOPs，那为什么更快.md",
+      "question": "解释 FlashAttention。它并没有减少 FLOPs，那为什么更快？",
+      "question_en": "Explain FlashAttention. It does not reduce FLOPs, so why is it faster?",
+      "asked_at": ["Together AI"],
+      "level": "进阶",
+      "tags": ["flashattention", "io-aware", "online-softmax", "kernel"],
+      "sources": [
+        { "title": "Decoding Flash Attention in LLMs", "url": "https://outcomeschool.com/blog/decoding-flash-attention", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）", "url": "https://arxiv.org/abs/2205.14135", "author": "Tri Dao et al.", "published": "2022-05-27" },
+        { "title": "FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning（延伸）", "url": "https://arxiv.org/abs/2307.08691", "author": "Tri Dao", "published": "2023-07-17" }
+      ],
+      "related": ["llm-internals-01", "llm-internals-02", "inference-serving-01"],
+      "brief": [
+        "核心论点：标准 attention 的瓶颈不是 FLOPs，而是 HBM 与 SRAM 之间的读写。S = QK^T 是 N×N，materialize 之后要写回 HBM 再读出来做 softmax，再写回、再读出来乘 V——IO 量是 O(N²) 级别的显存流量。",
+        "给出硬件层次的具体数字：H100 的 SRAM 每 SM 约 228 KB、HBM 80 GB、带宽约 3.35 TB/s；算力 989 TFLOPs bf16。用算术强度说明为什么 attention 在长序列上掉进带宽一侧。",
+        "讲 tiling（分块）：把 Q、K、V 切成能放进 SRAM 的块，外层循环 K/V 块、内层循环 Q 块，每块算完立刻消费掉，从不把完整 S 写回 HBM。",
+        "讲 online softmax：因为 softmax 需要全局最大值与全局归一化常数，分块时必须维护 running max m 和 running sum l，并在 m 更新时对已累积的输出做 rescale（乘 e^{m_old - m_new}）。给出一行行公式，说明它与一次性 softmax 在数值上完全等价——这是「精确注意力」而不是近似。",
+        "讲反向传播：不保存 N×N 的 attention 概率矩阵，而是保存 softmax 的统计量（m、l）并在反向时重算分块。用重算换 HBM 流量，整体更快。",
+        "给复杂度对比：标准实现 HBM 访问 O(N²)（还要乘 d），FlashAttention 降到 O(N²d²/M)，M 为 SRAM 大小；实测 2–4× 加速（GPT-2、序列 1K/2K 量级），显存从 O(N²) 降到 O(N)。",
+        "讲 FlashAttention-2 的改进：减少非 matmul 的 FLOPs、把工作划分到序列维度与 batch 维度以提升占用率、更好的 warp 级并行；以及它与 PagedAttention/vLLM（[[inference-serving-01]]）的分工——前者是算子，后者是 KV cache 的显存管理，互补而非替代。",
+        "明确回答题干：FLOPs 一个都没少（还略多了重算），快是因为把算法改成了 IO-aware。"
+      ]
+    },
+    {
+      "id": "llm-internals-06",
+      "order": 6,
+      "file": "docs/LLM 内部原理与架构/06-Byte Pair Encoding 是如何工作的？它有哪些失效场景（数字、代码、非拉丁文字）.md",
+      "question": "Byte Pair Encoding 是如何工作的？它有哪些失效场景（数字、代码、非拉丁文字）？",
+      "question_en": "How does Byte Pair Encoding work, and what are its failure modes (numbers, code, non-Latin scripts)?",
+      "asked_at": ["阿里巴巴", "Sarvam AI", "Hugging Face"],
+      "level": "进阶",
+      "tags": ["bpe", "tokenizer", "多语言", "代码"],
+      "sources": [
+        { "title": "Byte Pair Encoding", "url": "https://outcomeschool.com/blog/bpe-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）", "url": "https://arxiv.org/abs/1508.07909", "author": "Sennrich, Haddow, Birch", "published": "2015-08-31" },
+        { "title": "SentencePiece: A simple and language independent subword tokenizer（延伸）", "url": "https://arxiv.org/abs/1808.06226", "author": "Kudo, Richardson", "published": "2018-08-17" }
+      ],
+      "related": ["llm-internals-07", "llm-internals-16", "rag"],
+      "brief": [
+        "从动机讲起：词级词表会遇到 OOV 与词表爆炸，字符级序列太长；subword 是折中。BPE 的出发点是把「高频共现的符号对」不断合并。",
+        "训练算法分步写清（可用伪代码或 Python 片段）：把语料拆成字符序列 → 统计相邻符号对频次 → 合并频次最高的一对 → 重复 V 次得到 merge 表；给出一个 5–10 步的手算小例子（例如 low/lower/newest 这类经典例子，或自造一个中文/英文混合例子）。",
+        "编码阶段：按 merge 的 rank 顺序（不是按频次）贪心应用合并规则，说明为什么必须按 rank 而不是重新统计。",
+        "byte-level BPE：GPT-2 起把文本先转成 UTF-8 字节再跑 BPE，词表覆盖所有字节 → 永不 OOV；代价是非 ASCII 字符要多个 token。",
+        "失效场景要具体：数字（1234 与 1235 被切成不同 token，模型难以学会数位对齐与算术）、代码（空格与缩进被极端压缩成单个 token，长标识符/驼峰/下划线被切碎，导致跨语言迁移差）、非拉丁文字（中文通常 1 字 1–2 token，印地语/泰米尔语等更差，同一句话的 token 数可能是英文的 2–4 倍 → 成本、上下文占用与推理延迟都变差；可引用「tokenizer 公平性」的结论方向，但不要编造具体数字，给量级并说明来源）。",
+        "影响与缓解：词表大小与压缩率的权衡（词表越大 embedding 越大、长尾 token 训练不足）、多语言词表配比、专用 tokenizer（Sarvam 面向印度语言、Qwen 面向中文）、数字按位切分的可行性讨论。",
+        "与 WordPiece / Unigram（SentencePiece）的区别做成一张小表：合并还是剪枝、概率建模、空格处理（▁）。"
+      ]
+    },
+    {
+      "id": "llm-internals-07",
+      "order": 7,
+      "file": "docs/LLM 内部原理与架构/07-什么是 transformer 中的位置编码？它是如何演进的.md",
+      "question": "什么是 transformer 中的位置编码？它是如何演进的（sinusoidal → learned → RoPE → ALiBi）？",
+      "question_en": "What is positional encoding in transformers, and how has it evolved?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["位置编码", "rope", "alibi", "长上下文"],
+      "sources": [
+        { "title": "Positional Embeddings in LLMs", "url": "https://outcomeschool.substack.com/p/positional-embeddings-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Math Behind RoPE (Rotary Position Embedding)", "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation（延伸）", "url": "https://arxiv.org/abs/2108.12409", "author": "Ofir Press et al.", "published": "2021-08-24" }
+      ],
+      "related": ["llm-internals-08", "llm-internals-01", "llm-internals-16"],
+      "brief": [
+        "先说明为什么需要位置编码：self-attention 对输入顺序是置换等变的，不加位置信息就无法区分「猫追狗」和「狗追猫」。",
+        "sinusoidal（原始 Transformer）：PE(pos, 2i) = sin(pos/10000^{2i/d})、PE(pos, 2i+1) = cos(...)，加在 embedding 上。要说清两个性质：不同维度是不同频率、以及 PE(pos+k) 可由 PE(pos) 线性变换得到（相对位置的线性可表示性），这是它被认为能外推的原因。",
+        "learned absolute：BERT/GPT-2 直接学一张 [max_len, d] 的表；表达自由但受训练长度限制，超出部分没有 embedding。",
+        "相对位置与 ALiBi：ALiBi 不加位置嵌入，直接在 attention logit 上加线性偏置 -m·|i-j|（每个头一个斜率 m），简单、几乎零成本、外推好。给出 m 的取法（几何序列）。",
+        "RoPE：讲清它不是加在 embedding 上，而是对 Q/K 按位置做旋转；用二维旋转矩阵的形式写出，并说明为什么内积只依赖相对位置（详细推导留给 [[llm-internals-08]]）。",
+        "做一张演进对比表：方案 / 加在哪 / 是否学参数 / 相对位置 / 外推能力 / 代表模型（原始 Transformer、BERT、GPT-2、T5 relative bias、ALiBi、LLaMA 系）。",
+        "最后给出实践结论：现在主流是 RoPE（配 [[llm-internals-08]] 的外推技巧）；NoPE（不加位置编码，靠因果掩码隐式学位置）等反直觉结果可以一提，但标明是实验性结论。"
+      ]
+    },
+    {
+      "id": "llm-internals-08",
+      "order": 8,
+      "file": "docs/LLM 内部原理与架构/08-解释 RoPE，以及位置插值、YaRN 如何把上下文扩展到训练长度之外.md",
+      "question": "解释 RoPE，以及位置插值 / YaRN 如何把上下文扩展到训练长度之外。",
+      "question_en": "Explain RoPE and how position interpolation / YaRN extend context beyond the trained length.",
+      "asked_at": ["Meta", "Moonshot AI", "阿里巴巴"],
+      "level": "高阶",
+      "tags": ["rope", "yarn", "长上下文", "外推"],
+      "sources": [
+        { "title": "Math Behind RoPE (Rotary Position Embedding)", "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding（延伸）", "url": "https://arxiv.org/abs/2104.09864", "author": "Jianlin Su et al.", "published": "2021-04-20" },
+        { "title": "YaRN: Efficient Context Window Extension of Large Language Models（延伸）", "url": "https://arxiv.org/abs/2309.00071", "author": "Bowen Peng et al.", "published": "2023-08-31" }
+      ],
+      "related": ["llm-internals-07", "llm-internals-13", "llm-internals-16"],
+      "brief": [
+        "把 RoPE 的构造写清楚：d 维向量按相邻两维分成 d/2 个二维平面，第 i 个平面的旋转角是 m·θ_i，θ_i = 10000^{-2i/d}（base=10000）；等价于对每对分量乘一个 2×2 旋转矩阵。给出 cos/sin 预计算表的实现方式。",
+        "证明/说明核心性质：⟨R_m q, R_n k⟩ = ⟨q, R_{n-m} k⟩，即旋转后的内积只依赖相对位置 n-m。这是 RoPE 既编码绝对位置又让 attention 看到相对位置的原因（给出展开证明的思路即可：旋转矩阵正交、角度可加）。",
+        "讲长上下文为什么会崩：训练长度 L 时每个位置的角度都在模型见过的范围内；直接把 m 放大到 s·L，高频分量（大 θ、短波长）会旋转到训练分布之外，attention 打分失控。",
+        "位置插值 PI：把位置映射成 m/s，让最大角度落回训练范围；代价是所有频率一起被压缩，短距离的分辨率下降，需要少量微调（约千步量级）恢复。",
+        "NTK-aware：不整体压缩，而是改 base（10000 → 10000·s^{d/(d-2)}），让高频几乎不动、低频多插值；无需或极少微调，但外推仍有限。",
+        "YaRN：把维度按波长分成三区（波长 < L 的不插值、> L/s 的全插值、中间的用 ramp 平滑过渡，即 NTK-by-parts），再加上 attention 温度缩放 1/√t（因为插值后 attention 分布会变平）与相应的 softmax 温度修正；论文报告只用约 0.1% 的预训练量就能把 4k 模型扩到 64k/128k，且在超过训练长度的检索任务上表现好。",
+        "做一张对照表：PI / NTK-aware / YaRN 在「怎么改位置」「是否需微调」「外推长度」「短距离性能损失」上的差异；并提到工程实践里的 dynamic NTK、base 调节这些常见做法。",
+        "写一段可直接用于面试的结论：RoPE 的数学给了「相对位置 + 可旋转」两个性质，长度扩展的本质是在不破坏高频局部信息的前提下，把低频的周期拉长。"
+      ]
+    },
+    {
+      "id": "llm-internals-09",
+      "order": 9,
+      "file": "docs/LLM 内部原理与架构/09-Chinchilla 缩放定律说了什么？它与更早的缩放直觉有何不同.md",
+      "question": "Chinchilla 缩放定律说了什么？它与更早的缩放直觉有何不同？",
+      "question_en": "What do the Chinchilla scaling laws say, and how do they differ from earlier scaling intuitions?",
+      "asked_at": ["Anthropic"],
+      "level": "进阶",
+      "tags": ["scaling-law", "chinchilla", "训练"],
+      "sources": [
+        { "title": "Scaling Laws for Neural Language Models（延伸）", "url": "https://arxiv.org/abs/2001.08361", "author": "Kaplan et al. (OpenAI)", "published": "2020-01-23" },
+        { "title": "Training Compute-Optimal Large Language Models（延伸）", "url": "https://arxiv.org/abs/2203.15556", "author": "Hoffmann et al. (DeepMind)", "published": "2022-03-29" }
+      ],
+      "related": ["llm-internals-10", "llm-internals-11"],
+      "brief": [
+        "背景：这道题在考「你是否理解算力该怎么分配」，而不是背结论。先给 Kaplan 2020 的结论：loss 随参数量 N、数据量 D、算力 C 呈幂律下降；在固定算力下 Kaplan 建议把大部分算力给参数量（N ∝ C^0.73，D ∝ C^0.27），数据量增长要慢得多。",
+        "Chinchilla 的修正：用 400+ 个模型的实验重做拟合，结论是给定算力 C 时 N 与 D 应当同比例增长（N ∝ C^0.5、D ∝ C^0.5），即约 20 tokens/参数。写成 scaling law 形式 L(N, D) = E + A/N^α + B/D^β，并给出可代入的参数化思路（不要编造精确系数，说明形式与含义即可）。",
+        "关键证据：70B 的 Chinchilla 用 1.4T tokens 训练，全面超过 280B 的 Gopher（300B tokens）——同等算力下「更小的模型 + 更多数据」更优；也说明当时的大模型普遍训练不足。",
+        "对后续的影响：LLaMA 系列按这个思路把数据量拉到 1T–2T 甚至 15T tokens；但要点出「20 tokens/参数不是铁律」——如果推理成本占主导，反过来会刻意「过度训练」小模型（用远超 Chinchilla 最优的数据量换更低的推理成本），这是 Llama-3-8B 等模型的选择。",
+        "说明 scaling law 的边界：只对 loss/perplexity 外推有效，对下游能力（涌现、推理、指令遵循）不一定线性；数据质量、重复数据、多语言配比都会改变曲线；混合专家模型里「参数量」要区分总参数与激活参数（[[llm-internals-10]]）。",
+        "结尾给一个面试可用的总结：Chinchilla 把「算力最优分配」从「堆参数」改成「参数与数据同比例增长」，并顺带解释了为什么今天的模型比同算力的前辈更小、训练得更久。"
+      ]
+    },
+    {
+      "id": "llm-internals-10",
+      "order": 10,
+      "file": "docs/LLM 内部原理与架构/10-什么是 mixture-of-experts 架构？它如何在不增加 FLOPs 的情况下扩展容量.md",
+      "question": "什么是 mixture-of-experts 架构？它如何在不增加 FLOPs 的情况下扩展容量？",
+      "question_en": "What is a mixture-of-experts architecture and how does it scale capacity without scaling FLOPs?",
+      "asked_at": ["Mistral AI", "Cohere", "DeepSeek", "Moonshot AI", "智谱 AI", "阿里巴巴"],
+      "level": "进阶",
+      "tags": ["moe", "稀疏激活", "路由", "负载均衡"],
+      "sources": [
+        { "title": "Mixture of Experts Explained", "url": "https://outcomeschool.com/blog/mixture-of-experts", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity（延伸）", "url": "https://arxiv.org/abs/2101.03961", "author": "Fedus et al.", "published": "2021-01-11" },
+        { "title": "Mixtral of Experts（延伸）", "url": "https://arxiv.org/abs/2401.04088", "author": "Jiang et al. (Mistral AI)", "published": "2024-01-08" }
+      ],
+      "related": ["llm-internals-04", "llm-internals-09", "llm-internals-16"],
+      "brief": [
+        "先说架构位置：MoE 替换的是每个 Transformer block 里的 FFN（attention 不变）。把一个大 FFN 换成 N 个专家 FFN + 一个路由器，每个 token 只走 top-k 个专家（常见 k=1 或 2）。",
+        "写清计算路径与公式：g = softmax(x·W_r)，选 top-k 个专家，输出 y = Σ_{i∈topk} g_i · E_i(x)。说明「总参数」与「激活参数」的区别，这就是「扩容量不扩 FLOPs」的含义：显存要装下所有专家，但每个 token 的 FLOPs 只按被选中的专家算。",
+        "给具体数字：Mixtral 8x7B 总参数约 47B、每 token 激活约 13B（6–7 家常用例，请自己按「8 个 FFN + 共享 attention」的口径复算一遍并说明口径），并与同激活量的 dense 模型对比质量。",
+        "负载均衡是这个话题的核心难点：为什么需要 auxiliary loss（或 router z-loss）防止专家坍缩、capacity factor 与 token dropping 的作用、专家并行的 all-to-all 通信为什么是训练瓶颈（按 token 路由意味着通信量随 batch 增长）。",
+        "推理侧的代价要说透：MoE 省算力但通常不省显存（要放下所有专家），小 batch 时专家利用率低、延迟不稳定；这也是为什么 MoE 常见于大规模服务而不是端侧。",
+        "做一张 dense vs MoE 对比表：总参数、激活参数、每 token FLOPs、显存、通信、训练难度、典型场景。",
+        "代表模型与变体：Switch Transformer（top-1、简化路由）、Mixtral（top-2）、DeepSeekMoE/V3（细粒度专家 + 共享专家 + 无辅助损失的负载均衡策略），并链到 [[llm-internals-04]]（MLA 与 MoE 常一起出现）与 [[llm-internals-09]]（缩放定律在 MoE 下要看激活参数）。"
+      ]
+    },
+    {
+      "id": "llm-internals-11",
+      "order": 11,
+      "file": "docs/LLM 内部原理与架构/11-解释 pre-training、supervised fine-tuning 与 preference optimisation 的区别.md",
+      "question": "解释 pre-training、supervised fine-tuning 与 preference optimisation 之间的区别。",
+      "question_en": "Explain the difference between pre-training, supervised fine-tuning and preference optimisation.",
+      "asked_at": ["Meta", "Scale AI"],
+      "level": "进阶",
+      "tags": ["预训练", "sft", "rlhf", "dpo"],
+      "sources": [
+        { "title": "Decoding InstructGPT", "url": "https://outcomeschool.com/blog/decoding-instructgpt", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Reinforcement Learning from Human Feedback (RLHF)", "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Training language models to follow instructions with human feedback（延伸）", "url": "https://arxiv.org/abs/2203.02155", "author": "Ouyang et al. (OpenAI)", "published": "2022-03-04" },
+        { "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model（延伸）", "url": "https://arxiv.org/abs/2305.18290", "author": "Rafailov et al.", "published": "2023-05-29" }
+      ],
+      "related": ["llm-internals-12", "llm-internals-09"],
+      "brief": [
+        "三阶段各自回答三个问题：目标函数是什么、数据长什么样、解决什么问题。做成一张主表（目标 / 数据形式 / 典型规模 / 算力占比 / 产出）。",
+        "pre-training：自监督下一 token 预测，海量无标注文本，学到语言与世界知识；给出 base model 的特征（会续写、不会听指令）。公式用标准的交叉熵 -Σ log p(x_t | x_<t)。",
+        "SFT：监督微调，数据是 (指令, 回答) 对，loss 只在回答部分计算；说明数据质量与多样性比数量更重要，以及 SFT 为什么能让格式与风格对齐但不能可靠地教「偏好」。",
+        "preference optimisation：讲清 RLHF 的三段式（收集偏好对 → 训练 reward model → 用 PPO 优化 policy，同时加 KL 惩罚防止偏离参考模型），并解释 KL 项的作用（防止 reward hacking / 分布崩塌）。",
+        "再讲 DPO：直接用偏好对做分类式损失，无需显式 reward model 与 RL 循环；写出 DPO 损失的核心形式（logistic 形式，比较 policy 与 reference 的 log 比），说明它与 RLHF 的关系（隐式 reward）与取舍（简单稳定 vs 需要偏好数据、可能过拟合）。",
+        "补一句 GRPO 等更省资源的 RL 变体（同一 prompt 采样多条回答、用组内相对优势替代 value network），并说明它为什么在推理模型上流行。",
+        "要点：为什么 SFT 之后还需要偏好优化（SFT 只是模仿，不能表达「两个都不错但 A 更好」）；对齐税（alignment tax）与灾难性遗忘；实践顺序与常见坑（SFT 数据太少/太单一、reward model 过拟合、KL 系数选择）。"
+      ]
+    },
+    {
+      "id": "llm-internals-12",
+      "order": 12,
+      "file": "docs/LLM 内部原理与架构/12-比较 greedy、beam search、top-k、top-p 与 temperature 采样.md",
+      "question": "比较 greedy、beam search、top-k、top-p 与 temperature 采样。它们各自在什么情况下会失败？",
+      "question_en": "Compare greedy, beam search, top-k, top-p and temperature sampling. When does each fail?",
+      "asked_at": ["Google DeepMind", "Apple", "Perplexity"],
+      "level": "进阶",
+      "tags": ["解码", "采样", "temperature", "top-p"],
+      "sources": [
+        { "title": "How does Temperature control LLM output?", "url": "https://outcomeschool.com/blog/how-does-temperature-control-llm-output", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "How do Top-k and Top-p Sampling work?", "url": "https://outcomeschool.com/blog/how-do-top-k-and-top-p-sampling-work", "author": "Amit Shekhar (Outcome School)", "published": "" }
+      ],
+      "related": ["llm-internals-16", "llm-internals-11"],
+      "brief": [
+        "先统一记号：logits z → temperature 缩放 z/T →（可选）top-k / top-p 截断 → softmax → 按概率采样；greedy 与 beam 是确定性解码，其余是随机采样。",
+        "temperature：写出 softmax(z/T) 的形式，说明 T<1 让分布更尖锐（更确定、更易重复）、T>1 更平坦（更多样、更易跑题）、T→0 退化为 greedy；给一个 3–4 个 logits 的小数值表，展示 T=0.5/1/2 时概率分布的变化（数字自己算）。",
+        "top-k：固定候选集合大小 k 的缺点——分布本身很尖锐时 k 太宽（放进了长尾垃圾），分布很平时 k 太窄（丢掉合理候选）。",
+        "top-p（核采样）：按累积概率阈值 p 动态取候选，候选数随分布形状自适应；说明它与 top-k 的差别，以及 p 取 0.9/0.95 的常见实践。",
+        "顺序问题：temperature 作用在 logits 上、截断作用在缩放后的分布上；讲清「先温度还是先截断」会改变结果，以及实现里 min-p、重复惩罚（repetition penalty / presence penalty / frequency penalty）与它们的组合。",
+        "失败场景逐条列：greedy → 重复与退化、失去多样性；beam search → 长度归一化偏差、短视（局部最优）、在开放式生成里不如采样，且算力随 beam 数线性增长；temperature 过高 → 语义漂移与幻觉，过低 → 死循环与套话；top-k 固定 k → 不自适应；top-p → 在极尖锐分布下仍可能截到很多低质量 token（此时 min-p 更好）。",
+        "场景化建议：代码/数学/抽取类任务用低温 + greedy 或小 top-p；创意写作提高温度与 top-p；agent 的工具调用要低温以保证 JSON 稳定；并说明「评测必须固定解码参数」这个工程要点。"
+      ]
+    },
+    {
+      "id": "llm-internals-13",
+      "order": 13,
+      "file": "docs/LLM 内部原理与架构/13-长上下文中的 lost-in-the-middle 问题是什么？该如何解决.md",
+      "question": "长上下文中的 lost-in-the-middle 问题是什么？该如何解决？",
+      "question_en": "What is the lost-in-the-middle problem in long contexts and how do you address it?",
+      "asked_at": ["Moonshot AI"],
+      "level": "进阶",
+      "tags": ["长上下文", "rag", "位置偏差", "评测"],
+      "sources": [
+        { "title": "The Lost in the Middle Problem in LLMs", "url": "https://outcomeschool.com/blog/lost-in-the-middle-problem-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）", "url": "https://arxiv.org/abs/2307.03172", "author": "Liu et al.", "published": "2023-07-06" }
+      ],
+      "related": ["llm-internals-08", "rag", "llm-internals-02"],
+      "brief": [
+        "把现象描述清楚：多文档问答里，把包含答案的文档放在上下文不同位置，准确率呈 U 形——放开头或结尾最高，放中间明显下降；即使模型支持 32k/128k 上下文，也不等于能同等利用每个位置。",
+        "交代实验设置（论文做法）：用多文档 QA（如 NaturalQuestions 多文档版）与键值检索任务，控制「答案文档的位置」与「上下文长度」两个变量，做对照。要说明这是受控实验，不是传闻。",
+        "解释原因（面试官真正想听的）：训练数据里长距离依赖少、注意力的位置偏好（首因/近因）、attention sink 集中在开头、RoPE 远距离衰减、以及位置编码外推不足（链到 [[llm-internals-08]]）。每条给出机制而不只是名词。",
+        "给出可操作的工程解法：RAG 重排后把最相关的片段放在最前或最后（不要放中间）；减少无关上下文（context rot：塞得越多不一定越好）；把长任务拆成多跳检索/分步；结构化提示（先给结论与索引，再给细节）；在关键信息前后加显式标记与复述；训练侧用长度课程与位置均衡的数据。",
+        "补充评测方法：needle-in-a-haystack 这类「单针」测试的局限（只测检索、不测推理与多跳），更接近真实的是 RULER / 多跳 / 位置扫描；说明为什么「宣称支持 1M 上下文」需要看具体评测。",
+        "结尾给一句可背的结论：上下文窗口是容量，位置利用率才是能力；长上下文工程的默认动作是「少塞、精排、两端放」。"
+      ]
+    },
+    {
+      "id": "llm-internals-14",
+      "order": 14,
+      "file": "docs/LLM 内部原理与架构/14-为什么现代 transformer 把 LayerNorm 放在 pre-block 位置？RMSNorm 是什么.md",
+      "question": "为什么现代 transformer 把 LayerNorm 放在 pre-block 位置？RMSNorm 是什么？",
+      "question_en": "Why is LayerNorm placed pre-block in modern transformers, and what is RMSNorm?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["layernorm", "rmsnorm", "pre-ln", "训练稳定性"],
+      "sources": [
+        { "title": "RMSNorm (Root Mean Square Layer Normalization)", "url": "https://outcomeschool.com/blog/rmsnorm-root-mean-square-layer-normalization", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "On Layer Normalization in the Transformer Architecture（延伸）", "url": "https://arxiv.org/abs/2002.04745", "author": "Xiong et al.", "published": "2020-02-11" },
+        { "title": "Root Mean Square Layer Normalization（延伸）", "url": "https://arxiv.org/abs/1910.07467", "author": "Zhang, Sennrich", "published": "2019-10-16" }
+      ],
+      "related": ["llm-internals-15", "llm-internals-16"],
+      "brief": [
+        "先写清两种摆放方式：post-LN（原始 Transformer：x + Sublayer(LN(x))）与 pre-LN（x + Sublayer(LN(x)) 的变体，即先 norm 再进子层：x_{l+1} = x_l + F(LN(x_l))）。注意把两者公式写对、画一个 block 示意图（代码块 ASCII 图）。",
+        "解释 pre-LN 为什么更稳：残差路径上没有任何归一化，梯度可以沿恒等路径直通到底层，梯度尺度不随深度指数衰减，因此不需要小心调 warmup、可以训得更深。给一段「梯度范数随深度变化」的定性说明，并可给出 post-LN 需要 warmup 的直觉。",
+        "说明 pre-LN 的代价：主分支输出会随层数累积放大（表示尺度不断增长），所以最后必须再放一个 final norm（很多模型输出层前的 norm 就是这个原因），并且同层内的有效学习率尺度与 post-LN 不同。",
+        "LayerNorm 公式：对每个 token 的特征维做零均值、单位方差归一化，再乘 γ 加 β（可学习）。写清是在特征维而不是 batch 维上做统计。",
+        "RMSNorm 公式：只除以均方根，不减均值、不加 bias：RMS(x) = sqrt(mean(x_i²) + ε)，y = γ · x / RMS(x)。解释它背后的假设——re-centering（减均值）对效果贡献不大，rescaling（尺度不变性）才是关键；因此去掉均值与 bias 后仍然工作，且少一次 reduction、少一组参数。",
+        "性能对比：RMSNorm 比 LayerNorm 少一次跨维度的均值计算与广播，实测有约 10% 左右的加速（给出量级并说明取决于 kernel 与形状，不要编造精确数字），参数量也更少；这解释了 LLaMA 系、Gemma、Qwen 等都换成 RMSNorm。",
+        "顺带讲清变体与工程细节：DeepNorm（post-LN + 放大残差）、QK-norm（对 Q/K 做 norm 以稳定训练，常见于视觉与大模型）、以及 norm 的放置与 fused residual 实现的关系。"
+      ]
+    },
+    {
+      "id": "llm-internals-15",
+      "order": 15,
+      "file": "docs/LLM 内部原理与架构/15-解释 SwiGLU，以及为什么现代 LLM 的 MLP 模块中用门控激活取代了 ReLU、GELU.md",
+      "question": "解释 SwiGLU，以及为什么现代 LLM 的 MLP 模块中用门控激活取代了 ReLU/GELU。",
+      "question_en": "Explain SwiGLU and why gated activations replaced ReLU/GELU in modern LLM MLP blocks.",
+      "asked_at": ["Meta"],
+      "level": "进阶",
+      "tags": ["swiglu", "ffn", "激活函数", "llama"],
+      "sources": [
+        { "title": "Feed-Forward Networks in LLMs", "url": "https://outcomeschool.com/blog/feed-forward-networks-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "GLU Variants Improve Transformer（延伸）", "url": "https://arxiv.org/abs/2002.05202", "author": "Noam Shazeer", "published": "2020-02-12" }
+      ],
+      "related": ["llm-internals-14", "llm-internals-16", "llm-internals-10"],
+      "brief": [
+        "先给标准 FFN：FFN(x) = W_2 · σ(W_1 x)，中间维度 d_ff 通常是 4·d_model；说明它在 block 里的作用（逐 token 的非线性变换、承担大部分参数）。",
+        "讲 GLU 家族的统一形式：GLU(x) = (W_1 x) ⊗ σ(W_2 x)——一个分支当「门」逐元素调制另一个分支；σ 换成 ReLU/GELU/Swish 就得到 ReGLU/GEGLU/SwiGLU。给出 SwiGLU 的完整公式：SwiGLU(x) = (Swish(x W_gate) ⊙ x W_up) W_down，其中 Swish(z) = z·sigmoid(βz)（β=1 时即 SiLU）。",
+        "为什么门控更好：乘性交互让网络能表达「条件化」的线性变换（门控可以看成输入相关的特征选择），Swish 的平滑非单调形状在深层网络里优化更友好；引用 GLU Variants 论文的结论（在相同参数量下 GEGLU/SwiGLU 的 perplexity 优于 ReLU/GELU 基线），并说明这是经验结论而非严格理论。",
+        "参数账要算清：三个矩阵而非两个，如果保持 d_ff = 4d，参数量会变成 1.5 倍；所以实践中把 d_ff 调到 (2/3)·4d ≈ 2.67d（LLaMA 用 8/3 d 再对齐到 256 的倍数），使总参数量与原始 FFN 相当。请自己算一遍 4096 维时两种配置的参数与占比，做成小表。",
+        "给对比表：ReLU FFN / GELU FFN / SwiGLU FFN 在公式、矩阵数、参数量（同 d_ff）、同参数量下的 d_ff、perplexity 趋势、代表模型上的差异。",
+        "工程细节：SwiGLU 与 tensor parallel 的配合（gate/up 可以合并成一个矩阵做一次 GEMM）、融合 kernel 与显存读写、以及「为什么 MoE 里每个专家也用 SwiGLU」（链到 [[llm-internals-10]]）。",
+        "结尾回答题干最后一问：不是 ReLU/GELU 不行，而是「门控 + 平滑激活」在同一参数预算下更优，且代价只是多一个矩阵乘——在大模型里这是划算的交换。"
+      ]
+    },
+    {
+      "id": "llm-internals-16",
+      "order": 16,
+      "file": "docs/LLM 内部原理与架构/16-逐个张量地讲一遍 decoder-only transformer 的一次前向传播.md",
+      "question": "请逐个张量地讲一遍 decoder-only transformer 一次前向传播中发生的过程。",
+      "question_en": "Walk me through what happens, tensor by tensor, in one forward pass of a decoder-only transformer.",
+      "asked_at": ["Anthropic"],
+      "level": "高阶",
+      "tags": ["前向传播", "张量形状", "综合题"],
+      "sources": [
+        { "title": "Decoding Transformer Architecture", "url": "https://outcomeschool.com/blog/decoding-transformer-architecture", "author": "Amit Shekhar (Outcome School)", "published": "" }
+      ],
+      "related": ["llm-internals-01", "llm-internals-14", "llm-internals-15", "inference-serving-01"],
+      "brief": [
+        "这是本专题的综合题，要求「逐张量」——全程标注形状并用一个具体配置贯穿：B=2、S=1024、d_model=4096、H=32、d_head=128、L=32、词表 V=32000、d_ff=11008、bf16。",
+        "按顺序走完并给出每步形状：[B,S] token ids → embedding [B,S,d] → 进入 L 层循环 → pre-RMSNorm → QKV 投影（W_q: d×H·d_head；W_k/W_v: d×H_kv·d_head，GQA 时更小）→ reshape/transpose 成 [B,H,S,d_head] → RoPE 施加在 Q/K 上 → scores = QK^T/√d_head 得 [B,H,S,S] → 加因果掩码 → softmax → ×V 得 [B,H,S,d_head] → 合并头 → 输出投影 W_o → 残差相加 → pre-RMSNorm → SwiGLU FFN（up/gate [B,S,d_ff]，逐元素乘后 down 回 [B,S,d]）→ 残差相加 → 循环结束 → final norm → lm_head [d,V] → logits [B,S,V] →（训练时交叉熵，推理时只取最后位置 [B,V] 采样）。",
+        "给出参数量与 FLOPs 的量级：每层 attention 约 4·d² 参数（GQA 下 K/V 更小）、FFN 约 3·d·d_ff；一次前向约 2·N_params·S（每 token 2×参数量）的 FLOPs；并说明 prefill（S 大、矩阵乘矩阵、compute-bound）与 decode（S=1、矩阵乘向量、memory-bound）在形状与瓶颈上的差别，链到 [[llm-internals-02]]。",
+        "讲清几个容易被追问的细节：为什么掩码要在 softmax 之前加 -inf；为什么最后一层之后还要 final norm；lm_head 与 embedding 是否共享权重（weight tying）；logits 为什么要 fp32 累加；KV cache 在这个流程里的插入点（decode 时只算新 token 的 Q/K/V 并追加到 cache）。",
+        "用一个 ASCII 图或表格把「阶段 → 形状 → 关键算子」列出来，方便面试时照着讲。",
+        "最后给一个 60 秒的口头版本（8–10 步），并用一句话点出这道题真正考察的是「你能不能把模型当成一张会流动的形状图来理解」。"
+      ]
+    }
+  ]
+}

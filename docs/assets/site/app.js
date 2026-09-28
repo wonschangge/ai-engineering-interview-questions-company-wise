@@ -18,6 +18,7 @@
     topics: [],
     topicById: new Map(),
     questionById: new Map(),
+    fileToRoute: new Map(),
     companyBySection: [],
     read: new Set(),
     filter: '',
@@ -123,7 +124,40 @@
     return html;
   }
 
-  function enhance(container) {
+  const GITHUB_BLOB = 'https://github.com/wonschangge/ai-engineering-interview-questions-company-wise/blob/main/';
+
+  /** 把 fromFile（站点相对路径）里的相对链接解析成仓库内路径 */
+  function resolveRepoPath(fromFile, href) {
+    const clean = decodeURIComponent(href.split('#')[0].split('?')[0]);
+    if (!clean) return null;
+    const base = ('docs/' + fromFile).split('/').slice(0, -1);
+    const out = base.slice();
+    for (const part of clean.split('/')) {
+      if (part === '' || part === '.') continue;
+      if (part === '..') { out.pop(); continue; }
+      out.push(part);
+    }
+    return out.join('/');
+  }
+
+  function enhance(container, fromFile) {
+    // 站内 .md 链接 → SPA 路由；指向仓库其它文件的 → GitHub 链接
+    if (fromFile) {
+      $$('a[href]', container).forEach((a) => {
+        const href = a.getAttribute('href');
+        if (/^(https?:|mailto:|wikilink:|#|\/)/.test(href)) return;
+        const repoPath = resolveRepoPath(fromFile, href);
+        if (!repoPath) return;
+        if (repoPath.startsWith('docs/')) {
+          const sitePath = repoPath.slice('docs/'.length);
+          const target = state.fileToRoute.get(sitePath);
+          if (target) { a.setAttribute('href', target); return; }
+        }
+        a.setAttribute('href', GITHUB_BLOB + repoPath.split('/').map(encodeURIComponent).join('/'));
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      });
+    }
     $$('a[href^="wikilink:"]', container).forEach((a) => {
       const id = a.getAttribute('href').slice('wikilink:'.length);
       const q = state.questionById.get(id);
@@ -402,7 +436,7 @@
     try {
       const md = await loadMarkdown(topic.overviewFile);
       box.innerHTML = renderMarkdown(md);
-      enhance(box);
+      enhance(box, topic.overviewFile);
     } catch (err) {
       box.innerHTML = '<p class="error">' + esc(err.message) + '</p>';
     }
@@ -415,7 +449,7 @@
     try {
       const md = await loadMarkdown(q.file);
       box.innerHTML = renderMarkdown(md);
-      const heads = enhance(box);
+      const heads = enhance(box, q.file);
       if (toc) toc.innerHTML = buildToc(heads);
       if (section) {
         const target = $('#' + section, box);
@@ -658,7 +692,11 @@
       state.topics = catalog.topics;
       for (const t of catalog.topics) {
         state.topicById.set(t.id, t);
-        for (const q of t.questions) state.questionById.set(q.id, Object.assign({ topicId: t.id, topicTitle: t.title }, q));
+        if (t.overviewFile) state.fileToRoute.set(t.overviewFile, '#/topic/' + t.id);
+        for (const q of t.questions) {
+          state.questionById.set(q.id, Object.assign({ topicId: t.id, topicTitle: t.title }, q));
+          state.fileToRoute.set(q.file, '#/q/' + q.id);
+        }
       }
       bind();
       render();

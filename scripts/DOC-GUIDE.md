@@ -18,8 +18,9 @@ docs/
 命名规则：
 
 - 文件名 = `<两位序号>-<中文题目>.md`，序号与 `README.zh-CN.md` 中该专题内的题目顺序一致。
-- 非法字符 `/ \ : * ? " < > |` 一律替换成 `-`（例如 `1/sqrt(d_k)` → `1-sqrt(d_k)`）。
-- 去掉句末的 `。`，保留 `？`；文件名长度控制在 60 个字符以内。
+- 非法字符 `/ \ : * ? " < > |` 一律替换成 `-`；只作分隔用的 `/` 可以改写成 `、`（例如「位置插值 / YaRN」→「位置插值、YaRN」）。
+- **去掉句末的 `。？！`**（句中标点保留，例如 `…替换了 ReLU、GELU.md`）；过长时可截掉句末的补充说明（如括号内的枚举）。
+- 文件名长度控制在 60 个字符以内。
 - **稳定 ID**：`<topic-slug>-<序号>`，例如 `llm-internals-01`。ID 一旦发布就不再改动（标题可以改，ID 不能），
   站内路由、深链、`related` 引用全部依赖它。
 - 专题 slug 固定为：`llm-internals`、`inference-serving`、`rag`、`agents`、`finetuning`、`evaluation`、
@@ -109,3 +110,8 @@ node scripts/build-site.mjs --check  # 只校验（含“数据是否过期”�
 - 校验规则：front matter 必备字段、id 唯一且小写连字符、order 从 1 连续、二级标题逐字匹配、`$` 与代码围栏成对、`asked_at` 非空时必须写「公司变体」。
 - 改了 `.md` 之后必须重新运行构建，否则 `--check` 会报「数据已过期」，Pages 工作流也会因此失败。
 - 站点资产（marked / KaTeX / highlight.js）已经 vendored 到 `docs/assets/site/vendor/`，不要改成 CDN 引用。
+
+临时脚本、抓取缓存与验算草稿一律写在仓库根的 `.work/`（已在 `.gitignore` 中忽略），不要散落到 `docs/` 下。
+
+批次作业单放在 `scripts/batches/<专题 slug>.json`：每题一条记录（题面、front matter 期望值、参考来源、必须覆盖的知识点清单）。
+它是撰写与审校的共同依据，也是后续复核「这篇有没有漏讲」的检查表；新增批次时照抄结构即可。
