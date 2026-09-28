@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T10:10:58.340Z",
+  "generated": "2026-09-28T10:58:22.464Z",
   "stats": {
-    "topics": 6,
-    "questions": 77,
+    "topics": 7,
+    "questions": 87,
     "planned": 598
   },
   "topics": [
@@ -3470,6 +3470,475 @@
           ],
           "updated": "2026-09-28",
           "chars": 9668
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "title": "安全、安保与负责任 AI",
+      "order": 7,
+      "summary": "从 prompt injection 的分层防御、OWASP 威胁清单、越狱与 guardrails，到 PII 治理、机制可解释性、群体差异审计与红队方案，覆盖「怎么让系统不被攻破、也不伤人」这套能力。",
+      "declaredTotal": 10,
+      "updated": "2026-09-28",
+      "dir": "安全、安保与负责任 AI",
+      "overviewFile": "安全、安保与负责任 AI/README.md",
+      "overviewTitle": "安全、安保与负责任 AI",
+      "questions": [
+        {
+          "id": "safety-01",
+          "order": 1,
+          "title": "什么是 prompt injection（直接和间接），你的分层防御是什么？",
+          "titleEn": "What is prompt injection (direct and indirect) and what is your layered defense?",
+          "file": "安全、安保与负责任 AI/01-什么是 prompt injection 以及分层防御.md",
+          "level": "高阶",
+          "tags": [
+            "prompt-injection",
+            "间接注入",
+            "纵深防御",
+            "架构边界"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "OpenAI",
+            "Microsoft",
+            "Sierra"
+          ],
+          "related": [
+            "safety-03",
+            "safety-06",
+            "safety-04",
+            "rag-08",
+            "agents-10"
+          ],
+          "sources": [
+            {
+              "title": "Prompt Injection in LLMs",
+              "url": "https://outcomeschool.com/blog/prompt-injection-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）",
+              "url": "https://arxiv.org/abs/2302.12173",
+              "author": "Greshake et al.",
+              "published": "2023-02-23"
+            },
+            {
+              "title": "Defeating Prompt Injections by Design（CaMeL）（延伸）",
+              "url": "https://arxiv.org/abs/2503.18813",
+              "author": "Debenedetti et al. (Google DeepMind)",
+              "published": "2025-03-24"
+            },
+            {
+              "title": "OWASP Top 10 for LLM Applications（延伸）",
+              "url": "https://genai.owasp.org/llm-top-10/",
+              "author": "OWASP GenAI Security Project",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8919
+        },
+        {
+          "id": "safety-02",
+          "order": 2,
+          "title": "讲讲 LLM 应用的 OWASP Top 10，以及哪些在实践中真的会造成影响。",
+          "titleEn": "Walk through the OWASP Top 10 for LLM applications and which ones actually cause impact in practice.",
+          "file": "安全、安保与负责任 AI/02-讲讲 LLM 应用的 OWASP Top 10 以及哪些真的会造成影响.md",
+          "level": "进阶",
+          "tags": [
+            "owasp",
+            "威胁建模",
+            "供应链",
+            "过度代理"
+          ],
+          "askedAt": [],
+          "related": [
+            "safety-01",
+            "safety-03",
+            "safety-06",
+            "safety-07"
+          ],
+          "sources": [
+            {
+              "title": "OWASP Top 10 for LLM Applications（延伸）",
+              "url": "https://genai.owasp.org/llm-top-10/",
+              "author": "OWASP GenAI Security Project",
+              "published": ""
+            },
+            {
+              "title": "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations（NIST AI 100-2）（延伸）",
+              "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf",
+              "author": "Vassilev et al. (NIST)",
+              "published": "2024-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9183
+        },
+        {
+          "id": "safety-03",
+          "order": 3,
+          "title": "jailbreaking 与对抗性 prompt 有什么区别？",
+          "titleEn": "What is the difference between jailbreaking and adversarial prompts?",
+          "file": "安全、安保与负责任 AI/03-jailbreaking 与对抗性 prompt 有什么区别.md",
+          "level": "进阶",
+          "tags": [
+            "jailbreak",
+            "对抗样本",
+            "安全训练",
+            "对齐"
+          ],
+          "askedAt": [],
+          "related": [
+            "safety-01",
+            "safety-04",
+            "safety-10",
+            "safety-05"
+          ],
+          "sources": [
+            {
+              "title": "Prompt Injection in LLMs",
+              "url": "https://outcomeschool.com/blog/prompt-injection-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Jailbroken: How Does LLM Safety Training Fail?（延伸）",
+              "url": "https://arxiv.org/abs/2307.02483",
+              "author": "Wei, Haghtalab, Steinhardt",
+              "published": "2023-07-05"
+            },
+            {
+              "title": "Universal and Transferable Adversarial Attacks on Aligned Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2307.15043",
+              "author": "Zou et al. (GCG)",
+              "published": "2023-07-27"
+            },
+            {
+              "title": "Many-shot Jailbreaking（延伸）",
+              "url": "https://www.anthropic.com/research/many-shot-jailbreaking",
+              "author": "Anthropic",
+              "published": "2024-04-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10442
+        },
+        {
+          "id": "safety-04",
+          "order": 4,
+          "title": "为面向消费者的助手设计 guardrails。输入过滤、输出过滤，还是两者都用？",
+          "titleEn": "Design guardrails for a consumer-facing assistant. Input filtering, output filtering, or both?",
+          "file": "安全、安保与负责任 AI/04-为面向消费者的助手设计 guardrails.md",
+          "level": "进阶",
+          "tags": [
+            "guardrails",
+            "输入输出过滤",
+            "误杀率",
+            "延迟预算"
+          ],
+          "askedAt": [
+            "Sierra",
+            "Character.AI"
+          ],
+          "related": [
+            "safety-01",
+            "safety-03",
+            "safety-07",
+            "evaluation-04",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "How do LLM guardrails work?",
+              "url": "https://outcomeschool.com/blog/how-do-llm-guardrails-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations（延伸）",
+              "url": "https://arxiv.org/abs/2312.06674",
+              "author": "Inan et al. (Meta)",
+              "published": "2023-12-07"
+            },
+            {
+              "title": "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications with Programmable Rails（延伸）",
+              "url": "https://arxiv.org/abs/2310.10501",
+              "author": "Rebedea et al. (NVIDIA, EMNLP 2023 demo)",
+              "published": "2023-10-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9643
+        },
+        {
+          "id": "safety-05",
+          "order": 5,
+          "title": "什么是 Constitutional AI，它与 RLHF 有什么不同？什么是 RLAIF？",
+          "titleEn": "What is Constitutional AI, how does it differ from RLHF, and what is RLAIF?",
+          "file": "安全、安保与负责任 AI/05-什么是 Constitutional AI 以及它与 RLHF 有何不同.md",
+          "level": "高阶",
+          "tags": [
+            "constitutional-ai",
+            "rlaif",
+            "对齐",
+            "原则"
+          ],
+          "askedAt": [
+            "Anthropic"
+          ],
+          "related": [
+            "finetuning-01",
+            "finetuning-02",
+            "finetuning-11",
+            "safety-10"
+          ],
+          "sources": [
+            {
+              "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2212.08073",
+              "author": "Bai et al. (Anthropic)",
+              "published": "2022-12-15"
+            },
+            {
+              "title": "RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2309.00267",
+              "author": "Lee et al. (ICML 2024)",
+              "published": "2023-09-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11764
+        },
+        {
+          "id": "safety-06",
+          "order": 6,
+          "title": "你如何防止具备工具调用权限的 agent 通过恶意网页外泄数据？",
+          "titleEn": "How do you prevent a tool-enabled agent from exfiltrating data through malicious web pages?",
+          "file": "安全、安保与负责任 AI/06-如何防止具备工具权限的 agent 通过恶意网页外泄数据.md",
+          "level": "高阶",
+          "tags": [
+            "数据外泄",
+            "agent-安全",
+            "capability",
+            "出站审查"
+          ],
+          "askedAt": [
+            "OpenAI"
+          ],
+          "related": [
+            "safety-01",
+            "safety-04",
+            "agents-10",
+            "agents-11",
+            "rag-08"
+          ],
+          "sources": [
+            {
+              "title": "Prompt Injection in LLMs",
+              "url": "https://outcomeschool.com/blog/prompt-injection-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）",
+              "url": "https://arxiv.org/abs/2302.12173",
+              "author": "Greshake et al.",
+              "published": "2023-02-23"
+            },
+            {
+              "title": "AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents（延伸）",
+              "url": "https://arxiv.org/abs/2406.13352",
+              "author": "Debenedetti et al. (NeurIPS 2024)",
+              "published": "2024-06-19"
+            },
+            {
+              "title": "Defeating Prompt Injections by Design（CaMeL）（延伸）",
+              "url": "https://arxiv.org/abs/2503.18813",
+              "author": "Debenedetti et al. (Google DeepMind)",
+              "published": "2025-03-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7753
+        },
+        {
+          "id": "safety-07",
+          "order": 7,
+          "title": "你如何处理 prompt、日志和训练数据中的 PII？",
+          "titleEn": "How do you handle PII in prompts, logs and training data?",
+          "file": "安全、安保与负责任 AI/07-如何处理 prompt、日志与训练数据中的 PII.md",
+          "level": "进阶",
+          "tags": [
+            "pii",
+            "隐私",
+            "合规",
+            "最小化"
+          ],
+          "askedAt": [
+            "Abridge"
+          ],
+          "related": [
+            "safety-09",
+            "evaluation-07",
+            "agents-10",
+            "rag-08"
+          ],
+          "sources": [
+            {
+              "title": "AI Risk Management Framework（延伸）",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "author": "NIST",
+              "published": ""
+            },
+            {
+              "title": "Microsoft Presidio（延伸）",
+              "url": "https://microsoft.github.io/presidio/",
+              "author": "Microsoft",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9756
+        },
+        {
+          "id": "safety-08",
+          "order": 8,
+          "title": "什么是机制可解释性（mechanistic interpretability），为什么各实验室都投入其中？",
+          "titleEn": "What is mechanistic interpretability and why do labs invest in it?",
+          "file": "安全、安保与负责任 AI/08-什么是机制可解释性以及为什么各实验室都投入其中.md",
+          "level": "高阶",
+          "tags": [
+            "可解释性",
+            "superposition",
+            "sae",
+            "安全"
+          ],
+          "askedAt": [],
+          "related": [
+            "safety-10",
+            "safety-09",
+            "safety-03",
+            "llm-internals-16"
+          ],
+          "sources": [
+            {
+              "title": "Toy Models of Superposition（延伸）",
+              "url": "https://arxiv.org/abs/2209.10652",
+              "author": "Elhage et al. (Anthropic)",
+              "published": "2022-09-21"
+            },
+            {
+              "title": "Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet（延伸）",
+              "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/",
+              "author": "Templeton et al. (Anthropic)",
+              "published": "2024-05-21"
+            },
+            {
+              "title": "A Mathematical Framework for Transformer Circuits（延伸）",
+              "url": "https://transformer-circuits.pub/2021/framework/index.html",
+              "author": "Elhage et al. (Anthropic)",
+              "published": "2021-12-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8430
+        },
+        {
+          "id": "safety-09",
+          "order": 9,
+          "title": "你会如何审计一个已部署模型在不同用户群体间的表现差异？",
+          "titleEn": "How would you audit a deployed model for performance differences across user groups?",
+          "file": "安全、安保与负责任 AI/09-如何审计已部署模型在不同用户群体间的表现差异.md",
+          "level": "高阶",
+          "tags": [
+            "公平性",
+            "审计",
+            "model-cards",
+            "分层评测"
+          ],
+          "askedAt": [
+            "Microsoft"
+          ],
+          "related": [
+            "evaluation-04",
+            "evaluation-09",
+            "safety-07",
+            "finetuning-07"
+          ],
+          "sources": [
+            {
+              "title": "Model Cards for Model Reporting（延伸）",
+              "url": "https://arxiv.org/abs/1810.03993",
+              "author": "Mitchell et al. (FAT* 2019)",
+              "published": "2018-10-05"
+            },
+            {
+              "title": "Datasheets for Datasets（延伸）",
+              "url": "https://arxiv.org/abs/1803.09010",
+              "author": "Gebru et al.",
+              "published": "2018-03-23"
+            },
+            {
+              "title": "AI Risk Management Framework（延伸）",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "author": "NIST",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5697
+        },
+        {
+          "id": "safety-10",
+          "order": 10,
+          "title": "为你即将发布的模型设计一套红队测试（red-teaming）方案。",
+          "titleEn": "Design a red-teaming program for a model you are about to release.",
+          "file": "安全、安保与负责任 AI/10-为即将发布的模型设计一套红队测试方案.md",
+          "level": "高阶",
+          "tags": [
+            "红队",
+            "harmbench",
+            "发布门禁",
+            "对抗评测"
+          ],
+          "askedAt": [],
+          "related": [
+            "safety-03",
+            "safety-04",
+            "evaluation-04",
+            "evaluation-06",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "LLM Evaluation",
+              "url": "https://outcomeschool.com/blog/llm-evaluation",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Red Teaming Language Models with Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2202.03286",
+              "author": "Perez et al. (DeepMind)",
+              "published": "2022-02-07"
+            },
+            {
+              "title": "Red Teaming Language Models to Reduce Harms: Methods, Scaling Behaviors, and Lessons Learned（延伸）",
+              "url": "https://arxiv.org/abs/2209.07858",
+              "author": "Ganguli et al. (Anthropic)",
+              "published": "2022-08-23"
+            },
+            {
+              "title": "HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal（延伸）",
+              "url": "https://arxiv.org/abs/2402.04249",
+              "author": "Mazeika et al. (ICML 2024)",
+              "published": "2024-02-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10065
         }
       ]
     }

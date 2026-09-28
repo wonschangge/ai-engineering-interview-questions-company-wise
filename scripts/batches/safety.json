@@ -1,0 +1,262 @@
+{
+  "topic": "安全、安保与负责任 AI",
+  "topic_id": "safety",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/安全、安保与负责任 AI",
+  "all_questions": [
+    { "id": "safety-01", "order": 1, "title": "什么是 prompt injection（直接和间接），你的分层防御是什么？" },
+    { "id": "safety-02", "order": 2, "title": "讲讲 LLM 应用的 OWASP Top 10，以及哪些在实践中真的会造成影响。" },
+    { "id": "safety-03", "order": 3, "title": "jailbreaking 与对抗性 prompt 有什么区别？" },
+    { "id": "safety-04", "order": 4, "title": "为面向消费者的助手设计 guardrails。输入过滤、输出过滤，还是两者都用？" },
+    { "id": "safety-05", "order": 5, "title": "什么是 Constitutional AI，它与 RLHF 有什么不同？什么是 RLAIF？" },
+    { "id": "safety-06", "order": 6, "title": "你如何防止具备工具调用权限的 agent 通过恶意网页外泄数据？" },
+    { "id": "safety-07", "order": 7, "title": "你如何处理 prompt、日志和训练数据中的 PII？" },
+    { "id": "safety-08", "order": 8, "title": "什么是机制可解释性（mechanistic interpretability），为什么各实验室都投入其中？" },
+    { "id": "safety-09", "order": 9, "title": "你会如何审计一个已部署模型在不同用户群体间的表现差异？" },
+    { "id": "safety-10", "order": 10, "title": "为你即将发布的模型设计一套红队测试（red-teaming）方案。" }
+  ],
+  "questions": [
+    {
+      "id": "safety-01",
+      "order": 1,
+      "file": "docs/安全、安保与负责任 AI/01-什么是 prompt injection 以及分层防御.md",
+      "question": "什么是 prompt injection（直接和间接），你的分层防御是什么？",
+      "question_en": "What is prompt injection (direct and indirect) and what is your layered defense?",
+      "asked_at": ["Anthropic", "OpenAI", "Microsoft", "Sierra"],
+      "level": "高阶",
+      "tags": ["prompt-injection", "间接注入", "纵深防御", "架构边界"],
+      "sources": [
+        { "title": "Prompt Injection in LLMs", "url": "https://outcomeschool.com/blog/prompt-injection-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）", "url": "https://arxiv.org/abs/2302.12173", "author": "Greshake et al.", "published": "2023-02-23" },
+        { "title": "Defeating Prompt Injections by Design（CaMeL）（延伸）", "url": "https://arxiv.org/abs/2503.18813", "author": "Debenedetti et al. (Google DeepMind)", "published": "2025-03-24" },
+        { "title": "OWASP Top 10 for LLM Applications（延伸）", "url": "https://genai.owasp.org/llm-top-10/", "author": "OWASP GenAI Security Project", "published": "" }
+      ],
+      "related": ["safety-03", "safety-06", "safety-04", "rag-08", "agents-10"],
+      "brief": [
+        "先分类并给出定义：**直接注入**——用户在输入里直接覆盖或篡改系统指令（「忽略之前的指令…」）；**间接注入**——指令藏在模型会读取的**数据**里（网页、文档、邮件、代码注释、工具返回值、检索到的 chunk）。要强调间接注入才是难点：攻击者**不需要**与用户或系统有直接交互通道，只要能让自己的内容被检索/读取即可（链到 [[rag-08]] 的语料与 [[agents-02]] 的工具返回值）。",
+        "讲清「为什么它在原理上没被解决」——这是本题的核心论点：LLM 没有在架构上区分「指令」与「数据」，二者都是同一序列里的 token。引用间接注入论文的核心表述：LLM 集成应用**模糊了数据与指令的边界**（该论文还给出了从计算机安全视角的分类，包括数据窃取、蠕虫式传播、信息生态污染等，并演示了对真实系统（如接入 GPT-4 的 Bing Chat）与合成应用的有效攻击）。因此任何「让模型自己判断哪段是数据」的方案都只是在提高攻击成本，而不是建立边界。",
+        "讲影响面（要具体到可被外带的通道）：把上下文里的隐私数据编码进 URL 或 markdown 图片（渲染即发起请求）、写入工单/备注/文件、调用外部 API、DNS 查询、把内容回写到可被他人读取的位置形成蠕虫（链到 [[safety-06]] 的数据外泄链路、[[agents-10]] 的审计）。",
+        "分层防御要逐层给，且必须点明「哪一层最有效」：① **架构层（最有效）**——把控制流与数据流分离，让不可信数据无法影响程序流程：可引用 CaMeL 的思路（从可信查询里显式抽取控制流与数据流，用 capability 在工具调用前强制安全策略；论文口径：在 AgentDojo 上以**可证明的安全性**完成 77% 的任务，而未防御系统为 84%——即用少量效用损失换可证明的边界）；工具网关做参数级授权与白名单（链到 [[rag-08]]、[[agents-11]] 的审批）。② **输入层**——来源标记与信任级隔离（不可信内容用结构化字段包裹并标注来源）、内容清洗（去隐藏文本/不可见 Unicode/HTML 注释）、绝不把不可信内容放进 system 级位置。③ **模型层**——安全训练与指令层级（instruction hierarchy）训练、注入检测分类器（链到 [[safety-04]]）。④ **输出层**——出站审查（URL/图片/DNS 白名单、敏感串指纹比对、异常长度与频率），工具调用白名单与速率限制。⑤ **运行层**——最小权限、沙箱、审计与回放、异常告警、人工审批（链到 [[agents-10]]、[[agents-11]]）。",
+        "讲评测怎么做：用可扩展的对抗环境而不是一次性清单——可引用 AgentDojo 的口径（97 个真实任务、629 个安全测试用例，是一个**可扩展环境**而非静态测试集；论文发现 SOTA 模型即使在没有攻击时也会失败相当一部分任务，且现有注入攻击能破坏部分但非全部安全属性）；同时自建针对自己工具集的注入用例并进红线集（链到 [[evaluation-04]]）。",
+        "最后给一句可背的结论：**注入不可能被 100% 阻止，目标是限制爆炸半径**——假设注入一定会成功，然后问「它成功之后能做什么」。",
+        "常见追问：为什么「在 prompt 里警告模型不要听注入」不够？为什么不能只靠输入过滤（链到 [[safety-04]]）？指令层级训练能解决到什么程度？"
+      ]
+    },
+    {
+      "id": "safety-02",
+      "order": 2,
+      "file": "docs/安全、安保与负责任 AI/02-讲讲 LLM 应用的 OWASP Top 10 以及哪些真的会造成影响.md",
+      "question": "讲讲 LLM 应用的 OWASP Top 10，以及哪些在实践中真的会造成影响。",
+      "question_en": "Walk through the OWASP Top 10 for LLM applications and which ones actually cause impact in practice.",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["owasp", "威胁建模", "供应链", "过度代理"],
+      "sources": [
+        { "title": "OWASP Top 10 for LLM Applications（延伸）", "url": "https://genai.owasp.org/llm-top-10/", "author": "OWASP GenAI Security Project", "published": "" },
+        { "title": "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations（NIST AI 100-2）（延伸）", "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf", "author": "Vassilev et al. (NIST)", "published": "2024-01" }
+      ],
+      "related": ["safety-01", "safety-03", "safety-06", "safety-07"],
+      "brief": [
+        "先给清单（要准确，并注明这是 OWASP GenAI Security Project 的 LLM 应用榜单，版本会演进）：LLM01 Prompt Injection、LLM02 Sensitive Information Disclosure、LLM03 Supply Chain、LLM04 Data and Model Poisoning、LLM05 Improper Output Handling、LLM06 Excessive Agency、LLM07 System Prompt Leakage、LLM08 Vector and Embedding Weaknesses、LLM09 Misinformation、LLM10 Unbounded Consumption。写清来源与「版本会变，方法比清单重要」这个前提。",
+        "逐条给「机制 → 真实影响 → 关键控制」，每条 2–3 句即可，但要有画面感：① 注入——见 [[safety-01]]；② 敏感信息泄露——上下文里的他人数据被输出、日志与 trace 带 PII、模型记忆化（链到 [[safety-07]]）；③ 供应链——模型权重/数据集/插件/依赖的来源不可信（链到 [[evaluation-06]] 的污染与 [[safety-10]] 的红队范围）；④ 数据与模型投毒——训练/微调/RAG 语料被污染（链到 [[rag-11]] 的索引新鲜度与写权限）；⑤ 不当输出处理——把模型输出直接拼进 HTML/SQL/shell/命令（本质是传统注入漏洞在 LLM 场景的复现，修复方式也是传统的转义与参数化）；⑥ 过度代理——工具权限过大、缺少审批与最小权限（链到 [[agents-11]]）；⑦ 系统提示泄露——泄露防护逻辑、内部路由与策略，本身不致命但显著降低攻击成本；⑧ 向量与嵌入弱点——嵌入反演、跨租户检索串数据、索引权限错配（链到 [[rag-08]]）；⑨ 错误信息——幻觉被当真（链到 [[evaluation-03]]）；⑩ 无界消耗——成本与资源耗尽攻击（链到 [[inference-serving-12]]）。",
+        "回答题干的后半句（哪些**真的**会造成影响）：把条目按「攻击者可控性 × 影响面」排序——**注入与敏感信息泄露**是最常被真实利用的，因为攻击者能直接控制输入或写入被检索的数据；**不当输出处理**与**过度代理**是工程上最容易忽视、后果最直接的（一次越权写操作或一次命令注入就够）；**供应链与数据投毒**属于低频高影响，需要用来源治理与审计来防；**无界消耗**是运营层面的现实威胁（尤其是对外暴露的免费接口）；**系统提示泄露与错误信息**多数是「加速器」而不是独立事故。",
+        "用 NIST AI 100-2 的对抗机器学习分类补一个维度（evasion / poisoning / privacy / abuse），说明威胁建模要覆盖**训练期与推理期**，而不是只盯推理侧——这点是把 OWASP 清单从「检查表」升级为「威胁模型」的关键。",
+        "讲怎么落地：把清单映射到自己的架构控制点（哪些已有、哪些缺失、谁负责），并为每条建立可验证的测试用例进红线集（链到 [[evaluation-04]]）；把它当**评审清单**而不是合规装饰。",
+        "常见追问：哪些是 LLM 特有的、哪些是传统 Web 安全的延续（⑤ 与 ⑦ 的区分）？系统提示泄露为什么要单列？无界消耗怎么防（限流、预算、按租户配额）？"
+      ]
+    },
+    {
+      "id": "safety-03",
+      "order": 3,
+      "file": "docs/安全、安保与负责任 AI/03-jailbreaking 与对抗性 prompt 有什么区别.md",
+      "question": "jailbreaking 与对抗性 prompt 有什么区别？",
+      "question_en": "What is the difference between jailbreaking and adversarial prompts?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["jailbreak", "对抗样本", "安全训练", "对齐"],
+      "sources": [
+        { "title": "Prompt Injection in LLMs", "url": "https://outcomeschool.com/blog/prompt-injection-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Jailbroken: How Does LLM Safety Training Fail?（延伸）", "url": "https://arxiv.org/abs/2307.02483", "author": "Wei, Haghtalab, Steinhardt", "published": "2023-07-05" },
+        { "title": "Universal and Transferable Adversarial Attacks on Aligned Language Models（延伸）", "url": "https://arxiv.org/abs/2307.15043", "author": "Zou et al. (GCG)", "published": "2023-07-27" },
+        { "title": "Many-shot Jailbreaking（延伸）", "url": "https://www.anthropic.com/research/many-shot-jailbreaking", "author": "Anthropic", "published": "2024-04-02" }
+      ],
+      "related": ["safety-01", "safety-04", "safety-10", "safety-05"],
+      "brief": [
+        "先把三个概念摆清（很多人混着用）：① **jailbreak（越狱）**——绕过模型的安全对齐，让它在「本该拒绝」的请求上给出内容；手段通常是自然语言层面的（角色扮演、假设情境、分步引导、编码或翻译绕过、多语言、长上下文示例），目标是**让模型违背自己的安全策略**；② **对抗性 prompt / 对抗样本**——优化层面构造的输入（梯度搜索出的后缀、不可读的字符序列），目标是最大化某个目标输出的概率，属于**对抗机器学习**的 evasion 类攻击；③ **prompt injection**——劫持应用的**行为**（让 agent 做别的事），目标是控制而非说服（链到 [[safety-01]]）。要明确：越狱关心「说不说」，注入关心「做什么」。",
+        "讲清越狱为什么有效（引用 Jailbroken 论文提出的两种失败模式，这是本题最有价值的理论部分）：① **目标冲突（competing objectives）**——模型的能力目标（有帮助、要完成任务）与安全目标冲突时，安全容易被牺牲（例如「用代码解释」这类要求会触发能力优先）；② **泛化不匹配（mismatched generalization）**——安全训练没有覆盖模型有能力处理的分布（编码、低维语言、长上下文、罕见格式），于是越狱在「能力存在但安全训练缺失」的区域成功。由此得出论文的结论：安全机制需要与模型能力**同等复杂**（safety-capability parity），单纯扩大规模不能解决这些失效模式。",
+        "具体攻击面举例（每个都要一句机制）：many-shot jailbreaking（在长上下文里塞入大量有害示例，成功率随示例数与上下文长度上升——这是长上下文能力带来的新攻击面，链到 [[llm-internals-13]]）；编码/翻译绕过（base64、低资源语言）；角色扮演与假设情境（虚构框架下降低拒绝率）；payload splitting（把有害请求拆成无害片段）；以及 GCG 式**可迁移对抗后缀**（论文口径：在多个开源模型上优化出的后缀能迁移到 ChatGPT、Bard、Claude 等黑盒接口，说明对抗样本不是只对本地模型有效）。",
+        "讲两者的交叠与演化：自动化红队把越狱从「手工技巧」变成「可规模化搜索」；对抗后缀可以作为越狱生成器；而防御侧的对策也不一样——自然语言越狱靠**训练与护栏**（链到 [[safety-04]]、[[safety-05]]），对抗后缀靠**输入净化/随机化与鲁棒训练**，但要注意随机化会带来延迟与可用性代价。",
+        "防御要分层给：训练侧（对抗训练、安全数据配平、拒答边界、指令层级）、推理侧（输入分类器与 guardrails）、系统侧（**能力限制**：即使越狱成功也拿不到真正可执行的危害细节、没有工具权限，链到 [[safety-06]]）、评测侧（持续用新攻击更新红队集，链到 [[safety-10]]）。强调越狱防御是**持续对抗过程**，不是一次性修复。",
+        "常见追问：越狱与注入的目标差异怎么用一句话说清？为什么「更聪明的模型」也会被越狱（能力越强，泛化不匹配的面越大）？如何评估防御效果（用 HarmBench 这类标准化框架比较攻击与防御，链到 [[safety-10]]）？"
+      ]
+    },
+    {
+      "id": "safety-04",
+      "order": 4,
+      "file": "docs/安全、安保与负责任 AI/04-为面向消费者的助手设计 guardrails.md",
+      "question": "为面向消费者的助手设计 guardrails。输入过滤、输出过滤，还是两者都用？",
+      "question_en": "Design guardrails for a consumer-facing assistant. Input filtering, output filtering, or both?",
+      "asked_at": ["Sierra", "Character.AI"],
+      "level": "进阶",
+      "tags": ["guardrails", "输入输出过滤", "误杀率", "延迟预算"],
+      "sources": [
+        { "title": "How do LLM guardrails work?", "url": "https://outcomeschool.com/blog/how-do-llm-guardrails-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations（延伸）", "url": "https://arxiv.org/abs/2312.06674", "author": "Inan et al. (Meta)", "published": "2023-12-07" },
+        { "title": "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications with Programmable Rails（延伸）", "url": "https://arxiv.org/abs/2310.10501", "author": "Rebedea et al. (NVIDIA, EMNLP 2023 demo)", "published": "2023-10-16" }
+      ],
+      "related": ["safety-01", "safety-03", "safety-07", "evaluation-04", "inference-serving-09"],
+      "brief": [
+        "先给分层结构（不要一上来就答「都用」）：① **输入侧**——注入检测、越狱检测、敏感话题与合规类目（未成年人、自伤、医疗建议边界）、语言与格式校验；② **输出侧**——毒性、PII 泄露、幻觉/无依据断言、引用校验、格式与策略（不能给可执行的危害细节）、品牌语气；③ **会话级**——话题边界与升级（转人工）、速率与滥用控制、以及跨轮次的风险累积（多轮逐步诱导，链到 [[safety-03]] 的 many-shot）。",
+        "回答题干的核心问题，要给**理由**而不是口号：**两者都用，因为它们拦的是不同的失败模式**——输入过滤拦「不该问的」以及注入/越狱的明显特征；输出过滤拦「不该说的」，以及在输入看起来无害但模型被绕过或自己跑偏时的情形。只做输入过滤会在越狱与间接注入上失守（链到 [[safety-01]]）；只做输出过滤会让有害请求白烧算力、并且在流式输出下体验更差（要么延迟、要么边生成边撤回）。再补一条：**两侧都要有，但默认策略不同**——输入侧偏「尽早拦截省成本」，输出侧偏「最后一道闸门必须过」。",
+        "讲实现形态与取舍（引用两条公开路线作为形态参考）：① **专用分类器模型**——可引用 Llama Guard 的定位：基于安全风险分类法的输入-输出双端 safeguard，指令微调后可自定义类目与输出格式，论文报告在 OpenAI Moderation Evaluation 与 ToxicChat 等基准上匹配或超过现有审核工具（标注口径）；② **可编程护栏**——可引用 NeMo Guardrails 的思路：用运行时的、独立于底层模型、可解释的 rails 控制对话与话题（EMNLP 2023 demo track）。要点是**策略与模型解耦**：策略可读、可版本化、可审计（链到 [[evaluation-08]]）。",
+        "工程要素要具体：① **延迟预算**——每加一层模型调用都会增加 TTFT，所以用小模型、并行、缓存，并把护栏耗时算进 SLO（链到 [[inference-serving-09]]）；② **误杀与漏放的权衡**——按场景定阈值，并给出判断依据（对未成年人与自伤类目宁可误杀；对创意写作与医学科普宁可提示而非拦截）；③ **流式场景**——分块检测与「先缓冲再放行」的策略选择；④ **多语言覆盖**——英文分类器在其它语言上会退化，必须单独评测（链到 [[llm-internals-06]] 的 tokenizer 公平性）；⑤ **可解释与申诉**——告诉用户为什么被拦、给替代路径；⑥ **审计日志**——拦截决策要能被复盘（链到 [[agents-10]]）。",
+        "评测与迭代：用红线集 + 对抗集测三个数——**漏放率**（有害请求通过）、**误杀率**（正常请求被拦）、**延迟增量**；把线上被拦与漏放的样本回灌成回归用例（链到 [[evaluation-02]]、[[evaluation-04]]）；护栏策略本身要版本化与灰度（链到 [[evaluation-08]]）。",
+        "常见追问：护栏与系统提示词的关系（后者可被注入/越狱影响，不能作为唯一防线）？多产品共用一套护栏怎么做（基线 + 覆盖层）？为什么不能只依赖模型的安全训练？"
+      ]
+    },
+    {
+      "id": "safety-05",
+      "order": 5,
+      "file": "docs/安全、安保与负责任 AI/05-什么是 Constitutional AI 以及它与 RLHF 有何不同.md",
+      "question": "什么是 Constitutional AI，它与 RLHF 有什么不同？什么是 RLAIF？",
+      "question_en": "What is Constitutional AI, how does it differ from RLHF, and what is RLAIF?",
+      "asked_at": ["Anthropic"],
+      "level": "高阶",
+      "tags": ["constitutional-ai", "rlaif", "对齐", "原则"],
+      "sources": [
+        { "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）", "url": "https://arxiv.org/abs/2212.08073", "author": "Bai et al. (Anthropic)", "published": "2022-12-15" },
+        { "title": "RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback（延伸）", "url": "https://arxiv.org/abs/2309.00267", "author": "Lee et al. (ICML 2024)", "published": "2023-09-01" }
+      ],
+      "related": ["finetuning-01", "finetuning-02", "finetuning-11", "safety-10"],
+      "brief": [
+        "先讲动机：RLHF 依赖大量人类偏好标注——贵、慢、标注者之间不一致、难以审计，而且**无害性标注尤其敏感**（要让标注员反复阅读有害内容）。Constitutional AI（CAI）的目标是用一组**书面原则**替代（至少是大部分）人类偏好判断，让价值判断显式、可读、可修改、可审计。",
+        "把 CAI 的两阶段讲清楚（这是题眼）：① **监督阶段（SL-CAI）**——模型对（常常是诱导性的）请求生成初始回答，然后依据原则**自我批评并修订**，用修订后的回答做监督微调；② **RL 阶段（RL-CAI/RLAIF）**——让模型依据原则对成对回答做偏好判断，用这些 AI 反馈训练偏好模型，再用 RL 优化策略。要说明第二阶段的偏好标签来自**模型**（AI feedback）而不是人类，这正是 RLAIF 的含义。",
+        "逐条对比与 RLHF 的差别：① 监督信号来源（人类偏好 vs 书面原则 + AI 反馈）；② 成本与可扩展性（AI 反馈几乎可以无限采样，但前期要写好原则）；③ **可审计性**（原则是自然语言文本，可被外部审阅与修改——这是治理上的关键差异）；④ 标注员暴露（不需要人反复读有害内容）；⑤ 一致性与冲突（原则之间可能矛盾，需要优先级与冲突消解规则）；⑥ 偏差来源转移（人类标注偏差 → 标注模型与原则撰写者的偏差）。",
+        "讲 RLAIF 的实证口径：可引用 RLAIF 论文的结论——在摘要、有用对话、无害对话三类任务上 RLAIF 与 RLHF **表现相当**；即使 AI 标注者与策略同规模、甚至与初始策略是同一个 checkpoint，RLAIF 仍能超过 SFT 基线（这条对「自我改进」的讨论很关键）；论文还提出 direct-RLAIF（直接用现成 LLM 在 RL 过程中给奖励，跳过 RM 训练）并报告其表现优于常规 RLAIF（ICML 2024 口径）。要标注这些是论文结论，不是通用保证。",
+        "局限与风险要讲透：① AI 反馈会继承标注模型的偏差、盲点与「讨好」倾向（链到 [[evaluation-01]] 的 judge 偏差、[[finetuning-11]] 的 reward hacking）；② 原则集覆盖不全 → 未覆盖区域的行为不可控；③ 「看起来对齐」与真实价值一致之间的差距（原则是人写的，价值冲突不会因为写了原则就消失）；④ 因此 CAI/RLAIF 不能取消人工抽检、外部红队（链到 [[safety-10]]）与独立审计（链到 [[safety-09]]）。",
+        "常见追问：CAI 与 RLAIF 的关系（CAI 是方法论，RLAIF 是其 RL 阶段用 AI 反馈的具体机制；RLAIF 也可以脱离 CAI 使用）？原则由谁定、如何防止原则本身被滥用？如果原则冲突怎么办（优先级 + 显式冲突处理）？"
+      ]
+    },
+    {
+      "id": "safety-06",
+      "order": 6,
+      "file": "docs/安全、安保与负责任 AI/06-如何防止具备工具权限的 agent 通过恶意网页外泄数据.md",
+      "question": "你如何防止具备工具调用权限的 agent 通过恶意网页外泄数据？",
+      "question_en": "How do you prevent a tool-enabled agent from exfiltrating data through malicious web pages?",
+      "asked_at": ["OpenAI"],
+      "level": "高阶",
+      "tags": ["数据外泄", "agent-安全", "capability", "出站审查"],
+      "sources": [
+        { "title": "Prompt Injection in LLMs", "url": "https://outcomeschool.com/blog/prompt-injection-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）", "url": "https://arxiv.org/abs/2302.12173", "author": "Greshake et al.", "published": "2023-02-23" },
+        { "title": "AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents（延伸）", "url": "https://arxiv.org/abs/2406.13352", "author": "Debenedetti et al. (NeurIPS 2024)", "published": "2024-06-19" },
+        { "title": "Defeating Prompt Injections by Design（CaMeL）（延伸）", "url": "https://arxiv.org/abs/2503.18813", "author": "Debenedetti et al. (Google DeepMind)", "published": "2025-03-24" }
+      ],
+      "related": ["safety-01", "safety-04", "agents-10", "agents-11", "rag-08"],
+      "brief": [
+        "先把攻击链路写清楚（要具体到「数据怎么出去」）：agent 读取不可信内容（网页、邮件、检索到的文档）→ 内容里的指令劫持 agent → agent 执行带数据的动作 → 数据落到攻击者能看到的地方。**外泄通道**要列全：URL 查询参数与路径、markdown 图片/字体/iframe（渲染即请求）、DNS 查询、搜索框与表单提交、工单/备注/评论、把内容写回公开仓库或共享文档、以及经由第三方 API 的间接外带（链到 [[agents-02]] 的工具调用与 [[safety-01]] 的影响面）。",
+        "立论：**这是架构问题，不是提示词问题**——模型无法可靠区分数据与指令（链到 [[safety-01]]），所以防御必须落在「能力与流程」上。给出一句可背的原则：假设注入一定会成功，防线放在「它成功之后能做什么」。",
+        "分层给防御手段（每层都要可落地）：① **能力最小化**——按任务收敛工具集：读网页的 agent 默认没有外发能力（无邮件、无外部 HTTP、无写共享空间）；需要跨域时必须走审批（链到 [[agents-11]]）。② **数据分级与流控**——给数据与来源打信任标签（公开/内部/机密），出站工具按标签与目标域做策略校验；可引用 CaMeL 的 capability 思路（用能力令牌限制数据流向，防止私有数据经未授权数据流外泄；论文口径：在 AgentDojo 上以可证明的安全性完成 77% 的任务，未防御系统 84%）。③ **出站审查**——URL/DNS/图片域白名单、把上下文中的敏感串与出站内容做指纹比对、异常长度与频率检测、禁止把整段上下文塞进参数。④ **沙箱与网络策略**——浏览器与代码执行的网络出口默认拒绝、凭据不进上下文（用代理注入凭据，链到 [[safety-07]]）。⑤ **审计与响应**——完整记录工具调用与出站请求，支持事后追查与外泄判定（链到 [[agents-10]]）。",
+        "讲评测与验证：用可扩展的对抗环境做攻防对照——引用 AgentDojo 的口径（97 个真实任务、629 个安全用例，是环境而非静态清单；论文指出 SOTA 模型即使无攻击也会失败一部分任务，且现有攻击能破坏部分安全属性），并自建针对自己工具集的红队用例进红线集（链到 [[evaluation-04]]、[[safety-10]]）。要给出验收标准：在「注入必然存在」的前提下，机密标签数据的外泄尝试应 100% 被拦（零容忍），而不是「显著降低」。",
+        "常见追问：为什么不能只靠「让模型忽略网页里的指令」？如何检测已经发生的外泄（出站日志 + 内容指纹 + 事后审计）？多 agent 协作时外泄面是否更大（一个 agent 读、另一个 agent 发，链到 [[agents-06]]）？"
+      ]
+    },
+    {
+      "id": "safety-07",
+      "order": 7,
+      "file": "docs/安全、安保与负责任 AI/07-如何处理 prompt、日志与训练数据中的 PII.md",
+      "question": "你如何处理 prompt、日志和训练数据中的 PII？",
+      "question_en": "How do you handle PII in prompts, logs and training data?",
+      "asked_at": ["Abridge"],
+      "level": "进阶",
+      "tags": ["pii", "隐私", "合规", "最小化"],
+      "sources": [
+        { "title": "AI Risk Management Framework（延伸）", "url": "https://www.nist.gov/itl/ai-risk-management-framework", "author": "NIST", "published": "" },
+        { "title": "Microsoft Presidio（延伸）", "url": "https://microsoft.github.io/presidio/", "author": "Microsoft", "published": "" }
+      ],
+      "related": ["safety-09", "evaluation-07", "agents-10", "rag-08"],
+      "brief": [
+        "先分类 PII 的层次（否则会答成「用正则替换」）：① **直接标识**——姓名、邮箱、电话、身份证/护照、银行卡、账号；② **准标识**——生日、邮编、职位、机构（单独不识别，组合可识别）；③ **敏感类别**——健康与遗传信息、生物特征、性取向、宗教、儿童数据；④ **可推断信息**——从行为与上下文推断出的属性（这类最难，也最容易在合规上出事）。要点：PII 的风险不只是「单个字段」，而是**组合可识别性**。",
+        "识别手段要给组合拳：正则 + 校验位（卡号 Luhn、身份证校验）、NER 模型、上下文规则（例如「我的主治医生是 X」）、以及可引用 Presidio 这类开源工具的两段式流程（analyzer 识别 + anonymizer 处理，支持自定义识别器与脱敏算子）作为工程实现参考。强调：纯正则一定会漏（准标识与推断信息），模型识别会有误报，所以要有**抽检与回归**。",
+        "**prompt 侧**：最小化优先（能不发的就不发、用占位符或引用 id 代替原文、只在必要范围传递）、按需脱敏（保留语义但替换标识，注意脱敏后仍可能被推断）、跨租户隔离（prompt/prefix cache 不能串租户，链到 [[inference-serving-05]]）、供应商与部署形态（第三方 API 的留存与训练条款、私有部署的取舍，链到 [[inference-serving-11]]）。",
+        "**日志/trace 侧**：默认不记原文——记哈希、长度、分类标签与结构化元数据；需要调试时用受控访问 + 加密 + 短保留期，并把访问本身记入审计（链到 [[evaluation-07]] 的字段设计、[[agents-10]] 的审计）。特别提醒：**trace 里的工具参数最容易夹带 PII**（把整段上下文塞进参数是常见反模式），要在采集端做脱敏而不是事后清洗。",
+        "**训练/微调数据侧**：来源合规与授权记录（可引用 Datasheets for Datasets 的思路，链到 [[safety-09]]）、去标识与去重、**记忆化风险**（模型可能逐字复现训练样本，属于隐私攻击类别，可引用 NIST AI 100-2 的分类）、以及对「删数据」的现实回答——最可靠是重训，机器遗忘（machine unlearning）仍不成熟，因此**尽量不把 PII 放进训练集**比事后删除更划算。",
+        "合规与治理要落到工程清单：目的限制与最小必要、保留期限与自动过期、**删除请求（DSAR）的全链路覆盖**（索引、缓存、日志、备份、训练集、派生数据集——最常被漏掉的是缓存与备份）、跨境传输限制、访问审计、以及责任人。可引用 NIST AI RMF 的治理循环（识别—度量—管理—治理）作为框架。",
+        "常见追问：为什么「正则去 PII」不够（准标识与组合推断）？医疗/法律这类必须保留 PII 的场景怎么办（私有部署 + 最小化 + 严格访问控制 + 审计）？怎么测模型的记忆化（成员推断/前缀补全测试）？"
+      ]
+    },
+    {
+      "id": "safety-08",
+      "order": 8,
+      "file": "docs/安全、安保与负责任 AI/08-什么是机制可解释性以及为什么各实验室都投入其中.md",
+      "question": "什么是机制可解释性（mechanistic interpretability），为什么各实验室都投入其中？",
+      "question_en": "What is mechanistic interpretability and why do labs invest in it?",
+      "asked_at": [],
+      "level": "高阶",
+      "tags": ["可解释性", "superposition", "sae", "安全"],
+      "sources": [
+        { "title": "Toy Models of Superposition（延伸）", "url": "https://arxiv.org/abs/2209.10652", "author": "Elhage et al. (Anthropic)", "published": "2022-09-21" },
+        { "title": "Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet（延伸）", "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/", "author": "Templeton et al. (Anthropic)", "published": "2024-05-21" },
+        { "title": "A Mathematical Framework for Transformer Circuits（延伸）", "url": "https://transformer-circuits.pub/2021/framework/index.html", "author": "Elhage et al. (Anthropic)", "published": "2021-12-22" }
+      ],
+      "related": ["safety-10", "safety-09", "safety-03", "llm-internals-16"],
+      "brief": [
+        "先与「行为层可解释性」划清界限：prompt 归因、注意力可视化、显著性图给的是**相关性**（哪里重要），而机制可解释性试图回答**因果机制**——「哪些组件、通过什么计算，产生了这个行为」，目标是把网络逆向成人类可理解的算法（circuits）。一句话：行为层解释「模型看了哪里」，机制解释「模型算了什么」。",
+        "讲清核心概念（要准确，这是面试官会追问的地方）：① **特征与叠加（superposition）**——模型需要表示的特征数远多于神经元数，于是把多个特征「叠加」在同一组神经元上，导致单个神经元多义（polysemanticity）。可引用 Toy Models of Superposition 的口径：在一个可控的玩具模型里完整展示了叠加如何产生、出现的**相变**现象、与均匀多面体几何的联系，以及与对抗样本的关联——这篇是「为什么神经元不可解释」的理论基础。② **稀疏自编码器（SAE）/字典学习**——把激活分解到一组稀疏、近似单义（monosemantic）的特征方向上，从而得到可读的「特征」。③ **电路分析**——用路径分析、消融、激活修补（activation patching）、因果追踪等干预手段定位负责某行为的组件（可引用 Mathematical Framework 这篇把 transformer 拆成可分析电路的开创性工作：注意力头可分解为 QK 与 OV 电路、以及「induction head」这类具体机制的发现）。",
+        "讲规模化证据（回答「投入是否值得」）：可引用 Scaling Monosemanticity 的口径——从 Claude 3 Sonnet 的中间层用 SAE 提取出**数百万级**可解释特征，并展示了对特征做放大/钳制（clamping）能**因果地**改变模型行为（包括与谄媚、欺骗、危险内容、代码漏洞等相关的特征），且这些特征在多语言与多模态间有共享结构。要标注这是该团队在特定模型与规模上的论文结论。",
+        "回答题干后半句「为什么实验室都投入」——要给四条**具体的**用途而不是「为了安全」：① **部署前审计**——在模型自己都没说出来的情况下发现危险能力的内部表征（例如欺骗性推理的中间表征）；② **可监控性**——把内部状态当监控信号，比只看输出更难被绕过（输出可以被规避措辞，内部特征不容易）；③ **可干预**——对特征做钳制或引导来修正行为，比重新微调更精准、可逆、且不必重训（链到 [[finetuning-06]] 的参数高效思路）；④ **科学理解与预测**——解释能力从何而来、预测训练数据与架构改动的影响（长期是对齐与安全评估的基础设施）。",
+        "局限要诚实讲（这决定答案的成熟度）：① SAE 提取的特征仍不完整、存在死特征与超参敏感（字典大小、稀疏惩罚）；② 从「特征」到「完整因果机制」之间仍有距离，很多行为是多特征交互；③ 目前主要在中小模型或单层上验证，规模化到前沿模型的**全流程**仍昂贵；④ **可解释性本身的评测缺乏标准**（怎么判断一个解释是「对的」——这是与评估专题同源的方法论问题，链到 [[evaluation-01]]）。",
+        "常见追问：可解释性与红队/评估的关系（互补：一个看内部、一个看输出，链到 [[safety-10]]）？SAE 特征越多越好吗？能不能用可解释性做实时防御（延迟与可靠性是瓶颈）？"
+      ]
+    },
+    {
+      "id": "safety-09",
+      "order": 9,
+      "file": "docs/安全、安保与负责任 AI/09-如何审计已部署模型在不同用户群体间的表现差异.md",
+      "question": "你会如何审计一个已部署模型在不同用户群体间的表现差异？",
+      "question_en": "How would you audit a deployed model for performance differences across user groups?",
+      "asked_at": ["Microsoft"],
+      "level": "高阶",
+      "tags": ["公平性", "审计", "model-cards", "分层评测"],
+      "sources": [
+        { "title": "Model Cards for Model Reporting（延伸）", "url": "https://arxiv.org/abs/1810.03993", "author": "Mitchell et al. (FAT* 2019)", "published": "2018-10-05" },
+        { "title": "Datasheets for Datasets（延伸）", "url": "https://arxiv.org/abs/1803.09010", "author": "Gebru et al.", "published": "2018-03-23" },
+        { "title": "AI Risk Management Framework（延伸）", "url": "https://www.nist.gov/itl/ai-risk-management-framework", "author": "NIST", "published": "" }
+      ],
+      "related": ["evaluation-04", "evaluation-09", "safety-07", "finetuning-07"],
+      "brief": [
+        "先把「表现差异」拆成五类可测的量（否则审计会变成一句口号）：① **性能差异**——不同群体上的任务准确率/错误率（例如语音识别对方言与口音的 WER 差异、检索对低资源语言的召回差异）；② **校准差异**——置信度或拒答阈值在不同群体上是否同样可靠；③ **服务差异**——是否对某些群体更容易拒答、回答更短/更敷衍、或转人工比例更高；④ **表征与毒性差异**——刻板印象、毒性输出率、对特定群体的描述偏差；⑤ **可及性差异**——语言覆盖、无障碍（读屏/语音）支持。每类给一个可计算的指标。",
+        "方法论要可执行（这是题眼）：① **定义群体与交叉切片**——性别、年龄、地区、语言/口音、残障等维度，并且必须做**交叉切片**（如「某地区 + 老年 + 非母语」），同时提前估算样本量（交叉后样本量急剧下降，功效不足会制造假阳/假阴）；② **群体标签从哪来**——自报最优、代理特征次之（要说明代理特征的误差与伦理风险：用姓氏推种族、用设备推收入都是高风险的替代）；③ **受控评测**——同一批任务、固定解码参数、分层抽样、按层报告指标与置信区间（链到 [[evaluation-04]] 的统计纪律）；④ **盲评**——评测者与评审不知道模型身份，避免期望效应；⑤ **线上审计**——按群体分层的质量代理指标与用户反馈（链到 [[evaluation-09]]），并注意反馈的选择偏差（爱反馈的人不代表全体）。",
+        "文档与透明度的框架（引用两条被广泛采用的实践）：① **Model Cards**——为模型提供分群体（文化与人口统计、交叉群体）的基准评测与适用场景说明，可引用其原始论文的动机与结构（FAT* 2019）；② **Datasheets for Datasets**——记录数据集的动机、构成、采集过程与推荐用途，因为**群体差异常常源自数据**而不是模型本身。两者一起构成「可审计性的文档基础」。",
+        "常见陷阱要列全：把整体平均当结论（子群退化被掩盖）、样本量不足、用代理标签替代自报、只在英文/主流口音上验证、把「差异」直接等同于「歧视」（差异是否不公平取决于任务相关性、可解释性与后果）、以及审计过程本身造成隐私伤害（群体标签的收集与存储，链到 [[safety-07]]）。",
+        "缓解与治理（要让答案落到行动）：数据侧（覆盖与配平、针对性采集、链到 [[finetuning-08]]）、模型侧（针对性微调/对齐，注意别把通用能力搞坏，链到 [[finetuning-07]]）、部署侧（分群监控与告警、灰度与回滚，链到 [[evaluation-08]]）、以及**披露**（系统卡/Model Card 写明适用场景、分群结果与已知限制）。可引用 NIST AI RMF 的治理循环（识别—度量—管理—治理）作为组织框架。",
+        "常见追问：没有群体标签怎么办（合成数据、语言/地区代理、与社区合作标注）？差异多大算「需要处理」（看影响面与任务后果，而不是一个通用阈值）？如何避免审计带来的隐私与标签滥用风险？"
+      ]
+    },
+    {
+      "id": "safety-10",
+      "order": 10,
+      "file": "docs/安全、安保与负责任 AI/10-为即将发布的模型设计一套红队测试方案.md",
+      "question": "为你即将发布的模型设计一套红队测试（red-teaming）方案。",
+      "question_en": "Design a red-teaming program for a model you are about to release.",
+      "asked_at": [],
+      "level": "高阶",
+      "tags": ["红队", "harmbench", "发布门禁", "对抗评测"],
+      "sources": [
+        { "title": "LLM Evaluation", "url": "https://outcomeschool.com/blog/llm-evaluation", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Red Teaming Language Models with Language Models（延伸）", "url": "https://arxiv.org/abs/2202.03286", "author": "Perez et al. (DeepMind)", "published": "2022-02-07" },
+        { "title": "Red Teaming Language Models to Reduce Harms: Methods, Scaling Behaviors, and Lessons Learned（延伸）", "url": "https://arxiv.org/abs/2209.07858", "author": "Ganguli et al. (Anthropic)", "published": "2022-08-23" },
+        { "title": "HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal（延伸）", "url": "https://arxiv.org/abs/2402.04249", "author": "Mazeika et al. (ICML 2024)", "published": "2024-02-06" }
+      ],
+      "related": ["safety-03", "safety-04", "evaluation-04", "evaluation-06", "safety-01"],
+      "brief": [
+        "先给方案骨架（像设计一个项目，而不是列测试项）：**目标与范围 → 威胁模型 → 方法与分工 → 判定与度量 → 修复与复测 → 发布决策与持续监控**。每一段给出交付物（威胁模型文档、测试集与判定器、报告、修复验证、发布门禁结论），这样才能被评审。",
+        "**威胁模型**要分层且具体，每类给出攻击者能力假设（有 API？能否微调？能否写入被检索的数据？能否接触工具？）：① 滥用（骗取有害内容：生化、网络攻击、欺诈，链到 [[safety-03]]）；② 注入与工具滥用（链到 [[safety-01]]、[[safety-06]]）；③ 隐私与数据（PII 泄露、训练数据记忆化，链到 [[safety-07]]）；④ 自主性与越权（长时任务、绕过审批，链到 [[agents-11]]）；⑤ 供应链与投毒（链到 [[safety-02]]）；⑥ 群体差异（链到 [[safety-09]]）。强调威胁模型决定红队的**覆盖矩阵**（危害类别 × 攻击手法 × 语言 × 入口）。",
+        "**方法组合**要讲清人机分工与各自不可替代性：① **人工红队**——领域专家（生物、网络安全、法律、心理）能构造有语境、有危害细节的攻击；可引用 Anthropic 红队论文的口径：公开了 38,961 条红队攻击数据，并报告**RLHF 模型随规模增大而更难被红队**，而其它类型的模型没有这个趋势（这是「对齐有效性」的实证之一，也说明红队难度随模型变化）；② **自动化红队**——用模型生成测试用例，可引用 Perez 等的路线（在 280B 参数模型上自动发现数万条有害回复，并覆盖多种危害类型）；③ **优化式攻击**——梯度搜索出的可迁移对抗后缀（链到 [[safety-03]] 的 GCG 口径）；④ **标准化框架**——可引用 HarmBench 的口径（对 18 种红队方法与 33 个目标模型/防御做系统性比较，并开源以支持攻防共同演进）；⑤ **多语言与多文化覆盖**——不能只用英文红队（链到 [[llm-internals-06]]）。",
+        "**判定与度量**：① 攻击成功率（ASR）必须定义清楚——什么算「成功」、判定器是谁、人工与自动判定的一致性如何（链到 [[evaluation-01]] 的 judge 偏差）；② 按**危害类别与严重度分层报告**，不要只给一个总 ASR（一个高危类别的 1% 比低危类别的 20% 更严重）；③ 报告**覆盖率**（矩阵里哪些格子没测）；④ 同时报告**误杀率**（正常请求被拦的比例）——红队不能只测「有没有拦住」，还要测「有没有拦过头」（链到 [[safety-04]]）。",
+        "**流程与治理**（这是把红队变成工程能力的关键）：① 红队集**版本化 + 防污染**（不能进训练数据，链到 [[evaluation-06]]）；② 发现的高危项进**红线集**作为发布门禁（零容忍，链到 [[evaluation-04]]）；③ 修复后必须**复测同一攻击**，并检查是否只是把攻击换了个说法就能绕过（对抗性修复的常见假象）；④ **分级发布决策**——哪些风险可接受、谁签字、是否需要受限发布或额外护栏（链到 [[safety-04]]）；⑤ 上线后的**持续红队与漏洞响应**（外部报告渠道、SLA、监控告警，链到 [[evaluation-07]]）。",
+        "常见追问：红队与常规 eval 的差别（对抗性与目标不同，常规 eval 测代表性能力）？自动化红队能替代人工吗（不能：自动化覆盖广、人工懂语境与危害细节）？如何证明红队「足够充分」（覆盖矩阵 + 外部复现 + 持续更新，而不是一次性跑多少条）？"
+      ]
+    }
+  ]
+}
