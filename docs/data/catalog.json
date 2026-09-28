@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T07:01:02.622Z",
+  "generated": "2026-09-28T07:30:20.072Z",
   "stats": {
-    "topics": 1,
-    "questions": 16,
+    "topics": 2,
+    "questions": 31,
     "planned": 598
   },
   "topics": [
@@ -78,7 +78,7 @@
           "related": [
             "llm-internals-01",
             "llm-internals-03",
-            "inference-serving-01"
+            "inference-serving-03"
           ],
           "sources": [
             {
@@ -193,7 +193,7 @@
           "related": [
             "llm-internals-01",
             "llm-internals-02",
-            "inference-serving-01"
+            "inference-serving-03"
           ],
           "sources": [
             {
@@ -740,7 +740,8 @@
             "llm-internals-01",
             "llm-internals-14",
             "llm-internals-15",
-            "inference-serving-01"
+            "inference-serving-01",
+            "inference-serving-09"
           ],
           "sources": [
             {
@@ -776,6 +777,696 @@
           ],
           "updated": "2026-09-28",
           "chars": 9425
+        }
+      ]
+    },
+    {
+      "id": "inference-serving",
+      "title": "推理、服务与 GPU 性能",
+      "order": 2,
+      "summary": "从 prefill/decode 的算术强度到 batching、PagedAttention、量化、并行策略与容量规划，覆盖把大模型跑成线上服务所需的全部判断题。",
+      "declaredTotal": 15,
+      "updated": "2026-09-28",
+      "dir": "推理、服务与 GPU 性能",
+      "overviewFile": "推理、服务与 GPU 性能/README.md",
+      "overviewTitle": "推理、服务与 GPU 性能",
+      "questions": [
+        {
+          "id": "inference-serving-01",
+          "order": 1,
+          "title": "解释 prefill 和 decode 两个阶段。为什么 prefill 是计算受限的，而 decode 是内存带宽受限的？",
+          "titleEn": "Explain the prefill and decode phases. Why is prefill compute-bound and decode memory-bandwidth-bound?",
+          "file": "推理、服务与 GPU 性能/01-解释 prefill 与 decode 两个阶段为什么一个计算受限一个带宽受限.md",
+          "level": "进阶",
+          "tags": [
+            "prefill",
+            "decode",
+            "roofline",
+            "算术强度"
+          ],
+          "askedAt": [
+            "Moonshot AI",
+            "NVIDIA",
+            "Together AI"
+          ],
+          "related": [
+            "inference-serving-02",
+            "inference-serving-10",
+            "inference-serving-14",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "Prefill vs Decode: LLM Inference Optimization",
+              "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9516
+        },
+        {
+          "id": "inference-serving-02",
+          "order": 2,
+          "title": "什么是 continuous（in-flight）batching？为什么它取代了 static batching？",
+          "titleEn": "What is continuous (in-flight) batching and why did it replace static batching?",
+          "file": "推理、服务与 GPU 性能/02-什么是 continuous batching？为什么它取代了 static batching.md",
+          "level": "进阶",
+          "tags": [
+            "batching",
+            "调度",
+            "吞吐",
+            "尾延迟"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "xAI",
+            "Mistral AI",
+            "NVIDIA",
+            "Together AI"
+          ],
+          "related": [
+            "inference-serving-01",
+            "inference-serving-03",
+            "inference-serving-14"
+          ],
+          "sources": [
+            {
+              "title": "Continuous Batching in LLMs",
+              "url": "https://outcomeschool.com/blog/continuous-batching-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11268
+        },
+        {
+          "id": "inference-serving-03",
+          "order": 3,
+          "title": "PagedAttention 是如何工作的？它解决了 KV cache 碎片化的什么问题？",
+          "titleEn": "How does PagedAttention work and what KV cache fragmentation problem does it solve?",
+          "file": "推理、服务与 GPU 性能/03-PagedAttention 是如何工作的？它解决了 KV cache 碎片化的什么问题.md",
+          "level": "进阶",
+          "tags": [
+            "pagedattention",
+            "vllm",
+            "显存管理",
+            "碎片"
+          ],
+          "askedAt": [
+            "NVIDIA",
+            "Together AI"
+          ],
+          "related": [
+            "inference-serving-02",
+            "inference-serving-08",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "Paged Attention in LLMs",
+              "url": "https://outcomeschool.com/blog/paged-attention-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-29"
+            },
+            {
+              "title": "How does vLLM work?",
+              "url": "https://outcomeschool.com/blog/how-does-vllm-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-06-17"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11297
+        },
+        {
+          "id": "inference-serving-04",
+          "order": 4,
+          "title": "什么是 speculative decoding？为什么输出质量能够保持？什么情况下它没有帮助？",
+          "titleEn": "What is speculative decoding? Why is output quality preserved, and when does it not help?",
+          "file": "推理、服务与 GPU 性能/04-什么是 speculative decoding？为什么输出质量能保持.md",
+          "level": "高阶",
+          "tags": [
+            "投机解码",
+            "draft-model",
+            "拒绝采样",
+            "延迟"
+          ],
+          "askedAt": [
+            "NVIDIA",
+            "Together AI"
+          ],
+          "related": [
+            "inference-serving-01",
+            "inference-serving-10",
+            "llm-internals-12"
+          ],
+          "sources": [
+            {
+              "title": "Speculative Decoding",
+              "url": "https://outcomeschool.com/blog/speculative-decoding",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Fast Inference from Transformers via Speculative Decoding（延伸）",
+              "url": "https://arxiv.org/abs/2211.17192",
+              "author": "Leviathan et al. (Google)",
+              "published": "2022-11-30"
+            },
+            {
+              "title": "Accelerating Large Language Model Decoding with Speculative Sampling（延伸）",
+              "url": "https://arxiv.org/abs/2302.01318",
+              "author": "Chen et al. (DeepMind)",
+              "published": "2023-02-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8502
+        },
+        {
+          "id": "inference-serving-05",
+          "order": 5,
+          "title": "解释 prefix caching / prompt caching。什么时候应该使用它？什么会导致已缓存的 prefix 失效？",
+          "titleEn": "Explain prefix caching / prompt caching. When should it be used and what invalidates a cached prefix?",
+          "file": "推理、服务与 GPU 性能/05-解释 prefix caching 与 prompt caching.md",
+          "level": "进阶",
+          "tags": [
+            "prefix-caching",
+            "prompt-caching",
+            "radix-attention",
+            "成本"
+          ],
+          "askedAt": [
+            "Moonshot AI",
+            "Character.AI"
+          ],
+          "related": [
+            "inference-serving-03",
+            "inference-serving-01",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "How does Prompt Caching work?",
+              "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "SGLang：Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (RadixAttention)",
+              "published": "2023-12-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8685
+        },
+        {
+          "id": "inference-serving-06",
+          "order": 6,
+          "title": "对比用于 serving 的 FP16、BF16、FP8、INT8、INT4 和 FP4。每往下降一档会损失什么？",
+          "titleEn": "Compare FP16, BF16, FP8, INT8, INT4 and FP4 for serving. What do you lose at each step down?",
+          "file": "推理、服务与 GPU 性能/06-对比 FP16、BF16、FP8、INT8、INT4 与 FP4 量化.md",
+          "level": "进阶",
+          "tags": [
+            "量化",
+            "精度",
+            "显存",
+            "kernel"
+          ],
+          "askedAt": [
+            "Mistral AI",
+            "Apple",
+            "NVIDIA",
+            "Together AI",
+            "Character.AI"
+          ],
+          "related": [
+            "inference-serving-08",
+            "inference-serving-10",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "How does Model Quantization work?",
+              "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-07-15"
+            },
+            {
+              "title": "FP8 Formats for Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2209.05433",
+              "author": "Micikevicius et al.",
+              "published": "2022-09-12"
+            },
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al. (ICLR 2023)",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration（延伸）",
+              "url": "https://arxiv.org/abs/2306.00978",
+              "author": "Lin et al. (MLSys 2024)",
+              "published": "2023-06-01"
+            },
+            {
+              "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.10438",
+              "author": "Xiao et al. (ICML 2023)",
+              "published": "2022-11-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 12979
+        },
+        {
+          "id": "inference-serving-07",
+          "order": 7,
+          "title": "对比 tensor、pipeline、data、sequence 和 expert 并行。什么时候需要组合使用它们？",
+          "titleEn": "Compare tensor, pipeline, data, sequence and expert parallelism. When do you combine them?",
+          "file": "推理、服务与 GPU 性能/07-对比 tensor、pipeline、data、sequence 与 expert 并行.md",
+          "level": "高阶",
+          "tags": [
+            "并行策略",
+            "tensor-parallel",
+            "pipeline-parallel",
+            "expert-parallel"
+          ],
+          "askedAt": [
+            "Google DeepMind",
+            "Meta",
+            "Amazon",
+            "NVIDIA"
+          ],
+          "related": [
+            "inference-serving-08",
+            "inference-serving-11",
+            "llm-internals-10"
+          ],
+          "sources": [
+            {
+              "title": "Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism（延伸）",
+              "url": "https://arxiv.org/abs/1909.08053",
+              "author": "Shoeybi et al.",
+              "published": "2019-09-17"
+            },
+            {
+              "title": "GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism（延伸）",
+              "url": "https://arxiv.org/abs/1811.06965",
+              "author": "Huang et al.",
+              "published": "2018-11-16"
+            },
+            {
+              "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）",
+              "url": "https://arxiv.org/abs/1910.02054",
+              "author": "Rajbhandari et al.",
+              "published": "2019-10-04"
+            },
+            {
+              "title": "Reducing Activation Recomputation in Large Transformer Models（延伸）",
+              "url": "https://arxiv.org/abs/2205.05198",
+              "author": "Korthikanti et al. (Megatron sequence parallelism)",
+              "published": "2022-05-10"
+            },
+            {
+              "title": "GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding（延伸）",
+              "url": "https://arxiv.org/abs/2006.16668",
+              "author": "Lepikhin et al. (expert parallelism)",
+              "published": "2020-06-30"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11083
+        },
+        {
+          "id": "inference-serving-08",
+          "order": 8,
+          "title": "估算服务一个 70B 模型所需的 GPU 显存：权重、KV cache、activations、碎片化。",
+          "titleEn": "Estimate the GPU memory needed to serve a 70B model: weights, KV cache, activations, fragmentation.",
+          "file": "推理、服务与 GPU 性能/08-估算服务一个 70B 模型所需的 GPU 显存.md",
+          "level": "进阶",
+          "tags": [
+            "显存估算",
+            "容量规划",
+            "kv-cache",
+            "碎片"
+          ],
+          "askedAt": [
+            "NVIDIA"
+          ],
+          "related": [
+            "inference-serving-03",
+            "inference-serving-06",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "KV Cache in LLMs",
+              "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-27"
+            },
+            {
+              "title": "Paged Attention in LLMs",
+              "url": "https://outcomeschool.com/blog/paged-attention-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-29"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9404
+        },
+        {
+          "id": "inference-serving-09",
+          "order": 9,
+          "title": "什么是 TTFT、TPOT、ITL 和 throughput？它们之间如何相互权衡？",
+          "titleEn": "What are TTFT, TPOT, ITL and throughput, and how do they trade off against each other?",
+          "file": "推理、服务与 GPU 性能/09-什么是 TTFT、TPOT、ITL 与 throughput 以及它们如何权衡.md",
+          "level": "进阶",
+          "tags": [
+            "SLO",
+            "延迟指标",
+            "goodput",
+            "容量规划"
+          ],
+          "askedAt": [
+            "Microsoft",
+            "Apple",
+            "Perplexity"
+          ],
+          "related": [
+            "inference-serving-01",
+            "inference-serving-14",
+            "inference-serving-13"
+          ],
+          "sources": [
+            {
+              "title": "Prefill vs Decode: LLM Inference Optimization",
+              "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "The First-Token Latency Problem in LLMs",
+              "url": "https://www.youtube.com/watch?v=XD8DD4cEHu0",
+              "author": "Outcome School",
+              "published": ""
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al. (OSDI 2024)",
+              "published": "2024-01-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9384
+        },
+        {
+          "id": "inference-serving-10",
+          "order": 10,
+          "title": "做一下 roofline 计算：在 batch size 为 1 时，一块 H100 服务 70B 模型每秒能产出多少 token？",
+          "titleEn": "Do the roofline maths: how many tokens per second can one H100 produce for a 70B model at batch size 1?",
+          "file": "推理、服务与 GPU 性能/10-做 roofline 计算：batch size 为 1 时一块 H100 服务 70B 模型每秒产出多少 token.md",
+          "level": "高阶",
+          "tags": [
+            "roofline",
+            "算术强度",
+            "带宽",
+            "容量规划"
+          ],
+          "askedAt": [
+            "NVIDIA",
+            "Together AI"
+          ],
+          "related": [
+            "inference-serving-01",
+            "inference-serving-06",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "Prefill vs Decode：LLM 推理优化",
+              "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8920
+        },
+        {
+          "id": "inference-serving-11",
+          "order": 11,
+          "title": "什么时候你会选择 vLLM、SGLang、TensorRT-LLM，还是自研技术栈？",
+          "titleEn": "When would you choose vLLM, SGLang, TensorRT-LLM, or build your own stack?",
+          "file": "推理、服务与 GPU 性能/11-什么时候选择 vLLM、SGLang、TensorRT-LLM 还是自研栈.md",
+          "level": "进阶",
+          "tags": [
+            "vllm",
+            "sglang",
+            "tensorrt-llm",
+            "选型"
+          ],
+          "askedAt": [
+            "NVIDIA",
+            "Together AI"
+          ],
+          "related": [
+            "inference-serving-02",
+            "inference-serving-03",
+            "inference-serving-05"
+          ],
+          "sources": [
+            {
+              "title": "How does vLLM work?",
+              "url": "https://outcomeschool.com/blog/how-does-vllm-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "How does SGLang work?",
+              "url": "https://outcomeschool.com/blog/how-does-sglang-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "How does TensorRT-LLM work?",
+              "url": "https://outcomeschool.com/blog/how-does-tensorrt-llm-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (RadixAttention)",
+              "published": "2023-12-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10182
+        },
+        {
+          "id": "inference-serving-12",
+          "order": 12,
+          "title": "你会如何把 LLM 服务成本降低 10 倍？列举所有可用的手段并排序。",
+          "titleEn": "How would you reduce LLM serving cost by 10x? List every lever and rank them.",
+          "file": "推理、服务与 GPU 性能/12-如何把 LLM 服务成本降低 10 倍：手段清单与排序.md",
+          "level": "高阶",
+          "tags": [
+            "成本优化",
+            "容量规划",
+            "缓存",
+            "路由"
+          ],
+          "askedAt": [
+            "Microsoft",
+            "Amazon",
+            "NVIDIA",
+            "Cursor"
+          ],
+          "related": [
+            "inference-serving-05",
+            "inference-serving-06",
+            "inference-serving-11",
+            "llm-internals-12"
+          ],
+          "sources": [
+            {
+              "title": "LLM Inference Optimization",
+              "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "LLM Inference Optimization（视频）",
+              "url": "https://www.youtube.com/watch?v=jV2sCj4lHYk",
+              "author": "Outcome School",
+              "published": ""
+            },
+            {
+              "title": "Mastering LLM Techniques: Inference Optimization（延伸）",
+              "url": "https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/",
+              "author": "Shashank Verma, Neal Vaidya (NVIDIA)",
+              "published": "2023-11-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9987
+        },
+        {
+          "id": "inference-serving-13",
+          "order": 13,
+          "title": "一次没有改动模型的部署之后，你的 p99 latency 翻了一倍。请讲一遍排查过程。",
+          "titleEn": "After a deployment that did not change the model, your p99 latency doubled. Walk through the debugging process.",
+          "file": "推理、服务与 GPU 性能/13-p99 latency 翻倍后的排查过程.md",
+          "level": "高阶",
+          "tags": [
+            "排障",
+            "尾延迟",
+            "可观测性",
+            "容量"
+          ],
+          "askedAt": [
+            "OpenAI",
+            "Amazon",
+            "Databricks",
+            "Perplexity"
+          ],
+          "related": [
+            "inference-serving-09",
+            "inference-serving-14",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "LLM Inference Optimization",
+              "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Mastering LLM Techniques：Inference Optimization（延伸）",
+              "url": "https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/",
+              "author": "Shashank Verma, Neal Vaidya (NVIDIA Technical Blog)",
+              "published": "2023-11-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10681
+        },
+        {
+          "id": "inference-serving-14",
+          "order": 14,
+          "title": "什么是 chunked prefill？为什么它能在混合流量下改善 tail latency？",
+          "titleEn": "What is chunked prefill and why does it improve tail latency under mixed traffic?",
+          "file": "推理、服务与 GPU 性能/14-什么是 chunked prefill？它如何改善混合流量下的尾延迟.md",
+          "level": "高阶",
+          "tags": [
+            "chunked-prefill",
+            "调度",
+            "尾延迟",
+            "sarathi"
+          ],
+          "askedAt": [],
+          "related": [
+            "inference-serving-01",
+            "inference-serving-02",
+            "inference-serving-09",
+            "inference-serving-15"
+          ],
+          "sources": [
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al. (Microsoft, OSDI 2024)",
+              "published": "2024-03-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11769
+        },
+        {
+          "id": "inference-serving-15",
+          "order": 15,
+          "title": "解释 disaggregated prefill/decode 服务，以及它在什么情况下才划算。",
+          "titleEn": "Explain disaggregated prefill/decode serving and when it pays off.",
+          "file": "推理、服务与 GPU 性能/15-解释 disaggregated prefill-decode 服务及其适用条件.md",
+          "level": "高阶",
+          "tags": [
+            "p-d-分离",
+            "distServe",
+            "goodput",
+            "集群"
+          ],
+          "askedAt": [
+            "Moonshot AI",
+            "Groq"
+          ],
+          "related": [
+            "inference-serving-01",
+            "inference-serving-14",
+            "inference-serving-07",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "Prefill-Decode Disaggregation in LLM Inference",
+              "url": "https://outcomeschool.com/blog/prefill-decode-disaggregation",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al. (OSDI 2024)",
+              "published": "2024-01-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9513
         }
       ]
     }

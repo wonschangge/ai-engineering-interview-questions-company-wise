@@ -21,7 +21,7 @@ sources:
     url: https://arxiv.org/abs/2307.08691
     author: Tri Dao
     published: 2023-07-17
-related: [llm-internals-01, llm-internals-02, inference-serving-01]
+related: [llm-internals-01, llm-internals-02, inference-serving-03]
 updated: 2026-09-28
 ---
 
@@ -35,7 +35,7 @@ updated: 2026-09-28
 - **是否知道瓶颈在哪一侧。** 能把 attention 放进 roofline 框架，说出「H100 的拐点是约 295 FLOP/byte，而 attention 的算术强度只有约 62 FLOP/byte，不到拐点的四分之一，所以它在带宽一侧」。只答「FlashAttention 用了分块」不足以过。
 - **是否理解 online softmax 是精确的。** 面试官会追问「分块算 softmax 是不是近似」，正确回答是「不是，数学上恒等，误差只来自浮点舍入」，并能写出 running max / running sum 的递推和 rescale 因子 $e^{m_{\text{old}} - m_{\text{new}}}$。
 - **是否分得清「算法复杂度」与「IO 复杂度」。** FLOPs 仍然是 $O(N^2 d)$，HBM 访问从 $O(N^2)$ 降到 $O(N^2 d^2 / M)$，$M$ 是 SRAM 大小；训练时连 $O(N^2)$ 的 activation 都不存，显存从 $O(N^2)$ 降到 $O(N)$。
-- **是否知道它和 KV cache 优化的关系。** PagedAttention / vLLM（[[inference-serving-01]]）管的是 KV cache 的分页显存，FlashAttention 管的是单次 attention 算子内部的 HBM 流量，两者互补。能说清这一点的人通常真在生产环境调过推理。
+- **是否知道它和 KV cache 优化的关系。** PagedAttention / vLLM（[[inference-serving-03]]）管的是 KV cache 的分页显存，FlashAttention 管的是单次 attention 算子内部的 HBM 流量，两者互补。能说清这一点的人通常真在生产环境调过推理。
 - **能否落到工程细节。** 块大小怎么选（受 SRAM 容量约束）、为什么 GPU 上「非 matmul 的 FLOPs」很贵（tensor core 只对 matmul 快）、反向为什么要重算而不是存下来。
 
 常见错误答案：
@@ -239,7 +239,7 @@ $l$ 两边都是 $1.153650922$（实数意义下严格相等）；最终概率 $
   - 要点：GPU 上「贵」的是 HBM 访存。H100 的拐点是约 295 FLOP/byte，attention 只有约 62 FLOP/byte，处在带宽一侧，所以省 3.7 倍流量比省几倍 FLOPs 有效得多。反向重算多花 4.10 GFLOP，相对标准反向的 16.4 GFLOP 是 +25%（相对整个 fwd+bwd 是 +17%），换来的是少读 128 MB，在带宽一侧的算子里是划算的。
 - **追问**：块大小是不是越大越好？
   - 要点：上界由 SRAM 容量决定（H100 每 SM 约 228 KB）。$d = 128$、bf16 时 $B = 256$ 已经让 $Q, K, V$ 三块占 192 KiB。块太小则 matmul 摊不薄固定开销、$K/V$ 重复读次数增加（流量正比于 $T_r \times T_c = \lceil N/B_r \rceil \times \lceil N/B_c \rceil$）；块太大则塞不下、双缓冲失效。
-- **追问**：FlashAttention 和 PagedAttention / vLLM（[[inference-serving-01]]）是什么关系？会不会互相取代？
+- **追问**：FlashAttention 和 PagedAttention / vLLM（[[inference-serving-03]]）是什么关系？会不会互相取代？
   - 要点：管的是两件事。FlashAttention 是 attention 算子内部的计算与访存调度，处理 $QK^\top$ 这个 $N^2$ 中间量；PagedAttention 是 KV cache 的显存分配与共享，处理 decode 阶段随请求增长的 cache。一个是算子的 IO，一个是显存管理器，工程上叠在一起用。
 - **追问**：为什么 FlashAttention-2 能再快约 2 倍？
   - 要点：三条——(1) 减少非 matmul 的 FLOPs，把 rescale 从内层每次迭代推迟到外层块结束再做一次，因为 tensor core 只加速 matmul，`exp` 和乘法的开销独立于 matmul 存在；(2) 把并行维度从「batch × head」扩展到「batch × head × Q 块」，长序列小 batch 时也能占满所有 SM；(3) 块内重新划分 warp 的工作，减少共享内存读写。论文报告从峰值 25–40% 提到 50–73%，A100 上 GPT 风格模型训练可达 225 TFLOP/s（72% MFU）。
@@ -256,7 +256,7 @@ $l$ 两边都是 $1.153650922$（实数意义下严格相等）；最终概率 $
 
 - [[llm-internals-01]]：scaled dot-product attention 与 $1/\sqrt{d_k}$，是本题的数学前提。
 - [[llm-internals-02]]：KV cache 的显存公式；decode 阶段的瓶颈与本题的 prefill 瓶颈正好互补。
-- [[inference-serving-01]]：PagedAttention / vLLM 的显存管理，与 FlashAttention 在同一套 serving 流程里分工。
+- [[inference-serving-03]]：PagedAttention / vLLM 的显存管理，与 FlashAttention 在同一套 serving 流程里分工。
 
 ## 参考资料与归属
 

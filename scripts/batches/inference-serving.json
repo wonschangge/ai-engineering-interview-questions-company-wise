@@ -1,0 +1,385 @@
+{
+  "topic": "推理、服务与 GPU 性能",
+  "topic_id": "inference-serving",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/推理、服务与 GPU 性能",
+  "all_questions": [
+    { "id": "inference-serving-01", "order": 1, "title": "解释 prefill 和 decode 两个阶段。为什么 prefill 是计算受限的，而 decode 是内存带宽受限的？" },
+    { "id": "inference-serving-02", "order": 2, "title": "什么是 continuous（in-flight）batching？为什么它取代了 static batching？" },
+    { "id": "inference-serving-03", "order": 3, "title": "PagedAttention 是如何工作的？它解决了 KV cache 碎片化的什么问题？" },
+    { "id": "inference-serving-04", "order": 4, "title": "什么是 speculative decoding？为什么输出质量能够保持？什么情况下它没有帮助？" },
+    { "id": "inference-serving-05", "order": 5, "title": "解释 prefix caching / prompt caching。什么时候应该使用它？什么会导致已缓存的 prefix 失效？" },
+    { "id": "inference-serving-06", "order": 6, "title": "对比用于 serving 的 FP16、BF16、FP8、INT8、INT4 和 FP4。每往下降一档会损失什么？" },
+    { "id": "inference-serving-07", "order": 7, "title": "对比 tensor、pipeline、data、sequence 和 expert 并行。什么时候需要组合使用它们？" },
+    { "id": "inference-serving-08", "order": 8, "title": "估算服务一个 70B 模型所需的 GPU 显存：权重、KV cache、activations、碎片化。" },
+    { "id": "inference-serving-09", "order": 9, "title": "什么是 TTFT、TPOT、ITL 和 throughput？它们之间如何相互权衡？" },
+    { "id": "inference-serving-10", "order": 10, "title": "做一下 roofline 计算：在 batch size 为 1 时，一块 H100 服务 70B 模型每秒能产出多少 token？" },
+    { "id": "inference-serving-11", "order": 11, "title": "什么时候你会选择 vLLM、SGLang、TensorRT-LLM，还是自研技术栈？" },
+    { "id": "inference-serving-12", "order": 12, "title": "你会如何把 LLM 服务成本降低 10 倍？列举所有可用的手段并排序。" },
+    { "id": "inference-serving-13", "order": 13, "title": "一次没有改动模型的部署之后，你的 p99 latency 翻了一倍。请讲一遍排查过程。" },
+    { "id": "inference-serving-14", "order": 14, "title": "什么是 chunked prefill？为什么它能在混合流量下改善 tail latency？" },
+    { "id": "inference-serving-15", "order": 15, "title": "解释 disaggregated prefill/decode 服务，以及它在什么情况下才划算。" }
+  ],
+  "questions": [
+    {
+      "id": "inference-serving-01",
+      "order": 1,
+      "file": "docs/推理、服务与 GPU 性能/01-解释 prefill 与 decode 两个阶段为什么一个计算受限一个带宽受限.md",
+      "question": "解释 prefill 和 decode 两个阶段。为什么 prefill 是计算受限的，而 decode 是内存带宽受限的？",
+      "question_en": "Explain the prefill and decode phases. Why is prefill compute-bound and decode memory-bandwidth-bound?",
+      "asked_at": ["Moonshot AI", "NVIDIA", "Together AI"],
+      "level": "进阶",
+      "tags": ["prefill", "decode", "roofline", "算术强度"],
+      "sources": [
+        { "title": "Prefill vs Decode: LLM Inference Optimization", "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Efficiently Scaling Transformer Inference（延伸）", "url": "https://arxiv.org/abs/2211.05102", "author": "Pope et al. (Google)", "published": "2022-11-09" }
+      ],
+      "related": ["inference-serving-02", "inference-serving-10", "inference-serving-14", "llm-internals-02"],
+      "brief": [
+        "两个阶段的本质区别先讲清：prefill 一次处理整段 prompt（S 个 token），decode 每次只处理 1 个新 token。所有性能差异都来自这个 S 的差别。",
+        "用算术强度（FLOPs / 需要读写的字节数）解释瓶颈：prefill 是矩阵×矩阵，权重和激活都能被多个 token 复用，算术强度高，落在这条 roofline 的计算一侧；decode 是矩阵×向量，每读一遍权重只算一次，算术强度约等于 1（bf16 下约 1 FLOP/byte），远低于 GPU 的拐点，于是带宽受限。",
+        "给出 H100 SXM 的具体数字：bf16 峰值约 989 TFLOPs、HBM 带宽约 3.35 TB/s，拐点约 989/3.35 ≈ 295 FLOPs/byte；并算出 decode 每 token 要读多少字节（约等于权重大小）与能产出多少 token/s 的上界。",
+        "分别说明两个阶段的工程含义：prefill 决定 TTFT（可被 chunked prefill 切分，链到 [[inference-serving-14]]）；decode 决定 TPOT/ITL 与吞吐（靠 batching 把算术强度拉回计算侧，链到 [[inference-serving-02]]）。",
+        "讲清 batch 如何改变平衡：batch=1 时 decode 每步读的是全部权重；batch=B 时同一份权重服务 B 个 token，算术强度升到约 B，所以大 batch 下 decode 会重新变成计算受限——这就是 batch size 存在收益拐点的原因（链到 [[inference-serving-10]]）。",
+        "一句话收口：prefill 与 decode 的差异不是实现问题，而是矩阵形状决定的算术强度差异；所有 serving 优化（chunked prefill、continuous batching、P/D 分离）都是在处理这两个阶段的资源需求冲突。"
+      ]
+    },
+    {
+      "id": "inference-serving-02",
+      "order": 2,
+      "file": "docs/推理、服务与 GPU 性能/02-什么是 continuous batching？为什么它取代了 static batching.md",
+      "question": "什么是 continuous（in-flight）batching？为什么它取代了 static batching？",
+      "question_en": "What is continuous (in-flight) batching and why did it replace static batching?",
+      "asked_at": ["Anthropic", "xAI", "Mistral AI", "NVIDIA", "Together AI"],
+      "level": "进阶",
+      "tags": ["batching", "调度", "吞吐", "尾延迟"],
+      "sources": [
+        { "title": "Continuous Batching in LLMs", "url": "https://outcomeschool.com/blog/continuous-batching-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）", "url": "https://arxiv.org/abs/2309.06180", "author": "Kwon et al. (vLLM, SOSP 2023)", "published": "2023-09-12" }
+      ],
+      "related": ["inference-serving-01", "inference-serving-03", "inference-serving-14"],
+      "brief": [
+        "先讲 static batching 的机制与病灶：一次收一批请求，整批跑到全部结束才返回；生成长度不一，短请求必须等最长的那个，GPU 在尾部空转（batch 内 padded 到等长或留空槽），利用率随长度方差恶化。",
+        "讲 continuous batching 的做法：以「迭代（step）」为调度单位，每步结束就检查——谁的 EOS 到了就把它移出 batch，空出的槽立刻填入排队中的新请求；请求之间不必等长，也不需要重新编译/重跑。本质是把批的边界从「请求级」降到「token 级」。",
+        "给出可量化的收益来源：GPU 利用率 ≈ 平均有效序列长度 / 最大序列长度的事实被消除；再叠加 KV cache 按需分配（链到 [[inference-serving-03]]）才能让新请求随时挤进来。可引用 vLLM 论文的 2–4× 吞吐提升（同延迟水平）作为量级参考，说明口径是相对 FasterTransformer/Orca。",
+        "说清代价与前提：需要 paged/分块的 KV cache 才能插入新请求（否则显存按 max_len 预分配会卡死）；调度器要做抢占（preemption）、重排、前缀共享；带来调度开销与更复杂的显存管理；对单请求延迟而言，插入新请求会让已有请求每步多算一点。",
+        "把相关概念串起来：continuous batching（时间维度填满 GPU）+ chunked prefill（把长 prefill 切碎以免阻塞 decode，链到 [[inference-serving-14]]）+ PagedAttention（显存维度支持动态增删）。",
+        "常见追问：和 dynamic batching（NLP 推理里的按时间窗口凑批）有什么不同？为什么延迟敏感场景还要给 batch 上限？prefill 和 decode 能不能混在一个 batch 里（能，但要小心，链到 [[inference-serving-14]]）？"
+      ]
+    },
+    {
+      "id": "inference-serving-03",
+      "order": 3,
+      "file": "docs/推理、服务与 GPU 性能/03-PagedAttention 是如何工作的？它解决了 KV cache 碎片化的什么问题.md",
+      "question": "PagedAttention 是如何工作的？它解决了 KV cache 碎片化的什么问题？",
+      "question_en": "How does PagedAttention work and what KV cache fragmentation problem does it solve?",
+      "asked_at": ["NVIDIA", "Together AI"],
+      "level": "进阶",
+      "tags": ["pagedattention", "vllm", "显存管理", "碎片"],
+      "sources": [
+        { "title": "Paged Attention in LLMs", "url": "https://outcomeschool.com/blog/paged-attention-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "How does vLLM work?", "url": "https://outcomeschool.com/blog/how-does-vllm-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）", "url": "https://arxiv.org/abs/2309.06180", "author": "Kwon et al. (vLLM, SOSP 2023)", "published": "2023-09-12" }
+      ],
+      "related": ["inference-serving-02", "inference-serving-08", "llm-internals-02"],
+      "brief": [
+        "先量化问题：朴素实现按 max_seq_len 为每个请求预分配连续显存，于是产生三类浪费——内部碎片（预留但没用到）、外部碎片（不同长度请求留下的空洞）、以及无法共享的重复副本（并行采样、beam search、共享前缀）。论文给出的数字是：已有系统里真正存放 token 的显存可能只占 20%–40%（要写明这是论文口径）。",
+        "讲类比与机制：像操作系统的虚拟内存分页——把 KV cache 切成固定大小的 block（默认 16 个 token），block 不必连续，用 block table 记录「逻辑块 → 物理块」的映射；attention kernel 按 block table 取 K/V 计算，这就是 PagedAttention。",
+        "讲三类收益：① 按需分配，内部碎片只剩最后一个 block 的浪费（< 4% 量级）；② 物理块可共享（copy-on-write）——同一 prompt 的多个采样、beam search 的分支共享前缀块，省显存也省拷贝；③ 支持抢占与换出（把 block 换到 CPU 或丢弃后重算），让调度器可以随时腾空间。",
+        "把收益换算成业务指标：同样显存能放下的并发序列数上升 → batch 更大 → 吞吐上升；论文报告相对 FasterTransformer/Orca 在同延迟下 2–4× 吞吐，序列越长、模型越大收益越明显。",
+        "说清代价：block 粒度带来额外的间接寻址与 kernel 复杂度；block size 是权衡（太大→内部碎片回升，太小→block table 与 kernel 开销上升）；对 GQA/MQA/MLA 这些 KV 头更少的架构依然适用（链到 [[llm-internals-03]]、[[llm-internals-04]]）。",
+        "常见追问：prefix caching 是怎么建立在 block 共享上的（链到 [[inference-serving-05]]）？换出到 CPU 的代价是什么？为什么 block size 常取 16？碎片化在真实负载下的表现（长度分布）。"
+      ]
+    },
+    {
+      "id": "inference-serving-04",
+      "order": 4,
+      "file": "docs/推理、服务与 GPU 性能/04-什么是 speculative decoding？为什么输出质量能保持.md",
+      "question": "什么是 speculative decoding？为什么输出质量能够保持？什么情况下它没有帮助？",
+      "question_en": "What is speculative decoding? Why is output quality preserved, and when does it not help?",
+      "asked_at": ["NVIDIA", "Together AI"],
+      "level": "高阶",
+      "tags": ["投机解码", "draft-model", "拒绝采样", "延迟"],
+      "sources": [
+        { "title": "Speculative Decoding", "url": "https://outcomeschool.com/blog/speculative-decoding", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Fast Inference from Transformers via Speculative Decoding（延伸）", "url": "https://arxiv.org/abs/2211.17192", "author": "Leviathan et al. (Google)", "published": "2022-11-30" },
+        { "title": "Accelerating Large Language Model Decoding with Speculative Sampling（延伸）", "url": "https://arxiv.org/abs/2302.01318", "author": "Chen et al. (DeepMind)", "published": "2023-02-02" }
+      ],
+      "related": ["inference-serving-01", "inference-serving-10", "llm-internals-12"],
+      "brief": [
+        "动机要落到 decode 的带宽受限本质上：batch=1 时 GPU 算力大量闲置，每一步只产出一个 token；投机解码用「便宜的 draft 模型连续猜 γ 个 token，再用大模型一次前向并行验证」把闲置算力换成更少的串行步数（链到 [[inference-serving-10]]）。",
+        "把算法写清楚（分步）：① draft 模型自回归生成 γ 个候选 token 及其概率；② 目标模型对这 γ+1 个位置做一次并行前向，得到每个位置的概率；③ 从左到右逐个接受/拒绝：以 min(1, p_target/p_draft) 的概率接受；④ 第一个被拒绝的位置用「残差分布 max(0, p_target − p_draft) 归一化」重新采样，其后候选全部丢弃；⑤ 全部接受则额外从目标模型采样一个 bonus token。",
+        "证明「输出分布不变」（这是本题的题眼）：说明拒绝采样为什么恰好修正了 draft 分布与目标分布的差，使得最终采出的 token 服从目标模型分布——因此是**数学等价**而不是近似，temperature/top-p 等采样参数也能保持一致（要写清在什么前提下等价：同一采样参数、draft 与 target 共享词表）。",
+        "收益的量化条件：加速比 ≈ 平均接受 token 数 / (1 + draft 的开销比)。写清收益取决于：接受率 α（draft 与 target 分布多接近）、γ（猜多长）、draft 相对 target 的代价比 c。给出一个简单的期望步数推导或数值例子（自己算，例如 α=0.7、γ=4 时的期望接受数）。",
+        "什么情况下没用/变慢：① target 已经算力饱和（大 batch、高 QPS）时验证本身变贵，收益趋零甚至变负；② draft 与 target 分布差太远（接受率低），白跑验证；③ 输出短、任务确定（如抽取、代码补全的固定前缀）时收益小；④ draft 模型本身太大、显存吃紧；⑤ 温度很高时分布发散，接受率下降。",
+        "讲变体与实践：Medusa/EAGLE（用额外头或轻量模型预测多 token，省掉独立 draft 模型）、n-gram/检索式 draft（重复文本场景）、batch 内的投机（draft 与 target 在同一 batch 里跑）、以及它与 continuous batching 的相互影响。"
+      ]
+    },
+    {
+      "id": "inference-serving-05",
+      "order": 5,
+      "file": "docs/推理、服务与 GPU 性能/05-解释 prefix caching 与 prompt caching.md",
+      "question": "解释 prefix caching / prompt caching。什么时候应该使用它？什么会导致已缓存的 prefix 失效？",
+      "question_en": "Explain prefix caching / prompt caching. When should it be used and what invalidates a cached prefix?",
+      "asked_at": ["Moonshot AI", "Character.AI"],
+      "level": "进阶",
+      "tags": ["prefix-caching", "prompt-caching", "radix-attention", "成本"],
+      "sources": [
+        { "title": "How does Prompt Caching work?", "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）", "url": "https://arxiv.org/abs/2312.07104", "author": "Zheng et al. (RadixAttention)", "published": "2023-12-12" }
+      ],
+      "related": ["inference-serving-03", "inference-serving-01", "llm-internals-02"],
+      "brief": [
+        "先区分两个层次：① **prefill 重用**——同一段 prefix 的 KV 已经是算好的，复用它可以跳过重复的 prefill 计算（省的是 TTFT 与算力）；② **存储复用**——跨请求/跨会话把 KV block 共享或落盘（省的是显存与重算）。两者常被统称 prompt caching。",
+        "机制讲透：attention 是因果的，前 t 个 token 的 KV 只依赖前 t 个 token 本身，与后面追加什么无关——这是 prefix 可以复用的数学依据。实现上即「前缀匹配 + block 共享」：以 block 为粒度做最长前缀匹配（vLLM 的 hash 匹配 / SGLang 的 RadixAttention 用基数树维护多请求的公共前缀），命中则直接引用已有物理块。",
+        "什么会失效（这是题干第二问，逐条列）：① 前缀里任何位置发生变化都会让该位置之后全部失效——哪怕改一个空格、一个时间戳、一个随机 ID；② 系统提示里的动态内容（当前日期、user id、会话摘要）放在最前面会让整段缓存失效，正确做法是把稳定内容放前面、易变内容放后面；③ 位置编码相关：RoPE 下同一 token 在不同绝对位置是不同的向量，所以缓存必须按「位置对齐的前缀」使用（链到 [[llm-internals-08]]）；④ 换模型/换量化/换 tokenizer/改 LoRA 都会让缓存失效；⑤ 存储层：显存不足被驱逐、TTL 过期、跨实例的缓存不共享。",
+        "量化收益：命中长度 L 时省下的 prefill FLOPs 约 2·N_params·L（与一次前向同量级），TTFT 可降数倍；对多轮对话、few-shot 固定示例、长系统提示、agent 的固定工具说明这几类负载收益最大。要给出「命中率 × 命中长度」才是真正指标的说法。",
+        "工程要点：把稳定前缀放最前（prompt 结构化）、显式标注 cache breakpoint（部分厂商 API 支持）、注意计费口径（缓存命中的 token 通常更便宜）、监控命中率与驱逐率、考虑多租户下的隔离与安全（跨用户共享前缀可能泄露信息，需按租户分桶）。",
+        "常见追问：prefix caching 与 KV cache 的关系（前者是后者在请求之间的复用）？为什么不能缓存「中间」而只能缓存「前缀」？在多副本部署下怎么做缓存亲和（路由到同一实例）？"
+      ]
+    },
+    {
+      "id": "inference-serving-06",
+      "order": 6,
+      "file": "docs/推理、服务与 GPU 性能/06-对比 FP16、BF16、FP8、INT8、INT4 与 FP4 量化.md",
+      "question": "对比用于 serving 的 FP16、BF16、FP8、INT8、INT4 和 FP4。每往下降一档会损失什么？",
+      "question_en": "Compare FP16, BF16, FP8, INT8, INT4 and FP4 for serving. What do you lose at each step down?",
+      "asked_at": ["Mistral AI", "Apple", "NVIDIA", "Together AI", "Character.AI"],
+      "level": "进阶",
+      "tags": ["量化", "精度", "显存", "kernel"],
+      "sources": [
+        { "title": "How does Model Quantization work?", "url": "https://outcomeschool.com/blog/how-does-model-quantization-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "FP8 Formats for Deep Learning（延伸）", "url": "https://arxiv.org/abs/2209.05433", "author": "Micikevicius et al.", "published": "2022-09-12" },
+        { "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）", "url": "https://arxiv.org/abs/2210.17323", "author": "Frantar et al. (ICLR 2023)", "published": "2022-10-31" },
+        { "title": "AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration（延伸）", "url": "https://arxiv.org/abs/2306.00978", "author": "Lin et al. (MLSys 2024)", "published": "2023-06-01" },
+        { "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models（延伸）", "url": "https://arxiv.org/abs/2211.10438", "author": "Xiao et al. (ICML 2023)", "published": "2022-11-18" }
+      ],
+      "related": ["inference-serving-08", "inference-serving-10", "llm-internals-02"],
+      "brief": [
+        "先给一张格式表（这是本题的地基）：FP16（1+5+10，范围 ±65504）、BF16（1+8+7，范围同 FP32 但精度低）、FP8-E4M3（4 位指数 3 位尾数，动态范围约 ±448，无 inf）、FP8-E5M2（5 位指数，范围大精度更低，常用于梯度）、INT8/INT4（定点，需要 scale/zero-point，动态范围靠 per-channel/per-group 量化参数补）、FP4（E2M1 等，需要 block-wise scale，如 MXFP4/NVFP4）。说明「浮点靠指数拿动态范围、定点靠 scale 拿动态范围」这个本质区别。",
+        "每降一档损失什么，逐档说：FP16→BF16：尾数从 10 位降到 7 位（约 3 位十进制有效数字 → 2 位），单值精度下降但范围变大，训练更稳（不会溢出），推理质量几乎无损；BF16→FP8：尾数只剩 3 位，必须配合 per-tensor/per-channel scaling 与 outlier 处理，权重与激活都能压（W8A8），精度损失小但需要校准；→INT8：动态范围窄、需要 scale，激活 outlier 是难点（SmoothQuant 的做法是把激活的量化难度迁移到权重上）；→INT4：只能权重量化（W4A16）常见，per-group（如 128）scale 必需，GPTQ/AWQ 这类方法靠校准与保护显著权重把损失压到可接受；→FP4：需要 block-wise 缩放（block 16/32）+ 更激进的方法，通常用于权重或 KV cache，长尾任务（数学、代码、多语言）掉点更明显。",
+        "把「损失」拆成四类而不是只说精度：① 数值精度（长尾 token 概率被扰动，采样结果偏移）；② 显存收益（权重与 KV cache 的字节数）；③ 速度收益（需要硬件支持对应 dtype 的 tensor core，否则反量化开销可能吃掉收益）；④ 工程复杂度（校准数据、per-group 参数、kernel 支持、与并行策略的兼容）。",
+        "说明为什么量化常是「权重可压、激活难压」：激活的分布随输入变化且有 outlier，权重的分布更稳定；KV cache 量化也遵循同样规律（K 比 V 更难，需要 per-channel/per-token 处理）。这条能解释 W4A16 与 W8A8 的流行度差异。",
+        "给决策建议：显存吃紧先上 W4A16（AWQ/GPTQ）或 KV cache INT8；追求吞吐且硬件支持就上 FP8（H100 起）；精度敏感场景（长链推理、代码、数学）优先 FP8 而不是 INT4；端侧用 INT4/FP4 + 融合 kernel；并强调「量化前先建立评测基线，按任务分层测」而不是只看 perplexity。",
+        "常见追问：为什么 bf16 在训练里比 fp16 稳？per-tensor / per-channel / per-group 的区别与代价？量化能省显存但不一定省时间的原因？FP8 的 scaling 怎么做（延迟缩放 vs 实时缩放）？"
+      ]
+    },
+    {
+      "id": "inference-serving-07",
+      "order": 7,
+      "file": "docs/推理、服务与 GPU 性能/07-对比 tensor、pipeline、data、sequence 与 expert 并行.md",
+      "question": "对比 tensor、pipeline、data、sequence 和 expert 并行。什么时候需要组合使用它们？",
+      "question_en": "Compare tensor, pipeline, data, sequence and expert parallelism. When do you combine them?",
+      "asked_at": ["Google DeepMind", "Meta", "Amazon", "NVIDIA"],
+      "level": "高阶",
+      "tags": ["并行策略", "tensor-parallel", "pipeline-parallel", "expert-parallel"],
+      "sources": [
+        { "title": "Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism（延伸）", "url": "https://arxiv.org/abs/1909.08053", "author": "Shoeybi et al.", "published": "2019-09-17" },
+        { "title": "GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism（延伸）", "url": "https://arxiv.org/abs/1811.06965", "author": "Huang et al.", "published": "2018-11-16" },
+        { "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）", "url": "https://arxiv.org/abs/1910.02054", "author": "Rajbhandari et al.", "published": "2019-10-04" },
+        { "title": "Reducing Activation Recomputation in Large Transformer Models（延伸）", "url": "https://arxiv.org/abs/2205.05198", "author": "Korthikanti et al. (Megatron sequence parallelism)", "published": "2022-05-10" },
+        { "title": "GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding（延伸）", "url": "https://arxiv.org/abs/2006.16668", "author": "Lepikhin et al. (expert parallelism)", "published": "2020-06-30" }
+      ],
+      "related": ["inference-serving-08", "inference-serving-11", "llm-internals-10"],
+      "brief": [
+        "每种并行先回答三个问题：切什么、通信发生在哪里、通信量随什么增长（重要结论：TP 是每层两次 all-reduce，PP 是点对点传激活，DP 是梯度 all-reduce，SP 是每层 all-gather/reduce-scatter，EP 是 all-to-all 且通信量随 token 数增长）。",
+        "tensor 并行（TP）：按列/行切权重矩阵（Megatron-LM 的做法），每层都要通信，适合放在**单机 NVLink 内**（带宽高、延迟低）；TP 度越大通信越频繁，超过单机 8 卡通常不划算。要说明 MLP 的两次切分与 attention 头维度的切分方式。",
+        "pipeline 并行（PP）：按层切到不同设备，用 micro-batch 流水线填气泡（GPipe 的 batch splitting），通信量小（只传边界激活）但存在 bubble；要讲清 bubble 比例 ≈ (p−1)/(m+p−1) 以及 1F1B/interleaved 调度为什么能缓解；适合跨机。",
+        "data 并行（DP）与 ZeRO：DP 复制模型切数据、梯度 all-reduce；显存优化靠 ZeRO 分片优化器状态/梯度/参数（三阶段），本质是「用通信换显存」；DP 的通信量随参数量增长，是万卡训练的基础层。",
+        "sequence 并行（SP）：激活显存随序列长度线性增长，SP 把序列维切开（与 TP 配合的 all-gather/reduce-scatter），论文报告激活显存降低 5×、重算开销降低 90%+（要写清是相对谁的口径）；长上下文训练必备。",
+        "expert 并行（EP）：MoE 里专家分布在不同设备，token 按路由做 all-to-all；难点是负载不均与通信量随 token 数增长，常与 DP/TP 组合（链到 [[llm-internals-10]]）。",
+        "组合策略要给可操作的判断顺序：① 先确定单卡放不下多少（权重+激活+优化器状态）；② 单机内用 TP/SP 吃掉带宽友好的通信；③ 跨机用 PP/DP/EP；④ 并行度选择要满足「TP × PP × DP × EP = 总卡数」且尽量让 TP ≤ 8；⑤ 通信量、气泡、显存三者取舍，最后一定要给出「用 Nsight/实测 MFU 验证」的说法而不是空谈。"
+      ]
+    },
+    {
+      "id": "inference-serving-08",
+      "order": 8,
+      "file": "docs/推理、服务与 GPU 性能/08-估算服务一个 70B 模型所需的 GPU 显存.md",
+      "question": "估算服务一个 70B 模型所需的 GPU 显存：权重、KV cache、activations、碎片化。",
+      "question_en": "Estimate the GPU memory needed to serve a 70B model: weights, KV cache, activations, fragmentation.",
+      "asked_at": ["NVIDIA"],
+      "level": "进阶",
+      "tags": ["显存估算", "容量规划", "kv-cache", "碎片"],
+      "sources": [
+        { "title": "KV Cache in LLMs", "url": "https://outcomeschool.com/blog/kv-cache-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Paged Attention in LLMs", "url": "https://outcomeschool.com/blog/paged-attention-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）", "url": "https://arxiv.org/abs/2309.06180", "author": "Kwon et al. (vLLM, SOSP 2023)", "published": "2023-09-12" }
+      ],
+      "related": ["inference-serving-03", "inference-serving-06", "llm-internals-02"],
+      "brief": [
+        "把这道题做成一张可复算的清单，而不是报一个总数。四块：权重、KV cache、临时激活/工作区、碎片与预留。每一块都要给公式与 70B 的具体数字。",
+        "权重：N_params × bytes。70B bf16 = 140 GB；FP8 = 70 GB；INT4（含 per-group scale 约 +3%–6%）= 约 36–38 GB。要说明「GB 与 GiB」的口径（140 GB ≈ 130 GiB），并提醒 embedding/lm_head 是否 tie、是否含 vision tower 等附加参数。",
+        "KV cache：用 [[llm-internals-02]] 的公式 2·L·H_kv·d_head·S·b·bytes。以 LLaMA-3-70B（80 层、8 KV 头、d_head=128、bf16）为例每 token 320 KiB；再按「并发 b × 上下文 S」算总量，例如 b=32、S=8k → 32 × 8192 × 327,680 B ≈ 80 GiB，并给出「每 GiB 能装多少 token」的换算（约 3276.8 token/GiB）。",
+        "激活与工作区：推理时的峰值临时占用主要来自 attention 的中间张量（可用 FlashAttention 把 S² 项消掉，链到 [[llm-internals-05]]）、通信 buffer（TP/EP 的 all-reduce/all-to-all 缓冲）、CUDA context 与 kernel workspace（每卡几百 MB 量级），以及 cudagraph/capture 的预留。要说明 batch×序列越大、TP 度越高，buffer 占比越高。",
+        "碎片与预留：朴素实现按 max_seq_len 预分配 → 内部碎片可高达数倍（论文口径：有效利用可能只有 20%–40%）；PagedAttention 把浪费压到 < 4%（最后一个 block），但仍要预留 block 池与调度水位；还要考虑显存碎片导致的 OOM 与「显存够但装不下」的区别。",
+        "给最终答案的呈现方式（面试官想听的）：一张表 + 一句结论 + 一个「能放多少并发」的推导。例如 8×H100（640 GB / 596 GiB）：权重 140 GB + KV cache 预留 400 GB + 激活/缓冲 40 GB → 8k 上下文下约 40 并发；并说明如何通过 FP8 权重、KV cache INT8、GQA 与 prefix caching 把并发抬上去。",
+        "常见追问：为什么不能把显存用到 100%（水位线/预留为什么存在）？tensor 并行会不会增加总显存？weights offload / CPU offload 的代价是什么？"
+      ]
+    },
+    {
+      "id": "inference-serving-09",
+      "order": 9,
+      "file": "docs/推理、服务与 GPU 性能/09-什么是 TTFT、TPOT、ITL 与 throughput 以及它们如何权衡.md",
+      "question": "什么是 TTFT、TPOT、ITL 和 throughput？它们之间如何相互权衡？",
+      "question_en": "What are TTFT, TPOT, ITL and throughput, and how do they trade off against each other?",
+      "asked_at": ["Microsoft", "Apple", "Perplexity"],
+      "level": "进阶",
+      "tags": ["SLO", "延迟指标", "goodput", "容量规划"],
+      "sources": [
+        { "title": "Prefill vs Decode: LLM Inference Optimization", "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "The First-Token Latency Problem in LLMs", "url": "https://www.youtube.com/watch?v=XD8DD4cEHu0", "author": "Outcome School", "published": "" },
+        { "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving（延伸）", "url": "https://arxiv.org/abs/2401.09670", "author": "Zhong et al. (OSDI 2024)", "published": "2024-01-18" }
+      ],
+      "related": ["inference-serving-01", "inference-serving-14", "inference-serving-13"],
+      "brief": [
+        "四个指标先定义清楚并给出计算口径：TTFT（time to first token，= 排队 + prefill + 首个 token 采样，决定「感觉快不快」）、TPOT（time per output token，= 平均每 token 的解码时间）、ITL（inter-token latency，逐 token 间隔的分布，TPOT 是它的均值，但 p99 才决定「卡不卡」）、throughput（tokens/s 或 requests/s，分系统级与单请求级）。再补三个业界常用派生量：端到端延迟 E2E ≈ TTFT + TPOT × (out_len − 1)、goodput（在满足 TTFT/TPOT SLO 前提下的有效吞吐，DistServe 的核心指标）、以及 cost per 1M tokens。",
+        "指标之间的取舍要讲成机制而不是口号：① batch 越大吞吐越高，但每个请求的 TPOT 变长（同一份算力摊给更多 token）；② prefill 与 decode 混跑时，长 prefill 会插队推高其他请求的 ITL（尾延迟尖刺）；③ chunked prefill 牺牲一点 TTFT 换 ITL 平稳（链到 [[inference-serving-14]]）；④ 提高 TP 度能降低单步延迟但增加通信、降低吞吐性价比；⑤ 上下文越长，KV cache 越大，可并发数下降，吞吐与延迟同时恶化。",
+        "给出量化关系：用 E2E = TTFT + TPOT·(out−1) 说明为什么长输出场景 TPOT 更重要、短输出/交互式场景 TTFT 更重要；用「输出长度分布」说明为什么均值指标会骗人，必须看 p95/p99。",
+        "讲清楚怎么做容量规划：由 SLO 反推 batch 上限与并发数（例如 TPOT ≤ 50 ms、TTFT ≤ 1 s 时，单机能放多少并发），并说明 goodput 比 throughput 更适合做验收指标（超过 SLO 的吞吐是无效吞吐）。",
+        "讲观测与压测方法：固定输入/输出长度分布、固定解码参数；分别扫并发与 batch；记录 TTFT/ITL 的分位数曲线；区分「冷启动/首次编译」与稳态；用负载发生器（如 vLLM benchmark、locust 自建）复现真实长度分布。",
+        "常见追问：为什么用 ITL 而不是只报 TPOT？为什么 p99 与均值差距会那么大（调度与 batch 抖动、prefill 插入）？如何在不加卡的情况下同时改善 TTFT 与 TPOT？"
+      ]
+    },
+    {
+      "id": "inference-serving-10",
+      "order": 10,
+      "file": "docs/推理、服务与 GPU 性能/10-做 roofline 计算：batch size 为 1 时一块 H100 服务 70B 模型每秒产出多少 token.md",
+      "question": "做一下 roofline 计算：在 batch size 为 1 时，一块 H100 服务 70B 模型每秒能产出多少 token？",
+      "question_en": "Do the roofline maths: how many tokens per second can one H100 produce for a 70B model at batch size 1?",
+      "asked_at": ["NVIDIA", "Together AI"],
+      "level": "高阶",
+      "tags": ["roofline", "算术强度", "带宽", "容量规划"],
+      "sources": [
+        { "title": "Prefill vs Decode: LLM Inference Optimization", "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Efficiently Scaling Transformer Inference（延伸）", "url": "https://arxiv.org/abs/2211.05102", "author": "Pope et al. (Google)", "published": "2022-11-09" }
+      ],
+      "related": ["inference-serving-01", "inference-serving-06", "llm-internals-02"],
+      "brief": [
+        "先摆硬件常数（要写清型号与口径）：H100 SXM5 80 GB，bf16 稠密算力约 989 TFLOPs（含 sparsity 约 1979），HBM3 带宽约 3.35 TB/s；因此 roofline 拐点约 989/3.35 ≈ 295 FLOPs/byte。再指出 70B bf16 权重 = 140 GB，单卡 80 GB 装不下——所以题目本身要先回答「装不下怎么办」：要么 FP8/INT4 量化，要么多卡 TP（每卡分到的权重相应变少）。三种口径的答案都值得算一遍。",
+        "核心推导（batch=1、decode 阶段）：每生成一个 token，必须把**全部参与计算的权重**从 HBM 读一遍（每卡读它负责的那部分），算术强度约等于每字节权重带来的 FLOPs。bf16 下每权重 2 字节、每个权重参与约 2 次 FLOPs（一次乘一次加）→ 约 1 FLOP/byte，远低于 295 的拐点，所以是带宽受限：tokens/s ≈ 带宽 / 每 token 需要读的字节数。",
+        "三种配置的具体数字（自己算并列表）：① FP8 权重 70 GB（单卡 80 GB 放得下）→ 每 token 读 70 GB，3.35 TB/s ÷ 70 GB ≈ 48 tokens/s 的理论上界，实际利用率 60%–80% 时约 30–40 tokens/s；② INT4 权重约 35 GB（含 scale）→ 理论上界约 96 tokens/s，实际约 60–70；③ 8 卡 bf16 TP=8：每卡 17.5 GB → 单卡上界约 190 tokens/s，但 TP 每一步都要 all-reduce 激活，实际会明显低于这个值（要说明通信开销与负载不均），端到端吞吐约 100–150 tokens/s 量级。",
+        "把「上界」和「实测」分开讲：roofline 给的是上界，实测还要扣掉 KV cache 读写（长上下文时不是小项，按 2·L·H_kv·d_head·S·bytes 算并可量化）、kernel 启动与融合质量、采样与 logits 计算、调度开销；给出「长上下文时 KV cache 读取会占多少比例」的算法（例如 S=32k、GQA-8 时 KV cache 是 10 GiB，相对 35 GB 的 INT4 权重已不可忽略）。",
+        "延伸到 batch>1：算术强度近似随 batch 线性上升，在 batch≈295 之前都是带宽受限（推导一下这个临界点），之后转为计算受限、吞吐不再随 batch 线性增长——这解释了为什么吞吐-延迟曲线会弯折，以及为什么 continuous batching 是提升吞吐的第一手段（链到 [[inference-serving-02]]）。",
+        "最后给一个面试答题模板：写常数 → 判瓶颈（比较算术强度与拐点）→ 算上界 → 扣开销 → 给区间与前提。强调「答案依赖精度与并行度，先说清前提再给数字」。"
+      ]
+    },
+    {
+      "id": "inference-serving-11",
+      "order": 11,
+      "file": "docs/推理、服务与 GPU 性能/11-什么时候选择 vLLM、SGLang、TensorRT-LLM 还是自研栈.md",
+      "question": "什么时候你会选择 vLLM、SGLang、TensorRT-LLM，还是自研技术栈？",
+      "question_en": "When would you choose vLLM, SGLang, TensorRT-LLM, or build your own stack?",
+      "asked_at": ["NVIDIA", "Together AI"],
+      "level": "进阶",
+      "tags": ["vllm", "sglang", "tensorrt-llm", "选型"],
+      "sources": [
+        { "title": "How does vLLM work?", "url": "https://outcomeschool.com/blog/how-does-vllm-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "How does SGLang work?", "url": "https://outcomeschool.com/blog/how-does-sglang-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "How does TensorRT-LLM work?", "url": "https://outcomeschool.com/blog/how-does-tensorrt-llm-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）", "url": "https://arxiv.org/abs/2309.06180", "author": "Kwon et al. (vLLM, SOSP 2023)", "published": "2023-09-12" },
+        { "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）", "url": "https://arxiv.org/abs/2312.07104", "author": "Zheng et al. (RadixAttention)", "published": "2023-12-12" }
+      ],
+      "related": ["inference-serving-02", "inference-serving-03", "inference-serving-05"],
+      "brief": [
+        "先给三者的技术定位（不是营销对比）：vLLM = PagedAttention + continuous batching + 前缀缓存的开源通用引擎，生态最广、模型支持最快；SGLang = 以「LLM 程序」为视角，RadixAttention 做前缀树复用 + 压缩有限状态机做结构化输出（JSON/regex）加速，适合多轮、agent、结构化输出密集的负载（论文报告最高 6.4× 吞吐提升，要写清对比口径）；TensorRT-LLM = NVIDIA 的编译式路线，把模型编成优化后的 engine（kernel 融合、in-flight batching、FP8/FP4 支持、依赖 Triton 提供服务），单卡/单机性能上限通常最好，代价是编译时间、模型覆盖与调试难度。",
+        "选型的判断维度要列成表：模型支持与更新速度、硬件（NVIDIA 专用 vs 多厂商）、是否需要结构化输出/复杂控制流、是否需要多 LoRA/多租户、量化与 dtype 支持、编译/冷启动时间、可观测性与调试手段、与现有基础设施（K8s、Triton、网关）的集成成本、社区与商业支持。",
+        "给出决策规则（面试官想听的「什么时候用哪个」）：① 通用聊天/API 服务、模型迭代快 → vLLM 起步；② 大量共享前缀（多轮对话、few-shot、agent 固定提示）、结构化输出多、需要前缀树与状态机 → SGLang；③ 模型固定、追求单机极限性能与最低单位成本、接受编译与工程投入 → TensorRT-LLM；④ 有特殊需求（自定义 attention/kernel、非标准架构、极致成本控制、需要与自研调度/推理框架深度耦合）→ 在开源引擎上做二次开发，最后才考虑完全自研。",
+        "自研的门槛要讲实：需要的能力清单（kernel/CUDA、调度、显存管理、量化、分布式并行、压测与回归体系），以及「自研的收益来自哪里」——只有当负载形态或硬件组合明显偏离通用引擎的假设时才有正收益；否则维护成本会吃掉性能红利。推荐的中间路线是：fork 开源引擎做定制（vLLM/SGLang 的插件与自定义 kernel 接口），而不是从零写。",
+        "给可验证的选型流程：先定义 SLO 与负载画像（长度分布、并发、前缀复用率、输出结构化比例）→ 用同一套压测脚本在三者上跑 → 比较 goodput 与 p99 → 再看工程成本与稳定性。强调「不看 benchmark 榜单，只看自己负载上的复现结果」。",
+        "常见追问：为什么 TensorRT-LLM 在某些场景更快（kernel 融合与编译期优化、FP8/FP4 kernel 质量）？什么情况下换引擎收益最大（长上下文、结构化输出、前缀复用率高）？多引擎并存的运维代价？"
+      ]
+    },
+    {
+      "id": "inference-serving-12",
+      "order": 12,
+      "file": "docs/推理、服务与 GPU 性能/12-如何把 LLM 服务成本降低 10 倍：手段清单与排序.md",
+      "question": "你会如何把 LLM 服务成本降低 10 倍？列举所有可用的手段并排序。",
+      "question_en": "How would you reduce LLM serving cost by 10x? List every lever and rank them.",
+      "asked_at": ["Microsoft", "Amazon", "NVIDIA", "Cursor"],
+      "level": "高阶",
+      "tags": ["成本优化", "容量规划", "缓存", "路由"],
+      "sources": [
+        { "title": "LLM Inference Optimization", "url": "https://outcomeschool.com/blog/llm-inference-optimization", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "LLM Inference Optimization（视频）", "url": "https://www.youtube.com/watch?v=jV2sCj4lHYk", "author": "Outcome School", "published": "" },
+        { "title": "Mastering LLM Techniques: Inference Optimization（延伸）", "url": "https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/", "author": "Shashank Verma, Neal Vaidya (NVIDIA)", "published": "2023-11-17" }
+      ],
+      "related": ["inference-serving-05", "inference-serving-06", "inference-serving-11", "llm-internals-12"],
+      "brief": [
+        "先把成本公式写出来，所有手段都挂到公式上：成本 = (GPU 小时单价 × GPU 数 × 时间) / 有效 token 数，折算成 $/1M tokens = 单价 / (吞吐 × 利用率) 再乘「每个请求浪费的 token 比例」。分母侧优化（提吞吐、提利用率、少生成废 token）通常比分子侧（砍单价）收益更大——这是排序的依据。",
+        "按收益/成本比排序给出清单（要分组并给量级，不要只列名词）：① **缓存与复用**：prefix/prompt caching（多轮与 agent 负载命中率高时 TTFT 与算力大降）、语义缓存/精确缓存重复问答、结果级缓存；② **调度与批处理**：continuous batching、chunked prefill、P/D 分离、并发与 batch 调优、抢占策略；③ **精度与量化**：FP8 权重与 KV cache、INT4/FP4（W4A16）、KV cache 量化（这些同时省显存→提并发）；④ **模型与架构选择**：更小的模型 + 更好的数据（蒸馏/微调）、GQA/MoE 架构、按难度路由（小模型先答、难的回退大模型）、级联与早停；⑤ **解码层**：限制 max_tokens、结构化输出/约束解码（避免重试）、投机解码、减少 system prompt 长度；⑥ **容量与采购**：合适的 GPU 型号与 spot/预留实例、跨区域调度、把利用率从 30% 提到 60%+；⑦ **产品层**：限制上下文长度、流式输出提升感知速度、按需降级、请求合并与批处理 API。",
+        "每一项都要说清收益上限与前提：例如量化省显存但若 kernel 不支持 FP8 反而不快；投机解码在算力饱和时收益趋零（链到 [[inference-serving-04]]）；路由会引入质量风险需要评测兜底；prefix caching 对「前缀经常变」的负载无效（链到 [[inference-serving-05]]）。",
+        "给一个「10 倍怎么凑出来」的组合示例（要自己算乘法）：量化 FP8 权重与 KV cache（~1.8×）+ batch 与调度优化（~2×）+ prefix caching（取决于复用率，1.3–2×）+ 路由到小模型（把 60% 流量交给小模型，~2×）+ 产品侧限制输出长度（1.2×）≈ 10× 以上；同时说明这些收益不可简单相乘（互相重叠、都受 SLO 约束）。",
+        "必须提度量与治理：先建立 $/1M tokens、GPU 利用率（MFU/MBU）、cache 命中率、平均输出长度、重试率这些指标，再做优化；优化前后要在固定负载与 SLO 下 A/B，防止「省了钱但 p99 爆了/质量掉了」。",
+        "常见追问：为什么先做缓存再做量化？提升利用率与降低单价哪个优先？如何在成本与质量之间设阈值（评测集 + 回退策略）？"
+      ]
+    },
+    {
+      "id": "inference-serving-13",
+      "order": 13,
+      "file": "docs/推理、服务与 GPU 性能/13-p99 latency 翻倍后的排查过程.md",
+      "question": "一次没有改动模型的部署之后，你的 p99 latency 翻了一倍。请讲一遍排查过程。",
+      "question_en": "After a deployment that did not change the model, your p99 latency doubled. Walk through the debugging process.",
+      "asked_at": ["OpenAI", "Amazon", "Databricks", "Perplexity"],
+      "level": "高阶",
+      "tags": ["排障", "尾延迟", "可观测性", "容量"],
+      "sources": [
+        { "title": "LLM Inference Optimization", "url": "https://outcomeschool.com/blog/llm-inference-optimization", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Mastering LLM Techniques: Inference Optimization（延伸）", "url": "https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/", "author": "Shashank Verma, Neal Vaidya (NVIDIA)", "published": "2023-11-17" }
+      ],
+      "related": ["inference-serving-09", "inference-serving-14", "inference-serving-02"],
+      "brief": [
+        "这道题考的是**方法论**：先定性再定量、先分层再二分、每一步都要有可证伪的假设。开篇先给结论式的排查框架（四步）：① 确认现象（是 p99 还是均值？是 TTFT 还是 ITL？哪个模型/地区/租户？什么时候开始？）② 切分路径（网关 → 队列 → 调度 → prefill → decode → 流式返回），找出延迟增在**哪一段**；③ 对照变更（部署了什么、配置改了什么、流量变了吗）④ 验证并修复。",
+        "第一步要能说出具体指标与工具：TTFT/ITL/E2E 的分位数曲线、队列等待时间、batch size 与并发、KV cache 使用率与驱逐率、cache 命中率、GPU 利用率（SM occupancy、MFU）、显存水位、TP/EP 通信耗时、kernel 时间线（Nsight Systems）、连续 batching 的调度延迟。强调「先看是排队变慢还是计算变慢」——这一刀决定了后面所有方向。",
+        "第二步给一份高价值假设清单（按常见度排序，每条附验证方法与典型修复）：① 配置漂移——batch 上限/并发上限/max_num_seqs/显存水位/block size 被改小，调度器更保守；② 缓存失效——prefix cache 命中率掉了（prompt 模板改动、时间戳/ID 放前面、升级后 hash 规则变了），导致 prefill 重复计算（链到 [[inference-serving-05]]）；③ 长请求混入——上游把长上下文或长输出请求放进同一池子，长 prefill 插队抬高 ITL（链到 [[inference-serving-14]]）；④ 资源与拓扑变化——GPU 型号混部、NUMA/PCIe 拓扑变化、TP 度变化导致通信变慢、CPU 侧 tokenizer/网关成为瓶颈；⑤ 依赖与网络——tokenizer/embedding 服务、向量库、限流代理、DNS 解析变慢；⑥ kernel/编译——换了镜像或 CUDA/driver 版本，FlashAttention/量化 kernel 回退到慢路径，cudagraph 未命中；⑦ 观测与埋点本身的偏差——采样率、超时重试、客户端连接复用变化让「测出来的 p99」变了；⑧ 流量结构——输入/输出长度分布、并发分布、租户结构变化。",
+        "第三步讲「怎么快速二分」：与上一个版本的镜像/配置做 A/B（同流量影子或小流量金丝雀）、按模型/region/实例分组对比、把可疑变量一个个回滚；用「同输入重放」把变量收敛到服务端；对比同一时刻的 GPU 时间线看是排队增长还是计算变长。给出「不要做什么」：不要一上来就调参、不要在 p99 上做平均、不要忽略客户端侧排队。",
+        "第四步修复与防回归：把 batch/缓存配置纳入版本化与灰度；给 TTFT/ITL 分位数与 cache 命中率建 SLO 与告警；发布前跑固定负载的回归压测（固定长度分布）；对长请求做隔离池或限流；把「prompt 模板中动态内容后置」写成规范。",
+        "结尾给一句可复述的总结：p99 翻倍几乎从不是「模型变慢」，而是**队列、缓存、流量结构或配置**这四类中的某一类变了；先定位到段，再二分到变更。"
+      ]
+    },
+    {
+      "id": "inference-serving-14",
+      "order": 14,
+      "file": "docs/推理、服务与 GPU 性能/14-什么是 chunked prefill？它如何改善混合流量下的尾延迟.md",
+      "question": "什么是 chunked prefill？为什么它能在混合流量下改善 tail latency？",
+      "question_en": "What is chunked prefill and why does it improve tail latency under mixed traffic?",
+      "asked_at": [],
+      "level": "高阶",
+      "tags": ["chunked-prefill", "调度", "尾延迟", "sarathi"],
+      "sources": [
+        { "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）", "url": "https://arxiv.org/abs/2403.02310", "author": "Agrawal et al. (Microsoft, OSDI 2024)", "published": "2024-03-04" }
+      ],
+      "related": ["inference-serving-01", "inference-serving-02", "inference-serving-09", "inference-serving-15"],
+      "brief": [
+        "先讲问题场景（混合流量）：服务里同时有正在 decode 的老请求与刚到的长 prompt 新请求。朴素调度里，一个 8k prompt 的 prefill 会作为一个巨大的 iteration 独占 GPU 几百毫秒，期间所有 decode 请求都被卡住 → 已经在输出的请求出现 ITL 尖刺（尾延迟），这就是「prefill-decode 干扰」。",
+        "讲 chunked prefill 的做法（Sarathi-Serve 的核心）：把长 prefill 切成近似等长的 chunk，每个 iteration 只处理一个 chunk，并把 decode token 与新来的 prefill chunk **混在同一个 batch** 里执行；长 prompt 的 prefill 被摊到多个 iteration 上完成，decode 不再被长时间阻塞。要写清关键设计点：① token budget（每个 iteration 处理的总 token 数有上限，保证 iteration 时长稳定）；② stall-free scheduling（新请求随时加入，不需要暂停/排空正在跑的 decode）；③ 等长 batch 减少 pipeline bubble（对有 PP 的部署尤其重要）。同时说明它如何顺带提升吞吐：iteration 时长均匀后可以开更大 batch。",
+        "解释「为什么改善尾延迟」的机制（要具体）：① 消除了 prefill 独占导致的 ITL 长尾——把一次几百毫秒的阻塞切成若干次几十毫秒的增量；② batch 组成更均匀，减少迭代时间方差，p99 而不是均值受益；③ 允许更长 prompt 与 decode 共存而不互相饿死。要指出代价：被切碎的 prefill 总时长可能略增（kernel 效率下降、跨 chunk 的中间状态需要保留），TTFT 可能略微变差——这是用一点 TTFT 换 ITL 的稳定（链到 [[inference-serving-09]]）。",
+        "量化证据要引用论文口径：Sarathi-Serve 在 Mistral-7B 单 A100 上达到 2.6× 服务容量，Yi-34B 双 A100 上最高 3.7×，Falcon-180B 配 pipeline parallel 时最高 5.6×（相对 vLLM，且是在尾延迟约束下）；要标明这是论文实验条件，不是通用保证。",
+        "讲与相邻技术的关系：continuous batching 解决「批的边界」，chunked prefill 解决「单个 iteration 的时长上限」，PagedAttention 解决「显存能否动态增删」（链到 [[inference-serving-03]]）；它也和 P/D 分离是两条路线（一个在混跑里做细粒度调度，一个把两阶段放到不同 GPU，链到 [[inference-serving-15]]）。",
+        "常见追问：chunk 大小怎么选（与 SLO、模型、硬件相关，用 token budget 与 iteration 时长目标反推）？切碎后注意哪些状态（KV cache 写入位置、attention mask、前缀缓存命中）？为什么它和投机解码/前缀缓存会互相影响？"
+      ]
+    },
+    {
+      "id": "inference-serving-15",
+      "order": 15,
+      "file": "docs/推理、服务与 GPU 性能/15-解释 disaggregated prefill-decode 服务及其适用条件.md",
+      "question": "解释 disaggregated prefill/decode 服务，以及它在什么情况下才划算。",
+      "question_en": "Explain disaggregated prefill/decode serving and when it pays off.",
+      "asked_at": ["Moonshot AI", "Groq"],
+      "level": "高阶",
+      "tags": ["p-d-分离", "distServe", "goodput", "集群"],
+      "sources": [
+        { "title": "Prefill-Decode Disaggregation in LLM Inference", "url": "https://outcomeschool.com/blog/prefill-decode-disaggregation", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving（延伸）", "url": "https://arxiv.org/abs/2401.09670", "author": "Zhong et al. (OSDI 2024)", "published": "2024-01-18" }
+      ],
+      "related": ["inference-serving-01", "inference-serving-14", "inference-serving-07", "inference-serving-09"],
+      "brief": [
+        "先把「为什么要分离」讲成资源需求冲突：prefill 是计算受限、要大算力与高并行；decode 是带宽受限、要小 batch 低延迟、要大量 KV cache 显存。两者放在同一张卡上会互相干扰（prefill 插队抬高 ITL），而且**并行策略的最优解不同**（prefill 适合更大 TP/更激进的切分，decode 适合更大显存与更小通信），共置时只能取折中。",
+        "讲架构：把集群分成 prefill 池与 decode 池（可以物理不同型号：算力型 vs 显存/带宽型），请求先到 prefill 池算完 prompt、产出首 token 与 KV cache，再把 **KV cache 传输**到 decode 池继续生成（或用分层/远程缓存方案）。要指出关键成本项：KV cache 的跨节点传输量（按 2·L·H_kv·d_head·S·bytes 算，长上下文时是几百 MB 到 GB 级，链到 [[llm-internals-02]]），因此需要高带宽互联（NVLink/IB）与拓扑感知的放置策略。",
+        "讲收益与量化证据：分离后可以按各自 SLO 独立扩缩容与选型，goodput 提升明显——DistServe 报告在满足 TTFT/TPOT 约束下可服务 7.4× 更多请求，或在同等请求量下收紧 12.6× 的 SLO（要标注论文实验条件，且 >90% 请求满足约束）。核心指标是 goodput（SLO 内的有效吞吐）而不是裸吞吐。",
+        "讲代价与不划算的情形（题干第二问，必须答到位）：① 传输开销——上下文短、KV cache 小或互联带宽差（跨机架/跨区）时，传输可能吃掉全部收益；② 负载太小或太均匀——没有 prefill/decode 干扰问题时，分离只是增加了复杂度；③ 长尾混合不剧烈、TTFT/TPOT 要求宽松时，chunked prefill 这类单机调度已经够了（链到 [[inference-serving-14]]）；④ 运维复杂度：两个池的容量规划、故障域、缓存一致性、调度与重试语义都变复杂；⑤ 需要精细的放置与路由策略，否则会出现「prefill 池空闲、decode 池排队」的错配。",
+        "给决策规则：当「TTFT 与 TPOT 同时被严格要求 + 上下文较长 + 集群有高带宽互联 + 规模足够大（多机、多租户）」时，分离划算；否则优先做单机内的调度优化（continuous batching + chunked prefill + prefix caching），到瓶颈后再考虑分离。",
+        "常见追问：KV cache 怎么传（RDMA/分层存储、压缩后再传、只传增量）？prefill 与 decode 的扩缩容信号分别是什么？分离与 prefix caching 的相互影响（decode 池也要能查前缀缓存）？"
+      ]
+    }
+  ]
+}

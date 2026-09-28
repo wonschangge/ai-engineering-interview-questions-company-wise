@@ -21,7 +21,7 @@ sources:
     url: https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/
     author: Shashank Verma, Neal Vaidya (NVIDIA Technical Blog)
     published: 2023-11-17
-related: [llm-internals-01, llm-internals-03, inference-serving-01]
+related: [llm-internals-01, llm-internals-03, inference-serving-03]
 updated: 2026-09-28
 ---
 
@@ -134,7 +134,7 @@ decode 为什么必然是带宽受限，可以用算术强度算一遍。一个 
 
 规模化的关键在于这个乘法：权重是整个 batch 共享的一份，而 KV cache 是每条序列各自一份。并发越高、上下文越长，cache 就越可能成为主要占用。以 70B bf16 模型为例，权重约 140 GB（约 130 GiB），而 GQA 版每 GiB 显存只能装 3276.8 个 token 的 cache；换成 MHA 结构，同样的显存只能装 1/8 的 token。8 张 80 GB 卡（8 × 80 GB ≈ 596 GiB）扣掉权重后剩约 466 GiB：GQA-8 能放下约 46 条 32k 会话，MHA 只能放下约 6 条（未取整为 46.6 与 5.8，正好 8 倍）——同样参数量、同样硬件，差别全在公式里的 $H_{kv}$。
 
-要提升这个上限，除了压缩 cache 本身，还有服务层的显存管理问题：按 `max_seq_len` 为每个请求预分配一整块连续显存，会让预留但没用到的部分和碎片一起浪费掉；vLLM 的 PagedAttention 把 cache 切成固定大小的 block、按需分配、用 block table 做映射，同时支持前缀共享。它的动机直接来自本节推导出的 $b \cdot S$，细节留给 [[inference-serving-01]]。
+要提升这个上限，除了压缩 cache 本身，还有服务层的显存管理问题：按 `max_seq_len` 为每个请求预分配一整块连续显存，会让预留但没用到的部分和碎片一起浪费掉；vLLM 的 PagedAttention 把 cache 切成固定大小的 block、按需分配、用 block table 做映射，同时支持前缀共享。它的动机直接来自本节推导出的 $b \cdot S$，细节留给 [[inference-serving-03]]。
 
 ### 7. KV cache 压缩的四条路线
 
@@ -252,7 +252,7 @@ print(sum(range(2, 101)), 2 + 99, sum(range(2, 101)) / (2 + 99))
 
 - [[llm-internals-01]]：scaled dot-product attention 与 $1/\sqrt{d_k}$ 缩放，解释 K/V 从哪来、为什么是这个形状。
 - [[llm-internals-03]]：MHA / MQA / GQA 的分组方式与质量权衡，决定本节公式里 $H_{kv}$ 的取值。
-- [[inference-serving-01]]：PagedAttention 与 vLLM，把 $b \cdot S$ 的显存需求变成可调度、无碎片的 block 分配。
+- [[inference-serving-03]]：PagedAttention 与 vLLM，把 $b \cdot S$ 的显存需求变成可调度、无碎片的 block 分配。
 
 ## 参考资料与归属
 

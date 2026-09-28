@@ -29,7 +29,7 @@ sources:
     url: https://arxiv.org/abs/2002.05202
     author: Noam Shazeer
     published: 2020-02-09
-related: [llm-internals-01, llm-internals-14, llm-internals-15, inference-serving-01]
+related: [llm-internals-01, llm-internals-14, llm-internals-15, inference-serving-01, inference-serving-09]
 updated: 2026-09-28
 ---
 
@@ -316,7 +316,7 @@ cache vs 全量 8.940696716308594e-07 | 位置重数偏差 0.09869331121444702
 - [[llm-internals-02]]：KV cache 的显存公式、prefill/decode 的瓶颈分析与 PagedAttention。
 - [[llm-internals-03]]：MQA / GQA 的取舍，对应本题 $W_k, W_v$ 的形状差异。
 - [[llm-internals-14]]、[[llm-internals-15]]：位置编码与归一化、激活函数的深入版本。
-- [[inference-serving-01]]：把这条流水线的形状与瓶颈延伸到线上服务的吞吐与延迟指标。
+- [[inference-serving-09]]：把这条流水线的形状与瓶颈延伸到线上服务的吞吐与延迟指标。
 
 ## 参考资料与归属
 
