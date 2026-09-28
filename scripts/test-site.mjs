@@ -131,6 +131,13 @@ check('第三题正文渲染', $$('#doc-body h2').length >= 7, String($$('#doc-b
 check('第三题含代码块', $$('#doc-body pre').length >= 2, String($$('#doc-body pre').length));
 check('第三题公司变体一节存在', Array.from($$('#doc-body h2')).some((h) => h.textContent.includes('公司变体')), '');
 
+// 5.5) 专题级双链：正文里写 [[rag]] 应渲染为专题页路由
+const bpe = catalog.topics.flatMap((t) => t.questions).find((q) => q.id === 'llm-internals-06');
+if (bpe) {
+  await nav('#/q/' + bpe.id);
+  check('专题级双链 [[rag]] 渲染为专题路由', $$('#doc-body a.qref[href="#/topic/rag"]').length >= 1, String($$('#doc-body a.qref[href^="#/topic/"]').length));
+}
+
 // 6) 搜索
 await nav('#/search?q=KV cache');
 await wait(300);

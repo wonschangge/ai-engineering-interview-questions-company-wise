@@ -1,0 +1,298 @@
+{
+  "topic": "RAG 与检索",
+  "topic_id": "rag",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/RAG 与检索",
+  "all_questions": [
+    { "id": "rag-01", "order": 1, "title": "面对大型技术文档语料库，你会采用什么 chunking 策略，为什么？" },
+    { "id": "rag-02", "order": 2, "title": "如何在稀疏检索器（BM25）和稠密检索器之间做选择？什么时候需要两者同时使用？" },
+    { "id": "rag-03", "order": 3, "title": "什么是 reranker？什么时候该用它？cross-encoder 会给你带来什么开销？" },
+    { "id": "rag-04", "order": 4, "title": "你会如何评估 RAG 流水线的质量：分别评估 retrieval 和 generation？" },
+    { "id": "rag-05", "order": 5, "title": "什么是 HyDE（假设性文档嵌入）？什么时候它优于标准的稠密检索？" },
+    { "id": "rag-06", "order": 6, "title": "agentic RAG 与标准 RAG 有什么不同？在什么情况下额外的复杂度是值得的？" },
+    { "id": "rag-07", "order": 7, "title": "是什么导致 embedding 检索中的语义漂移（semantic drift），你如何检测它？" },
+    { "id": "rag-08", "order": 8, "title": "设计权限感知的 retrieval：用户绝不能看到自己在源系统中无权访问的内容。" },
+    { "id": "rag-09", "order": 9, "title": "比较 HNSW、IVF-PQ 和 flat 索引。你如何选择？recall@k 在 latency 上的代价是什么？" },
+    { "id": "rag-10", "order": 10, "title": "在 retrieval 流水线中，你如何处理表格、图表和多栏 PDF？" },
+    { "id": "rag-11", "order": 11, "title": "当底层语料持续变化时，你如何保持索引的新鲜度？" },
+    { "id": "rag-12", "order": 12, "title": "你如何把生成答案中的每一条论断都归因到具体的 retrieved span？" }
+  ],
+  "questions": [
+    {
+      "id": "rag-01",
+      "order": 1,
+      "file": "docs/RAG 与检索/01-面对大型技术文档语料库你会采用什么 chunking 策略.md",
+      "question": "面对大型技术文档语料库，你会采用什么 chunking 策略，为什么？",
+      "question_en": "What chunking strategy would you use for a large technical documentation corpus, and why?",
+      "asked_at": ["Glean"],
+      "level": "进阶",
+      "tags": ["chunking", "预处理", "检索", "tokenizer"],
+      "sources": [
+        { "title": "Chunking Strategies for RAG", "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag", "author": "Amit Shekhar (Outcome School)", "published": "" }
+      ],
+      "related": ["rag-02", "rag-09", "rag-10", "llm-internals-06"],
+      "brief": [
+        "先立论：chunk 是检索的最小单位，也是喂给模型的上下文单位。切得太碎→丢失上下文、召回片段无法独立回答问题；切得太大→embedding 被稀释、检索精度下降、上下文预算被浪费。所以 chunking 不是预处理细节，而是决定检索上限的设计决策。",
+        "把常见策略讲清并对比：固定长度（按 token 切 + overlap）、递归字符切分（按段落→句子→词的回退顺序，LangChain 式）、结构感知（按 Markdown 标题层级、HTML DOM、代码的语法边界）、语义切分（按 embedding 相似度突变点切）、以及「小块检索、大块投喂」（small-to-big / 父子文档）。每一类给适用场景与失败模式。",
+        "技术文档语料的具体做法（这是题干的限定词，必须答到）：① 按文档结构切（标题路径作为 chunk 的元数据前缀），保证每个 chunk 自带「它在讲什么」的上下文；② 代码块/表格不可切断，宁可超长；③ API 参考类文档按「一个符号/接口一个 chunk」；④ 指南类按小节切；⑤ 保留标题层级链（H1 > H2 > H3）写进 chunk 头部，检索时一并 embedding；⑥ 跨文档的重复内容（版本化文档）要处理去重。",
+        "参数怎么定：以 token 为单位计量（链到 [[llm-internals-06]]，说明为什么不能用字符数）；给出起步区间（约 256–512 token、overlap 10%–20%）与调整依据（问题长度分布、答案的跨度、embedding 模型的最大长度与训练目标）；说明 overlap 的代价（存储与检索冗余、重复召回）。",
+        "评估与迭代：chunk 策略必须用检索指标验证（recall@k、MRR、答案正确率，链到 [[rag-04]]），做法是固定检索器与生成器，只变 chunk 策略做 A/B；并指出「端到端分数不动但检索指标变了」的常见情况。",
+        "常见追问：chunk 大小与 embedding 模型训练长度的关系？overlap 会不会导致重复答案？多语言/中文怎么切（按标点与句号，别用英文规则）？chunk 元数据里应该带什么（来源、标题路径、权限标签、时间戳，链到 [[rag-08]]、[[rag-11]]）？"
+      ]
+    },
+    {
+      "id": "rag-02",
+      "order": 2,
+      "file": "docs/RAG 与检索/02-如何在稀疏检索器与稠密检索器之间选择.md",
+      "question": "如何在稀疏检索器（BM25）和稠密检索器之间做选择？什么时候需要两者同时使用？",
+      "question_en": "How do you choose between sparse (BM25) and dense retrievers, and when do you need both?",
+      "asked_at": ["Microsoft", "Perplexity", "Glean"],
+      "level": "进阶",
+      "tags": ["bm25", "稠密检索", "hybrid-search", "rrf"],
+      "sources": [
+        { "title": "How does Hybrid Search work?", "url": "https://outcomeschool.com/blog/how-does-hybrid-search-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）", "url": "https://arxiv.org/abs/2104.08663", "author": "Thakur et al. (NeurIPS 2021)", "published": "2021-04-17" }
+      ],
+      "related": ["rag-01", "rag-03", "rag-09", "rag-05"],
+      "brief": [
+        "先把两者的机理讲清：稀疏（BM25）= 词项精确匹配 + 词频饱和（$k_1$）+ 文档长度归一化（$b$）+ IDF，倒排索引、可解释、无需训练；稠密 = 双塔编码到同一向量空间 + 近似最近邻，能处理同义改写与语义相似，但需要训练/选型，且对精确串（ID、错误码、罕见词）不敏感。",
+        "失败模式要对称地讲：BM25 输在词汇不匹配（用户说「怎么改密码」，文档写「凭据重置流程」）、跨语言、语义泛化；稠密输在精确匹配（型号、函数名、错误码、数字）、域外泛化差、长尾词被平均掉。可以引用 BEIR 的结论作为量级证据：BM25 是**很强的零样本基线**，稠密与稀疏模型在零样本跨域场景常常不如它，而 reranking/late-interaction 平均最强但计算代价高（要写明这是 BEIR 18 个数据集、10 类系统的实验口径）。",
+        "hybrid 的融合方式：① 分数归一化后加权求和（min-max / z-score，权重需调）；② RRF（Reciprocal Rank Fusion，只用排名，$1/(k+rank)$，鲁棒、无需调分数尺度，给 k=60 这类默认值）；③ 级联（稀疏召回 + 稠密重排）。说明为什么 RRF 常做默认（不同检索器的分数量纲不可比）。",
+        "给出选择决策树：数据量小/领域专有名词多/需要可解释与精确匹配 → 先上 BM25；语义查询为主、同义改写多、跨语言 → 稠密；生产 RAG 的默认答案通常是 **hybrid 召回 + cross-encoder 重排**（链到 [[rag-03]]），因为两者失败模式互补；再叠加元数据过滤与权限（链到 [[rag-08]]）。",
+        "工程细节：倒排与向量索引的更新成本不同（链到 [[rag-11]]）；两路召回要各自取多少候选（常见 50–100 → 融合后 20–50 → 重排后 5–10）；延迟预算怎么分配；多语言与中英文混排（中文需要分词或字符 n-gram，BM25 的效果受分词影响）。",
+        "常见追问：BM25 的 $k_1$、$b$ 各控制什么？为什么稀疏检索在长文档上要归一化？dense 的 embedding 维度与检索成本关系？hybrid 的权重怎么调（用检索指标离线网格搜索）？"
+      ]
+    },
+    {
+      "id": "rag-03",
+      "order": 3,
+      "file": "docs/RAG 与检索/03-什么是 reranker？什么时候该用它.md",
+      "question": "什么是 reranker？什么时候该用它？cross-encoder 会给你带来什么开销？",
+      "question_en": "What is a reranker, when should you use one, and what does a cross-encoder cost you?",
+      "asked_at": ["Cohere", "Microsoft", "Perplexity"],
+      "level": "进阶",
+      "tags": ["reranker", "cross-encoder", "两阶段检索", "延迟"],
+      "sources": [
+        { "title": "How does a Reranker work?", "url": "https://outcomeschool.com/blog/how-does-a-reranker-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）", "url": "https://arxiv.org/abs/2104.08663", "author": "Thakur et al. (NeurIPS 2021)", "published": "2021-04-17" }
+      ],
+      "related": ["rag-02", "rag-04", "rag-01"],
+      "brief": [
+        "先讲架构差异（这是全部结论的来源）：bi-encoder（双塔）把 query 与 document 分别编码，document 向量可离线预计算并建索引，检索是向量相似度；cross-encoder 把 (query, document) 拼接后送进模型做一次前向，直接输出相关性分数，因此**不能预计算**，N 个候选就要 N 次前向。",
+        "为什么 cross-encoder 更准：token 级交叉注意力让 query 与 document 的每个词都能互相看见，能捕捉否定、条件、实体约束这类双塔丢掉的信号。这意味着它天然是「精排」而不是「召回」——用它做召回在延迟上不可行。",
+        "把开销算清楚（题干的第二个问题）：一次重排的代价 ≈ 候选数 $N$ × 序列长度 $L$ × 每 token 的 FLOPs（约 $2 \times$ 参数量），并与 embedding 检索对比。给出可复算的例子：$N=100$、$L=(32+256)$ token、reranker 110M 参数时，一次重排约 $100 \times 288 \times 2 \times 1.1\times10^8 \approx 6.3\times10^{12}$ FLOPs，在 A100（约 312 TFLOPs bf16）上理论下限约 20 ms，实际加上 batch 与 kernel 效率通常几十毫秒量级——自己按所选模型与硬件重算一遍。结论：重排的延迟与 $N$ 成正比，所以要把 $N$ 控制在 50–100。",
+        "什么时候用/不用：① 召回噪声大、query 与候选语义接近（top-k 分数挤在一起）时收益最大；② 需要严格控制上下文预算（只喂 3–5 个片段）时，重排是提升精度的杠杆；③ 单轮简单查询、召回已经很准、延迟 SLO 极紧（如 < 100 ms TTFT）时可以不用；④ 极长文档要先用 chunk 切分再重排（链到 [[rag-01]]）。",
+        "工程实践：两阶段漏斗（hybrid 召回 50–100 → rerank → 取 3–10）、批处理与 GPU 复用、用蒸馏的小模型或用 LLM 做 listwise 重排（一次性给候选编号让模型排序，成本与质量都不同）、缓存重排结果、把重排纳入延迟预算与容量规划（链到 [[inference-serving-09]]）。",
+        "评估：用 recall@k 之外还要看 nDCG@k 与「重排后 top-3 的答案正确率」，并做「有/无重排」的 A/B（链到 [[rag-04]]）。追问题：late-interaction（ColBERT）与 cross-encoder 的区别？重排会不会把正确答案排下去（过拟合/域偏移）？"
+      ]
+    },
+    {
+      "id": "rag-04",
+      "order": 4,
+      "file": "docs/RAG 与检索/04-如何评估 RAG 流水线的质量：分别评估 retrieval 与 generation.md",
+      "question": "你会如何评估 RAG 流水线的质量：分别评估 retrieval 和 generation？",
+      "question_en": "How would you evaluate a RAG pipeline: retrieval and generation separately?",
+      "asked_at": ["Cohere"],
+      "level": "进阶",
+      "tags": ["评估", "ragas", "retrieval-metrics", "llm-as-a-judge"],
+      "sources": [
+        { "title": "LLM Evaluation", "url": "https://outcomeschool.com/blog/llm-evaluation", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Ragas: Automated Evaluation of Retrieval Augmented Generation（延伸）", "url": "https://arxiv.org/abs/2309.15217", "author": "Es et al.", "published": "2023-09-26" },
+        { "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）", "url": "https://arxiv.org/abs/2104.08663", "author": "Thakur et al. (NeurIPS 2021)", "published": "2021-04-17" }
+      ],
+      "related": ["rag-02", "rag-03", "rag-12", "llm-internals-11"],
+      "brief": [
+        "先讲为什么要拆开评：端到端分数无法定位问题——检索没召回到、召回了但被噪声淹没、召回了模型没用上（lost in the middle，链到 [[llm-internals-13]]）、或模型用了但表述错。所以要建**分层评估**：检索层、生成层、端到端层，各自有指标与数据集。",
+        "检索层指标与口径：recall@k（有没有召回）、precision@k、MRR（第一个正确答案的位置）、nDCG@k（排序质量，考虑相关性等级）、hit rate；要说明「有标注的相关性集合」从哪来（人工标注、LLM 蒸馏、从答案反推），以及为什么 recall@k 是 RAG 的第一指标（后面所有环节的上界）。可引用 BEIR 的方法论：跨域零样本评测、多数据集汇总，避免只在自家语料上自嗨。",
+        "生成层指标：faithfulness / groundedness（答案是否被 retrieved context 支持）、answer relevance（是否回答了问题）、context relevance / precision（召回内容是否相关）；以及引用正确性（链到 [[rag-12]]）。讲 Ragas 的思路：**reference-free**（不依赖人工标准答案）用 LLM 把答案拆成论断再逐条验证是否被上下文支持——要写清它的假设与偏差（judge 模型的偏好、长答案与短答案的系统性差异）。",
+        "端到端与业务指标：答案正确率（人工或 LLM judge 的成对比较）、无答案/拒答率、幻觉率、用户反馈（点赞/点踩、追问率）、在线 A/B 的会话成功率与 token 成本。强调「离线指标要能被在线指标验证」，否则会优化出自嗨指标。",
+        "数据集与流程：① 建一个 100–500 条的真实问题集（覆盖：单跳、多跳、表格、无答案、需权限过滤）；② 每条标注 gold chunk（做检索评测）与 gold answer（做生成评测）；③ 固定版本回归（每次改动跑一遍，看指标变化）；④ 用 LLM judge + 人工抽检校准（定期算 judge 与人工的一致率）；⑤ 注意评测集污染（别用训练/文档里的原句当问题）。",
+        "常见追问：LLM-as-a-judge 的已知偏差与缓解（位置偏差、长度偏差、自偏好、成对比较优于打分）？没有标注数据怎么办（合成问题：从 chunk 反向生成问题，但要防泄漏）？检索指标涨了端到端没涨说明什么（reranker/上下文组装/生成阶段的问题）？"
+      ]
+    },
+    {
+      "id": "rag-05",
+      "order": 5,
+      "file": "docs/RAG 与检索/05-什么是 HyDE 假设性文档嵌入.md",
+      "question": "什么是 HyDE（假设性文档嵌入，hypothetical document embeddings）？什么时候它优于标准的稠密检索？",
+      "question_en": "What is HyDE (hypothetical document embeddings), and when does it beat standard dense retrieval?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["hyde", "query-rewriting", "稠密检索"],
+      "sources": [
+        { "title": "How does HyDE work in RAG?", "url": "https://outcomeschool.com/blog/how-does-hyde-work", "author": "Amit Shekhar (Outcome School)", "published": "" }
+      ],
+      "related": ["rag-02", "rag-06", "rag-01"],
+      "brief": [
+        "先讲要解决的问题：短查询与长文档在 embedding 空间里「不像」——query 是问句、文档是陈述；长度、词汇、句式分布都不同，这就是 query–document 语义鸿沟（asymmetry）。零样本稠密检索在这种非对称匹配上损失明显（BEIR 类评测里能看到）。",
+        "HyDE 的做法（分步）：① 用 LLM 针对 query 生成一段「假设性文档」（哪怕内容未必真实，只要在体裁与词汇上像真实文档）；② 用同一 embedding 模型编码这段假设文档；③ 用该向量做 ANN 检索（用生成的文档向量替代 query 向量，或与 query 向量拼接/加权）。要说明它属于 query transformation 家族，与 query rewriting / expansion / multi-query / step-back 并列。",
+        "为什么有效：把「问答匹配」转成「文档—文档匹配」，长度与风格对齐、更多领域词汇进入向量，从而在向量空间里更接近真实答案所在段落；对短查询、领域术语密集、零样本场景收益最大。论文报告在多个零样本检索任务上提升明显，但要说明**不同数据集差异很大**，不是普适增益。",
+        "代价与风险：① 每次查询多一次 LLM 前向（延迟与成本，通常几十到几百毫秒、几百 token），链到 [[inference-serving-09]]；② 生成内容可能跑偏，把查询引向错误区域（幻觉方向的漂移）；③ 对延迟敏感的在线链路不友好（可以缓存/预热/用小模型生成）；④ 与 hybrid 检索叠加时收益可能被 BM25 的精确匹配吃掉。",
+        "什么时候用/不用：用——短查询、术语领域（医疗/法律/内部黑话）、零样本检索、离线批处理或可接受额外 LLM 调用的场景；不用——查询本身已经很长（用户粘贴了一段错误日志）、延迟预算极紧、已有高质量领域微调 embedder、或 hybrid+rerank 已经把召回做到位（链到 [[rag-03]]）。",
+        "工程与评估：把 HyDE 当作可开关的召回策略之一，在检索指标（recall@k / nDCG）上做 A/B；注意生成的假设文档要控制在合理长度（过长会稀释）；配合 reranker 使用效果更稳；并对生成失败（空/异常）做降级到原查询。",
+        "常见追问：HyDE 与 multi-query / RAG-Fusion 的区别？它依赖生成质量吗？能不能用现成答案库（kNN 检索式改写）替代 LLM 生成？为什么它对长查询没帮助？"
+      ]
+    },
+    {
+      "id": "rag-06",
+      "order": 6,
+      "file": "docs/RAG 与检索/06-agentic RAG 与标准 RAG 有什么不同.md",
+      "question": "agentic RAG 与标准 RAG 有什么不同？在什么情况下额外的复杂度是值得的？",
+      "question_en": "How does agentic RAG differ from standard RAG, and when is the extra complexity worth it?",
+      "asked_at": [],
+      "level": "高阶",
+      "tags": ["agentic-rag", "多跳", "工具调用", "成本"],
+      "sources": [
+        { "title": "Agentic RAG", "url": "https://outcomeschool.com/blog/agentic-rag", "author": "Amit Shekhar (Outcome School)", "published": "" }
+      ],
+      "related": ["rag-05", "rag-12", "llm-internals-11", "rag-04"],
+      "brief": [
+        "先把两者画成流程图对比：标准 RAG 是**单轮固定流水线**（query → 检索一次 → 拼上下文 → 生成一次）；agentic RAG 是**多轮决策循环**（判断是否需要检索 → 决定检索什么/用哪个工具 → 评估结果是否足够 → 不够则改写查询或换工具 → 够了再生成，必要时验证答案）。本质差别是「把固定的数据流变成由模型控制的控制流」。",
+        "讲清 agent 用到的能力：query planning（拆解多跳问题）、tool use（向量库/关键词库/SQL/API/计算器）、self-reflection（结果是否相关、是否自相矛盾）、以及 memory（多轮上下文管理）。可以对应到 ReAct 式的 thought–action–observation 循环，并链接到 Agent 专题（若已撰写）或本专题的 [[rag-12]]（答案归因需要引用链）。",
+        "什么场景值得（要具体）：① **多跳**问题（「A 公司收购 B 时，B 的 CEO 是谁」需要两次检索）；② 跨源异质（文档 + 数据库 + 实时 API）；③ 查询意图不清、需要澄清或分解；④ 需要计算/校验（先检索数字再算）；⑤ 结果质量必须自检（医疗、法律、金融，链到 [[rag-12]]）。",
+        "代价要摊开：① 延迟与成本数倍增长（每轮一次 LLM 调用 + 检索）；② 错误累积（一次错误检索把后续全带偏）；③ 不可预测（同一问题的 token 消耗方差大，容量规划难，链到 [[inference-serving-09]]）；④ 评测更复杂（不再是一条固定链路，要评「轨迹」而不只是最终答案）；⑤ 需要护栏（最大步数、token 预算、超时、循环检测、无进展退出）。",
+        "给出「先用便宜手段、不够再上 agent」的取舍清单：单轮 RAG + 好的 chunking/召回/重排（链到 [[rag-01]]、[[rag-03]]）能解决大部分问题；query 改写、HyDE、multi-query 这类「一轮内的增强」（链到 [[rag-05]]）成本低得多；只有当**任务本身要求多步信息获取**时才上 agentic 循环。给出判断准则：如果评测集里多跳问题占比 < 10%，先别上 agent。",
+        "工程实践：把 agentic 部分做成可开关的模式与预算参数；用缓存与并发把多轮的成本压下来；记录完整的轨迹用于调试与评测（每一步的 query、召回 id、判定理由）；给最终答案保留引用（链到 [[rag-12]]）；并在生产上用「路由」策略——简单问题走单轮，复杂问题才进 agent。",
+        "常见追问：agentic RAG 与「RAG + 重排 + 多查询」的边界在哪？怎么评测一个多轮检索系统？如何防止 agent 无限检索（预算与停机条件）？为什么很多团队的 agentic RAG 上线后又退回单轮？"
+      ]
+    },
+    {
+      "id": "rag-07",
+      "order": 7,
+      "file": "docs/RAG 与检索/07-是什么导致 embedding 检索中的语义漂移以及如何检测.md",
+      "question": "是什么导致 embedding 检索中的语义漂移（semantic drift），你如何检测它？",
+      "question_en": "What causes semantic drift in embedding retrieval, and how do you detect it?",
+      "asked_at": ["Cohere"],
+      "level": "高阶",
+      "tags": ["语义漂移", "监控", "重嵌入", "分布"],
+      "sources": [
+        { "title": "MTEB: Massive Text Embedding Benchmark（延伸）", "url": "https://arxiv.org/abs/2210.07316", "author": "Muennighoff et al.", "published": "2022-10-13" },
+        { "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）", "url": "https://arxiv.org/abs/2104.08663", "author": "Thakur et al. (NeurIPS 2021)", "published": "2021-04-17" }
+      ],
+      "related": ["rag-02", "rag-11", "rag-04", "rag-09"],
+      "brief": [
+        "先把「语义漂移」拆成几种不同的现象，因为它们的检测与修复手段不同：① **查询分布漂移**（用户开始问新话题、新术语、新语言）；② **语料漂移**（文档更新、领域扩张、版本更替）；③ **模型/编码漂移**（升级 embedding 模型、换维度、换归一化方式后新旧向量不可比）；④ **索引侧漂移**（增量写入的向量与离线建库时用的编码器/预处理不一致）。把这四类分开讲是回答质量的关键。",
+        "为什么漂移会伤检索：embedding 空间是在特定数据分布上训练/校准的，query 与 document 落在训练分布之外时相似度排序会退化；BEIR 的结论正是「稠密模型零样本跨域常常不如 BM25」——这就是分布不匹配的直接证据（要标注口径）。再补一句 MTEB 的结论：没有一个 embedding 模型在所有任务上都最好，所以「换模型」不是万能解，需要按任务评测（8 类任务、58 个数据集的口径）。",
+        "检测手段（分层给）：① **离线质量**：用固定的标注集（gold query → gold chunk）定期跑 recall@k / nDCG@k / MRR，看时间序列是否下降（链到 [[rag-04]]）；② **分布统计**：query 与 document 向量的均值/协方差变化、MMD/JS 散度、聚类数量与簇心漂移、新词/未登录词比例（top 未命中 term）；③ **线上信号**：零结果率、点击率、Top-1 相似度分布、重排前后分数差、用户追问率、答案被点踩率、检索耗时；④ **一致性检查**：同一 query 在不同时间检索同一文档的排名变化、语料更新后旧文档是否还能被召回。",
+        "修复与缓解：① 定期**全量重嵌入**（模型升级或语料大改时必须做，且要双写/蓝绿切换，链到 [[rag-11]]）；② 领域适配（用领域数据微调 embedding/reranker，或用 LLM 生成领域问答对做对比学习）；③ 混合检索兜底（链到 [[rag-02]]）——BM25 对词汇变化更鲁棒，能在漂移期守住下限；④ 版本化索引与模型版本绑定，避免「新旧向量混用」；⑤ 建告警阈值与自动回滚；⑥ 用 query 改写/扩写缓解新术语（链到 [[rag-05]]）。",
+        "给出可落地的监控面板设计：一周/一月的 recall@k 曲线、Top-1 相似度分位数、零结果率、未命中查询聚类的 Top 词、embedding 均值漂移指标，以及每条指标的告警阈值与处置流程（先看是查询侧还是语料侧，再决定重嵌入还是补数据）。",
+        "常见追问：怎么判断「漂移」还是「评测集过时」？重嵌入的成本与停机怎么安排（全量 vs 增量）？为什么不能只监控线上点击率？模型升级后为什么必须重建而不是增量追加？"
+      ]
+    },
+    {
+      "id": "rag-08",
+      "order": 8,
+      "file": "docs/RAG 与检索/08-设计权限感知的 retrieval.md",
+      "question": "设计权限感知的 retrieval：用户绝不能看到自己在源系统中无权访问的内容。",
+      "question_en": "Design permission-aware retrieval: a user must never see content they cannot access in the source system.",
+      "asked_at": ["Microsoft", "Databricks", "Glean", "Palantir"],
+      "level": "高阶",
+      "tags": ["权限", "acl", "多租户", "安全"],
+      "sources": [
+        { "title": "Document-level security（延伸）", "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/document-level-security.html", "author": "Elasticsearch Reference", "published": "" },
+        { "title": "Field-level security（延伸）", "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/field-level-security.html", "author": "Elasticsearch Reference", "published": "" }
+      ],
+      "related": ["rag-01", "rag-11", "rag-12", "rag-02"],
+      "brief": [
+        "先把安全原则摆前面：**默认拒绝**、**最小权限**、**在检索层强制**（而不是在生成层靠提示词）、**可审计**。一句关键判断：把权限过滤放在「拿到结果之后」是错的——一旦越权内容进了上下文或进了日志，就已经泄露了。所以过滤必须在召回阶段生效。",
+        "讲清三层强制点：① **索引期**（把 ACL/租户标签写进 chunk 元数据，作为可过滤字段）；② **检索期**（pre-filter：在 ANN 搜索时就限定候选集合，而不是先取 top-k 再过滤——后者会因过滤掉大量候选导致召回塌陷，需要在 k 上补偿或改索引结构）；③ **生成期**（把已授权的 span 作为唯一上下文，并让引用可回溯到具体来源，链到 [[rag-12]]）。要说明 post-filter 的陷阱与补偿方法。",
+        "权限模型的落地：文档级 ACL（允许/拒绝的用户与组列表）、继承（目录/空间继承到文档）、层级与标签（密级）、以及组展开（用户 → 组 → 文档）怎么做缓存与失效；多租户用独立命名空间/分区键做硬隔离；字段级脱敏（PII、薪资等）单独处理（可引用 Elasticsearch 的 document-level / field-level security 作为实现参考，并说明这是通用模式而非唯一方案）。",
+        "一致性这个难点必须讲：权限变更后多久生效（理想是秒级，现实是「索引里的 ACL 快照」有延迟）→ 采用 ① 检索时实时校验（拿 ACL 与源系统对齐，代价是延迟）、② 短 TTL 缓存 + 变更事件失效、③ 混合（结构权限走缓存、敏感资源实时校验）。要给出「最坏情况能泄露多久」这个可量化的风险表述，并配套审计日志（谁在何时检索了什么、返回了哪些文档 id）。",
+        "常见攻击面与对策：提示注入让模型吐出上下文（链到安全专题）→ 输出侧脱敏与拒答；缓存串租户（prefix cache 与检索缓存必须按租户隔离，链到 [[inference-serving-05]]）；向量库的相似度泄露（近似向量会泄露部分语义）；日志与遥测泄露原文；评测集本身的越权样例。每条给对策。",
+        "设计与验收：画出「用户 → 网关（身份/租户）→ 检索服务（ACL 过滤）→ 生成（引用）→ 审计」的数据流；给出验收测试（越权用例必须全部拦住、正常用例召回不显著下降）、权限变更后的时效测试、以及压测（过滤条件下的召回率与延迟）。",
+        "常见追问：pre-filter 与 post-filter 的召回差异怎么量化？ACL 元数据膨胀（一份文档几百个组）怎么办？跨源系统（SharePoint/Confluence/S3）的权限如何统一？为什么「让 LLM 自己判断能不能看」不可接受？"
+      ]
+    },
+    {
+      "id": "rag-09",
+      "order": 9,
+      "file": "docs/RAG 与检索/09-比较 HNSW、IVF-PQ 与 flat 索引.md",
+      "question": "比较 HNSW、IVF-PQ 和 flat 索引。你如何选择？recall@k 在 latency 上的代价是什么？",
+      "question_en": "Compare HNSW, IVF-PQ and flat indexes. How do you choose, and what does recall@k cost in latency?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["ann", "hnsw", "ivf-pq", "召回率"],
+      "sources": [
+        { "title": "How does Approximate Nearest Neighbor (ANN) search work?", "url": "https://outcomeschool.com/blog/how-does-approximate-nearest-neighbor-ann-search-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "How does a Vector Database work?", "url": "https://outcomeschool.com/blog/how-does-a-vector-database-work", "author": "Amit Shekhar (Outcome School)", "published": "" }
+      ],
+      "related": ["rag-02", "rag-11", "rag-01"],
+      "brief": [
+        "先给三种索引的机理与复杂度：**flat**（暴力精确检索，$O(Nd)$ 每次查询，recall=100%，小数据量/高精度基线用）；**IVF**（k-means 聚类成 nlist 个倒排桶，查询只扫 nprobe 个桶，用 nprobe 换 recall；需要训练、更新时需重训或重分配）；**PQ**（把向量切段做乘积量化，压缩 8–32×，用查表近似距离；常与 IVF 组合成 IVF-PQ，进一步降内存但精度更低）；**HNSW**（多层可导航小世界图，贪心搜索 + efSearch 控制候选队列大小，高 recall 低延迟，但内存占用大——通常约为原始向量 + 图边（每点 M 条边））。",
+        "把「recall@k 换 latency」讲成一个可调旋钮：HNSW 的 `M`/`efConstruction` 决定图质量（建库时间与索引大小），`efSearch` 决定查询时扫描的候选数——efSearch 越大召回越高、延迟越高，实际调参时通常固定 recall 目标（如 recall@10 ≥ 0.95）再压延迟；IVF 的 `nprobe` 同理；PQ 的 `m`/`nbits` 决定压缩率与量化误差。要给出「同数据量下三者的典型内存/延迟/召回权衡曲线」的定性描述，并强调**必须用真实数据与真实 query 分布测**，不要照抄 benchmark。",
+        "给出选择决策树：数据量 < 10 万且延迟宽松 → flat（简单、精确）；内存充裕、要求高 recall 低延迟、更新不频繁 → HNSW；内存受限、数据量极大（千万到十亿）、可接受一定 recall 损失 → IVF-PQ（或 HNSW+PQ、DiskANN 这类磁盘索引）；需要频繁删除/更新 → 要注意 HNSW 删除是标记删除需 compaction，IVF 需要重训（链到 [[rag-11]]）。",
+        "过滤与多租户的影响要专门讲：带元数据过滤（权限、时间、类别，链到 [[rag-08]]）时，post-filter 会让有效召回塌陷，pre-filter 在图索引上实现复杂（需要过滤感知的遍历或分区索引），常见折中是「按租户/时间分区建多个小索引 + 查询时路由」。这是面试里区分「用过」与「背过」的点。",
+        "评测方法：构造 query 集与 ground truth（用 flat 暴力检索得到），测 recall@k 与 p50/p95 延迟曲线、内存占用、建库时间、增量写入吞吐；给出一条「先定 recall 目标（业务可接受），再选索引与参数」的流程，而不是反过来。",
+        "常见追问：为什么 HNSW 的召回不是 100%？PQ 的量化误差如何影响排序？为什么 IVF 的 nlist 常取 sqrt(N)？过滤条件多时该怎么办？量化后的向量还能用于 rerank 吗（通常要回表取原向量再重排，链到 [[rag-03]]）？"
+      ]
+    },
+    {
+      "id": "rag-10",
+      "order": 10,
+      "file": "docs/RAG 与检索/10-在 retrieval 流水线中如何处理表格、图表与多栏 PDF.md",
+      "question": "在 retrieval 流水线中，你如何处理表格、图表和多栏 PDF？",
+      "question_en": "How do you handle tables, figures and multi-column PDFs in a retrieval pipeline?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["pdf", "表格", "多模态", "解析"],
+      "sources": [
+        { "title": "Nougat: Neural Optical Understanding for Academic Documents（延伸）", "url": "https://arxiv.org/abs/2308.13418", "author": "Blecher et al. (Meta AI)", "published": "2023-08-25" },
+        { "title": "Unstructured: partitioning documentation（延伸）", "url": "https://docs.unstructured.io/open-source/core-functionality/partitioning", "author": "Unstructured", "published": "" }
+      ],
+      "related": ["rag-01", "rag-09", "rag-04"],
+      "brief": [
+        "先讲多栏 PDF 的解析难点（这是很多 RAG 质量问题的真正源头）：PDF 是「画出来的」而不是结构化的，需要版面分析（layout analysis）判断栏、区块与阅读顺序；常见坑包括双栏被按行交错读、页眉页脚/页码混入正文、脚注与图表说明错位、连字符断词、以及扫描件需要 OCR（OCR 错误会直接变成检索不到）。给出对策：按区块抽文本 + 阅读顺序重排 + 过滤页眉页脚 + 保留标题层级与页码元数据。",
+        "表格处理要点：① 结构还原（行列对齐、合并单元格、跨页表格拼接），可用专门模型或版面工具（可参考 Unstructured 的 partitioning 文档作为工程实现参考）；② 表示形式选择——转 Markdown/HTML（保留结构、token 代价高）vs 转自然语言摘要（便于语义检索、丢精度）vs 两者都存（结构化表 + 生成的描述各建一份索引，检索命中描述、回答时喂原表）；③ 切分原则：表格不切断，标题/表头与表格绑定为同一 chunk（链到 [[rag-01]]）；④ 表内检索（cell-level 或行级 embedding）用于数值型问题。",
+        "图表处理要点：① 图注（caption）往往是最好的文本代理，务必绑定到图所在 chunk；② 用多模态模型生成图的描述（chart-to-text）建立可检索表示；③ 版面里的公式与符号用专门工具转成 LaTeX/Markdown（可参考 Nougat 这类「把学术 PDF 转成标记语言」的路线，注意它面向学术文档且有 OCR 误差）；④ 图表与正文的引用关系（「见图 3」）要保留，否则召回正文却拿不到图。",
+        "多模态检索的架构选择：文本-only（把图变成文字描述再检索，简单、成本低、丢视觉细节）vs 多模态 embedding（CLIP/SigLIP 类，图文同一空间，可图搜图/图搜文，但文本细节与数字不敏感）vs 混合（文本索引 + 图像索引 + 融合，链到 [[rag-02]]）。要说明各自适用的问题类型与延迟成本。",
+        "评测与迭代：建一个专门的「表格/图表/多栏」测试集（数值问答、跨页表格、图注检索），分别测解析质量（表格结构还原率、阅读顺序正确率）与端到端答案正确率；把解析错误单独归类统计（这是最容易漏掉的失败模式）。给出一条原则：**先修解析，再调检索与提示词**，因为解析错的内容无论怎么检索都拿不到。",
+        "常见追问：扫描件与手写怎么处理？表格问答为什么常需要「检索 + 计算」两步（链到 [[rag-06]]）？图片该不该直接喂给多模态 LLM 而不是转文字？大表格（几百行）怎么做 chunk？"
+      ]
+    },
+    {
+      "id": "rag-11",
+      "order": 11,
+      "file": "docs/RAG 与检索/11-当底层语料持续变化时如何保持索引新鲜度.md",
+      "question": "当底层语料持续变化时，你如何保持索引的新鲜度？",
+      "question_en": "How do you keep the index fresh when the underlying corpus keeps changing?",
+      "asked_at": ["Perplexity", "Cursor"],
+      "level": "进阶",
+      "tags": ["增量索引", "新鲜度", "cdc", "一致性"],
+      "sources": [
+        { "title": "Near real-time search（延伸）", "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/near-real-time.html", "author": "Elasticsearch Reference", "published": "" }
+      ],
+      "related": ["rag-07", "rag-08", "rag-01", "rag-09"],
+      "brief": [
+        "先把「新鲜度」定义成可度量的 SLO（这是回答的骨架）：从源系统变更到 **可被检索到** 的延迟、到 **旧版本不可见** 的延迟、以及删除的生效延迟。三个指标分别对应增量写入、版本切换与删除语义，很多团队只做第一个而漏掉后两个。",
+        "变更捕获的来源：文档 mtime/hash 轮询（简单但延迟高、扫描成本大）、数据库 CDC（binlog/WAL）、Webhook/事件流（源系统支持时最优）、以及全量重扫兜底（用于纠偏）。要说明每种的一致性保证与失效场景（遗漏事件、乱序、重复投递）。",
+        "更新流水线的设计：变更事件 → 去重与排序（按版本号/时间戳，丢弃过期事件）→ 重新解析与切分（链到 [[rag-01]]）→ 重新 embedding（批量合并以摊薄成本）→ upsert 到向量索引与倒排索引 → **删除旧版本**（tombstone + 定期压实）。要点：embedding 计算是主要成本（可按内容 hash 跳过未变部分，做 chunk 级 diff 而不是文档级重嵌入）。",
+        "索引层的现实约束（很多候选人答不出来的部分）：① HNSW 的删除是**标记删除**，节点仍占内存并参与遍历，需要定期重建或压实；② IVF 的聚类中心是训练出来的，数据分布大幅变化时要重训，否则桶失衡、召回下降；③ 倒排索引（BM25）更新便宜且近实时（可引用 Elasticsearch 的 near real-time 机制：写入后 refresh 才对搜索可见，refresh 间隔是「新鲜度 vs 写入吞吐」的旋钮）；④ 因此「混合检索」在新鲜度上也有优势（链到 [[rag-02]]）。",
+        "无停机切换：双写/影子索引 + 蓝绿或别名切换（先建新索引、回填、校验指标、再原子切换别名），避免全量重建期间服务降级；把「索引版本」与「embedding 模型版本」绑定，防止新旧向量混用造成语义漂移（链到 [[rag-07]]）；缓存层（检索缓存、prefix cache）必须按索引版本做失效（链到 [[inference-serving-05]]）。",
+        "成本与取舍：全量重建 vs 增量 upsert 的成本模型（embedding 调用量、索引写入 IO、重建期间的双份存储）、新鲜度 SLO 与成本的曲线（秒级 vs 分钟级 vs 小时级的价格差）、以及「值不值得」的判断（对时效敏感的场景如客服/新闻必须秒级，内部知识库小时级通常够用）。",
+        "常见追问：删除一个文档后怎么保证它不再出现在答案里（索引删除 + 缓存失效 + 生成层引用校验）？权限变更如何同步（链到 [[rag-08]]）？如何验证增量流水线没有漏数据（对账：源文档数 vs 索引 chunk 数 + 抽样校验）？"
+      ]
+    },
+    {
+      "id": "rag-12",
+      "order": 12,
+      "file": "docs/RAG 与检索/12-如何把答案中的每一条论断归因到具体的 retrieved span.md",
+      "question": "你如何把生成答案中的每一条论断都归因到具体的 retrieved span？",
+      "question_en": "How do you attribute every claim in a generated answer to a specific retrieved span?",
+      "asked_at": ["Perplexity", "Harvey", "Abridge"],
+      "level": "高阶",
+      "tags": ["引用", "归因", "可验证性", "幻觉"],
+      "sources": [
+        { "title": "Enabling Large Language Models to Generate Text with Citations（ALCE）（延伸）", "url": "https://arxiv.org/abs/2305.14627", "author": "Gao et al. (EMNLP 2023)", "published": "2023-05-24" }
+      ],
+      "related": ["rag-04", "rag-06", "llm-internals-11", "rag-08"],
+      "brief": [
+        "先明确目标与价值：可验证（用户能点开原文核对）、可追责（合规与审计）、降低幻觉（强迫模型基于证据说话）、以及作为评测信号（引用覆盖率）。再区分三个层级：**答案级**（这段回答来自哪些文档）、**论断级**（每一句话由哪个 span 支持）、**span 级**（精确到检索片段的哪一段落/表格行）。工程上要做的通常是论断级 + span 定位。",
+        "实现路线（至少要讲三条并对比）：① **提示内联**——给候选 span 编号（`[1] [2]`），要求模型在句末标注来源 id；简单、可控，但模型可能张冠李戴；② **后验归因**——先生成答案，再对每条论断做 NLI/蕴含判断（或 LLM judge）找出支持它的 span，把不支持的论断标为无依据或删除；更准但多一次模型调用；③ **约束解码/检索增强生成**——把引用作为生成约束（结构化输出、引用必须来自候选集合），甚至用 attention/相似度做归因。可以引用 ALCE 的评测结论：即使最好的模型在 ELI5 上也有约 50% 的论断缺乏完整引用支持——这说明「让模型自己引用」远不够，必须做校验（要标注这是 ALCE 的自动评测口径）。",
+        "评测指标：引用精确率（引用的 span 是否真的支持该论断）、引用召回率/覆盖率（有多少论断有引用）、以及综合的 correctness（答案是否正确）+ fluency；说明人工标注与自动评测的一致性、以及 ALCE 这类基准的做法（三个维度：fluency、correctness、citation quality）。要把指标与产品目标对齐（医疗场景要求引用召回优先，搜索场景可能更在意正确率）。",
+        "工程细节：span 必须有稳定 id 并能映射回原文位置（页码、段落、表格行列），前端要支持点击高亮跳转；多跳论断（需要两个 span 联合支持）要允许一句多引；摘要式压缩会丢失来源，要禁止「无引用的概括句」或要求它引用聚合来源；表格/图片引用要能定位到具体行列或图注（链到 [[rag-10]]）；答案后处理要能**删掉没有引用支持的句子**（保守模式）。",
+        "常见失败模式与对策：引用存在但内容不支持（幻觉引用）→ 后验校验筛掉；引用到错误版本（链到 [[rag-11]]）；引用越权文档（链到 [[rag-08]]）；长答案引用漂移（后段引用前段的 span）→ 分段生成与分段校验；以及「引用覆盖率 100% 但答案错」——所以引用指标必须与正确率一起看（链到 [[rag-04]]）。",
+        "常见追问：为什么不能只靠相似度做归因？NLI 模型与 LLM judge 的取舍？多跳问题的引用怎么评（是否支持整条推理链）？引用会拖慢生成吗（可以并行/流式校验）？"
+      ]
+    }
+  ]
+}

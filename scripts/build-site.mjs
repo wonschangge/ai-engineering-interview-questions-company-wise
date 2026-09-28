@@ -222,8 +222,10 @@ for (const topic of topicById.values()) {
   orders.forEach((o, i) => { if (o !== i + 1) errors.push(`专题 ${topic.title}: order 必须从 1 连续编号（得到 ${orders.join(',')}）`); });
 }
 const topicList = [...topicById.values()].sort((a, b) => a.order - b.order);
+const topicIds = new Set(topicList.map((t) => t.id));
 for (const q of questions) {
   for (const rid of q.data.related || []) {
+    if (topicIds.has(rid)) continue;   // 允许指向整个专题
     if (!questions.some((x) => x.data.id === rid)) warnings.push(`${rel(q.file)}: related 指向尚未撰写的题目 ${rid}`);
   }
 }

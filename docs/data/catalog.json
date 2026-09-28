@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T07:30:20.072Z",
+  "generated": "2026-09-28T08:08:03.751Z",
   "stats": {
-    "topics": 2,
-    "questions": 31,
+    "topics": 3,
+    "questions": 43,
     "planned": 598
   },
   "topics": [
@@ -1467,6 +1467,460 @@
           ],
           "updated": "2026-09-28",
           "chars": 9513
+        }
+      ]
+    },
+    {
+      "id": "rag",
+      "title": "RAG 与检索",
+      "order": 3,
+      "summary": "从 chunking、稀疏与稠密召回、重排到评估、权限与引用归因，覆盖把私有语料变成可信问答系统所需的完整链路。",
+      "declaredTotal": 12,
+      "updated": "2026-09-28",
+      "dir": "RAG 与检索",
+      "overviewFile": "RAG 与检索/README.md",
+      "overviewTitle": "RAG 与检索",
+      "questions": [
+        {
+          "id": "rag-01",
+          "order": 1,
+          "title": "面对大型技术文档语料库，你会采用什么 chunking 策略，为什么？",
+          "titleEn": "What chunking strategy would you use for a large technical documentation corpus, and why?",
+          "file": "RAG 与检索/01-面对大型技术文档语料库你会采用什么 chunking 策略.md",
+          "level": "进阶",
+          "tags": [
+            "chunking",
+            "预处理",
+            "检索",
+            "tokenizer"
+          ],
+          "askedAt": [
+            "Glean"
+          ],
+          "related": [
+            "rag-02",
+            "rag-09",
+            "rag-10",
+            "llm-internals-06"
+          ],
+          "sources": [
+            {
+              "title": "Chunking Strategies for RAG",
+              "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9953
+        },
+        {
+          "id": "rag-02",
+          "order": 2,
+          "title": "如何在稀疏检索器（BM25）和稠密检索器之间做选择？什么时候需要两者同时使用？",
+          "titleEn": "How do you choose between sparse (BM25) and dense retrievers, and when do you need both?",
+          "file": "RAG 与检索/02-如何在稀疏检索器与稠密检索器之间选择.md",
+          "level": "进阶",
+          "tags": [
+            "bm25",
+            "稠密检索",
+            "hybrid-search",
+            "rrf"
+          ],
+          "askedAt": [
+            "Microsoft",
+            "Perplexity",
+            "Glean"
+          ],
+          "related": [
+            "rag-01",
+            "rag-03",
+            "rag-09",
+            "rag-05"
+          ],
+          "sources": [
+            {
+              "title": "How does Hybrid Search work?",
+              "url": "https://outcomeschool.com/blog/how-does-hybrid-search-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）",
+              "url": "https://arxiv.org/abs/2104.08663",
+              "author": "Thakur et al. (NeurIPS 2021)",
+              "published": "2021-04-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9763
+        },
+        {
+          "id": "rag-03",
+          "order": 3,
+          "title": "什么是 reranker？什么时候该用它？cross-encoder 会给你带来什么开销？",
+          "titleEn": "What is a reranker, when should you use one, and what does a cross-encoder cost you?",
+          "file": "RAG 与检索/03-什么是 reranker？什么时候该用它.md",
+          "level": "进阶",
+          "tags": [
+            "reranker",
+            "cross-encoder",
+            "两阶段检索",
+            "延迟"
+          ],
+          "askedAt": [
+            "Cohere",
+            "Microsoft",
+            "Perplexity"
+          ],
+          "related": [
+            "rag-02",
+            "rag-04",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "How does a Reranker work?",
+              "url": "https://outcomeschool.com/blog/how-does-a-reranker-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）",
+              "url": "https://arxiv.org/abs/2104.08663",
+              "author": "Thakur et al. (NeurIPS 2021)",
+              "published": "2021-04-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8172
+        },
+        {
+          "id": "rag-04",
+          "order": 4,
+          "title": "你会如何评估 RAG 流水线的质量：分别评估 retrieval 和 generation？",
+          "titleEn": "How would you evaluate a RAG pipeline: retrieval and generation separately?",
+          "file": "RAG 与检索/04-如何评估 RAG 流水线的质量：分别评估 retrieval 与 generation.md",
+          "level": "进阶",
+          "tags": [
+            "评估",
+            "ragas",
+            "retrieval-metrics",
+            "llm-as-a-judge"
+          ],
+          "askedAt": [
+            "Cohere"
+          ],
+          "related": [
+            "rag-02",
+            "rag-03",
+            "rag-12",
+            "llm-internals-11"
+          ],
+          "sources": [
+            {
+              "title": "LLM Evaluation",
+              "url": "https://outcomeschool.com/blog/llm-evaluation",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-05-24"
+            },
+            {
+              "title": "Ragas: Automated Evaluation of Retrieval Augmented Generation（延伸）",
+              "url": "https://arxiv.org/abs/2309.15217",
+              "author": "Es, James, Espinosa-Anke, Schockaert",
+              "published": "2023-09-26"
+            },
+            {
+              "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）",
+              "url": "https://arxiv.org/abs/2104.08663",
+              "author": "Thakur, Reimers, Rücklé, Srivastava, Gurevych (NeurIPS 2021)",
+              "published": "2021-04-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10089
+        },
+        {
+          "id": "rag-05",
+          "order": 5,
+          "title": "什么是 HyDE（假设性文档嵌入，hypothetical document embeddings）？什么时候它优于标准的稠密检索？",
+          "titleEn": "What is HyDE (hypothetical document embeddings), and when does it beat standard dense retrieval?",
+          "file": "RAG 与检索/05-什么是 HyDE 假设性文档嵌入.md",
+          "level": "进阶",
+          "tags": [
+            "hyde",
+            "query-rewriting",
+            "稠密检索"
+          ],
+          "askedAt": [],
+          "related": [
+            "rag-02",
+            "rag-06",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "How does HyDE work in RAG?",
+              "url": "https://outcomeschool.com/blog/how-does-hyde-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-07-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8883
+        },
+        {
+          "id": "rag-06",
+          "order": 6,
+          "title": "agentic RAG 与标准 RAG 有什么不同？在什么情况下额外的复杂度是值得的？",
+          "titleEn": "How does agentic RAG differ from standard RAG, and when is the extra complexity worth it?",
+          "file": "RAG 与检索/06-agentic RAG 与标准 RAG 有什么不同.md",
+          "level": "高阶",
+          "tags": [
+            "agentic-rag",
+            "多跳",
+            "工具调用",
+            "成本"
+          ],
+          "askedAt": [],
+          "related": [
+            "rag-05",
+            "rag-12",
+            "llm-internals-11",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "Agentic RAG",
+              "url": "https://outcomeschool.com/blog/agentic-rag",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9894
+        },
+        {
+          "id": "rag-07",
+          "order": 7,
+          "title": "是什么导致 embedding 检索中的语义漂移（semantic drift），你如何检测它？",
+          "titleEn": "What causes semantic drift in embedding retrieval, and how do you detect it?",
+          "file": "RAG 与检索/07-是什么导致 embedding 检索中的语义漂移以及如何检测.md",
+          "level": "高阶",
+          "tags": [
+            "语义漂移",
+            "监控",
+            "重嵌入",
+            "分布"
+          ],
+          "askedAt": [
+            "Cohere"
+          ],
+          "related": [
+            "rag-02",
+            "rag-11",
+            "rag-04",
+            "rag-09"
+          ],
+          "sources": [
+            {
+              "title": "MTEB: Massive Text Embedding Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2210.07316",
+              "author": "Muennighoff et al.",
+              "published": "2022-10-13"
+            },
+            {
+              "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）",
+              "url": "https://arxiv.org/abs/2104.08663",
+              "author": "Thakur et al. (NeurIPS 2021)",
+              "published": "2021-04-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8792
+        },
+        {
+          "id": "rag-08",
+          "order": 8,
+          "title": "设计权限感知的 retrieval：用户绝不能看到自己在源系统中无权访问的内容。",
+          "titleEn": "Design permission-aware retrieval: a user must never see content they cannot access in the source system.",
+          "file": "RAG 与检索/08-设计权限感知的 retrieval.md",
+          "level": "高阶",
+          "tags": [
+            "权限",
+            "acl",
+            "多租户",
+            "安全"
+          ],
+          "askedAt": [
+            "Microsoft",
+            "Databricks",
+            "Glean",
+            "Palantir"
+          ],
+          "related": [
+            "rag-01",
+            "rag-11",
+            "rag-12",
+            "rag-02"
+          ],
+          "sources": [
+            {
+              "title": "Document-level security（延伸）",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/document-level-security.html",
+              "author": "Elasticsearch Reference",
+              "published": ""
+            },
+            {
+              "title": "Field-level security（延伸）",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/field-level-security.html",
+              "author": "Elasticsearch Reference",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10115
+        },
+        {
+          "id": "rag-09",
+          "order": 9,
+          "title": "比较 HNSW、IVF-PQ 和 flat 索引。你如何选择？recall@k 在 latency 上的代价是什么？",
+          "titleEn": "Compare HNSW, IVF-PQ and flat indexes. How do you choose, and what does recall@k cost in latency?",
+          "file": "RAG 与检索/09-比较 HNSW、IVF-PQ 与 flat 索引.md",
+          "level": "进阶",
+          "tags": [
+            "ann",
+            "hnsw",
+            "ivf-pq",
+            "召回率"
+          ],
+          "askedAt": [],
+          "related": [
+            "rag-02",
+            "rag-11",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "How does Approximate Nearest Neighbor (ANN) search work?",
+              "url": "https://outcomeschool.com/blog/how-does-approximate-nearest-neighbor-ann-search-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "How does a Vector Database work?",
+              "url": "https://outcomeschool.com/blog/how-does-a-vector-database-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9008
+        },
+        {
+          "id": "rag-10",
+          "order": 10,
+          "title": "在 retrieval 流水线中，你如何处理表格、图表和多栏 PDF？",
+          "titleEn": "How do you handle tables, figures and multi-column PDFs in a retrieval pipeline?",
+          "file": "RAG 与检索/10-在 retrieval 流水线中如何处理表格、图表与多栏 PDF.md",
+          "level": "进阶",
+          "tags": [
+            "pdf",
+            "表格",
+            "多模态",
+            "解析"
+          ],
+          "askedAt": [],
+          "related": [
+            "rag-01",
+            "rag-09",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "Nougat: Neural Optical Understanding for Academic Documents（延伸）",
+              "url": "https://arxiv.org/abs/2308.13418",
+              "author": "Blecher et al. (Meta AI)",
+              "published": "2023-08-25"
+            },
+            {
+              "title": "Unstructured: partitioning documentation（延伸）",
+              "url": "https://docs.unstructured.io/open-source/core-functionality/partitioning",
+              "author": "Unstructured",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9014
+        },
+        {
+          "id": "rag-11",
+          "order": 11,
+          "title": "当底层语料持续变化时，你如何保持索引的新鲜度？",
+          "titleEn": "How do you keep the index fresh when the underlying corpus keeps changing?",
+          "file": "RAG 与检索/11-当底层语料持续变化时如何保持索引新鲜度.md",
+          "level": "进阶",
+          "tags": [
+            "增量索引",
+            "新鲜度",
+            "cdc",
+            "一致性"
+          ],
+          "askedAt": [
+            "Perplexity",
+            "Cursor"
+          ],
+          "related": [
+            "rag-07",
+            "rag-08",
+            "rag-01",
+            "rag-09"
+          ],
+          "sources": [
+            {
+              "title": "Near real-time search（延伸）",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/near-real-time.html",
+              "author": "Elasticsearch Reference",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8978
+        },
+        {
+          "id": "rag-12",
+          "order": 12,
+          "title": "你如何把生成答案中的每一条论断都归因到具体的 retrieved span？",
+          "titleEn": "How do you attribute every claim in a generated answer to a specific retrieved span?",
+          "file": "RAG 与检索/12-如何把答案中的每一条论断归因到具体的 retrieved span.md",
+          "level": "高阶",
+          "tags": [
+            "引用",
+            "归因",
+            "可验证性",
+            "幻觉"
+          ],
+          "askedAt": [
+            "Perplexity",
+            "Harvey",
+            "Abridge"
+          ],
+          "related": [
+            "rag-04",
+            "rag-06",
+            "llm-internals-11",
+            "rag-08"
+          ],
+          "sources": [
+            {
+              "title": "Enabling Large Language Models to Generate Text with Citations（ALCE）（延伸）",
+              "url": "https://arxiv.org/abs/2305.14627",
+              "author": "Gao et al. (EMNLP 2023)",
+              "published": "2023-05-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9708
         }
       ]
     }

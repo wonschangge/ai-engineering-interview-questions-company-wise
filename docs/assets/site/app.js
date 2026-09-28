@@ -107,7 +107,9 @@
 
     const withLinks = text.replace(/\[\[([a-z0-9-]+)\]\]/g, (m, id) => {
       const q = state.questionById.get(id);
-      return '[' + (q ? q.title : id) + '](wikilink:' + id + ')';
+      const t = state.topicById.get(id);
+      const label = q ? q.title : (t ? t.title : id);
+      return '[' + label + '](wikilink:' + id + ')';
     });
 
     let html = marked.parse(withLinks, { gfm: true, breaks: false, headerIds: false, mangle: false });
@@ -161,8 +163,9 @@
     $$('a[href^="wikilink:"]', container).forEach((a) => {
       const id = a.getAttribute('href').slice('wikilink:'.length);
       const q = state.questionById.get(id);
-      if (q) {
-        a.setAttribute('href', '#/q/' + id);
+      const t = state.topicById.get(id);
+      if (q || t) {
+        a.setAttribute('href', q ? '#/q/' + id : '#/topic/' + id);
         a.className = 'qref';
       } else {
         const span = document.createElement('span');
