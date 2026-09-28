@@ -1,0 +1,141 @@
+{
+  "generated": "2026-09-28T06:19:19.449Z",
+  "stats": {
+    "topics": 1,
+    "questions": 3,
+    "planned": 598
+  },
+  "topics": [
+    {
+      "id": "llm-internals",
+      "title": "LLM 内部原理与架构",
+      "order": 1,
+      "summary": "从 attention 的数学一路到 KV cache、位置编码与 MoE，覆盖大模型内部结构的面试主线；也是其它所有专题的前置知识。",
+      "declaredTotal": 16,
+      "updated": "2026-09-28",
+      "dir": "LLM 内部原理与架构",
+      "overviewFile": "LLM 内部原理与架构/README.md",
+      "overviewTitle": "LLM 内部原理与架构",
+      "questions": [
+        {
+          "id": "llm-internals-01",
+          "order": 1,
+          "title": "解释 scaled dot-product attention，以及为什么 1/sqrt(d_k) 缩放因子很重要。",
+          "titleEn": "Explain scaled dot-product attention and why the 1/sqrt(d_k) scaling factor matters.",
+          "file": "LLM 内部原理与架构/01-解释 scaled dot-product attention，以及为什么 1-sqrt(d_k) 缩放因子很重要.md",
+          "level": "进阶",
+          "tags": [
+            "attention",
+            "softmax",
+            "方差",
+            "数值稳定性"
+          ],
+          "askedAt": [],
+          "related": [
+            "llm-internals-02",
+            "llm-internals-03"
+          ],
+          "sources": [
+            {
+              "title": "Why Do We Scale Attention by √dₖ? The Math Behind the Scaling Factor",
+              "url": "https://outcomeschool.com/blog/scaling-dot-product-attention",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-05"
+            },
+            {
+              "title": "Math behind Attention - Q, K, and V",
+              "url": "https://outcomeschool.com/blog/math-behind-attention-qkv",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 3538
+        },
+        {
+          "id": "llm-internals-02",
+          "order": 2,
+          "title": "什么是 KV cache？它在规模化场景下的内存影响是什么？请推导公式。",
+          "titleEn": "What is the KV cache, and what are its memory implications at scale? Derive the formula.",
+          "file": "LLM 内部原理与架构/02-什么是 KV cache？它在规模化场景下的内存影响是什么？请推导公式.md",
+          "level": "进阶",
+          "tags": [
+            "kv-cache",
+            "inference",
+            "显存",
+            "gqa"
+          ],
+          "askedAt": [
+            "OpenAI",
+            "xAI",
+            "Mistral AI",
+            "Amazon (AWS)",
+            "Apple",
+            "NVIDIA",
+            "Together AI",
+            "Character.AI"
+          ],
+          "related": [
+            "llm-internals-01",
+            "llm-internals-03",
+            "inference-serving-01"
+          ],
+          "sources": [
+            {
+              "title": "KV Cache in LLMs",
+              "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-27"
+            },
+            {
+              "title": "KV Cache Compression",
+              "url": "https://outcomeschool.com/blog/kv-cache-compression",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-12"
+            },
+            {
+              "title": "Mastering LLM Techniques：Inference Optimization（延伸）",
+              "url": "https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/",
+              "author": "Shashank Verma, Neal Vaidya (NVIDIA Technical Blog)",
+              "published": "2023-11-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7976
+        },
+        {
+          "id": "llm-internals-03",
+          "order": 3,
+          "title": "什么是 Multi-Query Attention（MQA）和 Grouped-Query Attention（GQA）？它们牺牲了什么？",
+          "titleEn": "What are Multi-Query Attention (MQA) and Grouped-Query Attention (GQA), and what do they trade away?",
+          "file": "LLM 内部原理与架构/03-什么是 Multi-Query Attention（MQA）和 Grouped-Query Attention（GQA）？它们牺牲了什么.md",
+          "level": "进阶",
+          "tags": [
+            "attention",
+            "gqa",
+            "mqa",
+            "kv-cache"
+          ],
+          "askedAt": [
+            "Meta",
+            "Mistral AI"
+          ],
+          "related": [
+            "llm-internals-02",
+            "llm-internals-01"
+          ],
+          "sources": [
+            {
+              "title": "What is Grouped Query Attention (GQA) and Why Do LLMs Use It?",
+              "url": "https://outcomeschool.com/blog/grouped-query-attention",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4886
+        }
+      ]
+    }
+  ]
+}
