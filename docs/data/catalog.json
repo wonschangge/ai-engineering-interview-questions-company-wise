@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T10:58:22.464Z",
+  "generated": "2026-09-28T11:32:33.511Z",
   "stats": {
-    "topics": 7,
-    "questions": 87,
+    "topics": 8,
+    "questions": 97,
     "planned": 598
   },
   "topics": [
@@ -3939,6 +3939,524 @@
           ],
           "updated": "2026-09-28",
           "chars": 10065
+        }
+      ]
+    },
+    {
+      "id": "multimodal",
+      "title": "多模态、语音与声音 AI",
+      "order": 8,
+      "summary": "从 VLM 的视觉接入方式、视频的 token 与显存账，到实时语音的延迟预算、barge-in、级联与原生之争、ASR/TTS 评测、code-switching、流式 TTS 与 diarisation，覆盖模态工程的全链路。",
+      "declaredTotal": 10,
+      "updated": "2026-09-28",
+      "dir": "多模态、语音与声音 AI",
+      "overviewFile": "多模态、语音与声音 AI/README.md",
+      "overviewTitle": "多模态、语音与声音 AI",
+      "questions": [
+        {
+          "id": "multimodal-01",
+          "order": 1,
+          "title": "视觉语言模型是如何把图像输入到 LLM 中的：projector、cross-attention，还是原生 token？",
+          "titleEn": "How do VLMs feed images into an LLM: projector, cross-attention, or native tokens?",
+          "file": "多模态、语音与声音 AI/01-视觉语言模型如何把图像输入到 LLM.md",
+          "level": "进阶",
+          "tags": [
+            "vlm",
+            "projector",
+            "cross-attention",
+            "视觉-token"
+          ],
+          "askedAt": [
+            "Meta",
+            "阿里巴巴（Qwen）"
+          ],
+          "related": [
+            "multimodal-02",
+            "multimodal-10",
+            "llm-internals-05",
+            "inference-serving-03"
+          ],
+          "sources": [
+            {
+              "title": "Multimodal AI",
+              "url": "https://outcomeschool.com/blog/multimodal-ai",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-05-10"
+            },
+            {
+              "title": "Decoding Vision Transformer (ViT)",
+              "url": "https://outcomeschool.com/blog/decoding-vision-transformer-vit",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-15"
+            },
+            {
+              "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale（延伸）",
+              "url": "https://arxiv.org/abs/2010.11929",
+              "author": "Dosovitskiy et al. (ViT, ICLR 2021)",
+              "published": "2020-10-22"
+            },
+            {
+              "title": "Visual Instruction Tuning（LLaVA）（延伸）",
+              "url": "https://arxiv.org/abs/2304.08485",
+              "author": "Liu et al. (NeurIPS 2023)",
+              "published": "2023-04-17"
+            },
+            {
+              "title": "Flamingo: a Visual Language Model for Few-Shot Learning（延伸）",
+              "url": "https://arxiv.org/abs/2204.14198",
+              "author": "Alayrac et al. (NeurIPS 2022)",
+              "published": "2022-04-29"
+            },
+            {
+              "title": "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2301.12597",
+              "author": "Li et al. (ICML 2023)",
+              "published": "2023-01-30"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11741
+        },
+        {
+          "id": "multimodal-02",
+          "order": 2,
+          "title": "从图像扩展到视频时，会发生哪些变化？",
+          "titleEn": "What changes when you go from images to video?",
+          "file": "多模态、语音与声音 AI/02-从图像扩展到视频时会发生哪些变化.md",
+          "level": "进阶",
+          "tags": [
+            "视频",
+            "时序",
+            "token-预算",
+            "长上下文"
+          ],
+          "askedAt": [
+            "Meta"
+          ],
+          "related": [
+            "multimodal-01",
+            "multimodal-10",
+            "llm-internals-13",
+            "inference-serving-03"
+          ],
+          "sources": [
+            {
+              "title": "Qwen2-VL: Enhancing Vision-Language Model's Perception of the World at Any Resolution（延伸）",
+              "url": "https://arxiv.org/abs/2409.12191",
+              "author": "Wang et al.",
+              "published": "2024-09-18"
+            },
+            {
+              "title": "LongVILA: Scaling Long-Context Visual Language Models for Long Videos（延伸）",
+              "url": "https://arxiv.org/abs/2408.10188",
+              "author": "Chen et al.",
+              "published": "2024-08-19"
+            },
+            {
+              "title": "Video-ChatGPT: Towards Detailed Video Understanding via Large Vision and Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2306.05424",
+              "author": "Maaz et al. (ACL 2024)",
+              "published": "2023-06-08"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10938
+        },
+        {
+          "id": "multimodal-03",
+          "order": 3,
+          "title": "为实时语音 agent 做 latency 预算：VAD、ASR、LLM、TTS、网络。时间都花在哪里了？",
+          "titleEn": "Build a latency budget for a real-time voice agent: VAD, ASR, LLM, TTS, network. Where does the time go?",
+          "file": "多模态、语音与声音 AI/03-为实时语音 agent 做 latency 预算.md",
+          "level": "高阶",
+          "tags": [
+            "延迟预算",
+            "vad",
+            "流式",
+            "语音-agent"
+          ],
+          "askedAt": [
+            "Sarvam AI",
+            "ElevenLabs"
+          ],
+          "related": [
+            "multimodal-04",
+            "multimodal-05",
+            "multimodal-08",
+            "inference-serving-09",
+            "evaluation-07"
+          ],
+          "sources": [
+            {
+              "title": "Design a Real-Time Voice AI Agent",
+              "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Moshi: a speech-text foundation model for real-time dialogue（延伸）",
+              "url": "https://arxiv.org/abs/2410.00037",
+              "author": "Défossez et al. (Kyutai)",
+              "published": "2024-09-17"
+            },
+            {
+              "title": "Silero VAD（延伸）",
+              "url": "https://github.com/snakers4/silero-vad",
+              "author": "Silero Team",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11622
+        },
+        {
+          "id": "multimodal-04",
+          "order": 4,
+          "title": "为语音 agent 设计 barge-in / 打断处理机制。",
+          "titleEn": "Design barge-in / interruption handling for a voice agent.",
+          "file": "多模态、语音与声音 AI/04-为语音 agent 设计 barge-in 打断处理机制.md",
+          "level": "高阶",
+          "tags": [
+            "barge-in",
+            "全双工",
+            "回声消除",
+            "背信道"
+          ],
+          "askedAt": [
+            "ElevenLabs"
+          ],
+          "related": [
+            "multimodal-03",
+            "multimodal-05",
+            "multimodal-08",
+            "agents-09"
+          ],
+          "sources": [
+            {
+              "title": "Design a Real-Time Voice AI Agent",
+              "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-16"
+            },
+            {
+              "title": "Moshi: a speech-text foundation model for real-time dialogue（延伸）",
+              "url": "https://arxiv.org/abs/2410.00037",
+              "author": "Défossez et al. (Kyutai)",
+              "published": "2024-09-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8791
+        },
+        {
+          "id": "multimodal-05",
+          "order": 5,
+          "title": "级联式 ASR+LLM+TTS 与原生 speech-to-speech 的对比：请为双方各做论证。",
+          "titleEn": "Cascaded ASR+LLM+TTS versus native speech-to-speech: argue both sides.",
+          "file": "多模态、语音与声音 AI/05-级联式语音管线与原生 speech-to-speech 的对比.md",
+          "level": "高阶",
+          "tags": [
+            "speech-to-speech",
+            "级联",
+            "全双工",
+            "信息瓶颈"
+          ],
+          "askedAt": [
+            "ElevenLabs"
+          ],
+          "related": [
+            "multimodal-03",
+            "multimodal-04",
+            "multimodal-07",
+            "rag-08",
+            "safety-04"
+          ],
+          "sources": [
+            {
+              "title": "Design a Real-Time Voice AI Agent",
+              "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Moshi: a speech-text foundation model for real-time dialogue（延伸）",
+              "url": "https://arxiv.org/abs/2410.00037",
+              "author": "Défossez et al. (Kyutai)",
+              "published": "2024-09-17"
+            },
+            {
+              "title": "AudioPaLM: A Large Language Model That Can Speak and Listen（延伸）",
+              "url": "https://arxiv.org/abs/2306.12925",
+              "author": "Rubenstein et al. (Google)",
+              "published": "2023-06-22"
+            },
+            {
+              "title": "Seamless: Multilingual Expressive and Streaming Speech Translation（延伸）",
+              "url": "https://arxiv.org/abs/2312.05187",
+              "author": "Seamless Communication (Meta)",
+              "published": "2023-12-08"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10967
+        },
+        {
+          "id": "multimodal-06",
+          "order": 6,
+          "title": "除了 WER 之外，你如何评估 ASR 质量？在不存在唯一正确输出时，又如何评估 TTS 质量？",
+          "titleEn": "Beyond WER, how do you evaluate ASR quality? And how do you evaluate TTS when there is no single correct output?",
+          "file": "多模态、语音与声音 AI/06-除了 WER 之外如何评估 ASR 与 TTS 质量.md",
+          "level": "高阶",
+          "tags": [
+            "wer",
+            "mos",
+            "评测",
+            "分群"
+          ],
+          "askedAt": [
+            "ElevenLabs"
+          ],
+          "related": [
+            "multimodal-07",
+            "evaluation-01",
+            "evaluation-04",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "Rethinking Evaluation in ASR: Are Our Models Robust Enough?（延伸）",
+              "url": "https://arxiv.org/abs/2010.11745",
+              "author": "Likhomanenko et al.",
+              "published": "2020-10-22"
+            },
+            {
+              "title": "Benchmarking Evaluation Metrics for Code-Switching Automatic Speech Recognition（延伸）",
+              "url": "https://arxiv.org/abs/2211.16319",
+              "author": "Hamed et al. (SLT 2022)",
+              "published": "2022-11-22"
+            },
+            {
+              "title": "A Survey on Neural Speech Synthesis（延伸）",
+              "url": "https://arxiv.org/abs/2106.15561",
+              "author": "Tan et al.",
+              "published": "2021-06-29"
+            },
+            {
+              "title": "StyleTTS 2: Towards Human-Level Text-to-Speech through Style Diffusion and Adversarial Training with Large Speech Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2306.07691",
+              "author": "Li et al. (NeurIPS 2023)",
+              "published": "2023-06-13"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10162
+        },
+        {
+          "id": "multimodal-07",
+          "order": 7,
+          "title": "在生产环境的 ASR 系统中，你如何处理 code-switching 与口音？",
+          "titleEn": "How do you handle code-switching and accents in a production ASR system?",
+          "file": "多模态、语音与声音 AI/07-在生产环境的 ASR 系统中如何处理 code-switching 与口音.md",
+          "level": "高阶",
+          "tags": [
+            "code-switching",
+            "口音",
+            "mer",
+            "数据"
+          ],
+          "askedAt": [
+            "Sarvam AI",
+            "Abridge"
+          ],
+          "related": [
+            "multimodal-06",
+            "multimodal-03",
+            "finetuning-06",
+            "safety-09"
+          ],
+          "sources": [
+            {
+              "title": "Robust Speech Recognition via Large-Scale Weak Supervision（Whisper）（延伸）",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2022-12-06"
+            },
+            {
+              "title": "Attention-Guided Adaptation for Code-Switching Speech Recognition（延伸）",
+              "url": "https://arxiv.org/abs/2312.08856",
+              "author": "Aditya et al. (ICASSP 2024)",
+              "published": "2023-12-14"
+            },
+            {
+              "title": "TALCS: An Open-Source Mandarin-English Code-Switching Corpus and a Speech Recognition Baseline（延伸）",
+              "url": "https://arxiv.org/abs/2206.13135",
+              "author": "Li et al. (Interspeech 2022)",
+              "published": "2022-06-27"
+            },
+            {
+              "title": "Summary on the ISCSLP 2022 Chinese-English Code-Switching ASR Challenge（延伸）",
+              "url": "https://arxiv.org/abs/2210.06091",
+              "author": "Deng et al. (ISCSLP 2022)",
+              "published": "2022-10-12"
+            },
+            {
+              "title": "Mandarin-English Code-switching Speech Recognition with Self-supervised Speech Representation Models（延伸）",
+              "url": "https://arxiv.org/abs/2110.03504",
+              "author": "Tseng et al.",
+              "published": "2021-10-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8115
+        },
+        {
+          "id": "multimodal-08",
+          "order": 8,
+          "title": "解释流式 TTS 的 chunking 与 jitter buffer 大小设定。",
+          "titleEn": "Explain streaming TTS chunking and how you size the jitter buffer.",
+          "file": "多模态、语音与声音 AI/08-解释流式 TTS 的 chunking 与 jitter buffer 大小设定.md",
+          "level": "高阶",
+          "tags": [
+            "流式-tts",
+            "chunking",
+            "jitter-buffer",
+            "rtp"
+          ],
+          "askedAt": [
+            "ElevenLabs"
+          ],
+          "related": [
+            "multimodal-03",
+            "multimodal-04",
+            "multimodal-06",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "FastSpeech 2: Fast and High-Quality End-to-End Text to Speech（延伸）",
+              "url": "https://arxiv.org/abs/2006.04558",
+              "author": "Ren et al. (ICLR 2021)",
+              "published": "2020-06-08"
+            },
+            {
+              "title": "Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech（VITS）（延伸）",
+              "url": "https://arxiv.org/abs/2106.06103",
+              "author": "Kim et al. (ICML 2021)",
+              "published": "2021-06-11"
+            },
+            {
+              "title": "RTP: A Transport Protocol for Real-Time Applications（RFC 3550）（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc3550",
+              "author": "Schulzrinne et al. (IETF)",
+              "published": "2003-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11107
+        },
+        {
+          "id": "multimodal-09",
+          "order": 9,
+          "title": "设计一个 diarisation 系统，并说明你如何归属角色，而不仅仅是聚类。",
+          "titleEn": "Design a diarisation system and explain how you attribute roles, not just cluster.",
+          "file": "多模态、语音与声音 AI/09-设计一个 diarisation 系统并说明如何归属角色.md",
+          "level": "高阶",
+          "tags": [
+            "diarisation",
+            "DER",
+            "JER",
+            "EEND",
+            "角色归属",
+            "声纹隐私"
+          ],
+          "askedAt": [
+            "Abridge"
+          ],
+          "related": [
+            "multimodal-06",
+            "multimodal-07",
+            "evaluation-10",
+            "safety-07",
+            "agents-11"
+          ],
+          "sources": [
+            {
+              "title": "pyannote.audio neural building blocks for speaker diarization（延伸）",
+              "url": "https://arxiv.org/abs/1911.01255",
+              "author": "Bredin et al. (ICASSP 2020)",
+              "published": "2019-11-04"
+            },
+            {
+              "title": "End-to-End Neural Speaker Diarization with Self-attention（延伸）",
+              "url": "https://arxiv.org/abs/1909.06247",
+              "author": "Fujita et al. (ASRU 2019)",
+              "published": "2019-09-13"
+            },
+            {
+              "title": "A Review of Speaker Diarization Recent Advances with Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2101.09624",
+              "author": "Park et al. (Computer Speech & Language 2022)",
+              "published": "2021-01-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10334
+        },
+        {
+          "id": "multimodal-10",
+          "order": 10,
+          "title": "你会如何在一个索引中对图像、视频和文本构建多模态 retrieval？",
+          "titleEn": "How would you build multimodal retrieval over images, video and text in one index?",
+          "file": "多模态、语音与声音 AI/10-如何在一个索引中对图像、视频和文本构建多模态 retrieval.md",
+          "level": "高阶",
+          "tags": [
+            "多模态检索",
+            "clip",
+            "晚交互",
+            "colpali"
+          ],
+          "askedAt": [],
+          "related": [
+            "multimodal-01",
+            "multimodal-02",
+            "rag-02",
+            "rag-03",
+            "rag-10"
+          ],
+          "sources": [
+            {
+              "title": "How do Image Embeddings work?",
+              "url": "https://outcomeschool.com/blog/how-do-image-embeddings-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Learning Transferable Visual Models From Natural Language Supervision（CLIP）（延伸）",
+              "url": "https://arxiv.org/abs/2103.00020",
+              "author": "Radford et al. (ICML 2021)",
+              "published": "2021-02-26"
+            },
+            {
+              "title": "Sigmoid Loss for Language Image Pre-Training（SigLIP）（延伸）",
+              "url": "https://arxiv.org/abs/2303.15343",
+              "author": "Zhai et al. (ICCV 2023)",
+              "published": "2023-03-27"
+            },
+            {
+              "title": "ImageBind: One Embedding Space To Bind Them All（延伸）",
+              "url": "https://arxiv.org/abs/2305.05665",
+              "author": "Girdhar et al. (CVPR 2023)",
+              "published": "2023-05-09"
+            },
+            {
+              "title": "ColPali: Efficient Document Retrieval with Vision Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2407.01449",
+              "author": "Faysse et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10984
         }
       ]
     }
