@@ -1,0 +1,284 @@
+{
+  "topic": "AI 系统设计",
+  "topic_id": "system-design",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/AI 系统设计",
+  "all_questions": [
+    { "id": "system-design-01", "order": 1, "title": "设计一个面向 1000 万文档、按用户权限隔离的企业级 RAG 助手。" },
+    { "id": "system-design-02", "order": 2, "title": "设计一个代码助手：仓库索引、上下文组装、编辑应用、评估。" },
+    { "id": "system-design-03", "order": 3, "title": "设计一个能够执行真实操作的客服 agent，并支持升级到人工。" },
+    { "id": "system-design-04", "order": 4, "title": "为大型商品目录设计语义搜索。" },
+    { "id": "system-design-05", "order": 5, "title": "设计一个结合分类器与 LLM 的内容审核系统。" },
+    { "id": "system-design-06", "order": 6, "title": "设计一个文档智能 pipeline：输入扫描版 PDF，输出结构化字段，规模达到 1000 万文档。" },
+    { "id": "system-design-07", "order": 7, "title": "为包含数千张表的数仓设计一个 Text-to-SQL 系统。" },
+    { "id": "system-design-08", "order": 8, "title": "设计一个会议助手：录音、diarisation、摘要、行动项、集成。" },
+    { "id": "system-design-09", "order": 9, "title": "设计一个 LLM gateway：跨供应商路由、故障转移、缓存、预算与 rate limit。" },
+    { "id": "system-design-10", "order": 10, "title": "为数亿用户的消费级聊天助手设计服务栈。" }
+  ],
+  "questions": [
+    {
+      "id": "system-design-01",
+      "order": 1,
+      "file": "docs/AI 系统设计/01-设计一个面向 1000 万文档、按权限隔离的企业级 RAG 助手.md",
+      "question": "设计一个面向 1000 万文档、按用户权限隔离的企业级 RAG 助手。",
+      "question_en": "Design an enterprise RAG assistant over 10M documents with per-user permission isolation.",
+      "asked_at": ["OpenAI", "Microsoft", "Amazon（AWS）", "Databricks", "Scale AI"],
+      "level": "高阶",
+      "tags": ["系统设计", "企业-rag", "权限", "容量规划"],
+      "sources": [
+        { "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）", "url": "https://arxiv.org/abs/2005.11401", "author": "Lewis et al. (NeurIPS 2020)", "published": "2020-05-22" },
+        { "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization（延伸）", "url": "https://arxiv.org/abs/2404.16130", "author": "Edge et al. (Microsoft)", "published": "2024-04-24" },
+        { "title": "Document-level security（Elasticsearch 参考文档）（延伸）", "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/document-level-security.html", "author": "Elasticsearch", "published": "" }
+      ],
+      "related": ["rag-08", "rag-09", "rag-11", "system-design-09", "evaluation-04"],
+      "brief": [
+        "先做需求与规模澄清（系统设计题的第一段必须是这个，不要直接画架构）：文档量 1000 万、平均页数与 token 数、增量速度（每天新增/修改多少）、用户数与并发查询数、QPS 与延迟 SLO（首字延迟与端到端）、权限模型（文档级 ACL、组继承、多租户）、以及必须支持的能力（引用、无答案时的拒答、审计）。**把假设写在明面上**，后面所有算账都基于它。",
+        "算存储与索引规模（要给出算式，不要只给结论）：① 原始文档存储（对象存储 + 解析产物）；② chunk 数与向量存储——若 1000 万文档平均 20 页、每页 500 token、按 400 token 切块加 10% overlap，则 chunk 数约 $10^7 \\times 20 \\times 500 / 400 \\approx 2.5\\times10^8$ 个 chunk；③ 向量存储按维度估算（例如 768 维 fp16 = 1536 B/chunk → 约 384 GB 原始向量，另加 HNSW 图结构开销，链到 [[rag-09]] 的内存账）；④ 倒排索引（BM25）用于 hybrid 召回（链到 [[rag-02]]）；⑤ 元数据与 ACL 的存储量（每个 chunk 带若干组标识）。要求至少把 chunk 数与向量内存量算对，并说明「这些数字决定了能不能塞进内存，进而决定索引选型」。",
+        "权限隔离是本题的核心考点（评审会重点追问）：必须讲清**过滤发生在召回阶段**——用 pre-filter（把 ACL/租户作为可过滤字段，在 ANN 搜索时限定候选集），而不是取回 top-k 再过滤（后者会把有效召回打穿，链到 [[rag-08]]）；给出权限模型（文档级 ACL + 组继承 + 用户→组展开的缓存与失效）、多租户的硬隔离策略（按租户分区索引 vs 共享索引 + 强制过滤，给出取舍：隔离性与运维成本的权衡）、以及权限变更的时效（缓存 TTL + 事件失效，并明确「最坏多久生效」这个可承诺的数字）。可引用 Elasticsearch 的 document-level security 作为实现参考（把 ACL 变成查询期过滤条件）。",
+        "检索链路要画出来并说明每一段的选择：查询理解（改写/HyDE，链到 [[rag-05]]）→ hybrid 召回（BM25 + 稠密，RRF 融合，链到 [[rag-02]]）→ 重排（cross-encoder，链到 [[rag-03]]）→ 上下文组装（去重、按来源分组、token 预算裁剪）→ 生成（带引用，链到 [[rag-12]]）→ 输出侧校验（引用白名单、越权内容拦截，链到 [[safety-01]]）。要说明企业场景的两个特例：① 存在「全局性问题」（如「这一季度所有合同的风险点」）——纯检索答不了，可引用 GraphRAG 的口径（用 LLM 从源文档构建实体知识图谱并为紧密相关的实体群预生成社区摘要，在百万 token 量级的全局性问题上有显著改进）作为可选增强；② 无答案时要能明确拒答而不是编（链到 [[evaluation-03]] 的接地失败概念）。",
+        "新鲜度与运维：文档更新如何进索引（增量 upsert + 删除的标记与压实，链到 [[rag-11]]）、重嵌入的成本与触发条件、索引版本与 embedding 版本绑定、以及权限变更与索引一致性的冲突处理。要给出一个「每天增量 N 万文档」的成本估算（embedding 调用量与 GPU 小时）。",
+        "评测与上线：先定义成功指标（检索层 recall@k、生成层接地率、任务成功率、权限零越权），建 100–500 条分层评测集（含权限用例与无答案用例，链到 [[evaluation-02]]），把权限与注入作为**红线集**进回归门禁（零容忍，链到 [[evaluation-04]]）；再谈灰度与容量规划（链到 [[system-design-10]]）。",
+        "常见追问：1000 万文档一定要向量检索吗（关键词够不够）？多租户共享索引的过滤性能如何保证？权限变更的延迟你怎么压到秒级？成本的大头在哪一段？"
+      ]
+    },
+    {
+      "id": "system-design-02",
+      "order": 2,
+      "file": "docs/AI 系统设计/02-设计一个代码助手：仓库索引、上下文组装、编辑应用与评估.md",
+      "question": "设计一个代码助手：仓库索引、上下文组装、编辑应用、评估。",
+      "question_en": "Design a coding assistant: repo indexing, context assembly, edit application, evaluation.",
+      "asked_at": ["Cursor（Anysphere）"],
+      "level": "高阶",
+      "tags": ["系统设计", "代码助手", "仓库索引", "评估"],
+      "sources": [
+        { "title": "Cursor 是如何工作的？", "url": "https://outcomeschool.com/blog/how-does-cursor-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Claude Code 是如何工作的？", "url": "https://outcomeschool.com/blog/how-does-claude-code-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems（延伸）", "url": "https://arxiv.org/abs/2306.03091", "author": "Liu et al.", "published": "2023-06-05" },
+        { "title": "CodeRAG-Bench: Can Retrieval Augment Code Generation?（延伸）", "url": "https://arxiv.org/abs/2406.14497", "author": "Wang et al.", "published": "2024-06-20" },
+        { "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）", "url": "https://arxiv.org/abs/2310.06770", "author": "Jimenez et al. (ICLR 2024)", "published": "2023-10-10" }
+      ],
+      "related": ["rag-01", "rag-03", "system-design-01", "agents-05", "evaluation-10"],
+      "brief": [
+        "先分场景（代码助手不是一件事）：① **行内补全**（低延迟、局部上下文、必须快）；② **对话式问答**（解释代码、找 bug）；③ **跨文件编辑/重构**（多文件改动 + 应用补丁）；④ **agentic 任务**（跑测试、迭代修复，链到 [[agents-09]]）。四个场景的延迟预算、上下文来源与评测方式都不同，先讲清这个分层比直接画架构更有说服力。",
+        "仓库索引要讲清「代码不是文档」：① **结构感知切分**——按函数/类/模块切，用语法解析（tree-sitter 之类的解析器）而不是按行数切（链到 [[rag-01]] 的 chunking 原则）；② **符号图**——定义/引用/调用关系（LSP 与编译器前端能给出精确的符号表，比向量检索更可靠）；③ **分层索引**——文件摘要、模块摘要、仓库级概览（用于回答「这个仓库怎么组织」）；④ **增量与本地**——仓库每秒都在变，索引要能跟随 git 状态增量更新（链到 [[rag-11]]），且要考虑「在用户机器上索引」与「服务端索引」的取舍（隐私与延迟）。可引用 RepoBench 的口径：它把仓库级补全拆成检索（跨文件上下文）、补全与端到端管线三个互相衔接的任务，说明「检索质量」是这条链路的第一环。",
+        "上下文组装是这道题的技术亮点（面试官想听你怎么填满一个有限的窗口）：① 优先级排序——光标附近的代码 > 同文件的符号 > 跨文件的相关定义（用符号图）> 相似代码片段（向量检索）> 文档与历史；② 用**编辑历史与诊断信息**（编译错误、测试失败输出、LSP 报错）作为上下文（这是代码场景独有的、极强的信号）；③ 结构化注入（把文件按路径与行号标注清楚，便于模型精确引用与生成补丁）；④ 预算管理（超长文件先摘取相关片段而不是整file，链到 [[llm-internals-13]] 的位置偏差）。可引用 CodeRAG-Bench 的口径作为警示：检索增强对代码生成在多种设置下能带来提升，但现有检索器在**词汇重叠有限**时仍难以取到有用上下文，且生成器在上下文长度受限或整合能力不足时收益有限——这正好论证「为什么符号图与结构信息比纯向量检索更重要」。",
+        "编辑应用（apply）要讲工程细节，这是很多候选人漏掉的一段：① 模型输出补丁的形式选择（整文件重写 vs diff/搜索-替换块 vs 结构化编辑指令）与各自的失败模式（整文件重写贵且易丢内容、diff 易因上下文不匹配失败）；② **应用前的校验**——语法校验、类型检查、LSP 诊断，失败要回灌给模型重试（链到 [[agents-02]] 的错误回灌）；③ **并发冲突**——用户同时在编辑，需要版本/哈希校验与乐观并发；④ 大改动的交互（预览、逐块接受、可回滚），链到 [[agents-10]] 的可逆性设计；⑤ 权限与沙箱（读用户私有代码的边界）。",
+        "评估要对齐场景（链到 [[evaluation-10]]）：① 补全——接受率、编辑距离、单测通过率、延迟分位数（行内补全的延迟预算最紧）；② 跨文件任务——用仓库级基准（RepoBench 的三任务）与真实 issue 修复基准（可引用 SWE-bench 的口径：2294 个真实 GitHub issue 及对应 PR，需要跨文件修改并通过测试，论文当时最强模型只解决 1.96%——说明「真实仓库级任务」与「单文件补全」之间的巨大差距）；③ 端到端——任务成功率与 pass^k（链到 [[agents-09]]）；④ 人工盲评（补全的「有用性」很难自动度量）。",
+        "最后讲安全与成本：代码里的密钥/凭据不能进上下文与日志（链到 [[safety-07]]）；仓库索引的隐私边界（哪些代码允许上传）；成本控制（索引的 embedding 成本、上下文 token 成本、以及用便宜模型做补全、贵模型做 agentic 任务的分层，链到 [[system-design-09]]）。",
+        "常见追问：为什么不做全仓库 embedding 检索就够（符号与结构信息不可替代）？行内补全的延迟预算怎么分配？如何防止模型改坏代码（校验 + 可回滚 + 测试）？"
+      ]
+    },
+    {
+      "id": "system-design-03",
+      "order": 3,
+      "file": "docs/AI 系统设计/03-设计一个能执行真实操作并支持升级人工的客服 agent.md",
+      "question": "设计一个能够执行真实操作的客服 agent，并支持升级到人工。",
+      "question_en": "Design a customer-support agent that takes real actions and escalates to humans.",
+      "asked_at": ["面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）", "Sierra"],
+      "level": "高阶",
+      "tags": ["系统设计", "客服-agent", "升级人工", "可逆性"],
+      "sources": [
+        { "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）", "url": "https://arxiv.org/abs/2406.12045", "author": "Yao et al.", "published": "2024-06-17" },
+        { "title": "Building Effective Agents（延伸）", "url": "https://www.anthropic.com/engineering/building-effective-agents", "author": "Anthropic", "published": "2024-12-19" }
+      ],
+      "related": ["agents-11", "agents-10", "agents-02", "system-design-09", "rag-08"],
+      "brief": [
+        "先澄清需求与约束：业务域（退款、改签、订单、账户）、**可用于操作的 API 清单**与每个操作的**风险等级**（只读 / 可逆写 / 不可逆写）、必须遵守的业务政策（policy，例如「30 天内可退」）、SLO（首次响应、解决时长）、人工坐席的容量与成本、以及合规要求（录音留存、可审计）。要指出这类系统的第一原则：**agent 的价值在于「能办事」，而风险也全部来自「能办事」**。",
+        "架构分层（每层给选型理由）：① 接入层（电话/IM/邮件，多渠道统一会话状态）；② 身份与鉴权（必须绑定真实用户身份再做操作，不能凭对话内容认定身份——这是安全底线，链到 [[safety-06]]）；③ 知识与政策层（RAG 检索政策与帮助文档，链到 [[system-design-01]]；政策要以**可执行规则**形式存在而不是只写进提示词）；④ 决策层（agent 循环 + 工具集，链到 [[agents-01]]）；⑤ 工具/动作层（所有写操作经过动作网关：参数校验、幂等键、审批、审计，链到 [[agents-10]]）；⑥ 升级与人工层；⑦ 可观测与评测层（链到 [[evaluation-07]]）。",
+        "把「执行真实操作」讲扎实：① 工具按风险分级（只读 / 可逆写 / 不可逆写），不同等级对应不同护栏（链到 [[agents-11]] 的风险分级与审批）；② **幂等与去重**（用户重复说「我要退款」不能退两次，链到 [[agents-02]]）；③ **dry-run/预览**（先把订单变更的影响算出来给用户确认）；④ **补偿与回滚**（saga 思路：为每个写操作定义逆操作，链到 [[agents-10]]）；⑤ 金额与权限阈值（超过阈值必须人工审批）。",
+        "升级到人工（题干明确要求，必须单独成节）：① **触发条件**——用户显式要求、连续失败、政策外请求、高风险操作、情绪升级（检测到愤怒/威胁）、超出预算或步数（链到 [[agents-09]]）；② **升级时的上下文移交**——把会话摘要、已尝试的动作、用户身份与订单信息、以及**未完成的状态**一起交给坐席（最忌讳让用户重述一遍）；③ **长事务的挂起/恢复**（会话状态持久化，链到 [[agents-07]]）；④ **人工接回 agent** 的路径（坐席处理完可由 agent 继续跟进）；⑤ **升级率作为核心指标**（过高说明能力不足，过低可能说明在硬扛不该扛的请求）。",
+        "评测要引用可对标的基准并标注口径：可引用 τ-bench 的设定（用 LLM 模拟用户 + 领域 API + 政策约束，用**对话结束后的数据库状态**与目标状态比对判定成功，并用 pass^k 衡量一致性；论文报告即使最好的 function calling agent 在零售域任务成功率也低于 50%、pass^8 低于 25%）。由此得出两条工程结论：**（1）成功率必须用「最终状态正确」而不是「说得像对的」来判定**；**（2）必须用 pass^k 这类一致性指标，因为偶尔成功不等于可用**。另外可引用 Anthropic《Building Effective Agents》的取向：优先最简单可控的模式，只在真正必要时增加复杂度。",
+        "最后给上线路径与风险控制：先在只读+建议模式上线（生成方案给人确认）→ 再放开低风险可逆写 → 最后才是高风险操作，并且每一步都用红线集（越权、重复扣款、政策违背）做门禁（链到 [[evaluation-04]]）；线上监控要包含动作成功率、重复操作率、升级率、以及**投诉/补偿成本**这类业务指标（链到 [[evaluation-09]]）。",
+        "常见追问：用户说「你上次答应给我退款」怎么办（以系统状态为准，不信对话里的声明，链到 [[safety-01]] 的注入面）？怎么防止 agent 被诱导执行越权操作？升级人工后 agent 该不该继续听对话？"
+      ]
+    },
+    {
+      "id": "system-design-04",
+      "order": 4,
+      "file": "docs/AI 系统设计/04-为大型商品目录设计语义搜索.md",
+      "question": "为大型商品目录设计语义搜索。",
+      "question_en": "Design semantic search for a large product catalog.",
+      "asked_at": ["Character.AI"],
+      "level": "高阶",
+      "tags": ["系统设计", "语义搜索", "电商", "排序"],
+      "sources": [
+        { "title": "语义搜索是如何工作的？", "url": "https://outcomeschool.com/blog/how-does-semantic-search-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Semantic Product Search（延伸）", "url": "https://arxiv.org/abs/1907.00937", "author": "Nigam et al. (Amazon, KDD 2019)", "published": "2019-07-01" },
+        { "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）", "url": "https://arxiv.org/abs/2104.08663", "author": "Thakur et al. (NeurIPS 2021)", "published": "2021-04-17" }
+      ],
+      "related": ["rag-02", "rag-03", "rag-09", "system-design-09", "evaluation-04"],
+      "brief": [
+        "先澄清需求：目录规模（SKU 数、千万到亿级）、查询量与 QPS、延迟 SLO（搜索是强延迟敏感的交互）、多语言与拼写错误容忍、以及**成功的定义**（点击？加购？成交？）——电商搜索的目标不是「召回相关商品」而是「提升转化」，这个区别决定了后面所有排序与评测的设计。",
+        "召回层要讲清为什么必须 hybrid：商品检索的查询有大量**精确匹配需求**（型号、品牌、规格、SKU 号），也有**语义/口语化需求**（「适合小户型的静音洗衣机」）。可引用 Amazon 的 Semantic Product Search 口径说明纯词法匹配的三个失败点：无法理解上下位词/同义/反义、对词形变化脆弱（woman vs women）、对拼写错误敏感；再引用 BEIR 的结论作为方法论警示：BM25 是很强的零样本基线，稠密模型在零样本跨域上常常不如它——所以在商品这种**强词法信号**的领域，hybrid（BM25 + 稠密 + RRF）几乎必然是生产默认（链到 [[rag-02]]）。",
+        "讲商品场景特有的建模点（这是区分度）：① **训练信号用行为数据**——点击、加购、购买构成天然的弱监督与排序目标（Amazon 论文的做法：设计了一个带内置阈值的损失函数来区分随机负例、曝光未购买与已购买三类样本）；② **类目与属性结构**——把类目树、品牌、规格参数作为过滤与特征（链到 [[rag-08]] 的过滤式检索）；③ **查询理解**——拼写纠错、同义词/缩写归一、查询改写（链到 [[rag-05]] 的 HyDE 与改写思路）；④ **个性化**（用户历史与上下文）与**业务约束**（库存、地域、上下架、广告位）——这些在通用 RAG 里不存在，必须显式进排序公式；⑤ 冷启动与新商品（没有行为数据，需要内容侧特征兜底）。",
+        "排序架构按漏斗讲：召回（hybrid，几千条）→ 粗排（轻量模型）→ 精排（cross-encoder 或 GBDT+深度模型，几百条，链到 [[rag-03]]）→ 重排（多样性、业务规则、广告）→ 展示。给每层的候选数与延迟预算，并说明**延迟预算在大型目录下比 RAG 更紧**（搜索要几十到几百毫秒）。",
+        "算规模与索引账（要具体）：亿级 SKU 的向量内存（结合 [[rag-09]] 的 HNSW/IVF-PQ 账，得出「必须量化/分片」的结论）、商品更新的频率（价格与库存是分钟级变更，向量是低频重建——**把可变字段与语义向量分开存储**是这题的加分点，链到 [[rag-11]]）、以及分片策略（按类目/地域分片以支持过滤）。",
+        "评测与迭代：① 离线——用行为数据构造相关性标注（曝光/点击/购买），测 recall@k、nDCG@k、MAP（Amazon 论文报告 Recall@100 提升至少 4.7%、MAP 提升 14.5%，并给出线上 A/B 结论，可作为「离线涨了线上也要涨」的范例）；② 线上——A/B 测转化率、点击率、无结果率、以及**延迟分位数**（链到 [[evaluation-09]]）；③ 长尾与零结果查询单独监控（链到 [[evaluation-05]] 的分布不匹配问题）；④ 用红线集防「违规商品/下架商品被召回」。",
+        "常见追问：为什么不用一个大模型端到端做检索与排序（延迟与成本）？如何处理「查询很短、意图模糊」（查询改写 + 类目预测 + 会话上下文）？向量与关键词的权重要按查询类型动态调吗？"
+      ]
+    },
+    {
+      "id": "system-design-05",
+      "order": 5,
+      "file": "docs/AI 系统设计/05-设计一个结合分类器与 LLM 的内容审核系统.md",
+      "question": "设计一个结合分类器与 LLM 的内容审核系统。",
+      "question_en": "Design a content moderation system that combines classifiers with LLMs.",
+      "asked_at": ["Meta"],
+      "level": "高阶",
+      "tags": ["系统设计", "内容审核", "分类器", "人审"],
+      "sources": [
+        { "title": "A Holistic Approach to Undesired Content Detection in the Real World（延伸）", "url": "https://arxiv.org/abs/2208.03274", "author": "Markov et al. (OpenAI, AAAI 2023)", "published": "2022-08-05" },
+        { "title": "ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation（延伸）", "url": "https://arxiv.org/abs/2310.17389", "author": "Lin et al. (EMNLP Findings 2023)", "published": "2023-10-26" },
+        { "title": "ToxiGen: A Large-Scale Machine-Generated Dataset for Adversarial and Implicit Hate Speech Detection（延伸）", "url": "https://arxiv.org/abs/2203.09509", "author": "Hartvigsen et al. (ACL 2022)", "published": "2022-03-17" },
+        { "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations（延伸）", "url": "https://arxiv.org/abs/2312.06674", "author": "Inan et al. (Meta)", "published": "2023-12-07" }
+      ],
+      "related": ["safety-04", "evaluation-01", "safety-10", "system-design-10", "evaluation-02"],
+      "brief": [
+        "先定需求与目标函数（审核系统的第一原则）：要拦什么（有害类别清单：暴力、仇恨、性内容、自伤、骚扰、垃圾广告、以及平台特有类目）、误杀的代价（正常用户被拦的体验损失）与漏放的代价（平台风险与法律合规）各是多少、以及**容量事实**（日活内容量级决定了「不可能全量人审」）。可引用 OpenAI 那篇系统论文的口径作为方法论骨架：先设计内容分类体系与标注指南，再做数据质量控制，并用**主动学习**流程去捕获稀有事件、用多种方法提升鲁棒性避免过拟合——这条链路比「选哪个模型」重要得多。",
+        "讲清「分类器 + LLM」的分工（这是题眼）：① **分类器**——快、便宜、可高吞吐，适合**全量前置过滤**与高召回（阈值调低以保召回，宁可多送一些给下一层）；② **LLM**——语义理解更强，适合**边界与语境判断**（讽刺、引用、教育语境、coded language）、需要解释与给出理由、以及处理分类器覆盖不到的类目；③ **级联与路由**——分类器置信度高时直接判定，落入灰区才调 LLM（成本与延迟的权衡，链到 [[system-design-09]] 的路由思路）；④ 可引用 Llama Guard 的形态作为参考：它是一个基于安全风险分类体系的输入-输出双向 safeguard 模型，可用指令微调定制类目与输出格式，论文报告在若干公开审核基准上匹配或超过现有工具（标注口径）。",
+        "把「领域差异」讲出来（这决定了模型能不能直接拿来用）：可引用 ToxicChat 的口径——已有毒性检测基准多来自社交媒体内容，而真实用户与 AI 的对话有显著不同的分布特征，在社交数据上训练的模型迁移到用户-AI 对话场景会暴露短板。因此**审核模型必须用自己的业务数据评测与微调**。同时可引用 ToxiGen 的口径说明另一类系统性风险：毒性检测系统常常把**提及少数群体的文本误判为有毒**（虚假相关），且对**隐式毒性**识别困难；该工作用机器生成的方式构造了 27.4 万条覆盖 13 个少数群体的毒性与良性陈述，并报告人工标注者难以区分机器生成与人类撰写、其中 94.5% 的毒性样本被标注者判为仇恨言论——这条引用同时说明「误杀问题真实存在」与「合成数据可以缓解数据稀缺」。",
+        "讲清人审与申诉的闭环（很多候选人漏掉）：① 分层处置——自动放行 / 自动拦截 / 降权 / 打标送人审；② **人审队列的优先级**（按危害严重度 × 传播速度排序，而不是先到先审）；③ 审核员的心理健康保护（轮换、屏蔽原始内容、提供工具化摘要——这是真实系统必须考虑的）；④ **用户申诉与误杀纠正**（必须有通道，且纠正结果要回灌数据，链到 [[evaluation-02]]）；⑤ 审计与合规记录（链到 [[agents-10]]）。",
+        "评测与治理要具体：① 指标不能只看准确率——要按类目报告**精确率/召回率**，并明确「阈值是按漏放优先还是误杀优先」（不同类目不同策略）；② 用对抗集测（隐式毒性、编码绕过、多语言、长上下文）并持续更新（链到 [[safety-10]]）；③ 评测集要按领域与语言分层，并且防污染（链到 [[evaluation-06]]）；④ 监控漂移（新出现的黑话与攻击手法会让分类器失效，链到 [[rag-07]] 的漂移检测思路）；⑤ 与生成侧护栏的关系（审核输入≠审核输出，链到 [[safety-04]]）。",
+        "最后给规模与成本估算：日均内容量 × 每层的调用比例 × 单次成本（分类器近乎免费、LLM 判定贵）→ 得出「灰区比例必须控制在多少以内」这个可承诺的工程指标；并给出延迟预算（异步审核 vs 同步拦截的差异——发布前拦截要求同步低延迟，事后巡检可以批量）。",
+        "常见追问：为什么不能只用 LLM 审核（成本与延迟，以及分类器在特定类目上更稳）？如何降低对少数群体的误杀（数据平衡 + 阈值分群 + 人工复核，链到 [[safety-09]]）？多语言覆盖怎么办？"
+      ]
+    },
+    {
+      "id": "system-design-06",
+      "order": 6,
+      "file": "docs/AI 系统设计/06-设计一个 1000 万文档规模的扫描件结构化 pipeline.md",
+      "question": "设计一个文档智能 pipeline：输入扫描版 PDF，输出结构化字段，规模达到 1000 万文档。",
+      "question_en": "Design a document intelligence pipeline: scanned PDFs in, structured fields out, at 10M documents.",
+      "asked_at": ["Palantir"],
+      "level": "高阶",
+      "tags": ["系统设计", "文档智能", "ocr", "批处理"],
+      "sources": [
+        { "title": "OCR-free Document Understanding Transformer（Donut）（延伸）", "url": "https://arxiv.org/abs/2111.15664", "author": "Kim et al. (ECCV 2022)", "published": "2021-11-30" },
+        { "title": "LayoutLMv3: Pre-training for Document AI with Unified Text and Image Masking（延伸）", "url": "https://arxiv.org/abs/2204.08387", "author": "Huang et al. (ACM MM 2022)", "published": "2022-04-18" },
+        { "title": "PubTables-1M: Towards comprehensive table extraction from unstructured documents（延伸）", "url": "https://arxiv.org/abs/2110.00061", "author": "Smock et al. (CVPR 2022)", "published": "2021-09-30" },
+        { "title": "PubLayNet: largest dataset ever for document layout analysis（延伸）", "url": "https://arxiv.org/abs/1908.07836", "author": "Zhong et al.", "published": "2019-08-16" },
+        { "title": "DocVQA: A Dataset for VQA on Document Images（延伸）", "url": "https://arxiv.org/abs/2007.00398", "author": "Mathew et al. (WACV 2021)", "published": "2020-07-01" }
+      ],
+      "related": ["rag-10", "rag-11", "multimodal-10", "evaluation-04", "system-design-01"],
+      "brief": [
+        "先澄清需求与数据画像（这一步决定后面所有技术选择）：文档类型（发票、合同、表单、报告）、页数量级（1000 万文档 × 平均页数 = 总页数，这才是算力单位）、扫描质量（分辨率、倾斜、印章遮挡、手写比例）、需要抽取的字段清单与每个字段的**准确性要求**（金额错一位就是事故，而备注字段可以宽容）、以及时效要求（是 T+1 批处理还是要小时级）。要指出规模的关键换算：**1000 万文档按平均 10 页 = 1 亿页**，下面所有算账都基于页数。",
+        "pipeline 分段（每段给出输入输出与失败处理）：① 接入与去重（哈希去重、格式识别、加密文档处理）；② 预处理（方向校正、去噪、切分、分辨率归一）；③ **版面分析**（识别标题/段落/表格/图片区域并确定阅读顺序——可引用 PubLayNet 的口径：10 万+ PDF 文章自动标注出 36 万余张文档图像的版面元素，说明版面分析是一个有大规模数据支撑的成熟子任务）；④ 文本提取（OCR 或原生文本层；扫描件必须 OCR）；⑤ 表格结构还原（可引用 PubTables-1M 的口径：近百万张表格、支持多输入模态、提供表头与结构信息，并针对此前数据集的**过分割**问题提出规范化处理以提升训练与评估可靠性）；⑥ 字段抽取（把版面+文本映射到目标 schema）；⑦ 校验与后处理（规则校验、跨字段一致性、与业务系统对账）；⑧ 人工复核队列（低置信样本）；⑨ 存储与索引入库。",
+        "把「OCR 依赖还是无 OCR」的路线选择讲清楚（这是本题的技术分歧点）：可引用 Donut 的口径——依赖现成 OCR 的方案有三个固有问题：**OCR 计算开销大**、**对语言与文档类型不灵活**、**OCR 错误会传播到后续环节**，因此出现了无 OCR 的端到端文档理解模型（该工作用简单的 Transformer 架构与合成数据预训练，在多种文档理解任务上兼顾速度与精度）。同时可引用 LayoutLMv3 的口径说明另一条主流路线：统一的文本与图像掩码预训练 + 词-块对齐目标，在表单理解、票据理解、文档 VQA 等文本中心任务与文档图像分类、版面分析等图像中心任务上都达到当时最好水平。结论要落在工程判断上：**字段级准确率要求高且版式固定 → 模板 + 规则优先；版式多样 → 版式模型 + 抽取模型；端到端模型适合版式多变但字段简单的场景**，并且实际系统常常是「规则兜底 + 模型主判」的组合。",
+        "算容量与成本（这是 1000 万规模题的核心，必须算）：① 总页数 → 每页 OCR 时间与 GPU 吞吐 → 需要的 GPU 小时与机器数；② 字段抽取（每页一次模型调用或一个 batch）的成本；③ 存储（原始图像 + 中间产物 + 结构化输出）；④ 重跑与回填的成本（模型升级后要重跑 1 亿页，这个数字往往决定架构——因此**中间产物必须持久化并可增量重算**）；⑤ 给出「单页成本 × 1 亿页 = 总账」的算式，并讨论用便宜模型先筛、贵模型只处理困难页的分层策略（链到 [[system-design-09]]）。",
+        "质量与评测（链到 [[evaluation-04]]）：① 字段级指标（精确匹配率、字符错误率、金额/日期的严格正确率）而不是整页相似度；② **按文档类型与字段分层报告**（某些字段永远更难，平均值会掩盖）；③ 置信度校准与阈值选择（决定多少比例进人审，这是成本与质量的旋钮）；④ 建立金标准集（人工标注几百到几千页，链到 [[evaluation-02]]）；⑤ 回归门禁：模型或规则变更必须在金标准集上不退化，且**金额类字段零容忍**（红线集）。可引用 DocVQA 的口径作为「文档结构理解仍是难点」的旁证：该数据集有 5 万问题、1.2 万余张文档图像，人类准确率 94.36%，而当时的模型在**需要理解文档结构**的问题上差距最大。",
+        "运维与工程细节：幂等与断点续跑（批处理必须能从任意页恢复）、死信队列与人工兜底、版本化（每份文档记录用了哪个模型/规则版本）、审计与可追溯（结构化字段必须能回溯到原图坐标——这是「可核对」的基础，链到 [[rag-12]] 的归因思路）、以及隐私（合同与发票含 PII，链到 [[safety-07]]）。最后把它接到下游：结构化结果与原文一起入库供检索（链到 [[rag-10]]、[[multimodal-10]]）。",
+        "常见追问：为什么不能直接上多模态大模型做端到端抽取（成本、可复现性、字段校准、以及大批量吞吐）？手写与印章怎么处理？模板变更如何快速适配？"
+      ]
+    },
+    {
+      "id": "system-design-07",
+      "order": 7,
+      "file": "docs/AI 系统设计/07-为包含数千张表的数仓设计 Text-to-SQL 系统.md",
+      "question": "为包含数千张表的数仓设计一个 Text-to-SQL 系统。",
+      "question_en": "Design a text-to-SQL system for a warehouse with thousands of tables.",
+      "asked_at": ["Databricks", "Palantir"],
+      "level": "高阶",
+      "tags": ["系统设计", "text-to-sql", "schema-检索", "自纠错"],
+      "sources": [
+        { "title": "Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL Task（延伸）", "url": "https://arxiv.org/abs/1809.08887", "author": "Yu et al. (EMNLP 2018)", "published": "2018-09-24" },
+        { "title": "Can LLM Already Serve as A Database Interface? A BIg Bench for Large-Scale Database Grounded Text-to-SQLs（BIRD）（延伸）", "url": "https://arxiv.org/abs/2305.03111", "author": "Li et al. (NeurIPS 2023)", "published": "2023-05-04" },
+        { "title": "Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows（延伸）", "url": "https://arxiv.org/abs/2411.07763", "author": "Lei et al. (ICLR 2025)", "published": "2024-11-12" },
+        { "title": "CHESS: Contextual Harnessing for Efficient SQL Synthesis（延伸）", "url": "https://arxiv.org/abs/2405.16755", "author": "Talaei et al.", "published": "2024-05-27" },
+        { "title": "DIN-SQL: Decomposed In-Context Learning of Text-to-SQL with Self-Correction（延伸）", "url": "https://arxiv.org/abs/2304.11015", "author": "Pourreza & Rafiei (NeurIPS 2023)", "published": "2023-04-21" }
+      ],
+      "related": ["rag-09", "agents-06", "evaluation-10", "system-design-06", "agents-02"],
+      "brief": [
+        "先澄清需求：**数千张表、可能上万列**的数仓，用户是分析师还是业务人员、查询的复杂度（单表聚合 vs 多表 join vs 窗口函数）、口径与指标是否有语义层（dbt/指标平台）、失败容忍度（SQL 报错可重试，但**查错表得出错误数字**是事故）、以及权限（行级/列级权限必须在生成与执行两侧都生效，链到 [[rag-08]]）。要指出本题的真正难点不是「写 SQL」，而是**在数千张表里找到对的那几张、并写对语义**。",
+        "讲清 schema 规模带来的第一个问题——**schema linking**（也叫 schema 检索）：把数千张表塞进上下文是不可能的（token 成本与噪声），所以必须先做**schema 裁剪**：① 用嵌入检索表/列描述与样例值来召回候选（链到 [[rag-02]]）；② 用**数据画像**（列的唯一值数、分布、样例值、外键关系）来消歧（可引用 BIRD 的口径说明「数据库取值」的重要性：该基准强调真实数据库的脏数据、自然语言问题与数据库取值之间的外部知识、以及大规模数据库下的 SQL 效率，并指出当时最好的模型（ChatGPT）执行准确率只有 40.08%，而人类是 92.96%）；③ 用查询日志与历史 SQL 做协同过滤（问相似问题的人用了哪些表）；④ 用血缘/ER 关系扩展（选中一张表就把 join 路径上的邻居带进来）。可引用 CHESS 的口径作为工程范式：它把整个任务拆成四个专门 agent——信息检索器、**模式选择器（把巨大 schema 剪成可管理的子模式，提升约 2% 准确率并减少约 5 倍 LLM token）**、候选生成器与单元测试器（用 LLM 生成的自然语言单元测试验证查询）——这正好对应本题的三个核心子系统。",
+        "生成策略要给对比：① 一次性生成（简单但脆弱）；② **分解式生成**（先判断需要哪些表/列、再识别问题里的实体与计算、最后生成 SQL 并按子问题拼装；可引用 DIN-SQL 的口径：把生成问题拆成子问题并把子问题答案喂回模型能稳定提升约 10% 的简单 few-shot 准确率，在 Spider 上把执行准确率从 79.9 推到 85.3，在 BIRD 上达到 55.9%）；③ **多候选 + 投票/自洽**（生成多条 SQL，按执行结果一致性或解释器验证选优）；④ **自纠错循环**（执行报错→把错误信息与 schema 回灌重写，链到 [[agents-02]] 的错误回灌）。",
+        "执行安全与护栏（这是企业场景的必答项）：① **只读连接与资源限制**（超时、扫描量上限、禁止 DDL/DML）；② **SQL 校验与改写**（解析 AST 后加 LIMIT、强制分区过滤、拒绝危险函数）；③ 权限——生成期用 schema 过滤（用户看不到的表不进候选），执行期用数据库自身的行列权限兜底（双层防护，链到 [[rag-08]]）；④ **成本护栏**（大表全扫的查询要拦下或提示，链到 [[inference-serving-12]] 的成本思路）；⑤ 可审计（记录问题、生成的 SQL、执行结果与用户，链到 [[agents-10]]）。",
+        "结果与语义层：SQL 返回的是数字，用户要的是答案——所以要有结果解释、单位与口径说明、以及「这个指标的计算方式」的透明化；如果企业已有语义层/指标平台，**优先把问题路由到预定义指标**而不是让模型自由生成（准确率与一致性都更高，链到 [[system-design-09]] 的路由思路）；自由生成作为兜底，并标注「这是模型生成的查询」。",
+        "评测与迭代（要引用三个基准说明难度的演进，并标注口径）：Spider 是跨域 text-to-SQL 的经典基准（10,181 个问题、5,693 条复杂 SQL、200 个数据库、138 个领域，并要求在**未见过的数据库**上泛化）；BIRD 强调大规模真实数据库（12,751 对数据、95 个数据库、33.4 GB、37 个专业领域，最好模型 40.08% vs 人类 92.96%）；而 **Spider 2.0 把难度拉到企业级工作流**（632 个来自真实企业场景的问题，数据库常含 1000+ 列、分布在 BigQuery/Snowflake 等系统，问题常需要查元数据与文档、写多条 SQL、单条超过 100 行；论文报告基于 o1-preview 的 agent 框架只解决了 21.3%，而在 Spider 1.0 上是 91.2%、BIRD 上是 73.0%）。这三条引用连起来正好论证：**学术基准上的高分不代表企业可用**，因此内部评测必须用自己的数仓问题集（按复杂度分层：单表/多表/窗口/需口径澄清），并以**执行结果正确性**（而不是 SQL 文本相似度）为主指标（链到 [[evaluation-10]] 的任务级评测思路）。",
+        "常见追问：为什么不让模型直接看全部 schema（token 成本与噪声，用 CHESS 的 5 倍 token 口径回答）？用户的问题本身有歧义怎么办（澄清式交互，链到 [[agents-11]]）？怎么防止「查错表但语法正确」（结果校验与对账、单元测试，链到 [[evaluation-04]]）？"
+      ]
+    },
+    {
+      "id": "system-design-08",
+      "order": 8,
+      "file": "docs/AI 系统设计/08-设计一个会议助手：录音、diarisation、摘要、行动项与集成.md",
+      "question": "设计一个会议助手：录音、diarisation、摘要、行动项、集成。",
+      "question_en": "Design a meeting assistant: recording, diarisation, summarization, action items, integrations.",
+      "asked_at": ["Microsoft"],
+      "level": "高阶",
+      "tags": ["系统设计", "会议助手", "diarisation", "摘要"],
+      "sources": [
+        { "title": "pyannote.audio: neural building blocks for speaker diarization（延伸）", "url": "https://arxiv.org/abs/1911.01255", "author": "Bredin et al. (ICASSP 2020)", "published": "2019-11-04" },
+        { "title": "End-to-End Neural Speaker Diarization with Self-attention（延伸）", "url": "https://arxiv.org/abs/1909.06247", "author": "Fujita et al. (ASRU 2019)", "published": "2019-09-13" },
+        { "title": "QMSum: A New Benchmark for Query-based Multi-domain Meeting Summarization（延伸）", "url": "https://arxiv.org/abs/2104.05938", "author": "Zhong et al. (NAACL 2021)", "published": "2021-04-13" },
+        { "title": "MeetingBank: A Benchmark Dataset for Meeting Summarization（延伸）", "url": "https://arxiv.org/abs/2305.17529", "author": "Hu et al. (ACL 2023)", "published": "2023-05-27" }
+      ],
+      "related": ["multimodal-09", "multimodal-05", "agents-11", "evaluation-10", "rag-11"],
+      "brief": [
+        "先澄清需求与形态：是**实时会议中**的助手（字幕、实时提示）还是**会后**处理（纪要、行动项）——两者的延迟与架构完全不同（实时要求低延迟流式，链到 [[multimodal-03]]；会后可以批量与重跑）。再定清楚：参会人数与语言（多语言/口音）、是否有录制同意（合规！必须显式取得，链到 [[safety-07]]）、输出物清单（纪要、决策、行动项、待跟进问题、章节索引）、以及集成目标（日历、IM、任务系统、CRM）。",
+        "音频链路要分段讲并给出技术选择：① 采集（各路音轨 vs 混音——**拿到每人独立音轨能极大简化 diarisation**，这是架构上的关键判断）；② VAD 与切分；③ ASR（流式 vs 批量、领域词表与热词、多语言，链到 [[multimodal-07]]）；④ **diarisation 与角色归属**——可引用两条口径：基于聚类的路线有「不是直接优化 diarisation 误差」与「无法正确处理说话人重叠」两个根本问题（EEND 论文对聚类路线的批评），而端到端神经 diarisation（用自注意力直接输出每帧说话人活动）能显著优于聚类方法并支持重叠；工程落地则常用模块化工具链（pyannote.audio 提供 VAD、说话人变化检测、重叠语音检测与说话人嵌入等可训练模块，可组合优化）。再强调「角色归属」是独立一步：把 SPEAKER_00/01 映射到「主持人/客户/记录人」需要靠日历参会人、发言模式与内容线索（链到 [[multimodal-09]]）。⑤ 时间戳对齐（字幕、章节、证据定位都依赖它）。",
+        "摘要与行动项（本题的业务核心，要讲清「怎么保证不失真」）：① **分层摘要**——先按话题/时间段切分并逐段摘要，再做全局摘要（避免一次塞进两小时转写文本，链到 [[llm-internals-13]] 的长上下文退化）；② **query-based 摘要**——可引用 QMSum 的口径：会议摘要的实用形态是「针对某个查询选取并总结会议中的相关片段」，该基准包含 232 场会议、1,808 个查询-摘要对，并证明这对模型仍是显著挑战；③ 行动项抽取要**带证据**（每条行动项给出谁、做什么、何时、以及**原文出处的时间戳**）——这是「可核对」的关键（链到 [[rag-12]]）；④ 决议与未决问题分开列（不要把讨论当成结论）；⑤ 用结构化输出约束格式（链到 [[agents-03]]）；⑥ 低置信度时明确标注「不确定」而不是编造（链到 [[evaluation-03]]）。可引用 MeetingBank 的口径作为「切分与对齐」思路的参考：它把专业撰写的会议纪要拆成短段落并与会议的具体片段对齐，把长会议摘要分解成更小的可管理任务（ACL 2023）。",
+        "集成与工作流：日历（自动入会/获取参会人）、IM（会后推送纪要）、任务系统（行动项生成任务并指派人）、以及检索（历史会议可被搜索——把转写与摘要入库，链到 [[system-design-01]] 的索引与 [[rag-11]] 的更新）。要讲清**幂等与去重**（同一会议被重复处理不能重复建任务，链到 [[agents-02]]）与**权限继承**（会议内容只对参会人可见，链到 [[rag-08]]）。",
+        "评测与质量（链到 [[evaluation-10]]）：① ASR 侧——按口音/语言/噪声分群的 WER（链到 [[multimodal-06]]）；② diarisation 侧——DER 与**角色归属准确率**（后者才是用户感知）；③ 摘要侧——人工评分（覆盖度、忠实度、简洁度）+ 行动项抽取的精确率/召回率（**漏掉一个行动项比多写一条更严重**，所以召回优先）+ 关键实体（人名、日期、金额）的准确率；④ 业务指标——会后任务的实际完成率、用户编辑率（如果用户总要改纪要，说明质量不够）。",
+        "合规与安全（会议场景必须单独讲）：录音同意与留存期限、参会人可见性、敏感内容的处理（HR/法务会议）、转写文本的 PII（链到 [[safety-07]]）、以及声纹作为生物特征的使用边界（链到 [[multimodal-09]]）。",
+        "常见追问：实时与会后两条链路能否共用一套模型？多人重叠说话时怎么办？如何避免摘要把「讨论」写成「决议」？"
+      ]
+    },
+    {
+      "id": "system-design-09",
+      "order": 9,
+      "file": "docs/AI 系统设计/09-设计一个 LLM gateway：路由、故障转移、缓存、预算与限流.md",
+      "question": "设计一个 LLM gateway：跨供应商路由、故障转移、缓存、预算与 rate limit。",
+      "question_en": "Design an LLM gateway: multi-provider routing, failover, caching, budgets and rate limits.",
+      "asked_at": ["Perplexity", "Palantir"],
+      "level": "高阶",
+      "tags": ["系统设计", "gateway", "路由", "缓存", "限流"],
+      "sources": [
+        { "title": "LLM 路由", "url": "https://outcomeschool.com/blog/llm-routing", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "语义缓存是如何工作的？", "url": "https://outcomeschool.com/blog/how-does-semantic-caching-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "RouteLLM: Learning to Route LLMs with Preference Data（延伸）", "url": "https://arxiv.org/abs/2406.18665", "author": "Ong et al.", "published": "2024-06-26" },
+        { "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance（延伸）", "url": "https://arxiv.org/abs/2305.05176", "author": "Chen, Zaharia, Zou", "published": "2023-05-09" },
+        { "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（vLLM）（延伸）", "url": "https://arxiv.org/abs/2309.06180", "author": "Kwon et al. (SOSP 2023)", "published": "2023-09-12" }
+      ],
+      "related": ["inference-serving-05", "inference-serving-09", "inference-serving-12", "system-design-10", "evaluation-07"],
+      "brief": [
+        "先明确 gateway 的定位与边界：它是**所有模型调用的统一入口**，价值在于（a）把「模型选择」变成可运维的策略，（b）提供跨供应商的韧性与配额管理，（c）统一成本、可观测与合规（链到 [[evaluation-07]]）。要先说清它**不**负责什么（不改业务提示词逻辑、不做业务级缓存决策），避免把 gateway 说成一个万能层。",
+        "路由要分层讲（从便宜到贵，这是题眼）：① **规则路由**——按任务类型/租户/成本上限直接映射到模型（最简单、最可预测）；② **学习式路由**——可引用 RouteLLM 的口径：用人类偏好数据训练路由器在强/弱模型之间动态选择，在多个基准上把成本降低 2 倍以上而不牺牲回答质量，并且**换掉强弱模型对之后仍能工作**（迁移性）；③ **级联（cascade）**——先问便宜模型，置信度不足再升级到贵模型，可引用 FrugalGPT 的口径：它把「提示适配、模型近似、LLM 级联」作为三类降本策略，并用级联在匹配最优单模型（如 GPT-4）表现的同时最多降低约 98% 成本，或在同等成本下把准确率提升约 4%（标注口径）；④ 语义缓存前置（见下）。要给出一张「什么查询走哪条路」的决策表与延迟预算。",
+        "缓存要讲三种并存且各有失效条件：① **精确缓存**（请求哈希完全一致）；② **语义缓存**（用嵌入相似度命中近似问题——要讲清风险：语义相近但关键约束不同的问题（金额、日期、否定词）会命中错误答案，所以要有相似度阈值 + 关键字段校验 + 不缓存高风险请求，链到 [[rag-02]] 的相似度语义）；③ **prefix/prompt 缓存**（复用相同前缀的 KV，链到 [[inference-serving-05]]）。三者都要处理**失效**：模型/提示版本变更即失效（链到 [[evaluation-08]]）、租户隔离（链到 [[rag-08]]）、以及 TTL 与容量淘汰。",
+        "故障转移与韧性：① 分类错误（限流 429、超时、5xx、内容策略拒答）并分别处置（链到 [[agents-02]] 的五类错误）；② **重试与退避**（带抖动）、**熔断**（供应商级与模型级）、**降级链**（主模型→备用同档→小模型→缓存/队列）；③ 流式的复杂度——已经吐出部分 token 后失败怎么办（不能透明重试，必须让客户端知道并从断点续传或重来）；④ **幂等**（写操作与计费去重）；⑤ 跨供应商的语义差异（同样的提示在不同模型上行为不同，降级要验证过，链到 [[evaluation-04]]）。",
+        "预算与限流（要给出算法而不只是名词）：① 限流维度——按租户/用户/API key/模型，令牌桶或滑动窗口；② **token 预算**——按请求预估 token 并在响应后按实际用量扣减（预扣 + 结算），超预算时的策略（拒绝、降级到小模型、或截断上下文）；③ 优先级与公平性（付费租户优先、防止单个租户打满）；④ 超额与告警（80%/100% 阈值）；⑤ 成本归因（把每个请求的成本打到租户/功能/会话上，链到 [[evaluation-07]]）。要指出**预算必须能按「每请求/每日/每月」三层同时约束**，否则要么被单请求打爆，要么被慢速滥用拖垮。",
+        "可观测与治理：统一 schema 记录模型、版本、token、延迟、成本、缓存命中与路由决策（链到 [[evaluation-07]] 的字段设计）；把 gateway 当作**策略执行点**（内容策略、PII 脱敏、日志脱敏，链到 [[safety-07]]）；并提供影子流量与金丝雀（新模型先影子跑再切流量）。",
+        "常见追问：语义缓存的误命中怎么防（阈值 + 关键字段 + 高风险不缓存）？供应商限流时如何平滑（排队 vs 降级 vs 拒绝，各自的用户体验）？自建推理（vLLM 这类，链到 [[inference-serving-11]]）与外部 API 如何统一编排？"
+      ]
+    },
+    {
+      "id": "system-design-10",
+      "order": 10,
+      "file": "docs/AI 系统设计/10-为数亿用户的消费级聊天助手设计服务栈.md",
+      "question": "为数亿用户的消费级聊天助手设计服务栈。",
+      "question_en": "Design the serving stack for a consumer chat assistant with hundreds of millions of users.",
+      "asked_at": ["Anthropic", "OpenAI", "Google DeepMind 与 Google AI", "Meta", "xAI"],
+      "level": "高阶",
+      "tags": ["系统设计", "容量规划", "服务栈", "推理优化"],
+      "sources": [
+        { "title": "深入 ChatGPT：按下回车之后会发生什么", "url": "https://outcomeschool.substack.com/p/inside-chatgpt-what-happens-after", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "LLM 推理优化", "url": "https://outcomeschool.com/blog/llm-inference-optimization", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving（延伸）", "url": "https://arxiv.org/abs/2401.09670", "author": "Zhong et al. (OSDI 2024)", "published": "2024-01-18" },
+        { "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）", "url": "https://arxiv.org/abs/2407.00079", "author": "Qin et al. (Moonshot AI)", "published": "2024-06-24" },
+        { "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）", "url": "https://arxiv.org/abs/2403.02310", "author": "Agrawal et al.", "published": "2024-03-04" },
+        { "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）", "url": "https://arxiv.org/abs/2312.07104", "author": "Zheng et al.", "published": "2023-12-12" },
+        { "title": "Efficiently Scaling Transformer Inference（延伸）", "url": "https://arxiv.org/abs/2211.05102", "author": "Pope et al. (Google)", "published": "2022-11-09" },
+        { "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）", "url": "https://arxiv.org/abs/2205.14135", "author": "Dao et al. (NeurIPS 2022)", "published": "2022-05-27" }
+      ],
+      "related": ["inference-serving-02", "inference-serving-09", "inference-serving-14", "inference-serving-15", "system-design-09", "evaluation-09"],
+      "brief": [
+        "先做容量规划（这是本题的主线，必须在前半段给出可复算的算式）：从 DAU 与人均会话/消息数推导峰值 QPS；按平均输入/输出 token 推导所需的总 token 吞吐；再用本仓库已有常数算 GPU 数（H100 bf16 989 TFLOPs dense、3.35 TB/s HBM、roofline 295 FLOPs/byte、LLaMA-3-70B 每 token KV cache 约 320 KiB）。给出「峰值 QPS → 每请求输出 token → 总 token/s → 按 MFU 折算 GPU 数」的完整链条，并指出**峰值与均值差距（通常 3–10 倍）决定了必须做弹性与排队**。所有假设写在明面上。",
+        "请求链路要完整画出来（每一步的延迟与失败模式）：客户端 → 边缘/BFF（鉴权、限流）→ gateway（路由/缓存/预算，链到 [[system-design-09]]）→ 会话与状态服务（历史管理、上下文裁剪）→ 检索/工具（如需，链到 [[system-design-01]]）→ 推理集群 → 流式回传 → 安全与合规（输入输出护栏，链到 [[safety-04]]）→ 计费与遥测（链到 [[evaluation-07]]）。要说明**流式是从第一跳就要支持的**（用户感知的是 TTFT，链到 [[inference-serving-09]]）。",
+        "推理集群的设计要引用真实系统的经验（这些是本题含金量最高的部分，每条都要给口径）：① **连续批处理与分页 KV**——可引用 vLLM/PagedAttention 的口径（受操作系统虚拟内存与分页启发，KV cache 近零浪费并支持请求内/跨请求共享，同延迟下吞吐提升 2–4 倍，序列越长、模型越大收益越明显，链到 [[inference-serving-02]]、[[inference-serving-03]]）；② **chunked prefill**——可引用 Sarathi-Serve 的口径（把 prefill 切成近似等长的块，构造无停顿调度，在尾延迟约束下显著提升服务容量：Mistral-7B 单 A100 上 2.6 倍、Yi-34B 双 A100 上 3.7 倍、Falcon-180B 配流水并行时 5.6 倍，链到 [[inference-serving-14]]）；③ **prefill/decode 分离**——可引用 DistServe 的口径（把两阶段放到不同 GPU 上以消除相互干扰，并按 TTFT/TPOT 需求分别优化资源与并行策略，在满足 90% 以上请求延迟约束的前提下可服务 7.4 倍请求或收紧 12.6 倍 SLO，链到 [[inference-serving-15]]）；④ **以 KVCache 为中心的分离式缓存**——可引用 Mooncake 的口径（把预填充与解码集群分离，并利用 GPU 集群中闲置的 CPU/DRAM/SSD 构建分离式 KVCache 缓存，用 KVCache 中心调度器在最大化有效吞吐与满足 SLO 之间权衡，并针对过载场景设计了基于预测的提前拒绝策略；论文报告在真实负载下让 Kimi 多处理 75% 的请求）；⑤ **前缀/前缀树复用**——可引用 SGLang 的口径（RadixAttention 做 KV cache 复用、用压缩有限状态机加速结构化输出解码，在多类工作负载上吞吐最高提升 6.4 倍，链到 [[inference-serving-05]]）；⑥ 注意力内核——可引用 FlashAttention 的口径（IO 感知的分块算法减少 HBM 读写，训练端到端加速并支持更长上下文，链到 [[llm-internals-05]]）；⑦ 并行与量化——可引用 Efficiently Scaling Transformer Inference 的口径（用解析模型选择多维切分，在 540B 模型上以 int8 权重量化达到低 batch 29ms/token 的延迟、大 batch 76% MFU，并指出多查询注意力让上下文长度可扩大 32 倍）。",
+        "多租户与公平性：把集群按流量分层（免费/付费/企业）用**独立的池或调度权重**，避免免费流量拖垮付费 SLO；给出排队策略（准入控制、优先级队列、过载时快速拒绝而不是无限排队——可引用 Mooncake 的早期拒绝策略）；以及「降级阶梯」（小模型、更短输出、关闭工具、缓存回答）。",
+        "上下文与状态：会话历史的管理（裁剪、摘要、链到 [[agents-07]]）、上下文长度与成本的权衡（长上下文让 TTFT 与 KV 显存都上升，链到 [[llm-internals-13]]）、以及跨请求的 prefix 复用（系统提示与工具定义是天然的共享前缀，链到 [[inference-serving-05]]）。给出一个「系统提示 2000 token × 每天 10 亿请求」的成本量级来体现前缀缓存的价值（自己算）。",
+        "发布与可靠性：多区域部署（就近接入、区域故障切换）、推理集群的滚动升级（模型版本灰度，链到 [[evaluation-08]]）、以及**容量与质量的联合实验**（新模型上线要看质量、延迟、成本三条曲线，链到 [[evaluation-09]]）；最后给出 SLA/SLO 定义（TTFT/TPOT/可用性）与错误预算。",
+        "常见追问：为什么不能简单地堆 GPU（成本与利用率，MFU 与 batch 的关系）？峰值流量怎么处理（排队 + 降级 + 弹性，而不是按峰值配置）？自建与外部 API 如何混合（链到 [[inference-serving-11]]）？"
+      ]
+    }
+  ]
+}

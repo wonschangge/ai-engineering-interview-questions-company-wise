@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T11:32:33.511Z",
+  "generated": "2026-09-28T11:59:04.998Z",
   "stats": {
-    "topics": 8,
-    "questions": 97,
+    "topics": 9,
+    "questions": 107,
     "planned": 598
   },
   "topics": [
@@ -4457,6 +4457,576 @@
           ],
           "updated": "2026-09-28",
           "chars": 10984
+        }
+      ]
+    },
+    {
+      "id": "system-design",
+      "title": "AI 系统设计",
+      "order": 9,
+      "summary": "十道端到端设计题：企业级权限 RAG、代码助手、客服 agent、商品语义搜索、内容审核、文档智能、Text-to-SQL、会议助手、LLM gateway、消费级聊天服务栈。",
+      "declaredTotal": 10,
+      "updated": "2026-09-28",
+      "dir": "AI 系统设计",
+      "overviewFile": "AI 系统设计/README.md",
+      "overviewTitle": "AI 系统设计",
+      "questions": [
+        {
+          "id": "system-design-01",
+          "order": 1,
+          "title": "设计一个面向 1000 万文档、按用户权限隔离的企业级 RAG 助手。",
+          "titleEn": "Design an enterprise RAG assistant over 10M documents with per-user permission isolation.",
+          "file": "AI 系统设计/01-设计一个面向 1000 万文档、按权限隔离的企业级 RAG 助手.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "企业-rag",
+            "权限",
+            "容量规划"
+          ],
+          "askedAt": [
+            "OpenAI",
+            "Microsoft",
+            "Amazon（AWS）",
+            "Databricks",
+            "Scale AI"
+          ],
+          "related": [
+            "rag-08",
+            "rag-09",
+            "rag-11",
+            "system-design-09",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (NeurIPS 2020)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization（延伸）",
+              "url": "https://arxiv.org/abs/2404.16130",
+              "author": "Edge et al. (Microsoft)",
+              "published": "2024-04-24"
+            },
+            {
+              "title": "Document-level security（Elasticsearch 参考文档）（延伸）",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/document-level-security.html",
+              "author": "Elasticsearch",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10940
+        },
+        {
+          "id": "system-design-02",
+          "order": 2,
+          "title": "设计一个代码助手：仓库索引、上下文组装、编辑应用、评估。",
+          "titleEn": "Design a coding assistant: repo indexing, context assembly, edit application, evaluation.",
+          "file": "AI 系统设计/02-设计一个代码助手：仓库索引、上下文组装、编辑应用与评估.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "代码助手",
+            "仓库索引",
+            "评估"
+          ],
+          "askedAt": [
+            "Cursor（Anysphere）"
+          ],
+          "related": [
+            "rag-01",
+            "rag-03",
+            "system-design-01",
+            "agents-05",
+            "evaluation-10"
+          ],
+          "sources": [
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Claude Code 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems（延伸）",
+              "url": "https://arxiv.org/abs/2306.03091",
+              "author": "Liu et al.",
+              "published": "2023-06-05"
+            },
+            {
+              "title": "CodeRAG-Bench: Can Retrieval Augment Code Generation?（延伸）",
+              "url": "https://arxiv.org/abs/2406.14497",
+              "author": "Wang et al.",
+              "published": "2024-06-20"
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11005
+        },
+        {
+          "id": "system-design-03",
+          "order": 3,
+          "title": "设计一个能够执行真实操作的客服 agent，并支持升级到人工。",
+          "titleEn": "Design a customer-support agent that takes real actions and escalates to humans.",
+          "file": "AI 系统设计/03-设计一个能执行真实操作并支持升级人工的客服 agent.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "客服-agent",
+            "升级人工",
+            "可逆性"
+          ],
+          "askedAt": [
+            "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）",
+            "Sierra"
+          ],
+          "related": [
+            "agents-11",
+            "agents-10",
+            "agents-02",
+            "system-design-09",
+            "rag-08"
+          ],
+          "sources": [
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10348
+        },
+        {
+          "id": "system-design-04",
+          "order": 4,
+          "title": "为大型商品目录设计语义搜索。",
+          "titleEn": "Design semantic search for a large product catalog.",
+          "file": "AI 系统设计/04-为大型商品目录设计语义搜索.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "语义搜索",
+            "电商",
+            "排序"
+          ],
+          "askedAt": [
+            "Character.AI"
+          ],
+          "related": [
+            "rag-02",
+            "rag-03",
+            "rag-09",
+            "system-design-09",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "语义搜索是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-semantic-search-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Semantic Product Search（延伸）",
+              "url": "https://arxiv.org/abs/1907.00937",
+              "author": "Nigam et al. (Amazon, KDD 2019)",
+              "published": "2019-07-01"
+            },
+            {
+              "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）",
+              "url": "https://arxiv.org/abs/2104.08663",
+              "author": "Thakur et al. (NeurIPS 2021)",
+              "published": "2021-04-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10198
+        },
+        {
+          "id": "system-design-05",
+          "order": 5,
+          "title": "设计一个结合分类器与 LLM 的内容审核系统。",
+          "titleEn": "Design a content moderation system that combines classifiers with LLMs.",
+          "file": "AI 系统设计/05-设计一个结合分类器与 LLM 的内容审核系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "内容审核",
+            "分类器",
+            "人审"
+          ],
+          "askedAt": [
+            "Meta"
+          ],
+          "related": [
+            "safety-04",
+            "evaluation-01",
+            "safety-10",
+            "system-design-10",
+            "evaluation-02"
+          ],
+          "sources": [
+            {
+              "title": "A Holistic Approach to Undesired Content Detection in the Real World（延伸）",
+              "url": "https://arxiv.org/abs/2208.03274",
+              "author": "Markov et al. (OpenAI, AAAI 2023)",
+              "published": "2022-08-05"
+            },
+            {
+              "title": "ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation（延伸）",
+              "url": "https://arxiv.org/abs/2310.17389",
+              "author": "Lin et al. (EMNLP Findings 2023)",
+              "published": "2023-10-26"
+            },
+            {
+              "title": "ToxiGen: A Large-Scale Machine-Generated Dataset for Adversarial and Implicit Hate Speech Detection（延伸）",
+              "url": "https://arxiv.org/abs/2203.09509",
+              "author": "Hartvigsen et al. (ACL 2022)",
+              "published": "2022-03-17"
+            },
+            {
+              "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations（延伸）",
+              "url": "https://arxiv.org/abs/2312.06674",
+              "author": "Inan et al. (Meta)",
+              "published": "2023-12-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 13196
+        },
+        {
+          "id": "system-design-06",
+          "order": 6,
+          "title": "设计一个文档智能 pipeline：输入扫描版 PDF，输出结构化字段，规模达到 1000 万文档。",
+          "titleEn": "Design a document intelligence pipeline: scanned PDFs in, structured fields out, at 10M documents.",
+          "file": "AI 系统设计/06-设计一个 1000 万文档规模的扫描件结构化 pipeline.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "文档智能",
+            "ocr",
+            "批处理"
+          ],
+          "askedAt": [
+            "Palantir"
+          ],
+          "related": [
+            "rag-10",
+            "rag-11",
+            "multimodal-10",
+            "evaluation-04",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "OCR-free Document Understanding Transformer（Donut）（延伸）",
+              "url": "https://arxiv.org/abs/2111.15664",
+              "author": "Kim et al. (ECCV 2022)",
+              "published": "2021-11-30"
+            },
+            {
+              "title": "LayoutLMv3: Pre-training for Document AI with Unified Text and Image Masking（延伸）",
+              "url": "https://arxiv.org/abs/2204.08387",
+              "author": "Huang et al. (ACM MM 2022)",
+              "published": "2022-04-18"
+            },
+            {
+              "title": "PubTables-1M: Towards comprehensive table extraction from unstructured documents（延伸）",
+              "url": "https://arxiv.org/abs/2110.00061",
+              "author": "Smock et al. (CVPR 2022)",
+              "published": "2021-09-30"
+            },
+            {
+              "title": "PubLayNet: largest dataset ever for document layout analysis（延伸）",
+              "url": "https://arxiv.org/abs/1908.07836",
+              "author": "Zhong et al.",
+              "published": "2019-08-16"
+            },
+            {
+              "title": "DocVQA: A Dataset for VQA on Document Images（延伸）",
+              "url": "https://arxiv.org/abs/2007.00398",
+              "author": "Mathew et al. (WACV 2021)",
+              "published": "2020-07-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 12998
+        },
+        {
+          "id": "system-design-07",
+          "order": 7,
+          "title": "为包含数千张表的数仓设计一个 Text-to-SQL 系统。",
+          "titleEn": "Design a text-to-SQL system for a warehouse with thousands of tables.",
+          "file": "AI 系统设计/07-为包含数千张表的数仓设计 Text-to-SQL 系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "text-to-sql",
+            "schema-检索",
+            "自纠错"
+          ],
+          "askedAt": [
+            "Databricks",
+            "Palantir"
+          ],
+          "related": [
+            "rag-09",
+            "agents-06",
+            "evaluation-10",
+            "system-design-06",
+            "agents-02"
+          ],
+          "sources": [
+            {
+              "title": "Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL Task（延伸）",
+              "url": "https://arxiv.org/abs/1809.08887",
+              "author": "Yu et al. (EMNLP 2018)",
+              "published": "2018-09-24"
+            },
+            {
+              "title": "Can LLM Already Serve as A Database Interface? A BIg Bench for Large-Scale Database Grounded Text-to-SQLs（BIRD）（延伸）",
+              "url": "https://arxiv.org/abs/2305.03111",
+              "author": "Li et al. (NeurIPS 2023)",
+              "published": "2023-05-04"
+            },
+            {
+              "title": "Spider 2.0: Evaluating Language Models on Real-World Enterprise Text-to-SQL Workflows（延伸）",
+              "url": "https://arxiv.org/abs/2411.07763",
+              "author": "Lei et al. (ICLR 2025)",
+              "published": "2024-11-12"
+            },
+            {
+              "title": "CHESS: Contextual Harnessing for Efficient SQL Synthesis（延伸）",
+              "url": "https://arxiv.org/abs/2405.16755",
+              "author": "Talaei et al.",
+              "published": "2024-05-27"
+            },
+            {
+              "title": "DIN-SQL: Decomposed In-Context Learning of Text-to-SQL with Self-Correction（延伸）",
+              "url": "https://arxiv.org/abs/2304.11015",
+              "author": "Pourreza & Rafiei (NeurIPS 2023)",
+              "published": "2023-04-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 12106
+        },
+        {
+          "id": "system-design-08",
+          "order": 8,
+          "title": "设计一个会议助手：录音、diarisation、摘要、行动项、集成。",
+          "titleEn": "Design a meeting assistant: recording, diarisation, summarization, action items, integrations.",
+          "file": "AI 系统设计/08-设计一个会议助手：录音、diarisation、摘要、行动项与集成.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "会议助手",
+            "diarisation",
+            "摘要"
+          ],
+          "askedAt": [
+            "Microsoft"
+          ],
+          "related": [
+            "multimodal-09",
+            "multimodal-05",
+            "agents-11",
+            "evaluation-10",
+            "rag-11"
+          ],
+          "sources": [
+            {
+              "title": "pyannote.audio: neural building blocks for speaker diarization（延伸）",
+              "url": "https://arxiv.org/abs/1911.01255",
+              "author": "Bredin et al. (ICASSP 2020)",
+              "published": "2019-11-04"
+            },
+            {
+              "title": "End-to-End Neural Speaker Diarization with Self-attention（延伸）",
+              "url": "https://arxiv.org/abs/1909.06247",
+              "author": "Fujita et al. (ASRU 2019)",
+              "published": "2019-09-13"
+            },
+            {
+              "title": "QMSum: A New Benchmark for Query-based Multi-domain Meeting Summarization（延伸）",
+              "url": "https://arxiv.org/abs/2104.05938",
+              "author": "Zhong et al. (NAACL 2021)",
+              "published": "2021-04-13"
+            },
+            {
+              "title": "MeetingBank: A Benchmark Dataset for Meeting Summarization（延伸）",
+              "url": "https://arxiv.org/abs/2305.17529",
+              "author": "Hu et al. (ACL 2023)",
+              "published": "2023-05-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11300
+        },
+        {
+          "id": "system-design-09",
+          "order": 9,
+          "title": "设计一个 LLM gateway：跨供应商路由、故障转移、缓存、预算与 rate limit。",
+          "titleEn": "Design an LLM gateway: multi-provider routing, failover, caching, budgets and rate limits.",
+          "file": "AI 系统设计/09-设计一个 LLM gateway：路由、故障转移、缓存、预算与限流.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "gateway",
+            "路由",
+            "缓存",
+            "限流"
+          ],
+          "askedAt": [
+            "Perplexity",
+            "Palantir"
+          ],
+          "related": [
+            "inference-serving-05",
+            "inference-serving-09",
+            "inference-serving-12",
+            "system-design-10",
+            "evaluation-07"
+          ],
+          "sources": [
+            {
+              "title": "LLM 路由",
+              "url": "https://outcomeschool.com/blog/llm-routing",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "语义缓存是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-semantic-caching-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "RouteLLM: Learning to Route LLMs with Preference Data（延伸）",
+              "url": "https://arxiv.org/abs/2406.18665",
+              "author": "Ong et al.",
+              "published": "2024-06-26"
+            },
+            {
+              "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance（延伸）",
+              "url": "https://arxiv.org/abs/2305.05176",
+              "author": "Chen, Zaharia, Zou",
+              "published": "2023-05-09"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（vLLM）（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (SOSP 2023)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11556
+        },
+        {
+          "id": "system-design-10",
+          "order": 10,
+          "title": "为数亿用户的消费级聊天助手设计服务栈。",
+          "titleEn": "Design the serving stack for a consumer chat assistant with hundreds of millions of users.",
+          "file": "AI 系统设计/10-为数亿用户的消费级聊天助手设计服务栈.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "容量规划",
+            "服务栈",
+            "推理优化"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "OpenAI",
+            "Google DeepMind 与 Google AI",
+            "Meta",
+            "xAI"
+          ],
+          "related": [
+            "inference-serving-02",
+            "inference-serving-09",
+            "inference-serving-14",
+            "inference-serving-15",
+            "system-design-09",
+            "evaluation-09"
+          ],
+          "sources": [
+            {
+              "title": "深入 ChatGPT：按下回车之后会发生什么",
+              "url": "https://outcomeschool.substack.com/p/inside-chatgpt-what-happens-after",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "LLM 推理优化",
+              "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al. (OSDI 2024)",
+              "published": "2024-01-18"
+            },
+            {
+              "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2407.00079",
+              "author": "Qin et al. (Moonshot AI)",
+              "published": "2024-06-24"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al.",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al.",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al. (NeurIPS 2022)",
+              "published": "2022-05-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 13391
         }
       ]
     }
