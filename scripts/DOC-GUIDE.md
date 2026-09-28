@@ -107,7 +107,7 @@ node scripts/build-site.mjs --check  # 只校验（含“数据是否过期”�
 - `catalog.json`：题解元数据与专题树，SPA 的导航来源；`file` 字段是**相对 `docs/` 的站点路径**。
 - `outline.json`：从 `README.zh-CN.md` 抽出的全量题库清单（专题题 + 公司题），用于展示「待撰写」占位与进度。
 - `search-index.json`：站内搜索索引。
-- 校验规则：front matter 必备字段、id 唯一且小写连字符、order 从 1 连续、二级标题逐字匹配、`$` 与代码围栏成对、`asked_at` 非空时必须写「公司变体」。
+- 校验规则：front matter 必备字段、id 唯一且小写连字符、order 从 1 连续、二级标题逐字匹配、`$` 与代码围栏成对、`asked_at` 非空时必须写「公司变体」、**文档里的相对链接必须指向真实存在的文件**（代码块内的内容不参与检查）。
 - 改了 `.md` 之后必须重新运行构建，否则 `--check` 会报「数据已过期」，Pages 工作流也会因此失败。
 - 站点回归测试：`npm i -D jsdom && node scripts/test-site.mjs`（没有 jsdom 时可用 `JSDOM_MODULE=<jsdom/lib/api.js 路径>` 指定）。它用 jsdom 真跑一遍 SPA，断言路由、渲染、公式、搜索与链接改写；期望值从 `docs/data/*.json` 推导，新增专题不用改测试。
 - 站点资产（marked / KaTeX / highlight.js）已经 vendored 到 `docs/assets/site/vendor/`，不要改成 CDN 引用。

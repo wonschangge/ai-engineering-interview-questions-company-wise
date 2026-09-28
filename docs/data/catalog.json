@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T08:08:03.751Z",
+  "generated": "2026-09-28T08:38:14.229Z",
   "stats": {
-    "topics": 3,
-    "questions": 43,
+    "topics": 4,
+    "questions": 55,
     "planned": 598
   },
   "topics": [
@@ -1921,6 +1921,539 @@
           ],
           "updated": "2026-09-28",
           "chars": 9708
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "title": "Agent 与工具调用",
+      "order": 4,
+      "summary": "从 ReAct 循环、工具 schema 与 function calling 到 MCP、记忆、终止条件、审批与漂移诊断，覆盖把 LLM 变成可靠执行体所需的全部工程判断。",
+      "declaredTotal": 12,
+      "updated": "2026-09-28",
+      "dir": "Agent 与工具调用",
+      "overviewFile": "Agent 与工具调用/README.md",
+      "overviewTitle": "Agent 与工具调用",
+      "questions": [
+        {
+          "id": "agents-01",
+          "order": 1,
+          "title": "解释 ReAct 模式，以及相比单纯的 chain-of-thought 它解决了什么问题。",
+          "titleEn": "Explain the ReAct pattern and what it solves compared with plain chain-of-thought.",
+          "file": "Agent 与工具调用/01-解释 ReAct 模式以及它相比 chain-of-thought 解决了什么.md",
+          "level": "进阶",
+          "tags": [
+            "react",
+            "cot",
+            "工具调用",
+            "循环"
+          ],
+          "askedAt": [],
+          "related": [
+            "agents-02",
+            "agents-03",
+            "agents-08",
+            "rag-06"
+          ],
+          "sources": [
+            {
+              "title": "ReAct Agent",
+              "url": "https://outcomeschool.com/blog/react-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "How does Chain-of-Thought (CoT) Prompting work?",
+              "url": "https://outcomeschool.com/blog/how-does-chain-of-thought-prompting-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (ICLR 2023)",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2201.11903",
+              "author": "Wei et al. (NeurIPS 2022)",
+              "published": "2022-01-28"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10154
+        },
+        {
+          "id": "agents-02",
+          "order": 2,
+          "title": "在 agentic 循环中，你如何处理工具调用错误、超时和重试？",
+          "titleEn": "How do you handle tool-call errors, timeouts and retries in an agentic loop?",
+          "file": "Agent 与工具调用/02-agent 循环中如何处理工具调用错误、超时与重试.md",
+          "level": "进阶",
+          "tags": [
+            "错误处理",
+            "重试",
+            "幂等",
+            "超时"
+          ],
+          "askedAt": [
+            "OpenAI",
+            "Cognition"
+          ],
+          "related": [
+            "agents-01",
+            "agents-03",
+            "agents-09",
+            "agents-10"
+          ],
+          "sources": [
+            {
+              "title": "AI Agent Loop",
+              "url": "https://outcomeschool.com/blog/ai-agent-loop",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8292
+        },
+        {
+          "id": "agents-03",
+          "order": 3,
+          "title": "结构化输出与 function calling 有什么区别？",
+          "titleEn": "What is the difference between structured output and function calling?",
+          "file": "Agent 与工具调用/03-结构化输出与 function calling 有什么区别.md",
+          "level": "进阶",
+          "tags": [
+            "function-calling",
+            "结构化输出",
+            "约束解码",
+            "schema"
+          ],
+          "askedAt": [
+            "Mistral AI",
+            "Apple"
+          ],
+          "related": [
+            "agents-01",
+            "agents-04",
+            "agents-05",
+            "agents-08"
+          ],
+          "sources": [
+            {
+              "title": "How does Function Calling work in LLMs?",
+              "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8077
+        },
+        {
+          "id": "agents-04",
+          "order": 4,
+          "title": "什么是 MCP（Model Context Protocol）？它与传统的 function calling 有什么不同？",
+          "titleEn": "What is MCP (Model Context Protocol) and how does it differ from traditional function calling?",
+          "file": "Agent 与工具调用/04-什么是 MCP？它与传统 function calling 有什么不同.md",
+          "level": "进阶",
+          "tags": [
+            "mcp",
+            "协议",
+            "工具生态",
+            "授权"
+          ],
+          "askedAt": [
+            "Microsoft"
+          ],
+          "related": [
+            "agents-03",
+            "agents-05",
+            "agents-07",
+            "agents-10"
+          ],
+          "sources": [
+            {
+              "title": "What is MCP (Model Context Protocol)?",
+              "url": "https://outcomeschool.com/blog/what-is-mcp-model-context-protocol",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-07-28"
+            },
+            {
+              "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）",
+              "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+              "author": "Outcome School",
+              "published": ""
+            },
+            {
+              "title": "Model Context Protocol（延伸）",
+              "url": "https://modelcontextprotocol.io/",
+              "author": "Anthropic / MCP 官方文档",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10814
+        },
+        {
+          "id": "agents-05",
+          "order": 5,
+          "title": "工具数量多少算太多？你如何设计 LLM 真正能正确使用的工具 schema？",
+          "titleEn": "How many tools is too many? How do you design tool schemas an LLM can actually use correctly?",
+          "file": "Agent 与工具调用/05-工具数量多少算太多？如何设计 LLM 能正确使用的工具 schema.md",
+          "level": "进阶",
+          "tags": [
+            "工具设计",
+            "schema",
+            "上下文预算",
+            "路由"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "Cognition"
+          ],
+          "related": [
+            "agents-04",
+            "agents-03",
+            "agents-08",
+            "agents-06"
+          ],
+          "sources": [
+            {
+              "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）",
+              "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+              "author": "Outcome School",
+              "published": ""
+            },
+            {
+              "title": "Writing Tools for Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+              "author": "Anthropic",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11758
+        },
+        {
+          "id": "agents-06",
+          "order": 6,
+          "title": "多 agent 编排是如何运作的？什么情况下会失效？",
+          "titleEn": "How does multi-agent orchestration work, and when does it fail?",
+          "file": "Agent 与工具调用/06-多 agent 编排如何运作？什么情况下会失效.md",
+          "level": "高阶",
+          "tags": [
+            "多-agent",
+            "编排",
+            "失败模式",
+            "mast"
+          ],
+          "askedAt": [
+            "Cognition"
+          ],
+          "related": [
+            "agents-05",
+            "agents-09",
+            "agents-12",
+            "agents-07"
+          ],
+          "sources": [
+            {
+              "title": "Multi-Agent Systems",
+              "url": "https://outcomeschool.com/blog/multi-agent-systems",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "AI Orchestration",
+              "url": "https://outcomeschool.com/blog/ai-orchestration",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Don't Build Multi-Agents（延伸）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "Why Do Multi-Agent LLM Systems Fail?（延伸）",
+              "url": "https://arxiv.org/abs/2503.13657",
+              "author": "Cemri et al.",
+              "published": "2025-03-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9510
+        },
+        {
+          "id": "agents-07",
+          "order": 7,
+          "title": "为长时间运行的 agent 设计记忆：存什么、存在哪里、如何取回？",
+          "titleEn": "Design memory for a long-running agent: what to store, where, and how to retrieve it.",
+          "file": "Agent 与工具调用/07-为长时间运行的 agent 设计记忆.md",
+          "level": "高阶",
+          "tags": [
+            "记忆",
+            "长期任务",
+            "检索",
+            "压缩"
+          ],
+          "askedAt": [
+            "Anthropic"
+          ],
+          "related": [
+            "agents-09",
+            "agents-12",
+            "agents-04",
+            "rag-07"
+          ],
+          "sources": [
+            {
+              "title": "AI Agent Memory",
+              "url": "https://outcomeschool.com/blog/ai-agent-memory",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-28"
+            },
+            {
+              "title": "MemGPT: Towards LLMs as Operating Systems（延伸）",
+              "url": "https://arxiv.org/abs/2310.08560",
+              "author": "Packer, Wooders, Lin, Fang, Patil, Stoica, Gonzalez",
+              "published": "2023-10-12"
+            },
+            {
+              "title": "Generative Agents: Interactive Simulacra of Human Behavior（延伸）",
+              "url": "https://arxiv.org/abs/2304.03442",
+              "author": "Park, O'Brien, Cai, Morris, Liang, Bernstein (UIST 2023)",
+              "published": "2023-04-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9005
+        },
+        {
+          "id": "agents-08",
+          "order": 8,
+          "title": "agent 如何决定是调用工具，还是依据自身知识回答？",
+          "titleEn": "How does an agent decide whether to call a tool or answer from its own knowledge?",
+          "file": "Agent 与工具调用/08-agent 如何决定调用工具还是依据自身知识回答.md",
+          "level": "进阶",
+          "tags": [
+            "路由",
+            "自适应检索",
+            "self-rag",
+            "成本"
+          ],
+          "askedAt": [],
+          "related": [
+            "agents-01",
+            "agents-03",
+            "agents-05",
+            "rag-06"
+          ],
+          "sources": [
+            {
+              "title": "How does Function Calling work in LLMs?",
+              "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection（延伸）",
+              "url": "https://arxiv.org/abs/2310.11511",
+              "author": "Asai et al. (ICLR 2024)",
+              "published": "2023-10-17"
+            },
+            {
+              "title": "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity（延伸）",
+              "url": "https://arxiv.org/abs/2403.14403",
+              "author": "Jeong et al. (NAACL 2024)",
+              "published": "2024-03-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9687
+        },
+        {
+          "id": "agents-09",
+          "order": 9,
+          "title": "什么能让 agent 循环正确终止？你如何限制成本和步数？",
+          "titleEn": "What makes an agent loop terminate correctly, and how do you bound cost and steps?",
+          "file": "Agent 与工具调用/09-什么能让 agent 循环正确终止以及如何限制成本与步数.md",
+          "level": "高阶",
+          "tags": [
+            "终止条件",
+            "预算",
+            "pass-k",
+            "可靠性"
+          ],
+          "askedAt": [],
+          "related": [
+            "agents-02",
+            "agents-12",
+            "agents-06",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "AI Agent Loop",
+              "url": "https://outcomeschool.com/blog/ai-agent-loop",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Fixing Infinite Loops in AI Agents",
+              "url": "https://www.linkedin.com/posts/pallavi-shekhar_ai-aiagents-machinelearning-share-7440257380707364864-5Ycc",
+              "author": "Pallavi Shekhar",
+              "published": ""
+            },
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8457
+        },
+        {
+          "id": "agents-10",
+          "order": 10,
+          "title": "在生产系统中，你如何让 agent 的操作可逆，或者至少可审计？",
+          "titleEn": "In production, how do you make an agent's actions reversible, or at least auditable?",
+          "file": "Agent 与工具调用/10-在生产系统中如何让 agent 的操作可逆或至少可审计.md",
+          "level": "高阶",
+          "tags": [
+            "可逆性",
+            "审计",
+            "幂等",
+            "合规"
+          ],
+          "askedAt": [
+            "Palantir"
+          ],
+          "related": [
+            "agents-02",
+            "agents-11",
+            "agents-12",
+            "rag-08"
+          ],
+          "sources": [
+            {
+              "title": "AI Risk Management Framework（延伸）",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "author": "NIST",
+              "published": ""
+            },
+            {
+              "title": "Visibility into AI Agents（延伸）",
+              "url": "https://arxiv.org/abs/2401.13138",
+              "author": "Chan et al. (ACM FAccT 2024)",
+              "published": "2024-01-23"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10975
+        },
+        {
+          "id": "agents-11",
+          "order": 11,
+          "title": "为一个会执行重大操作的 agent 设计 human-in-the-loop 审批。",
+          "titleEn": "Design human-in-the-loop approval for an agent that takes consequential actions.",
+          "file": "Agent 与工具调用/11-为会执行重大操作的 agent 设计 human-in-the-loop 审批.md",
+          "level": "高阶",
+          "tags": [
+            "hitl",
+            "审批",
+            "风险分级",
+            "状态机"
+          ],
+          "askedAt": [
+            "OpenAI",
+            "Palantir"
+          ],
+          "related": [
+            "agents-10",
+            "agents-09",
+            "agents-02",
+            "rag-08"
+          ],
+          "sources": [
+            {
+              "title": "AI Risk Management Framework（延伸）",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "author": "NIST",
+              "published": ""
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "Visibility into AI Agents（延伸）",
+              "url": "https://arxiv.org/abs/2401.13138",
+              "author": "Chan et al. (ACM FAccT 2024)",
+              "published": "2024-01-23"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8970
+        },
+        {
+          "id": "agents-12",
+          "order": 12,
+          "title": "你的 agent 在长时间运行后发生漂移，自信满满地在做错误的事。请诊断。",
+          "titleEn": "Your agent drifts after running for a long time and confidently does the wrong thing. Diagnose it.",
+          "file": "Agent 与工具调用/12-agent 长时间运行后发生漂移请诊断.md",
+          "level": "高阶",
+          "tags": [
+            "漂移",
+            "诊断",
+            "误差累积",
+            "trace"
+          ],
+          "askedAt": [
+            "Cognition"
+          ],
+          "related": [
+            "agents-09",
+            "agents-07",
+            "agents-02",
+            "agents-06"
+          ],
+          "sources": [
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "AgentBench: Evaluating LLMs as Agents（延伸）",
+              "url": "https://arxiv.org/abs/2308.03688",
+              "author": "Liu et al. (ICLR 2024)",
+              "published": "2023-08-07"
+            },
+            {
+              "title": "Why Do Multi-Agent LLM Systems Fail?（延伸）",
+              "url": "https://arxiv.org/abs/2503.13657",
+              "author": "Cemri et al.",
+              "published": "2025-03-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11026
         }
       ]
     }

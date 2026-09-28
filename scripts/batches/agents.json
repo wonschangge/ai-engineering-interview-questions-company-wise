@@ -1,0 +1,661 @@
+{
+  "topic": "Agent 与工具调用",
+  "topic_id": "agents",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/Agent 与工具调用",
+  "all_questions": [
+    {
+      "id": "agents-01",
+      "order": 1,
+      "title": "解释 ReAct 模式，以及相比单纯的 chain-of-thought 它解决了什么问题。"
+    },
+    {
+      "id": "agents-02",
+      "order": 2,
+      "title": "在 agentic 循环中，你如何处理工具调用错误、超时和重试？"
+    },
+    {
+      "id": "agents-03",
+      "order": 3,
+      "title": "结构化输出与 function calling 有什么区别？"
+    },
+    {
+      "id": "agents-04",
+      "order": 4,
+      "title": "什么是 MCP（Model Context Protocol）？它与传统的 function calling 有什么不同？"
+    },
+    {
+      "id": "agents-05",
+      "order": 5,
+      "title": "工具数量多少算太多？你如何设计 LLM 真正能正确使用的工具 schema？"
+    },
+    {
+      "id": "agents-06",
+      "order": 6,
+      "title": "多 agent 编排是如何运作的？什么情况下会失效？"
+    },
+    {
+      "id": "agents-07",
+      "order": 7,
+      "title": "为长时间运行的 agent 设计记忆：存什么、存在哪里、如何取回？"
+    },
+    {
+      "id": "agents-08",
+      "order": 8,
+      "title": "agent 如何决定是调用工具，还是依据自身知识回答？"
+    },
+    {
+      "id": "agents-09",
+      "order": 9,
+      "title": "什么能让 agent 循环正确终止？你如何限制成本和步数？"
+    },
+    {
+      "id": "agents-10",
+      "order": 10,
+      "title": "在生产系统中，你如何让 agent 的操作可逆，或者至少可审计？"
+    },
+    {
+      "id": "agents-11",
+      "order": 11,
+      "title": "为一个会执行重大操作的 agent 设计 human-in-the-loop 审批。"
+    },
+    {
+      "id": "agents-12",
+      "order": 12,
+      "title": "你的 agent 在长时间运行后发生漂移，自信满满地在做错误的事。请诊断。"
+    }
+  ],
+  "questions": [
+    {
+      "id": "agents-01",
+      "order": 1,
+      "file": "docs/Agent 与工具调用/01-解释 ReAct 模式以及它相比 chain-of-thought 解决了什么.md",
+      "question": "解释 ReAct 模式，以及相比单纯的 chain-of-thought 它解决了什么问题。",
+      "question_en": "Explain the ReAct pattern and what it solves compared with plain chain-of-thought.",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": [
+        "react",
+        "cot",
+        "工具调用",
+        "循环"
+      ],
+      "sources": [
+        {
+          "title": "ReAct Agent",
+          "url": "https://outcomeschool.com/blog/react-agent",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "How does Chain-of-Thought (CoT) Prompting work?",
+          "url": "https://outcomeschool.com/blog/how-does-chain-of-thought-prompting-work",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+          "url": "https://arxiv.org/abs/2210.03629",
+          "author": "Yao et al. (ICLR 2023)",
+          "published": "2022-10-06"
+        },
+        {
+          "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models（延伸）",
+          "url": "https://arxiv.org/abs/2201.11903",
+          "author": "Wei et al. (NeurIPS 2022)",
+          "published": "2022-01-28"
+        }
+      ],
+      "related": [
+        "agents-02",
+        "agents-03",
+        "agents-08",
+        "rag-06"
+      ],
+      "brief": [
+        "先把 CoT 讲清楚：通过少样本示例让模型在给出答案前生成中间推理步骤，显著提升算术、常识与符号推理能力（可引用论文口径：8 条 CoT 示例的 540B 模型在 GSM8K 上达到当时 SOTA，超过带 verifier 的微调 GPT-3）。然后指出 CoT 的三个结构性局限：只用参数化知识、无法获取或改变外部状态、错误一旦进入推理链就会持续传播（幻觉无法被外部事实纠正）。",
+        "再讲 ReAct 的设计：把推理与行动**交错**生成，循环是 Thought → Action → Observation，其中 Action 由 runtime 执行（论文里是最简单的 Wikipedia API 或环境动作），Observation 回灌进上下文供下一步推理使用。要写清这个循环里「模型只产出文本，执行与回灌由 runtime 负责」——这是后面所有工程讨论的基础。",
+        "回答题干第二问（ReAct 相对 CoT 解决了什么），要分三点：① 能获取外部信息与时实效数据；② 观察结果可以**纠正**推理（论文里在 HotpotQA/Fever 上通过交互显著缓解幻觉与错误传播）；③ 轨迹可读、可审计，人类能看懂模型为什么这么做。补充论文的量化结果并标注口径：在 ALFWorld 与 WebShop 上相对模仿学习/RL 基线绝对成功率提升 34% 与 10%（仅用 1–2 个 in-context 示例）。",
+        "讲清 ReAct 与 CoT 不是替代关系：ReAct = 推理轨迹（Thought）+ 行动（Action），纯推理任务上 CoT 可能更好，需要外部信息时 ReAct 明显更好；可以给出「什么时候只推理、什么时候要行动」的判断。再列举 ReAct 的失败模式：动作格式解析失败、在不需要外部信息的任务上多绕几圈、一次错误的观察把后续带偏、以及 prompt 里的 few-shot 轨迹设计对稳定性影响很大。",
+        "把演化讲出来（面试官很爱追问）：文本解析式的 ReAct 已被原生 function calling / 结构化输出取代（链到 [[agents-03]]），循环本身仍是主流程（链到 [[agents-02]]、[[agents-09]]）；与 Plan-and-Execute、Reflexion、ReWOO 等变体的区别是「思考的时机与粒度」。",
+        "常见追问：ReAct 为什么比「先规划再执行」更鲁棒（每步都能根据观察调整）？为什么生产里很少直接解析 Thought/Action 文本？ReAct 与 agentic RAG 的关系（链到 [[rag-06]]）？"
+      ]
+    },
+    {
+      "id": "agents-02",
+      "order": 2,
+      "file": "docs/Agent 与工具调用/02-agent 循环中如何处理工具调用错误、超时与重试.md",
+      "question": "在 agentic 循环中，你如何处理工具调用错误、超时和重试？",
+      "question_en": "How do you handle tool-call errors, timeouts and retries in an agentic loop?",
+      "asked_at": [
+        "OpenAI",
+        "Cognition"
+      ],
+      "level": "进阶",
+      "tags": [
+        "错误处理",
+        "重试",
+        "幂等",
+        "超时"
+      ],
+      "sources": [
+        {
+          "title": "AI Agent Loop",
+          "url": "https://outcomeschool.com/blog/ai-agent-loop",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "Building Effective Agents（延伸）",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents",
+          "author": "Anthropic",
+          "published": "2024-12-19"
+        }
+      ],
+      "related": [
+        "agents-01",
+        "agents-03",
+        "agents-09",
+        "agents-10"
+      ],
+      "brief": [
+        "先把错误分类（这是全部策略的来源，不要笼统说「重试」）：① **瞬时可重试**：429 限流、5xx、连接超时；② **参数错误**：schema 校验失败、枚举值非法、缺必填、类型不符；③ **语义失败**：调用成功但结果不可用（未找到、权限不足、空结果）；④ **依赖不可用**：下游宕机、持续超时；⑤ **模型侧格式错误**：输出无法解析、调用了不存在的工具、参数是幻觉出来的 id。每一类都要有自己的处置路径。",
+        "逐类给策略：瞬时的 → 指数退避 + 抖动 + 重试上限，并区分重试「工具调用」与重试「模型调用」（后者更贵且可能重复消耗 token）；参数错的 → **把可操作的校验错误作为 observation 回灌**让模型自我修正（错误信息要写清字段名与合法取值，而不是抛 stack trace）；语义失败的 → 不要盲目重试（结果不会变），要么改写查询/换工具，要么把「没有找到」当作事实告诉模型；依赖不可用 → 熔断 + 降级（备用工具、缓存结果、直接告知用户）；格式错的 → 用结构化输出/严格模式从源头消除（链到 [[agents-03]]），并保留一次兜底重试。",
+        "把**幂等性**作为核心概念讲透：读操作天然可重试；写操作必须带幂等键（idempotency key）或业务去重，否则重试 = 重复下单/重复发信。说明分布式下没有免费的 exactly-once，工程做法是 at-least-once + 幂等消费，并给出「重试前先查询状态」的模式。",
+        "超时设计：单步超时（工具级）与整体预算（墙钟/步数/token）要分开，且剩余预算要能向下传递，避免「前 3 步花光预算、后面只能草率收尾」（链到 [[agents-09]]）；超时后要能安全取消下游（cancellation）、释放资源，并让 agent 知道「这步超时了」而不是当作空结果。",
+        "可观测性：把每次工具调用的入参、出参、耗时、错误码、重试次数落成结构化轨迹，支持回放（链到 [[agents-10]]）；用重试率、错误分类分布、P99 步数做告警；不要吞掉错误继续跑——静默失败是 agent 最难查的 bug（链到 [[agents-12]]）。",
+        "常见反模式要列出来：无限重试；对非幂等写操作重试；把异常栈原样灌给模型（浪费 token、可能泄露内部信息）；把工具错误都包装成「成功但结果为空」；以及只重试不降级，导致整个循环卡在一个坏依赖上。"
+      ]
+    },
+    {
+      "id": "agents-03",
+      "order": 3,
+      "file": "docs/Agent 与工具调用/03-结构化输出与 function calling 有什么区别.md",
+      "question": "结构化输出与 function calling 有什么区别？",
+      "question_en": "What is the difference between structured output and function calling?",
+      "asked_at": [
+        "Mistral AI",
+        "Apple"
+      ],
+      "level": "进阶",
+      "tags": [
+        "function-calling",
+        "结构化输出",
+        "约束解码",
+        "schema"
+      ],
+      "sources": [
+        {
+          "title": "How does Function Calling work in LLMs?",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        }
+      ],
+      "related": [
+        "agents-01",
+        "agents-04",
+        "agents-05",
+        "agents-08"
+      ],
+      "brief": [
+        "先把两个概念的定义分开：**结构化输出**约束的是「模型输出长什么样」——用 JSON Schema / 正则 / 上下文无关文法把生成限制在合法结构内，输出内容**就是**你要的结果（抽取的字段、分类标签、排序结果）；**function calling** 约束的是「模型想做什么」——模型输出「工具名 + 参数」的调用意图，由 runtime 真正执行并把结果回灌，模型本身不执行、也拿不到执行结果（除非下一轮把结果喂回去）。",
+        "给一张对照表，逐维度比较：目标（数据 vs 动作）、谁执行（调用方直接消费 vs runtime 执行）、是否循环（单次 vs 多轮 agentic 循环）、失败处理（schema 校验失败重试 vs 工具错误回灌给模型）、是否产生副作用（纯函数 vs 可能写数据，链到 [[agents-10]]）、上下文代价（一次输出 vs 每轮都要带工具定义）、典型场景（抽取/分类/路由 vs 检索/下单/发信）。",
+        "讲清它们的技术同源：两者都依赖**约束解码**（grammar-constrained decoding、有限状态机、JSON mode）或「生成后校验 + 重试」来保证合法；function calling 本质上就是「用一个特殊 schema 描述函数名与参数」的结构化输出。要指出这个同源关系是理解 MCP、工具路由等问题的基础（链到 [[agents-04]]、[[agents-05]]）。",
+        "讲工程差异（这是「为什么不能混为一谈」的答案）：function calling 额外需要① 工具注册表与能力发现；② 参数校验与权限检查；③ 幂等与副作用管理；④ 结果序列化/截断（大结果会吃光上下文，链到 [[agents-02]]）；⑤ 在「继续推理」与「调用工具」之间做决策（链到 [[agents-08]]）。结构化输出则只需要 schema + 解析。",
+        "实践建议：能用严格模式（strict schema / grammar）就不要靠提示词求 JSON——后者的解析失败率在长输出与嵌套结构下显著上升；注意嵌套 schema、枚举、可选字段的兼容性；长 JSON 参数会同时增加延迟与出错面，宁可拆成多个小工具或分步生成；流式场景下需要增量解析（partial JSON）。",
+        "常见追问：约束解码会不会降低生成质量（把自由文本变成受限路径）？并行工具调用（一次输出多个调用）怎么协调与去重？为什么「让模型输出 JSON 再正则解析」在生产里不可取（链到 [[agents-02]] 的格式错误分类）？"
+      ]
+    },
+    {
+      "id": "agents-04",
+      "order": 4,
+      "file": "docs/Agent 与工具调用/04-什么是 MCP？它与传统 function calling 有什么不同.md",
+      "question": "什么是 MCP（Model Context Protocol）？它与传统的 function calling 有什么不同？",
+      "question_en": "What is MCP (Model Context Protocol) and how does it differ from traditional function calling?",
+      "asked_at": [
+        "Microsoft"
+      ],
+      "level": "进阶",
+      "tags": [
+        "mcp",
+        "协议",
+        "工具生态",
+        "授权"
+      ],
+      "sources": [
+        {
+          "title": "What is MCP (Model Context Protocol)?",
+          "url": "https://outcomeschool.com/blog/what-is-mcp-model-context-protocol",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）",
+          "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+          "author": "Outcome School",
+          "published": ""
+        },
+        {
+          "title": "Model Context Protocol（延伸）",
+          "url": "https://modelcontextprotocol.io/",
+          "author": "Anthropic / MCP 官方文档",
+          "published": ""
+        }
+      ],
+      "related": [
+        "agents-03",
+        "agents-05",
+        "agents-07",
+        "agents-10"
+      ],
+      "brief": [
+        "先讲动机（M×N 问题）：function calling 只解决了「模型怎么表达调用意图」，没有解决「工具怎么接入应用」。每个宿主（IDE、Chat 客户端、agent 框架）要接 M 个数据源，就得写 M 份适配器，集成成本是 M×N。MCP 把「提供能力」与「使用能力」解耦，做成 M+N。",
+        "讲 MCP 是什么：一个开放协议（基于 JSON-RPC 2.0 的消息格式）加一套能力模型。核心原语：**tools**（可调用的函数，带 JSON Schema）、**resources**（可读的数据，类 URI/文件）、**prompts**（可复用的提示模板）；配套能力协商（初始化时交换支持的子能力）、生命周期管理与会话、传输方式（本地 stdio 与远程 Streamable HTTP）。要说清 server/client/host 三个角色的划分。",
+        "回答题干第二问（与 function calling 的差别），逐维度讲：① **作用域**：function calling 是单次模型调用内的意图表达；MCP 是跨进程、跨应用的能力发现与调用；② **schema 来源**：应用代码里注册 vs server 自描述、客户端运行时 `list_tools` 动态发现；③ **进程边界**：同进程函数调用 vs 独立进程/远端服务，因此多出授权、隔离、版本兼容问题；④ **状态与生命周期**：无状态一次调用 vs 有会话、有初始化握手与能力协商；⑤ **可组合性**：MCP 让同一个 server 被多个 host 复用。",
+        "安全与工程要点（面试官最想听的现实部分）：MCP server 是新的攻击面——恶意的工具描述或工具返回值可携带提示注入、越权访问、SSRF、数据外泄；对策是最小权限、用户显式同意（授权屏幕）、按用户身份代理权限（链到 [[rag-08]]）、审计每次调用（链到 [[agents-10]]）、以及对 server 做可信度分级与沙箱。工具描述质量直接决定模型能否用对（链到 [[agents-05]]）。",
+        "边界与判断：MCP 标准化的是**连接**而不是智能——它不规定模型怎么推理、不保证选对工具、也不解决上下文预算；对只有两三个内部函数的简单应用，直接 function calling 更省事。要能说清「什么时候值得引入 MCP」（工具/数据源多、跨多个宿主复用、生态已有现成 server）与「什么时候是过度设计」。",
+        "常见追问：MCP 与 OpenAPI 描述、GPT Actions、插件机制的区别？远程 MCP 的认证怎么做（OAuth）？工具动态发现会不会让上下文爆炸（链到 [[agents-05]]）？怎么防止恶意 server 窃取对话内容？"
+      ]
+    },
+    {
+      "id": "agents-05",
+      "order": 5,
+      "file": "docs/Agent 与工具调用/05-工具数量多少算太多？如何设计 LLM 能正确使用的工具 schema.md",
+      "question": "工具数量多少算太多？你如何设计 LLM 真正能正确使用的工具 schema？",
+      "question_en": "How many tools is too many? How do you design tool schemas an LLM can actually use correctly?",
+      "asked_at": [
+        "Anthropic",
+        "Cognition"
+      ],
+      "level": "进阶",
+      "tags": [
+        "工具设计",
+        "schema",
+        "上下文预算",
+        "路由"
+      ],
+      "sources": [
+        {
+          "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）",
+          "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+          "author": "Outcome School",
+          "published": ""
+        },
+        {
+          "title": "Writing Tools for Agents（延伸）",
+          "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+          "author": "Anthropic",
+          "published": ""
+        }
+      ],
+      "related": [
+        "agents-04",
+        "agents-03",
+        "agents-08",
+        "agents-06"
+      ],
+      "brief": [
+        "「多少算太多」必须给判断依据而不是一个魔数：工具定义本身消耗上下文（每个工具的描述 + schema 通常几百 token，20 个工具就可能吃掉数千 token），而且**选择准确率随候选工具数上升而下降**——语义相近的工具会互相干扰。可给出的经验区间是「单次决策暴露给模型的工具控制在 10–20 个以内」，超过就应该分层：命名空间分组、按任务检索工具（tool retrieval，与 [[rag-02]] 同源）、或两阶段选择（先选工具族再选具体工具）；MCP 的动态发现也带来同样的问题（链到 [[agents-04]]）。",
+        "schema 设计清单（题眼，要可执行）：① 名字与描述按**模型的视角**写——做什么、什么时候该用、**什么时候不该用**；② 参数名自解释、不用缩写；③ 枚举优于自由文本（把合法取值写进 schema 而不是描述里）；④ 必填/可选明确，默认值写清楚；⑤ 参数粒度：宁可多个明确字段，也不要一个万能 JSON 字符串；⑥ 返回值同样要设计（结构化、可截断、带单位与来源），错误信息必须可操作；⑦ 副作用要在描述里声明（是否写数据、是否幂等，链到 [[agents-10]]）；⑧ 一个工具做一件事，避免 god tool；⑨ 给 1–2 个调用示例往往比长描述更有效。",
+        "讲失败模式与对应症状，方便面试时对症下药：工具太多 → 选错或漏选；描述含糊 → 参数填错（尤其是 id/日期/enum）；返回过长 → 上下文被吃光、后续步骤失忆（要分页/截断/摘要，链到 [[agents-02]]）；命名太像（search_docs vs search_files）→ 混淆；错误信息只有错误码 → 模型无法自愈；工具描述与真实行为不一致 → 模型建立起错误的世界模型（这类问题会表现为「长时间运行后漂移」，链到 [[agents-12]]）。",
+        "评测方法要具体：用真实任务集测三个指标——工具选择准确率、参数正确率、端到端成功率；做**工具数消融**（同一任务在 5/10/20/50 个工具下的表现）；用混淆矩阵看哪些工具互相抢；把描述改写当 A/B 变量。可引用 Anthropic《Writing Tools for Agents》的工程结论方向：像给新同事写文档那样写工具描述、用示例与边界条件说明、并为工具写评测。",
+        "常见追问：工具太多时是「删工具」还是「加一层路由」？怎么让模型知道工具的边界（不该用的场景怎么表达）？多 agent 分工能否缓解工具爆炸（链到 [[agents-06]]）？工具描述长度与上下文成本的取舍怎么算（链到 [[inference-serving-09]]）？"
+      ]
+    },
+    {
+      "id": "agents-06",
+      "order": 6,
+      "file": "docs/Agent 与工具调用/06-多 agent 编排如何运作？什么情况下会失效.md",
+      "question": "多 agent 编排是如何运作的？什么情况下会失效？",
+      "question_en": "How does multi-agent orchestration work, and when does it fail?",
+      "asked_at": [
+        "Cognition"
+      ],
+      "level": "高阶",
+      "tags": [
+        "多-agent",
+        "编排",
+        "失败模式",
+        "mast"
+      ],
+      "sources": [
+        {
+          "title": "Multi-Agent Systems",
+          "url": "https://outcomeschool.com/blog/multi-agent-systems",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "AI Orchestration",
+          "url": "https://outcomeschool.com/blog/ai-orchestration",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "Don't Build Multi-Agents（延伸）",
+          "url": "https://cognition.ai/blog/dont-build-multi-agents",
+          "author": "Walden Yan (Cognition)",
+          "published": "2025-06-12"
+        },
+        {
+          "title": "Why Do Multi-Agent LLM Systems Fail?（延伸）",
+          "url": "https://arxiv.org/abs/2503.13657",
+          "author": "Cemri et al.",
+          "published": "2025-03-17"
+        }
+      ],
+      "related": [
+        "agents-05",
+        "agents-09",
+        "agents-12",
+        "agents-07"
+      ],
+      "brief": [
+        "先讲清楚「为什么要多 agent」的三个真实理由（不是「像人一样分工」这种比喻）：① **上下文隔离**——子任务各有自己的窗口，避免一个超长上下文互相干扰；② **并行**——相互独立的子任务可以同时做，降低墙钟时间；③ **专精**——不同角色用不同的提示、工具集甚至不同模型（便宜的做执行、贵的做规划）。再讲常见编排形态：顺序流水线、路由（supervisor 分派）、并行 fan-out + 汇总、评审循环（producer–critic）、层级树。",
+        "讲协作机制的技术细节：agent 之间怎么传递状态——共享消息总线/黑板、共享文件系统与工作目录、结构化任务队列、还是只靠 prompt 拼接；上下文怎么切分（每个子 agent 看到多少历史）；以及**谁负责合并**（合并者的上下文往往是瓶颈）。这部分决定了系统的可控性，而不是「有几个角色」决定。",
+        "把反方观点摆出来并讲清它的前提：Cognition 的《Don't Build Multi-Agents》认为并行子 agent 各自只看到局部上下文，会做出**互相冲突的隐式决策**（例如各自假设不同的接口约定），主张单线程 + 完整上下文 + 上下文压缩。要说明它的论证前提是「长程、决策相互依赖的任务」；对于可真正解耦、可并行验证的任务（大量独立文件的批量处理），多 agent 仍然有收益。",
+        "失败模式要有实证支撑：MAST（Why Do Multi-Agent LLM Systems Fail?）在 7 个主流框架的 1600+ 条轨迹上归纳出 **14 种失败模式、3 大类**（系统设计问题、agent 间不对齐、任务验证缺失），人工标注一致性 κ=0.88——要标注这是论文口径。据此给对策：接口与分工显式化、共享状态而非各自记忆、引入独立验证角色、限制通信轮数、把轨迹完整记录下来用于事后分析（链到 [[agents-10]]、[[agents-12]]）。",
+        "成本与复杂度：token 与延迟随「agent 数 × 轮数」增长（链到 [[inference-serving-09]]），调试难度指数上升（失败可能来自任一 agent 的任一步）；给出成本估算方式与预算护栏（链到 [[agents-09]]）。",
+        "给决策规则与验证路径：只有当任务能真正分解为**低耦合**子任务、且有并行或隔离收益时才上多 agent；否则单 agent + 好工具 + 好上下文更稳（链到 [[agents-05]]）。落地建议是先建单 agent 基线，再加一个 critic 角色做 A/B，用任务成功率与 pass^k 一致性衡量（链到 [[agents-09]]），避免「上了多 agent 但没人能证明它更好」。"
+      ]
+    },
+    {
+      "id": "agents-07",
+      "order": 7,
+      "file": "docs/Agent 与工具调用/07-为长时间运行的 agent 设计记忆.md",
+      "question": "为长时间运行的 agent 设计记忆：存什么、存在哪里、如何取回？",
+      "question_en": "Design memory for a long-running agent: what to store, where, and how to retrieve it.",
+      "asked_at": [
+        "Anthropic"
+      ],
+      "level": "高阶",
+      "tags": [
+        "记忆",
+        "长期任务",
+        "检索",
+        "压缩"
+      ],
+      "sources": [
+        {
+          "title": "AI Agent Memory",
+          "url": "https://outcomeschool.com/blog/ai-agent-memory",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "MemGPT: Towards LLMs as Operating Systems（延伸）",
+          "url": "https://arxiv.org/abs/2310.08560",
+          "author": "Packer et al.",
+          "published": "2023-10-12"
+        },
+        {
+          "title": "Generative Agents: Interactive Simulacra of Human Behavior（延伸）",
+          "url": "https://arxiv.org/abs/2304.03442",
+          "author": "Park et al. (UIST 2023)",
+          "published": "2023-04-07"
+        }
+      ],
+      "related": [
+        "agents-09",
+        "agents-12",
+        "agents-04",
+        "rag-07"
+      ],
+      "brief": [
+        "先给分类框架（回答的骨架）：按**内容**分——工作记忆（当前上下文）、情节记忆（历史交互与轨迹）、语义记忆（提炼出的事实与偏好）、程序记忆（工具用法与技能）；按**存储层**分——上下文窗口内、向量库、关系/KV 库、文件系统与对象存储。要说明每类的读写频率、容量与寿命都不同，因此不能只用一个向量库解决所有问题。",
+        "「存什么」要给判据而不是「尽量多存」：只存**对后续决策有用、可检索、可更新**的信息——用户偏好与约束、已确认的事实（带来源与时间戳）、任务状态与进度、失败过的尝试（避免重复踩坑）、工具使用经验；明确区分「事实」与「推测」，并记录来源以便回溯（链到 [[rag-12]] 的归因思路）。反面清单同样重要：原始全文、冗长的工具返回值、未经验证的模型结论都不该直接进长期记忆（会造成记忆污染，链到 [[agents-12]]）。",
+        "「存在哪里」讲分层与写入时机：上下文 → 摘要 → 向量库 → 结构化库 → 对象存储；写入触发点（每轮结束/任务完成/显式记忆工具/用户纠正）；压缩策略（滚动摘要、层级摘要、把长轨迹折叠成「结论 + 关键证据」）。可引用两条经典路线的机制要点：Generative Agents 的「记忆流 + 反思（把观察合成为更高层结论）+ 按新近性/重要性/相关性打分的检索」；MemGPT 的「虚拟上下文管理」——像操作系统管理内存那样在不同层级间搬运数据，并用中断在模型与用户之间切换控制流。",
+        "「如何取回」要讲多路召回与排序：语义相似度 + 时间衰减 + 重要性权重；结构化条件（用户 id、任务 id、会话 id）；以及**冲突消解**（新事实覆盖旧事实、保留版本而不是并存矛盾条目）。检索结果要有预算上限（记忆太多同样会挤爆上下文，链到 [[agents-09]]）。",
+        "工程与合规：写入成本（embedding 与存储）、读取延迟、隐私与删除权（个人数据的保留期限与「被遗忘」实现）、多租户隔离与权限（链到 [[rag-08]]）、记忆的版本化与审计（谁能看到、何时写入、何时被读取，链到 [[agents-10]]）。还要讲清记忆与 RAG 的区别：RAG 检索的是**外部语料**，记忆检索的是**这次交互与这个用户的经历**，两者常共用一个向量基础设施但生命周期与隔离要求不同。",
+        "常见追问：128k 长上下文能否取代外部记忆（答案要点：窗口大 ≠ 注意力均匀，且成本随长度上升，链到 [[llm-internals-13]]）？如何评测记忆效果（长期任务成功率、重复提问率、跨会话一致性、pass^k）？记忆一旦被污染怎么清理？"
+      ]
+    },
+    {
+      "id": "agents-08",
+      "order": 8,
+      "file": "docs/Agent 与工具调用/08-agent 如何决定调用工具还是依据自身知识回答.md",
+      "question": "agent 如何决定是调用工具，还是依据自身知识回答？",
+      "question_en": "How does an agent decide whether to call a tool or answer from its own knowledge?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": [
+        "路由",
+        "自适应检索",
+        "self-rag",
+        "成本"
+      ],
+      "sources": [
+        {
+          "title": "How does Function Calling work in LLMs?",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection（延伸）",
+          "url": "https://arxiv.org/abs/2310.11511",
+          "author": "Asai et al. (ICLR 2024)",
+          "published": "2023-10-17"
+        },
+        {
+          "title": "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity（延伸）",
+          "url": "https://arxiv.org/abs/2403.14403",
+          "author": "Jeong et al. (NAACL 2024)",
+          "published": "2024-03-21"
+        }
+      ],
+      "related": [
+        "agents-01",
+        "agents-03",
+        "agents-05",
+        "rag-06"
+      ],
+      "brief": [
+        "先把问题定义成**路由决策**：模型要在「参数化知识够用」与「必须走外部信息/动作」之间选择。给判断维度：时效性（训练截止之后的事）、事实性（专有/内部数据）、可验证性要求、是否涉及私有状态或写操作、以及模型自身的不确定性（知道自己不知道是最难的一环）。",
+        "讲机制：原生 function calling 下 `tool_choice=auto` 让模型可以**不调用任何工具**直接回答，因此路由质量由提示词与工具描述里的「适用/不适用条件」决定（链到 [[agents-05]]）；也可以用显式策略，例如提供一个决策步骤（先输出「需要检索/不需要」）、两阶段路由（先分类再执行）、或强制策略（对某类主题必须检索）。要说明「模型自主判断」与「产品策略」是两件事，高风险场景应由策略兜底。",
+        "讲学术路线与口径：Self-RAG 训练模型生成「反思 token」来自适应决定是否检索、并批判检索到的段落与自己的生成（论文口径：7B/13B 在开放域 QA、推理与事实验证上超过 ChatGPT 与 RAG-Llama2-chat，长文本生成的事実性与引用准确率提升）；Adaptive-RAG 训练一个小分类器预测查询复杂度，在「不检索 / 单步检索 / 多步迭代检索」之间选择（NAACL 2024）。两者共同结论：**并非所有查询都值得检索**，过度检索会引入噪声、延迟与成本。",
+        "给工程实现的分层方案（从便宜到贵）：① 规则/缓存命中（闲聊、格式化任务、命中语义缓存的问题直接答，链到 [[inference-serving-05]]）；② 轻量分类器或小模型判定是否需要外部信息；③ 大模型自主 function calling 决策；④ 高风险主题强制检索 + 人工复核。并说明每层的成本与错误代价。",
+        "讲两类错误的代价（这是面试的加分点）：该检索却没检索 → 幻觉与过时信息（在事实性场景是致命的）；不该检索却检索 → 噪声干扰、延迟与成本上升、可能把正确答案带偏（检索结果与参数化知识冲突时模型未必选对）。因此评测要建**混合评测集**（需要检索 / 不需要检索各占一半），分别测路由准确率与端到端质量，并监控平均每问的检索次数。",
+        "常见追问：模型能不能可靠地「知道自己不知道」（不确定性估计：logprob、自评、多次采样一致性各自的局限）？检索结果与模型知识冲突时怎么办（优先证据 + 标注分歧）？路由决策要不要缓存、缓存什么时候失效？"
+      ]
+    },
+    {
+      "id": "agents-09",
+      "order": 9,
+      "file": "docs/Agent 与工具调用/09-什么能让 agent 循环正确终止以及如何限制成本与步数.md",
+      "question": "什么能让 agent 循环正确终止？你如何限制成本和步数？",
+      "question_en": "What makes an agent loop terminate correctly, and how do you bound cost and steps?",
+      "asked_at": [],
+      "level": "高阶",
+      "tags": [
+        "终止条件",
+        "预算",
+        "pass-k",
+        "可靠性"
+      ],
+      "sources": [
+        {
+          "title": "AI Agent Loop",
+          "url": "https://outcomeschool.com/blog/ai-agent-loop",
+          "author": "Amit Shekhar (Outcome School)",
+          "published": ""
+        },
+        {
+          "title": "Fixing Infinite Loops in AI Agents",
+          "url": "https://www.linkedin.com/posts/pallavi-shekhar_ai-aiagents-machinelearning-share-7440257380707364864-5Ycc",
+          "author": "Pallavi Shekhar",
+          "published": ""
+        },
+        {
+          "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+          "url": "https://arxiv.org/abs/2406.12045",
+          "author": "Yao et al.",
+          "published": "2024-06-17"
+        }
+      ],
+      "related": [
+        "agents-02",
+        "agents-12",
+        "agents-06",
+        "inference-serving-09"
+      ],
+      "brief": [
+        "先讲循环为什么不终止（分类，便于对症下药）：任务本身不可达但模型不承认（没有失败出口）；观察结果始终不满足内部判据，导致反复改写查询；工具持续返回空或错误；两个 agent 互相等待对方先动；上下文被无关信息污染后模型忘了目标；以及**判据本身有歧义**（「把数据整理好」没有可验证定义）。",
+        "给终止条件的多层设计清单：① 显式完成信号——模型输出 final answer 且通过**外部验证器**（这是最可靠的一层，τ-bench 就是用对话结束后的数据库状态与目标状态比对来判定成功，属于「可验证终止」范式）；② 步数上限（按 token 预算反推，而不是拍一个 10）；③ 单步超时与整体墙钟超时（链到 [[agents-02]]）；④ token/费用预算（累计计费上限，超了就停）；⑤ 无进展检测（连续 N 步的观察高度相似或重复同一动作 → 提前退出）；⑥ 循环检测（动作序列哈希去重）；⑦ 人工兜底（升级到人，链到 [[agents-11]]）。要强调「失败也要有正常出口」——返回部分结果 + 原因，而不是无限重试。",
+        "成本控制的杠杆（按性价比排序）：模型分层（规划用强模型、执行用便宜模型）；上下文压缩（只保留关键观察与结论，链到 [[agents-07]]）；工具结果截断与分页；并行执行独立步骤；缓存（工具结果缓存与 prefix cache，链到 [[inference-serving-05]]）；预算的事前分配（给每个子任务一个上限）而不是事后发现超支；以及减少不必要的检索（链到 [[agents-08]]）。",
+        "可靠性的度量方式要讲对：τ-bench 报告即使 gpt-4o 这类 function calling agent 在零售域的任务成功率也低于 50%，而且**一致性很差**（pass^8 < 25%）——所以「偶尔能成功」不等于可用，必须用 pass^k（同一任务重复 k 次全部成功）这类指标衡量，并标注这是论文口径。AgentBench 也指出长期推理、决策与指令遵循是主要障碍（8 个交互环境的口径）。由此给出工程结论：把「一致性」作为上线门槛，而不是平均值。",
+        "工程实践：预算与终止条件做成随请求传递的配置（每个租户/接口不同）；对用户暴露进度与取消能力；把「预算耗尽」当作一等结果处理（带上已完成的部分与未完成的原因）；用步数分布、终止原因分布、单任务成本分布做监控与回归。",
+        "常见追问：怎么区分「需要更多步」与「陷入循环」（看观察的信息增量而非步数）？pass^k 与 pass@k 的差别？流式输出下如何优雅终止与回滚（链到 [[agents-10]]）？如何给不同风险等级的任务设不同预算？"
+      ]
+    },
+    {
+      "id": "agents-10",
+      "order": 10,
+      "file": "docs/Agent 与工具调用/10-在生产系统中如何让 agent 的操作可逆或至少可审计.md",
+      "question": "在生产系统中，你如何让 agent 的操作可逆，或者至少可审计？",
+      "question_en": "In production, how do you make an agent's actions reversible, or at least auditable?",
+      "asked_at": [
+        "Palantir"
+      ],
+      "level": "高阶",
+      "tags": [
+        "可逆性",
+        "审计",
+        "幂等",
+        "合规"
+      ],
+      "sources": [
+        {
+          "title": "AI Risk Management Framework（延伸）",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+          "author": "NIST",
+          "published": ""
+        },
+        {
+          "title": "Visibility into AI Agents（延伸）",
+          "url": "https://arxiv.org/abs/2401.13138",
+          "author": "Chan et al. (ACM FAccT 2024)",
+          "published": "2024-01-23"
+        }
+      ],
+      "related": [
+        "agents-02",
+        "agents-11",
+        "agents-12",
+        "rag-08"
+      ],
+      "brief": [
+        "先立原则：**能设计成可逆的就不要直接执行**，不可逆的必须走审批或沙箱。把操作按风险分级（纯读 / 可自动执行且可回滚 / 需审批 / 禁止自动），并说明分级要落到「工具」这一层（每个工具声明自己的风险等级，链到 [[agents-05]]）。",
+        "可逆性的实现手段要具体：① **两阶段执行**——先 dry-run/preview 产出 diff 或预演结果，确认后再提交；② 事务与两阶段提交（数据库）；③ 软删除与回收站（延迟物理删除）；④ 版本化与快照（像 Git 一样可回滚）；⑤ 补偿事务（saga 模式：为每个写操作定义逆操作）；⑥ 幂等键 + 去重表（重试不产生重复副作用，链到 [[agents-02]]）；⑦ write-ahead intent log（执行前先持久化意图，崩溃后可恢复或回滚）。",
+        "审计要建什么（这一半是题的题眼）：① 每次决策记录上下文摘要、模型与版本、提示版本、工具调用与参数、返回、耗时、成本；② 用关联 id 串起「用户请求 → 会话 → 步骤 → 工具调用 → 数据变更」形成完整链路；③ 追加写 + 防篡改（哈希链或只写存储）；④ 明确保留期限与访问控制；⑤ 支持**回放**（相同输入重放轨迹以定位问题，链到 [[agents-12]]）；⑥ 记录人工审批链（谁在何时批准了什么，链到 [[agents-11]]）。可以引用 Visibility into AI Agents 提出的三类措施作为框架：agent 标识（identifier）、实时监控、活动日志（activity logging）——并说明它们各自在什么部署形态下适用（该文发布于 ACM FAccT 2024，讨论的正是这些措施的侵入性与信息量取舍）。",
+        "权限与合规：工具级最小权限；**按用户身份代理权限而不是用服务账号超级权限**（否则 agent 成为提权通道，链到 [[rag-08]]）；敏感操作双人复核；审计日志本身要做 PII 脱敏但要保留可追责信息；跨境/行业合规对日志留存的要求。NIST AI RMF 可以作为治理框架引用（风险识别—度量—管理—治理的循环），说明审计与可逆是「可治理」的前置条件。",
+        "设计检查表（每个工具都要回答）：最坏情况是什么？能否 dry-run？失败后如何补偿？谁看得到这条记录？保留多久？能不能被回放？——把这张表当作工具上线前的评审项。",
+        "常见追问：分布式下如何真正幂等（幂等键的作用域与过期）？审计日志本身会不会成为新的泄露面？如何度量「可回滚覆盖率」？回滚与外部副作用（发了邮件、下了单）怎么办？"
+      ]
+    },
+    {
+      "id": "agents-11",
+      "order": 11,
+      "file": "docs/Agent 与工具调用/11-为会执行重大操作的 agent 设计 human-in-the-loop 审批.md",
+      "question": "为一个会执行重大操作的 agent 设计 human-in-the-loop 审批。",
+      "question_en": "Design human-in-the-loop approval for an agent that takes consequential actions.",
+      "asked_at": [
+        "OpenAI",
+        "Palantir"
+      ],
+      "level": "高阶",
+      "tags": [
+        "hitl",
+        "审批",
+        "风险分级",
+        "状态机"
+      ],
+      "sources": [
+        {
+          "title": "AI Risk Management Framework（延伸）",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+          "author": "NIST",
+          "published": ""
+        },
+        {
+          "title": "Building Effective Agents（延伸）",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents",
+          "author": "Anthropic",
+          "published": "2024-12-19"
+        },
+        {
+          "title": "Visibility into AI Agents（延伸）",
+          "url": "https://arxiv.org/abs/2401.13138",
+          "author": "Chan et al. (ACM FAccT 2024)",
+          "published": "2024-01-23"
+        }
+      ],
+      "related": [
+        "agents-10",
+        "agents-09",
+        "agents-02",
+        "rag-08"
+      ],
+      "brief": [
+        "先定「什么时候必须人工介入」，用风险分级落到工具粒度：不可逆或高影响（付款、删除、对外发送、生产变更）、合规要求、置信度低或已失败多次、超出预算、涉及敏感数据。给出四档与默认动作：自动执行 / 自动执行 + 事后审计 / 需要事前审批 / 禁止自动执行；并说明分级要可配置、可按租户与场景覆盖（链到 [[agents-05]] 的工具声明）。",
+        "审批交互的设计是题眼：请求里必须包含决策所需信息——**要做什么**（工具 + 参数的自然语言摘要，而不是裸 JSON）、**为什么**（触发它的用户请求与推理摘要）、**影响范围**（影响多少条记录/多少钱/哪些用户/是否可撤销）、**候选动作**（批准 / 修改后批准 / 换方案 / 拒绝）、以及风险提示与不确定性。反面示例是只给一个「是否批准」按钮，导致审批者只能盲签。",
+        "干预点的三种形态要对比：① 事前阻塞（agent 挂起等待，最安全，但延迟高、可能超时）；② 事中打断（循环中某一步允许人工修改参数或换工具，灵活但实现复杂）；③ 事后复核（先执行后审，必须配合可回滚与告警，链到 [[agents-10]]）。说明如何按风险与时效选择，并给「审批超时」的默认策略（默认拒绝、降级为只读结果、或转交他人）。",
+        "人因与效率（很多候选人漏掉）：审批疲劳会让「同意」变成默认动作，所以要做风险分级、批量合并同类审批、给出差异化的默认值、限制每天的低价值审批量；给审批者的**拒绝理由要回灌给 agent**，让它在同一会话里改方案而不是重头再来；用批准率、误批率、审批耗时、否决后修复率来评测这套机制是否真的有效。",
+        "状态机与工程实现：长事务的挂起/恢复（必须持久化 agent 状态、上下文与已完成步骤，链到 [[agents-07]]）；多级审批（金额/权限阈值）与代理规则（谁不在时谁能批）；幂等（一次批准只生效一次，链到 [[agents-02]]）；通知渠道（IM/邮件/工单）与移动端审批；以及审批记录的审计与合规留存（链到 [[agents-10]]）。可以引用 Anthropic《Building Effective Agents》的主张作为设计取向：优先简单可控的模式，把复杂度只加在真正需要的环节；NIST AI RMF 提供 human oversight 的治理框架。",
+        "常见追问：如何避免「审批即绕过」（批准后参数被改）？高并发下审批成了瓶颈怎么办？怎么测这套机制（构造越权/高风险用例，断言必须被拦下）？"
+      ]
+    },
+    {
+      "id": "agents-12",
+      "order": 12,
+      "file": "docs/Agent 与工具调用/12-agent 长时间运行后发生漂移请诊断.md",
+      "question": "你的 agent 在长时间运行后发生漂移，自信满满地在做错误的事。请诊断。",
+      "question_en": "Your agent drifts after running for a long time and confidently does the wrong thing. Diagnose it.",
+      "asked_at": [
+        "Cognition"
+      ],
+      "level": "高阶",
+      "tags": [
+        "漂移",
+        "诊断",
+        "误差累积",
+        "trace"
+      ],
+      "sources": [
+        {
+          "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+          "url": "https://arxiv.org/abs/2406.12045",
+          "author": "Yao et al.",
+          "published": "2024-06-17"
+        },
+        {
+          "title": "AgentBench: Evaluating LLMs as Agents（延伸）",
+          "url": "https://arxiv.org/abs/2308.03688",
+          "author": "Liu et al. (ICLR 2024)",
+          "published": "2023-08-07"
+        },
+        {
+          "title": "Why Do Multi-Agent LLM Systems Fail?（延伸）",
+          "url": "https://arxiv.org/abs/2503.13657",
+          "author": "Cemri et al.",
+          "published": "2025-03-17"
+        }
+      ],
+      "related": [
+        "agents-09",
+        "agents-07",
+        "agents-02",
+        "agents-06"
+      ],
+      "brief": [
+        "先把「漂移」拆成可诊断的具体现象（不要停在「它变笨了」）：① **目标漂移**——子任务取代了原任务，越做越偏；② **上下文污染**——一次错误观察或幻觉结论进入上下文后被反复引用放大；③ **记忆污染**——错误信息被写进长期记忆（链到 [[agents-07]]）；④ **环境/工具漂移**——下游 API 变更、返回格式或数据分布变化、权限变化（链到 [[rag-07]]）；⑤ **提示/模型漂移**——模型版本升级改变行为、系统提示被工具描述或历史挤占/截断；⑥ **误差累积**——每步正确率 p，n 步后整体成功率约 p^n：自己算一遍 p=0.95、n=20 时约 36%，这就是「长任务必然退化」的数学。",
+        "诊断方法（像排障一样二分，这是题眼）：① 先拿**可回放轨迹**（每步的 prompt 摘要、工具调用与参数、返回、耗时，链到 [[agents-10]]），找到**第一次偏离**的步骤，而不是研究最后一步为什么错；② 与已知成功轨迹做对齐 diff，定位分歧点；③ 检查上下文增长曲线与压缩/截断策略——是否因为摘要丢了关键约束；④ 核对工具返回值是否变了（schema、错误率、数据分布、版本号）；⑤ 把偏离点抽成最小复现，单独重跑多次，用 pass^k 衡量稳定性（链到 [[agents-09]]）；⑥ 对模型与提示版本做 A/B，排除升级引入的回归。",
+        "用基准的分类给诊断提供清单：AgentBench 指出长期推理、决策与指令遵循是 agent 的主要失败来源（8 个交互环境口径）；τ-bench 用 pass^k 刻画同一任务的多次运行一致性（论文报告 gpt-4o 在零售域任务成功率 < 50%、pass^8 < 25%）；MAST 在 1600+ 条多 agent 轨迹上归纳出 14 种失败模式、3 大类（系统设计、agent 间不对齐、任务验证），κ=0.88——可以把它当作诊断清单逐项排查。",
+        "修复手段要与病因对应：缩短任务链并在中间设**显式检查点**（把长任务拆成有外部验证的子任务）；把关键约束放在上下文末尾或定期重申（链到 [[llm-internals-13]] 的位置偏差）；用结构化状态（任务清单、进度与已完成事项）替代「让模型自己记」；给关键步骤加验证器（外部状态比对，而不是模型自评）；限制记忆写入（只写确认过的事实）；锁定模型/提示版本并建回归集。",
+        "预防优于补救：把「一致性」纳入评测（同任务跑 k 次看方差、长任务成功率随步数的衰减曲线）；每次模型或提示变更都跑回归；线上监控步数分布、工具错误率、任务完成率、人工介入率、单任务成本；对长任务设预算与升级路径（链到 [[agents-09]]、[[agents-11]]）。",
+        "常见追问：为什么「上下文更长」不一定更好（注意力被稀释、成本上升、压缩丢信息）？如何区分「模型能力不足」与「上下文管理不当」（同一步在干净上下文下重跑是否成功）？记忆污染已经发生怎么清理（隔离 + 版本回滚 + 只读审计）？"
+      ]
+    }
+  ]
+}

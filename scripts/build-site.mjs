@@ -161,6 +161,36 @@ function validateTopic(doc, file) {
   if (!firstHeading(body)) errors.push(`${at}: 专题导读缺少一级标题`);
 }
 
+/* ------------------------------------------------------------ 本地链接检查 */
+
+/** 去掉围栏代码块，避免把代码里的 foo[name](args) 当成链接 */
+function stripFences(md) {
+  const out = [];
+  let fence = null;
+  for (const line of md.split('\n')) {
+    const m = line.match(/^\s*(```+|~~~+)/);
+    if (m) { if (!fence) fence = m[1][0]; else if (m[1][0] === fence) fence = null; continue; }
+    if (!fence) out.push(line);
+  }
+  return out.join('\n');
+}
+
+/** 校验文档里的相对链接（站内 .md 与指向仓库其它文件）是否真实存在 */
+function checkLocalLinks(file, body) {
+  const text = stripFences(body);
+  const baseDir = path.dirname(file);
+  const re = /\]\(([^()\s]+(?:\([^()]*\)[^()\s]*)*)\)/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const target = m[1];
+    if (/^(https?:|mailto:|#|data:)/.test(target)) continue;
+    const decoded = decodeURIComponent(target.split('#')[0]);
+    if (!decoded) continue;
+    const resolved = path.resolve(baseDir, decoded);
+    if (!fs.existsSync(resolved)) errors.push(`${rel(file)}: 链接指向不存在的文件 ${target}`);
+  }
+}
+
 /* ---------------------------------------------------------------- 读取 docs */
 
 const mdFiles = walkMd(DOCS);
@@ -173,6 +203,8 @@ for (const file of mdFiles) {
   if (type === 'topic') { validateTopic(doc, file); topics.push({ file, ...doc }); }
   else { questions.push({ file, ...doc }); }
 }
+for (const doc of [...topics, ...questions]) checkLocalLinks(doc.file, doc.body);
+
 const seenIds = new Set();
 questions.sort((a, b) => (Number(a.data.order) || 0) - (Number(b.data.order) || 0));
 for (const q of questions) validateQuestion(q, q.file, seenIds);
