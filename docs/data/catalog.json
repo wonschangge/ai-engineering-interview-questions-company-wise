@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T08:38:14.229Z",
+  "generated": "2026-09-28T09:39:46.741Z",
   "stats": {
-    "topics": 4,
-    "questions": 55,
+    "topics": 5,
+    "questions": 67,
     "planned": 598
   },
   "topics": [
@@ -2454,6 +2454,573 @@
           ],
           "updated": "2026-09-28",
           "chars": 11026
+        }
+      ]
+    },
+    {
+      "id": "finetuning",
+      "title": "微调、后训练与对齐",
+      "order": 5,
+      "summary": "从 RLHF/DPO/GRPO 的推导到 LoRA/QLoRA 的参数与显存账，覆盖把基座模型变成可交付产品所需的训练与对齐判断。",
+      "declaredTotal": 12,
+      "updated": "2026-09-28",
+      "dir": "微调、后训练与对齐",
+      "overviewFile": "微调、后训练与对齐/README.md",
+      "overviewTitle": "微调、后训练与对齐",
+      "questions": [
+        {
+          "id": "finetuning-01",
+          "order": 1,
+          "title": "请端到端讲一遍 RLHF：reward model、策略优化、KL 惩罚。",
+          "titleEn": "Walk through RLHF end to end: reward model, policy optimization, KL penalty.",
+          "file": "微调、后训练与对齐/01-端到端讲一遍 RLHF：reward model、策略优化与 KL 惩罚.md",
+          "level": "进阶",
+          "tags": [
+            "rlhf",
+            "ppo",
+            "reward-model",
+            "kl"
+          ],
+          "askedAt": [],
+          "related": [
+            "finetuning-02",
+            "finetuning-03",
+            "finetuning-11",
+            "llm-internals-11"
+          ],
+          "sources": [
+            {
+              "title": "Reinforcement Learning from Human Feedback (RLHF)",
+              "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Proximal Policy Optimization (PPO)",
+              "url": "https://outcomeschool.com/blog/proximal-policy-optimization-ppo",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Training language models to follow instructions with human feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (OpenAI)",
+              "published": "2022-03-04"
+            },
+            {
+              "title": "Proximal Policy Optimization Algorithms（延伸）",
+              "url": "https://arxiv.org/abs/1707.06347",
+              "author": "Schulman et al.",
+              "published": "2017-07-20"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9543
+        },
+        {
+          "id": "finetuning-02",
+          "order": 2,
+          "title": "什么是 DPO？为什么它在许多实验室里取代了基于 PPO 的 RLHF？什么情况下 online RL 仍然更好？",
+          "titleEn": "What is DPO, why did it replace PPO-based RLHF in many labs, and when is online RL still better?",
+          "file": "微调、后训练与对齐/02-什么是 DPO？为什么它取代了基于 PPO 的 RLHF.md",
+          "level": "高阶",
+          "tags": [
+            "dpo",
+            "rlhf",
+            "偏好优化",
+            "offline"
+          ],
+          "askedAt": [
+            "Hugging Face",
+            "Scale AI"
+          ],
+          "related": [
+            "finetuning-01",
+            "finetuning-03",
+            "finetuning-11",
+            "llm-internals-11"
+          ],
+          "sources": [
+            {
+              "title": "Direct Preference Optimization (DPO)",
+              "url": "https://outcomeschool.com/blog/direct-preference-optimization-dpo",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model（延伸）",
+              "url": "https://arxiv.org/abs/2305.18290",
+              "author": "Rafailov et al. (NeurIPS 2023)",
+              "published": "2023-05-29"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8306
+        },
+        {
+          "id": "finetuning-03",
+          "order": 3,
+          "title": "解释 GRPO，以及为什么在规模化场景下去掉 value network 很关键。",
+          "titleEn": "Explain GRPO and why dropping the value network matters at scale.",
+          "file": "微调、后训练与对齐/03-解释 GRPO 以及为什么去掉 value network 很关键.md",
+          "level": "高阶",
+          "tags": [
+            "grpo",
+            "rl",
+            "value-network",
+            "推理"
+          ],
+          "askedAt": [
+            "DeepSeek"
+          ],
+          "related": [
+            "finetuning-01",
+            "finetuning-02",
+            "finetuning-10",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "Group Relative Policy Optimization (GRPO)",
+              "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2402.03300",
+              "author": "Shao et al. (GRPO 原始出处)",
+              "published": "2024-02-05"
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10254
+        },
+        {
+          "id": "finetuning-04",
+          "order": 4,
+          "title": "从数学上解释 LoRA 的分解。它为什么有效，以及如何选择秩 r？",
+          "titleEn": "Explain LoRA's decomposition mathematically. Why does it work, and how do you choose the rank r?",
+          "file": "微调、后训练与对齐/04-从数学上解释 LoRA 的分解与秩的选择.md",
+          "level": "进阶",
+          "tags": [
+            "lora",
+            "低秩",
+            "peft",
+            "秩"
+          ],
+          "askedAt": [],
+          "related": [
+            "finetuning-05",
+            "finetuning-06",
+            "finetuning-09",
+            "llm-internals-15"
+          ],
+          "sources": [
+            {
+              "title": "LoRA - Low-Rank Adaptation of LLMs",
+              "url": "https://outcomeschool.com/blog/lora-low-rank-adaptation-of-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-24"
+            },
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al. (ICLR 2022)",
+              "published": "2021-06-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6975
+        },
+        {
+          "id": "finetuning-05",
+          "order": 5,
+          "title": "QLoRA 是如何降低显存占用的？它需要做哪些 quantization 权衡？",
+          "titleEn": "How does QLoRA reduce memory, and what quantization tradeoffs does it require?",
+          "file": "微调、后训练与对齐/05-QLoRA 如何降低显存占用以及它需要哪些量化权衡.md",
+          "level": "进阶",
+          "tags": [
+            "qlora",
+            "量化",
+            "nf4",
+            "显存"
+          ],
+          "askedAt": [
+            "Hugging Face"
+          ],
+          "related": [
+            "finetuning-04",
+            "finetuning-09",
+            "inference-serving-06",
+            "finetuning-06"
+          ],
+          "sources": [
+            {
+              "title": "How does Model Quantization work?",
+              "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）",
+              "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+              "author": "Outcome School",
+              "published": ""
+            },
+            {
+              "title": "QLoRA: Efficient Finetuning of Quantized LLMs（延伸）",
+              "url": "https://arxiv.org/abs/2305.14314",
+              "author": "Dettmers et al. (NeurIPS 2023)",
+              "published": "2023-05-23"
+            },
+            {
+              "title": "bitsandbytes 文档（延伸）",
+              "url": "https://huggingface.co/docs/bitsandbytes/index",
+              "author": "Hugging Face",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9183
+        },
+        {
+          "id": "finetuning-06",
+          "order": 6,
+          "title": "比较 LoRA、prefix tuning、prompt tuning 和 full fine-tuning。分别在什么场景下选择它们？",
+          "titleEn": "Compare LoRA, prefix tuning, prompt tuning and full fine-tuning. When do you pick each?",
+          "file": "微调、后训练与对齐/06-比较 LoRA、prefix tuning、prompt tuning 与全量微调.md",
+          "level": "进阶",
+          "tags": [
+            "peft",
+            "prefix-tuning",
+            "prompt-tuning",
+            "全量微调"
+          ],
+          "askedAt": [
+            "Sarvam AI",
+            "Apple"
+          ],
+          "related": [
+            "finetuning-04",
+            "finetuning-05",
+            "finetuning-07",
+            "finetuning-08"
+          ],
+          "sources": [
+            {
+              "title": "How does Fine-Tuning work?",
+              "url": "https://outcomeschool.com/blog/how-does-fine-tuning-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "How does Prefix Tuning work?",
+              "url": "https://outcomeschool.com/blog/how-does-prefix-tuning-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Prefix-Tuning: Optimizing Continuous Prompts for Generation（延伸）",
+              "url": "https://arxiv.org/abs/2101.00190",
+              "author": "Li & Liang",
+              "published": "2021-01-01"
+            },
+            {
+              "title": "P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2110.07602",
+              "author": "Liu et al. (ACL 2022)",
+              "published": "2021-10-14"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8106
+        },
+        {
+          "id": "finetuning-07",
+          "order": 7,
+          "title": "什么是灾难性遗忘？在 fine-tuning 过程中如何缓解它？",
+          "titleEn": "What is catastrophic forgetting and how do you mitigate it during fine-tuning?",
+          "file": "微调、后训练与对齐/07-什么是灾难性遗忘？如何在微调中缓解.md",
+          "level": "进阶",
+          "tags": [
+            "灾难性遗忘",
+            "持续学习",
+            "回放",
+            "正则"
+          ],
+          "askedAt": [
+            "Mistral AI"
+          ],
+          "related": [
+            "finetuning-06",
+            "finetuning-08",
+            "finetuning-12",
+            "finetuning-01"
+          ],
+          "sources": [
+            {
+              "title": "Continual Learning in LLMs",
+              "url": "https://outcomeschool.com/blog/continual-learning-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-06-01"
+            },
+            {
+              "title": "An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning（延伸）",
+              "url": "https://arxiv.org/abs/2308.08747",
+              "author": "Luo et al.",
+              "published": "2023-08-17"
+            }
+          ],
+          "updated": "2026-06-02",
+          "chars": 8976
+        },
+        {
+          "id": "finetuning-08",
+          "order": 8,
+          "title": "Prompting、RAG 还是 fine-tuning：请给出你的决策框架，并把成本和 latency 一并考虑进去。",
+          "titleEn": "Prompting, RAG or fine-tuning: give your decision framework, including cost and latency.",
+          "file": "微调、后训练与对齐/08-Prompting、RAG 还是 fine-tuning：决策框架与成本权衡.md",
+          "level": "进阶",
+          "tags": [
+            "决策框架",
+            "成本",
+            "rag",
+            "微调"
+          ],
+          "askedAt": [
+            "OpenAI",
+            "Mistral AI",
+            "Cohere",
+            "Microsoft",
+            "Databricks",
+            "Glean"
+          ],
+          "related": [
+            "finetuning-06",
+            "finetuning-07",
+            "finetuning-12",
+            "rag-06",
+            "inference-serving-12"
+          ],
+          "sources": [
+            {
+              "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）",
+              "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+              "author": "Outcome School",
+              "published": ""
+            },
+            {
+              "title": "LIMA: Less Is More for Alignment（延伸）",
+              "url": "https://arxiv.org/abs/2305.11206",
+              "author": "Zhou et al.",
+              "published": "2023-05-18"
+            },
+            {
+              "title": "Self-Instruct: Aligning Language Models with Self-Generated Instructions（延伸）",
+              "url": "https://arxiv.org/abs/2212.10560",
+              "author": "Wang et al. (ACL 2023)",
+              "published": "2022-12-20"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9129
+        },
+        {
+          "id": "finetuning-09",
+          "order": 9,
+          "title": "算一下用 Adam 以 bf16 全量 fine-tuning 一个 7B 模型所需的 GPU 显存。换成 LoRA 呢？",
+          "titleEn": "Compute the GPU memory for bf16 full fine-tuning of a 7B model with Adam. What about LoRA?",
+          "file": "微调、后训练与对齐/09-算一下 7B 模型 bf16 全量微调与 LoRA 的 GPU 显存.md",
+          "level": "进阶",
+          "tags": [
+            "显存",
+            "adam",
+            "zero",
+            "lora"
+          ],
+          "askedAt": [
+            "Mistral AI",
+            "Hugging Face"
+          ],
+          "related": [
+            "finetuning-04",
+            "finetuning-05",
+            "inference-serving-07",
+            "inference-serving-08"
+          ],
+          "sources": [
+            {
+              "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）",
+              "url": "https://arxiv.org/abs/1910.02054",
+              "author": "Rajbhandari et al.",
+              "published": "2019-10-04"
+            },
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al.",
+              "published": "2021-06-17"
+            },
+            {
+              "title": "Reducing Activation Recomputation in Large Transformer Models（延伸）",
+              "url": "https://arxiv.org/abs/2205.05198",
+              "author": "Korthikanti et al. (Megatron)",
+              "published": "2022-05-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10056
+        },
+        {
+          "id": "finetuning-10",
+          "order": 10,
+          "title": "什么是 RLVR（RL with verifiable rewards）？它在哪些方面胜过学到的 reward model？",
+          "titleEn": "What is RLVR (RL with verifiable rewards) and where does it beat a learned reward model?",
+          "file": "微调、后训练与对齐/10-什么是 RLVR 以及它为何胜过学到的 reward model.md",
+          "level": "高阶",
+          "tags": [
+            "rlvr",
+            "verifier",
+            "reward-model",
+            "推理"
+          ],
+          "askedAt": [
+            "智谱 AI",
+            "阿里巴巴",
+            "Sarvam AI",
+            "Scale AI"
+          ],
+          "related": [
+            "finetuning-03",
+            "finetuning-11",
+            "finetuning-01",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "Group Relative Policy Optimization (GRPO)",
+              "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "Tulu 3: Pushing Frontiers in Open Language Model Post-Training（延伸）",
+              "url": "https://arxiv.org/abs/2411.15124",
+              "author": "Lambert et al.",
+              "published": "2024-11-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7827
+        },
+        {
+          "id": "finetuning-11",
+          "order": 11,
+          "title": "解释 RLHF 中的 reward hacking，以及各实验室如何应对它。",
+          "titleEn": "Explain reward hacking in RLHF and how labs address it.",
+          "file": "微调、后训练与对齐/11-解释 RLHF 中的 reward hacking 以及各实验室如何应对.md",
+          "level": "高阶",
+          "tags": [
+            "reward-hacking",
+            "goodhart",
+            "kl",
+            "rm"
+          ],
+          "askedAt": [
+            "Scale AI"
+          ],
+          "related": [
+            "finetuning-01",
+            "finetuning-02",
+            "finetuning-10",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "Reinforcement Learning from Human Feedback (RLHF)",
+              "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al.",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Scaling Laws for Reward Model Overoptimization（延伸）",
+              "url": "https://arxiv.org/abs/2210.10760",
+              "author": "Gao, Schulman, Hilton (OpenAI)",
+              "published": "2022-10-19"
+            },
+            {
+              "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2212.08073",
+              "author": "Bai et al. (Anthropic)",
+              "published": "2022-12-15"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7701
+        },
+        {
+          "id": "finetuning-12",
+          "order": 12,
+          "title": "什么是 distillation？如何基于大模型构建一个能力强的小模型？",
+          "titleEn": "What is distillation and how do you build a capable small model from a large one?",
+          "file": "微调、后训练与对齐/12-什么是 distillation？如何基于大模型构建能力强的小模型.md",
+          "level": "进阶",
+          "tags": [
+            "蒸馏",
+            "kd",
+            "小模型",
+            "数据"
+          ],
+          "askedAt": [
+            "阿里巴巴"
+          ],
+          "related": [
+            "finetuning-08",
+            "finetuning-07",
+            "finetuning-06",
+            "inference-serving-12"
+          ],
+          "sources": [
+            {
+              "title": "How does Knowledge Distillation work?",
+              "url": "https://outcomeschool.com/blog/how-does-knowledge-distillation-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Distilling the Knowledge in a Neural Network（延伸）",
+              "url": "https://arxiv.org/abs/1503.02531",
+              "author": "Hinton, Vinyals, Dean",
+              "published": "2015-03-09"
+            },
+            {
+              "title": "DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter（延伸）",
+              "url": "https://arxiv.org/abs/1910.01108",
+              "author": "Sanh et al.",
+              "published": "2019-10-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10446
         }
       ]
     }

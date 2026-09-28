@@ -1,0 +1,312 @@
+{
+  "topic": "微调、后训练与对齐",
+  "topic_id": "finetuning",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/微调、后训练与对齐",
+  "all_questions": [
+    { "id": "finetuning-01", "order": 1, "title": "请端到端讲一遍 RLHF：reward model、策略优化、KL 惩罚。" },
+    { "id": "finetuning-02", "order": 2, "title": "什么是 DPO？为什么它在许多实验室里取代了基于 PPO 的 RLHF？什么情况下 online RL 仍然更好？" },
+    { "id": "finetuning-03", "order": 3, "title": "解释 GRPO，以及为什么在规模化场景下去掉 value network 很关键。" },
+    { "id": "finetuning-04", "order": 4, "title": "从数学上解释 LoRA 的分解。它为什么有效，以及如何选择秩 r？" },
+    { "id": "finetuning-05", "order": 5, "title": "QLoRA 是如何降低显存占用的？它需要做哪些 quantization 权衡？" },
+    { "id": "finetuning-06", "order": 6, "title": "比较 LoRA、prefix tuning、prompt tuning 和 full fine-tuning。分别在什么场景下选择它们？" },
+    { "id": "finetuning-07", "order": 7, "title": "什么是灾难性遗忘？在 fine-tuning 过程中如何缓解它？" },
+    { "id": "finetuning-08", "order": 8, "title": "Prompting、RAG 还是 fine-tuning：请给出你的决策框架，并把成本和 latency 一并考虑进去。" },
+    { "id": "finetuning-09", "order": 9, "title": "算一下用 Adam 以 bf16 全量 fine-tuning 一个 7B 模型所需的 GPU 显存。换成 LoRA 呢？" },
+    { "id": "finetuning-10", "order": 10, "title": "什么是 RLVR（RL with verifiable rewards）？它在哪些方面胜过学到的 reward model？" },
+    { "id": "finetuning-11", "order": 11, "title": "解释 RLHF 中的 reward hacking，以及各实验室如何应对它。" },
+    { "id": "finetuning-12", "order": 12, "title": "什么是 distillation？如何基于大模型构建一个能力强的小模型？" }
+  ],
+  "questions": [
+    {
+      "id": "finetuning-01",
+      "order": 1,
+      "file": "docs/微调、后训练与对齐/01-端到端讲一遍 RLHF：reward model、策略优化与 KL 惩罚.md",
+      "question": "请端到端讲一遍 RLHF：reward model、策略优化、KL 惩罚。",
+      "question_en": "Walk through RLHF end to end: reward model, policy optimization, KL penalty.",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["rlhf", "ppo", "reward-model", "kl"],
+      "sources": [
+        { "title": "Reinforcement Learning from Human Feedback (RLHF)", "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Proximal Policy Optimization (PPO)", "url": "https://outcomeschool.com/blog/proximal-policy-optimization-ppo", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Training language models to follow instructions with human feedback（延伸）", "url": "https://arxiv.org/abs/2203.02155", "author": "Ouyang et al. (OpenAI)", "published": "2022-03-04" },
+        { "title": "Proximal Policy Optimization Algorithms（延伸）", "url": "https://arxiv.org/abs/1707.06347", "author": "Schulman et al.", "published": "2017-07-20" }
+      ],
+      "related": ["finetuning-02", "finetuning-03", "finetuning-11", "llm-internals-11"],
+      "brief": [
+        "先给三阶段骨架并说清每阶段的输入输出：① **SFT**——用人工演示数据做监督微调，得到能听指令的初始策略；② **奖励模型（RM）**——收集成对偏好 (y_w 优于 y_l)，用 Bradley-Terry 模型把偏好转成标量奖励：$P(y_w \\succ y_l) = \\sigma(r_\\phi(x,y_w) - r_\\phi(x,y_l))$，训练目标是负对数似然（要写出公式）；③ **RL 微调**——用 RM 当奖励、用 PPO 更新策略。",
+        "把 RL 的目标函数写清楚并逐项解释：$\\max_\\theta \\mathbb{E}_{x\\sim D, y\\sim \\pi_\\theta}[r_\\phi(x,y)] - \\beta \\cdot \\mathrm{KL}(\\pi_\\theta(\\cdot|x) \\| \\pi_{\\text{SFT}}(\\cdot|x))$。KL 项的作用要讲成三层：防止策略跑出参考模型的分布（语言质量崩塌）、抑制 reward hacking（链到 [[finetuning-11]]）、保持多样性；$\\beta$ 就是这个约束的强度旋钮。",
+        "讲 PPO 的机制（不要只写名字）：优势估计（GAE）、clip 后的代理目标 $\\min(\\rho A, \\mathrm{clip}(\\rho, 1-\\epsilon, 1+\\epsilon) A)$、value network 的作用（估计基线以降低方差）、以及「同一批数据做多轮更新」的样本效率来源。指出 RLHF 里四模型同场（policy / reference / reward / value），显存与工程复杂度都来自这里。",
+        "讲工程细节与坑：RM 通常由 SFT 模型改造（去掉 lm_head、换成标量头）；成对比较比绝对打分更可靠（标注一致性）；奖励通常整段给一个标量，需要分配到 token 上；**长度偏置**是经典问题（RM 偏好更长输出 → 策略变啰嗦），要靠长度平衡数据或长度惩罚；PPO 对超参极敏感（KL 系数、clip 范围、学习率、batch）。可引用 InstructGPT 的做法作为工程参考：用 1.3B 的模型做 PPO 去对齐 175B 的模型、混入预训练梯度（PPO-ptx）以缓解能力回退（要标注这是论文设定）。",
+        "补一句「为什么 RLHF 有效」的机制解释：把难以用监督信号表达的偏好（有用性、无害性、风格、拒答边界）压成一个可优化的标量目标，从而在 SFT 的「模仿」之上获得「取舍」能力。同时讲代价：需要大量人类标注、训练不稳定、易被 hack、复现成本高。",
+        "常见追问：KL 系数怎么调、调大调小分别发生什么？RM 在分布外为什么不可靠？为什么不直接用 RM 做 best-of-n 而不是 RL（成本与效果对比）？PPO 与 DPO 的关系（链到 [[finetuning-02]]）？"
+      ]
+    },
+    {
+      "id": "finetuning-02",
+      "order": 2,
+      "file": "docs/微调、后训练与对齐/02-什么是 DPO？为什么它取代了基于 PPO 的 RLHF.md",
+      "question": "什么是 DPO？为什么它在许多实验室里取代了基于 PPO 的 RLHF？什么情况下 online RL 仍然更好？",
+      "question_en": "What is DPO, why did it replace PPO-based RLHF in many labs, and when is online RL still better?",
+      "asked_at": ["Hugging Face", "Scale AI"],
+      "level": "高阶",
+      "tags": ["dpo", "rlhf", "偏好优化", "offline"],
+      "sources": [
+        { "title": "Direct Preference Optimization (DPO)", "url": "https://outcomeschool.com/blog/direct-preference-optimization-dpo", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model（延伸）", "url": "https://arxiv.org/abs/2305.18290", "author": "Rafailov et al. (NeurIPS 2023)", "published": "2023-05-29" }
+      ],
+      "related": ["finetuning-01", "finetuning-03", "finetuning-11", "llm-internals-11"],
+      "brief": [
+        "推导是本题的核心，要一步步写：① 带 KL 约束的 RLHF 目标（同 [[finetuning-01]]）有闭式最优解 $\\pi^*(y|x) \\propto \\pi_{\\text{ref}}(y|x)\\exp\\!\\big(r(x,y)/\\beta\\big)$；② 把它反解出奖励 $r(x,y) = \\beta \\log \\frac{\\pi^*(y|x)}{\\pi_{\\text{ref}}(y|x)} + \\beta \\log Z(x)$；③ 代回 Bradley-Terry 偏好似然，配分项 $Z(x)$ 在成对比较中相消；④ 得到只含策略与参考模型的 DPO 损失：$\\mathcal{L}_{\\text{DPO}} = -\\log \\sigma\\!\\big(\\beta \\log \\frac{\\pi_\\theta(y_w|x)}{\\pi_{\\text{ref}}(y_w|x)} - \\beta \\log \\frac{\\pi_\\theta(y_l|x)}{\\pi_{\\text{ref}}(y_l|x)}\\big)$。结论一句话：**奖励模型被隐式地表示成策略与参考模型的对数比**，于是 RL 问题退化成一个二分类式的监督学习问题。",
+        "回答「为什么取代 PPO」（逐条给工程理由）：① 不需要单独训练 RM（少一个模型与一轮标注）；② 不需要在线采样 rollout（不需要把策略放进环境跑、不需要 value network），显存从「四模型同场」降到「策略 + 参考」两份；③ 训练稳定、对超参不敏感、实现只有几十行；④ 收敛快（通常 1–3 个 epoch）；⑤ 在小规模团队里可复现性远好于 PPO。",
+        "讲清它的代价与边界（这是「什么情况下 online RL 仍然更好」的前提）：DPO 是 **offline** 的——只用固定偏好数据集，策略自己不去探索，因此① 无法发现数据集没覆盖的错误（分布外偏好无从修正）；② 对偏好数据的质量、覆盖与长度/风格偏置非常敏感（会学出长度偏置）；③ 没有「试错—反馈」闭环，对需要探索的任务（推理、工具使用）帮助有限；④ 参考模型固定，长时间训练会过拟合偏好集。",
+        "回答第二问（online RL 何时更好）要具体：① 有**可验证奖励**（数学/代码/约束满足）时，online RL（如 GRPO）能用策略自己采样的结果反复纠错（链到 [[finetuning-03]]、[[finetuning-10]]）；② 需要探索与自我纠错的长链推理；③ 偏好数据稀缺但可以自动评估的任务；④ 需要迭代式偏好收集（online/iterative DPO、RLAIF）来不断逼近真实偏好；⑤ 希望同时优化多个互相冲突的目标（有用性/无害性分离的 RM）。可提到公开配方常是混合路线：SFT → DPO → RLVR（Tulu 3 把这三者作为公开可复现的后训练配方）。",
+        "实践要点：$\\beta$ 控制偏离参考模型的程度（既是 KL 强度也是「隐式奖励」的尺度）；参考模型一般就用 SFT 模型；数据质量远重于数量；DPO **不能替代 SFT**（先有指令遵循能力，再做偏好取舍）；要监控输出长度与拒答率这类症状指标（链到 [[finetuning-11]]）。",
+        "常见追问：DPO 的隐式奖励能不能拿来给别的模型打分（能，但要小心它是相对参考模型的）？DPO 与 PPO 在什么假设下等价？为什么 DPO 也会长度偏置？KTO/ORPO/SimPO 这些变体各自在改什么？"
+      ]
+    },
+    {
+      "id": "finetuning-03",
+      "order": 3,
+      "file": "docs/微调、后训练与对齐/03-解释 GRPO 以及为什么去掉 value network 很关键.md",
+      "question": "解释 GRPO，以及为什么在规模化场景下去掉 value network 很关键。",
+      "question_en": "Explain GRPO and why dropping the value network matters at scale.",
+      "asked_at": ["DeepSeek"],
+      "level": "高阶",
+      "tags": ["grpo", "rl", "value-network", "推理"],
+      "sources": [
+        { "title": "Group Relative Policy Optimization (GRPO)", "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models（延伸）", "url": "https://arxiv.org/abs/2402.03300", "author": "Shao et al. (GRPO 原始出处)", "published": "2024-02-05" },
+        { "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）", "url": "https://arxiv.org/abs/2501.12948", "author": "DeepSeek-AI", "published": "2025-01-22" }
+      ],
+      "related": ["finetuning-01", "finetuning-02", "finetuning-10", "inference-serving-09"],
+      "brief": [
+        "先讲 PPO 里 value network 的成本（这是「为什么去掉很关键」的落点）：value 模型通常与策略同规模，于是显存里多出**一整套模型权重 + 优化器状态**（按 [[finetuning-09]] 的 16 bytes/param 口径，7B 就是上百 GB 量级）、每步多一次前向；而且长序列的信用分配本身就难，value 拟合误差是训练不稳定的主要来源之一。",
+        "讲 GRPO 的做法（分步）：① 对同一个 prompt 采样一组 $G$ 个输出（常见 $G=8\\sim64$）；② 用奖励函数给每个输出打分 $r_i$（规则/验证器或 RM）；③ 用**组内**均值与标准差把奖励标准化成优势 $A_i = \\frac{r_i - \\text{mean}(r)}{\\text{std}(r)}$，必要时再乘长度归一化；④ 用 PPO 式的 clip 目标加 KL 项更新策略，但**不用 value network**——基线来自同组其它样本。要强调「组内相对」这个设计：同一个 prompt 的多个回答构成天然的对照组，把「绝对分数」转成「相对好坏」。",
+        "逐条回答「为什么在规模化下关键」：① 显存与算力真省——少一个与策略同规模的模型及其优化器状态，训练可在同样硬件上跑更大模型或更大 batch（链到 [[inference-serving-09]] 的容量视角）；② 少一个不稳定的拟合目标（value 的偏差会污染优势估计）；③ 与**可验证奖励**天然契合——答案对错是 0/1，组内对比直接给出优势信号，不需要 value 去预测期望回报（链到 [[finetuning-10]]）；④ 实现简单、超参更少。代价也要讲：每个 prompt 要采样 $G$ 次（采样成本上升数倍）、奖励方差大时优势估计噪声大、组内奖励全同（全对或全错）时优势为 0 就没有梯度。",
+        "给出处与实证口径：GRPO 由 DeepSeekMath 提出，论文明确把它描述为 PPO 的变体、动机之一是「在提升数学推理能力的同时优化 PPO 的显存占用」；DeepSeek-R1 进一步展示**纯 RL**（不需要人类标注的推理轨迹）就能激励出推理能力，在数学、代码竞赛与 STEM 这类可验证任务上表现突出，并观察到自我反思、验证与策略自适应等推理模式的涌现，这些模式还可以蒸馏给小模型。要标注这是论文口径。",
+        "与 DPO 的边界讲清楚：DPO 是 offline（固定偏好数据、无采样），GRPO 是 online（策略自己采样、需要奖励函数）；判断规则——**有验证器就优先 online RL，只有偏好对就 DPO**，两者也可以串起来用（SFT → DPO → RLVR 是公开配方里常见顺序，链到 [[finetuning-02]]、[[finetuning-10]]）。",
+        "常见追问：组大小 $G$ 怎么选（越大优势估计越稳但采样越贵）？组内奖励全同怎么办（难度均衡的 prompt 采样、动态过滤）？KL 项在 GRPO 里还要不要？与 RLOO / Reinforce++ / DAPO 这些变体的差别？"
+      ]
+    },
+    {
+      "id": "finetuning-04",
+      "order": 4,
+      "file": "docs/微调、后训练与对齐/04-从数学上解释 LoRA 的分解与秩的选择.md",
+      "question": "从数学上解释 LoRA 的分解。它为什么有效，以及如何选择秩 r？",
+      "question_en": "Explain LoRA's decomposition mathematically. Why does it work, and how do you choose the rank r?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["lora", "低秩", "peft", "秩"],
+      "sources": [
+        { "title": "LoRA - Low-Rank Adaptation of LLMs", "url": "https://outcomeschool.com/blog/lora-low-rank-adaptation-of-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）", "url": "https://arxiv.org/abs/2106.09685", "author": "Hu et al. (ICLR 2022)", "published": "2021-06-17" }
+      ],
+      "related": ["finetuning-05", "finetuning-06", "finetuning-09", "llm-internals-15"],
+      "brief": [
+        "把数学写清楚：预训练权重 $W_0 \\in \\mathbb{R}^{d\\times k}$ 冻结，注入低秩增量 $\\Delta W = BA$，其中 $B \\in \\mathbb{R}^{d\\times r}$、$A \\in \\mathbb{R}^{r\\times k}$、$r \\ll \\min(d,k)$；前向变成 $h = W_0 x + \\frac{\\alpha}{r} BAx$（也可写成 $\\Delta W = \\frac{\\alpha}{r}BA$）。初始化 $A \\sim \\mathcal{N}(0,\\sigma^2)$、$B = 0$，保证训练起点 $\\Delta W = 0$（不破坏原模型）。要说明 $\\alpha/r$ 这个缩放的作用与 rank-stabilized 变体（$\\alpha/\\sqrt{r}$）。",
+        "算参数量账（要具体数字）：$W_0$ 有 $d\\cdot k$ 个参数，$BA$ 只有 $r(d+k)$ 个。以 $d=k=4096$、$r=8$ 为例：$16.8\\text{M} \\to 65.5\\text{K}$，约 256 倍；$r=16$ 时约 128 倍。再说明论文的极端口径：相对 GPT-3 175B 用 Adam 全量微调，LoRA 可训练参数减少约 10,000 倍、显存需求降约 3 倍（标注这是论文设定）。注意区分「可训练参数」与「总显存」——底座仍然要放进显存（链到 [[finetuning-09]]）。",
+        "回答「为什么有效」要分三层：① **经验事实**——论文发现微调产生的权重更新矩阵具有低内在秩（rank deficiency），即适配下游任务所需的自由度远小于参数总量（可提到不同下游任务学到的 $\\Delta W$ 之间有明显重叠）；② **归纳偏置/正则**——把搜索空间限制在低秩子空间本身就是一种强正则，降低小数据过拟合；③ **优化视角**——冻结底座让优化只在低维流形上进行，梯度噪声与灾难性遗忘都更小（链到 [[finetuning-07]]）。",
+        "「如何选 r」要给可操作流程而不是一个数字：① 从 $r=8$ 或 $16$ 起步做扫描，$r \\in \\{4, 8, 16, 32, 64\\}$；② 任务与新领域/新格式的差距越大，需要的 $r$ 越大（格式对齐很小，注入新领域知识或新语言要大得多）；③ 观察收益饱和点——$r$ 增大到某处后验证集指标不再提升，此时增大 $r$ 只是增加过拟合风险；④ 与之配套的旋钮：$\\alpha$（更新尺度，常用 $\\alpha=2r$ 或固定 $\\alpha$ 扫 $r$）、dropout、`target_modules`（只挂 q/v 还是 q/k/v/o 还是全部线性层）、学习率；⑤ 用**验证集**而不是训练损失来选，并固定随机种子比较。",
+        "工程收益与限制：推理零额外延迟（训练完可把 $BA$ 加回 $W_0$，$W = W_0 + \\frac{\\alpha}{r}BA$）；一个底座可以挂多个适配器做热切换/多租户（链到 [[inference-serving-11]]）；代价是表达能力受 $r$ 限制，且与全量微调的差距在「需要注入大量新知识」的任务上会显现（链到 [[finetuning-06]]、[[finetuning-08]]）。",
+        "常见追问：LoRA 该挂在哪几层（论文的消融结论方向）？$B$ 与 $A$ 的初始化为什么这样选？LoRA 的秩与「有效秩」怎么测（奇异值谱）？为什么 LoRA 不一定省训练时间（链到 [[finetuning-09]]）？"
+      ]
+    },
+    {
+      "id": "finetuning-05",
+      "order": 5,
+      "file": "docs/微调、后训练与对齐/05-QLoRA 如何降低显存占用以及它需要哪些量化权衡.md",
+      "question": "QLoRA 是如何降低显存占用的？它需要做哪些 quantization 权衡？",
+      "question_en": "How does QLoRA reduce memory, and what quantization tradeoffs does it require?",
+      "asked_at": ["Hugging Face"],
+      "level": "进阶",
+      "tags": ["qlora", "量化", "nf4", "显存"],
+      "sources": [
+        { "title": "How does Model Quantization work?", "url": "https://outcomeschool.com/blog/how-does-model-quantization-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）", "url": "https://www.youtube.com/watch?v=lnfWvX66FUk", "author": "Outcome School", "published": "" },
+        { "title": "QLoRA: Efficient Finetuning of Quantized LLMs（延伸）", "url": "https://arxiv.org/abs/2305.14314", "author": "Dettmers et al. (NeurIPS 2023)", "published": "2023-05-23" },
+        { "title": "bitsandbytes 文档（延伸）", "url": "https://huggingface.co/docs/bitsandbytes/index", "author": "Hugging Face", "published": "" }
+      ],
+      "related": ["finetuning-04", "finetuning-09", "inference-serving-06", "finetuning-06"],
+      "brief": [
+        "一句话定位：QLoRA = **冻结的 4-bit 量化底座 + bf16 的 LoRA 适配器**，梯度穿过量化权重回传到适配器。论文口径要写清：让 65B 模型能在**单张 48GB GPU** 上微调，并保持 16-bit 全量微调的任务表现。",
+        "讲三个关键技术点（这是题眼）：① **NF4（4-bit NormalFloat）**——针对「权重近似正态分布」这一先验设计的分位数量化，每个量化桶容纳等概率质量，因此在该分布下信息论意义上最优（与均匀 INT4 的差别要讲清楚：INT4 等距分桶、NF4 等概率分桶）；② **双重量化（double quantization）**——对量化常数（每个 block 的 scale）再做一次量化，论文口径平均每参数再省约 0.37 bit，65B 模型上省下约 3 GB；③ **分页优化器（paged optimizers）**——用统一内存让优化器状态在显存与主机内存之间换页，吸收梯度检查点带来的显存尖峰，避免长序列 OOM。",
+        "把显存账算出来（要与 [[finetuning-09]] 的全量微调账对照）：底座 4 bit → 7B 约 3.5–4 GB、13B 约 7–8 GB、70B 约 35–40 GB（含量化常数）；LoRA 适配器与其优化器状态按可训练参数量 × 16 bytes（链到 [[finetuning-04]] 的参数量算法）；激活与梯度检查点的开销；临时/碎片。给一张对照表：全量微调 7B（bf16 + Adam）约 112 GB → QLoRA 7B 约 8–12 GB 量级（自己按上面各项加总，说明口径）。",
+        "量化权衡逐条讲（题干的第二问）：① **速度**——4-bit 前向需要反量化，训练吞吐通常低于 bf16 LoRA（论文也提到这个代价），换来的是可行性；② **精度**——量化误差大部分被低秩适配的可学习空间吸收，但在长链推理、代码、多语言等对数值敏感的任务上必须实测对比；③ **可训练范围**——只有适配器可训练，底座永远冻结，所以「QLoRA 能否学会全新能力」受适配器容量限制（链到 [[finetuning-06]]）；④ **超参不可直接迁移**——量化底座上的最优学习率/秩与 bf16 不完全可比；⑤ **部署路径**——训练产物是适配器，部署时通常合并回 bf16 底座再量化部署，或直接在量化底座上推理（链到 [[inference-serving-06]]）。",
+        "把易混概念分开：QLoRA 是「量化**训练**」；GPTQ/AWQ 是「量化**部署**」（离线权重量化、激活保持高精度）；bitsandbytes 提供 NF4/INT8 的 kernel 与优化器，是工程落地里最常见的实现（可引用其文档作为实现参考）。",
+        "常见追问：NF4 与 INT4 在什么分布假设下差异最大？双重量化为什么能省（量化常数本身的比特数占比）？为什么 4-bit 训练不掉点？什么时候反而别用 QLoRA（追求吞吐/需要最大质量/底座能放下时用 bf16 LoRA 更划算）？"
+      ]
+    },
+    {
+      "id": "finetuning-06",
+      "order": 6,
+      "file": "docs/微调、后训练与对齐/06-比较 LoRA、prefix tuning、prompt tuning 与全量微调.md",
+      "question": "比较 LoRA、prefix tuning、prompt tuning 和 full fine-tuning。分别在什么场景下选择它们？",
+      "question_en": "Compare LoRA, prefix tuning, prompt tuning and full fine-tuning. When do you pick each?",
+      "asked_at": ["Sarvam AI", "Apple"],
+      "level": "进阶",
+      "tags": ["peft", "prefix-tuning", "prompt-tuning", "全量微调"],
+      "sources": [
+        { "title": "How does Fine-Tuning work?", "url": "https://outcomeschool.com/blog/how-does-fine-tuning-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "How does Prefix Tuning work?", "url": "https://outcomeschool.com/blog/how-does-prefix-tuning-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Prefix-Tuning: Optimizing Continuous Prompts for Generation（延伸）", "url": "https://arxiv.org/abs/2101.00190", "author": "Li & Liang", "published": "2021-01-01" },
+        { "title": "P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks（延伸）", "url": "https://arxiv.org/abs/2110.07602", "author": "Liu et al. (ACL 2022)", "published": "2021-10-14" }
+      ],
+      "related": ["finetuning-04", "finetuning-05", "finetuning-07", "finetuning-08"],
+      "brief": [
+        "先分类，把四个方案放进一棵树：**全量微调**更新所有参数；**参数高效微调（PEFT）** 分两大流派——**权重空间**（LoRA 学低秩增量 $\\Delta W = BA$，可合并回权重）与**激活空间/软提示**（prefix tuning 在每层 attention 的 K/V 前拼可学习前缀；prompt tuning 只在输入 embedding 前拼可学习向量；P-Tuning v2 是「深层 prompt」，把软提示加到每一层）。",
+        "逐个讲机制与出处：① LoRA——冻结底座、学低秩增量，推理可合并因此**零额外延迟**（链到 [[finetuning-04]]）；② prefix tuning——论文口径：只学约 **0.1%** 的参数，在生成任务上可比全量微调，低资源场景更好、对未见主题外推更好，但前缀要占**注意力上下文与 KV cache**；③ prompt tuning——只调输入层 soft prompt，参数更少，但在中小编号模型上效果差，P-Tuning v2 把它扩展到深层后论文口径做到 0.1%–3% 参数可比全量微调；④ 全量微调——上限最高、也最贵，且最容易灾难性遗忘（链到 [[finetuning-07]]）。",
+        "给对比表，维度要包含工程要素：可训练参数量、训练显存、推理延迟（LoRA 合并后 0；软提示有前缀开销，且与 prefix cache 冲突，链到 [[inference-serving-05]]）、多任务/多租户切换（LoRA 可热插拔/多适配器并发；软提示要随请求携带）、表达能力上限、抗灾难性遗忘、工具链成熟度。",
+        "场景选择要给判断规则而不是站队：① 只对齐格式/风格、数据少（几百到几千条）→ 软提示或小 $r$ 的 LoRA；② 注入新领域知识/新语言/新任务（分布外）→ 全量微调或较大 $r$ 的 LoRA + 更多数据（链到 [[finetuning-08]] 的决策框架）；③ 多租户/每客户一个适配器 → LoRA（可合并、可并发、可按请求路由，链到 [[inference-serving-11]]）；④ 显存不够 → QLoRA（链到 [[finetuning-05]]）；⑤ 追求单一任务极致质量且预算充足 → 全量微调；⑥ 需要频繁试验多个方向 → PEFT（训练快、存得小、可以并行试很多组超参）。",
+        "工程现实要提：PEFT 省显存但不一定省时间（kernel 效率、适配器矩阵乘的额外开销）；软提示的「前缀占用上下文」在长上下文场景下是实打实的成本；一旦把软提示换成一个普通 LoRA，服务端部署路径会简单很多——这也是 LoRA 成为事实标准的原因。",
+        "常见追问：prefix tuning 与 prompt tuning 的差别到底在哪一层？为什么 prompt tuning 在小模型上差（P-Tuning v2 的动机）？adapter（瓶颈层）与 LoRA 的推理延迟差异？PEFT 能否与 RLHF 叠加（LoRA + DPO/PPO 的可行性与坑）？"
+      ]
+    },
+    {
+      "id": "finetuning-07",
+      "order": 7,
+      "file": "docs/微调、后训练与对齐/07-什么是灾难性遗忘？如何在微调中缓解.md",
+      "question": "什么是灾难性遗忘？在 fine-tuning 过程中如何缓解它？",
+      "question_en": "What is catastrophic forgetting and how do you mitigate it during fine-tuning?",
+      "asked_at": ["Mistral AI"],
+      "level": "进阶",
+      "tags": ["灾难性遗忘", "持续学习", "回放", "正则"],
+      "sources": [
+        { "title": "Continual Learning in LLMs", "url": "https://outcomeschool.com/blog/continual-learning-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning（延伸）", "url": "https://arxiv.org/abs/2308.08747", "author": "Luo et al.", "published": "2023-08-17" }
+      ],
+      "related": ["finetuning-06", "finetuning-08", "finetuning-12", "finetuning-01"],
+      "brief": [
+        "先定义并给出机制解释：在新数据上继续训练时，参数更新朝向新任务的损失曲面移动，导致原本编码旧能力的表示被覆盖；从优化角度看是「没有旧任务的约束」+「新旧梯度方向冲突」；从表示角度看是特征漂移而非单纯的记忆丢失（要在文里区分）。说明它与「过拟合」「能力回退（alignment tax）」的关系与区别。",
+        "给实证口径（这部分是分数的来源）：论文在 1B–7B 模型上做**持续指令微调**，从领域知识、推理、阅读理解三个维度评估，普遍观察到灾难性遗忘；且在该尺度范围内**模型越大遗忘越严重**（可能与更大的初始性能有关）；decoder-only 的 BLOOMZ 相比 encoder-decoder 的 mT0 遗忘更少、保留更多知识；而**通用指令微调可以缓解后续微调中的遗忘**。要标注这是该论文的实验范围（1B–7B），不要外推到 100B 级。",
+        "缓解手段要分层给（每层给机制与代价）：① **数据层**——回放/混入通用指令数据（常见 5%–10% 配比）、多任务联合训练、保持与预训练分布接近的语料混比、数据去重与配比调优；② **参数层**——PEFT（LoRA/prefix，冻结底座天然抗遗忘，链到 [[finetuning-06]]）、更小的学习率、更少的 epoch、只微调上层或部分模块；③ **目标层**——KL 约束到参考模型（与 RLHF 的 KL 同源，链到 [[finetuning-01]]）、蒸馏损失保留旧分布的输出（链到 [[finetuning-12]]）；④ **流程层**——持续学习范式（replay / regularization / 参数隔离三条路线）、能力回归测试（每次微调后跑通用能力评测，链到 [[rag-04]]）。",
+        "给判断规则：数据分布离预训练越远、epoch 越多、学习率越大、模型越小（相对数据量），越需要回放与正则；「先通用指令微调、再垂直微调」的顺序本身就能降低遗忘（论文的结论之一）。",
+        "权衡要讲清：回放会挤占新任务容量（新任务拟合变慢）；PEFT 抗遗忘但可能降低新任务上限；KL/蒸馏约束越强越稳但越快进入「学不动」。所以实际做法是用**能力回归集 + 目标任务指标**共同决定约束强度，而不是一味加正则。",
+        "常见追问：怎么量化遗忘（前后对比的通用能力分数、perplexity、任务指标；要固定评测集与解码参数）？灾难性遗忘与「模型变笨了」的主观报告怎么区分？为什么小模型反而更抗遗忘？持续学习与多任务学习的边界？"
+      ]
+    },
+    {
+      "id": "finetuning-08",
+      "order": 8,
+      "file": "docs/微调、后训练与对齐/08-Prompting、RAG 还是 fine-tuning：决策框架与成本权衡.md",
+      "question": "Prompting、RAG 还是 fine-tuning：请给出你的决策框架，并把成本和 latency 一并考虑进去。",
+      "question_en": "Prompting, RAG or fine-tuning: give your decision framework, including cost and latency.",
+      "asked_at": ["OpenAI", "Mistral AI", "Cohere", "Microsoft", "Databricks", "Glean"],
+      "level": "进阶",
+      "tags": ["决策框架", "成本", "rag", "微调"],
+      "sources": [
+        { "title": "AI Engineering Explained: LLM, RAG, MCP, Agent, Fine-Tuning, Quantization（视频）", "url": "https://www.youtube.com/watch?v=lnfWvX66FUk", "author": "Outcome School", "published": "" },
+        { "title": "LIMA: Less Is More for Alignment（延伸）", "url": "https://arxiv.org/abs/2305.11206", "author": "Zhou et al.", "published": "2023-05-18" },
+        { "title": "Self-Instruct: Aligning Language Models with Self-Generated Instructions（延伸）", "url": "https://arxiv.org/abs/2212.10560", "author": "Wang et al. (ACL 2023)", "published": "2022-12-20" }
+      ],
+      "related": ["finetuning-06", "finetuning-07", "finetuning-12", "rag-06", "inference-serving-12"],
+      "brief": [
+        "先立框架的骨架——依次问四个问题：① 缺的是**知识**还是**行为**？（知识类问题优先 RAG/长上下文；格式、风格、语气、拒答边界这类**行为**问题优先提示与微调）；② 知识是否**频繁变化**、是否需要**权限与引用**？（频繁变化或需要可追溯 → RAG，因为把知识烧进权重后更新要重训，且无法给出引用，链到 [[rag-08]]、[[rag-12]]）；③ 是否是**分布外的新能力**（新语言、新领域术语、新任务形态）？（是且数据充足 → 微调甚至继续预训练）；④ 能否先用**提示 + 少样本**解决？（能就先提示，边际成本最低）。",
+        "把三者的成本结构摊开对比（要能算）：① prompting——每次请求的 token 成本随示例增长（示例进上下文就是持续付费）；② RAG——检索基础设施（索引、向量库、重排）+ 每次多出的上下文 token + 检索与重排延迟（链到 [[inference-serving-09]]）；③ fine-tuning——一次性训练成本（数据标注/合成 + GPU 小时）+ 适配器与版本管理成本 + 每次请求的额外成本（LoRA 合并后近似为零）。",
+        "给**盈亏平衡点**的算法与算例（这是「把成本一并考虑」的落地）：微调值得做当且仅当 `固定训练成本 < 每次请求省下的成本 × 请求量`。自己写一个可复算的例子：训练花 200 GPU 小时 × $2/h = $400；微调后省掉 1500 token 的示例/上下文，按 $3 / 1M tokens 计，每次省 $0.0045；则约需 400 / 0.0045 ≈ 8.9 万次请求回本——然后再叠加延迟收益（去掉长示例能显著降 TTFT）与质量收益，最后给结论。",
+        "讲组合与顺序（面试加分点）：先用 prompting 建立基线并做评测 → 知识类不足上 RAG → 行为/格式/领域语言仍不足再上微调；常见组合是「RAG 提供事实 + 微调提供行为」；也可以用微调**蒸馏**一个更小的模型承接高频流量以降本（链到 [[finetuning-12]]、[[inference-serving-12]]）。要强调顺序背后的原理：提示与 RAG 都是**可即时迭代**的，微调是**一次性固化**的，后者试错成本高得多。",
+        "引用两条实证口径支撑「数据质量重于数量」与「小数据能改变行为」：LIMA 只用 1000 条精选 prompt/response、不做 RL 或偏好建模，就有 43% 的回答被人类评为与 GPT-4 相当或更好（对比 Bard 58%、DaVinci003 65%）——说明**行为对齐**用很少的数据就能做到；但**注入新知识**需要远多的数据，且伴随遗忘风险（链到 [[finetuning-07]]）。Self-Instruct 展示了用模型自举生成指令数据来规模化 SFT 数据的路线（33% 的绝对提升口径，链到 [[finetuning-12]]）。",
+        "最后给反面清单：数据不足就微调、用微调记事实（会幻觉且难更新）、用 RAG 教格式、只比单价不看延迟与质量、以及没有评测基线就换手段（链到 [[rag-04]]）。"
+      ]
+    },
+    {
+      "id": "finetuning-09",
+      "order": 9,
+      "file": "docs/微调、后训练与对齐/09-算一下 7B 模型 bf16 全量微调与 LoRA 的 GPU 显存.md",
+      "question": "算一下用 Adam 以 bf16 全量 fine-tuning 一个 7B 模型所需的 GPU 显存。换成 LoRA 呢？",
+      "question_en": "Compute the GPU memory for bf16 full fine-tuning of a 7B model with Adam. What about LoRA?",
+      "asked_at": ["Mistral AI", "Hugging Face"],
+      "level": "进阶",
+      "tags": ["显存", "adam", "zero", "lora"],
+      "sources": [
+        { "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）", "url": "https://arxiv.org/abs/1910.02054", "author": "Rajbhandari et al.", "published": "2019-10-04" },
+        { "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）", "url": "https://arxiv.org/abs/2106.09685", "author": "Hu et al.", "published": "2021-06-17" },
+        { "title": "Reducing Activation Recomputation in Large Transformer Models（延伸）", "url": "https://arxiv.org/abs/2205.05198", "author": "Korthikanti et al. (Megatron)", "published": "2022-05-10" }
+      ],
+      "related": ["finetuning-04", "finetuning-05", "inference-serving-07", "inference-serving-08"],
+      "brief": [
+        "先把显存拆成五块（骨架，缺一块就会被追问）：**权重、梯度、优化器状态、激活、临时与碎片**。然后逐块给公式与数字，用同一个配置贯穿全篇：$N = 7\\times10^9$ 参数、bf16 混合精度、Adam 优化器。",
+        "混合精度 Adam 的经典账（每参数字节数，引用 ZeRO 论文的口径）：bf16 权重 2 + bf16 梯度 2 + fp32 主权重 4 + Adam 一阶动量 4 + 二阶动量 4 = **16 bytes/param** → 7B × 16 ≈ **112 GB**。要说明这些是「权重相关」的固定开销，与 batch/序列长度无关，因此单卡 80GB 根本放不下（只是这一块就超了）。",
+        "把激活算进去并给出降显存的手段：激活显存与 batch × 序列长度 × 层数 × 隐藏维（以及注意力的 $S^2$ 项）相关；**梯度检查点**（activation recomputation）用重算换显存，把激活从「保存每层」降到「保存少量检查点」（论文口径：序列并行 + 选择性重算把激活显存降低 5×、重算带来的额外时间开销降低 90% 以上）；FlashAttention 消掉注意力的 $S^2$ 项（链到 [[llm-internals-05]]）。给出一个可复算的例子并说明假设。",
+        "讲**ZeRO 分片**（这是「怎么才能在 80GB 卡上训」的答案）：ZeRO-1 分片优化器状态、ZeRO-2 再分片梯度、ZeRO-3 再分片参数；8 卡 ZeRO-3 时 16 bytes/param 的固定开销摊成约 2 bytes/param/卡 → 7B 约 14 GB/卡，加上激活与通信缓冲仍在 80GB 内（写出算式与假设：8 卡、无 offload、激活另计）。要提通信代价随分片程度上升（链到 [[inference-serving-07]] 的并行策略视角）。",
+        "换成 LoRA 的账（要算，不要只定性）：① 底座 7B bf16 = 14 GB（冻结，**无梯度、无优化器状态**）；② 可训练参数：以 $r=16$、只挂 q/k/v/o 四个 $4096\\times4096$ 矩阵、32 层为例，$4 \\times 32 \\times 16 \\times (4096+4096) = 16.8\\text{M}$；按 16 bytes/param（梯度 + Adam 状态 + 主权重）约 0.27 GB，即便 $r=64$ 也只有约 1 GB 量级；③ 激活与检查点同前；④ 结论：单卡 80GB 轻松放下，QLoRA 下甚至 24–48GB 就够（链到 [[finetuning-05]]）。",
+        "点出最常见的理解偏差：**LoRA 省的不是权重显存，而是梯度与优化器状态**（以及它们的通信量）。底座无论如何都要放进显存（bf16 或 4-bit），所以「LoRA 让 70B 能在单卡上微调」靠的是量化底座（QLoRA）而不是 LoRA 本身。这句话是这题的区分点。",
+        "常见追问：梯度检查点慢多少（多一次前向，通常 +20%–40% 时间，取决于重算粒度）？序列长度翻倍时哪一块涨得最快？ZeRO-1/2/3 分别分片什么、通信量怎么变？bf16 与 fp16 在显存账上有差别吗（数值稳定性差别更大）？"
+      ]
+    },
+    {
+      "id": "finetuning-10",
+      "order": 10,
+      "file": "docs/微调、后训练与对齐/10-什么是 RLVR 以及它为何胜过学到的 reward model.md",
+      "question": "什么是 RLVR（RL with verifiable rewards）？它在哪些方面胜过学到的 reward model？",
+      "question_en": "What is RLVR (RL with verifiable rewards) and where does it beat a learned reward model?",
+      "asked_at": ["智谱 AI", "阿里巴巴", "Sarvam AI", "Scale AI"],
+      "level": "高阶",
+      "tags": ["rlvr", "verifier", "reward-model", "推理"],
+      "sources": [
+        { "title": "Group Relative Policy Optimization (GRPO)", "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）", "url": "https://arxiv.org/abs/2501.12948", "author": "DeepSeek-AI", "published": "2025-01-22" },
+        { "title": "Tulu 3: Pushing Frontiers in Open Language Model Post-Training（延伸）", "url": "https://arxiv.org/abs/2411.15124", "author": "Lambert et al.", "published": "2024-11-22" }
+      ],
+      "related": ["finetuning-03", "finetuning-11", "finetuning-01", "inference-serving-09"],
+      "brief": [
+        "先定义：RLVR = 用**可程序化验证**的奖励替代「学出来的 reward model」来做 RL。奖励来自规则或验证器：数学题答案精确比对、代码跑单元测试、约束/格式校验、编译器或求解器判定、检索答案的字符串匹配等。要点是奖励是**规则**而不是模型拟合出来的偏好。",
+        "逐条回答「为何胜过学到的 RM」（这是题眼）：① **精确且不可欺骗**（在可验证任务范围内）——没有 RM 的分布外误判，也不存在「训练时把 RM 刷高但不满足真实意图」的通道（链到 [[finetuning-11]] 的 reward hacking）；② **不需要人类偏好标注**——数据来自题库/测试集，可规模化且成本可控；③ **信号客观可复现**——同一答案的奖励确定，便于调试与回归；④ 稀疏但可用组内相对优势（GRPO）转成稳定梯度（链到 [[finetuning-03]]）；⑤ 可以自动构造海量样本（题目 + 验证器流水线）。",
+        "给出处与实证口径：DeepSeek-R1 展示**纯 RL**（不需要人类标注的推理轨迹）就能激励出推理能力，在数学、代码竞赛与 STEM 这类可验证任务上表现突出，并观察到自我反思、验证、策略自适应等推理模式的涌现（论文口径）；Tulu 3 把 SFT + DPO + RLVR 作为公开的后训练配方并报告了哪些方法没有稳定收益（可作为「RLVR 在实践中并非万能」的参考）。",
+        "局限必须讲透（这是区分度所在）：① **只适用于可验证的任务**——开放式写作、共情、风格、事实性开放问答没有可靠验证器；② **验证器本身会被钻空子**——格式对但内容错、过拟合可见测试用例、把答案抄进推理过程（reward hacking 的另一种形态）；③ **覆盖窄会导致能力偏移**——只在数学上做 RL 可能让模型在其他域变得过度啰嗦或拒答（链到 [[finetuning-07]] 的遗忘视角）；④ **依赖题目质量与防污染**——题库泄漏、评测集污染会虚高（链到 [[rag-04]] 的评测纪律）；⑤ **组内奖励全同（全对/全错）时优势为 0**，需要难度均衡采样。",
+        "工程实践：验证器多重化（可见测试 + 隐藏测试 + 抽检）、奖励塑形（把「格式合规」与「答案正确」拆成两项并给不同权重）、难度课程与动态采样、与 SFT/DPO 的配比（SFT 冷启动 → RLVR → 偏好数据修风格）、以及上线前的回归评测。",
+        "常见追问：RLVR 与 RLAIF（用 AI 反馈当奖励）的区别？没有验证器的领域怎么办（过程奖励模型 PRM、结果奖励模型 RM、或人工抽检）？「答案对」与「推理对」的差别怎么处理（看推理链是否可复用、是否能泛化到同类题）？"
+      ]
+    },
+    {
+      "id": "finetuning-11",
+      "order": 11,
+      "file": "docs/微调、后训练与对齐/11-解释 RLHF 中的 reward hacking 以及各实验室如何应对.md",
+      "question": "解释 RLHF 中的 reward hacking，以及各实验室如何应对它。",
+      "question_en": "Explain reward hacking in RLHF and how labs address it.",
+      "asked_at": ["Scale AI"],
+      "level": "高阶",
+      "tags": ["reward-hacking", "goodhart", "kl", "rm"],
+      "sources": [
+        { "title": "Reinforcement Learning from Human Feedback (RLHF)", "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Concrete Problems in AI Safety（延伸）", "url": "https://arxiv.org/abs/1606.06565", "author": "Amodei et al.", "published": "2016-06-21" },
+        { "title": "Scaling Laws for Reward Model Overoptimization（延伸）", "url": "https://arxiv.org/abs/2210.10760", "author": "Gao, Schulman, Hilton (OpenAI)", "published": "2022-10-19" },
+        { "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）", "url": "https://arxiv.org/abs/2212.08073", "author": "Bai et al. (Anthropic)", "published": "2022-12-15" }
+      ],
+      "related": ["finetuning-01", "finetuning-02", "finetuning-10", "rag-04"],
+      "brief": [
+        "先定义并溯源：reward hacking = 策略优化了一个**代理目标**（学到的 RM 或启发式规则），找到了「得分高但不满足真实意图」的捷径——Goodhart 定律在 RLHF 中的体现。最早的系统性表述来自 *Concrete Problems in AI Safety*，它把 reward hacking 归入「目标函数错误」这一类问题（另外两类是评估成本与学习过程本身），要标注这是 2016 年的框架性论文。",
+        "具体表现要举例（面试官想听真实症状）：**长度偏置**（RM 偏好更长回答 → 输出越来越啰嗦）、**谄媚（sycophancy）**（顺着用户的错误前提说、不敢纠正）、**格式讨好**（堆 bullet、「Great question!」、空洞的免责声明）、**回避**（学会拒答以规避惩罚）、**评测集过拟合**（训练分布刷分、泛化差）、**表面正确**（结论对但推理是编的、引用不存在）。每条最好配一个可观测的指标（长度分布、拒答率、纠正率）。",
+        "讲清理论/实证：*Scaling Laws for Reward Model Overoptimization* 用「金标准 RM 代理人类」的合成实验，刻画了「优化代理 RM 越多，真实得分先升后降」的曲线，并发现该关系的函数形式随优化方式（RL vs best-of-n）不同、系数随 RM 参数量平滑变化，同时研究了 **KL 惩罚系数**的影响——这是「KL 为什么重要」的实证依据（要标注这是合成实验口径，不能当绝对值引用）。",
+        "应对手段分四层给（这是题干的第二问）：① **目标层**——KL 惩罚限制偏离参考模型（链到 [[finetuning-01]]）、奖励模型集成/多 RM 投票、把不可验证目标交给可验证信号（RLVR，链到 [[finetuning-10]]）；② **数据层**——偏好数据去偏（长度平衡、控制风格）、加入对抗性样本、定期用新数据重训 RM（避免 RM 被策略绕开）；③ **评测层**——不只看 RM 分数，要看独立 judge 与人工评测的**真实偏好**、监控输出长度/拒答率这类症状指标、定期做 held-out 与红队测试（链到 [[rag-04]] 的 judge 偏差治理）；④ **流程层**——早停（在真实指标拐点处停）、迭代式 RLHF（多轮收集 + 重训 RM）、用更大更强的 RM 但配合更强约束。",
+        "补一条对照路线：Constitutional AI 用「原则 + AI 反馈（RLAIF）」部分替代人类偏好标注，动机之一是减少人类标注的成本与不一致，同时让无害性目标更可控——说明「减少标注」与「减少 hacking」是两个不同维度的动机，别混为一谈。",
+        "常见追问：怎么区分「模型真的变强」与「hack 了 RM」（held-out 人工评测 + 行为症状指标）？为什么 RM 越大反而更可能被过度优化（曲线与系数）？KL 系数调大的代价是什么（学不动、多样性下降、有用性回退）？"
+      ]
+    },
+    {
+      "id": "finetuning-12",
+      "order": 12,
+      "file": "docs/微调、后训练与对齐/12-什么是 distillation？如何基于大模型构建能力强的小模型.md",
+      "question": "什么是 distillation？如何基于大模型构建一个能力强的小模型？",
+      "question_en": "What is distillation and how do you build a capable small model from a large one?",
+      "asked_at": ["阿里巴巴"],
+      "level": "进阶",
+      "tags": ["蒸馏", "kd", "小模型", "数据"],
+      "sources": [
+        { "title": "How does Knowledge Distillation work?", "url": "https://outcomeschool.com/blog/how-does-knowledge-distillation-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Distilling the Knowledge in a Neural Network（延伸）", "url": "https://arxiv.org/abs/1503.02531", "author": "Hinton, Vinyals, Dean", "published": "2015-03-09" },
+        { "title": "DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter（延伸）", "url": "https://arxiv.org/abs/1910.01108", "author": "Sanh et al.", "published": "2019-10-02" }
+      ],
+      "related": ["finetuning-08", "finetuning-07", "finetuning-06", "inference-serving-12"],
+      "brief": [
+        "先分类（回答的骨架）：**logit 蒸馏**（用 teacher 的完整概率分布即「软标签」做监督）与**数据/序列级蒸馏**（用 teacher 生成的数据当训练样本做 SFT）——后者是今天 LLM 蒸馏的主流形态。两者可以叠加。",
+        "把 logit 蒸馏的数学写清楚：softmax 带温度 $p_i = \\frac{\\exp(z_i/T)}{\\sum_j \\exp(z_j/T)}$，损失 $\\mathcal{L} = \\alpha \\cdot \\text{CE}(\\text{student}, \\text{hard label}) + (1-\\alpha)\\cdot T^2 \\cdot \\text{KL}(p^{\\text{teacher}}_T \\| p^{\\text{student}}_T)$；要解释为什么需要 $T>1$（放大「小概率类之间的相对关系」这类暗知识）以及 $T^2$ 因子的来源（补偿温度导致的对 logits 梯度缩放）。再说明软标签比硬标签信息量大在哪里（类间相似性、不确定性）。",
+        "讲 LLM 时代的做法（分层给，每层给机制与证据）：① **数据蒸馏**——用强模型生成指令数据、推理轨迹、偏好对；Self-Instruct 展示了自举式指令生成（用模型自己扩充指令集）的路线（链到 [[finetuning-08]]）；② **推理能力蒸馏**——DeepSeek-R1 的论文口径：大规模模型涌现出的推理模式可以被系统性地用于增强小模型（把小模型的推理能力提上来，而非只学答案）；③ **结构/分布蒸馏**——DistilBERT 的口径：参数减少约 40%、保留约 97% 的语言理解能力、推理快约 60%，用的是语言建模 + 蒸馏 + cosine 距离的三重损失；④ **用蒸馏替代 RL**——把 RL 得到的行为固化到 SFT 数据里，成本远低于再次做 RL（链到 [[finetuning-10]]）。",
+        "能力上限与代价要讲透（面试的区分点）：① 学生上限受 teacher 与数据质量限制，且**会继承 teacher 的错误**（幻觉、偏见会被蒸馏进小模型）；② logit 蒸馏在 LLM 上不常用的原因——词表极大（KL 计算与存储昂贵）、teacher/student 词表与分词器必须一致、闭源 API 拿不到 logits；③ 数据规模与多样性决定泛化，单任务蒸馏容易过拟合；④ **蒸馏不能凭空虚增能力**——它传递的是 teacher 的输出分布与推理模式，不会超过 teacher 的能力天花板（少量数据/训练带来的提升除外）。",
+        "给落地决策流程：什么时候蒸馏（要降本、端侧部署、高频固定任务，链到 [[inference-serving-12]]）→ 教师怎么选（能力、可调用成本、许可证条款）→ 数据怎么造与配比（蒸馏数据 + 通用数据混合以防遗忘，链到 [[finetuning-07]]）→ 怎么验收（在 held-out 真实任务上画「质量 vs 成本」曲线，而不是只看蒸馏集上的分数；防止用 teacher 生成的评测集自证，链到 [[rag-04]]）。",
+        "常见追问：蒸馏与量化/剪枝的关系（一个减参数、一个减位宽、一个删结构，链到 [[inference-serving-06]]）？蒸馏数据会让模型同质化吗？为什么「学生超过老师」在个别任务上可能发生（数据过滤/任务聚焦）？"
+      ]
+    }
+  ]
+}
