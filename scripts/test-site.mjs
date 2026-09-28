@@ -164,6 +164,28 @@ check('标记已读写入 localStorage', JSON.parse(window.localStorage.getItem(
 await nav('#/nope');
 check('未知路由显示 404', text('#content').includes('404'), '');
 
+// 12) 全量渲染检查：每篇题解渲染出的 ## 标题数必须与 markdown 源一致
+//（能抓住「围栏写错导致整段被吞进代码块」「正文没加载出来」这类问题）
+async function waitFor(fn, timeout = 4000) {
+  const t0 = Date.now();
+  while (Date.now() - t0 < timeout) {
+    try { if (fn()) return true; } catch (e) { /* 继续等 */ }
+    await wait(60);
+  }
+  return false;
+}
+const allQuestions = catalog.topics.flatMap((t) => t.questions);
+const badRender = [];
+for (const q of allQuestions) {
+  const src = fs.readFileSync(path.join(DOCS, q.file), 'utf8');
+  const expected = (src.match(/^## /gm) || []).length;
+  await nav('#/q/' + q.id);
+  await waitFor(() => $$('#doc-body h2').length > 0);
+  const got = $$('#doc-body h2').length;
+  if (got !== expected) badRender.push(q.id + ' ' + got + '/' + expected);
+}
+check('全部 ' + allQuestions.length + ' 篇题解渲染出的二级标题数与源文件一致', badRender.length === 0, badRender.slice(0, 6).join(' | '));
+
 // --- 汇总 ---
 const failed = results.filter((r) => !r.ok);
 for (const r of results) console.log(`${r.ok ? 'PASS' : 'FAIL'}  ${r.name}${r.ok ? '' : '   -> ' + r.extra}`);

@@ -1,0 +1,258 @@
+{
+  "topic": "评估与可观测性",
+  "topic_id": "evaluation",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/评估与可观测性",
+  "all_questions": [
+    { "id": "evaluation-01", "order": 1, "title": "设计一个 LLM-as-judge 评估。它有哪些已知偏差，你如何纠正？" },
+    { "id": "evaluation-02", "order": 2, "title": "在没有标注好的 ground truth 且专家成本高昂时，你如何构建 eval set？" },
+    { "id": "evaluation-03", "order": 3, "title": "在生产环境 RAG 系统中，你如何检测并度量幻觉？" },
+    { "id": "evaluation-04", "order": 4, "title": "设计一道回归门禁（regression gate），用来决定 prompt 或模型改动能否上线。" },
+    { "id": "evaluation-05", "order": 5, "title": "为什么 benchmark 分数在提升，用户却说系统变差了？请列举原因。" },
+    { "id": "evaluation-06", "order": 6, "title": "什么是 benchmark 污染，你如何防范？" },
+    { "id": "evaluation-07", "order": 7, "title": "生产环境 LLM 系统需要哪些可观测性：traces、spans、成本、反馈？" },
+    { "id": "evaluation-08", "order": 8, "title": "你如何在生产环境管理 prompt 版本与回滚？" },
+    { "id": "evaluation-09", "order": 9, "title": "设计在线评估：你记录什么日志、采样什么、对什么做 A/B？" },
+    { "id": "evaluation-10", "order": 10, "title": "与评估单个模型回复相比，你会如何评估一个 agent？" }
+  ],
+  "questions": [
+    {
+      "id": "evaluation-01",
+      "order": 1,
+      "file": "docs/评估与可观测性/01-设计一个 LLM-as-judge 评估：它有哪些已知偏差以及如何纠正.md",
+      "question": "设计一个 LLM-as-judge 评估。它有哪些已知偏差，你如何纠正？",
+      "question_en": "Design an LLM-as-a-judge evaluation. What are its known biases and how do you correct them?",
+      "asked_at": ["Perplexity"],
+      "level": "进阶",
+      "tags": ["llm-as-judge", "偏差", "校准", "评测"],
+      "sources": [
+        { "title": "LLM as a Judge", "url": "https://outcomeschool.com/blog/llm-as-a-judge", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）", "url": "https://arxiv.org/abs/2306.05685", "author": "Zheng et al. (NeurIPS 2023)", "published": "2023-06-09" },
+        { "title": "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models（延伸）", "url": "https://arxiv.org/abs/2405.01535", "author": "Kim et al. (EMNLP 2024)", "published": "2024-05-02" }
+      ],
+      "related": ["evaluation-02", "evaluation-04", "evaluation-09", "rag-04"],
+      "brief": [
+        "先划边界：LLM-as-judge 适合什么、不适合什么。适合——开放式质量、成对偏好、按 rubric 打分、大规模回归；不适合——需要精确验证的内容（数值、代码正确性、事实核对、约束满足），这些应该交给**可验证验证器**（单测、执行结果、规则），链到 [[evaluation-06]] 的客观评测与 [[finetuning-10]] 的 verifier 思路。这条边界先讲清，后面所有设计才有意义。",
+        "给设计清单（要可执行，不是原则口号）：① **范式选择**——pointwise 打分 / pairwise 比较 / 列表排序；说明 pairwise 通常更稳（人类与模型在成对比较上更一致），pointwise 便于绝对阈值但分数常聚集；② **评分标准**——rubric 明确到可判定、给 1–5 分各档的锚点描述、必要时给参考答案；③ **prompt 结构**——先让 judge 输出理由再给分（链式判断）、要求引用被评文本的证据、输出结构化 JSON 便于解析；④ **模型选择**——强模型做 judge，或用开源专用 evaluator（Prometheus 2 这类；其论文口径是在多个直接评估与成对排序基准上取得与人类及专有 judge 最高的相关性与一致性，并支持用户自定义评估标准）；⑤ **聚合**——多 judge 投票、多次采样取均值、位置交换后取一致；⑥ **成本**——judge 调用本身是成本，抽样与缓存要设计。",
+        "偏差清单是本题的核心（要引用 MT-Bench 的实证分类：position bias、verbosity bias、self-enhancement bias、limited reasoning ability），逐条给机制与纠正手段：① **位置偏差**——偏好第一个（或第二个）答案：把两个候选交换位置各评一次，只有两次一致才计入，或取平均；② **长度/啰嗦偏差**——偏好更长的回答：控制长度、对长度做回归校正、在 rubric 里显式声明长度不是质量、或同时报告长度指标；③ **自我增强偏差**——judge 偏好同家族的输出：用不同家族的 judge、集成多个 judge、或用专门训练的 evaluator；④ **谄媚/权威偏差**——被 prompt 里的断言或「专家说」影响：去掉诱导性上下文、双盲（不告诉 judge 哪个是哪个模型）、避免在 prompt 里泄露期望答案；⑤ **分数聚集/尺度漂移**——1–10 分只打 7–8 分：改用成对比较或细粒度 rubric + 强制区分；⑥ **推理能力有限**——复杂数学/多跳判断不可靠：这类只能交给可验证手段。",
+        "校准与验证（这一步决定 judge 能不能当门禁）：① 与人工标注算一致性（准确率、Cohen's κ、Spearman 相关），并且**按子集**看（不同任务/长度/语言的一致性差异很大）；② 建一组「金标准」样本（人工标注、且包含已知的边界样本）作为 judge 的回归测试；③ 定期重校准（judge 模型升级或 prompt 变更后必须重跑，链到 [[evaluation-08]]）；④ 可引用 MT-Bench 的口径说明「强 judge 与人类一致性能达到人类之间一致性的量级（论文报告超过 80%）」，但**必须标注这是特定 benchmark 与 judge 模型的结果**，不能当成通用保证。",
+        "工程与治理：judge 的版本号要进版本管理，与 prompt/模型版本一起构成发布版本（链到 [[evaluation-08]]）；judge 分数用于门禁时要先验证它的**可重复性**（同输入多次打分方差多大）；把 judge 的偏差监控做成看板（位置一致性率、长度相关性、与人工的分歧率）；高风险场景保留人工抽检（链到 [[evaluation-04]] 的红线集）。",
+        "常见追问：pointwise 与 pairwise 怎么选？什么时候必须人工？judge 与可验证验证器怎么组合（先规则后 judge）？judge 的分数能不能跨版本比较（不能，除非重跑基线）？"
+      ]
+    },
+    {
+      "id": "evaluation-02",
+      "order": 2,
+      "file": "docs/评估与可观测性/02-在缺少 ground truth 且专家成本高昂时如何构建 eval set.md",
+      "question": "在没有标注好的 ground truth 且专家成本高昂时，你如何构建 eval set？",
+      "question_en": "How do you build an eval set when there is no labeled ground truth and experts are expensive?",
+      "asked_at": ["Cohere", "Harvey"],
+      "level": "进阶",
+      "tags": ["eval-set", "合成数据", "标注", "采样"],
+      "sources": [
+        { "title": "ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems（延伸）", "url": "https://arxiv.org/abs/2311.09476", "author": "Saad-Falcon et al. (NAACL 2024)", "published": "2023-11-16" },
+        { "title": "Ragas: Automated Evaluation of Retrieval Augmented Generation（延伸）", "url": "https://arxiv.org/abs/2309.15217", "author": "Es et al.", "published": "2023-09-26" }
+      ],
+      "related": ["evaluation-01", "evaluation-03", "evaluation-04", "rag-04"],
+      "brief": [
+        "先立原则：eval set 的目标是**可复现地度量你真正关心的能力**，而不是复刻公开 benchmark。没有 ground truth 时，要设计「可判定的替代信号」：可验证的正确性、专家 rubric、模型间一致性、用户行为——四类信号的成本与可信度不同，要组合使用。",
+        "数据来源分层给（按性价比排序）：① **真实流量采样**——从日志按意图/难度/长度/语言分层抽样，最有代表性；② **生产故障反推**——工单、点踩、追问、放弃会话转成用例，真实失败样本价值最高（链到 [[evaluation-03]]、[[evaluation-09]]）；③ **合成数据**——强模型生成问题与参考答案，或从语料反向生成问题（文档 → 问题，链到 [[rag-01]]）；④ **专家小样本**——少量但高质量的领域样本，用来**校准**其它自动化手段；⑤ **对抗/红队样本**——边界、越权、注入、长尾（链到 [[rag-08]]）。",
+        "讲清「合成 + 少量人工」的范式（这是本题最有说服力的部分，引用 ARES 的口径）：ARES 用模型自己生成合成训练数据来微调轻量 judge，再用**几百条人工标注**通过 prediction-powered inference 校正预测偏差，从而在只有少量人工标注的情况下对 RAG 的 context relevance / answer faithfulness / answer relevance 三个维度给出准确评估，并且**跨域仍然有效**（论文在 KILT、SuperGLUE、AIS 的 8 个知识密集任务上验证）。要标注这是论文口径，并说明它给出的方法论：**自动化打分 + 小样本人工校正**优于「全自动但无校准」与「全人工但跑不动」。",
+        "参考无关指标作为补充：Ragas 的思路是不依赖人工参考答案，用 LLM 把回答拆成论断再做忠实性与相关性判断（reference-free），适合快速迭代；但要说明它的假设与偏差（judge 模型的偏好、长答案与短答案的系统性差异，链到 [[evaluation-01]]）。",
+        "无 ground truth 时的判定方式要列全：① 把一部分问题**改造成可验证形式**（有确定答案的子集）；② 专家 rubric 打分（少量样本，用于校准自动 judge）；③ 成对比较（A/B、模型互评，链到 [[evaluation-01]]）；④ 一致性采样（同一问题多次生成，看事实性内容是否稳定）；⑤ 用户行为信号（采纳率、追问率、会话成功率）。",
+        "规模与治理：100–500 条起步（并说明样本量与可检测差异的关系——样本越小只能发现越大的提升），分层覆盖（单跳/多跳/无答案/长尾/多语言/需权限过滤），季度更新与防污染（链到 [[evaluation-06]]），标注指南 + 多人一致性（κ），争议样本仲裁，以及把 eval set 版本化并与 prompt/模型版本绑定（链到 [[evaluation-08]]）。",
+        "常见追问：合成数据会不会把生成模型的偏差固化进评测（怎么用人工小样本校正）？怎么证明 eval set 有区分度（能否把已知强弱模型分开、组间方差是否够大）？评测集会不会被「刷」（链到 [[evaluation-05]]）？"
+      ]
+    },
+    {
+      "id": "evaluation-03",
+      "order": 3,
+      "file": "docs/评估与可观测性/03-在生产环境 RAG 系统中如何检测并度量幻觉.md",
+      "question": "在生产环境 RAG 系统中，你如何检测并度量幻觉？",
+      "question_en": "How do you detect and measure hallucinations in a production RAG system?",
+      "asked_at": ["Anthropic", "OpenAI", "Cursor"],
+      "level": "高阶",
+      "tags": ["幻觉", "groundedness", "factscore", "生产监控"],
+      "sources": [
+        { "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation（延伸）", "url": "https://arxiv.org/abs/2305.14251", "author": "Min et al. (EMNLP 2023)", "published": "2023-05-23" },
+        { "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models（延伸）", "url": "https://arxiv.org/abs/2303.08896", "author": "Manakul et al. (EMNLP 2023)", "published": "2023-03-15" },
+        { "title": "Long-form factuality in large language models（SAFE）（延伸）", "url": "https://arxiv.org/abs/2403.18802", "author": "Wei et al. (NeurIPS 2024)", "published": "2024-03-27" }
+      ],
+      "related": ["rag-12", "evaluation-01", "evaluation-04", "rag-04"],
+      "brief": [
+        "先把「幻觉」拆成两类（否则度量会含混）：① **事实性幻觉**——与客观事实矛盾；② **接地失败（groundedness/faithfulness）**——回答没有被 retrieved context 支持（哪怕它在别处是对的）。RAG 的核心 KPI 是第二类，但用户感受到的是第一类。还要区分两种成因：**上下文缺失**（检索没找到）与**上下文已有但模型没用对/用错**——这两者的修复方向完全不同（链到 [[rag-02]]、[[rag-12]]）。",
+        "离线度量手段逐条给，并标注论文口径：① **原子事实分解（FActScore）**——把长回答拆成原子事实，逐条用可靠知识源验证，得分是被支持事实的比例（论文口径：ChatGPT 生成的人物传记只有 58% 的原子事实被支持，自动估计器与人工误差 < 2%，人工评估 6500 条生成约需 $26K）；② **搜索增强评估（SAFE）**——把长回答拆成事实后用检索逐条验证，并给出扩展的 F1 聚合（论文口径：与众包标注一致率 72%，在 100 条分歧样本上 76% 由 SAFE 胜出，成本比人工低 20 倍以上）；③ **自一致性采样（SelfCheckGPT）**——同一问题多次采样，事实性内容在多次采样间一致则更可能为真，不一致处就是幻觉嫌疑（零资源、黑盒，适合没有可靠知识源的场景）；④ **基于检索的蕴含判断**——逐句/逐论断判定是否被上下文支持（NLI 或 LLM judge，链到 [[rag-12]] 的归因）；⑤ **引用覆盖率与引用正确率**——没有引用的论断比例、引用是否真的支持该论断。",
+        "在线度量手段（生产里真正每天看的）：① **检索侧信号**——无命中率、最高相似度分布、重排前后分数差（检索失败会直接制造幻觉）；② **生成侧信号**——拒答率、无引用论断比例、与检索上下文矛盾率（抽样用轻量 judge 或 NLI 模型）；③ **用户信号**——追问率、点踩率、复制/采纳率、会话放弃率；④ **抽样复核**——按风险分层抽样（高风险场景 100% 抽检、普通场景 1%–5%），人工或强 judge 复核；⑤ **影子/AB**——新版本并行跑，比对幻觉率（链到 [[evaluation-09]]）。",
+        "工程与治理：告警阈值与人工队列（超过阈值自动升级）、反馈闭环（确认的幻觉样本回灌 eval set 与训练数据，链到 [[evaluation-02]]）、按场景设不同容忍度（医疗/法律/金融接近零容忍，创意写作可放宽），以及「用户可见的缓解」——引用、置信提示、允许用户点开原文核对（链到 [[rag-12]]）。",
+        "常见追问：为什么不能只用 LLM judge 测幻觉（judge 会被同一段错误上下文说服；要用独立证据源）？怎么区分「模型幻觉」与「检索给了过期/错误内容」（链到 [[rag-11]]）？长回答的幻觉率按句、按事实还是按用户影响来算？"
+      ]
+    },
+    {
+      "id": "evaluation-04",
+      "order": 4,
+      "file": "docs/评估与可观测性/04-设计一道回归门禁来决定 prompt 或模型改动能否上线.md",
+      "question": "设计一道回归门禁（regression gate），用来决定 prompt 或模型改动能否上线。",
+      "question_en": "Design a regression gate that decides whether a prompt or model change can ship.",
+      "asked_at": ["Anthropic"],
+      "level": "高阶",
+      "tags": ["回归门禁", "ci", "统计判定", "发布"],
+      "sources": [
+        { "title": "openai/evals（延伸）", "url": "https://github.com/openai/evals", "author": "OpenAI", "published": "" },
+        { "title": "promptfoo 文档（延伸）", "url": "https://www.promptfoo.dev/docs/intro/", "author": "promptfoo", "published": "" }
+      ],
+      "related": ["evaluation-01", "evaluation-02", "evaluation-05", "evaluation-09"],
+      "brief": [
+        "先把门禁定义清楚：输入是「一个变更」（prompt / 模型版本 / 检索配置 / 代码）+ 候选版本，输出是**通过/拒绝 + 证据**（指标差异与置信区间）。核心要求三条：自动化、可复现、**统计上可信**——不是「跑一遍看看感觉还行」。",
+        "设计要素逐条给：① **测试集分层**——红线集（安全、合规、越权、注入，一票否决）、核心能力集（绝不能退化）、目标能力集（本次要提升的）、性能与成本集（延迟、token、$/1M tokens，链到 [[inference-serving-09]] 与 [[inference-serving-12]]）；② **指标与阈值**——每个集合预先声明主指标与**最小可检测差异（MDE）**，阈值事前定好（防止事后调阈值）；③ **统计判定**——用配对比较或 bootstrap 置信区间，对 LLM 的非确定性做多次采样并报告方差；样本量要按 MDE 反推；④ **裁决规则**——红线优先；其次要求目标指标显著提升**且**核心指标无显著退化；成本/延迟超预算也拦；⑤ **时间与成本预算**——门禁必须在 CI 时间窗内跑完（并行、抽样、缓存、把全量回归放到夜间）。",
+        "讲清「LLM 门禁与代码 CI 的差别」（这是区分度）：① 判定是**统计的**而不是布尔的——同一版本重跑会有波动，所以先要测出「flaky 水位」，只有超过水位的差异才算真差异；② 评测本身依赖 judge，而 judge 会变——所以 **judge 版本必须与 prompt/模型版本一起锁**（链到 [[evaluation-01]]）；③ 样本量通常远小于代码测试，所以只能拦住「大到值得拦」的退化，这一点必须对团队讲明白。",
+        "工程实现：像 CI 一样集成（PR 触发、结果贴回 PR、失败可直接点开逐条 diff 对比），用固定解码参数与固定随机种子；历史结果入库做趋势与 flaky 检测；把「离线门禁 + 灰度/金丝雀 + 线上指标」串成三段（离线拦明显退化，灰度拦真实分布问题，链到 [[evaluation-09]]）；工具形态可参考 openai/evals 与 promptfoo 这类「数据集 + 评分器 + CI 集成」的标准做法（作为形态参考，不是唯一方案）。",
+        "组织与治理：明确谁能豁免（需要 owner 签字并记录理由与到期时间）、门禁失败的常见原因与修复路径、以及门禁本身的维护——评测集要随产品演进更新，否则会变成「为了过门禁而优化」的 Goodhart 陷阱（链到 [[evaluation-05]]）；红线集的变更要单独评审（不能被业务指标讨价还价）。",
+        "常见追问：样本量太小导致噪声大怎么办（分层 + 配对 + 先测 flaky 水位）？怎么防门禁过拟合（定期轮换 held-out、加入新失败样本）？离线过了线上退化怎么办（链到 [[evaluation-05]]）？多模型/多租户怎么设不同门禁？"
+      ]
+    },
+    {
+      "id": "evaluation-05",
+      "order": 5,
+      "file": "docs/评估与可观测性/05-为什么 benchmark 分数在提升用户却说系统变差了.md",
+      "question": "为什么 benchmark 分数在提升，用户却说系统变差了？请列举原因。",
+      "question_en": "Why do benchmark scores go up while users say the system got worse? List the reasons.",
+      "asked_at": ["Cognition"],
+      "level": "进阶",
+      "tags": ["指标失配", "goodhart", "leaderboard", "线上指标"],
+      "sources": [
+        { "title": "The Leaderboard Illusion（延伸）", "url": "https://arxiv.org/abs/2504.20879", "author": "Singh et al.", "published": "2025-04-29" },
+        { "title": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference（延伸）", "url": "https://arxiv.org/abs/2403.04132", "author": "Chiang et al.", "published": "2024-03-07" }
+      ],
+      "related": ["evaluation-04", "evaluation-06", "evaluation-09", "evaluation-10"],
+      "brief": [
+        "先给一句总纲：这是**代理指标与真实目标失配**的问题（Goodhart 定律的工程形态）。然后给一份尽量具体的原因清单，每条都说清「怎么发生的」：① **分布不匹配**——benchmark 的任务/长度/语言/领域/单轮 vs 多轮与真实流量不同，刷高了 A 分布，B 分布反而退化；② **指标代理失败**——用相似度、BLEU、或 LLM judge 的偏好替代真实效用，于是优化了「读起来像好答案」而不是「解决了问题」（链到 [[evaluation-01]]）；③ **评测集泄漏与过拟合**——测试集进过训练语料、或针对榜单调格式（链到 [[evaluation-06]]）；④ **榜单层面的系统性偏差**——选择性披露与私测：The Leaderboard Illusion 的口径指出，少数厂商能私下测多个变体再择优公开、甚至撤回分数，且专有闭源模型获得的对比数据远多于开源模型（论文给出的估计是 Google 19.2%、OpenAI 20.4%，而 83 个开源模型合计 29.7%），这会让榜单分数向「会打榜的一方」倾斜；⑤ **产品层面的回归**——延迟变长、成本上升、拒答率升高、格式变化、答案变啰嗦；⑥ **用户与用法变了**——新用户群、新场景进入，不是模型退化；⑦ **测量错觉**——差异落在噪声内被当成提升（样本量小、解码随机、judge 漂移）。",
+        "给诊断方法（要可执行，而不是只列原因）：① 建**按真实流量分层**的评测（意图/难度/长度/语言/多轮），看提升集中在哪个子集、退化在哪个子集；② 把线上失败样本回灌成回归用例（链到 [[evaluation-02]]）；③ 用**会话级/任务级**指标替代单轮质量（链到 [[evaluation-09]]、[[evaluation-10]]）；④ 做人工盲评与小流量 A/B，并遵守统计纪律（预先定 MDE 与阈值，链到 [[evaluation-04]]）；⑤ 同时盯「症状指标」——输出长度、拒答率、TTFT/TPOT、成本（链到 [[inference-serving-09]]）。",
+        "把 Chatbot Arena 的方法论作为正面参考：用成对比较 + 统计排名模型（Elo/Bradley-Terry 类）在大量众包投票上做评估，论文报告了 24 万+ 票的数据与人类-专家一致性验证（标注口径）；同时用 Leaderboard Illusion 的教训说明**榜单分数不能当作目标函数**：数据获取不对称、私测择优、选择性披露都会扭曲排序。两者的组合结论是：榜单用于「粗筛与外部对标」，内部决策必须用自建评测 + 线上实验。",
+        "给组织建议：把 benchmark 当**回归网**（防止能力回退）而不是**目标函数**；任何 benchmark 提升都要附「用户体验指标未退化」的证据；把「用户说变差」当作一等信号，建从投诉到可复现用例的流水线。",
+        "常见追问：怎么判断是分布不匹配还是真退化（把线上样本搬进离线集重跑）？A/B 需要多大样本（按 MDE 反推）？榜单数据能不能用于选型（可以，但要配合自建评测）？"
+      ]
+    },
+    {
+      "id": "evaluation-06",
+      "order": 6,
+      "file": "docs/评估与可观测性/06-什么是 benchmark 污染以及如何防范.md",
+      "question": "什么是 benchmark 污染，你如何防范？",
+      "question_en": "What is benchmark contamination and how do you prevent it?",
+      "asked_at": ["智谱 AI", "阿里巴巴", "Scale AI"],
+      "level": "进阶",
+      "tags": ["污染", "数据泄漏", "held-out", "评测治理"],
+      "sources": [
+        { "title": "LLM Evaluation", "url": "https://outcomeschool.com/blog/llm-evaluation", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark（延伸）", "url": "https://arxiv.org/abs/2406.19314", "author": "White et al. (ICLR 2025)", "published": "2024-06-27" },
+        { "title": "Investigating Data Contamination in Modern Benchmarks for Large Language Models（延伸）", "url": "https://arxiv.org/abs/2311.09783", "author": "Deng et al. (NAACL 2024)", "published": "2023-11-16" }
+      ],
+      "related": ["evaluation-05", "evaluation-02", "evaluation-04", "finetuning-12"],
+      "brief": [
+        "先定义并分层给来源（不要只说「测试集泄漏」）：① **直接泄漏**——测试样本原文进了预训练语料（网页抓取时就带上了 benchmark 数据）；② **间接泄漏**——用 benchmark 的解析/答案做训练、合成数据生成时把答案带进去、或从教师模型蒸馏时把答案背出来（链到 [[finetuning-12]]）；③ **评测过拟合/打榜**——不改数据但针对榜单格式与偏好调 prompt、调格式（链到 [[evaluation-05]]）；④ **榜单机制层面的偏差**——私测择优与选择性披露（The Leaderboard Illusion 的口径，链到 [[evaluation-05]]）。",
+        "检测手段逐条给并标注论文口径：① **重叠检查**——训练语料与测试集的 n-gram/子串重叠，注意它只能发现表面复制，改写与翻译后的泄漏查不到；② **困惑度/似然异常**——模型在测试样本上异常低的困惑度说明可能见过；③ **TS-Guessing（测试集填空）**——把多选题的错误选项遮住让模型填，或把样本里不常见的词挖掉让模型补；论文口径：ChatGPT 与 GPT-4 在 MMLU 上对缺失选项的精确匹配率分别达 52% 与 57%，在 TruthfulQA 上提供额外元数据后性能显著提升——这说明公开测试集被大量见过（要标注这是该论文的实验结论）；④ **扰动/改写测试**——把题目改写、换变量名与数字，若分数大幅下跌则疑似污染或记忆；⑤ **时间切分**——只用模型训练截止之后发布的数据（有局限：模型可能通过其它途径见过）；⑥ **私有 held-out 集**——最可靠，但要防内部泄漏（谁看过答案、是否进过训练）。",
+        "防范手段要分数据侧、评测侧、流程侧：① **数据侧**——训练数据去污染流水线（把已知评测集从语料中剔除并记录）、数据来源与版本记录、对评测集加 canary/水印以检测泄漏；② **评测侧**——用持续更新的基准（LiveBench 的口径值得引用：题目来自新发布的竞赛/论文/新闻并**每月更新**、答案有客观 ground truth、同时规避众包与 LLM judge 带来的偏差，论文报告当时最强模型准确率仍低于 70%，说明难度与抗污染设计可以兼顾）；自建私有 held-out 集并定期轮换；③ **流程侧**——报告规范（必须说明去污染方法与数据切分，不引用无法复现的分数）、内部评测不与公开榜单共用同一集合、模型选型时要求供应商给出可复现的评测方法。",
+        "把结论讲成一句可背的话：**默认公开榜单上的分数都可能被污染**，因此任何上线决策都必须依赖自建的、私有 held-out 的、且定期轮换的评测（链到 [[evaluation-04]]）。同时指出污染的危害不只是分数虚高——它会让团队选错技术路线（把记忆当成能力）。",
+        "常见追问：n-gram 检测为什么不够？时间切分有什么局限？私有集怎么防内部泄漏（访问控制 + 只暴露聚合指标）？如果供应商只给分数不给方法怎么办（要求可复现的证据，或用私有集自行验证）？"
+      ]
+    },
+    {
+      "id": "evaluation-07",
+      "order": 7,
+      "file": "docs/评估与可观测性/07-生产环境 LLM 系统需要哪些可观测性.md",
+      "question": "生产环境 LLM 系统需要哪些可观测性：traces、spans、成本、反馈？",
+      "question_en": "What observability does a production LLM system need: traces, spans, cost, feedback?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["可观测性", "trace", "成本", "opentelemetry"],
+      "sources": [
+        { "title": "AI Agent Observability", "url": "https://outcomeschool.com/blog/ai-agent-observability", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "OpenTelemetry: Generative AI semantic conventions（延伸）", "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/", "author": "OpenTelemetry", "published": "" },
+        { "title": "Arize Phoenix 文档（延伸）", "url": "https://docs.arize.com/phoenix", "author": "Arize", "published": "" }
+      ],
+      "related": ["evaluation-09", "evaluation-04", "agents-10", "inference-serving-09"],
+      "brief": [
+        "先给骨架：可观测性分三层——**metrics（指标）**、**logs（日志）**、**traces（追踪）**；LLM 系统还要加第四层——**质量与成本信号**（judge 结论、引用覆盖率、token 成本、缓存命中）。要强调 LLM 系统与普通后端的最大差别：**输出是非确定的、质量不可由 HTTP 状态码表达**，所以必须把「质量」也当成一等遥测数据。",
+        "traces/spans 的结构要具体到字段：一次请求是一个 trace，span 覆盖 网关/鉴权 → 预处理（查询改写、语言检测）→ 检索（每次召回的 id 与分数、重排结果）→ prompt 组装（模板版本、token 数、截断情况）→ 模型调用（模型名与版本、解码参数、输入/输出 token、TTFT/TPOT、重试与错误码）→ 后处理（引用校验、脱敏、格式化）→ （agent 场景）每一步工具调用与观察（链到 [[agents-10]]）。必须记的：**模型版本、prompt 版本、检索与索引版本、成本、延迟分解**——没有版本标注的日志无法归因（链到 [[evaluation-08]]）。不能记的：原始 PII、密钥、完整用户隐私内容；用脱敏 + 采样 + 加密存储（链到 [[rag-08]]）。",
+        "指标清单分四类（每类给 3–5 个可落地指标）：① **系统**——QPS、TTFT/TPOT/E2E 分位数、错误率与超时率、重试率（链到 [[inference-serving-09]]）；② **成本**——每请求 token、$/1M tokens、cache 命中率、GPU 利用率与 goodput（链到 [[inference-serving-12]]）；③ **质量**——检索命中率/最高相似度分布、引用覆盖率、抽样 judge 分、拒答率、幻觉率代理指标（链到 [[evaluation-03]]）；④ **业务**——会话成功率、采纳率、追问率、留存。关键要求：**所有质量指标都要能按模型版本 / prompt 版本 / 租户切分**，否则无法定位回归。",
+        "标准与工具形态：引用 OpenTelemetry 的 GenAI 语义约定——它把模型名、token 用量、工具调用等字段做了标准化定义（可作为字段命名与结构的参考，好处是 traces 能跨框架与后端复用）；平台形态可参考 Arize Phoenix 这类工具（trace 视图、数据集与实验管理、与 eval 联动）。要说明「先有 schema 再有工具」——字段不统一，换工具时数据就废了。",
+        "采样与成本控制：全量 traces 存储成本高 → 分层采样（错误全采、慢请求全采、正常按比例采）+ 指标聚合；用户反馈与显式评分必须能关联 trace id（链到 [[evaluation-09]] 的在线评估）；长时任务（agent）用异步上报与父子 span 关联（链到 [[agents-10]]）。",
+        "落地顺序给建议：先做请求级 trace + 版本标注，再做成本与延迟看板，然后做质量抽样与告警，最后把线上数据与离线 eval 打通形成自动回归（链到 [[evaluation-04]]）。",
+        "常见追问：脱敏与可调试怎么取舍？多租户如何隔离 traces？agent 的 trace 与普通请求有什么不同（步数、工具调用、长时任务、副作用审计）？"
+      ]
+    },
+    {
+      "id": "evaluation-08",
+      "order": 8,
+      "file": "docs/评估与可观测性/08-如何在生产环境管理 prompt 版本与回滚.md",
+      "question": "你如何在生产环境管理 prompt 版本与回滚？",
+      "question_en": "How do you manage prompt versions and rollbacks in production?",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["prompt-版本", "发布", "回滚", "灰度"],
+      "sources": [
+        { "title": "LangSmith 文档（延伸）", "url": "https://docs.smith.langchain.com/", "author": "LangChain", "published": "" },
+        { "title": "promptfoo 文档（延伸）", "url": "https://www.promptfoo.dev/docs/intro/", "author": "promptfoo", "published": "" }
+      ],
+      "related": ["evaluation-04", "evaluation-07", "evaluation-09", "inference-serving-05"],
+      "brief": [
+        "先立论：prompt 是**代码**——它决定行为、影响指标、需要评审与回滚；但它没有类型系统与编译期检查，所以更需要版本化与测试。补一句现实观察：很多团队把 prompt 硬编码在代码里（改一次要发版）或散落在配置里（谁改的不知道），这两种都会在事故时失去回滚能力。",
+        "版本化的粒度与内容：① prompt 模板本身（system/developer 指令、few-shot 示例、输出 schema）；② **关联资产**——模型与解码参数、检索配置与索引版本、工具定义、judge 版本；③ 元数据（作者、时间、变更理由、关联的 eval 结果与门禁结论）。要点：一次发布应该是一个**可追溯的发布版本（release bundle）**——只回滚 prompt 而模型版本不变，往往复现不出原来的行为（链到 [[evaluation-04]]）。",
+        "存储与管理方式对比（三种路线各自的代价）：① **代码仓库文件**——可 review、可 diff、随服务发布，但改 prompt 要发版，迭代慢；② **配置中心/数据库 + 管理界面**——改完即时生效、可灰度，但容易绕过评审与测试（必须在流程上强制走门禁，链到 [[evaluation-04]]）；③ **专门平台**（LangSmith、promptfoo 这类提供 prompt 管理、版本、实验对比的工具，可作为形态参考）。给出判断：高频迭代需要「不改代码生效」，但**必须共用同一套门禁、版本与审计**。",
+        "回滚与灰度要讲工程细节：① 版本切换**原子化**并且按请求路由到某个版本（用请求头/租户/流量比例决定），而不是全局改配置；② 灰度放量与自动回滚（护栏指标——错误率、延迟、成本、拒答率、抽样质量分——恶化即自动回退，链到 [[evaluation-09]]）；③ **缓存一致性**——prompt 变了必须换缓存 key，否则 prefix cache 会命中旧行为（链到 [[inference-serving-05]]）；④ 回滚要能在分钟级完成（预置上一版本、不需要重新构建镜像）；⑤ 「模型版本 × prompt 版本」兼容矩阵：模型升级后旧 prompt 可能失效，必须回归重测。",
+        "治理与审计：谁能改、谁批、每次都留变更记录（链到 [[agents-10]] 的审计思路）；把线上事故与具体 prompt 版本关联并可回放（链到 [[evaluation-07]] 的 trace）；防止「线上 prompt 与仓库不一致」的漂移（定期比对，或干脆让线上只能从版本库读取）；红线内容（安全策略）单独管理且变更需要额外评审。",
+        "常见追问：prompt 应该跟代码一起发布还是独立热更新（取决于迭代频率与门禁成熟度）？few-shot 示例怎么版本化（当作 prompt 的一部分，示例变更同样是行为变更）？多租户定制 prompt 怎么管理（基线 + 覆盖层，避免每个租户一套）？"
+      ]
+    },
+    {
+      "id": "evaluation-09",
+      "order": 9,
+      "file": "docs/评估与可观测性/09-设计在线评估：记录什么日志、采样什么、对什么做 A-B.md",
+      "question": "设计在线评估：你记录什么日志、采样什么、对什么做 A/B？",
+      "question_en": "Design online evaluation: what do you log, what do you sample, what do you A/B test?",
+      "asked_at": ["Perplexity"],
+      "level": "高阶",
+      "tags": ["在线评估", "a-b", "日志", "实验设计"],
+      "sources": [
+        { "title": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference（延伸）", "url": "https://arxiv.org/abs/2403.04132", "author": "Chiang et al.", "published": "2024-03-07" },
+        { "title": "The Leaderboard Illusion（延伸）", "url": "https://arxiv.org/abs/2504.20879", "author": "Singh et al.", "published": "2025-04-29" }
+      ],
+      "related": ["evaluation-04", "evaluation-07", "evaluation-05", "evaluation-10"],
+      "brief": [
+        "先明确在线评估要回答什么：一个改动（prompt / 模型 / 检索 / 排序 / 工具策略）在**真实流量**上是否更好，以及代价（延迟、成本、风险）。给推进阶梯并说明每级的证据要求：离线回归（拦明显退化，链到 [[evaluation-04]]）→ 影子流量（不影响用户，比对输出与指标）→ 小流量灰度/AB（真实验证，带护栏）→ 全量。每一级都要有「继续/停止」的判据。",
+        "记录什么日志要具体到字段：请求 id、**会话 id**、用户/租户（脱敏后）、模型名与版本、prompt 版本、检索与索引版本、召回 id 与分数、工具调用与参数（链到 [[agents-10]]）、输入输出 token、成本、延迟分解（TTFT/TPOT/检索耗时/工具耗时）、采样标记、以及**隐式反馈**（是否采纳、是否复制、是否追问、是否点踩、会话长度、是否放弃）。强调：**没有版本标注的日志无法归因**（链到 [[evaluation-08]]）。",
+        "采样什么（分层给策略）：① 错误与超时**全采**、慢请求全采；② 正常请求按比例采样（1%–10%）；③ 高风险/高价值场景提高采样率；④ 质量抽样用轻量 judge 或规则指标（引用覆盖率、拒答率、检索命中率）；⑤ 人工复核队列按风险分层（链到 [[evaluation-03]]）。说明采样率与成本的关系，以及「质量指标必须能按版本切分」这条硬要求（链到 [[evaluation-07]]）。",
+        "对什么做 A/B（列清单）：prompt 版本、模型与解码参数、检索与重排配置、上下文长度与 chunk 策略、缓存策略、工具与 agent 策略（步数上限、是否用 agentic 检索，链到 [[rag-06]]）。同时明确**不能拿来做实验**的东西：安全与合规策略、隐私处理方式——这些走评审与灰度发布，不允许拿用户做随机实验。",
+        "实验设计要讲统计纪律：① 主指标 + 护栏指标（质量、延迟、成本、安全）；② 样本量与 MDE 事前定；③ **随机化单位**选请求、会话还是用户（同一会话跨组会污染体验，长会话产品按用户或会话随机）；④ 新奇效应与实验时长（至少覆盖一个完整周期）；⑤ 多重比较校正与事后分析要预先声明；⑥ 注意隐式反馈的**选择性偏差**（爱反馈的用户不代表全体），所以要用行为指标（采纳、放弃）与抽样人工评估交叉验证。",
+        "可以把 Chatbot Arena 作为「成对比较 + 统计排名」的工程范例引用（论文口径：24 万+ 众包票，验证众包问题与人评一致、与专家投票一致性良好，用 Elo/Bradley-Terry 类模型做排名）；同时用 The Leaderboard Illusion 的教训提醒榜单机制的陷阱：数据获取不对称、私测择优、选择性披露会扭曲结论——所以内部 A/B 必须**固定规则、预先注册分析、不允许多次窥视后择优发布**（这是与榜单最本质的区别）。",
+        "风险控制：小流量起步、设自动停机与回滚条件、保留长期对照组、单独监控长尾与低资源语言/租户（避免整体指标被大流量掩盖，链到 [[evaluation-05]]）。",
+        "常见追问：隐式反馈有偏怎么办？会话级与请求级指标怎么选？A/B 赢了但成本涨了怎么决策？如何评估一个需要多轮交互的 agent（链到 [[evaluation-10]]）？"
+      ]
+    },
+    {
+      "id": "evaluation-10",
+      "order": 10,
+      "file": "docs/评估与可观测性/10-与评估单个模型回复相比如何评估一个 agent.md",
+      "question": "与评估单个模型回复相比，你会如何评估一个 agent？",
+      "question_en": "Compared with evaluating a single model response, how do you evaluate an agent?",
+      "asked_at": ["Moonshot AI", "智谱 AI", "Scale AI", "Cognition"],
+      "level": "高阶",
+      "tags": ["agent-评估", "pass-k", "轨迹", "环境"],
+      "sources": [
+        { "title": "AI Agent Evaluation", "url": "https://outcomeschool.com/blog/ai-agent-evaluation", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）", "url": "https://arxiv.org/abs/2406.12045", "author": "Yao et al.", "published": "2024-06-17" },
+        { "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents（延伸）", "url": "https://arxiv.org/abs/2307.13854", "author": "Zhou et al. (ICLR 2024)", "published": "2023-07-25" },
+        { "title": "GAIA: a benchmark for General AI Assistants（延伸）", "url": "https://arxiv.org/abs/2311.12983", "author": "Mialon et al.", "published": "2023-11-21" },
+        { "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）", "url": "https://arxiv.org/abs/2310.06770", "author": "Jimenez et al. (ICLR 2024)", "published": "2023-10-10" }
+      ],
+      "related": ["agents-09", "agents-12", "evaluation-04", "evaluation-09"],
+      "brief": [
+        "先讲清本质差别：agent 是**多步、有状态、与环境交互**的过程，所以「最终答案对」不等于「过程对」（可能碰巧对，也可能是靠试错撞对），而「过程对但结果错」也需要区分出来。再补第二个差别：**非确定性**——同一任务多次运行结果不同，所以单次成功率不是可靠指标。引用 τ-bench 的口径：即使最好的 function calling agent 在零售域任务成功率也低于 50%，而 **pass^8 低于 25%**——说明必须衡量一致性（链到 [[agents-09]]）。",
+        "给三层指标框架（这是回答的骨架）：① **结果层**——任务成功率、pass^k（同任务 k 次全成功的比例）、最终状态校验。强调 τ-bench 的判定方式：比较**对话结束后的数据库状态**与标注的目标状态，而不是模型说了什么——这是「可验证成功」的范式，值得作为通用做法（链到 [[agents-09]]）；② **过程层**——步数分布、工具选择正确率、无效/重复步骤比例、规则遵循（policy compliance）、轨迹可读性与可回放（链到 [[agents-12]] 的轨迹诊断）；③ **成本层**——token、墙钟时长、工具调用次数、人工介入率（链到 [[inference-serving-09]]）。",
+        "环境与任务怎么造，引用几个可以拿来对标的公开基准（标注口径与局限）：① **WebArena**——四个真实网站域（电商、论坛、协作开发、内容管理）的真实任务，论文报告最好的 GPT-4 agent 端到端成功率 14.41%，人类 78.24%（说明差距在哪、也说明这类环境适合做能力上限评估）；② **SWE-bench**——2294 个真实 GitHub issue + 对应 PR，需要跨函数/文件改动并运行测试，论文当时最强模型只解决 1.96%（现在分数已大幅提高，重点是「真实任务 + 可执行验证」的方法论）；③ **GAIA**——466 个需要推理、多模态、浏览与工具使用的真实问题，人类 92% vs 带插件的 GPT-4 15%；④ **τ-bench**——用户模拟 + 领域 API + 政策约束，用最终数据库状态判定，并用 pass^k 衡量一致性。共同点：**环境可执行、任务真实、判定客观**。",
+        "评测工程细节（区分度在这里）：① **环境可复现**——容器化、固定依赖与随机种子、每次运行重置状态；② **评分器**——优先最终状态/测试通过这类客观判定，其次才用 rubric 与 judge（链到 [[evaluation-01]]）；③ **非确定性处理**——同任务跑 k 次，报 pass^k 与分布而不是单次结果；④ **防作弊**——任务与测试隔离、检测硬编码答案、隐藏测试集；⑤ **预算**——agent 评测本身很贵（多次运行 × 多步 × 工具调用），要抽样、并行、限制步数（链到 [[agents-09]]）。",
+        "用评测驱动迭代：把失败轨迹分类（工具选错、规划错、环境交互失败、过早终止、缺少验证），可参考多 agent 失败分类的整理（链到 [[agents-06]] 的 14 类失败模式）；把高频失败转成回归用例进入门禁（链到 [[evaluation-04]]）；上线后做在线监控（步数、工具错误率、任务完成率、人工介入率，链到 [[evaluation-07]]、[[evaluation-09]]）。",
+        "常见追问：怎么评估「过程正确但结果偶然失败」？能不能给中间步骤自动打分（过程奖励模型 PRM 的用途与局限）？在线评估一个有真实副作用的 agent 要注意什么（沙箱、审批、可回滚，链到 [[agents-10]]）？pass^k 与 pass@k 的区别？"
+      ]
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T09:39:46.741Z",
+  "generated": "2026-09-28T10:10:58.340Z",
   "stats": {
-    "topics": 5,
-    "questions": 67,
+    "topics": 6,
+    "questions": 77,
     "planned": 598
   },
   "topics": [
@@ -3021,6 +3021,455 @@
           ],
           "updated": "2026-09-28",
           "chars": 10446
+        }
+      ]
+    },
+    {
+      "id": "evaluation",
+      "title": "评估与可观测性",
+      "order": 6,
+      "summary": "从 LLM-as-judge 的偏差与校准、eval set 的构建、幻觉度量到回归门禁、benchmark 污染、traces 与在线 A/B，覆盖「怎么知道系统到底行不行」这套能力。",
+      "declaredTotal": 10,
+      "updated": "2026-09-28",
+      "dir": "评估与可观测性",
+      "overviewFile": "评估与可观测性/README.md",
+      "overviewTitle": "评估与可观测性",
+      "questions": [
+        {
+          "id": "evaluation-01",
+          "order": 1,
+          "title": "设计一个 LLM-as-judge 评估。它有哪些已知偏差，你如何纠正？",
+          "titleEn": "Design an LLM-as-a-judge evaluation. What are its known biases and how do you correct them?",
+          "file": "评估与可观测性/01-设计一个 LLM-as-judge 评估：它有哪些已知偏差以及如何纠正.md",
+          "level": "进阶",
+          "tags": [
+            "llm-as-judge",
+            "偏差",
+            "校准",
+            "评测"
+          ],
+          "askedAt": [
+            "Perplexity"
+          ],
+          "related": [
+            "evaluation-02",
+            "evaluation-04",
+            "evaluation-09",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "LLM as a Judge",
+              "url": "https://outcomeschool.com/blog/llm-as-a-judge",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al. (NeurIPS 2023)",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2405.01535",
+              "author": "Kim et al. (EMNLP 2024)",
+              "published": "2024-05-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10348
+        },
+        {
+          "id": "evaluation-02",
+          "order": 2,
+          "title": "在没有标注好的 ground truth 且专家成本高昂时，你如何构建 eval set？",
+          "titleEn": "How do you build an eval set when there is no labeled ground truth and experts are expensive?",
+          "file": "评估与可观测性/02-在缺少 ground truth 且专家成本高昂时如何构建 eval set.md",
+          "level": "进阶",
+          "tags": [
+            "eval-set",
+            "合成数据",
+            "标注",
+            "采样"
+          ],
+          "askedAt": [
+            "Cohere",
+            "Harvey"
+          ],
+          "related": [
+            "evaluation-01",
+            "evaluation-03",
+            "evaluation-04",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems（延伸）",
+              "url": "https://arxiv.org/abs/2311.09476",
+              "author": "Saad-Falcon et al. (NAACL 2024)",
+              "published": "2023-11-16"
+            },
+            {
+              "title": "Ragas: Automated Evaluation of Retrieval Augmented Generation（延伸）",
+              "url": "https://arxiv.org/abs/2309.15217",
+              "author": "Es et al.",
+              "published": "2023-09-26"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10952
+        },
+        {
+          "id": "evaluation-03",
+          "order": 3,
+          "title": "在生产环境 RAG 系统中，你如何检测并度量幻觉？",
+          "titleEn": "How do you detect and measure hallucinations in a production RAG system?",
+          "file": "评估与可观测性/03-在生产环境 RAG 系统中如何检测并度量幻觉.md",
+          "level": "高阶",
+          "tags": [
+            "幻觉",
+            "groundedness",
+            "factscore",
+            "生产监控"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "OpenAI",
+            "Cursor"
+          ],
+          "related": [
+            "rag-12",
+            "evaluation-01",
+            "evaluation-04",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation（延伸）",
+              "url": "https://arxiv.org/abs/2305.14251",
+              "author": "Min et al. (EMNLP 2023)",
+              "published": "2023-05-23"
+            },
+            {
+              "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2303.08896",
+              "author": "Manakul et al. (EMNLP 2023)",
+              "published": "2023-03-15"
+            },
+            {
+              "title": "Long-form factuality in large language models（SAFE）（延伸）",
+              "url": "https://arxiv.org/abs/2403.18802",
+              "author": "Wei et al. (NeurIPS 2024)",
+              "published": "2024-03-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8915
+        },
+        {
+          "id": "evaluation-04",
+          "order": 4,
+          "title": "设计一道回归门禁（regression gate），用来决定 prompt 或模型改动能否上线。",
+          "titleEn": "Design a regression gate that decides whether a prompt or model change can ship.",
+          "file": "评估与可观测性/04-设计一道回归门禁来决定 prompt 或模型改动能否上线.md",
+          "level": "高阶",
+          "tags": [
+            "回归门禁",
+            "ci",
+            "统计判定",
+            "发布"
+          ],
+          "askedAt": [
+            "Anthropic"
+          ],
+          "related": [
+            "evaluation-01",
+            "evaluation-02",
+            "evaluation-05",
+            "evaluation-09"
+          ],
+          "sources": [
+            {
+              "title": "openai/evals（延伸）",
+              "url": "https://github.com/openai/evals",
+              "author": "OpenAI",
+              "published": ""
+            },
+            {
+              "title": "promptfoo 文档（延伸）",
+              "url": "https://www.promptfoo.dev/docs/intro/",
+              "author": "promptfoo",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8271
+        },
+        {
+          "id": "evaluation-05",
+          "order": 5,
+          "title": "为什么 benchmark 分数在提升，用户却说系统变差了？请列举原因。",
+          "titleEn": "Why do benchmark scores go up while users say the system got worse? List the reasons.",
+          "file": "评估与可观测性/05-为什么 benchmark 分数在提升用户却说系统变差了.md",
+          "level": "进阶",
+          "tags": [
+            "指标失配",
+            "goodhart",
+            "leaderboard",
+            "线上指标"
+          ],
+          "askedAt": [
+            "Cognition"
+          ],
+          "related": [
+            "evaluation-04",
+            "evaluation-06",
+            "evaluation-09",
+            "evaluation-10"
+          ],
+          "sources": [
+            {
+              "title": "The Leaderboard Illusion（延伸）",
+              "url": "https://arxiv.org/abs/2504.20879",
+              "author": "Singh et al.",
+              "published": "2025-04-29"
+            },
+            {
+              "title": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference（延伸）",
+              "url": "https://arxiv.org/abs/2403.04132",
+              "author": "Chiang et al.",
+              "published": "2024-03-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8365
+        },
+        {
+          "id": "evaluation-06",
+          "order": 6,
+          "title": "什么是 benchmark 污染，你如何防范？",
+          "titleEn": "What is benchmark contamination and how do you prevent it?",
+          "file": "评估与可观测性/06-什么是 benchmark 污染以及如何防范.md",
+          "level": "进阶",
+          "tags": [
+            "污染",
+            "数据泄漏",
+            "held-out",
+            "评测治理"
+          ],
+          "askedAt": [
+            "智谱 AI",
+            "阿里巴巴",
+            "Scale AI"
+          ],
+          "related": [
+            "evaluation-05",
+            "evaluation-02",
+            "evaluation-04",
+            "finetuning-12"
+          ],
+          "sources": [
+            {
+              "title": "LLM Evaluation",
+              "url": "https://outcomeschool.com/blog/llm-evaluation",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2406.19314",
+              "author": "White et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            },
+            {
+              "title": "Investigating Data Contamination in Modern Benchmarks for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2311.09783",
+              "author": "Deng et al. (NAACL 2024)",
+              "published": "2023-11-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6783
+        },
+        {
+          "id": "evaluation-07",
+          "order": 7,
+          "title": "生产环境 LLM 系统需要哪些可观测性：traces、spans、成本、反馈？",
+          "titleEn": "What observability does a production LLM system need: traces, spans, cost, feedback?",
+          "file": "评估与可观测性/07-生产环境 LLM 系统需要哪些可观测性.md",
+          "level": "进阶",
+          "tags": [
+            "可观测性",
+            "trace",
+            "成本",
+            "opentelemetry"
+          ],
+          "askedAt": [],
+          "related": [
+            "evaluation-09",
+            "evaluation-04",
+            "agents-10",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "AI Agent Observability",
+              "url": "https://outcomeschool.com/blog/ai-agent-observability",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "OpenTelemetry: Generative AI semantic conventions（延伸）",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/",
+              "author": "OpenTelemetry",
+              "published": ""
+            },
+            {
+              "title": "Arize Phoenix 文档（延伸）",
+              "url": "https://docs.arize.com/phoenix",
+              "author": "Arize",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8803
+        },
+        {
+          "id": "evaluation-08",
+          "order": 8,
+          "title": "你如何在生产环境管理 prompt 版本与回滚？",
+          "titleEn": "How do you manage prompt versions and rollbacks in production?",
+          "file": "评估与可观测性/08-如何在生产环境管理 prompt 版本与回滚.md",
+          "level": "进阶",
+          "tags": [
+            "prompt-版本",
+            "发布",
+            "回滚",
+            "灰度"
+          ],
+          "askedAt": [],
+          "related": [
+            "evaluation-04",
+            "evaluation-07",
+            "evaluation-09",
+            "inference-serving-05"
+          ],
+          "sources": [
+            {
+              "title": "LangSmith 文档（延伸）",
+              "url": "https://docs.smith.langchain.com/",
+              "author": "LangChain",
+              "published": ""
+            },
+            {
+              "title": "promptfoo 文档（延伸）",
+              "url": "https://www.promptfoo.dev/docs/intro/",
+              "author": "promptfoo",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7347
+        },
+        {
+          "id": "evaluation-09",
+          "order": 9,
+          "title": "设计在线评估：你记录什么日志、采样什么、对什么做 A/B？",
+          "titleEn": "Design online evaluation: what do you log, what do you sample, what do you A/B test?",
+          "file": "评估与可观测性/09-设计在线评估：记录什么日志、采样什么、对什么做 A-B.md",
+          "level": "高阶",
+          "tags": [
+            "在线评估",
+            "a-b",
+            "日志",
+            "实验设计"
+          ],
+          "askedAt": [
+            "Perplexity"
+          ],
+          "related": [
+            "evaluation-04",
+            "evaluation-07",
+            "evaluation-05",
+            "evaluation-10"
+          ],
+          "sources": [
+            {
+              "title": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference（延伸）",
+              "url": "https://arxiv.org/abs/2403.04132",
+              "author": "Chiang et al.",
+              "published": "2024-03-07"
+            },
+            {
+              "title": "The Leaderboard Illusion（延伸）",
+              "url": "https://arxiv.org/abs/2504.20879",
+              "author": "Singh et al.",
+              "published": "2025-04-29"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9580
+        },
+        {
+          "id": "evaluation-10",
+          "order": 10,
+          "title": "与评估单个模型回复相比，你会如何评估一个 agent？",
+          "titleEn": "Compared with evaluating a single model response, how do you evaluate an agent?",
+          "file": "评估与可观测性/10-与评估单个模型回复相比如何评估一个 agent.md",
+          "level": "高阶",
+          "tags": [
+            "agent-评估",
+            "pass-k",
+            "轨迹",
+            "环境"
+          ],
+          "askedAt": [
+            "Moonshot AI",
+            "智谱 AI",
+            "Scale AI",
+            "Cognition"
+          ],
+          "related": [
+            "agents-09",
+            "agents-12",
+            "evaluation-04",
+            "evaluation-09"
+          ],
+          "sources": [
+            {
+              "title": "AI Agent Evaluation",
+              "url": "https://outcomeschool.com/blog/ai-agent-evaluation",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents（延伸）",
+              "url": "https://arxiv.org/abs/2307.13854",
+              "author": "Zhou et al. (ICLR 2024)",
+              "published": "2023-07-25"
+            },
+            {
+              "title": "GAIA: a benchmark for General AI Assistants（延伸）",
+              "url": "https://arxiv.org/abs/2311.12983",
+              "author": "Mialon et al.",
+              "published": "2023-11-21"
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9668
         }
       ]
     }
