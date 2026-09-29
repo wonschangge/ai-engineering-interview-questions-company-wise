@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:29:44.358Z",
+  "generated": "2026-09-29T17:31:49.306Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 178,
+    "companyQuestions": 179,
     "companies": 14,
     "planned": 598
   },
@@ -15243,6 +15243,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7049
+        },
+        {
+          "id": "xai-04",
+          "order": 4,
+          "title": "估算在 128k 上下文下服务一个 70B 级别模型所需的 KV cache 显存。如果放不下，你会怎么办？",
+          "titleEn": "Estimate the KV cache memory needed to serve a 70B-class model at 128k context. If it does not fit, what do you do?",
+          "file": "公司题库/xai/04-128k-上下文下-70B-的-KV-cache.md",
+          "level": "高阶",
+          "tags": [
+            "KV cache",
+            "显存估算",
+            "解码带宽",
+            "KV 量化",
+            "上下文取舍"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "xai-03",
+            "xai-05",
+            "moonshot-02",
+            "moonshot-07",
+            "inference-serving-08"
+          ],
+          "sources": [
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al.",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints（延伸）",
+              "url": "https://arxiv.org/abs/2305.13245",
+              "author": "Ainslie et al. (Google)",
+              "published": "2023-05-22"
+            },
+            {
+              "title": "1M 窗口与检索的取舍（本仓库公司题库 · Moonshot AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7304
         }
       ]
     }
