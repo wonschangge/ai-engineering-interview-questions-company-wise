@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:43:10.971Z",
+  "generated": "2026-09-29T15:48:11.090Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 148,
+    "companyQuestions": 149,
     "companies": 11,
     "planned": 598
   },
@@ -8762,6 +8762,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5682
+        },
+        {
+          "id": "cohere-04",
+          "order": 4,
+          "title": "一家企业想对约 1 亿份文档做语义搜索，但被向量索引的成本劝退。请讲讲 embedding 压缩的几种方案以及其中的数学。",
+          "titleEn": "An enterprise wants semantic search over about 100 million documents but is put off by the cost of the vector index. Walk me through the options for embedding compression and the math behind them.",
+          "file": "公司题库/cohere/04-1-亿文档的向量索引成本与-embedding-压缩.md",
+          "level": "高阶",
+          "tags": [
+            "PQ",
+            "标量量化",
+            "Matryoshka",
+            "向量索引成本",
+            "ADC"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "cohere-03",
+            "cohere-06",
+            "cohere-05",
+            "rag-03",
+            "rag-06"
+          ],
+          "sources": [
+            {
+              "title": "Product Quantization for Nearest Neighbor Search（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/5432202",
+              "author": "Jégou, Douze & Schmid (IEEE TPAMI 2011)",
+              "published": "2011-01"
+            },
+            {
+              "title": "The Faiss library（延伸）",
+              "url": "https://arxiv.org/abs/2401.08281",
+              "author": "Douze et al. (Meta AI)",
+              "published": "2024-01-16"
+            },
+            {
+              "title": "Matryoshka Representation Learning（延伸）",
+              "url": "https://arxiv.org/abs/2205.13147",
+              "author": "Kusupati et al. (NeurIPS 2022)",
+              "published": "2022-05-26"
+            },
+            {
+              "title": "为大型商品目录设计语义搜索（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5785
         }
       ]
     },
