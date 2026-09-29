@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:32:16.399Z",
+  "generated": "2026-09-29T14:35:16.994Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 124,
+    "companyQuestions": 125,
     "companies": 8,
     "planned": 598
   },
@@ -10058,6 +10058,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5580
+        },
+        {
+          "id": "elevenlabs-06",
+          "order": 6,
+          "title": "为视频平台做配音流水线：英语→西班牙语，必须保留说话人身份与时间轴。",
+          "titleEn": "Build a dubbing pipeline: English to Spanish, preserving speaker identity and the timeline.",
+          "file": "公司题库/elevenlabs/06-配音流水线保留说话人与时间轴.md",
+          "level": "高阶",
+          "tags": [
+            "配音",
+            "跨语言声音克隆",
+            "时长匹配",
+            "时间轴对齐",
+            "质量评估"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "elevenlabs-05",
+            "elevenlabs-02",
+            "multimodal-05",
+            "multimodal-09",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "Seamless: Multilingual Expressive and Streaming Speech Translation（延伸）",
+              "url": "https://arxiv.org/abs/2312.05187",
+              "author": "Seamless Communication (Meta)",
+              "published": "2023-12-08"
+            },
+            {
+              "title": "AudioPaLM: A Large Language Model That Can Speak and Listen（延伸）",
+              "url": "https://arxiv.org/abs/2306.12925",
+              "author": "Rubenstein et al. (Google)",
+              "published": "2023-06-22"
+            },
+            {
+              "title": "A Survey on Neural Speech Synthesis（延伸）",
+              "url": "https://arxiv.org/abs/2106.06938",
+              "author": "Tan et al.",
+              "published": "2021-06-11"
+            },
+            {
+              "title": "Robust Speech Recognition via Large-Scale Weak Supervision（Whisper）（延伸）",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2022-12-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5264
         }
       ]
     },
