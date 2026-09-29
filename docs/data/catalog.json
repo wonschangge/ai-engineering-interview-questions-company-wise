@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:18:48.456Z",
+  "generated": "2026-09-29T22:22:15.625Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 359,
+    "companyQuestions": 362,
     "companies": 26,
     "planned": 598
   },
@@ -13057,6 +13057,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4772
+        },
+        {
+          "id": "figure-ai-04",
+          "order": 4,
+          "title": "一位同事想把语义层搬到云端，以便使用大得多的模型。请讲一讲延迟预算。",
+          "titleEn": "A colleague wants to move the semantic layer to the cloud so you can use a much larger model. Walk me through the latency budget.",
+          "file": "公司题库/figure-ai/04-语义层搬到云端的延迟预算.md",
+          "level": "高阶",
+          "tags": [
+            "延迟预算",
+            "分层控制",
+            "可用性",
+            "带宽",
+            "云端语义层"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "figure-ai-02",
+            "figure-ai-05",
+            "figure-ai-09",
+            "groq-08",
+            "perplexity-11"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4960
+        },
+        {
+          "id": "figure-ai-05",
+          "order": 5,
+          "title": "设计遥操作数据管线。为什么在机器人领域，瓶颈是数据采集而不是算力？",
+          "titleEn": "Design a teleoperation data pipeline. Why, in robotics, is the bottleneck data collection rather than compute?",
+          "file": "公司题库/figure-ai/05-遥操作数据管线.md",
+          "level": "高阶",
+          "tags": [
+            "遥操作",
+            "数据管线",
+            "人时成本",
+            "吞吐",
+            "存储"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "figure-ai-01",
+            "figure-ai-03",
+            "figure-ai-06",
+            "nvidia-04",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware（延伸）",
+              "url": "https://arxiv.org/abs/2304.13705",
+              "author": "Zhao et al. (Stanford)",
+              "published": "2023-04-26"
+            },
+            {
+              "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models（延伸）",
+              "url": "https://arxiv.org/abs/2310.08864",
+              "author": "Open X-Embodiment Collaboration",
+              "published": "2023-10-13"
+            },
+            {
+              "title": "ALOHA: A Low-Cost Open-Source Hardware System for Bimanual Teleoperation（延伸）",
+              "url": "https://arxiv.org/abs/2304.13705",
+              "author": "Zhao et al.",
+              "published": "2023-04-26"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4691
+        },
+        {
+          "id": "figure-ai-06",
+          "order": 6,
+          "title": "对于一个新任务，你有 10 小时的示范数据，以及再采集 50 小时的预算。你如何决定采集什么？预期能获得什么回报？",
+          "titleEn": "For a new task you have 10 hours of demonstrations and a budget for 50 more hours of collection. How do you decide what to collect, and what return do you expect?",
+          "file": "公司题库/figure-ai/06-10-小时示范与-50-小时预算的分配.md",
+          "level": "高阶",
+          "tags": [
+            "数据分配",
+            "边际回报",
+            "饱和曲线",
+            "探测性分配",
+            "预期回报"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "figure-ai-01",
+            "figure-ai-03",
+            "figure-ai-05",
+            "scale-06",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning（延伸）",
+              "url": "https://arxiv.org/abs/1011.0686",
+              "author": "Ross, Gordon & Bagnell",
+              "published": "2010-11-02"
+            },
+            {
+              "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models（延伸）",
+              "url": "https://arxiv.org/abs/2310.08864",
+              "author": "Open X-Embodiment Collaboration",
+              "published": "2023-10-13"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4831
         }
       ]
     },
