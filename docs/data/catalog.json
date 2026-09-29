@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:49:47.407Z",
+  "generated": "2026-09-29T17:51:38.616Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 186,
+    "companyQuestions": 187,
     "companies": 15,
     "planned": 598
   },
@@ -13696,6 +13696,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7744
+        },
+        {
+          "id": "microsoft-02",
+          "order": 2,
+          "title": "low-level design：为一个 agent host 的工具调用层设计类与接口，其中的工具可以来自原生代码、OpenAPI spec 或 MCP server。",
+          "titleEn": "Low-level design: design the classes and interfaces for the tool-calling layer of an agent host, where tools can come from native code, OpenAPI specs, or MCP servers.",
+          "file": "公司题库/microsoft/02-agent-host-的工具调用层设计.md",
+          "level": "高阶",
+          "tags": [
+            "接口设计",
+            "工具调用",
+            "OpenAPI",
+            "MCP",
+            "能力协商"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "microsoft-01",
+            "microsoft-06",
+            "agents-01",
+            "agents-03",
+            "coding-07"
+          ],
+          "sources": [
+            {
+              "title": "OpenAPI Specification 3.0（延伸）",
+              "url": "https://spec.openapis.org/oas/v3.0.3",
+              "author": "OpenAPI Initiative",
+              "published": "2021-02-15"
+            },
+            {
+              "title": "Model Context Protocol Specification（延伸）",
+              "url": "https://modelcontextprotocol.io/specification",
+              "author": "Anthropic / MCP contributors",
+              "published": "2024-11-25"
+            },
+            {
+              "title": "Toolformer: Language Models Can Teach Themselves to Use Tools（延伸）",
+              "url": "https://arxiv.org/abs/2302.04761",
+              "author": "Schick et al. (Meta)",
+              "published": "2023-02-09"
+            },
+            {
+              "title": "大规模日志的 top-k 高频查询（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8836
         }
       ]
     },
