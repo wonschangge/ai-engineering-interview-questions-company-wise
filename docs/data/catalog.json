@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T20:15:31.368Z",
+  "generated": "2026-09-29T20:21:23.692Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 268,
-    "companies": 18,
+    "companyQuestions": 271,
+    "companies": 19,
     "planned": 598
   },
   "topics": [
@@ -18981,6 +18981,157 @@
           "chars": 5382,
           "topicName": "行为与文化",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-perplexity",
+      "name": "perplexity",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "perplexity",
+      "overviewFile": null,
+      "overviewTitle": "perplexity",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "perplexity-01",
+          "order": 1,
+          "title": "实现一个跨多个 LLM 提供商的客户端连接池并支持故障转移：提供商会失败、超时或限流，而调用方只应拿到一个 completion 结果。",
+          "titleEn": "Implement a client connection pool across multiple LLM providers with failover: providers fail, time out or rate-limit, and the caller should receive exactly one completion result.",
+          "file": "公司题库/perplexity/01-跨提供商连接池与故障转移.md",
+          "level": "高阶",
+          "tags": [
+            "连接池",
+            "故障转移",
+            "对冲",
+            "熔断",
+            "幂等"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "perplexity-02",
+            "perplexity-05",
+            "system-design-04",
+            "palantir-10",
+            "coding-31"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Release It! Design and Deploy Production-Ready Software（延伸）",
+              "url": "https://pragprog.com/titles/mnee2/release-it-second-edition/",
+              "author": "Michael Nygard",
+              "published": "2018-01-01"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4987
+        },
+        {
+          "id": "perplexity-02",
+          "order": 2,
+          "title": "你每天要摄入数百万个网页。请高效检测近似重复内容（同一篇文章、不同的样板文案）。",
+          "titleEn": "You ingest millions of web pages a day. Detect near-duplicate content efficiently (the same article with different boilerplate).",
+          "file": "公司题库/perplexity/02-近似重复内容检测.md",
+          "level": "高阶",
+          "tags": [
+            "近重复检测",
+            "SimHash",
+            "MinHash",
+            "LSH",
+            "召回取舍"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "perplexity-01",
+            "perplexity-03",
+            "coding-25",
+            "rag-02",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Detecting Near-Duplicates for Web Crawling（延伸）",
+              "url": "https://research.google/pubs/pub33094/",
+              "author": "Manku, Jain & Das Sarma (Google)",
+              "published": "2007-05-08"
+            },
+            {
+              "title": "On the Resemblance and Containment of Documents（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/666900",
+              "author": "Broder",
+              "published": "1997-06-11"
+            },
+            {
+              "title": "Mining of Massive Datasets（延伸）",
+              "url": "http://www.mmds.org/",
+              "author": "Leskovec, Rajaraman & Ullman",
+              "published": "2014-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4999
+        },
+        {
+          "id": "perplexity-03",
+          "order": 3,
+          "title": "你需要对数百万个文本块做 embedding。该 embedding 服务按批接收请求，有最大批大小和最大总 token 上限。请编写这个 batcher 并让它足够快。",
+          "titleEn": "You need to embed millions of text chunks. The embedding service takes batched requests with a maximum batch size and a maximum total token limit. Write the batcher and make it fast enough.",
+          "file": "公司题库/perplexity/03-embedding-批处理器.md",
+          "level": "高阶",
+          "tags": [
+            "批处理",
+            "装箱",
+            "重尾分布",
+            "吞吐",
+            "并发"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "perplexity-02",
+            "perplexity-09",
+            "system-design-04",
+            "coding-31",
+            "inference-serving-03"
+          ],
+          "sources": [
+            {
+              "title": "Bin Packing Problem（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Bin_packing_problem",
+              "author": "Wikipedia",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM（延伸）",
+              "url": "https://arxiv.org/abs/2104.04473",
+              "author": "Narayanan et al. (NVIDIA)",
+              "published": "2021-04-09"
+            },
+            {
+              "title": "Little\\u2019s Law（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Little%27s_law",
+              "author": "Wikipedia",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4828
         }
       ]
     },
