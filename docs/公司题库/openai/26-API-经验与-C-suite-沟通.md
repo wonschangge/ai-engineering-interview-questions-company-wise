@@ -4,7 +4,7 @@ id: openai-26
 company: OpenAI
 topic: applied
 order: 26
-question: 讲讲你的 API 经验，以及你如何与 C-suite（高管层）沟通。
+question: 你有使用 API 的经验吗？你习惯与 C-suite 高管打交道吗？
 question_en: Tell me about your API experience and how you work with the C-suite.
 asked_at: []
 level: 进阶

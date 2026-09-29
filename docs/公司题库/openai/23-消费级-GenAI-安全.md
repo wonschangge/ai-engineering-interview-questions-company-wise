@@ -4,7 +4,7 @@ id: openai-23
 company: OpenAI
 topic: safety
 order: 23
-question: 你会如何为消费级 GenAI 产品做安全？
+question: 在消费级产品中，你会如何处理 GenAI 安全？
 question_en: How would you approach safety for a consumer GenAI product?
 asked_at: []
 level: 高阶

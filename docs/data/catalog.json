@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:57:33.362Z",
+  "generated": "2026-09-29T19:00:16.976Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 225,
+    "companyQuestions": 226,
     "companies": 16,
     "planned": 598
   },
@@ -15262,15 +15262,15 @@
       ]
     },
     {
-      "id": "company-openai",
-      "name": "openai",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "openai",
+      "name": "OpenAI",
+      "group": "前沿 AI 实验室",
+      "summary": "三十一道题横跨\"造模型\"与\"交付产品\"两端——六道编码（事务内存 KV、ORM、Go 爬虫、按 mockup 实现 UI、重构糟糕代码、斐波那契）、六道数学与模型原理（传染病模拟、KL 散度、准确率 1 时的损失界、交叉熵与困惑度、self-attention 与长上下文、上下文窗口的影响）、五道系统设计（企业搜索、ChatGPT 规模服务栈、webhook、任务调度、内存数据库/Slack）、四道工程可靠性（两个模型怎么选、生产级 agent 循环、客户说变差了、客户说变慢了）、两道安全（消费级 GenAI 安全、代表用户执行操作的防护），以及八道产品与行为题（理赔现场前两周、API 经验与 C-suite 沟通、最喜欢的产品、犯过的错误、与别人的冲突、优先级分歧、最引以为豪的项目）。",
+      "updated": "2026-09-28",
       "dir": "openai",
-      "overviewFile": null,
-      "overviewTitle": "openai",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/openai/README.md",
+      "overviewTitle": "OpenAI 面试题库",
+      "declaredTotal": 31,
       "questions": [
         {
           "id": "openai-01",
@@ -15322,7 +15322,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6663
+          "chars": 6663,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "openai-02",
@@ -15374,7 +15376,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7120
+          "chars": 7120,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "openai-03",
@@ -15426,7 +15430,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7521
+          "chars": 7521,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
         },
         {
           "id": "openai-04",
@@ -15478,7 +15484,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7855
+          "chars": 7855,
+          "topicName": "编程与数据结构",
+          "topicOrder": 4
         },
         {
           "id": "openai-05",
@@ -15530,7 +15538,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7021
+          "chars": 7021,
+          "topicName": "编程与数据结构",
+          "topicOrder": 5
         },
         {
           "id": "openai-06",
@@ -15582,7 +15592,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6095
+          "chars": 6095,
+          "topicName": "编程与数据结构",
+          "topicOrder": 6
         },
         {
           "id": "openai-07",
@@ -15634,7 +15646,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6593
+          "chars": 6593,
+          "topicName": "编程与数据结构",
+          "topicOrder": 7
         },
         {
           "id": "openai-08",
@@ -15686,7 +15700,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6404
+          "chars": 6404,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 1
         },
         {
           "id": "openai-09",
@@ -15738,7 +15754,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6418
+          "chars": 6418,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 2
         },
         {
           "id": "openai-10",
@@ -15790,7 +15808,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6740
+          "chars": 6740,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 3
         },
         {
           "id": "openai-11",
@@ -15842,7 +15862,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 8316
+          "chars": 8316,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 4
         },
         {
           "id": "openai-12",
@@ -15894,7 +15916,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7248
+          "chars": 7248,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "openai-13",
@@ -15946,7 +15970,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7793
+          "chars": 7793,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 2
         },
         {
           "id": "openai-14",
@@ -15998,7 +16024,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 8099
+          "chars": 8099,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 3
         },
         {
           "id": "openai-15",
@@ -16050,7 +16078,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7564
+          "chars": 7564,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "openai-16",
@@ -16102,7 +16132,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7199
+          "chars": 7199,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "openai-17",
@@ -16154,12 +16186,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7695
+          "chars": 7695,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "openai-18",
           "order": 18,
-          "title": "设计一个 webhook 投递系统。",
+          "title": "设计并构建一个 webhook 投递系统，能够可靠地把事件投递到客户注册的 URL。",
           "titleEn": "Design a webhook delivery system.",
           "file": "公司题库/openai/18-webhook-投递系统.md",
           "level": "进阶",
@@ -16206,12 +16240,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7511
+          "chars": 7511,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
         },
         {
           "id": "openai-19",
           "order": 19,
-          "title": "设计一个分布式任务调度系统。",
+          "title": "设计一个在分布式环境中调度任务的系统。",
           "titleEn": "Design a distributed task scheduling system.",
           "file": "公司题库/openai/19-分布式任务调度.md",
           "level": "高阶",
@@ -16258,12 +16294,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7386
+          "chars": 7386,
+          "topicName": "AI 系统设计",
+          "topicOrder": 4
         },
         {
           "id": "openai-20",
           "order": 20,
-          "title": "设计一个内存数据库 / 设计 Slack。",
+          "title": "设计一个内存数据库。/ 设计 Slack。",
           "titleEn": "Design an in-memory database / Design Slack.",
           "file": "公司题库/openai/20-内存数据库与设计-Slack.md",
           "level": "高阶",
@@ -16310,12 +16348,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 8484
+          "chars": 8484,
+          "topicName": "AI 系统设计",
+          "topicOrder": 5
         },
         {
           "id": "openai-21",
           "order": 21,
-          "title": "客户说\"模型变差了\"。你怎么排查？",
+          "title": "在你为客户部署升级了模型版本后，客户说“模型变差了”。你如何验证并回应？",
           "titleEn": "A customer says \"the model got worse.\" How do you investigate?",
           "file": "公司题库/openai/21-客户说模型变差了.md",
           "level": "进阶",
@@ -16362,12 +16402,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7014
+          "chars": 7014,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "openai-22",
           "order": 22,
-          "title": "客户反馈\"变慢了\"。你怎么排查？",
+          "title": "一个企业客户反馈，你部署的系统响应变慢了。请讲讲你的排查过程。",
           "titleEn": "A customer reports the service got slower. How do you debug it?",
           "file": "公司题库/openai/22-客户反馈变慢了.md",
           "level": "进阶",
@@ -16414,12 +16456,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7455
+          "chars": 7455,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
         },
         {
           "id": "openai-23",
           "order": 23,
-          "title": "你会如何为消费级 GenAI 产品做安全？",
+          "title": "在消费级产品中，你会如何处理 GenAI 安全？",
           "titleEn": "How would you approach safety for a consumer GenAI product?",
           "file": "公司题库/openai/23-消费级-GenAI-安全.md",
           "level": "高阶",
@@ -16466,12 +16510,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 8122
+          "chars": 8122,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
         },
         {
           "id": "openai-24",
           "order": 24,
-          "title": "你如何为一个\"代表用户执行操作\"的 agent 做防护？",
+          "title": "对于一个能够代表用户执行操作的 AI 系统，你会如何设计防护措施？",
           "titleEn": "How do you safeguard an agent that takes actions on behalf of users?",
           "file": "公司题库/openai/24-代表用户执行操作的防护.md",
           "level": "高阶",
@@ -16518,12 +16564,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7478
+          "chars": 7478,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 2
         },
         {
           "id": "openai-25",
           "order": 25,
-          "title": "你被派到客户现场做理赔自动化。前两周你会做什么？",
+          "title": "一个企业客户说：“我们希望用 AI 自动化我们的理赔处理。”你就是现场的那位工程师。前两周会是什么样？",
           "titleEn": "You are deployed at a customer site for claims automation. What do you do in the first two weeks?",
           "file": "公司题库/openai/25-理赔现场的前两周.md",
           "level": "进阶",
@@ -16570,12 +16618,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6628
+          "chars": 6628,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
         },
         {
           "id": "openai-26",
           "order": 26,
-          "title": "讲讲你的 API 经验，以及你如何与 C-suite（高管层）沟通。",
+          "title": "你有使用 API 的经验吗？你习惯与 C-suite 高管打交道吗？",
           "titleEn": "Tell me about your API experience and how you work with the C-suite.",
           "file": "公司题库/openai/26-API-经验与-C-suite-沟通.md",
           "level": "进阶",
@@ -16622,12 +16672,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7458
+          "chars": 7458,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 2
         },
         {
           "id": "openai-27",
           "order": 27,
-          "title": "你最喜欢的产品是什么？为什么？",
+          "title": "你最喜欢的产品是什么，为什么？",
           "titleEn": "What is your favourite product and why?",
           "file": "公司题库/openai/27-最喜欢的产品.md",
           "level": "进阶",
@@ -16674,12 +16726,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6933
+          "chars": 6933,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         },
         {
           "id": "openai-28",
           "order": 28,
-          "title": "讲一个你犯过的错误。",
+          "title": "讲讲你犯过的一次错误。",
           "titleEn": "Tell me about a mistake you made.",
           "file": "公司题库/openai/28-你犯过的错误.md",
           "level": "进阶",
@@ -16726,12 +16780,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6660
+          "chars": 6660,
+          "topicName": "行为与文化",
+          "topicOrder": 2
         },
         {
           "id": "openai-29",
           "order": 29,
-          "title": "讲一次你和别人的冲突。",
+          "title": "讲讲你和别人发生过冲突的一次经历。你是如何解决的，又学到了什么？",
           "titleEn": "Tell me about a conflict you had with someone.",
           "file": "公司题库/openai/29-与别人的冲突.md",
           "level": "进阶",
@@ -16778,12 +16834,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7013
+          "chars": 7013,
+          "topicName": "行为与文化",
+          "topicOrder": 3
         },
         {
           "id": "openai-30",
           "order": 30,
-          "title": "讲一次你和别人在优先级上有分歧的经历。",
+          "title": "讲讲你和相关方在优先级上出现分歧的一次经历，以及你是如何促成一致的。",
           "titleEn": "Tell me about a time you disagreed with someone about priorities.",
           "file": "公司题库/openai/30-优先级分歧.md",
           "level": "进阶",
@@ -16830,7 +16888,63 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6667
+          "chars": 6667,
+          "topicName": "行为与文化",
+          "topicOrder": 4
+        },
+        {
+          "id": "openai-31",
+          "order": 31,
+          "title": "你最引以为豪的项目是什么？",
+          "titleEn": "What is the project you are most proud of?",
+          "file": "公司题库/openai/31-最引以为豪的项目.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "影响归因",
+            "反事实检验",
+            "我 vs 我们",
+            "诚信"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "openai-30",
+            "openai-28",
+            "openai-26",
+            "behavioral-01",
+            "applied-02"
+          ],
+          "sources": [
+            {
+              "title": "Thinking, Fast and Slow（延伸）",
+              "url": "https://us.macmillan.com/books/9780374533557/thinkingfastandslow",
+              "author": "Daniel Kahneman",
+              "published": "2011-10-25"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/72441/high-output-management-by-andrew-s-grove/",
+              "author": "Andrew Grove",
+              "published": "1983-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "优先级分歧（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6608,
+          "topicName": "行为与文化",
+          "topicOrder": 5
         }
       ]
     },

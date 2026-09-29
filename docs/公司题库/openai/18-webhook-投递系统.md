@@ -4,7 +4,7 @@ id: openai-18
 company: OpenAI
 topic: system-design
 order: 18
-question: 设计一个 webhook 投递系统。
+question: 设计并构建一个 webhook 投递系统，能够可靠地把事件投递到客户注册的 URL。
 question_en: Design a webhook delivery system.
 asked_at: []
 level: 进阶

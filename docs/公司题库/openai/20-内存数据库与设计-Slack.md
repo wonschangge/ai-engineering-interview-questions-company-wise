@@ -4,7 +4,7 @@ id: openai-20
 company: OpenAI
 topic: system-design
 order: 20
-question: 设计一个内存数据库 / 设计 Slack。
+question: 设计一个内存数据库。/ 设计 Slack。
 question_en: Design an in-memory database / Design Slack.
 asked_at: []
 level: 高阶
