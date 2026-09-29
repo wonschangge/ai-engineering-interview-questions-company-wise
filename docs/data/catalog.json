@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:26:17.200Z",
+  "generated": "2026-09-29T14:31:16.312Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 122,
+    "companyQuestions": 124,
     "companies": 8,
     "planned": 598
   },
@@ -9953,6 +9953,111 @@
           ],
           "updated": "2026-09-28",
           "chars": 5559
+        },
+        {
+          "id": "elevenlabs-04",
+          "order": 4,
+          "title": "为实时语音 agent 做端到端延迟预算。为什么 time-to-first-audio 与 LLM 的 time-to-first-token 是不同的难题？",
+          "titleEn": "Build an end-to-end latency budget for a real-time voice agent. Why is time-to-first-audio a different problem from an LLM's time-to-first-token?",
+          "file": "公司题库/elevenlabs/04-实时语音-agent-的延迟预算与-TTFA-vs-TTFT.md",
+          "level": "高阶",
+          "tags": [
+            "TTFA",
+            "TTFT",
+            "语音链路",
+            "延迟预算",
+            "尾延迟",
+            "卡顿"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "multimodal-03",
+            "multimodal-08",
+            "elevenlabs-01",
+            "elevenlabs-02",
+            "elevenlabs-05"
+          ],
+          "sources": [
+            {
+              "title": "Design a Real-Time Voice AI Agent",
+              "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "为实时语音 agent 做 latency 预算（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "解释流式 TTS 的 chunking 与 jitter buffer 大小设定（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech（VITS）（延伸）",
+              "url": "https://arxiv.org/abs/2106.06103",
+              "author": "Kim et al. (ICML 2021)",
+              "published": "2021-06-11"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5991
+        },
+        {
+          "id": "elevenlabs-05",
+          "order": 5,
+          "title": "在生产环境里，TTS 质量真正崩掉的地方就是文本规范化。请详细讲讲你会怎么做。",
+          "titleEn": "In production, text normalisation is where TTS quality actually falls apart. How would you do it?",
+          "file": "公司题库/elevenlabs/05-生产环境里的文本规范化.md",
+          "level": "高阶",
+          "tags": [
+            "文本规范化",
+            "TN",
+            "同形词",
+            "多语言",
+            "回归语料"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "elevenlabs-02",
+            "elevenlabs-04",
+            "multimodal-06",
+            "multimodal-07",
+            "elevenlabs-06"
+          ],
+          "sources": [
+            {
+              "title": "A Survey on Neural Speech Synthesis（延伸）",
+              "url": "https://arxiv.org/abs/2106.06938",
+              "author": "Tan et al.",
+              "published": "2021-06-11"
+            },
+            {
+              "title": "FastSpeech 2: Fast and High-Quality End-to-End Text to Speech（延伸）",
+              "url": "https://arxiv.org/abs/2006.04558",
+              "author": "Ren et al. (ICLR 2021)",
+              "published": "2020-06-08"
+            },
+            {
+              "title": "Seamless: Multilingual Expressive and Streaming Speech Translation（延伸）",
+              "url": "https://arxiv.org/abs/2312.05187",
+              "author": "Seamless Communication (Meta)",
+              "published": "2023-12-08"
+            },
+            {
+              "title": "Robust Speech Recognition via Large-Scale Weak Supervision（Whisper）（延伸）",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2022-12-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5580
         }
       ]
     },
