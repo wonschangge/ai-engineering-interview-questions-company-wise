@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:32:14.401Z",
+  "generated": "2026-09-29T21:36:23.719Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 326,
+    "companyQuestions": 329,
     "companies": 23,
     "planned": 598
   },
@@ -21228,6 +21228,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4925
+        },
+        {
+          "id": "sarvam-07",
+          "order": 7,
+          "title": "为印地语和三种地区语言的公民求助热线设计实时语音 agent，目标是在电话线路上把感知延迟控制在 250 ms 以内。",
+          "titleEn": "Design a real-time voice agent for a citizen helpline in Hindi and three regional languages, targeting under 250 ms of perceived latency on a phone line.",
+          "file": "公司题库/sarvam-ai/07-250ms-的实时语音求助热线.md",
+          "level": "高阶",
+          "tags": [
+            "实时语音",
+            "延迟预算",
+            "端点检测",
+            "填词",
+            "流水线"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "sarvam-09",
+            "sarvam-10",
+            "sarvam-13",
+            "groq-08",
+            "perplexity-11"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4884
+        },
+        {
+          "id": "sarvam-08",
+          "order": 8,
+          "title": "你会如何正确评估一个 Indic LLM？为什么直接跑翻译过来的英文 benchmark 不够？",
+          "titleEn": "How would you properly evaluate an Indic LLM? Why is running translated English benchmarks not enough?",
+          "file": "公司题库/sarvam-ai/08-如何正确评估-Indic-LLM.md",
+          "level": "高阶",
+          "tags": [
+            "Indic 评估",
+            "翻译腔",
+            "文化知识",
+            "分层报告",
+            "人工评审"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "sarvam-01",
+            "sarvam-04",
+            "sarvam-05",
+            "scale-06",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "HELM: Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford CRFM)",
+              "published": "2022-11-16"
+            },
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al.",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4624
+        },
+        {
+          "id": "sarvam-09",
+          "order": 9,
+          "title": "从零实现一个 Voice Activity Detector。如何让它对电话音质的印度语言音频保持鲁棒？",
+          "titleEn": "Implement a Voice Activity Detector from scratch. How do you make it robust to telephony-quality Indic audio?",
+          "file": "公司题库/sarvam-ai/09-从零实现-VAD.md",
+          "level": "进阶",
+          "tags": [
+            "VAD",
+            "自适应噪声底",
+            "谱平坦度",
+            "迟滞",
+            "电话音质"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "sarvam-07",
+            "sarvam-10",
+            "sarvam-11",
+            "multimodal-01",
+            "perplexity-11"
+          ],
+          "sources": [
+            {
+              "title": "A Statistical Model-Based Voice Activity Detection（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/736910",
+              "author": "Sohn, Kim & Sung",
+              "published": "1999-01-01"
+            },
+            {
+              "title": "PyTorch: An Imperative Style, High-Performance Deep Learning Library（延伸）",
+              "url": "https://arxiv.org/abs/1912.01703",
+              "author": "Paszke et al.",
+              "published": "2019-12-03"
+            },
+            {
+              "title": "Voice Activity Detection: A Tutorial（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/5974431",
+              "author": "综述",
+              "published": "2011-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5053
         }
       ]
     },
