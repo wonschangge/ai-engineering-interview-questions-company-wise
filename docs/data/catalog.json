@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:12:59.857Z",
+  "generated": "2026-09-29T18:14:37.107Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 198,
+    "companyQuestions": 199,
     "companies": 16,
     "planned": 598
   },
@@ -15427,6 +15427,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7521
+        },
+        {
+          "id": "openai-04",
+          "order": 4,
+          "title": "根据 mockup，使用给定的 CSS 和 API 实现一个 UI。",
+          "titleEn": "Implement a UI from a mockup, using the given CSS and API.",
+          "file": "公司题库/openai/04-按-mockup-实现-UI.md",
+          "level": "高阶",
+          "tags": [
+            "前端实现",
+            "状态覆盖",
+            "可访问性",
+            "WCAG 对比度",
+            "间距刻度"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "openai-05",
+            "openai-17",
+            "coding-13",
+            "coding-14",
+            "agents-07"
+          ],
+          "sources": [
+            {
+              "title": "Web Content Accessibility Guidelines (WCAG) 2.2（延伸）",
+              "url": "https://www.w3.org/TR/WCAG22/",
+              "author": "W3C",
+              "published": "2023-10-05"
+            },
+            {
+              "title": "Refactoring UI（延伸）",
+              "url": "https://www.refactoringui.com/",
+              "author": "Wathan & Schoger",
+              "published": "2018-12-01"
+            },
+            {
+              "title": "Atomic Design（延伸）",
+              "url": "https://bradfrost.com/blog/post/atomic-web-design/",
+              "author": "Brad Frost",
+              "published": "2013-06-10"
+            },
+            {
+              "title": "重构糟糕但测试通过的代码（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7855
         }
       ]
     },
