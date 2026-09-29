@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T23:11:46.018Z",
+  "generated": "2026-09-29T23:16:17.592Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 394,
+    "companyQuestions": 397,
     "companies": 29,
     "planned": 598
   },
@@ -24576,6 +24576,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5028
+        },
+        {
+          "id": "tesla-04",
+          "order": 4,
+          "title": "在稀有事件检测（例如小孩跑到马路上）中，你如何处理极端的类别不平衡？",
+          "titleEn": "In rare event detection (a child running into the road, say), how do you handle extreme class imbalance?",
+          "file": "公司题库/tesla/04-稀有事件的极端类别不平衡.md",
+          "level": "高阶",
+          "tags": [
+            "极端不平衡",
+            "精确率天花板",
+            "级联",
+            "改目标",
+            "过采样失效"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "tesla-03",
+            "tesla-05",
+            "tesla-08",
+            "applied-01",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "Focal Loss for Dense Object Detection（延伸）",
+              "url": "https://arxiv.org/abs/1708.02002",
+              "author": "Lin et al. (Facebook AI)",
+              "published": "2017-08-07"
+            },
+            {
+              "title": "Learning from Imbalanced Data（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/5128907",
+              "author": "He & Garcia",
+              "published": "2009-09-01"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4560
+        },
+        {
+          "id": "tesla-05",
+          "order": 5,
+          "title": "说明你会如何对车队数据集做自动标注，以及你会对它施加哪些质量控制。",
+          "titleEn": "Describe how you would auto-label a fleet dataset, and what quality controls you would apply.",
+          "file": "公司题库/tesla/05-车队数据的自动标注与质量控制.md",
+          "level": "高阶",
+          "tags": [
+            "自动标注",
+            "置信度路由",
+            "确认偏误",
+            "审计抽样",
+            "覆盖率"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "tesla-04",
+            "tesla-06",
+            "tesla-09",
+            "scale-03",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "A Survey of Deep Learning-based Object Detection（延伸）",
+              "url": "https://arxiv.org/abs/1907.09408",
+              "author": "Zhao et al.",
+              "published": "2019-07-22"
+            },
+            {
+              "title": "Confident Learning: Estimating Uncertainty in Dataset Labels（延伸）",
+              "url": "https://arxiv.org/abs/1911.00068",
+              "author": "Northcutt, Jiang & Chuang (MIT)",
+              "published": "2019-11-01"
+            },
+            {
+              "title": "Pseudo-Label: The Simple and Efficient Semi-Supervised Learning Method（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/6603963",
+              "author": "Lee (POSTECH)",
+              "published": "2013-06-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4823
+        },
+        {
+          "id": "tesla-06",
+          "order": 6,
+          "title": "你会如何检测并处理车队数据与训练集之间的分布偏移（distribution shift）？",
+          "titleEn": "How would you detect and handle distribution shift between fleet data and your training set?",
+          "file": "公司题库/tesla/06-检测并处理分布偏移.md",
+          "level": "高阶",
+          "tags": [
+            "分布偏移",
+            "域分类器",
+            "置信度漂移",
+            "重加权",
+            "概念偏移"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "tesla-05",
+            "tesla-07",
+            "tesla-08",
+            "apple-08",
+            "waymo-08"
+          ],
+          "sources": [
+            {
+              "title": "A Kernel Two-Sample Test（延伸）",
+              "url": "https://www.jmlr.org/papers/v13/gretton12a.html",
+              "author": "Gretton et al.",
+              "published": "2012-03-01"
+            },
+            {
+              "title": "Learning and Evaluating Classifiers under Sample Selection Bias（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1015330.1015425",
+              "author": "Zadrozny (IBM)",
+              "published": "2004-07-04"
+            },
+            {
+              "title": "Domain-Adversarial Training of Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1505.07818",
+              "author": "Ganin et al.",
+              "published": "2015-05-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4583
         }
       ]
     },
