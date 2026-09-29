@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:14:37.107Z",
+  "generated": "2026-09-29T18:16:40.883Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 199,
+    "companyQuestions": 200,
     "companies": 16,
     "planned": 598
   },
@@ -15479,6 +15479,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7855
+        },
+        {
+          "id": "openai-05",
+          "order": 5,
+          "title": "重构糟糕的代码：这里有约 120 行能正常运行但很混乱的代码，且测试是通过的。在不破坏测试的前提下改进架构。你会先改什么？",
+          "titleEn": "Refactor bad code: here are about 120 lines that work but are messy, and the tests pass. Improve the architecture without breaking the tests. What do you change first?",
+          "file": "公司题库/openai/05-重构糟糕的代码.md",
+          "level": "高阶",
+          "tags": [
+            "重构",
+            "特征测试",
+            "差分测试",
+            "坏味道",
+            "小步提交"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "openai-04",
+            "openai-02",
+            "coding-15",
+            "coding-16",
+            "coding-17"
+          ],
+          "sources": [
+            {
+              "title": "Refactoring: Improving the Design of Existing Code（延伸）",
+              "url": "https://martinfowler.com/books/refactoring.html",
+              "author": "Martin Fowler",
+              "published": "2018-11-20"
+            },
+            {
+              "title": "Working Effectively with Legacy Code（延伸）",
+              "url": "https://www.oreilly.com/library/view/working-effectively-with/0131177052/",
+              "author": "Michael Feathers",
+              "published": "2004-09-01"
+            },
+            {
+              "title": "Clean Code: A Handbook of Agile Software Craftsmanship（延伸）",
+              "url": "https://www.oreilly.com/library/view/clean-code-a/9780136083238/",
+              "author": "Robert C. Martin",
+              "published": "2008-08-01"
+            },
+            {
+              "title": "支持事务的内存 KV 存储（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7021
         }
       ]
     },
