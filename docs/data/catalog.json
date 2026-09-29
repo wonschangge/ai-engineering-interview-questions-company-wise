@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:30:51.464Z",
+  "generated": "2026-09-29T18:32:34.820Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 210,
+    "companyQuestions": 211,
     "companies": 16,
     "planned": 598
   },
@@ -16051,6 +16051,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7564
+        },
+        {
+          "id": "openai-16",
+          "order": 16,
+          "title": "你会如何构建一个由 LLM 驱动的企业搜索系统？",
+          "titleEn": "How would you build an LLM-powered enterprise search system?",
+          "file": "公司题库/openai/16-企业搜索系统.md",
+          "level": "高阶",
+          "tags": [
+            "企业搜索",
+            "混合检索",
+            "重排",
+            "分块",
+            "端到端评估"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "openai-15",
+            "openai-17",
+            "microsoft-05",
+            "rag-01",
+            "rag-03"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Meta)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia",
+              "published": "2020-04-27"
+            },
+            {
+              "title": "Dense Passage Retrieval for Open-Domain Question Answering（延伸）",
+              "url": "https://arxiv.org/abs/2004.04906",
+              "author": "Karpukhin et al. (Meta)",
+              "published": "2020-04-10"
+            },
+            {
+              "title": "权限感知的 Copilot（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7199
         }
       ]
     },
