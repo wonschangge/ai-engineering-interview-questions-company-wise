@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:02:44.441Z",
+  "generated": "2026-09-29T18:04:14.436Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 193,
+    "companyQuestions": 194,
     "companies": 15,
     "planned": 598
   },
@@ -14060,6 +14060,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7819
+        },
+        {
+          "id": "microsoft-09",
+          "order": 9,
+          "title": "一个已上线的 Copilot 功能会为招聘人员摘要求职者资料，却被指对某些群体表现更差。你如何确认这是否属实，又会如何处理？",
+          "titleEn": "A shipped Copilot feature summarizes candidate profiles for recruiters, and is accused of performing worse for some groups. How do you confirm whether that is true, and what do you do about it?",
+          "file": "公司题库/microsoft/09-招聘摘要的公平性指控.md",
+          "level": "高阶",
+          "tags": [
+            "公平性评估",
+            "配对检验",
+            "多重比较",
+            "功效",
+            "响应分级"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "microsoft-07",
+            "microsoft-08",
+            "evaluation-04",
+            "safety-05",
+            "anthropic-12"
+          ],
+          "sources": [
+            {
+              "title": "Model Cards for Model Reporting（延伸）",
+              "url": "https://arxiv.org/abs/1810.03993",
+              "author": "Mitchell et al. (Google)",
+              "published": "2018-10-05"
+            },
+            {
+              "title": "Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification（延伸）",
+              "url": "https://proceedings.mlr.press/v81/buolamwini18a.html",
+              "author": "Buolamwini & Gebru",
+              "published": "2018-02-23"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "会议摘要功能的发布前评估（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7660
         }
       ]
     },
