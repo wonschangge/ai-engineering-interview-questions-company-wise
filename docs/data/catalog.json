@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:34:37.962Z",
+  "generated": "2026-09-29T18:35:38.325Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 212,
+    "companyQuestions": 213,
     "companies": 16,
     "planned": 598
   },
@@ -16155,6 +16155,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7695
+        },
+        {
+          "id": "openai-18",
+          "order": 18,
+          "title": "设计一个 webhook 投递系统。",
+          "titleEn": "Design a webhook delivery system.",
+          "file": "公司题库/openai/18-webhook-投递系统.md",
+          "level": "进阶",
+          "tags": [
+            "webhook",
+            "至少一次",
+            "退避抖动",
+            "幂等",
+            "慢消费者"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "openai-17",
+            "openai-19",
+            "microsoft-06",
+            "system-design-04",
+            "agents-04"
+          ],
+          "sources": [
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE Team",
+              "published": "2016-03-01"
+            },
+            {
+              "title": "AWS Architecture Blog: Exponential Backoff and Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS)",
+              "published": "2015-03-04"
+            },
+            {
+              "title": "Stripe API Docs: Webhooks（延伸）",
+              "url": "https://docs.stripe.com/webhooks",
+              "author": "Stripe",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "生产级 agent 循环的可靠性（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7511
         }
       ]
     },
