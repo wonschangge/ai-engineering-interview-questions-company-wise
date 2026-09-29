@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:11:05.863Z",
+  "generated": "2026-09-29T13:16:44.676Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 91,
+    "companyQuestions": 94,
     "companies": 6,
     "planned": 598
   },
@@ -6930,6 +6930,163 @@
           ],
           "updated": "2026-09-28",
           "chars": 6231
+        },
+        {
+          "id": "anthropic-17",
+          "order": 17,
+          "title": "为 Claude 级别的 LLM API 设计服务栈。在不破坏 p99 latency 的前提下最大化 GPU 利用率。",
+          "titleEn": "Design the serving stack for a Claude-class LLM API. Maximise GPU utilisation without breaking p99 latency.",
+          "file": "公司题库/anthropic/17-为-Claude-级-LLM-API-设计服务栈.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "服务栈",
+            "p99",
+            "利用率",
+            "准入控制",
+            "降级"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "anthropic-16",
+            "anthropic-15",
+            "system-design-10",
+            "inference-serving-05",
+            "system-design-09"
+          ],
+          "sources": [
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al. (Microsoft, OSDI 2024)",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al. (OSDI 2024)",
+              "published": "2024-01-18"
+            },
+            {
+              "title": "SGLang：Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (RadixAttention)",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "How does Prompt Caching work?",
+              "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5987
+        },
+        {
+          "id": "anthropic-18",
+          "order": 18,
+          "title": "对于 Claude Code 这样的 agentic 编程工具，模型和 harness 哪个更重要？请设计这个循环。",
+          "titleEn": "For an agentic coding tool like Claude Code, which matters more — the model or the harness? Design the loop.",
+          "file": "公司题库/anthropic/18-agentic-编程工具里模型与-harness-哪个更重要.md",
+          "level": "高阶",
+          "tags": [
+            "Agent",
+            "harness",
+            "工具调用",
+            "上下文管理",
+            "验证回路"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "anthropic-19",
+            "cursor-08",
+            "cursor-14",
+            "agents-01",
+            "agents-11"
+          ],
+          "sources": [
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "Claude Code 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5320
+        },
+        {
+          "id": "anthropic-19",
+          "order": 19,
+          "title": "为编程 agent 设计工具面（tool surface）：有哪些工具、它们的 schema 长什么样、结果如何返回。",
+          "titleEn": "Design the tool surface for a coding agent: which tools, what their schemas look like, and how results come back.",
+          "file": "公司题库/anthropic/19-为编程-agent-设计工具面.md",
+          "level": "高阶",
+          "tags": [
+            "Agent",
+            "工具设计",
+            "schema",
+            "错误信息",
+            "上下文效率"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "anthropic-18",
+            "cursor-08",
+            "cursor-11",
+            "cursor-13",
+            "agents-03"
+          ],
+          "sources": [
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "Claude Code 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5604
         }
       ]
     },
