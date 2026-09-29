@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:57:02.582Z",
+  "generated": "2026-09-29T17:58:59.805Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 190,
+    "companyQuestions": 191,
     "companies": 15,
     "planned": 598
   },
@@ -13904,6 +13904,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7240
+        },
+        {
+          "id": "microsoft-06",
+          "order": 6,
+          "title": "设计一个能在电子表格中执行操作的 agent（“插入一张按地区统计 Q3 销售额的数据透视表”）：编排、工具与失败处理。",
+          "titleEn": "Design an agent that performs operations in a spreadsheet (\"insert a pivot table of Q3 sales by region\"): orchestration, tools, and failure handling.",
+          "file": "公司题库/microsoft/06-电子表格-agent-的编排与失败处理.md",
+          "level": "高阶",
+          "tags": [
+            "agent 编排",
+            "工具设计",
+            "事务与回滚",
+            "引用消解",
+            "结果校验"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "microsoft-02",
+            "microsoft-05",
+            "microsoft-07",
+            "agents-02",
+            "agents-03"
+          ],
+          "sources": [
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "Toolformer: Language Models Can Teach Themselves to Use Tools（延伸）",
+              "url": "https://arxiv.org/abs/2302.04761",
+              "author": "Schick et al. (Meta)",
+              "published": "2023-02-09"
+            },
+            {
+              "title": "Design Patterns: Elements of Reusable Object-Oriented Software（延伸）",
+              "url": "https://www.oreilly.com/library/view/design-patterns-elements/0201633612/",
+              "author": "Gamma, Helm, Johnson & Vlissides",
+              "published": "1994-10-31"
+            },
+            {
+              "title": "agent host 的工具调用层设计（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7603
         }
       ]
     },
