@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:42:20.655Z",
+  "generated": "2026-09-29T18:44:43.684Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 216,
+    "companyQuestions": 217,
     "companies": 16,
     "planned": 598
   },
@@ -16363,6 +16363,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7014
+        },
+        {
+          "id": "openai-22",
+          "order": 22,
+          "title": "客户反馈\"变慢了\"。你怎么排查？",
+          "titleEn": "A customer reports the service got slower. How do you debug it?",
+          "file": "公司题库/openai/22-客户反馈变慢了.md",
+          "level": "进阶",
+          "tags": [
+            "延迟排查",
+            "排队非线性",
+            "TTFT/TPOT",
+            "前缀缓存",
+            "延迟分解"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "openai-21",
+            "openai-17",
+            "microsoft-03",
+            "moonshot-06",
+            "evaluation-08"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al.",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2407.00079",
+              "author": "Qin et al. (Moonshot AI)",
+              "published": "2024-06-28"
+            },
+            {
+              "title": "客户说\"模型变差了\"（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7455
         }
       ]
     },
