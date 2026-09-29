@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:40:34.867Z",
+  "generated": "2026-09-29T15:43:10.971Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 147,
+    "companyQuestions": 148,
     "companies": 11,
     "planned": 598
   },
@@ -8710,6 +8710,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6579
+        },
+        {
+          "id": "cohere-03",
+          "order": 3,
+          "title": "你有一个 embedding 模型和一个 reranker。为什么两个都要卖？请设计两阶段的检索流水线，并告诉我 reranker 在什么情况下值得付出那部分 latency。",
+          "titleEn": "You sell both an embedding model and a reranker. Why both? Design the two-stage retrieval pipeline, and tell me when the reranker is worth its latency.",
+          "file": "公司题库/cohere/03-embedding-与-reranker-为何两个都卖.md",
+          "level": "高阶",
+          "tags": [
+            "双塔",
+            "交叉编码器",
+            "两阶段检索",
+            "recall@k",
+            "延迟预算"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "cohere-04",
+            "cohere-05",
+            "cohere-06",
+            "rag-01",
+            "rag-03"
+          ],
+          "sources": [
+            {
+              "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks（延伸）",
+              "url": "https://arxiv.org/abs/1908.10084",
+              "author": "Reimers & Gurevych (EMNLP 2019)",
+              "published": "2019-08-27"
+            },
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia (SIGIR 2020)",
+              "published": "2020-04-27"
+            },
+            {
+              "title": "Passage Re-ranking with BERT（延伸）",
+              "url": "https://arxiv.org/abs/1901.04085",
+              "author": "Nogueira & Cho",
+              "published": "2019-01-31"
+            },
+            {
+              "title": "为大型商品目录设计语义搜索（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5682
         }
       ]
     },
