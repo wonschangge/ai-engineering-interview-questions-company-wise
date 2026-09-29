@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:17:35.454Z",
+  "generated": "2026-09-29T19:21:00.812Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 228,
+    "companyQuestions": 231,
     "companies": 17,
     "planned": 598
   },
@@ -12422,6 +12422,141 @@
           ],
           "updated": "2026-09-28",
           "chars": 5143
+        },
+        {
+          "id": "gdm-03",
+          "order": 3,
+          "title": "给定 y_pred 和 y_true 列表，写一个函数计算均方根误差（root-mean-square error）。",
+          "titleEn": "Given y_pred and y_true lists, write a function to compute the root-mean-square error.",
+          "file": "公司题库/google-deepmind/03-RMSE-函数.md",
+          "level": "进阶",
+          "tags": [
+            "RMSE",
+            "数值稳定性",
+            "MAE 对比",
+            "边界处理"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-21",
+            "coding-26",
+            "evaluation-06",
+            "gdm-05",
+            "microsoft-09"
+          ],
+          "sources": [
+            {
+              "title": "Note on a Method for Calculating Corrected Sums of Squares and Products（延伸）",
+              "url": "https://www.jstor.org/stable/1266577",
+              "author": "Welford",
+              "published": "1962-01-01"
+            },
+            {
+              "title": "Accuracy and Stability of Numerical Algorithms（延伸）",
+              "url": "https://epubs.siam.org/doi/book/10.1137/1.9780898718027",
+              "author": "Higham",
+              "published": "2002-01-01"
+            },
+            {
+              "title": "Mean squared error（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Mean_squared_error",
+              "author": "Wikipedia",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4927
+        },
+        {
+          "id": "gdm-04",
+          "order": 4,
+          "title": "解析 bigram：从字符串中提取两词短语，用于 NLP 特征工程。",
+          "titleEn": "Parse bigrams: extract two-word phrases from a string for NLP feature engineering.",
+          "file": "公司题库/google-deepmind/04-解析-bigram.md",
+          "level": "进阶",
+          "tags": [
+            "bigram",
+            "分词",
+            "稀疏性",
+            "规格澄清"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "gdm-03",
+            "coding-25",
+            "rag-02",
+            "evaluation-02",
+            "llm-internals-01"
+          ],
+          "sources": [
+            {
+              "title": "Foundations of Statistical Natural Language Processing（延伸）",
+              "url": "https://mitpress.mit.edu/9780262133609/foundations-of-statistical-natural-language-processing/",
+              "author": "Manning & Schütze",
+              "published": "1999-06-28"
+            },
+            {
+              "title": "Speech and Language Processing（延伸）",
+              "url": "https://web.stanford.edu/~jurafsky/slp3/",
+              "author": "Jurafsky & Martin",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Unigram language model tokenization（延伸）",
+              "url": "https://arxiv.org/abs/1804.10959",
+              "author": "Kudo",
+              "published": "2018-04-30"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4774
+        },
+        {
+          "id": "gdm-05",
+          "order": 5,
+          "title": "定义 bias-variance trade-off（偏差-方差权衡），并讨论二者之间的关系。",
+          "titleEn": "Define the bias-variance trade-off and discuss the relationship between the two.",
+          "file": "公司题库/google-deepmind/05-bias-variance-权衡.md",
+          "level": "高阶",
+          "tags": [
+            "bias-variance",
+            "误差分解",
+            "模型复杂度",
+            "过拟合"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "gdm-03",
+            "gdm-06",
+            "evaluation-01",
+            "evaluation-06",
+            "coding-29"
+          ],
+          "sources": [
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "Neural Networks and the Bias/Variance Dilemma（延伸）",
+              "url": "https://direct.mit.edu/neco/article/4/1/1/5566/Neural-Networks-and-the-Bias-Variance-Dilemma",
+              "author": "Geman, Bienenstock & Doursat",
+              "published": "1992-01-01"
+            },
+            {
+              "title": "Reconciling modern machine learning practice and the bias-variance trade-off（延伸）",
+              "url": "https://arxiv.org/abs/1812.11118",
+              "author": "Belkin et al.",
+              "published": "2018-12-28"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5256
         }
       ]
     },
