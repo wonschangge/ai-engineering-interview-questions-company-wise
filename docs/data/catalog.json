@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:49:54.140Z",
+  "generated": "2026-09-29T15:53:04.859Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 150,
+    "companyQuestions": 151,
     "companies": 11,
     "planned": 598
   },
@@ -8866,6 +8866,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6045
+        },
+        {
+          "id": "cohere-06",
+          "order": 6,
+          "title": "某个客户的索引文档量变成了原来的 10 倍，并反馈回答质量「明显变差了」。请主导这次排查。",
+          "titleEn": "A customer's index grew tenfold and they report the answers got noticeably worse. Lead the investigation.",
+          "file": "公司题库/cohere/06-索引扩大-10-倍后回答质量变差的排查.md",
+          "level": "高阶",
+          "tags": [
+            "故障排查",
+            "分阶段隔离",
+            "top-k 稀释",
+            "IVF 重训",
+            "近重复去重"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "cohere-04",
+            "cohere-03",
+            "cohere-05",
+            "rag-01",
+            "databricks-04"
+          ],
+          "sources": [
+            {
+              "title": "The Faiss library（延伸）",
+              "url": "https://arxiv.org/abs/2401.08281",
+              "author": "Douze et al. (Meta AI)",
+              "published": "2024-01-16"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (TACL 2024)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "1 亿文档的向量索引成本与 embedding 压缩（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "企业级 RAG 的权限隔离与多租户（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6091
         }
       ]
     },
