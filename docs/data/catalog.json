@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:05:14.153Z",
+  "generated": "2026-09-29T17:06:43.739Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 170,
+    "companyQuestions": 171,
     "companies": 13,
     "planned": 598
   },
@@ -14425,6 +14425,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7322
+        },
+        {
+          "id": "moonshot-06",
+          "order": 6,
+          "title": "聊天助手在每一轮都会重新发送很长的对话历史。你如何避免把这一切全部重算一遍，其中又有哪些坑？",
+          "titleEn": "A chat assistant resends the whole conversation history every turn. How do you avoid recomputing all of it, and what are the pitfalls?",
+          "file": "公司题库/moonshot/06-多轮对话的前缀缓存与坑.md",
+          "level": "高阶",
+          "tags": [
+            "前缀缓存",
+            "KV 复用",
+            "RoPE 位置",
+            "前缀树",
+            "缓存淘汰"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "moonshot-05",
+            "moonshot-01",
+            "moonshot-02",
+            "inference-serving-07",
+            "deepseek-05"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2407.00079",
+              "author": "Qin et al. (Moonshot AI)",
+              "published": "2024-06-28"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al.",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "prefill 与 decode 分离的收益与代价（本仓库公司题库 · Moonshot AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7571
         }
       ]
     },
