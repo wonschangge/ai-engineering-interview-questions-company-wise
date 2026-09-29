@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:15:00.953Z",
+  "generated": "2026-09-29T14:17:42.364Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 118,
+    "companyQuestions": 119,
     "companies": 7,
     "planned": 598
   },
@@ -11628,15 +11628,15 @@
       ]
     },
     {
-      "id": "company-together",
-      "name": "together",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "together",
+      "name": "Together AI",
+      "group": "AI 基础设施与平台公司",
+      "summary": "七道题覆盖 Together AI 这类推理平台公司的核心问题：两道流式与调度实现（流式 handler 的断连取消、continuous batching 调度器）、两道推理经济学（投机解码的收益边界、专用 endpoint 定价）、一道分布式训练排查（64 节点 55% 扩展效率）、一道平台设计（共享 GPU 池上服务 100+ 模型的 serverless 平台）、一道客户交付（从闭源 API 迁移到开源模型）。",
+      "updated": "2026-09-28",
       "dir": "together",
-      "overviewFile": null,
-      "overviewTitle": "together",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/together/README.md",
+      "overviewTitle": "Together AI 面试题库",
+      "declaredTotal": 7,
       "questions": [
         {
           "id": "together-01",
@@ -11682,7 +11682,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5149
+          "chars": 5149,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "together-02",
@@ -11734,7 +11736,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5328
+          "chars": 5328,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "together-03",
@@ -11786,7 +11790,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6224
+          "chars": 6224,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 2
         },
         {
           "id": "together-04",
@@ -11838,7 +11844,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6108
+          "chars": 6108,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 3
         },
         {
           "id": "together-05",
@@ -11884,7 +11892,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6358
+          "chars": 6358,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "together-06",
@@ -11937,7 +11947,64 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5796
+          "chars": 5796,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
+        },
+        {
+          "id": "together-07",
+          "order": 7,
+          "title": "客户想从闭源前沿模型的 API 迁移到开源模型。你会如何推进这次合作？",
+          "titleEn": "A customer wants to migrate from a closed frontier model API to open models. How would you run this engagement?",
+          "file": "公司题库/together/07-客户从闭源-API-迁移到开源模型的交付.md",
+          "level": "高阶",
+          "tags": [
+            "迁移",
+            "客户交付",
+            "评估基线",
+            "非劣性检验",
+            "混合路由",
+            "成本平价"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "together-04",
+            "together-06",
+            "finetuning-08",
+            "evaluation-04",
+            "anthropic-32"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2406.19314",
+              "author": "White et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Prompting、RAG 还是 fine-tuning：决策框架与成本权衡（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5751,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
         }
       ]
     }
