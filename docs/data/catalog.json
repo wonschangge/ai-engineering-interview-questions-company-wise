@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:37:15.812Z",
+  "generated": "2026-09-29T15:40:34.867Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 146,
+    "companyQuestions": 147,
     "companies": 11,
     "planned": 598
   },
@@ -8657,6 +8657,59 @@
           ],
           "updated": "2026-09-28",
           "chars": 5878
+        },
+        {
+          "id": "cohere-02",
+          "order": 2,
+          "title": "我们的旗舰模型是稀疏 MoE，总参数量约为激活参数量的 10 倍。为什么这种架构很适合私有化企业部署，它又在哪些地方带来代价？",
+          "titleEn": "Our flagship model is a sparse MoE with roughly 10× more total parameters than active parameters. Why does this suit private enterprise deployment, and where does it cost you?",
+          "file": "公司题库/cohere/02-稀疏-MoE-为何适合私有化部署.md",
+          "level": "高阶",
+          "tags": [
+            "MoE",
+            "稀疏激活",
+            "私有化部署",
+            "显存下限",
+            "all-to-all",
+            "负载均衡"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "cohere-08",
+            "cohere-01",
+            "cohere-06",
+            "inference-serving-08",
+            "inference-serving-07"
+          ],
+          "sources": [
+            {
+              "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity（延伸）",
+              "url": "https://arxiv.org/abs/2101.03961",
+              "author": "Fedus et al. (Google)",
+              "published": "2021-01-11"
+            },
+            {
+              "title": "Mixtral of Experts（延伸）",
+              "url": "https://arxiv.org/abs/2401.04088",
+              "author": "Jiang et al. (Mistral AI)",
+              "published": "2024-01-08"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "估算服务一个 70B 模型所需的 GPU 显存（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6579
         }
       ]
     },
