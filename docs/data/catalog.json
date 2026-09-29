@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:28:53.186Z",
+  "generated": "2026-09-29T19:37:08.405Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 237,
+    "companyQuestions": 240,
     "companies": 17,
     "planned": 598
   },
@@ -12831,6 +12831,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 6256
+        },
+        {
+          "id": "gdm-12",
+          "order": 12,
+          "title": "你有一个二分类的贷款审批模型，且只能有限地访问特征权重。你如何解释一次拒贷？",
+          "titleEn": "You have a binary loan-approval model and only limited access to the feature weights. How do you explain a rejection?",
+          "file": "公司题库/google-deepmind/12-拒贷的可解释性.md",
+          "level": "高阶",
+          "tags": [
+            "可解释性",
+            "reason code",
+            "局部代理",
+            "稳定性",
+            "监管"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "gdm-06",
+            "gdm-05",
+            "evaluation-01",
+            "applied-02",
+            "safety-03"
+          ],
+          "sources": [
+            {
+              "title": "\"Why Should I Trust You?\": Explaining the Predictions of Any Classifier（延伸）",
+              "url": "https://arxiv.org/abs/1602.04938",
+              "author": "Ribeiro, Singh & Guestrin",
+              "published": "2016-02-16"
+            },
+            {
+              "title": "A Unified Approach to Interpreting Model Predictions（延伸）",
+              "url": "https://arxiv.org/abs/1705.07874",
+              "author": "Lundberg & Lee",
+              "published": "2017-05-22"
+            },
+            {
+              "title": "Equal Credit Opportunity Act（延伸）",
+              "url": "https://www.consumerfinance.gov/rules-policy/regulations/1002/",
+              "author": "Consumer Financial Protection Bureau",
+              "published": "1974-10-28"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5874
+        },
+        {
+          "id": "gdm-13",
+          "order": 13,
+          "title": "你的预训练 loss 在一次长训练的 300k step 处突然发散。请诊断并修复它。",
+          "titleEn": "Your pretraining loss suddenly diverges at step 300k of a long run. Diagnose and fix it.",
+          "file": "公司题库/google-deepmind/13-预训练-loss-发散.md",
+          "level": "高阶",
+          "tags": [
+            "训练发散",
+            "梯度尖峰",
+            "Adam 状态污染",
+            "梯度裁剪",
+            "检查点回滚"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "gdm-14",
+            "finetuning-04",
+            "finetuning-06",
+            "inference-serving-03",
+            "evaluation-02"
+          ],
+          "sources": [
+            {
+              "title": "On the difficulty of training recurrent neural networks（延伸）",
+              "url": "https://proceedings.mlr.press/v28/pascanu13.html",
+              "author": "Pascanu, Mikolov & Bengio",
+              "published": "2013-06-16"
+            },
+            {
+              "title": "Why Do We Need Weight Decay in Modern Deep Learning?（延伸）",
+              "url": "https://arxiv.org/abs/2310.04415",
+              "author": "D'Angelo et al.",
+              "published": "2023-10-06"
+            },
+            {
+              "title": "The Deep Learning Training Playbook（延伸）",
+              "url": "https://github.com/karpathy/llm.c",
+              "author": "Andrej Karpathy",
+              "published": "2024-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6520
+        },
+        {
+          "id": "gdm-14",
+          "order": 14,
+          "title": "为一个放不进单个加速器的模型设计训练方案，比如在一个 pod 上训练 70B 参数。",
+          "titleEn": "Design a training setup for a model that does not fit on a single accelerator, e.g. training 70B parameters on a pod.",
+          "file": "公司题库/google-deepmind/14-70B-的训练方案.md",
+          "level": "高阶",
+          "tags": [
+            "3D 并行",
+            "ZeRO",
+            "流水线气泡",
+            "通信带宽",
+            "显存分片"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "gdm-13",
+            "deepseek-05",
+            "moonshot-04",
+            "inference-serving-03",
+            "system-design-07"
+          ],
+          "sources": [
+            {
+              "title": "Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism（延伸）",
+              "url": "https://arxiv.org/abs/1909.08053",
+              "author": "Shoeybi et al. (NVIDIA)",
+              "published": "2019-09-17"
+            },
+            {
+              "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）",
+              "url": "https://arxiv.org/abs/1910.02054",
+              "author": "Rajbhandari et al. (Microsoft)",
+              "published": "2019-10-02"
+            },
+            {
+              "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM（延伸）",
+              "url": "https://arxiv.org/abs/2104.04473",
+              "author": "Narayanan et al. (NVIDIA)",
+              "published": "2021-04-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5938
         }
       ]
     },
