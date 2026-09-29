@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:45:06.296Z",
+  "generated": "2026-09-29T16:47:28.156Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 161,
+    "companyQuestions": 162,
     "companies": 12,
     "planned": 598
   },
@@ -11647,6 +11647,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6001
+        },
+        {
+          "id": "deepseek-07",
+          "order": 7,
+          "title": "在 671B 规模上做 FP8 训练非常困难。低精度下究竟哪里会出问题，你如何让它保持稳定？",
+          "titleEn": "FP8 training at the 671B scale is genuinely hard. Where exactly does low precision break things, and how do you keep it stable?",
+          "file": "公司题库/deepseek/07-671B-规模的-FP8-训练难点与稳定化.md",
+          "level": "高阶",
+          "tags": [
+            "FP8 训练",
+            "离群值",
+            "细粒度缩放",
+            "累加精度",
+            "损失尖峰"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "deepseek-08",
+            "deepseek-09",
+            "deepseek-05",
+            "cohere-04",
+            "inference-serving-08"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "FP8 Formats for Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2209.05433",
+              "author": "Micikevicius et al. (NVIDIA)",
+              "published": "2022-09-12"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "无辅助损失的负载均衡（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5974
         }
       ]
     },
