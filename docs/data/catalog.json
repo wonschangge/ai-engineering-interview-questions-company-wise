@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T21:08:45.201Z",
+  "generated": "2026-09-29T21:14:53.630Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 308,
-    "companies": 21,
+    "companyQuestions": 311,
+    "companies": 22,
     "planned": 598
   },
   "topics": [
@@ -20939,6 +20939,157 @@
           "chars": 4906,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-scale-ai",
+      "name": "scale-ai",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "scale-ai",
+      "overviewFile": null,
+      "overviewTitle": "scale-ai",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "scale-01",
+          "order": 1,
+          "title": "构建一个标注平台的任务生命周期核心。先从简单版本做起；我会陆续加入 k 个标注者之间的一致性、然后是优先级复审，最后是标注者冷却时间。",
+          "titleEn": "Build the task lifecycle core of an annotation platform. Start with a simple version; I will then add k-annotator agreement, then priority review, and finally annotator cooldown.",
+          "file": "公司题库/scale-ai/01-标注平台的任务生命周期核心.md",
+          "level": "高阶",
+          "tags": [
+            "任务生命周期",
+            "Kappa",
+            "多数投票",
+            "标注者相关",
+            "冷却时间"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "scale-02",
+            "scale-07",
+            "scale-10",
+            "evaluation-01",
+            "gdm-20"
+          ],
+          "sources": [
+            {
+              "title": "Measuring Nominal Scale Agreement Among Many Raters（延伸）",
+              "url": "https://psycnet.apa.org/record/1972-00210-001",
+              "author": "Fleiss",
+              "published": "1971-01-01"
+            },
+            {
+              "title": "A Coefficient of Agreement for Nominal Scales（延伸）",
+              "url": "https://psycnet.apa.org/record/1940-02321-001",
+              "author": "Cohen",
+              "published": "1960-01-01"
+            },
+            {
+              "title": "Handbook of Inter-Rater Reliability（延伸）",
+              "url": "https://www.agreestat.com/books/inter_rater_reliability_book.html",
+              "author": "Kilem Li Gwet",
+              "published": "2014-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5241
+        },
+        {
+          "id": "scale-02",
+          "order": 2,
+          "title": "给定以 (start, end) 时间戳表示的标注会话，返回并发标注者的峰值数量，以及峰值负载对应的时间区间。",
+          "titleEn": "Given annotation sessions as (start, end) timestamps, return the peak number of concurrent annotators and the time intervals at that peak.",
+          "file": "公司题库/scale-ai/02-并发标注者的峰值与区间.md",
+          "level": "进阶",
+          "tags": [
+            "扫描线",
+            "并发峰值",
+            "半开区间",
+            "边界",
+            "外排"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "scale-01",
+            "scale-05",
+            "palantir-06",
+            "coding-31",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "Introduction to Algorithms（延伸）",
+              "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+              "author": "Cormen, Leiserson, Rivest & Stein",
+              "published": "2022-04-05"
+            },
+            {
+              "title": "Sweep Line Algorithm（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Sweep_line_algorithm",
+              "author": "Wikipedia",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Mining of Massive Datasets（延伸）",
+              "url": "http://www.mmds.org/",
+              "author": "Leskovec, Rajaraman & Ullman",
+              "published": "2014-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4448
+        },
+        {
+          "id": "scale-03",
+          "order": 3,
+          "title": "比较 SFT、RLHF、DPO 与 RLVR 在提升一个指令微调模型上的差异。各自需要什么数据，什么情况下你会选哪个？",
+          "titleEn": "Compare SFT, RLHF, DPO and RLVR for improving an instruction-tuned model. What data does each need, and when would you pick which?",
+          "file": "公司题库/scale-ai/03-SFT-RLHF-DPO-RLVR-的对比.md",
+          "level": "高阶",
+          "tags": [
+            "SFT",
+            "RLHF",
+            "DPO",
+            "RLVR",
+            "可验证奖励"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "scale-04",
+            "scale-05",
+            "scale-06",
+            "perplexity-14",
+            "llm-internals-01"
+          ],
+          "sources": [
+            {
+              "title": "Training Language Models to Follow Instructions with Human Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (OpenAI)",
+              "published": "2022-03-04"
+            },
+            {
+              "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model（延伸）",
+              "url": "https://arxiv.org/abs/2305.18290",
+              "author": "Rafailov et al. (Stanford)",
+              "published": "2023-05-29"
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5097
         }
       ]
     },
