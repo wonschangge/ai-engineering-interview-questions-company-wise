@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:44:53.020Z",
+  "generated": "2026-09-29T13:51:32.513Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 108,
+    "companyQuestions": 112,
     "companies": 6,
     "planned": 598
   },
@@ -6111,15 +6111,15 @@
       ]
     },
     {
-      "id": "company-anthropic",
-      "name": "anthropic",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "anthropic",
+      "name": "Anthropic",
+      "group": "前沿 AI 实验室",
+      "summary": "三十七道题覆盖 Anthropic 面试的完整光谱：七道手写实现题（含多次追加需求的演进式编程）、三道 SQL、七道模型与推理基础（Transformer 组成、无 attention 架构、矩阵操作、batching 与服务栈）、六道系统设计（聊天服务、单会话多问题、十亿文档搜索、开发者 API、文件共享）、Agent 与安全六题（模型 vs harness、工具面、Constitutional AI、缩放定律与安全评估、注入攻防、性能与可解释性）、以及评估、应用与行为题。",
+      "updated": "2026-09-28",
       "dir": "anthropic",
-      "overviewFile": null,
-      "overviewTitle": "anthropic",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/anthropic/README.md",
+      "overviewTitle": "Anthropic 面试题库",
+      "declaredTotal": 37,
       "questions": [
         {
           "id": "anthropic-01",
@@ -6172,7 +6172,9 @@
             }
           ],
           "updated": "2026-09-29",
-          "chars": 10356
+          "chars": 10356,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-02",
@@ -6217,7 +6219,9 @@
             }
           ],
           "updated": "2026-09-29",
-          "chars": 7912
+          "chars": 7912,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "anthropic-03",
@@ -6272,7 +6276,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 9805
+          "chars": 9805,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
         },
         {
           "id": "anthropic-04",
@@ -6323,7 +6329,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5217
+          "chars": 5217,
+          "topicName": "编程与数据结构",
+          "topicOrder": 4
         },
         {
           "id": "anthropic-05",
@@ -6375,7 +6383,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5069
+          "chars": 5069,
+          "topicName": "编程与数据结构",
+          "topicOrder": 5
         },
         {
           "id": "anthropic-06",
@@ -6426,7 +6436,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4328
+          "chars": 4328,
+          "topicName": "编程与数据结构",
+          "topicOrder": 6
         },
         {
           "id": "anthropic-07",
@@ -6478,7 +6490,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4873
+          "chars": 4873,
+          "topicName": "编程与数据结构",
+          "topicOrder": 7
         },
         {
           "id": "anthropic-08",
@@ -6531,7 +6545,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5286
+          "chars": 5286,
+          "topicName": "编程与数据结构",
+          "topicOrder": 8
         },
         {
           "id": "anthropic-09",
@@ -6583,7 +6599,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4506
+          "chars": 4506,
+          "topicName": "编程与数据结构",
+          "topicOrder": 9
         },
         {
           "id": "anthropic-10",
@@ -6629,7 +6647,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4109
+          "chars": 4109,
+          "topicName": "编程与数据结构",
+          "topicOrder": 10
         },
         {
           "id": "anthropic-11",
@@ -6675,7 +6695,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4441
+          "chars": 4441,
+          "topicName": "编程与数据结构",
+          "topicOrder": 11
         },
         {
           "id": "anthropic-12",
@@ -6721,7 +6743,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4746
+          "chars": 4746,
+          "topicName": "编程与数据结构",
+          "topicOrder": 12
         },
         {
           "id": "anthropic-13",
@@ -6773,7 +6797,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5311
+          "chars": 5311,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-14",
@@ -6825,7 +6851,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5870
+          "chars": 5870,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 2
         },
         {
           "id": "anthropic-15",
@@ -6877,7 +6905,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6317
+          "chars": 6317,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 3
         },
         {
           "id": "anthropic-16",
@@ -6929,7 +6959,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6231
+          "chars": 6231,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-17",
@@ -6988,7 +7020,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5987
+          "chars": 5987,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 2
         },
         {
           "id": "anthropic-18",
@@ -7040,7 +7074,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5320
+          "chars": 5320,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-19",
@@ -7086,7 +7122,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5604
+          "chars": 5604,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 2
         },
         {
           "id": "anthropic-20",
@@ -7132,7 +7170,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5454
+          "chars": 5454,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-21",
@@ -7184,7 +7224,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5571
+          "chars": 5571,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
         },
         {
           "id": "anthropic-22",
@@ -7237,12 +7279,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5218
+          "chars": 5218,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-23",
           "order": 23,
-          "title": "设计一个让 LLM 在单个会话线程中处理多个问题的系统。",
+          "title": "设计一个让大语言模型能在单个会话线程中处理多个问题的系统。",
           "titleEn": "Design a system that lets an LLM handle multiple questions in a single conversation thread.",
           "file": "公司题库/anthropic/23-单会话多问题的调度与上下文共享设计.md",
           "level": "高阶",
@@ -7289,12 +7333,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5242
+          "chars": 5242,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "anthropic-24",
           "order": 24,
-          "title": "设计一个 10 亿文档、100 万 QPS 的分布式搜索系统。",
+          "title": "为 10 亿份文档、100 万 QPS 设计一个分布式搜索系统。",
           "titleEn": "Design a distributed search system for a billion documents at a million QPS.",
           "file": "公司题库/anthropic/24-十亿文档百万-QPS-的分布式搜索系统.md",
           "level": "高阶",
@@ -7342,12 +7388,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5588
+          "chars": 5588,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
         },
         {
           "id": "anthropic-25",
           "order": 25,
-          "title": "为开发者设计 LLM API（面向外部开发者的接口、版本与配额）。",
+          "title": "设计供开发者安全、高效地访问 Anthropic 模型的 API。",
           "titleEn": "Design an LLM API for developers (interface, versioning, quotas).",
           "file": "公司题库/anthropic/25-为开发者设计-LLM-API.md",
           "level": "高阶",
@@ -7400,12 +7448,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6501
+          "chars": 6501,
+          "topicName": "AI 系统设计",
+          "topicOrder": 4
         },
         {
           "id": "anthropic-26",
           "order": 26,
-          "title": "设计一个文件共享/分发系统。",
+          "title": "设计一个文件共享/分发系统.",
           "titleEn": "Design a file-sharing / distribution system.",
           "file": "公司题库/anthropic/26-设计文件共享与分发系统.md",
           "level": "高阶",
@@ -7452,7 +7502,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5490
+          "chars": 5490,
+          "topicName": "AI 系统设计",
+          "topicOrder": 5
         },
         {
           "id": "anthropic-27",
@@ -7504,7 +7556,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5240
+          "chars": 5240,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-28",
@@ -7556,7 +7610,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6804
+          "chars": 6804,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-29",
@@ -7608,7 +7664,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5673
+          "chars": 5673,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 2
         },
         {
           "id": "anthropic-30",
@@ -7660,7 +7718,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5284
+          "chars": 5284,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 3
         },
         {
           "id": "anthropic-31",
@@ -7712,12 +7772,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5771
+          "chars": 5771,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 4
         },
         {
           "id": "anthropic-32",
           "order": 32,
-          "title": "某企业客户说，在他们基于 RAG 的知识助手里「Claude 幻觉太多」。你是负责这个客户的 applied engineer。前 48 小时里你会做什么？",
+          "title": "某企业客户说，在他们基于 RAG 的知识助手里“Claude 幻觉太多”。你是负责这个客户的 applied engineer。前 48 小时里你会做什么？",
           "titleEn": "An enterprise customer says 「Claude hallucinates too much」 in their RAG-based knowledge assistant. You're the applied engineer on the account. What happens in the first 48 hours?",
           "file": "公司题库/anthropic/32-客户-RAG-幻觉投诉的前-48-小时.md",
           "level": "高阶",
@@ -7764,7 +7826,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6262
+          "chars": 6262,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
         },
         {
           "id": "anthropic-33",
@@ -7816,7 +7880,218 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5232
+          "chars": 5232,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 2
+        },
+        {
+          "id": "anthropic-34",
+          "order": 34,
+          "title": "讲讲你端到端负责过的一个项目。关键的技术决策有哪些？",
+          "titleEn": "Walk me through a project you owned end to end. What were the key technical decisions?",
+          "file": "公司题库/anthropic/34-端到端项目与关键技术决策.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "项目叙述",
+            "决策框架",
+            "期望值",
+            "成本模型"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "anthropic-32",
+            "anthropic-36",
+            "anthropic-18",
+            "meta-24",
+            "consumer-ml-14"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4505,
+          "topicName": "行为与文化",
+          "topicOrder": 1
+        },
+        {
+          "id": "anthropic-35",
+          "order": 35,
+          "title": "为什么偏偏选 Anthropic，以及你在哪些方面不认同 Anthropic？",
+          "titleEn": "Why Anthropic specifically, and where do you disagree with Anthropic?",
+          "file": "公司题库/anthropic/35-为什么选择-Anthropic-以及哪些方面不认同.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "价值观匹配",
+            "批判性思考",
+            "组织判断"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "anthropic-29",
+            "anthropic-37",
+            "anthropic-31",
+            "safety-10",
+            "anthropic-20"
+          ],
+          "sources": [
+            {
+              "title": "Core Views on AI Safety（延伸）",
+              "url": "https://www.anthropic.com/news/core-views-on-ai-safety",
+              "author": "Anthropic",
+              "published": "2023-03-08"
+            },
+            {
+              "title": "Responsible Scaling Policy（延伸）",
+              "url": "https://www.anthropic.com/responsible-scaling-policy",
+              "author": "Anthropic",
+              "published": ""
+            },
+            {
+              "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2212.08073",
+              "author": "Bai et al. (Anthropic)",
+              "published": "2022-12-15"
+            },
+            {
+              "title": "Scaling Laws for Reward Model Overoptimization（延伸）",
+              "url": "https://arxiv.org/abs/2210.10760",
+              "author": "Gao, Schulman, Hilton (OpenAI)",
+              "published": "2022-10-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5311,
+          "topicName": "行为与文化",
+          "topicOrder": 2
+        },
+        {
+          "id": "anthropic-36",
+          "order": 36,
+          "title": "讲一讲一次导致项目延期的技术误判。",
+          "titleEn": "Tell me about a technical misjudgement that delayed a project.",
+          "file": "公司题库/anthropic/36-导致项目延期的技术误判.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "复盘",
+            "无指责文化",
+            "风险量化",
+            "决策日志"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "anthropic-34",
+            "anthropic-32",
+            "anthropic-31",
+            "meta-24",
+            "anthropic-18"
+          ],
+          "sources": [
+            {
+              "title": "Postmortem Culture: Learning from Failure（Google SRE Book 第 15 章）（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4500,
+          "topicName": "行为与文化",
+          "topicOrder": 3
+        },
+        {
+          "id": "anthropic-37",
+          "order": 37,
+          "title": "你对 AI 安全以及先进 AI 系统的风险有什么看法？",
+          "titleEn": "What are your thoughts on AI safety and the risks of advanced AI systems?",
+          "file": "公司题库/anthropic/37-对-AI-安全与先进系统风险的看法.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "AI-安全",
+            "风险分类",
+            "时间线判断",
+            "可证伪立场"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "anthropic-29",
+            "anthropic-35",
+            "anthropic-31",
+            "anthropic-28",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "Core Views on AI Safety（延伸）",
+              "url": "https://www.anthropic.com/news/core-views-on-ai-safety",
+              "author": "Anthropic",
+              "published": "2023-03-08"
+            },
+            {
+              "title": "Responsible Scaling Policy（延伸）",
+              "url": "https://www.anthropic.com/responsible-scaling-policy",
+              "author": "Anthropic",
+              "published": ""
+            },
+            {
+              "title": "Scaling Laws for Reward Model Overoptimization（延伸）",
+              "url": "https://arxiv.org/abs/2210.10760",
+              "author": "Gao, Schulman, Hilton (OpenAI)",
+              "published": "2022-10-19"
+            },
+            {
+              "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）",
+              "url": "https://arxiv.org/abs/2302.12173",
+              "author": "Greshake et al.",
+              "published": "2023-02-23"
+            },
+            {
+              "title": "Are Emergent Abilities of Large Language Models a Mirage?（延伸）",
+              "url": "https://arxiv.org/abs/2304.15004",
+              "author": "Schaeffer, Miranda, Koyejo (NeurIPS 2023)",
+              "published": "2023-04-28"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5633,
+          "topicName": "行为与文化",
+          "topicOrder": 4
         }
       ]
     },

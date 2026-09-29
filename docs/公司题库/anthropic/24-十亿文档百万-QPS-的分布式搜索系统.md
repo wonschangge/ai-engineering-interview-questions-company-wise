@@ -4,7 +4,7 @@ id: anthropic-24
 company: Anthropic
 topic: system-design
 order: 24
-question: 设计一个 10 亿文档、100 万 QPS 的分布式搜索系统。
+question: 为 10 亿份文档、100 万 QPS 设计一个分布式搜索系统。
 question_en: Design a distributed search system for a billion documents at a million QPS.
 asked_at: []
 level: 高阶

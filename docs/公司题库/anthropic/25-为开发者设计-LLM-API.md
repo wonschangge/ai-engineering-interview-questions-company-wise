@@ -4,7 +4,7 @@ id: anthropic-25
 company: Anthropic
 topic: system-design
 order: 25
-question: 为开发者设计 LLM API（面向外部开发者的接口、版本与配额）。
+question: 设计供开发者安全、高效地访问 Anthropic 模型的 API。
 question_en: Design an LLM API for developers (interface, versioning, quotas).
 asked_at: []
 level: 高阶
