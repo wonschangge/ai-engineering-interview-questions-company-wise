@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:22:37.260Z",
+  "generated": "2026-09-29T18:24:08.002Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 204,
+    "companyQuestions": 205,
     "companies": 16,
     "planned": 598
   },
@@ -15739,6 +15739,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6418
+        },
+        {
+          "id": "openai-10",
+          "order": 10,
+          "title": "我们有两个模型，准确率分别是 85% 和 82%。你选哪个？",
+          "titleEn": "We have two models with accuracies of 85% and 82%. Which one do you pick?",
+          "file": "公司题库/openai/10-两个模型怎么选.md",
+          "level": "进阶",
+          "tags": [
+            "代价敏感",
+            "显著性",
+            "类别不平衡",
+            "校准",
+            "级联"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "openai-09",
+            "openai-21",
+            "evaluation-01",
+            "evaluation-04",
+            "coding-24"
+          ],
+          "sources": [
+            {
+              "title": "The Foundations of Cost-Sensitive Learning（延伸）",
+              "url": "https://dl.acm.org/doi/10.5555/1642194.1642262",
+              "author": "Elkan",
+              "published": "2001-08-04"
+            },
+            {
+              "title": "On Calibration of Modern Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1706.04599",
+              "author": "Guo et al.",
+              "published": "2017-06-14"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "准确率为 1 时的损失界（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6740
         }
       ]
     },
