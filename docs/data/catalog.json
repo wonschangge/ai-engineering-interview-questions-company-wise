@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:51:38.616Z",
+  "generated": "2026-09-29T17:53:15.251Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 187,
+    "companyQuestions": 188,
     "companies": 15,
     "planned": 598
   },
@@ -13748,6 +13748,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 8836
+        },
+        {
+          "id": "microsoft-03",
+          "order": 3,
+          "title": "一个 Copilot 聊天功能的 p95 预算是 3 秒内给出首个有用内容。时间都花在哪里了，你会如何把它压缩？",
+          "titleEn": "A Copilot chat feature has a p95 budget of three seconds to first useful content. Where does the time go, and how would you compress it?",
+          "file": "公司题库/microsoft/03-Copilot-的-3-秒-p95-预算.md",
+          "level": "高阶",
+          "tags": [
+            "延迟预算",
+            "p95",
+            "排队论",
+            "TTFT",
+            "流式体验"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "microsoft-04",
+            "microsoft-05",
+            "microsoft-07",
+            "moonshot-05",
+            "xai-04"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al.",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "prefill 与 decode 分离的收益与代价（本仓库公司题库 · Moonshot AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7609
         }
       ]
     },
