@@ -4,7 +4,7 @@ id: databricks-08
 company: Databricks
 topic: applied
 order: 8
-question: 客户坚持要用他们的客服工单微调一个开源模型，理由是「我们想要自己的模型」。而你认为 RAG 就能解决。你会怎么做？
+question: 客户坚持要用他们的客服工单微调一个开源模型，理由是“我们想要自己的模型”。而你认为 RAG 就能解决。你会怎么做？
 question_en: A customer insists on fine-tuning an open model on their support tickets because 「we want our own model」, while you believe RAG would solve it. What do you do?
 asked_at: []
 level: 高阶

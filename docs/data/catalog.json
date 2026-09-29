@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:30:40.272Z",
+  "generated": "2026-09-29T15:32:51.826Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 144,
+    "companyQuestions": 145,
     "companies": 10,
     "planned": 598
   },
@@ -10293,15 +10293,15 @@
       ]
     },
     {
-      "id": "company-databricks",
-      "name": "databricks",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "databricks",
+      "name": "Databricks",
+      "group": "AI 基础设施与平台公司",
+      "summary": "九道题覆盖 Databricks 的面试主线——五道数据密集型编程与 Spark 内部机制（线程安全批处理、内存受限下的 top-K、CIDR 百万 QPS 校验、join 的 100 倍 straggler、Streaming 中断后的重复行），一道微调决策（fine-tuning vs RAG、LoRA vs 全量），一道上线检查清单，两道前置部署场景（客户坚持微调、基座模型 60 天下线）。",
+      "updated": "2026-09-28",
       "dir": "databricks",
-      "overviewFile": null,
-      "overviewTitle": "databricks",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/databricks/README.md",
+      "overviewTitle": "Databricks 面试题库",
+      "declaredTotal": 9,
       "questions": [
         {
           "id": "databricks-01",
@@ -10347,7 +10347,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5095
+          "chars": 5095,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "databricks-02",
@@ -10393,7 +10395,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5873
+          "chars": 5873,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "databricks-03",
@@ -10439,7 +10443,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5480
+          "chars": 5480,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
         },
         {
           "id": "databricks-04",
@@ -10492,7 +10498,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6571
+          "chars": 6571,
+          "topicName": "编程与数据结构",
+          "topicOrder": 4
         },
         {
           "id": "databricks-05",
@@ -10545,7 +10553,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6772
+          "chars": 6772,
+          "topicName": "编程与数据结构",
+          "topicOrder": 5
         },
         {
           "id": "databricks-06",
@@ -10598,7 +10608,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6227
+          "chars": 6227,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "databricks-07",
@@ -10650,12 +10662,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5371
+          "chars": 5371,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "databricks-08",
           "order": 8,
-          "title": "客户坚持要用他们的客服工单微调一个开源模型，理由是「我们想要自己的模型」。而你认为 RAG 就能解决。你会怎么做？",
+          "title": "客户坚持要用他们的客服工单微调一个开源模型，理由是“我们想要自己的模型”。而你认为 RAG 就能解决。你会怎么做？",
           "titleEn": "A customer insists on fine-tuning an open model on their support tickets because 「we want our own model」, while you believe RAG would solve it. What do you do?",
           "file": "公司题库/databricks/08-客户坚持微调而你认为-RAG-够用.md",
           "level": "高阶",
@@ -10702,7 +10716,63 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5827
+          "chars": 5827,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
+        },
+        {
+          "id": "databricks-09",
+          "order": 9,
+          "title": "你四个月前上线的 agent 依赖的基座模型将在 60 天后下线。你如何在不造成质量回退的前提下替换模型？为此事先必须具备哪些条件？",
+          "titleEn": "The base model your agent has depended on for four months is being retired in 60 days. How do you replace it without a quality regression, and what must already be in place to make that possible?",
+          "file": "公司题库/databricks/09-基座模型-60-天后下线的迁移.md",
+          "level": "高阶",
+          "tags": [
+            "模型迁移",
+            "评测门禁",
+            "灰度",
+            "检测滞后",
+            "可移植性"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "databricks-07",
+            "databricks-08",
+            "databricks-06",
+            "cognition-07",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2406.19314",
+              "author": "White et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            },
+            {
+              "title": "从 demo 到企业上线的检查清单（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "客户坚持微调而你认为 RAG 够用（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5732,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 2
         }
       ]
     },
