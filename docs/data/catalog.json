@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T20:35:35.119Z",
+  "generated": "2026-09-29T20:40:56.925Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 283,
-    "companies": 19,
+    "companyQuestions": 286,
+    "companies": 20,
     "planned": 598
   },
   "topics": [
@@ -16322,6 +16322,157 @@
           "chars": 7158,
           "topicName": "评估与可观测性",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-nvidia",
+      "name": "nvidia",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "nvidia",
+      "overviewFile": null,
+      "overviewTitle": "nvidia",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "nvidia-01",
+          "order": 1,
+          "title": "这里有一个比预期慢 10 倍的 CUDA kernel。在不运行它的前提下，常见的嫌疑点有哪些，你如何逐一确认？",
+          "titleEn": "Here is a CUDA kernel that is 10x slower than expected. Without running it, what are the usual suspects and how would you confirm each one?",
+          "file": "公司题库/nvidia/01-CUDA-kernel-慢-10-倍的静态定位.md",
+          "level": "高阶",
+          "tags": [
+            "CUDA 性能",
+            "未合并访问",
+            "占用率",
+            "roofline",
+            "静态分析"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "nvidia-02",
+            "nvidia-08",
+            "nvidia-09",
+            "inference-serving-03",
+            "system-design-07"
+          ],
+          "sources": [
+            {
+              "title": "Roofline: An Insightful Visual Performance Model for Multicore Architectures（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson",
+              "published": "2009-04-01"
+            },
+            {
+              "title": "CUDA C++ Best Practices Guide（延伸）",
+              "url": "https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/",
+              "author": "NVIDIA",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Dissecting the NVIDIA Volta GPU Architecture via Microbenchmarking（延伸）",
+              "url": "https://arxiv.org/abs/1804.06826",
+              "author": "Jia et al.",
+              "published": "2018-04-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6110
+        },
+        {
+          "id": "nvidia-02",
+          "order": 2,
+          "title": "实现 paged KV cache 的 block manager：分配、追加、释放，以及写时复制的前缀共享。",
+          "titleEn": "Implement a paged KV cache block manager: allocate, append, free, and copy-on-write prefix sharing.",
+          "file": "公司题库/nvidia/02-paged-KV-cache-的-block-manager.md",
+          "level": "高阶",
+          "tags": [
+            "PagedAttention",
+            "block manager",
+            "引用计数",
+            "写时复制",
+            "前缀共享"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "nvidia-01",
+            "nvidia-08",
+            "inference-serving-03",
+            "system-design-04",
+            "palantir-15"
+          ],
+          "sources": [
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (UC Berkeley)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "vLLM: Easy, Fast, and Cheap LLM Serving for Everyone（延伸）",
+              "url": "https://github.com/vllm-project/vllm",
+              "author": "vLLM Team",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al.",
+              "published": "2023-12-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5579
+        },
+        {
+          "id": "nvidia-03",
+          "order": 3,
+          "title": "一个模型在 FP32 下运行正常，但转换成 FP16 后输出结果完全不对。请调试它。",
+          "titleEn": "A model runs correctly in FP32 but produces completely wrong output after conversion to FP16. Debug it.",
+          "file": "公司题库/nvidia/03-FP16-转换后输出不对的调试.md",
+          "level": "高阶",
+          "tags": [
+            "FP16",
+            "溢出",
+            "累加精度",
+            "结构性 bug",
+            "相似度诊断"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "nvidia-01",
+            "nvidia-09",
+            "nvidia-08",
+            "llm-internals-01",
+            "coding-26"
+          ],
+          "sources": [
+            {
+              "title": "Mixed Precision Training（延伸）",
+              "url": "https://arxiv.org/abs/1710.03740",
+              "author": "Micikevicius et al. (NVIDIA & Baidu)",
+              "published": "2017-10-12"
+            },
+            {
+              "title": "FP8 Formats for Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2209.05433",
+              "author": "Micikevicius et al. (NVIDIA)",
+              "published": "2022-09-12"
+            },
+            {
+              "title": "What Every Computer Scientist Should Know About Floating-Point Arithmetic（延伸）",
+              "url": "https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html",
+              "author": "David Goldberg",
+              "published": "1991-03-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5611
         }
       ]
     },
