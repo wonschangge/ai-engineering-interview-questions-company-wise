@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T14:17:42.364Z",
+  "generated": "2026-09-29T14:26:17.200Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 119,
-    "companies": 7,
+    "companyQuestions": 122,
+    "companies": 8,
     "planned": 598
   },
   "topics": [
@@ -9789,6 +9789,170 @@
           "chars": 3947,
           "topicName": "行为与文化",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-elevenlabs",
+      "name": "elevenlabs",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "elevenlabs",
+      "overviewFile": null,
+      "overviewTitle": "elevenlabs",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "elevenlabs-01",
+          "order": 1,
+          "title": "写一个把流式 TTS 代理到浏览器的服务，并能在用户离开页面时干净利落地取消。",
+          "titleEn": "Write a service that proxies streaming TTS to a browser and cancels cleanly when the user leaves the page.",
+          "file": "公司题库/elevenlabs/01-把流式-TTS-代理到浏览器并处理离开页面.md",
+          "level": "进阶",
+          "tags": [
+            "流式",
+            "TTS",
+            "二进制音频",
+            "背压",
+            "取消",
+            "浏览器播放"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "together-01",
+            "multimodal-08",
+            "multimodal-03",
+            "elevenlabs-02",
+            "elevenlabs-04"
+          ],
+          "sources": [
+            {
+              "title": "设计实时语音 AI Agent",
+              "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "解释流式 TTS 的 chunking 与 jitter buffer 大小设定（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为实时语音 agent 做 latency 预算（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5232
+        },
+        {
+          "id": "elevenlabs-02",
+          "order": 2,
+          "title": "为实时 TTS 提供服务与为文本 LLM 提供服务是不同的容量问题。为什么？你会如何做容量规划？",
+          "titleEn": "Serving real-time TTS is a different capacity problem from serving a text LLM. Why, and how would you plan capacity?",
+          "file": "公司题库/elevenlabs/02-实时-TTS-与文本-LLM-的容量问题差异.md",
+          "level": "高阶",
+          "tags": [
+            "TTS-服务",
+            "RTF",
+            "容量规划",
+            "批处理",
+            "成本模型"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "elevenlabs-01",
+            "elevenlabs-04",
+            "together-04",
+            "multimodal-06",
+            "anthropic-16"
+          ],
+          "sources": [
+            {
+              "title": "A Survey on Neural Speech Synthesis（延伸）",
+              "url": "https://arxiv.org/abs/2106.06938",
+              "author": "Tan et al.",
+              "published": "2021-06-11"
+            },
+            {
+              "title": "Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech（VITS）（延伸）",
+              "url": "https://arxiv.org/abs/2106.06103",
+              "author": "Kim et al. (ICML 2021)",
+              "published": "2021-06-11"
+            },
+            {
+              "title": "FastSpeech 2: Fast and High-Quality End-to-End Text to Speech（延伸）",
+              "url": "https://arxiv.org/abs/2006.04558",
+              "author": "Ren et al. (ICLR 2021)",
+              "published": "2020-06-08"
+            },
+            {
+              "title": "解释流式 TTS 的 chunking 与 jitter buffer 大小设定（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5770
+        },
+        {
+          "id": "elevenlabs-03",
+          "order": 3,
+          "title": "为语音克隆设计安全技术栈：用户同意、水印与滥用响应。",
+          "titleEn": "Design the safety stack for voice cloning: consent, watermarking, and abuse response.",
+          "file": "公司题库/elevenlabs/03-语音克隆的安全技术栈.md",
+          "level": "高阶",
+          "tags": [
+            "语音克隆",
+            "同意机制",
+            "音频水印",
+            "来源溯源",
+            "滥用响应"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "safety-01",
+            "safety-10",
+            "anthropic-28",
+            "elevenlabs-05",
+            "multimodal-06"
+          ],
+          "sources": [
+            {
+              "title": "Proactive Detection of Voice Cloning with Localized Watermarking（AudioSeal）（延伸）",
+              "url": "https://arxiv.org/abs/2401.17264",
+              "author": "San Roman et al. (Meta AI)",
+              "published": "2024-01-25"
+            },
+            {
+              "title": "C2PA 内容来源与真实性规范",
+              "url": "https://c2pa.org/",
+              "author": "C2PA",
+              "published": ""
+            },
+            {
+              "title": "Voice cloning（ElevenLabs 产品文档）",
+              "url": "https://elevenlabs.io/docs/product-guides/voices/voice-cloning",
+              "author": "ElevenLabs",
+              "published": ""
+            },
+            {
+              "title": "什么是 prompt injection 以及分层防御（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5559
         }
       ]
     },
