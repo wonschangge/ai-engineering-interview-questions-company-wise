@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:46:24.675Z",
+  "generated": "2026-09-29T18:47:53.218Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 218,
+    "companyQuestions": 219,
     "companies": 16,
     "planned": 598
   },
@@ -16467,6 +16467,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 8122
+        },
+        {
+          "id": "openai-24",
+          "order": 24,
+          "title": "你如何为一个\"代表用户执行操作\"的 agent 做防护？",
+          "titleEn": "How do you safeguard an agent that takes actions on behalf of users?",
+          "file": "公司题库/openai/24-代表用户执行操作的防护.md",
+          "level": "高阶",
+          "tags": [
+            "agent 安全",
+            "能力最小化",
+            "限额",
+            "确认疲劳",
+            "可撤销"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "openai-23",
+            "microsoft-06",
+            "microsoft-08",
+            "agents-05",
+            "safety-03"
+          ],
+          "sources": [
+            {
+              "title": "The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions（延伸）",
+              "url": "https://arxiv.org/abs/2404.13208",
+              "author": "Wallace et al. (OpenAI)",
+              "published": "2024-04-19"
+            },
+            {
+              "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）",
+              "url": "https://arxiv.org/abs/2302.12173",
+              "author": "Greshake et al.",
+              "published": "2023-02-23"
+            },
+            {
+              "title": "OAuth 2.0 Security Best Current Practice（延伸）",
+              "url": "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics",
+              "author": "IETF",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "消费级 GenAI 安全（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7478
         }
       ]
     },
