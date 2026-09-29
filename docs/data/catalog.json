@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:16:40.883Z",
+  "generated": "2026-09-29T18:17:55.508Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 200,
+    "companyQuestions": 201,
     "companies": 16,
     "planned": 598
   },
@@ -15531,6 +15531,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7021
+        },
+        {
+          "id": "openai-06",
+          "order": 6,
+          "title": "写一个 Python 函数，打印前 n 个斐波那契数。",
+          "titleEn": "Write a Python function that prints the first n Fibonacci numbers.",
+          "file": "公司题库/openai/06-打印前-n-个斐波那契数.md",
+          "level": "进阶",
+          "tags": [
+            "边界条件",
+            "复杂度",
+            "任意精度",
+            "输出代价",
+            "生成器"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "openai-05",
+            "openai-07",
+            "coding-18",
+            "coding-19",
+            "coding-20"
+          ],
+          "sources": [
+            {
+              "title": "The Python Language Reference: Data Model（延伸）",
+              "url": "https://docs.python.org/3/reference/datamodel.html",
+              "author": "Python Software Foundation",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "Concrete Mathematics: A Foundation for Computer Science（延伸）",
+              "url": "https://www.pearson.com/en-us/subject-catalog/p/concrete-mathematics/P200000006175",
+              "author": "Graham, Knuth & Patashnik",
+              "published": "1994-02-28"
+            },
+            {
+              "title": "The Python Tutorial: Generators（延伸）",
+              "url": "https://docs.python.org/3/tutorial/classes.html#generators",
+              "author": "Python Software Foundation",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "重构糟糕的代码（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6095
         }
       ]
     },
