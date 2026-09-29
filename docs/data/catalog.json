@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:24:12.603Z",
+  "generated": "2026-09-29T19:28:53.186Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 234,
+    "companyQuestions": 237,
     "companies": 17,
     "planned": 598
   },
@@ -12694,6 +12694,143 @@
           ],
           "updated": "2026-09-28",
           "chars": 5283
+        },
+        {
+          "id": "gdm-09",
+          "order": 9,
+          "title": "解释 SVD，并给出它在现代深度学习中出现的两个地方。",
+          "titleEn": "Explain SVD and give two places it appears in modern deep learning.",
+          "file": "公司题库/google-deepmind/09-SVD-与低秩近似.md",
+          "level": "进阶",
+          "tags": [
+            "SVD",
+            "低秩近似",
+            "Eckart-Young",
+            "LoRA",
+            "谱衰减"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "gdm-05",
+            "gdm-07",
+            "deepseek-05",
+            "llm-internals-01",
+            "coding-30"
+          ],
+          "sources": [
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al. (Microsoft)",
+              "published": "2021-06-17"
+            },
+            {
+              "title": "A Singularly Valuable Decomposition: The SVD of a Matrix（延伸）",
+              "url": "https://www.ams.org/notices/200301/fea-svd.pdf",
+              "author": "Kalman",
+              "published": "1996-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5198
+        },
+        {
+          "id": "gdm-10",
+          "order": 10,
+          "title": "平均需要抛多少次公平硬币，才能第一次出现连续两次正面？请讲一下你的推导过程。",
+          "titleEn": "On average, how many tosses of a fair coin are needed to see two heads in a row? Walk through your derivation.",
+          "file": "公司题库/google-deepmind/10-抛硬币的期望次数.md",
+          "level": "进阶",
+          "tags": [
+            "期望次数",
+            "状态方程",
+            "自重叠",
+            "Conway 引导数"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "gdm-03",
+            "gdm-09",
+            "evaluation-06",
+            "coding-22",
+            "coding-31"
+          ],
+          "sources": [
+            {
+              "title": "Introduction to Probability Models（延伸）",
+              "url": "https://www.elsevier.com/books/introduction-to-probability-models/ross/978-0-12-814346-9",
+              "author": "Sheldon Ross",
+              "published": "2019-01-01"
+            },
+            {
+              "title": "A Martingale Approach to the Study of Occurrence of Sequence Patterns in Repeated Experiments（延伸）",
+              "url": "https://projecteuclid.org/journals/annals-of-probability/volume-8/issue-6/A-Martingale-Approach-to-the-Study-of-Occurrence-of-Sequence-Patterns/10.1214/aop/1176994578.full",
+              "author": "Li",
+              "published": "1980-12-01"
+            },
+            {
+              "title": "Penney's game（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Penney%27s_game",
+              "author": "Wikipedia",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5190
+        },
+        {
+          "id": "gdm-11",
+          "order": 11,
+          "title": "什么情况下你会选择 Q-learning 而不是 policy gradient，反之又如何？",
+          "titleEn": "When would you choose Q-learning over policy gradients, and vice versa?",
+          "file": "公司题库/google-deepmind/11-Q-learning-vs-策略梯度.md",
+          "level": "高阶",
+          "tags": [
+            "强化学习",
+            "off-policy",
+            "on-policy",
+            "样本效率",
+            "动作空间"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "gdm-10",
+            "gdm-05",
+            "agents-05",
+            "coding-31",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "Reinforcement Learning: An Introduction（延伸）",
+              "url": "http://incompleteideas.net/book/the-book-2nd.html",
+              "author": "Sutton & Barto",
+              "published": "2018-01-01"
+            },
+            {
+              "title": "Human-level control through deep reinforcement learning（延伸）",
+              "url": "https://www.nature.com/articles/nature14236",
+              "author": "Mnih et al. (DeepMind)",
+              "published": "2015-02-25"
+            },
+            {
+              "title": "Proximal Policy Optimization Algorithms（延伸）",
+              "url": "https://arxiv.org/abs/1707.06347",
+              "author": "Schulman et al. (OpenAI)",
+              "published": "2017-07-20"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6256
         }
       ]
     },
