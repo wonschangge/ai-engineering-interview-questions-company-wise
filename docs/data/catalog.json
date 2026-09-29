@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T23:26:26.824Z",
+  "generated": "2026-09-29T23:37:04.441Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 402,
-    "companies": 29,
+    "companyQuestions": 405,
+    "companies": 30,
     "planned": 598
   },
   "topics": [
@@ -15689,6 +15689,157 @@
           "chars": 4810,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-huggingface",
+      "name": "huggingface",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "huggingface",
+      "overviewFile": null,
+      "overviewTitle": "huggingface",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "hf-01",
+          "order": 1,
+          "title": "`transformers` 以代码重复著称：每个模型都有自己独立、自包含的 modeling 文件。请先为这个决定辩护，再对它提出批评。",
+          "titleEn": "`transformers` is famous for code duplication: every model has its own self-contained modeling file. First defend that decision, then criticise it.",
+          "file": "公司题库/huggingface/01-transformers-的代码重复.md",
+          "level": "高阶",
+          "tags": [
+            "代码重复",
+            "贡献摩擦",
+            "特性漂移",
+            "模块化",
+            "阶段判断"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "hf-02",
+            "hf-05",
+            "hf-07",
+            "coding-01",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (Google)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "HuggingFace Transformers: State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow（延伸）",
+              "url": "https://arxiv.org/abs/1910.03771",
+              "author": "Wolf et al. (Hugging Face)",
+              "published": "2019-10-09"
+            },
+            {
+              "title": "The Twelve-Factor App（延伸）",
+              "url": "https://12factor.net/",
+              "author": "Adam Wiggins",
+              "published": "2011-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4856
+        },
+        {
+          "id": "hf-02",
+          "order": 2,
+          "title": "在基于 pickle 的 checkpoint 已经到处都能用的情况下，Hugging Face 为什么还要做 safetensors？",
+          "titleEn": "Given that pickle-based checkpoints already worked everywhere, why did Hugging Face build safetensors?",
+          "file": "公司题库/huggingface/02-为什么要做-safetensors.md",
+          "level": "高阶",
+          "tags": [
+            "safetensors",
+            "pickle 风险",
+            "mmap",
+            "惰性加载",
+            "信任边界"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "hf-01",
+            "hf-04",
+            "hf-09",
+            "apple-03",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "safetensors: Simple, Safe HF Format（延伸）",
+              "url": "https://github.com/huggingface/safetensors",
+              "author": "Hugging Face",
+              "published": "2022-12-01"
+            },
+            {
+              "title": "Python Pickle Documentation（延伸）",
+              "url": "https://docs.python.org/3/library/pickle.html",
+              "author": "Python Software Foundation",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "LLM in a Flash: Efficient Large Language Model Inference with Limited Memory（延伸）",
+              "url": "https://arxiv.org/abs/2312.11514",
+              "author": "Alizadeh et al. (Apple)",
+              "published": "2023-12-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5147
+        },
+        {
+          "id": "hf-03",
+          "order": 3,
+          "title": "用户在一台 64 GB 内存的机器上用 `datasets` 加载 2 TB 数据集，居然跑通了。怎么做到的？又在什么时候会失效？",
+          "titleEn": "A user loads a 2 TB dataset with `datasets` on a 64 GB machine and it works. How? And when does it break?",
+          "file": "公司题库/huggingface/03-datasets-如何加载-2TB-数据集.md",
+          "level": "高阶",
+          "tags": [
+            "mmap",
+            "流式加载",
+            "页缓存",
+            "物化",
+            "磁盘预算"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "hf-02",
+            "hf-08",
+            "hf-09",
+            "apple-03",
+            "inference-05"
+          ],
+          "sources": [
+            {
+              "title": "Apache Arrow: A Cross-Language Development Platform for In-Memory Data（延伸）",
+              "url": "https://arrow.apache.org/",
+              "author": "Apache Software Foundation",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "HuggingFace Datasets Documentation（延伸）",
+              "url": "https://huggingface.co/docs/datasets/",
+              "author": "Hugging Face",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "What Every Programmer Should Know About Memory（延伸）",
+              "url": "https://people.freebsd.org/~lstewart/articles/cpumemory.pdf",
+              "author": "Ulrich Drepper (Red Hat)",
+              "published": "2007-09-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5151
         }
       ]
     },
