@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:21:00.812Z",
+  "generated": "2026-09-29T19:24:12.603Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 231,
+    "companyQuestions": 234,
     "companies": 17,
     "planned": 598
   },
@@ -12557,6 +12557,143 @@
           ],
           "updated": "2026-09-28",
           "chars": 5256
+        },
+        {
+          "id": "gdm-06",
+          "order": 6,
+          "title": "线性回归有哪些假设？",
+          "titleEn": "What are the assumptions of linear regression?",
+          "file": "公司题库/google-deepmind/06-线性回归的假设.md",
+          "level": "进阶",
+          "tags": [
+            "线性回归",
+            "异方差",
+            "多重共线性",
+            "稳健标准误"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "gdm-05",
+            "gdm-07",
+            "evaluation-01",
+            "evaluation-06",
+            "coding-29"
+          ],
+          "sources": [
+            {
+              "title": "Econometric Analysis（延伸）",
+              "url": "https://www.pearson.com/en-us/subject-catalog/p/econometric-analysis/P200000006207",
+              "author": "William Greene",
+              "published": "2017-01-01"
+            },
+            {
+              "title": "A Heteroskedasticity-Consistent Covariance Matrix Estimator and a Direct Test for Heteroskedasticity（延伸）",
+              "url": "https://www.jstor.org/stable/1912934",
+              "author": "White",
+              "published": "1980-05-01"
+            },
+            {
+              "title": "Regression Diagnostics（延伸）",
+              "url": "https://onlinelibrary.wiley.com/doi/book/10.1002/0471725153",
+              "author": "Belsley, Kuh & Welsch",
+              "published": "1980-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5538
+        },
+        {
+          "id": "gdm-07",
+          "order": 7,
+          "title": "区分正则化与验证：各自适用的场景分别是什么？",
+          "titleEn": "Distinguish regularization from validation: what is each appropriate for?",
+          "file": "公司题库/google-deepmind/07-正则化与验证.md",
+          "level": "进阶",
+          "tags": [
+            "正则化",
+            "验证",
+            "选择遗憾",
+            "超参数",
+            "嵌套关系"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "gdm-05",
+            "gdm-06",
+            "evaluation-01",
+            "coding-29",
+            "coding-30"
+          ],
+          "sources": [
+            {
+              "title": "Ridge Regression: Biased Estimation for Nonorthogonal Problems（延伸）",
+              "url": "https://www.tandfonline.com/doi/abs/10.1080/00401706.1970.10488634",
+              "author": "Hoerl & Kennard",
+              "published": "1970-02-01"
+            },
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "On the Dangers of Cross-Validation（延伸）",
+              "url": "https://arxiv.org/abs/2104.00673",
+              "author": "Bengio & Grandvalet",
+              "published": "2021-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5491
+        },
+        {
+          "id": "gdm-08",
+          "order": 8,
+          "title": "推导 softmax 输入下交叉熵损失的梯度，并解释为什么在数值上要把二者融合（fuse）。",
+          "titleEn": "Derive the gradient of the cross-entropy loss with softmax inputs, and explain why the two are fused numerically.",
+          "file": "公司题库/google-deepmind/08-softmax-交叉熵的融合.md",
+          "level": "高阶",
+          "tags": [
+            "softmax",
+            "交叉熵",
+            "梯度推导",
+            "log-sum-exp",
+            "数值稳定性"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "gdm-05",
+            "gdm-07",
+            "openai-13",
+            "coding-27",
+            "llm-internals-01"
+          ],
+          "sources": [
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (Google)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "The Log-Sum-Exp Trick（延伸）",
+              "url": "https://gregorygundersen.com/blog/2020/02/09/log-sum-exp/",
+              "author": "Gregory Gundersen",
+              "published": "2020-02-09"
+            },
+            {
+              "title": "Numerical Computation（延伸）",
+              "url": "https://www.deeplearningbook.org/contents/numerical.html",
+              "author": "Goodfellow, Bengio & Courville",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5283
         }
       ]
     },
