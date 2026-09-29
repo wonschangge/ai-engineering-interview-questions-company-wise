@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:04:25.616Z",
+  "generated": "2026-09-29T14:10:05.435Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 114,
+    "companyQuestions": 116,
     "companies": 7,
     "planned": 598
   },
@@ -11735,6 +11735,110 @@
           ],
           "updated": "2026-09-28",
           "chars": 5328
+        },
+        {
+          "id": "together-03",
+          "order": 3,
+          "title": "解释 speculative decoding。它何时有帮助、何时有害，以及为什么要让 speculator 适配实时流量？",
+          "titleEn": "Explain speculative decoding. When does it help, when does it hurt, and why must the speculator adapt to live traffic?",
+          "file": "公司题库/together/03-投机解码的收益边界与适配实时流量.md",
+          "level": "高阶",
+          "tags": [
+            "投机解码",
+            "接受率",
+            "自适应策略",
+            "流量分布",
+            "调度预算"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "inference-serving-04",
+            "together-02",
+            "together-04",
+            "anthropic-16",
+            "llm-internals-12"
+          ],
+          "sources": [
+            {
+              "title": "Speculative Decoding",
+              "url": "https://outcomeschool.com/blog/speculative-decoding",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "LLM 中的 N-gram Speculation",
+              "url": "https://outcomeschool.com/blog/n-gram-speculation-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Fast Inference from Transformers via Speculative Decoding（延伸）",
+              "url": "https://arxiv.org/abs/2211.17192",
+              "author": "Leviathan, Kalman, Matias (ICML 2023)",
+              "published": "2022-11-28"
+            },
+            {
+              "title": "Accelerating Large Language Model Decoding with Speculative Sampling（延伸）",
+              "url": "https://arxiv.org/abs/2302.01318",
+              "author": "Chen et al. (DeepMind)",
+              "published": "2023-02-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6224
+        },
+        {
+          "id": "together-04",
+          "order": 4,
+          "title": "为专用 endpoint 定价：估算 70B 模型每百万输出 token 的成本，并解释 throughput 与 latency 之间的权衡。",
+          "titleEn": "Price a dedicated endpoint: estimate the cost per million output tokens for a 70B model, and explain the throughput-latency trade-off.",
+          "file": "公司题库/together/04-专用-endpoint-的定价与吞吐延迟权衡.md",
+          "level": "高阶",
+          "tags": [
+            "成本模型",
+            "定价",
+            "吞吐-延迟",
+            "利用率",
+            "盈亏平衡"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "together-03",
+            "together-06",
+            "anthropic-15",
+            "anthropic-16",
+            "anthropic-17"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al. (Microsoft, OSDI 2024)",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "LLM 推理优化",
+              "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6108
         }
       ]
     }
