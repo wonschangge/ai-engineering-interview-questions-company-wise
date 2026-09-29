@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:18:27.358Z",
+  "generated": "2026-09-29T15:20:17.160Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 140,
+    "companyQuestions": 141,
     "companies": 10,
     "planned": 598
   },
@@ -10493,6 +10493,59 @@
           ],
           "updated": "2026-09-28",
           "chars": 6571
+        },
+        {
+          "id": "databricks-05",
+          "order": 5,
+          "title": "一个 Structured Streaming 作业从 Kafka 读取数据并写入 Delta 表。集群在一个 batch 处理到一半时被杀掉并重启。客户会看到重复行吗？请从 checkpoint 和事务日志的层面解释。",
+          "titleEn": "A Structured Streaming job reads from Kafka and writes to a Delta table. The cluster is killed mid-batch and restarts. Will customers see duplicate rows? Explain in terms of the checkpoint and the transaction log.",
+          "file": "公司题库/databricks/05-Streaming-作业被中断后是否出现重复行.md",
+          "level": "高阶",
+          "tags": [
+            "Structured-Streaming",
+            "Delta-Lake",
+            "恰好一次",
+            "checkpoint",
+            "事务日志",
+            "幂等"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "databricks-04",
+            "databricks-02",
+            "databricks-01",
+            "agents-02",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "Databricks 文档：在 Delta Lake 上使用 Structured Streaming",
+              "url": "https://docs.databricks.com/aws/en/structured-streaming/delta-lake",
+              "author": "Databricks",
+              "published": ""
+            },
+            {
+              "title": "Delta Lake 文档：并发控制与事务日志",
+              "url": "https://docs.delta.io/latest/concurrency-control.html",
+              "author": "Delta Lake",
+              "published": ""
+            },
+            {
+              "title": "一个 Spark 作业把 2 TB 的事实表与 50 GB 的维表做 join（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "agent 循环中如何处理工具调用错误、超时与重试（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6772
         }
       ]
     },
