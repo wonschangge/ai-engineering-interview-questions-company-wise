@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:43:32.413Z",
+  "generated": "2026-09-29T16:45:06.296Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 160,
+    "companyQuestions": 161,
     "companies": 12,
     "planned": 598
   },
@@ -11595,6 +11595,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6486
+        },
+        {
+          "id": "deepseek-06",
+          "order": 6,
+          "title": "R1-Zero 完全用 RL 训练，基本没有先做 SFT。这说明了什么，为什么完整的 R1 又把 SFT 加了回来？",
+          "titleEn": "R1-Zero was trained with pure RL and essentially no SFT. What does that tell us, and why did the full R1 add SFT back?",
+          "file": "公司题库/deepseek/06-R1-Zero-纯-RL-与-SFT-的回归.md",
+          "level": "高阶",
+          "tags": [
+            "R1-Zero",
+            "GRPO",
+            "可验证奖励",
+            "冷启动 SFT",
+            "奖励黑客"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "deepseek-07",
+            "deepseek-08",
+            "finetuning-08",
+            "evaluation-05",
+            "cognition-04"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2402.03300",
+              "author": "Shao et al. (DeepSeek-AI)",
+              "published": "2024-02-05"
+            },
+            {
+              "title": "Training language models to follow instructions with human feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (OpenAI)",
+              "published": "2022-03-04"
+            },
+            {
+              "title": "何时微调以及 LoRA 与全量微调的选择（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6001
         }
       ]
     },
