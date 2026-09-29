@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:11:57.054Z",
+  "generated": "2026-09-29T15:16:16.796Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 138,
+    "companyQuestions": 139,
     "companies": 10,
     "planned": 598
   },
@@ -10394,6 +10394,52 @@
           ],
           "updated": "2026-09-28",
           "chars": 5873
+        },
+        {
+          "id": "databricks-03",
+          "order": 3,
+          "title": "给定以 CIDR 块表示的白名单 IP 段以及显式的拒绝网段，实现高效的 is_allowed(ip)，要能支撑每秒数百万次校验。",
+          "titleEn": "Given allow-listed CIDR blocks plus explicit deny ranges, implement an efficient is_allowed(ip) that sustains millions of checks per second.",
+          "file": "公司题库/databricks/03-CIDR-白名单与拒绝网段的百万-QPS-校验.md",
+          "level": "高阶",
+          "tags": [
+            "CIDR",
+            "区间二分",
+            "最长前缀匹配",
+            "边界用例",
+            "无锁热更新"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "databricks-02",
+            "databricks-04",
+            "databricks-05",
+            "rag-08",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "Python 官方文档：bisect — 数组二分查找算法",
+              "url": "https://docs.python.org/3/library/bisect.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "RFC 4632：CIDR 地址聚合与道格拉斯·康芒纳的地址分配实践",
+              "url": "https://www.rfc-editor.org/rfc/rfc4632",
+              "author": "IETF",
+              "published": "2006-08"
+            },
+            {
+              "title": "设计权限感知的 retrieval（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5480
         }
       ]
     },
