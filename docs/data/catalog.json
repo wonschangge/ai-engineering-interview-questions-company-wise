@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:41:56.623Z",
+  "generated": "2026-09-29T22:47:11.012Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 377,
+    "companyQuestions": 380,
     "companies": 27,
     "planned": 598
   },
@@ -24269,15 +24269,15 @@
       ]
     },
     {
-      "id": "company-waymo",
-      "name": "waymo",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "waymo",
+      "name": "Waymo",
+      "group": "AI 原生产品公司",
+      "summary": "十二道题全部围绕\"如何把一个统计上极难验证的系统论证到可接受\"展开——一道编程（NumPy 无循环计算变长真值的 minADE/minFDE）、三道机器学习基础（模块化还是端到端、行为预测的输出表示与指标、VLM 在自驾栈的位置）、一道推理服务（车载算力与延迟预算）、三道系统设计（数亿英里里找罕见场景、全车队档案的相似片段检索、新城市的 safety case）、三道评估（如何真正衡量安全性、如何构建可信的仿真器、发布前的场景簇回归），以及一道多模态（为什么同时搭载三种传感器）。",
+      "updated": "2026-09-28",
       "dir": "waymo",
-      "overviewFile": null,
-      "overviewTitle": "waymo",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/waymo/README.md",
+      "overviewTitle": "Waymo 面试题库",
+      "declaredTotal": 12,
       "questions": [
         {
           "id": "waymo-01",
@@ -24298,7 +24298,7 @@
           "related": [
             "waymo-02",
             "waymo-03",
-            "waymo-06",
+            "waymo-07",
             "coding-01",
             "applied-01"
           ],
@@ -24323,7 +24323,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5120
+          "chars": 5122,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "waymo-02",
@@ -24369,7 +24371,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4526
+          "chars": 4526,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 1
         },
         {
           "id": "waymo-03",
@@ -24390,8 +24394,8 @@
           "related": [
             "waymo-01",
             "waymo-02",
-            "waymo-07",
             "waymo-09",
+            "waymo-11",
             "applied-01"
           ],
           "sources": [
@@ -24415,7 +24419,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4886
+          "chars": 4886,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 2
         },
         {
           "id": "waymo-04",
@@ -24437,7 +24443,7 @@
             "waymo-02",
             "waymo-05",
             "waymo-06",
-            "waymo-07",
+            "waymo-09",
             "applied-01"
           ],
           "sources": [
@@ -24461,7 +24467,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4458
+          "chars": 4458,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 3
         },
         {
           "id": "waymo-05",
@@ -24507,7 +24515,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5049
+          "chars": 5049,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "waymo-06",
@@ -24527,9 +24537,9 @@
           "askedAt": [],
           "related": [
             "waymo-04",
-            "waymo-07",
             "waymo-08",
             "waymo-09",
+            "waymo-10",
             "scale-11"
           ],
           "sources": [
@@ -24553,53 +24563,57 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4663
+          "chars": 4664,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "waymo-07",
           "order": 7,
-          "title": "脱离接管率（disengagement rate）是一个很弱的安全代理指标。你会如何真正衡量 Driver 是否足够安全、可以发布？",
-          "titleEn": "The disengagement rate is a weak safety proxy. How would you actually measure whether the Driver is safe enough to launch?",
-          "file": "公司题库/waymo/07-如何真正衡量安全性.md",
+          "title": "设计一个系统，在整个车队档案中找出与给定片段相似的驾驶片段。",
+          "titleEn": "Design a system that finds driving segments similar to a given one across the entire fleet archive.",
+          "file": "公司题库/waymo/07-全车队档案的相似片段检索.md",
           "level": "高阶",
           "tags": [
-            "脱离接管率",
-            "代理指标",
-            "三次法则",
-            "TTC/PET",
-            "暴露量"
+            "相似检索",
+            "嵌入",
+            "ANN",
+            "多空间融合",
+            "成本控制"
           ],
-          "topic": "evaluation",
+          "topic": "system-design",
           "askedAt": [],
           "related": [
-            "waymo-03",
+            "waymo-01",
             "waymo-06",
-            "waymo-08",
             "waymo-09",
-            "safety-01"
+            "waymo-10",
+            "perplexity-02"
           ],
           "sources": [
             {
-              "title": "The Tail at Scale（延伸）",
-              "url": "https://research.google/pubs/pub40801/",
-              "author": "Dean & Barroso (Google)",
-              "published": "2013-02-01"
+              "title": "Mining of Massive Datasets（延伸）",
+              "url": "http://www.mmds.org/",
+              "author": "Leskovec, Rajaraman & Ullman",
+              "published": "2014-01-01"
             },
             {
-              "title": "Concrete Problems in AI Safety（延伸）",
-              "url": "https://arxiv.org/abs/1606.06565",
-              "author": "Amodei et al. (Google Brain)",
-              "published": "2016-06-21"
+              "title": "Efficient and Robust Approximate Nearest Neighbor Search Using HNSW Graphs（延伸）",
+              "url": "https://arxiv.org/abs/1603.09320",
+              "author": "Malkov & Yashunin",
+              "published": "2016-03-28"
             },
             {
-              "title": "Trustworthy Online Controlled Experiments（延伸）",
-              "url": "https://experimentguide.com/",
-              "author": "Kohavi, Tang & Xu",
-              "published": "2020-04-01"
+              "title": "Billion-scale Similarity Search with GPUs（延伸）",
+              "url": "https://arxiv.org/abs/1702.08734",
+              "author": "Johnson, Douze & Jégou",
+              "published": "2017-02-28"
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4758
+          "chars": 4417,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "waymo-08",
@@ -24620,8 +24634,8 @@
           "related": [
             "waymo-02",
             "waymo-06",
-            "waymo-07",
             "waymo-09",
+            "waymo-11",
             "figure-ai-09"
           ],
           "sources": [
@@ -24645,14 +24659,112 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4606
+          "chars": 4606,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
         },
         {
           "id": "waymo-09",
           "order": 9,
+          "title": "脱离接管率（disengagement rate）是一个很弱的安全代理指标。你会如何真正衡量 Driver 是否足够安全、可以发布？",
+          "titleEn": "The disengagement rate is a weak safety proxy. How would you actually measure whether the Driver is safe enough to launch?",
+          "file": "公司题库/waymo/09-如何真正衡量安全性.md",
+          "level": "高阶",
+          "tags": [
+            "脱离接管率",
+            "代理指标",
+            "三次法则",
+            "TTC/PET",
+            "暴露量"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "waymo-03",
+            "waymo-06",
+            "waymo-08",
+            "waymo-11",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4758,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
+        },
+        {
+          "id": "waymo-10",
+          "order": 10,
+          "title": "你如何构建一个自己有信心用来把关发布的仿真器？",
+          "titleEn": "How would you build a simulator you trust enough to gate a release on?",
+          "file": "公司题库/waymo/10-如何构建可信的仿真器.md",
+          "level": "高阶",
+          "tags": [
+            "仿真器可信度",
+            "保真度层级",
+            "分布测试",
+            "校准",
+            "假阴性"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "waymo-09",
+            "waymo-07",
+            "waymo-11",
+            "figure-ai-02",
+            "scale-06"
+          ],
+          "sources": [
+            {
+              "title": "Domain Randomization for Transferring Deep Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1703.06907",
+              "author": "Tobin et al. (OpenAI)",
+              "published": "2017-03-20"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4423,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
+        },
+        {
+          "id": "waymo-11",
+          "order": 11,
           "title": "距离发布决策还有两天，仿真显示某个场景簇中的急刹车事件增加了 15%。请讲讲你会怎么做。",
           "titleEn": "Two days before a launch decision, simulation shows a 15% increase in hard braking in one scenario cluster. What do you do?",
-          "file": "公司题库/waymo/09-发布前的场景簇回归.md",
+          "file": "公司题库/waymo/11-发布前的场景簇回归.md",
           "level": "高阶",
           "tags": [
             "多重比较",
@@ -24665,7 +24777,7 @@
           "askedAt": [],
           "related": [
             "waymo-06",
-            "waymo-07",
+            "waymo-09",
             "waymo-08",
             "sierra-08",
             "scale-09"
@@ -24691,7 +24803,57 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4568
+          "chars": 4568,
+          "topicName": "评估与可观测性",
+          "topicOrder": 3
+        },
+        {
+          "id": "waymo-12",
+          "order": 12,
+          "title": "为什么要同时搭载 lidar、radar 和摄像头，而不是只用摄像头？你会在哪里做融合？",
+          "titleEn": "Why carry lidar, radar and cameras together rather than cameras alone? And where would you fuse?",
+          "file": "公司题库/waymo/12-为什么同时搭载三种传感器.md",
+          "level": "进阶",
+          "tags": [
+            "多模态",
+            "失效互补",
+            "融合层级",
+            "可用性",
+            "独立性"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "waymo-02",
+            "waymo-05",
+            "waymo-07",
+            "multimodal-01",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation（延伸）",
+              "url": "https://arxiv.org/abs/1612.00593",
+              "author": "Qi et al. (Stanford)",
+              "published": "2016-12-09"
+            },
+            {
+              "title": "BEVFormer: Learning Bird\\u2019s-Eye-View Representation from Multi-Camera Images（延伸）",
+              "url": "https://arxiv.org/abs/2203.17270",
+              "author": "Li et al.",
+              "published": "2022-03-31"
+            },
+            {
+              "title": "Multi-View 3D Object Detection Network for Autonomous Driving（延伸）",
+              "url": "https://arxiv.org/abs/1611.07759",
+              "author": "Chen et al.",
+              "published": "2016-11-23"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4439,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 1
         }
       ]
     },

@@ -22,7 +22,7 @@ sources:
     url: https://numpy.org/doc/stable/
     author: NumPy Developers
     published: 2024-01-01
-related: [waymo-02, waymo-03, waymo-06, coding-01, applied-01]
+related: [waymo-02, waymo-03, waymo-07, coding-01, applied-01]
 updated: 2026-09-28
 ---
 
@@ -277,7 +277,7 @@ print("        而**「无循环」的真正价值是「可移植到 GPU」**（
 
 - [[waymo-02]]：模块化 vs 端到端——**预测模块在架构中的位置**。
 - [[waymo-03]]：行为预测的输出表示与指标——**minADE 的局限**。
-- [[waymo-06]]：全车队档案找相似片段——**大规模评测的内存**。
+- [[waymo-07]]：全车队档案的相似片段检索——**大规模评测的内存**。
 - [[coding-01]]：数组编程与向量化——**通用技巧**。
 - [[applied-01]]：模仿学习的基本框架——**轨迹预测的背景**。
 
