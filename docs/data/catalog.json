@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:54:25.745Z",
+  "generated": "2026-09-29T19:58:56.022Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 251,
+    "companyQuestions": 254,
     "companies": 18,
     "planned": 598
   },
@@ -18160,6 +18160,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4937
+        },
+        {
+          "id": "palantir-04",
+          "order": 4,
+          "title": "在一个用 HashMap 统计数值的函数中，找出并修复重复计数的 bug。",
+          "titleEn": "Find and fix a double-counting bug in a function that uses a HashMap to count values.",
+          "file": "公司题库/palantir/04-HashMap-重复计数.md",
+          "level": "进阶",
+          "tags": [
+            "HashMap",
+            "可变键",
+            "归一化",
+            "状态污染",
+            "溢出"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "palantir-01",
+            "palantir-03",
+            "palantir-07",
+            "coding-25",
+            "coding-22"
+          ],
+          "sources": [
+            {
+              "title": "Effective Java（延伸）",
+              "url": "https://www.oreilly.com/library/view/effective-java/9780134686097/",
+              "author": "Joshua Bloch",
+              "published": "2017-12-27"
+            },
+            {
+              "title": "Java Concurrency in Practice（延伸）",
+              "url": "https://jcip.net/",
+              "author": "Brian Goetz et al.",
+              "published": "2006-05-09"
+            },
+            {
+              "title": "Unicode Normalization Forms（延伸）",
+              "url": "https://unicode.org/reports/tr15/",
+              "author": "Unicode Consortium",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5616
+        },
+        {
+          "id": "palantir-05",
+          "order": 5,
+          "title": "调试一个在社交图谱上模拟感染传播的程序。",
+          "titleEn": "Debug a program that simulates infection spread on a social graph.",
+          "file": "公司题库/palantir/05-感染传播仿真调试.md",
+          "level": "高阶",
+          "tags": [
+            "图算法",
+            "同步更新",
+            "BFS",
+            "仿真调试",
+            "回归测试"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "palantir-04",
+            "palantir-06",
+            "coding-31",
+            "evaluation-01",
+            "coding-22"
+          ],
+          "sources": [
+            {
+              "title": "Infectious Diseases of Humans: Dynamics and Control（延伸）",
+              "url": "https://global.oup.com/academic/product/infectious-diseases-of-humans-9780198540403",
+              "author": "Anderson & May",
+              "published": "1991-09-26"
+            },
+            {
+              "title": "Network Science（延伸）",
+              "url": "http://networksciencebook.com/",
+              "author": "Albert-László Barabási",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Introduction to Probability Models（延伸）",
+              "url": "https://www.elsevier.com/books/introduction-to-probability-models/ross/978-0-12-814346-9",
+              "author": "Sheldon Ross",
+              "published": "2019-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4835
+        },
+        {
+          "id": "palantir-06",
+          "order": 6,
+          "title": "你从上一个部署项目接手了一个 800 行的 pipeline 脚本。它很慢，而且偶尔会算出错误的数字。原作者已经离职。开始吧。",
+          "titleEn": "You inherit an 800-line pipeline script from a previous deployment. It is slow and occasionally produces wrong numbers. The original author has left. Go.",
+          "file": "公司题库/palantir/06-800-行-pipeline-脚本.md",
+          "level": "高阶",
+          "tags": [
+            "遗留代码",
+            "静默错误",
+            "浮点精度",
+            "时区",
+            "性能剖析"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "palantir-02",
+            "palantir-03",
+            "palantir-04",
+            "palantir-05",
+            "coding-25"
+          ],
+          "sources": [
+            {
+              "title": "Working Effectively with Legacy Code（延伸）",
+              "url": "https://www.oreilly.com/library/view/working-effectively-with/0131177052/",
+              "author": "Michael Feathers",
+              "published": "2004-09-01"
+            },
+            {
+              "title": "Refactoring: Improving the Design of Existing Code（延伸）",
+              "url": "https://martinfowler.com/books/refactoring.html",
+              "author": "Martin Fowler",
+              "published": "2018-11-20"
+            },
+            {
+              "title": "Use The Index, Luke!（延伸）",
+              "url": "https://use-the-index-luke.com/",
+              "author": "Markus Winand",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5393
         }
       ]
     },
