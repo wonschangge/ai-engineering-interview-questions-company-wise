@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:40:55.113Z",
+  "generated": "2026-09-29T16:43:32.413Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 159,
+    "companyQuestions": 160,
     "companies": 12,
     "planned": 598
   },
@@ -11542,6 +11542,59 @@
           ],
           "updated": "2026-09-28",
           "chars": 7098
+        },
+        {
+          "id": "deepseek-05",
+          "order": 5,
+          "title": "请描述在 GPU 显存受限的情况下，你会如何以低 latency 服务一个 671B 参数的 MoE 模型。",
+          "titleEn": "With limited GPU memory, how would you serve a 671B-parameter MoE model at low latency?",
+          "file": "公司题库/deepseek/05-显存受限下低延迟服务-671B-MoE.md",
+          "level": "高阶",
+          "tags": [
+            "MoE 服务",
+            "专家并行",
+            "MLA",
+            "量化",
+            "卸载",
+            "批处理"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "deepseek-04",
+            "deepseek-03",
+            "deepseek-09",
+            "cohere-02",
+            "inference-serving-07"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model（延伸）",
+              "url": "https://arxiv.org/abs/2405.04434",
+              "author": "DeepSeek-AI",
+              "published": "2024-05-07"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "稀疏 MoE 为何适合私有化部署（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6486
         }
       ]
     },
