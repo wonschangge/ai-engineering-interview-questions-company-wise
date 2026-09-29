@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:17:55.508Z",
+  "generated": "2026-09-29T18:19:15.102Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 201,
+    "companyQuestions": 202,
     "companies": 16,
     "planned": 598
   },
@@ -15583,6 +15583,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6095
+        },
+        {
+          "id": "openai-07",
+          "order": 7,
+          "title": "传染病传播模拟。",
+          "titleEn": "Epidemic spread simulation.",
+          "file": "公司题库/openai/07-传染病传播模拟.md",
+          "level": "进阶",
+          "tags": [
+            "SIR 模型",
+            "R0",
+            "峰值与峰时",
+            "压平曲线",
+            "随机性"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "openai-06",
+            "openai-08",
+            "coding-21",
+            "coding-22",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "A Contribution to the Mathematical Theory of Epidemics（延伸）",
+              "url": "https://royalsocietypublishing.org/doi/10.1098/rspa.1927.0118",
+              "author": "Kermack & McKendrick",
+              "published": "1927-08-01"
+            },
+            {
+              "title": "Modeling Infectious Diseases in Humans and Animals（延伸）",
+              "url": "https://press.princeton.edu/books/hardcover/9780691116174/modeling-infectious-diseases-in-humans-and-animals",
+              "author": "Keeling & Rohani",
+              "published": "2007-09-17"
+            },
+            {
+              "title": "The Mathematics of Infectious Diseases（延伸）",
+              "url": "https://epubs.siam.org/doi/10.1137/S0036144500371907",
+              "author": "Hethcote",
+              "published": "2000-01-01"
+            },
+            {
+              "title": "打印前 n 个斐波那契数（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6593
         }
       ]
     },
