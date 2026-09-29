@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:29:31.294Z",
+  "generated": "2026-09-29T18:30:51.464Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 209,
+    "companyQuestions": 210,
     "companies": 16,
     "planned": 598
   },
@@ -15999,6 +15999,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 8099
+        },
+        {
+          "id": "openai-15",
+          "order": 15,
+          "title": "你正在构建一个调用工具（function calling）的生产级 agent。怎样让这个循环足够可靠，达到可以上线的程度？",
+          "titleEn": "You are building a production agent that calls tools (function calling). How do you make the loop reliable enough to ship?",
+          "file": "公司题库/openai/15-生产级-agent-循环的可靠性.md",
+          "level": "高阶",
+          "tags": [
+            "agent 循环",
+            "可靠性",
+            "预算闸门",
+            "重复检测",
+            "可观测性"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "openai-16",
+            "microsoft-02",
+            "microsoft-06",
+            "xai-10",
+            "agents-03"
+          ],
+          "sources": [
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "Toolformer: Language Models Can Teach Themselves to Use Tools（延伸）",
+              "url": "https://arxiv.org/abs/2302.04761",
+              "author": "Schick et al. (Meta)",
+              "published": "2023-02-09"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE Team",
+              "published": "2016-03-01"
+            },
+            {
+              "title": "agent host 的工具调用层设计（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7564
         }
       ]
     },
