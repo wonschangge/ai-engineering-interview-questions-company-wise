@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:24:08.002Z",
+  "generated": "2026-09-29T18:25:36.883Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 205,
+    "companyQuestions": 206,
     "companies": 16,
     "planned": 598
   },
@@ -15791,6 +15791,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6740
+        },
+        {
+          "id": "openai-11",
+          "order": 11,
+          "title": "在 Pandas 中你如何处理缺失数据？",
+          "titleEn": "How do you handle missing data in Pandas?",
+          "file": "公司题库/openai/11-Pandas-处理缺失数据.md",
+          "level": "进阶",
+          "tags": [
+            "缺失数据",
+            "MCAR/MAR/MNAR",
+            "填充偏差",
+            "dropna 陷阱",
+            "缺失指示"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "openai-10",
+            "openai-12",
+            "coding-25",
+            "coding-26",
+            "evaluation-07"
+          ],
+          "sources": [
+            {
+              "title": "Statistical Analysis with Missing Data（延伸）",
+              "url": "https://onlinelibrary.wiley.com/doi/book/10.1002/9781119482260",
+              "author": "Little & Rubin",
+              "published": "2019-04-23"
+            },
+            {
+              "title": "pandas: Working with missing data（延伸）",
+              "url": "https://pandas.pydata.org/docs/user_guide/missing_data.html",
+              "author": "pandas developers",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "mice: Multivariate Imputation by Chained Equations in R（延伸）",
+              "url": "https://www.jstatsoft.org/article/view/v045i03",
+              "author": "van Buuren & Groothuis-Oudshoorn",
+              "published": "2011-12-01"
+            },
+            {
+              "title": "两个模型怎么选（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8316
         }
       ]
     },
