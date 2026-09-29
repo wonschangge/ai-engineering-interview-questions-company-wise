@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:21:54.469Z",
+  "generated": "2026-09-29T15:23:10.529Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 142,
+    "companyQuestions": 143,
     "companies": 10,
     "planned": 598
   },
@@ -10599,6 +10599,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6227
+        },
+        {
+          "id": "databricks-07",
+          "order": 7,
+          "title": "要把一个已经能跑通的 GenAI agent 原型在企业中上线。从 demo 到正式发布之间，你的检查清单是什么？",
+          "titleEn": "You are taking a working GenAI agent prototype to production in an enterprise. What is your checklist between demo and launch?",
+          "file": "公司题库/databricks/07-从-demo-到企业上线的检查清单.md",
+          "level": "高阶",
+          "tags": [
+            "上线检查清单",
+            "就绪度评分",
+            "门禁",
+            "灰度与回滚",
+            "成本与可观测性"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "databricks-06",
+            "databricks-08",
+            "databricks-09",
+            "evaluation-10",
+            "anthropic-31"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "与评估单个模型回复相比如何评估一个 agent（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为什么 benchmark 分数在提升用户却说系统变差了（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5371
         }
       ]
     },
