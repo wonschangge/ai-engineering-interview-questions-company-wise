@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:28:49.814Z",
+  "generated": "2026-09-29T21:32:14.401Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 323,
+    "companyQuestions": 326,
     "companies": 23,
     "planned": 598
   },
@@ -21090,6 +21090,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5256
+        },
+        {
+          "id": "sarvam-04",
+          "order": 4,
+          "title": "设计跨语言 RAG：知识库是英文和印地语，但用户用泰米尔语、泰卢固语或音译的 Hinglish 提问。",
+          "titleEn": "Design cross-lingual RAG: the knowledge base is in English and Hindi, but users ask in Tamil, Telugu or romanised Hinglish.",
+          "file": "公司题库/sarvam-ai/04-跨语言-RAG.md",
+          "level": "高阶",
+          "tags": [
+            "跨语言检索",
+            "音译",
+            "查询翻译",
+            "文档翻译",
+            "recall 传导"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "sarvam-01",
+            "sarvam-02",
+            "sarvam-09",
+            "rag-01",
+            "perplexity-09"
+          ],
+          "sources": [
+            {
+              "title": "DPR: Dense Passage Retrieval for Open-Domain Question Answering（延伸）",
+              "url": "https://arxiv.org/abs/2004.04906",
+              "author": "Karpukhin et al. (Facebook AI)",
+              "published": "2020-04-10"
+            },
+            {
+              "title": "Multilingual Universal Sentence Encoder for Semantic Retrieval（延伸）",
+              "url": "https://arxiv.org/abs/1907.04307",
+              "author": "Yang et al. (Google)",
+              "published": "2019-07-09"
+            },
+            {
+              "title": "Passage Re-ranking with BERT（延伸）",
+              "url": "https://arxiv.org/abs/1901.04085",
+              "author": "Nogueira & Cho",
+              "published": "2019-01-31"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5172
+        },
+        {
+          "id": "sarvam-05",
+          "order": 5,
+          "title": "Sarvam-M 提供混合的 think/non-think 模式，并且先用 SFT、再用 RLVR 完成 post-training。你会如何构建它？为什么选择 RLVR 而不是原版 RLHF？",
+          "titleEn": "Sarvam-M offers hybrid think/non-think modes and does post-training with SFT followed by RLVR. How would you build it, and why RLVR rather than the original RLHF?",
+          "file": "公司题库/sarvam-ai/05-混合-think-模式与-RLVR.md",
+          "level": "高阶",
+          "tags": [
+            "混合推理",
+            "think/non-think",
+            "RLVR",
+            "RLHF 成本",
+            "检查器精确率"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "sarvam-03",
+            "sarvam-06",
+            "scale-03",
+            "scale-05",
+            "llm-internals-08"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "Training Language Models to Follow Instructions with Human Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (OpenAI)",
+              "published": "2022-03-04"
+            },
+            {
+              "title": "s1: Simple Test-Time Scaling（延伸）",
+              "url": "https://arxiv.org/abs/2501.19393",
+              "author": "Muennighoff et al.",
+              "published": "2025-01-31"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5392
+        },
+        {
+          "id": "sarvam-06",
+          "order": 6,
+          "title": "某地方政府想要一个低资源语言的助手，而可用的干净文本只有几千句。你会如何让模型适配它？",
+          "titleEn": "A local government wants an assistant in a low-resource language, but only a few thousand clean sentences are available. How do you adapt a model to it?",
+          "file": "公司题库/sarvam-ai/06-只有几千句的低资源适配.md",
+          "level": "高阶",
+          "tags": [
+            "低资源语言",
+            "词表扩展",
+            "数据增强",
+            "RAG 替代",
+            "统计功效"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "sarvam-01",
+            "sarvam-04",
+            "sarvam-05",
+            "scale-03",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "Unsupervised Cross-lingual Representation Learning at Scale（延伸）",
+              "url": "https://arxiv.org/abs/1911.02116",
+              "author": "Conneau et al. (Facebook AI)",
+              "published": "2019-11-06"
+            },
+            {
+              "title": "Cross-lingual Language Model Pretraining（延伸）",
+              "url": "https://arxiv.org/abs/1901.07291",
+              "author": "Lample & Conneau (Facebook AI)",
+              "published": "2019-01-22"
+            },
+            {
+              "title": "The Unreasonable Effectiveness of Data（延伸）",
+              "url": "https://research.google/pubs/pub35198/",
+              "author": "Halevy, Norvig & Pereira (Google)",
+              "published": "2009-03-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4925
         }
       ]
     },
