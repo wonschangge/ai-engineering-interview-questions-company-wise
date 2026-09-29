@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:32:49.657Z",
+  "generated": "2026-09-29T16:37:15.813Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 157,
+    "companyQuestions": 158,
     "companies": 12,
     "planned": 598
   },
@@ -11438,6 +11438,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5977
+        },
+        {
+          "id": "deepseek-03",
+          "order": 3,
+          "title": "什么是 multi-token prediction（MTP），为什么要用它来训练？",
+          "titleEn": "What is multi-token prediction (MTP), and why train with it?",
+          "file": "公司题库/deepseek/03-multi-token-prediction.md",
+          "level": "高阶",
+          "tags": [
+            "MTP",
+            "训练信号密度",
+            "投机解码",
+            "训练开销",
+            "表示学习"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "deepseek-04",
+            "deepseek-09",
+            "deepseek-05",
+            "inference-serving-05",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "Better & Faster Large Language Models via Multi-token Prediction（延伸）",
+              "url": "https://arxiv.org/abs/2404.19737",
+              "author": "Gloeckle et al. (Meta)",
+              "published": "2024-04-30"
+            },
+            {
+              "title": "Fast Inference from Transformers via Speculative Decoding（延伸）",
+              "url": "https://arxiv.org/abs/2211.17192",
+              "author": "Leviathan et al. (Google)",
+              "published": "2022-11-17"
+            },
+            {
+              "title": "无辅助损失的负载均衡（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5288
         }
       ]
     },
