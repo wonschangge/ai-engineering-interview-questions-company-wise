@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:53:04.859Z",
+  "generated": "2026-09-29T15:55:26.981Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 151,
+    "companyQuestions": 152,
     "companies": 11,
     "planned": 598
   },
@@ -8918,6 +8918,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6091
+        },
+        {
+          "id": "cohere-07",
+          "order": 7,
+          "title": "设计一个能自动化企业工作流的 agent，比如根据内部文档和 CRM 起草 RFP 回复。「企业级」还会额外要求什么？",
+          "titleEn": "Design an agent that automates an enterprise workflow, say drafting RFP responses from internal documents and the CRM. What does 「enterprise-grade」 add?",
+          "file": "公司题库/cohere/07-企业工作流-agent-的企业级要求.md",
+          "level": "高阶",
+          "tags": [
+            "企业 agent",
+            "权限隔离",
+            "人工审批",
+            "可追溯",
+            "幂等副作用"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "cohere-08",
+            "cohere-09",
+            "agents-02",
+            "databricks-07",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "为什么不要构建多 agent 系统（延伸）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "一个 agent 循环中如何处理工具调用错误、超时与重试（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "企业级 RAG 的权限隔离与多租户（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "从 demo 到企业上线的检查清单（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5467
         }
       ]
     },
