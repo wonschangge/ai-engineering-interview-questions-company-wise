@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T23:01:57.759Z",
+  "generated": "2026-09-29T23:11:46.018Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 391,
-    "companies": 28,
+    "companyQuestions": 394,
+    "companies": 29,
     "planned": 598
   },
   "topics": [
@@ -24425,6 +24425,157 @@
           "chars": 4689,
           "topicName": "行为与文化",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-tesla",
+      "name": "tesla",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "tesla",
+      "overviewFile": null,
+      "overviewTitle": "tesla",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "tesla-01",
+          "order": 1,
+          "title": "实现非极大值抑制（non-maximum suppression）。然后把它向量化。",
+          "titleEn": "Implement non-maximum suppression. Then vectorise it.",
+          "file": "公司题库/tesla/01-NMS-的实现与向量化.md",
+          "level": "进阶",
+          "tags": [
+            "NMS",
+            "IoU",
+            "向量化",
+            "贪心",
+            "批处理"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "tesla-03",
+            "tesla-07",
+            "waymo-01",
+            "coding-01",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation（延伸）",
+              "url": "https://arxiv.org/abs/1311.2524",
+              "author": "Girshick et al. (R-CNN)",
+              "published": "2013-11-11"
+            },
+            {
+              "title": "Soft-NMS: Improving Object Detection With One Line of Code（延伸）",
+              "url": "https://arxiv.org/abs/1704.04503",
+              "author": "Bodla et al.",
+              "published": "2017-04-14"
+            },
+            {
+              "title": "NumPy: Array Programming for Python（延伸）",
+              "url": "https://numpy.org/doc/stable/",
+              "author": "NumPy Developers",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4552
+        },
+        {
+          "id": "tesla-02",
+          "order": 2,
+          "title": "在内存预算固定的前提下，为高频率传感器数据写一个高效的环形缓冲区（ring buffer）。",
+          "titleEn": "Write an efficient ring buffer for high-frequency sensor data under a fixed memory budget.",
+          "file": "公司题库/tesla/02-高频传感器数据的环形缓冲区.md",
+          "level": "进阶",
+          "tags": [
+            "环形缓冲区",
+            "无锁",
+            "伪共享",
+            "掩码",
+            "多速率"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "tesla-01",
+            "tesla-04",
+            "tesla-07",
+            "tesla-08",
+            "figure-ai-04"
+          ],
+          "sources": [
+            {
+              "title": "Systems Performance: Enterprise and the Cloud（延伸）",
+              "url": "https://www.brendangregg.com/systems-performance-2nd-edition-book.html",
+              "author": "Brendan Gregg",
+              "published": "2020-12-01"
+            },
+            {
+              "title": "What Every Programmer Should Know About Memory（延伸）",
+              "url": "https://people.freebsd.org/~lstewart/articles/cpumemory.pdf",
+              "author": "Ulrich Drepper (Red Hat)",
+              "published": "2007-09-21"
+            },
+            {
+              "title": "ISO 26262: Road Vehicles -- Functional Safety（延伸）",
+              "url": "https://www.iso.org/standard/68383.html",
+              "author": "ISO",
+              "published": "2018-12-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4857
+        },
+        {
+          "id": "tesla-03",
+          "order": 3,
+          "title": "在没有 lidar 的情况下，你会如何设计多摄像头 3D 目标检测的神经网络架构？",
+          "titleEn": "How would you design a multi-camera 3D object detection architecture without lidar?",
+          "file": "公司题库/tesla/03-无-lidar-的多摄像头-3D-检测.md",
+          "level": "高阶",
+          "tags": [
+            "纯视觉 3D 检测",
+            "深度估计",
+            "BEV",
+            "标定误差",
+            "时序立体"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "tesla-01",
+            "tesla-04",
+            "tesla-05",
+            "tesla-09",
+            "waymo-12"
+          ],
+          "sources": [
+            {
+              "title": "Lift, Splat, Shoot: Encoding Images from Arbitrary Camera Rigs（延伸）",
+              "url": "https://arxiv.org/abs/2008.05711",
+              "author": "Philion & Fidler (NVIDIA)",
+              "published": "2020-08-13"
+            },
+            {
+              "title": "DETR3D: 3D Object Detection from Multi-view Images via 3D-to-2D Queries（延伸）",
+              "url": "https://arxiv.org/abs/2110.06922",
+              "author": "Wang et al. (MIT)",
+              "published": "2021-10-13"
+            },
+            {
+              "title": "BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images（延伸）",
+              "url": "https://arxiv.org/abs/2203.17270",
+              "author": "Li et al.",
+              "published": "2022-03-31"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5028
         }
       ]
     },
