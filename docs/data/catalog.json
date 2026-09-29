@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:11:32.749Z",
+  "generated": "2026-09-29T20:15:31.368Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 266,
+    "companyQuestions": 268,
     "companies": 18,
     "planned": 598
   },
@@ -18013,15 +18013,15 @@
       ]
     },
     {
-      "id": "company-palantir",
-      "name": "palantir",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "palantir",
+      "name": "Palantir",
+      "group": "前置部署与企业级 AI",
+      "summary": "二十道题围绕\"在客户的真实系统里把数据用起来\"——七道编程（形状类扩展、SQL join 与聚合、REST 分页、HashMap 重复计数、感染传播仿真、800 行 pipeline、三源客户去重）、一道 RAG（为什么朴素 RAG 答不出计数）、两道 agent（ontology 是什么、在 ERP 里安全写入）、两道平台架构（多供应商模型选择、LLM 工作流的上线前后评估）、六道前置部署场景（机车预测性维护、NYC 交通、员工记录同步、共享数据不暴露原始数据、物种编目、客户要取消试点），以及两道行为与价值观题（为什么选 Palantir 与客户异议、与国防情报机构合作）。",
+      "updated": "2026-09-28",
       "dir": "palantir",
-      "overviewFile": null,
-      "overviewTitle": "palantir",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/palantir/README.md",
+      "overviewTitle": "Palantir 面试题库",
+      "declaredTotal": 20,
       "questions": [
         {
           "id": "palantir-01",
@@ -18067,7 +18067,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4802
+          "chars": 4802,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "palantir-02",
@@ -18113,7 +18115,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5664
+          "chars": 5664,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "palantir-03",
@@ -18159,7 +18163,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4937
+          "chars": 4937,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
         },
         {
           "id": "palantir-04",
@@ -18205,7 +18211,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5616
+          "chars": 5616,
+          "topicName": "编程与数据结构",
+          "topicOrder": 4
         },
         {
           "id": "palantir-05",
@@ -18251,7 +18259,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4835
+          "chars": 4835,
+          "topicName": "编程与数据结构",
+          "topicOrder": 5
         },
         {
           "id": "palantir-06",
@@ -18297,7 +18307,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5393
+          "chars": 5393,
+          "topicName": "编程与数据结构",
+          "topicOrder": 6
         },
         {
           "id": "palantir-07",
@@ -18343,12 +18355,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5531
+          "chars": 5531,
+          "topicName": "编程与数据结构",
+          "topicOrder": 7
         },
         {
           "id": "palantir-08",
           "order": 8,
-          "title": "用户问\"有多少未完成订单因供应商问题被卡住？\"朴素 RAG 会答错。为什么，正确的架构是什么？",
+          "title": "用户问“有多少未完成订单因供应商问题被卡住？”朴素 RAG 会答错。为什么，正确的架构是什么？",
           "titleEn": "A user asks \"how many open orders are stuck because of supplier issues?\" Naive RAG answers incorrectly. Why, and what is the correct architecture?",
           "file": "公司题库/palantir/08-朴素-RAG-为何答错计数.md",
           "level": "高阶",
@@ -18389,7 +18403,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5592
+          "chars": 5592,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
         },
         {
           "id": "palantir-09",
@@ -18435,7 +18451,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6064
+          "chars": 6064,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "palantir-10",
@@ -18481,7 +18499,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5256
+          "chars": 5256,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 2
         },
         {
           "id": "palantir-11",
@@ -18527,7 +18547,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5344
+          "chars": 5344,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "palantir-12",
@@ -18573,7 +18595,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5126
+          "chars": 5126,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "palantir-13",
@@ -18619,7 +18643,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5648
+          "chars": 5648,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
         },
         {
           "id": "palantir-14",
@@ -18665,7 +18691,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5385
+          "chars": 5385,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 2
         },
         {
           "id": "palantir-15",
@@ -18711,7 +18739,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4902
+          "chars": 4902,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 3
         },
         {
           "id": "palantir-16",
@@ -18757,7 +18787,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4813
+          "chars": 4813,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 4
         },
         {
           "id": "palantir-17",
@@ -18803,12 +18835,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4928
+          "chars": 4928,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 5
         },
         {
           "id": "palantir-18",
           "order": 18,
-          "title": "一位客户高管说\"这个 AI 老是出错\"，并想取消试点。请说明你接下来 48 小时会怎么做。",
+          "title": "一位客户高管说“这个 AI 老是出错”，并想取消试点。请说明你接下来 48 小时会怎么做。",
           "titleEn": "A customer executive says \"this AI keeps making mistakes\" and wants to cancel the pilot. What do you do in the next 48 hours?",
           "file": "公司题库/palantir/18-客户高管要取消试点.md",
           "level": "高阶",
@@ -18849,7 +18883,104 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5396
+          "chars": 5396,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 6
+        },
+        {
+          "id": "palantir-19",
+          "order": 19,
+          "title": "为什么选择 Palantir，为什么是这个团队？讲一次你对客户需求提出异议的经历。",
+          "titleEn": "Why Palantir, and why this team? Tell me about a time you pushed back on a customer requirement.",
+          "file": "公司题库/palantir/19-为什么选-Palantir-与客户异议.md",
+          "level": "高阶",
+          "tags": [
+            "动机匹配",
+            "客户异议",
+            "需求与需要的差距",
+            "验证的期望价值"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "palantir-18",
+            "palantir-20",
+            "openai-26",
+            "applied-02",
+            "behavioral-01"
+          ],
+          "sources": [
+            {
+              "title": "The Trusted Advisor（延伸）",
+              "url": "https://www.simonandschuster.com/books/The-Trusted-Advisor/David-H-Maister/9780743212342",
+              "author": "Maister, Green & Galford",
+              "published": "2000-09-18"
+            },
+            {
+              "title": "The Mom Test: How to Talk to Customers（延伸）",
+              "url": "https://www.momtestbook.com/",
+              "author": "Rob Fitzpatrick",
+              "published": "2013-10-01"
+            },
+            {
+              "title": "Are Your Lights Off? Using Problem Frames to Diagnose Customer Problems（延伸）",
+              "url": "https://www.researchgate.net/publication/221496270_Are_Your_Lights_Off_Using_Problem_Frames_to_Diagnose_Customer_Problems",
+              "author": "Jackson & Hall",
+              "published": "2007-05-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5058,
+          "topicName": "行为与文化",
+          "topicOrder": 1
+        },
+        {
+          "id": "palantir-20",
+          "order": 20,
+          "title": "Palantir 与国防和情报机构合作。你如何看待这一点？如果被要求构建让你感到不适的东西，你会怎么做？",
+          "titleEn": "Palantir works with defence and intelligence agencies. How do you think about that? What would you do if asked to build something you are uncomfortable with?",
+          "file": "公司题库/palantir/20-与国防情报机构合作.md",
+          "level": "高阶",
+          "tags": [
+            "价值观",
+            "双重用途",
+            "治理结构",
+            "异议阶梯",
+            "个人红线"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "palantir-19",
+            "palantir-18",
+            "safety-03",
+            "agents-05",
+            "behavioral-01"
+          ],
+          "sources": [
+            {
+              "title": "Justice as Fairness: A Restatement（延伸）",
+              "url": "https://www.hup.harvard.edu/books/9780674005112/justice-as-fairness",
+              "author": "John Rawls",
+              "published": "2001-05-16"
+            },
+            {
+              "title": "The Concept of the Political（延伸）",
+              "url": "https://press.uchicago.edu/ucp/books/book/chicago/C/bo3620027.html",
+              "author": "Carl Schmitt",
+              "published": "1932-01-01"
+            },
+            {
+              "title": "ACM Code of Ethics and Professional Conduct（延伸）",
+              "url": "https://www.acm.org/code-of-ethics",
+              "author": "Association for Computing Machinery",
+              "published": "2018-06-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5382,
+          "topicName": "行为与文化",
+          "topicOrder": 2
         }
       ]
     },

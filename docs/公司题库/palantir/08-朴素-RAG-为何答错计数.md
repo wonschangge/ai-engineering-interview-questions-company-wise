@@ -4,7 +4,7 @@ id: palantir-08
 company: Palantir
 topic: rag
 order: 8
-question: 用户问"有多少未完成订单因供应商问题被卡住？"朴素 RAG 会答错。为什么，正确的架构是什么？
+question: 用户问“有多少未完成订单因供应商问题被卡住？”朴素 RAG 会答错。为什么，正确的架构是什么？
 question_en: A user asks "how many open orders are stuck because of supplier issues?" Naive RAG answers incorrectly. Why, and what is the correct architecture?
 asked_at: []
 level: 高阶
