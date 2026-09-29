@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:56:46.360Z",
+  "generated": "2026-09-29T15:58:18.435Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 153,
+    "companyQuestions": 154,
     "companies": 11,
     "planned": 598
   },
@@ -9022,6 +9022,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5746
+        },
+        {
+          "id": "cohere-09",
+          "order": 9,
+          "title": "一个企业客户想部署你们的 RAG 系统，但没有任何标注数据。上线前后你分别如何评估它？",
+          "titleEn": "An enterprise customer wants to deploy your RAG system but has no labeled data at all. How do you evaluate it before and after launch?",
+          "file": "公司题库/cohere/09-没有标注数据时如何评估-RAG.md",
+          "level": "高阶",
+          "tags": [
+            "无标注评估",
+            "LLM 裁判",
+            "合成数据",
+            "隐式信号",
+            "审计抽样"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "cohere-05",
+            "cohere-06",
+            "cohere-07",
+            "evaluation-05",
+            "databricks-07"
+          ],
+          "sources": [
+            {
+              "title": "与评估单个模型回复相比如何评估一个 agent（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "RAGAS: Automated Evaluation of Retrieval Augmented Generation（延伸）",
+              "url": "https://arxiv.org/abs/2309.15217",
+              "author": "Es et al.",
+              "published": "2023-09-27"
+            },
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al. (NeurIPS 2023)",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "为什么 benchmark 分数在提升用户却说系统变差了（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6062
         }
       ]
     },
