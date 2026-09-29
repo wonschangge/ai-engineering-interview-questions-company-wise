@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:07:33.279Z",
+  "generated": "2026-09-29T15:11:57.054Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 137,
+    "companyQuestions": 138,
     "companies": 10,
     "planned": 598
   },
@@ -10348,6 +10348,52 @@
           ],
           "updated": "2026-09-28",
           "chars": 5095
+        },
+        {
+          "id": "databricks-02",
+          "order": 2,
+          "title": "你有一个数十亿事件的流，需要在内存受限的前提下求出出现频率最高的 top-K 个 key。精确解不可能做到：你会怎么做？",
+          "titleEn": "You have a stream of billions of events and need the top-K most frequent keys under a tight memory bound. An exact solution is impossible — what do you do?",
+          "file": "公司题库/databricks/02-内存受限下数十亿事件的-top-K.md",
+          "level": "高阶",
+          "tags": [
+            "近似算法",
+            "top-K",
+            "Misra-Gries",
+            "Space-Saving",
+            "count-min-sketch"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "databricks-01",
+            "databricks-03",
+            "databricks-04",
+            "databricks-05",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "Python 官方文档：heapq — 堆队列算法",
+              "url": "https://docs.python.org/3/library/heapq.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "一个 Spark 作业把 2 TB 的事实表与 50 GB 的维表做 join（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为大型商品目录设计语义搜索（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5873
         }
       ]
     },
