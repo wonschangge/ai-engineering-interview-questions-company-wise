@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T21:23:22.670Z",
+  "generated": "2026-09-29T21:28:49.814Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 320,
-    "companies": 22,
+    "companyQuestions": 323,
+    "companies": 23,
     "planned": 598
   },
   "topics": [
@@ -20939,6 +20939,157 @@
           "chars": 4906,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-sarvam-ai",
+      "name": "sarvam-ai",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "sarvam-ai",
+      "overviewFile": null,
+      "overviewTitle": "sarvam-ai",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "sarvam-01",
+          "order": 1,
+          "title": "编写代码衡量 tokenizer 在不同语言上的 fertility，并说明拿到这个结果后你会怎么做。",
+          "titleEn": "Write code to measure tokenizer fertility across languages, and say what you would do with the result.",
+          "file": "公司题库/sarvam-ai/01-衡量-tokenizer-的-fertility.md",
+          "level": "进阶",
+          "tags": [
+            "fertility",
+            "分词器",
+            "词表配比",
+            "成本影响",
+            "有效上下文"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "sarvam-02",
+            "sarvam-04",
+            "sarvam-09",
+            "llm-internals-02",
+            "nvidia-08"
+          ],
+          "sources": [
+            {
+              "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）",
+              "url": "https://arxiv.org/abs/1508.07909",
+              "author": "Sennrich, Haddow & Birch",
+              "published": "2015-08-31"
+            },
+            {
+              "title": "SentencePiece: A Simple and Language Independent Subword Tokenizer and Detokenizer for Neural Text Processing（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo & Richardson (Google)",
+              "published": "2018-08-19"
+            },
+            {
+              "title": "Unsupervised Cross-lingual Representation Learning at Scale（延伸）",
+              "url": "https://arxiv.org/abs/1911.02116",
+              "author": "Conneau et al. (Facebook AI)",
+              "published": "2019-11-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5340
+        },
+        {
+          "id": "sarvam-02",
+          "order": 2,
+          "title": "为什么 tokenization 是印度语言 LLM 的第一道瓶颈？低 fertility 的 tokenizer 又如何改变成本经济性？",
+          "titleEn": "Why is tokenisation the first bottleneck for Indic-language LLMs? And how does a low-fertility tokeniser change the cost economics?",
+          "file": "公司题库/sarvam-ai/02-tokenization-为什么是第一道瓶颈.md",
+          "level": "高阶",
+          "tags": [
+            "tokenization",
+            "fertility",
+            "形态学",
+            "成本经济",
+            "有效上下文"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "sarvam-01",
+            "sarvam-04",
+            "sarvam-09",
+            "llm-internals-02",
+            "nvidia-08"
+          ],
+          "sources": [
+            {
+              "title": "Unsupervised Cross-lingual Representation Learning at Scale（延伸）",
+              "url": "https://arxiv.org/abs/1911.02116",
+              "author": "Conneau et al. (Facebook AI)",
+              "published": "2019-11-06"
+            },
+            {
+              "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）",
+              "url": "https://arxiv.org/abs/1508.07909",
+              "author": "Sennrich, Haddow & Birch",
+              "published": "2015-08-31"
+            },
+            {
+              "title": "Scaling Laws for Neural Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2001.08361",
+              "author": "Kaplan et al. (OpenAI)",
+              "published": "2020-01-23"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4950
+        },
+        {
+          "id": "sarvam-03",
+          "order": 3,
+          "title": "在没有数据中心 GPU 的情况下，如何把一个能力足够的助手部署到对成本敏感或端侧的硬件上？请完整梳理一遍效率工具箱。",
+          "titleEn": "With no datacenter GPUs available, how do you deploy a capable assistant onto cost-sensitive or on-device hardware? Walk through the full efficiency toolbox.",
+          "file": "公司题库/sarvam-ai/03-端侧部署的效率工具箱.md",
+          "level": "高阶",
+          "tags": [
+            "端侧部署",
+            "量化",
+            "内存带宽",
+            "级联",
+            "效率工具箱"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "sarvam-01",
+            "sarvam-04",
+            "sarvam-13",
+            "nvidia-08",
+            "groq-06"
+          ],
+          "sources": [
+            {
+              "title": "LLM in a Flash: Efficient Large Language Model Inference with Limited Memory（延伸）",
+              "url": "https://arxiv.org/abs/2312.11514",
+              "author": "Alizadeh et al. (Apple)",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al.",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "Fast Inference from Transformers via Speculative Decoding（延伸）",
+              "url": "https://arxiv.org/abs/2211.17192",
+              "author": "Leviathan, Kalman & Matias (Google)",
+              "published": "2022-11-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5256
         }
       ]
     },
