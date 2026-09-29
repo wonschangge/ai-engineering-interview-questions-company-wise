@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:21:02.633Z",
+  "generated": "2026-09-29T18:22:37.260Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 203,
+    "companyQuestions": 204,
     "companies": 16,
     "planned": 598
   },
@@ -15687,6 +15687,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6404
+        },
+        {
+          "id": "openai-09",
+          "order": 9,
+          "title": "如果一个分类器的准确率是 1，那么对单个训练样本而言，损失函数的下界/上界是多少？",
+          "titleEn": "If a classifier's accuracy is 1, what are the lower and upper bounds on the loss for a single training sample?",
+          "file": "公司题库/openai/09-准确率为1时的损失界.md",
+          "level": "高阶",
+          "tags": [
+            "交叉熵",
+            "损失界",
+            "标签平滑",
+            "margin",
+            "权重衰减"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "openai-08",
+            "openai-10",
+            "finetuning-03",
+            "evaluation-03",
+            "coding-23"
+          ],
+          "sources": [
+            {
+              "title": "Rethinking the Inception Architecture for Computer Vision（延伸）",
+              "url": "https://arxiv.org/abs/1512.00567",
+              "author": "Szegedy et al. (Google)",
+              "published": "2015-12-02"
+            },
+            {
+              "title": "When Does Label Smoothing Help?（延伸）",
+              "url": "https://arxiv.org/abs/1906.02629",
+              "author": "Müller, Kornblith & Hinton",
+              "published": "2019-06-07"
+            },
+            {
+              "title": "On Calibration of Modern Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1706.04599",
+              "author": "Guo et al.",
+              "published": "2017-06-14"
+            },
+            {
+              "title": "KL 散度的计算（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6418
         }
       ]
     },
