@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T15:03:25.940Z",
+  "generated": "2026-09-29T15:07:33.279Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 136,
-    "companies": 9,
+    "companyQuestions": 137,
+    "companies": 10,
     "planned": 598
   },
   "topics": [
@@ -10289,6 +10289,65 @@
           "chars": 3947,
           "topicName": "行为与文化",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-databricks",
+      "name": "databricks",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "databricks",
+      "overviewFile": null,
+      "overviewTitle": "databricks",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "databricks-01",
+          "order": 1,
+          "title": "实现一个线程安全的批处理 logger：多个生产者线程调用 log(msg)；后台线程每秒或批量满时，将最多 100 条消息成批刷出。",
+          "titleEn": "Implement a thread-safe batched logger: many producer threads call log(msg); a background thread flushes batches of at most 100 messages, either once a second or when the batch fills.",
+          "file": "公司题库/databricks/01-线程安全的批处理-logger.md",
+          "level": "进阶",
+          "tags": [
+            "并发",
+            "批处理",
+            "条件变量",
+            "优雅关闭",
+            "背压"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "databricks-02",
+            "databricks-04",
+            "databricks-05",
+            "system-design-01",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "Python 官方文档：threading — 基于线程的并行",
+              "url": "https://docs.python.org/3/library/threading.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "一个 Spark 作业把 2 TB 的事实表与 50 GB 的维表做 join（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "与评估单个模型回复相比如何评估一个 agent（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5095
         }
       ]
     },
