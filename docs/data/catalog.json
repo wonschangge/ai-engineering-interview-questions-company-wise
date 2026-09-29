@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:10:00.861Z",
+  "generated": "2026-09-29T22:13:39.502Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 353,
+    "companyQuestions": 356,
     "companies": 25,
     "planned": 598
   },
@@ -8096,15 +8096,15 @@
       ]
     },
     {
-      "id": "company-character-ai",
-      "name": "character-ai",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "character-ai",
+      "name": "Character.AI",
+      "group": "AI 原生产品公司",
+      "summary": "十二道题几乎全部落在同一个物理量上——KV cache——加上一个产品事实：平均会话有 180 条消息。一道编程（固定 token 预算下组装 prompt，难点是 prefix cache）、一道 LLM 内部（超出上下文窗口时保留什么）、四道推理服务（KV cache 降一个数量级、180 条消息的轮次间缓存、原生 int8 训练的辩护、每条消息的成本与最大杠杆）、一道系统设计（数百万角色的发现与搜索）、两道评估（长会话后人设偏离的诊断、互动指标与身心健康指标矛盾）、三道安全（开放式角色聊天的安全系统、decode 中介入 vs 后置过滤、18 岁以下的年龄验证）。",
+      "updated": "2026-09-28",
       "dir": "character-ai",
-      "overviewFile": null,
-      "overviewTitle": "character-ai",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/character-ai/README.md",
+      "overviewTitle": "Character.AI 面试题库",
+      "declaredTotal": 12,
       "questions": [
         {
           "id": "character-ai-01",
@@ -8150,7 +8150,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4798
+          "chars": 4798,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "character-ai-02",
@@ -8196,7 +8198,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4441
+          "chars": 4441,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "character-ai-03",
@@ -8242,7 +8246,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5029
+          "chars": 5029,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "character-ai-04",
@@ -8288,7 +8294,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4923
+          "chars": 4923,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 2
         },
         {
           "id": "character-ai-05",
@@ -8334,7 +8342,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4746
+          "chars": 4746,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 3
         },
         {
           "id": "character-ai-06",
@@ -8380,7 +8390,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5041
+          "chars": 5041,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 4
         },
         {
           "id": "character-ai-07",
@@ -8426,7 +8438,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4559
+          "chars": 4559,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "character-ai-08",
@@ -8472,7 +8486,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4773
+          "chars": 4773,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "character-ai-09",
@@ -8518,7 +8534,153 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4701
+          "chars": 4701,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
+        },
+        {
+          "id": "character-ai-10",
+          "order": 10,
+          "title": "为开放式角色聊天设计安全系统。",
+          "titleEn": "Design a safety system for open-ended character chat.",
+          "file": "公司题库/character-ai/10-开放式角色聊天的安全系统.md",
+          "level": "高阶",
+          "tags": [
+            "内容安全",
+            "基率问题",
+            "两级设计",
+            "动作阶梯",
+            "分类别阈值"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "character-ai-09",
+            "character-ai-11",
+            "character-ai-12",
+            "sierra-09",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4473,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "character-ai-11",
+          "order": 11,
+          "title": "什么时候在 decode 过程中介入比过滤已生成的回复更好？",
+          "titleEn": "When is intervening during decode better than filtering the generated response?",
+          "file": "公司题库/character-ai/11-decode-介入-vs-后置过滤.md",
+          "level": "高阶",
+          "tags": [
+            "decode 介入",
+            "流式输出",
+            "logit 屏蔽",
+            "重排",
+            "延迟发送"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "character-ai-10",
+            "character-ai-12",
+            "character-ai-01",
+            "sierra-09",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Speculative Decoding（延伸）",
+              "url": "https://arxiv.org/abs/2211.17192",
+              "author": "Leviathan et al. (Google)",
+              "published": "2022-11-29"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4393,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 2
+        },
+        {
+          "id": "character-ai-12",
+          "order": 12,
+          "title": "为一个 18 岁以下用户体验有本质区别的平台设计年龄验证。",
+          "titleEn": "Design age verification for a platform where the under-18 experience is fundamentally different.",
+          "file": "公司题库/character-ai/12-18-岁以下的年龄验证.md",
+          "level": "高阶",
+          "tags": [
+            "年龄验证",
+            "反转默认",
+            "基率问题",
+            "按需验证",
+            "隐私最小化"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "character-ai-09",
+            "character-ai-10",
+            "character-ai-11",
+            "sierra-09",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "k-anonymity: A Model for Protecting Privacy（延伸）",
+              "url": "https://epic.org/wp-content/uploads/privacy/reidentification/Sweeney_Article.pdf",
+              "author": "Latanya Sweeney",
+              "published": "2002-05-01"
+            },
+            {
+              "title": "The Mom Test（延伸）",
+              "url": "https://www.momtestbook.com/",
+              "author": "Rob Fitzpatrick",
+              "published": "2013-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4814,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 3
         }
       ]
     },
