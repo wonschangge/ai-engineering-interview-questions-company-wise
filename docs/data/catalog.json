@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:31:49.306Z",
+  "generated": "2026-09-29T17:33:48.313Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 179,
+    "companyQuestions": 180,
     "companies": 14,
     "planned": 598
   },
@@ -15295,6 +15295,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7304
+        },
+        {
+          "id": "xai-05",
+          "order": 5,
+          "title": "为一个按 token 而非请求数计费的 LLM API 设计限流器。",
+          "titleEn": "Design a rate limiter for an LLM API billed per token rather than per request.",
+          "file": "公司题库/xai/05-按-token-计费的限流器.md",
+          "level": "高阶",
+          "tags": [
+            "限流器",
+            "token 计费",
+            "预扣结算",
+            "原子性",
+            "配额泄漏"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "xai-03",
+            "xai-04",
+            "cohere-01",
+            "inference-serving-03",
+            "coding-05"
+          ],
+          "sources": [
+            {
+              "title": "Scaling your API with rate limiters（延伸）",
+              "url": "https://stripe.com/blog/rate-limiters",
+              "author": "Paul Tarjan (Stripe)",
+              "published": "2017-03-30"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE Team",
+              "published": "2016-03-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "按 token 计费的限流与配额（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7495
         }
       ]
     }
