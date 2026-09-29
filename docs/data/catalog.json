@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:45:38.213Z",
+  "generated": "2026-09-29T19:49:01.739Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 246,
+    "companyQuestions": 248,
     "companies": 17,
     "planned": 598
   },
@@ -12321,15 +12321,15 @@
       ]
     },
     {
-      "id": "company-google-deepmind",
-      "name": "google-deepmind",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "google-deepmind",
+      "name": "Google DeepMind 与 Google AI",
+      "group": "前沿 AI 实验室",
+      "summary": "二十二道题覆盖\"从数学推导到系统设计\"的完整跨度——四道编码（有界内存的流式 top-k、最接近的 key、RMSE、解析 bigram）、八道机器学习基础（bias-variance、线性回归假设、正则化与验证、softmax 交叉熵的融合、SVD、抛硬币的期望、Q-learning 与策略梯度、拒贷的可解释性）、两道训练（300k step 的 loss 发散、70B 的训练方案）、四道系统设计（多模态助手服务、租房推荐、视频广告时段、商品搜索召回）、两道判断与评估（神经网络是否合理、前沿模型的评估 harness）、一道数据充分性（ETA 数据够不够），以及一道与研究者的优先级分歧行为题。",
+      "updated": "2026-09-28",
       "dir": "google-deepmind",
-      "overviewFile": null,
-      "overviewTitle": "google-deepmind",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/google-deepmind/README.md",
+      "overviewTitle": "Google DeepMind 与 Google AI 面试题库",
+      "declaredTotal": 22,
       "questions": [
         {
           "id": "gdm-01",
@@ -12375,7 +12375,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5863
+          "chars": 5863,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "gdm-02",
@@ -12421,7 +12423,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5143
+          "chars": 5143,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "gdm-03",
@@ -12466,7 +12470,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4927
+          "chars": 4927,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
         },
         {
           "id": "gdm-04",
@@ -12511,7 +12517,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4774
+          "chars": 4774,
+          "topicName": "编程与数据结构",
+          "topicOrder": 4
         },
         {
           "id": "gdm-05",
@@ -12556,7 +12564,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5256
+          "chars": 5256,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 1
         },
         {
           "id": "gdm-06",
@@ -12601,7 +12611,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5538
+          "chars": 5538,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 2
         },
         {
           "id": "gdm-07",
@@ -12647,7 +12659,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5491
+          "chars": 5491,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 3
         },
         {
           "id": "gdm-08",
@@ -12693,7 +12707,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5283
+          "chars": 5283,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 4
         },
         {
           "id": "gdm-09",
@@ -12739,7 +12755,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5198
+          "chars": 5198,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 5
         },
         {
           "id": "gdm-10",
@@ -12784,7 +12802,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5190
+          "chars": 5190,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 6
         },
         {
           "id": "gdm-11",
@@ -12830,7 +12850,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6256
+          "chars": 6256,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 7
         },
         {
           "id": "gdm-12",
@@ -12876,7 +12898,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5874
+          "chars": 5874,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 8
         },
         {
           "id": "gdm-13",
@@ -12922,7 +12946,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6520
+          "chars": 6520,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "gdm-14",
@@ -12968,7 +12994,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5938
+          "chars": 5938,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
         },
         {
           "id": "gdm-15",
@@ -13014,7 +13042,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6093
+          "chars": 6093,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "gdm-16",
@@ -13060,7 +13090,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5119
+          "chars": 5119,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "gdm-17",
@@ -13106,7 +13138,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5549
+          "chars": 5549,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
         },
         {
           "id": "gdm-18",
@@ -13152,7 +13186,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5184
+          "chars": 5184,
+          "topicName": "AI 系统设计",
+          "topicOrder": 4
         },
         {
           "id": "gdm-19",
@@ -13198,7 +13234,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5894
+          "chars": 5894,
+          "topicName": "AI 系统设计",
+          "topicOrder": 5
         },
         {
           "id": "gdm-20",
@@ -13244,7 +13282,105 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5483
+          "chars": 5483,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
+        },
+        {
+          "id": "gdm-21",
+          "order": 21,
+          "title": "100 万次西雅图行程数据足以构建一个准确的 ETA 预测模型吗？你会如何判断？",
+          "titleEn": "Are one million Seattle trips enough to build an accurate ETA prediction model? How would you decide?",
+          "file": "公司题库/google-deepmind/21-ETA-数据是否足够.md",
+          "level": "高阶",
+          "tags": [
+            "数据充分性",
+            "分层爆炸",
+            "长尾",
+            "学习曲线",
+            "不可约噪声"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "gdm-05",
+            "gdm-18",
+            "evaluation-06",
+            "evaluation-01",
+            "coding-29"
+          ],
+          "sources": [
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "DeepETA: How Uber Predicts Arrival Times Using Deep Learning（延伸）",
+              "url": "https://www.uber.com/blog/deepeta-how-uber-predicts-arrival-times/",
+              "author": "Uber Engineering",
+              "published": "2022-05-17"
+            },
+            {
+              "title": "Learning Curves in Machine Learning（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Learning_curve_(machine_learning)",
+              "author": "Wikipedia",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5546,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
+        },
+        {
+          "id": "gdm-22",
+          "order": 22,
+          "title": "讲一次你在优先级问题上与 researcher 或 tech lead 意见不一致的经历，以及后来发生了什么。",
+          "titleEn": "Tell me about a time you disagreed with a researcher or tech lead about priorities, and what happened.",
+          "file": "公司题库/google-deepmind/22-与研究者的优先级分歧.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "研究 vs 工程",
+            "期望值与中位数",
+            "实验价值",
+            "回退条件"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "gdm-21",
+            "openai-30",
+            "openai-29",
+            "behavioral-01",
+            "applied-02"
+          ],
+          "sources": [
+            {
+              "title": "Thinking in Bets（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/552644/thinking-in-bets-by-annie-duke/",
+              "author": "Annie Duke",
+              "published": "2018-02-06"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/72441/high-output-management-by-andrew-s-grove/",
+              "author": "Andrew Grove",
+              "published": "1983-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5094,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         }
       ]
     },
