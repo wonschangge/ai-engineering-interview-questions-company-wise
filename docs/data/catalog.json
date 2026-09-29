@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:52:50.239Z",
+  "generated": "2026-09-29T18:54:09.226Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 222,
+    "companyQuestions": 223,
     "companies": 16,
     "planned": 598
   },
@@ -16675,6 +16675,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6933
+        },
+        {
+          "id": "openai-28",
+          "order": 28,
+          "title": "讲一个你犯过的错误。",
+          "titleEn": "Tell me about a mistake you made.",
+          "file": "公司题库/openai/28-你犯过的错误.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "复盘",
+            "制度性改进",
+            "修一类",
+            "无责复盘"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "openai-29",
+            "openai-25",
+            "openai-30",
+            "behavioral-01",
+            "microsoft-07"
+          ],
+          "sources": [
+            {
+              "title": "Site Reliability Engineering: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google SRE Team",
+              "published": "2016-03-01"
+            },
+            {
+              "title": "The Field Guide to Understanding 'Human Error'（延伸）",
+              "url": "https://www.routledge.com/The-Field-Guide-to-Understanding-Human-Error/Dekker/p/book/9781472439055",
+              "author": "Sidney Dekker",
+              "published": "2014-09-01"
+            },
+            {
+              "title": "Thinking, Fast and Slow（延伸）",
+              "url": "https://us.macmillan.com/books/9780374533557/thinkingfastandslow",
+              "author": "Daniel Kahneman",
+              "published": "2011-10-25"
+            },
+            {
+              "title": "你如何与 C-suite 沟通（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6660
         }
       ]
     },
