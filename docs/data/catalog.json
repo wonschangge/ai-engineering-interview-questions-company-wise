@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:53:15.251Z",
+  "generated": "2026-09-29T17:55:38.814Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 188,
+    "companyQuestions": 189,
     "companies": 15,
     "planned": 598
   },
@@ -13800,6 +13800,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7609
+        },
+        {
+          "id": "microsoft-04",
+          "order": 4,
+          "title": "估算为 1 亿周活跃用户新增一个 LLM 摘要功能所需的年度服务成本，以及你会如何把它降低 10 倍。",
+          "titleEn": "Estimate the annual serving cost of adding an LLM summarization feature for 100 million weekly active users, and how would you reduce it by 10x?",
+          "file": "公司题库/microsoft/04-1-亿-WAU-摘要功能的成本.md",
+          "level": "高阶",
+          "tags": [
+            "成本模型",
+            "单位经济",
+            "分层路由",
+            "缓存",
+            "自建推理"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "microsoft-03",
+            "microsoft-05",
+            "microsoft-07",
+            "moonshot-06",
+            "deepseek-10"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2407.00079",
+              "author": "Qin et al. (Moonshot AI)",
+              "published": "2024-06-28"
+            },
+            {
+              "title": "FP8 Formats for Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2209.05433",
+              "author": "Micikevicius et al.",
+              "published": "2022-09-12"
+            },
+            {
+              "title": "Copilot 的 3 秒 p95 预算（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7339
         }
       ]
     },
