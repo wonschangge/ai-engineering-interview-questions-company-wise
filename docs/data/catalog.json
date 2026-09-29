@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T22:47:11.012Z",
+  "generated": "2026-09-29T22:52:20.584Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 380,
-    "companies": 27,
+    "companyQuestions": 383,
+    "companies": 28,
     "planned": 598
   },
   "topics": [
@@ -8092,6 +8092,157 @@
           "chars": 5633,
           "topicName": "行为与文化",
           "topicOrder": 4
+        }
+      ]
+    },
+    {
+      "id": "company-apple",
+      "name": "apple",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "apple",
+      "overviewFile": null,
+      "overviewTitle": "apple",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "apple-01",
+          "order": 1,
+          "title": "你需要在内存和功耗预算都很紧张的手机上运行一个约 3B 参数的语言模型。与在数据中心服务同一个模型相比，有哪些变化？",
+          "titleEn": "You need to run a ~3B parameter language model on a phone with tight memory and power budgets. What changes compared to serving the same model in a datacenter?",
+          "file": "公司题库/apple/01-端侧-3B-与数据中心的差别.md",
+          "level": "进阶",
+          "tags": [
+            "端侧推理",
+            "批量1",
+            "散热",
+            "算术强度",
+            "内存预算"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "apple-02",
+            "apple-03",
+            "apple-04",
+            "apple-06",
+            "figure-ai-11"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "LLM in a Flash: Efficient Large Language Model Inference with Limited Memory（延伸）",
+              "url": "https://arxiv.org/abs/2312.11514",
+              "author": "Alizadeh et al. (Apple)",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "Roofline: An Insightful Visual Performance Model（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson",
+              "published": "2009-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4893
+        },
+        {
+          "id": "apple-02",
+          "order": 2,
+          "title": "解释 post-training quantization 与 quantization-aware training 的区别。当把权重压到 2–4 bit 时会出现什么问题，你如何恢复质量？",
+          "titleEn": "Explain the difference between post-training quantization and quantization-aware training. What goes wrong when you push weights to 2-4 bits, and how do you recover quality?",
+          "file": "公司题库/apple/02-PTQ-与-QAT-的区别.md",
+          "level": "高阶",
+          "tags": [
+            "PTQ",
+            "QAT",
+            "离群值",
+            "分组量化",
+            "校准集"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "apple-01",
+            "apple-03",
+            "apple-05",
+            "apple-06",
+            "inference-05"
+          ],
+          "sources": [
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al.",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.10438",
+              "author": "Xiao et al. (MIT)",
+              "published": "2022-11-18"
+            },
+            {
+              "title": "FP8 Formats for Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2209.05433",
+              "author": "Micikevicius et al. (NVIDIA)",
+              "published": "2022-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5081
+        },
+        {
+          "id": "apple-03",
+          "order": 3,
+          "title": "估算一个 3B 端侧模型在 4k 上下文下的 KV cache 内存占用，并指出有哪些手段可以把它压小。",
+          "titleEn": "Estimate the KV cache memory footprint of a 3B on-device model at 4k context, and list the ways to shrink it.",
+          "file": "公司题库/apple/03-端侧模型的-KV-cache-估算.md",
+          "level": "进阶",
+          "tags": [
+            "KV cache",
+            "GQA",
+            "滑窗",
+            "驱逐",
+            "decode 带宽"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "apple-01",
+            "apple-02",
+            "apple-04",
+            "apple-06",
+            "character-ai-04"
+          ],
+          "sources": [
+            {
+              "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints（延伸）",
+              "url": "https://arxiv.org/abs/2305.13245",
+              "author": "Ainslie et al. (Google)",
+              "published": "2023-05-22"
+            },
+            {
+              "title": "Efficient Streaming Language Models with Attention Sinks（延伸）",
+              "url": "https://arxiv.org/abs/2309.17453",
+              "author": "Xiao et al. (MIT)",
+              "published": "2023-09-29"
+            },
+            {
+              "title": "H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2306.14048",
+              "author": "Zhang et al.",
+              "published": "2023-06-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5377
         }
       ]
     },
