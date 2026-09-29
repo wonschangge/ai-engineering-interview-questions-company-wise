@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:54:09.226Z",
+  "generated": "2026-09-29T18:55:36.378Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 223,
+    "companyQuestions": 224,
     "companies": 16,
     "planned": 598
   },
@@ -16727,6 +16727,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6660
+        },
+        {
+          "id": "openai-29",
+          "order": 29,
+          "title": "讲一次你和别人的冲突。",
+          "titleEn": "Tell me about a conflict you had with someone.",
+          "file": "公司题库/openai/29-与别人的冲突.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "分歧分类",
+            "共同目标",
+            "实验 vs 升级",
+            "disagree and commit"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "openai-28",
+            "openai-30",
+            "behavioral-01",
+            "behavioral-02",
+            "microsoft-07"
+          ],
+          "sources": [
+            {
+              "title": "Crucial Conversations（延伸）",
+              "url": "https://www.mhprofessional.com/crucial-conversations-tools-for-talking-when-stakes-are-high-9781260474183-us",
+              "author": "Patterson, Grenny, McMillan & Switzler",
+              "published": "2021-10-26"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/72441/high-output-management-by-andrew-s-grove/",
+              "author": "Andrew Grove",
+              "published": "1983-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "你犯过的错误（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7013
         }
       ]
     },
