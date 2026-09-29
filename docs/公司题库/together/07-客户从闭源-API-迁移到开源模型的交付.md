@@ -217,7 +217,7 @@ class Route:
         return best
 
 route = Route()
-print("\\n② 混合路由：把「最难的那部分」留给闭源")
+print("\n② 混合路由：把「最难的那部分」留给闭源")
 print(f"  {'闭源比例 r':>10} {'成本($/1M)':>11} {'质量(通过率)':>12} {'相对全闭源成本':>14}")
 for r in (1.0, 0.5, 0.3, 0.1, 0.0):
     cost, quality = route.mix(r)
@@ -231,7 +231,7 @@ print("        工程上要做的第一件事是**用 prompt/检索/微调把开
 print("        而不是先去优化路由比例")
 
 # ---------- 3) 抬高开源质量 vs 增加闭源比例的收益对比 ----------
-print("\\n③ 两条路的收益对比（质量下限 0.88）")
+print("\n③ 两条路的收益对比（质量下限 0.88）")
 base = Route()
 r0, c0, q0 = base.best_for_quality(0.88)
 print(f"  基线（open_quality=0.84）：最优闭源比例 {r0:.0%}，成本 ${c0:.2f}/1M")
@@ -260,7 +260,7 @@ class TCO:
         run = (self.monthly_gpu + self.monthly_api) * self.months + self.ops_monthly * self.months
         return {"迁移期双跑": dual, "工程投入": eng, "运行": run,
                 "合计（首年）": dual + eng + run}
-print("\\n④ 总拥有成本对比（首年，含迁移期双跑与工程投入）")
+print("\n④ 总拥有成本对比（首年，含迁移期双跑与工程投入）")
 SCENARIOS = [
     TCO("全闭源 API（不迁移）", monthly_api=180_000, migration_dual_run_months=0,
         engineering_person_months=0, ops_monthly=0),
@@ -288,7 +288,7 @@ SEGS = [Segment("结构化抽取", 0.95, 0.93, 0.4),
         Segment("多语言", 0.85, 0.60, 0.1)]
 avg_closed = sum(s.closed_pass * s.share for s in SEGS)
 avg_open = sum(s.open_pass * s.share for s in SEGS)
-print("\\n⑤ 分群验收（平均达标 ≠ 可以迁移）")
+print("\n⑤ 分群验收（平均达标 ≠ 可以迁移）")
 print(f"  {'分群':<12} {'占比':>6} {'闭源':>7} {'开源':>7} {'差距':>7}")
 for s in SEGS:
     flag = "  ← 崩了" if s.closed_pass - s.open_pass > 0.10 else ""

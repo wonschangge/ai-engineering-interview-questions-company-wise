@@ -226,7 +226,7 @@ for c in CONTROLS:
 print("  读法：**提示词单独用只有 0.30 的拦截率**；六层叠加后到 1e-5–1e-6 量级 ——")
 print("        但独立性假设是乐观的（同一根因可能同时击穿多层），真实值会更差")
 
-print("\\n② 爆炸半径：凭证 scope × TTL × 网络可达性")
+print("\n② 爆炸半径：凭证 scope × TTL × 网络可达性")
 @dataclass
 class Credential:
     name: str
@@ -250,7 +250,7 @@ for c in CREDS:
 print("  读法：**scope 与 TTL 一起决定爆炸半径** —— 从 2000 个仓库的永久凭证收窄到")
 print("        「单仓库 + 15 分钟 + 出网白名单」后，期望暴露从上千个降到 0.01 量级")
 
-print("\\n③ 检测代价：TPR/FPR 与每日误报、样本量")
+print("\n③ 检测代价：TPR/FPR 与每日误报、样本量")
 def detection_cost(events_per_day: int, tpr: float, fpr: float) -> Dict[str, float]:
     """TP 需要真实攻击数（假设 1 起/天）；FP 按事件量计"""
     tp_per_day = 1 * tpr
@@ -265,7 +265,7 @@ for tpr, fpr in ((0.90, 0.01), (0.95, 0.001), (0.99, 0.0001)):
 print("  读法：10 万事件/日、FPR=1% 就是**每天 1000 条误报**（信噪比 0.001，团队必然忽略告警）——")
 print("        所以检测要做**高价值信号 + 分层处置**（自动阻断 vs 人工复核），不能只堆规则")
 
-print("\\n④ 注入成功率：内容与指令分离、模型外策略校验的作用")
+print("\n④ 注入成功率：内容与指令分离、模型外策略校验的作用")
 def injection_success(model_susceptibility: float, content_tagging: bool,
                       policy_gateway: bool, human_confirm_highrisk: bool,
                       high_risk_share: float = 0.3) -> float:
@@ -288,7 +288,7 @@ for label, ms, ct, pg, hc in (
 print("  读法：**降风险的主力是「模型外」的两层（策略网关 + 高危人工确认）**，")
 print("        而不是换更强的模型 —— 因为注入利用的是权限与通路的组合，不是模型智力")
 
-print("\\n⑤ 控制矩阵：按任务类型分级授权（可用性 vs 安全）")
+print("\n⑤ 控制矩阵：按任务类型分级授权（可用性 vs 安全）")
 @dataclass
 class TaskPolicy:
     kind: str
@@ -314,7 +314,7 @@ for pol in POLICIES:
 print("  读法：**按任务类型分级授权**是关键 —— 一刀切（全禁或全放）要么让 agent 无用，")
 print("        要么让「改 CI」与「部署」这两条最危险的路径敞开（它们直通生产）")
 
-print("\\n⑥ 残余风险的沟通口径（写给客户的表）")
+print("\n⑥ 残余风险的沟通口径（写给客户的表）")
 RISK = [("内容注入导致代码被改坏", "中", "分支保护 + PR 评审 + 不可变备份"),
         ("机密外泄", "低（收窄后）", "短 TTL + 出网白名单 + DLP"),
         ("经 CI 提权到生产", "低", "工作流保护 + 环境审批 + 禁止自审自合"),

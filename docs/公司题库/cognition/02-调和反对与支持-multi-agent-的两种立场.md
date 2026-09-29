@@ -188,7 +188,7 @@ MODES = [
     Mode("管理者+工作者（写入单线程）", 4, 0.55, 0.70, 1, handoff_cost=0.35),
     Mode("并行写入（4 路）", 4, 0.80, 0.80, 4, handoff_cost=0.10),
 ]
-print("\\n② 四种模式的成本/墙钟/一致性（相对单线程，示意模型）")
+print("\n② 四种模式的成本/墙钟/一致性（相对单线程，示意模型）")
 print(f"  {'模式':<26} {'路数':>5} {'写入者':>7} {'token成本':>9} {'墙钟':>7} "
       f"{'冲突概率':>9} {'是否推荐':<10}")
 for m in MODES:
@@ -213,7 +213,7 @@ class Task:
         saved = (1 - branch_speedup) * self.search_fraction
         penalty = 0.5 * self.write_coupling
         return saved - penalty - handoff
-print("\\n③ 只读扇出的收益条件（扇出加速 0.6、每路成本 0.35）")
+print("\n③ 只读扇出的收益条件（扇出加速 0.6、每路成本 0.35）")
 print(f"  {'任务':<26} {'只读占比':>8} {'写入耦合':>8} {'净收益':>8} {'结论':<12}")
 TASKS = [
     Task("跨仓库定位实现", 0.85, 0.10),
@@ -242,7 +242,7 @@ def handoff(trace_tokens: int, structured: bool = True,
         loss = 0.0
     return {"交接token": passed, "信息损失风险": loss,
             "相对朴素成本": passed / trace_tokens}
-print("\\n④ 上下文交接：朴素 vs 结构化（子 agent 轨迹 8,000 token）")
+print("\n④ 上下文交接：朴素 vs 结构化（子 agent 轨迹 8,000 token）")
 for structured in (False, True):
     r = handoff(8000, structured)
     label = "结构化交接（决策/证据/未决问题）" if structured else "朴素交接（传完整轨迹）"
@@ -261,7 +261,7 @@ def can_use_multi_agent(single_writer: bool, shared_or_compressible: bool,
     if not measurable:
         return False, "无法度量收益（成功率/墙钟/成本）—— 无法证明拆分的价值"
     return True, "满足条件：可以引入多 agent（写入单线程或只读扇出）"
-print("\\n⑤ 决策清单：四种组合的判定")
+print("\n⑤ 决策清单：四种组合的判定")
 CASES = [
     ("单线程 (writes=1, 共享, 非扇出, 可度量)", True, True, False, True),
     ("只读扇出 (writes=0, 独立, 扇出, 可度量)", True, True, True, True),

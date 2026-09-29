@@ -216,7 +216,7 @@ print(f"  读法：挂起把沙箱数从 {daily_cost(f,False)['沙箱数']:,.0f}
       f"（省 {1-sus/base:.0%}）——")
 print("        关键：**等待只花存储（几美分级别），不花沙箱**")
 
-print("\\n② 等 CI 比例对成本的影响（挂起策略下）")
+print("\n② 等 CI 比例对成本的影响（挂起策略下）")
 print(f"  {'等 CI 比例':>10} {'沙箱数':>8} {'合计$/日':>10} {'相对不挂起节省':>14}")
 for w in (0.30, 0.50, 0.70, 0.85):
     f2 = Fleet(wait_ci_share=w)
@@ -227,7 +227,7 @@ for w in (0.30, 0.50, 0.70, 0.85):
 print("  读法：等 CI 比例越高，挂起的收益越大；但即使只有 30% 在等，也能省下可观成本 ——")
 print("        所以「挂起」不是优化项，而是**云端 agent 的基础设施形态**")
 
-print("\\n③ 热池大小：到达率 × 启动时间（Little 定律口径）")
+print("\n③ 热池大小：到达率 × 启动时间（Little 定律口径）")
 def warm_pool(arrival_per_min: float, start_s: float, target_wait_s: float = 5.0) -> Dict[str, float]:
     lam = arrival_per_min / 60.0        # 每秒到达
     in_flight = lam * start_s           # 正在启动的实例数
@@ -240,7 +240,7 @@ for arr, st in ((20, 20), (50, 20), (20, 60), (100, 30)):
           f"{'预热池下限' if r['需要热实例'] < 30 else '需要分片预热':<20}")
 print("  读法：热池大小 ≈ 到达率 × 启动时间；启动慢（60 s）就必须多预热或**边恢复边预热**（串 ②）")
 
-print("\\n④ 准入控制：池子利用率与排队时长")
+print("\n④ 准入控制：池子利用率与排队时长")
 def erlang_c(c: int, a: float) -> float:
     """Erlang C：到达 a erlang、c 个服务台时"到达即排队"的概率（对数空间递推，避免下溢）"""
     logB = 0.0                                  # B(0) = 1
@@ -278,7 +278,7 @@ print("  这是**理想化**结果；真实系统还要叠加**任务时长重�
 print("  读法：理想 M/M/c 下排队到 ρ≈0.95 才抬头，但**任务时长重尾 + 到达突发**会让拐点前移 ——")
 print("        所以运维口径仍是「把稳态利用率压在 ~85% 以下，并在 85% 开始排队/拒绝」（串 [[anthropic-17]]）")
 
-print("\\n⑤ 快照与恢复的延迟预算（决定「挂起」是否值得）")
+print("\n⑤ 快照与恢复的延迟预算（决定「挂起」是否值得）")
 @dataclass
 class Resume:  # noqa: D101
     schedule_ms: float = 100          # 调度决策
@@ -296,7 +296,7 @@ print(f"  对照：等 CI 25 分钟 = {25*60:.0f} s —— 恢复只占 {r.total
 print("  读法：只要**恢复延迟 ≪ 等待时长**，挂起就是净收益；反之（例如恢复要 30 s）")
 print("        短等待不如直接留着容器 —— 所以要设一个「最小挂起时长」阈值")
 
-print("\\n⑥ 阈值策略：多长的等待才值得挂起")
+print("\n⑥ 阈值策略：多长的等待才值得挂起")
 def should_suspend(wait_min: float, snapshot_s: float = 1.8, resume_s: float = 2.9,
                    sandbox_price_h: float = 0.25, io_cost: float = 0.0002) -> Dict[str, float]:
     hold_cost = wait_min / 60 * sandbox_price_h

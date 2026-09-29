@@ -171,6 +171,13 @@ function validateQuestion(doc, file, seenIds) {
   // 中文正文里的 ASCII 双引号（规范要求用「」）
   const asciiQuotes = countMatches(prose, /"[^"\n]{1,40}"/g);
   if (asciiQuotes > 0) warnings.push(`${at}: 正文出现 ${asciiQuotes} 处 ASCII 双引号，规范要求改用「」`);
+
+  // 代码块里被写成字面量的换行转义：print("\\n...") 会打印出反斜杠 + n 而不是换行。
+  // 这是本仓库反复出现的作者笔误，直接在门禁里拦住。
+  const literalNewline = countMatches(body, /\\{2,}n/g);
+  if (literalNewline > 0) {
+    errors.push(`${at}: 代码块里出现 ${literalNewline} 处字面量 \\\\n（应为 \\n），运行时会打印出反斜杠 n`);
+  }
 }
 
 function validateTopic(doc, file) {

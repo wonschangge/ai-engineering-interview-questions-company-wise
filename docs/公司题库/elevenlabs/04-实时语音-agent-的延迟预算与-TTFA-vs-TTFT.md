@@ -189,7 +189,7 @@ for s in SEGMENTS:
 print("  读法：大头不是 LLM（160 ms）——结束判定（240 ms）与传输/缓冲（150 ms）更大；")
 print("        所以「换更小的 LLM」不是最有性价比的动作")
 
-print("\\n② 流水线化的收益（LLM→TTS→传输三处重叠）")
+print("\n② 流水线化的收益（LLM→TTS→传输三处重叠）")
 def pipelined_ms(base: float, llm_ms: float, tts_ms: float, net_ms: float,
                  llm_tts_overlap: float = 0.6, tts_stream_overlap: float = 0.5) -> float:
     saved_llm_tts = (llm_ms + tts_ms) * llm_tts_overlap * 0.5      # 边生成边送 TTS
@@ -201,7 +201,7 @@ print(f"  关键路径 {base:.0f} ms -> 流水线化 {pipe:.0f} ms（省 {base-p
 print("  读法：三处重叠（子句切分、边合成边推、ASR 与结束判定并行）比换模型更值钱；")
 print("        它们的前提是「流式」——所以流式不是优化项，而是实时语音的前提条件")
 
-print("\\n③ TTFA 的细分（比「TTS 首包 150 ms」更细，也更能定位问题）")
+print("\n③ TTFA 的细分（比「TTS 首包 150 ms」更细，也更能定位问题）")
 @dataclass
 class TTFA:
     frontend_ms: float = 60        # 文本前端（TN + G2P + 韵律）：常不可流式
@@ -218,7 +218,7 @@ print(f"  对照：TTFT 的对应项只有「一次前向 + 网络」≈ 60 ms �
 print("  读法：TTFA 多出的是「文本前端 + 最小可播块 + jitter buffer」——这三项在 TTFT 里根本不存在，")
 print("        这就是两者不是同一个难题的根本原因")
 
-print("\\n④ 首块大小与 TTFA 的解耦（TTFA 只关心首块，不关心总时长）")
+print("\n④ 首块大小与 TTFA 的解耦（TTFA 只关心首块，不关心总时长）")
 def ttfa_with_first_chunk(first_ms: float, rtf: float = 0.15,
                           frontend_ms: float = 60, buffer_ms: float = 93) -> float:
     return frontend_ms + first_ms * rtf + buffer_ms + 40      # 40 ms 传输
@@ -228,7 +228,7 @@ for first in (60, 120, 240, 480):
 print("  读法：首块越大 TTFA 越晚，但太小的块播不出来（解码/调度单元）——120 ms 是折中；")
 print("        注意总时长（音频多长）与 TTFA 无关 —— 所以长回答的 TTFA 与短回答相同")
 
-print("\\n⑤ 尾延迟与卡顿：两个必须同时报的指标")
+print("\n⑤ 尾延迟与卡顿：两个必须同时报的指标")
 def simulate_session(n_turns: int = 200, jitter_sigma: float = 40.0,
                      buffer_ms: float = 93.0, rtf_mean: float = 0.6,
                      rtf_sigma: float = 0.25, seed: int = 7) -> Dict[str, float]:

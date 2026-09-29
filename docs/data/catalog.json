@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:59:57.679Z",
+  "generated": "2026-09-29T15:03:25.940Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 135,
+    "companyQuestions": 136,
     "companies": 9,
     "planned": 598
   },
@@ -8096,15 +8096,15 @@
       ]
     },
     {
-      "id": "company-cognition",
-      "name": "cognition",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "cognition",
+      "name": "Cognition（Devin、Windsurf）",
+      "group": "AI 原生产品公司",
+      "summary": "九道题覆盖 Cognition 的完整工作面：两篇「动手建」（八小时从零构建 coding agent、如何把第一轮的代码定位时间砍下来）、一篇立场辨析（反对与支持 multi-agent 如何调和）、三篇训练与基础设施（harness 里的端到端 RL、数千并发云端执行环境、云端异步与编辑器内的技术差异）、两篇把关（如何评估自主软件工程 agent、有写权限与 CI 凭证的威胁模型）、一篇客户交付（把 Devin 推广到两千人组织的九十天）。",
+      "updated": "2026-09-28",
       "dir": "cognition",
-      "overviewFile": null,
-      "overviewTitle": "cognition",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/cognition/README.md",
+      "overviewTitle": "Cognition（Devin、Windsurf）面试题库",
+      "declaredTotal": 9,
       "questions": [
         {
           "id": "cognition-01",
@@ -8156,7 +8156,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5778
+          "chars": 5778,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "cognition-02",
@@ -8208,7 +8210,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6125
+          "chars": 6125,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 2
         },
         {
           "id": "cognition-03",
@@ -8260,7 +8264,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5419
+          "chars": 5419,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 3
         },
         {
           "id": "cognition-04",
@@ -8312,7 +8318,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6039
+          "chars": 6039,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "cognition-05",
@@ -8365,7 +8373,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5560
+          "chars": 5560,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "cognition-06",
@@ -8417,7 +8427,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5851
+          "chars": 5851,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "cognition-07",
@@ -8469,7 +8481,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6338
+          "chars": 6338,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "cognition-08",
@@ -8521,7 +8535,63 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7142
+          "chars": 7142,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "cognition-09",
+          "order": 9,
+          "title": "作为 Deployed Engineer，你要把 Devin 推广到一家拥有两千名工程师的组织中。最初的九十天会是什么样的？",
+          "titleEn": "As a Deployed Engineer, you are rolling Devin out to an organisation with two thousand engineers. What do the first ninety days look like?",
+          "file": "公司题库/cognition/09-把-Devin-推广到两千人组织的九十天.md",
+          "level": "高阶",
+          "tags": [
+            "前置部署",
+            "九十天",
+            "采用漏斗",
+            "评审产能",
+            "变更管理"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "cognition-07",
+            "cognition-08",
+            "cognition-05",
+            "anthropic-32",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "在生产系统中如何让 agent 的操作可逆或至少可审计（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "客户从闭源 API 迁移到开源模型的交付（本仓库公司题库 · Together AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5658,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
         }
       ]
     },

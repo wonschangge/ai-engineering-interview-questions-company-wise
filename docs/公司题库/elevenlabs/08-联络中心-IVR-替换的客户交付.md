@@ -201,7 +201,7 @@ INTENTS = [
 ]
 def agent_containment(intents: List[Intent], efficiency: float = 1.0) -> float:
     return sum(i.share * i.auto_rate for i in intents) * efficiency
-print("\\n② 意图覆盖与 agent 承接率")
+print("\n② 意图覆盖与 agent 承接率")
 print(f"  {'意图':<26} {'话量占比':>8} {'可自动':>7} {'承接贡献':>9} {'需核验':>7}")
 for i in INTENTS:
     print(f"  {i.name:<26} {i.share:>8.0%} {i.auto_rate:>7.0%} "
@@ -247,7 +247,7 @@ def roi(containment: float, aht_reduction: float = 0.0,
             "ROI": net / cost if cost else 0.0,
             "回本(月)": platform.one_time / net if net > 0 else float("inf")}
 
-print("\\n③ ROI 三档（承接率假设不同）+ 人工 AHT 下降的附加收益")
+print("\n③ ROI 三档（承接率假设不同）+ 人工 AHT 下降的附加收益")
 print(f"  {'场景':<20} {'承接率':>7} {'人工节省':>11} {'月总成本':>10} "
       f"{'净节省':>11} {'ROI':>7} {'回本':>7}")
 SCENARIOS = [("保守（覆盖 Top3）", 0.46), ("目标（Top5+长尾）", 0.54),
@@ -262,7 +262,7 @@ print("  读法：**一次性投入必须计入分母**（否则 ROI 会被严�
 print("        平台成本覆盖所有进入 agent 的话量（含转人工的），且 ROI 给的是「净节省/总成本」；")
 print("        三档都必须为正、且回本周期可接受（例如 ≤ 6 个月）才签承诺")
 
-print("\\n④ 敏感性：承接率差 10 个百分点，ROI 会怎样？")
+print("\n④ 敏感性：承接率差 10 个百分点，ROI 会怎样？")
 print(f"  {'承接率':>7} {'增量':>7} {'净节省':>11} {'ROI':>7} {'回本':>7} {'结论':<10}")
 for c in (0.36, 0.40, 0.44, 0.48, 0.52, 0.56):
     r = roi(c, aht_reduction=0.08)
@@ -293,7 +293,7 @@ print("        本例：目标档 54% 下调 15 点后仍为 39%（高于基线 
 print("        但**保守档 46% 下调 15 点只有 31%，低于基线** ——所以保守档不能只靠承接率，")
 print("        必须把「转人工 AHT 下降」与「下班/溢出时段兜底」一起计入，否则不该签这个档位")
 
-print("\\n⑤ 分阶段放量门禁（每阶段可回退）")
+print("\n⑤ 分阶段放量门禁（每阶段可回退）")
 @dataclass
 class Phase:
     name: str
@@ -314,7 +314,7 @@ for p in PHASES:
 print("  kill criteria：连续两周 CSAT 下降 > 5 个点，或错误率 > 1% -> 回退到上一阶段")
 print("  读法：门禁要**可测、可回退、写进合同**；否则问题会一直拖到全量上线才暴露")
 
-print("\\n⑥ 交付时间线（10 周示例）")
+print("\n⑥ 交付时间线（10 周示例）")
 TIMELINE = [("第 1-2 周", "基线采集与话量分析、目标与门禁签约"),
             ("第 3-4 周", "意图设计、话术与降级路径、系统整合"),
             ("第 5 周", "P0 影子运行与校准"),

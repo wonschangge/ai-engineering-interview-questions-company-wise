@@ -218,7 +218,7 @@ for src, label in (("object", "对象存储 2 GB/s"), ("nvme", "本地 NVMe 5 GB
           f"= {load+init+warm:>6.1f}s")
 print("  读法：同一模型冷启动从 81 s 到 5.5 s 差 15 倍 —— 所以 SLO 必须按「命中哪一层」分别承诺")
 
-print("\\n② 预热池大小：需要多少热实例（或提前多久预载）")
+print("\n② 预热池大小：需要多少热实例（或提前多久预载）")
 def needed_hot(arrival_qps: float, load_s: float, target_cold_rate: float = 0.01) -> float:
     """简化：热实例数 ≈ 到达率 × 加载时间（Little 定律口径）"""
     return arrival_qps * load_s
@@ -230,7 +230,7 @@ for name, qps, src in (("7B", 2.0, "nvme"), ("13B", 0.8, "nvme"), ("70B", 0.2, "
 print("  读法：热实例数 ≈ 到达率 × 加载时间 —— 这就是「预热池规模」的定量依据；")
 print("        到达率低的大模型不值得常驻，改用「预测性预载」（按流量节律提前换入）")
 
-print("\\n③ 装箱效率（单卡 80 GB，多个小模型共卡）")
+print("\n③ 装箱效率（单卡 80 GB，多个小模型共卡）")
 def bin_pack(sizes: List[float], capacity: float = 80.0) -> List[List[float]]:
     """首次适配降序（FFD）：把模型按大小降序放进能装下的第一张卡"""
     bins: List[List[float]] = []
@@ -253,7 +253,7 @@ print(f"  每卡装载：{['+'.join(str(int(x)) for x in b) for b in bins[:6]]} 
 print("  读法：FFD（降序首次适配）在这种尺寸分布上碎片率很低（本例 2.5%）；")
 print("        碎片高就意味着「明明有空间却放不下新模型」——这是 serverless 常见的容量假象")
 
-print("\\n④ 分层放置的结果与成本（100 个模型，池子有限）")
+print("\n④ 分层放置的结果与成本（100 个模型，池子有限）")
 random.seed(7)
 models = [ModelSpec(f"m{i}", random.choice([1, 3, 7, 13, 34, 70]),
                     arrival_qps=random.choice([0.01, 0.05, 0.2, 1.0]))
@@ -268,7 +268,7 @@ cold_rate = cnt.get("cold", 0) / len(models)
 print(f"  需要冷启动（对象存储）的模型比例：{cold_rate:.0%}（这些请求的 TTFT 会显著变差）")
 print("  读法：分层放置的本质是「用常驻显存换冷启动率」——两者的取舍点就是成本与 SLO 的交点")
 
-print("\\n⑤ 成本摊分（serverless 单价的构成）")
+print("\n⑤ 成本摊分（serverless 单价的构成）")
 def unit_cost(hot_gpus: int, gpu_price: float = 2.0, hours: int = 720,
               loads_per_day: float = 50, load_gb: float = 30, load_bw: float = 5.0,
               frag: float = 0.12, overhead: float = 1.3) -> Dict[str, float]:

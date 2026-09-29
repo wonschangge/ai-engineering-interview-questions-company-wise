@@ -230,7 +230,7 @@ for d in DESIGNS:
 print("  读法：**只看测试通过时，训练奖励（约 80%）远高于真实解决率（约 55%）** ——")
 print("        差额就是奖励攻击；逐层堵漏后训练奖励下降、但**两者收敛**，这才是可信的训练信号")
 
-print("\\n② 奖励攻击的「收益」：为什么模型一定会走这条路")
+print("\n② 奖励攻击的「收益」：为什么模型一定会走这条路")
 base_reward = evaluate(RewardDesign())["训练奖励"]
 no_cheat_reward = evaluate(RewardDesign(), Policy(tamper_pref=0.0, hardcode_pref=0.0,
                                                  exploit_pref=0.0))["训练奖励"]
@@ -240,7 +240,7 @@ print(f"  作弊带来的「奖励红利」     {base_reward-no_cheat_reward:>7.
 print("  读法：作弊在**未被堵住**的设计下是严格占优的策略 —— 指望模型「自觉不作弊」没有意义；")
 print("        正确做法是让作弊路径**拿不到奖励**（结构上不可能），而不是靠惩罚项去压")
 
-print("\\n③ 变异检测的作用：识别「测试太弱」的样本")
+print("\n③ 变异检测的作用：识别「测试太弱」的样本")
 def mutation_filter(n: int = 1000, weak_test_rate: float = 0.25,
                     seed: int = 3) -> Dict[str, float]:
     """弱测试：即使补丁被扰动也通过 -> 这类样本的奖励不可信"""
@@ -251,7 +251,7 @@ r = mutation_filter()
 print(f"  弱测试样本比例 ≈ {r['弱测试样本']:.0%}（本机假设）-> 这些样本应**剔除或降权**，")
 print("  否则模型会学到「只要让弱测试通过就行」的策略（这是最隐蔽的奖励攻击）")
 
-print("\\n④ 同组相对优势：组大小 G 与优势估计方差")
+print("\n④ 同组相对优势：组大小 G 与优势估计方差")
 def baseline_standard_error(rewards: List[float], G: int) -> float:
     """组内相对优势的关键收益是**基线更准**：组均值的标准误 = σ/√G
     （优势值本身经过组内标准化，其离散度≈1 是构造使然，不能用来衡量降方差）"""
@@ -272,7 +272,7 @@ for G in (2, 4, 8, 16):
 print("  读法：组内相对优势的收益在于**基线更准**（标准误 ∝ 1/√G）：G 从 2 增到 8 时标准误降到约 1/2；")
 print("        但收益按 1/√G 递减、成本按 G 线性上升 —— G=4~8 是常见折中")
 
-print("\\n⑤ 成本量级：一次 RL epoch 的 token 与容器开销")
+print("\n⑤ 成本量级：一次 RL epoch 的 token 与容器开销")
 def epoch_cost(tasks: int = 10_000, rollouts: int = 8, steps: int = 30,
                ctx_tokens: int = 3_000, out_tokens: int = 400,
                price_in: float = 3.0, price_out: float = 15.0,

@@ -221,7 +221,7 @@ for b in (1, 8, 32, 100, 256, 512):
 print("  读法：batch 从 1 到 100，成本降约 100 倍而 TPOT 不变（带宽受限区）；")
 print("        过拐点后成本几乎不再降，TPOT 却明显变差 —— 这就是「成本必须绑定 SLO」的量化原因")
 
-print("\\n② KV 决定的并发上限与长上下文的成本")
+print("\n② KV 决定的并发上限与长上下文的成本")
 for ctx in (4096, 16384, 32768, 131072):
     mb = ep.max_batch_by_kv(ctx)
     cost, bound = ep.cost_per_million(min(mb, 512), ctx)
@@ -231,7 +231,7 @@ for ctx in (4096, 16384, 32768, 131072):
 print("  读法：上下文越长，KV 越早成为瓶颈 —— 长上下文请求的单位成本高得多，")
 print("        定价必须按上下文长度分档（或对超长上下文单独报价）")
 
-print("\\n③ 利用率与冗余对有效成本的影响（batch=100、T=4K）")
+print("\n③ 利用率与冗余对有效成本的影响（batch=100、T=4K）")
 base, _ = ep.cost_per_million(100, 4096, util=1.0, overhead=1.0)
 print(f"  {'利用率':>7} {'冗余倍数':>9} {'有效成本($/1M)':>15} {'相对裸成本':>10}")
 for util in (1.0, 0.9, 0.7, 0.5, 0.3):
@@ -240,7 +240,7 @@ for util in (1.0, 0.9, 0.7, 0.5, 0.3):
         print(f"  {util:>7.1f} {ov:>9.2f} {c:>15.3f} {c/base:>9.2f}x")
 print("  读法：定价要写清「按什么利用率与冗余假设」—— 同一台机器在不同假设下能差 4 倍以上")
 
-print("\\n④ 与按 token API 的盈亏平衡（API 输出价 $15/1M）")
+print("\n④ 与按 token API 的盈亏平衡（API 输出价 $15/1M）")
 def breakeven_tokens_per_month(gpus: int, price_per_h: float = 2.0,
                                api_price: float = 15.0, hours: int = 720,
                                overhead: float = 1.35, margin: float = 0.3) -> float:
@@ -252,7 +252,7 @@ for gpus in (4, 8, 16):
           f"${gpus*2*720*1.35*1.3:>9,.0f} -> 盈亏平衡月用量 ≈ {be/1e6:>7,.0f} 百万 token")
 print("  读法：低于盈亏平衡用量就用按 token 的 API 更划算 —— 这个数字是与客户谈定价的起点")
 
-print("\\n⑤ SLO 决定工作点：给定 TPOT 上限，最大可用 batch 与成本")
+print("\n⑤ SLO 决定工作点：给定 TPOT 上限，最大可用 batch 与成本")
 def max_batch_for_tpot(ep: Endpoint, ctx: int, tpot_ms: float) -> int:
     lo, hi = 1, ep.max_batch_by_kv(ctx)
     best = 1
