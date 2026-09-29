@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:37:15.813Z",
+  "generated": "2026-09-29T16:40:55.113Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 158,
+    "companyQuestions": 159,
     "companies": 12,
     "planned": 598
   },
@@ -11490,6 +11490,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5288
+        },
+        {
+          "id": "deepseek-04",
+          "order": 4,
+          "title": "用 PyTorch 实现带共享专家的 top-k MoE 路由，并指出其中在效率与正确性上的陷阱。",
+          "titleEn": "Implement top-k MoE routing with a shared expert in PyTorch, and point out the efficiency and correctness pitfalls.",
+          "file": "公司题库/deepseek/04-用-PyTorch-实现带共享专家的-top-k-MoE-路由.md",
+          "level": "高阶",
+          "tags": [
+            "MoE 实现",
+            "top-k 路由",
+            "共享专家",
+            "梯度正确性",
+            "分组 GEMM"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "deepseek-01",
+            "deepseek-02",
+            "deepseek-03",
+            "cohere-02",
+            "inference-serving-07"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2401.06066",
+              "author": "Dai et al. (DeepSeek-AI)",
+              "published": "2024-01-11"
+            },
+            {
+              "title": "Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism（延伸）",
+              "url": "https://arxiv.org/abs/1909.08053",
+              "author": "Shoeybi et al. (NVIDIA)",
+              "published": "2019-09-17"
+            },
+            {
+              "title": "无辅助损失的负载均衡（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7098
         }
       ]
     },
