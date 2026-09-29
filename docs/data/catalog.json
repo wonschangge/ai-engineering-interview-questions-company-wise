@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:41:33.740Z",
+  "generated": "2026-09-29T17:44:17.424Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 184,
+    "companyQuestions": 185,
     "companies": 14,
     "planned": 598
   },
@@ -15090,15 +15090,15 @@
       ]
     },
     {
-      "id": "company-xai",
-      "name": "xai",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "xai",
+      "name": "xAI",
+      "group": "前沿 AI 实验室",
+      "summary": "十道题横跨编码、训练工程、服务与系统设计——两道硬编码题（带嵌套事务的 KV 存储、不用生成器的惰性展平迭代器）、一道\"没有规格说明的桩方法\"的流程题、KV cache 与限流器的服务设计、数万卡 goodput 与 loss 尖峰排查的训练工程、流式去重的数据工程、社媒实时搜索的系统设计，以及一道\"四小时做演示\"的行为题。",
+      "updated": "2026-09-28",
       "dir": "xai",
-      "overviewFile": null,
-      "overviewTitle": "xai",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/xai/README.md",
+      "overviewTitle": "xAI 面试题库",
+      "declaredTotal": 10,
       "questions": [
         {
           "id": "xai-01",
@@ -15144,7 +15144,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5998
+          "chars": 5998,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "xai-02",
@@ -15190,12 +15192,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5973
+          "chars": 5973,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "xai-03",
           "order": 3,
-          "title": "这是一个小型 LLM 推理引擎里的调度器类。其中一个方法 `_admit_requests` 只是桩：没有规格说明、没有 docstring、没有测试。说说你最初三十分钟会怎么做。",
+          "title": "这是一个小型 LLM 推理引擎里的调度器类。其中一个方法 \\_admit_requests 只是桩：没有规格说明、没有 docstring、没有测试。说说你最初三十分钟会怎么做。",
           "titleEn": "This is the scheduler class in a small LLM inference engine. One method, `_admit_requests`, is just a stub: no spec, no docstring, no tests. What do you do in your first thirty minutes?",
           "file": "公司题库/xai/03-没有规格说明的调度器桩方法.md",
           "level": "高阶",
@@ -15242,7 +15246,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7049
+          "chars": 7049,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
         },
         {
           "id": "xai-04",
@@ -15294,7 +15300,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7304
+          "chars": 7304,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "xai-05",
@@ -15346,7 +15354,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7495
+          "chars": 7495,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 2
         },
         {
           "id": "xai-06",
@@ -15398,7 +15408,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7387
+          "chars": 7387,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "xai-07",
@@ -15450,7 +15462,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6969
+          "chars": 6969,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
         },
         {
           "id": "xai-08",
@@ -15502,7 +15516,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7491
+          "chars": 7491,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 3
         },
         {
           "id": "xai-09",
@@ -15554,7 +15570,57 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7184
+          "chars": 7184,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
+        },
+        {
+          "id": "xai-10",
+          "order": 10,
+          "title": "你有四个小时来构建并演示一个可用的 AI 产品。你会怎么分配这四小时？",
+          "titleEn": "You have four hours to build and demo a working AI product. How do you allocate the four hours?",
+          "file": "公司题库/xai/10-四小时构建并演示一个产品.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "演示工程",
+            "范围裁剪",
+            "兜底设计",
+            "时间分配"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "xai-09",
+            "xai-03",
+            "cohere-10",
+            "anthropic-34",
+            "databricks-06"
+          ],
+          "sources": [
+            {
+              "title": "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation（延伸）",
+              "url": "https://www.oreilly.com/library/view/continuous-delivery/9780321670250/",
+              "author": "Humble & Farley",
+              "published": "2010-07-27"
+            },
+            {
+              "title": "The Pragmatic Programmer: Your Journey to Mastery（延伸）",
+              "url": "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/",
+              "author": "Hunt & Thomas",
+              "published": "2019-09-13"
+            },
+            {
+              "title": "没有规格说明的调度器桩方法（本仓库公司题库 · xAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6297,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         }
       ]
     }
