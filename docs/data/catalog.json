@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T15:32:51.826Z",
+  "generated": "2026-09-29T15:37:15.812Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 145,
-    "companies": 10,
+    "companyQuestions": 146,
+    "companies": 11,
     "planned": 598
   },
   "topics": [
@@ -8592,6 +8592,71 @@
           "chars": 5658,
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-cohere",
+      "name": "cohere",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "cohere",
+      "overviewFile": null,
+      "overviewTitle": "cohere",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "cohere-01",
+          "order": 1,
+          "title": "为一个多租户 LLM API 设计基于 token 的限流器。先实现核心部分，然后告诉我改成分布式后会有哪些变化。",
+          "titleEn": "Design a token-based rate limiter for a multi-tenant LLM API. Implement the core first, then tell me what changes when it becomes distributed.",
+          "file": "公司题库/cohere/01-多租户-LLM-API-的-token-限流器.md",
+          "level": "高阶",
+          "tags": [
+            "限流",
+            "令牌桶",
+            "多租户",
+            "分布式一致性",
+            "滑窗"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "cohere-02",
+            "cohere-08",
+            "databricks-01",
+            "anthropic-17",
+            "databricks-07"
+          ],
+          "sources": [
+            {
+              "title": "Python 官方文档：threading — 基于线程的并行",
+              "url": "https://docs.python.org/3/library/threading.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "一个线程安全的批处理 logger（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "从 demo 到企业上线的检查清单（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5878
         }
       ]
     },
