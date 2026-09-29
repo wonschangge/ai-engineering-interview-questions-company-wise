@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:23:36.892Z",
+  "generated": "2026-09-29T17:25:51.668Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 176,
+    "companyQuestions": 177,
     "companies": 14,
     "planned": 598
   },
@@ -15145,6 +15145,52 @@
           ],
           "updated": "2026-09-28",
           "chars": 5998
+        },
+        {
+          "id": "xai-02",
+          "order": 2,
+          "title": "写一个迭代器类，惰性地展平任意嵌套的列表（列表里套列表或整数）：不能用生成器，状态必须显式维护。",
+          "titleEn": "Write an iterator class that lazily flattens an arbitrarily nested list of lists and integers, without generators, with state maintained explicitly.",
+          "file": "公司题库/xai/02-不用生成器的惰性展平迭代器.md",
+          "level": "高阶",
+          "tags": [
+            "迭代器",
+            "显式状态机",
+            "惰性求值",
+            "快照恢复",
+            "递归深度"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "xai-01",
+            "xai-03",
+            "coding-01",
+            "coding-06",
+            "coding-08"
+          ],
+          "sources": [
+            {
+              "title": "Iterator pattern（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Iterator_pattern",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Python Data Model: Iterator Types（延伸）",
+              "url": "https://docs.python.org/3/library/stdtypes.html#iterator-types",
+              "author": "Python Documentation",
+              "published": ""
+            },
+            {
+              "title": "带嵌套事务的内存 KV 存储（本仓库公司题库 · xAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5973
         }
       ]
     }
