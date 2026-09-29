@@ -4,7 +4,7 @@ id: cohere-07
 company: Cohere
 topic: agents
 order: 7
-question: 设计一个能自动化企业工作流的 agent，比如根据内部文档和 CRM 起草 RFP 回复。「企业级」还会额外要求什么？
+question: 设计一个能自动化企业工作流的 agent，比如根据内部文档和 CRM 起草 RFP 回复。“企业级”还会额外要求什么？
 question_en: Design an agent that automates an enterprise workflow, say drafting RFP responses from internal documents and the CRM. What does 「enterprise-grade」 add?
 asked_at: []
 level: 高阶

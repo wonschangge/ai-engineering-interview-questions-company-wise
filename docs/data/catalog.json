@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:58:18.435Z",
+  "generated": "2026-09-29T16:03:21.113Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 154,
+    "companyQuestions": 155,
     "companies": 11,
     "planned": 598
   },
@@ -8596,15 +8596,15 @@
       ]
     },
     {
-      "id": "company-cohere",
-      "name": "cohere",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "cohere",
+      "name": "Cohere",
+      "group": "前沿 AI 实验室",
+      "summary": "十道题覆盖 Cohere 的面试主线——检索与向量索引（两阶段检索、1 亿文档的索引成本与压缩、多语言评估、扩容后质量排查）、私有化与交付（稀疏 MoE 的取舍、银行气隙部署）、企业级能力（工作流 agent 的权限与审批、无标注数据下的评估），外加一道 token 限流器编程题与一道行为题。",
+      "updated": "2026-09-28",
       "dir": "cohere",
-      "overviewFile": null,
-      "overviewTitle": "cohere",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/cohere/README.md",
+      "overviewTitle": "Cohere 面试题库",
+      "declaredTotal": 10,
       "questions": [
         {
           "id": "cohere-01",
@@ -8656,7 +8656,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5878
+          "chars": 5878,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "cohere-02",
@@ -8709,7 +8711,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6579
+          "chars": 6579,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "cohere-03",
@@ -8761,7 +8765,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5682
+          "chars": 5682,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
         },
         {
           "id": "cohere-04",
@@ -8813,7 +8819,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5785
+          "chars": 5785,
+          "topicName": "RAG 与检索",
+          "topicOrder": 2
         },
         {
           "id": "cohere-05",
@@ -8865,12 +8873,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6045
+          "chars": 6045,
+          "topicName": "RAG 与检索",
+          "topicOrder": 3
         },
         {
           "id": "cohere-06",
           "order": 6,
-          "title": "某个客户的索引文档量变成了原来的 10 倍，并反馈回答质量「明显变差了」。请主导这次排查。",
+          "title": "某个客户的索引文档量变成了原来的 10 倍，并反馈回答质量“明显变差了”。请主导这次排查。",
           "titleEn": "A customer's index grew tenfold and they report the answers got noticeably worse. Lead the investigation.",
           "file": "公司题库/cohere/06-索引扩大-10-倍后回答质量变差的排查.md",
           "level": "高阶",
@@ -8917,12 +8927,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6091
+          "chars": 6091,
+          "topicName": "RAG 与检索",
+          "topicOrder": 4
         },
         {
           "id": "cohere-07",
           "order": 7,
-          "title": "设计一个能自动化企业工作流的 agent，比如根据内部文档和 CRM 起草 RFP 回复。「企业级」还会额外要求什么？",
+          "title": "设计一个能自动化企业工作流的 agent，比如根据内部文档和 CRM 起草 RFP 回复。“企业级”还会额外要求什么？",
           "titleEn": "Design an agent that automates an enterprise workflow, say drafting RFP responses from internal documents and the CRM. What does 「enterprise-grade」 add?",
           "file": "公司题库/cohere/07-企业工作流-agent-的企业级要求.md",
           "level": "高阶",
@@ -8969,7 +8981,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5467
+          "chars": 5467,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "cohere-08",
@@ -9021,7 +9035,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5746
+          "chars": 5746,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "cohere-09",
@@ -9073,7 +9089,57 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6062
+          "chars": 6062,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
+        },
+        {
+          "id": "cohere-10",
+          "order": 10,
+          "title": "讲讲你曾在缺少明确指导的情况下，端到端负责一个模糊问题的经历。",
+          "titleEn": "Tell me about a time you owned an ambiguous problem end to end with little clear guidance.",
+          "file": "公司题库/cohere/10-缺少明确指导下的端到端负责经历.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "模糊问题",
+            "端到端负责",
+            "期望值",
+            "决策权"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "cohere-07",
+            "cohere-06",
+            "databricks-07",
+            "evaluation-05",
+            "databricks-09"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "从 demo 到企业上线的检查清单（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "企业工作流 agent 的企业级要求（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6886,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         }
       ]
     },
