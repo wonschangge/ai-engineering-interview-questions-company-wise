@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T14:40:09.230Z",
+  "generated": "2026-09-29T14:46:35.594Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 127,
-    "companies": 8,
+    "companyQuestions": 129,
+    "companies": 9,
     "planned": 598
   },
   "topics": [
@@ -8092,6 +8092,123 @@
           "chars": 5633,
           "topicName": "行为与文化",
           "topicOrder": 4
+        }
+      ]
+    },
+    {
+      "id": "company-cognition",
+      "name": "cognition",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "cognition",
+      "overviewFile": null,
+      "overviewTitle": "cognition",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "cognition-01",
+          "order": 1,
+          "title": "你有八个小时从零构建一个 coding agent。请描述你会构建什么，更重要的是，你会砍掉什么。",
+          "titleEn": "You have eight hours to build a coding agent from scratch. Describe what you would build, and more importantly, what you would cut.",
+          "file": "公司题库/cognition/01-八小时从零构建一个-coding-agent.md",
+          "level": "高阶",
+          "tags": [
+            "coding-agent",
+            "八小时构建",
+            "上下文工程",
+            "工具集",
+            "砍需求"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "cognition-02",
+            "cognition-03",
+            "cognition-07",
+            "agents-09",
+            "agents-07"
+          ],
+          "sources": [
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "Multi-Agents: What's Actually Working（Cognition 博客）",
+              "url": "https://cognition.ai/blog/multi-agents-working",
+              "author": "Walden Yan (Cognition)",
+              "published": "2026-04-22"
+            },
+            {
+              "title": "解释 ReAct 模式以及它相比 chain-of-thought 解决了什么（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5778
+        },
+        {
+          "id": "cognition-02",
+          "order": 2,
+          "title": "Cognition 曾发表文章反对 multi-agent 系统，后来又发表了真正行之有效的做法。请调和这两种立场。",
+          "titleEn": "Cognition published a piece arguing against multi-agent systems, then later published what actually works. Reconcile the two positions.",
+          "file": "公司题库/cognition/02-调和反对与支持-multi-agent-的两种立场.md",
+          "level": "高阶",
+          "tags": [
+            "multi-agent",
+            "上下文工程",
+            "单线程写入",
+            "只读扇出",
+            "立场演变"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "cognition-01",
+            "cognition-05",
+            "cognition-09",
+            "agents-06",
+            "anthropic-19"
+          ],
+          "sources": [
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "Multi-Agents: What's Actually Working（Cognition 博客）",
+              "url": "https://cognition.ai/blog/multi-agents-working",
+              "author": "Walden Yan (Cognition)",
+              "published": "2026-04-22"
+            },
+            {
+              "title": "多 agent 编排如何运作？什么情况下会失效（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "Don't Build Multi-Agents 与后续实践（本仓库公司题库 · Anthropic 篇的相关题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6125
         }
       ]
     },
