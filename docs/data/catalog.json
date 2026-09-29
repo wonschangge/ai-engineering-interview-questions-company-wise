@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:50:33.034Z",
+  "generated": "2026-09-29T16:52:11.469Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 163,
+    "companyQuestions": 164,
     "companies": 12,
     "planned": 598
   },
@@ -11751,6 +11751,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5527
+        },
+        {
+          "id": "deepseek-09",
+          "order": 9,
+          "title": "DualPipe 在训练中让计算与通信重叠。为什么在这个规模下这种重叠是决定性的，代价又是什么？",
+          "titleEn": "DualPipe overlaps computation and communication during training. Why is that overlap decisive at this scale, and what does it cost?",
+          "file": "公司题库/deepseek/09-DualPipe-的计算通信重叠.md",
+          "level": "高阶",
+          "tags": [
+            "DualPipe",
+            "流水线并行",
+            "气泡",
+            "all-to-all 重叠",
+            "训练吞吐"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "deepseek-05",
+            "deepseek-07",
+            "deepseek-01",
+            "cohere-02",
+            "inference-serving-07"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "PipeDream: Fast and Efficient Pipeline Parallel DNN Training（延伸）",
+              "url": "https://arxiv.org/abs/1806.00187",
+              "author": "Harlap et al.",
+              "published": "2018-06-01"
+            },
+            {
+              "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM（延伸）",
+              "url": "https://arxiv.org/abs/2104.04473",
+              "author": "Narayanan et al. (NVIDIA)",
+              "published": "2021-04-09"
+            },
+            {
+              "title": "显存受限下低延迟服务 671B MoE（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5673
         }
       ]
     },
