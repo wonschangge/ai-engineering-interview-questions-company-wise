@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:52:52.567Z",
+  "generated": "2026-09-29T14:55:32.598Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 132,
+    "companyQuestions": 133,
     "companies": 9,
     "planned": 598
   },
@@ -8366,6 +8366,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5560
+        },
+        {
+          "id": "cognition-06",
+          "order": 6,
+          "title": "Devin 在云端异步运行；Windsurf 的 Cascade 在用户身边的编辑器里运行。从技术角度看，这两个产品真正的差异究竟在哪里？",
+          "titleEn": "Devin runs asynchronously in the cloud; Windsurf's Cascade runs in the editor next to the user. Technically, what is the real difference between these two products?",
+          "file": "公司题库/cognition/06-云端异步与编辑器内的技术差异.md",
+          "level": "高阶",
+          "tags": [
+            "云端-agent",
+            "编辑器内-agent",
+            "状态权威性",
+            "陈旧与冲突",
+            "延迟与交互"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cognition-05",
+            "cognition-07",
+            "cognition-02",
+            "agents-07",
+            "agents-09"
+          ],
+          "sources": [
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "为长时间运行的 agent 设计记忆（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为数千个并发的云端 coding agent 设计执行环境（本仓库公司题库 · Cognition 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "什么能让 agent 循环正确终止以及如何限制成本与步数（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5851
         }
       ]
     },
