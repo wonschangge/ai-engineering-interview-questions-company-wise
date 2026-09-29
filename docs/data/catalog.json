@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:40:58.070Z",
+  "generated": "2026-09-29T18:42:20.655Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 215,
+    "companyQuestions": 216,
     "companies": 16,
     "planned": 598
   },
@@ -16311,6 +16311,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 8484
+        },
+        {
+          "id": "openai-21",
+          "order": 21,
+          "title": "客户说\"模型变差了\"。你怎么排查？",
+          "titleEn": "A customer says \"the model got worse.\" How do you investigate?",
+          "file": "公司题库/openai/21-客户说模型变差了.md",
+          "level": "进阶",
+          "tags": [
+            "回归排查",
+            "显著性",
+            "流量构成",
+            "多重比较",
+            "变更面"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "openai-10",
+            "openai-22",
+            "evaluation-01",
+            "evaluation-04",
+            "microsoft-09"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "On Calibration of Modern Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1706.04599",
+              "author": "Guo et al.",
+              "published": "2017-06-14"
+            },
+            {
+              "title": "Hidden Technical Debt in Machine Learning Systems（延伸）",
+              "url": "https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems",
+              "author": "Sculley et al. (Google)",
+              "published": "2015-12-07"
+            },
+            {
+              "title": "两个模型怎么选（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7014
         }
       ]
     },
