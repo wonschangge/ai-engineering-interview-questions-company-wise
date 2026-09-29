@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:44:59.096Z",
+  "generated": "2026-09-29T21:48:16.704Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 335,
+    "companyQuestions": 338,
     "companies": 24,
     "planned": 598
   },
@@ -22268,6 +22268,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4470
+        },
+        {
+          "id": "sierra-04",
+          "order": 4,
+          "title": "LLM 是非确定性的，但超过 $200 的退款绝不能自动批准。prompting 与代码之间的界线在哪里？",
+          "titleEn": "LLMs are non-deterministic, but a refund over $200 must never be auto-approved. Where is the line between prompting and code?",
+          "file": "公司题库/sierra/04-prompting-与代码的界线.md",
+          "level": "高阶",
+          "tags": [
+            "prompt vs 代码",
+            "硬约束",
+            "可审计",
+            "人工队列",
+            "版本化"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "sierra-03",
+            "sierra-05",
+            "sierra-08",
+            "sierra-09",
+            "scale-04"
+          ],
+          "sources": [
+            {
+              "title": "Twelve-Factor App（延伸）",
+              "url": "https://12factor.net/",
+              "author": "Adam Wiggins",
+              "published": "2011-01-01"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "Google SRE Book: Release Engineering（延伸）",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4509
+        },
+        {
+          "id": "sierra-05",
+          "order": 5,
+          "title": "为客服 agent 设计人工转接路径。它应该在什么时候升级，一次好的转接又该是什么样？",
+          "titleEn": "Design the human handoff path for a support agent. When should it escalate, and what does a good handoff look like?",
+          "file": "公司题库/sierra/05-人工转接路径的设计.md",
+          "level": "高阶",
+          "tags": [
+            "人工转接",
+            "升级判据",
+            "队列拥塞",
+            "结构化摘要",
+            "重复陈述率"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "sierra-02",
+            "sierra-04",
+            "sierra-07",
+            "palantir-19",
+            "groq-08"
+          ],
+          "sources": [
+            {
+              "title": "The Trusted Advisor（延伸）",
+              "url": "https://www.simonandschuster.com/books/The-Trusted-Advisor/David-H-Maister/9780743212342",
+              "author": "Maister, Green & Galford",
+              "published": "2000-09-18"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4491
+        },
+        {
+          "id": "sierra-06",
+          "order": 6,
+          "title": "可能的对话空间实际上是无限的。你如何在发布前评估一个对话式 agent？",
+          "titleEn": "The space of possible conversations is effectively infinite. How do you evaluate a conversational agent before release?",
+          "file": "公司题库/sierra/06-发布前如何评估对话式-agent.md",
+          "level": "高阶",
+          "tags": [
+            "对话评估",
+            "路径爆炸",
+            "分层采样",
+            "五层评测",
+            "发布门槛"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "sierra-01",
+            "sierra-05",
+            "sierra-07",
+            "sierra-08",
+            "scale-06"
+          ],
+          "sources": [
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al.",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "HELM: Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford CRFM)",
+              "published": "2022-11-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4506
         }
       ]
     },
