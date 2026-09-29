@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:01:34.717Z",
+  "generated": "2026-09-29T21:05:11.841Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 302,
+    "companyQuestions": 305,
     "companies": 21,
     "planned": 598
   },
@@ -13670,6 +13670,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5227
+        },
+        {
+          "id": "groq-07",
+          "order": 7,
+          "title": "在 GPU 上你会用 batching 来摊薄权重读取。在纯 SRAM 机器上，batching 这笔账该怎么算？它又应该如何改变我们的定价方式？",
+          "titleEn": "On a GPU you use batching to amortise weight reads. On a pure-SRAM machine, how does that arithmetic change? And how should it change your pricing?",
+          "file": "公司题库/groq/07-纯-SRAM-上的-batching-与定价.md",
+          "level": "高阶",
+          "tags": [
+            "batching",
+            "权重常驻",
+            "定价",
+            "利用率",
+            "每百万 token"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "groq-06",
+            "groq-08",
+            "groq-05",
+            "nvidia-08",
+            "perplexity-08"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (UC Berkeley)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5224
+        },
+        {
+          "id": "groq-08",
+          "order": 8,
+          "title": "确定性是主打卖点。它在 p99 上究竟带来了什么实际收益？为什么它对 agentic 负载尤其重要？",
+          "titleEn": "Determinism is the headline feature. What does it actually buy on p99, and why does it matter especially for agentic workloads?",
+          "file": "公司题库/groq/08-确定性的-p99-收益与-agentic.md",
+          "level": "高阶",
+          "tags": [
+            "确定性",
+            "p99",
+            "尾部",
+            "agentic",
+            "超时概率"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "groq-07",
+            "groq-04",
+            "groq-05",
+            "perplexity-12",
+            "openai-22"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Google SRE Book: Addressing Cascading Failures（延伸）",
+              "url": "https://sre.google/sre-book/addressing-cascading-failures/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5252
+        },
+        {
+          "id": "groq-09",
+          "order": 9,
+          "title": "当专家选择依赖数据时，你如何在静态调度的 fabric 上服务一个大型 mixture-of-experts 模型？",
+          "titleEn": "When expert selection is data-dependent, how do you serve a large mixture-of-experts model on a statically scheduled fabric?",
+          "file": "公司题库/groq/09-静态-fabric-上的-MoE.md",
+          "level": "高阶",
+          "tags": [
+            "MoE",
+            "专家并行",
+            "负载不均",
+            "槽位分配",
+            "静态调度"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "groq-02",
+            "groq-06",
+            "groq-10",
+            "nvidia-10",
+            "system-design-07"
+          ],
+          "sources": [
+            {
+              "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity（延伸）",
+              "url": "https://arxiv.org/abs/2101.03961",
+              "author": "Fedus, Zoph & Shazeer (Google)",
+              "published": "2021-01-11"
+            },
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts（延伸）",
+              "url": "https://arxiv.org/abs/2211.15841",
+              "author": "Gale et al.",
+              "published": "2022-11-29"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4988
         }
       ]
     },
