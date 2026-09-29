@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:11:17.312Z",
+  "generated": "2026-09-29T18:12:59.857Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 197,
+    "companyQuestions": 198,
     "companies": 16,
     "planned": 598
   },
@@ -15375,6 +15375,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7120
+        },
+        {
+          "id": "openai-03",
+          "order": 3,
+          "title": "用 Go 编写一个简单的 web 爬虫。",
+          "titleEn": "Write a simple web crawler in Go.",
+          "file": "公司题库/openai/03-用-Go-写一个简单的-web-爬虫.md",
+          "level": "高阶",
+          "tags": [
+            "Go 并发",
+            "worker 池",
+            "礼貌限速",
+            "URL 去重",
+            "背压"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "openai-02",
+            "openai-18",
+            "coding-10",
+            "coding-11",
+            "coding-12"
+          ],
+          "sources": [
+            {
+              "title": "The Go Programming Language Specification（延伸）",
+              "url": "https://go.dev/ref/spec",
+              "author": "The Go Authors",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "Go Concurrency Patterns: Pipelines and Cancellation（延伸）",
+              "url": "https://go.dev/blog/pipelines",
+              "author": "Sameer Ajmani (Google)",
+              "published": "2014-03-13"
+            },
+            {
+              "title": "Robots Exclusion Protocol（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc9309.html",
+              "author": "Koster et al. (IETF)",
+              "published": "2022-09-01"
+            },
+            {
+              "title": "一步步实现一个 ORM（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7521
         }
       ]
     },
