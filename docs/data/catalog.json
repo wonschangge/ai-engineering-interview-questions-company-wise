@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:30:14.013Z",
+  "generated": "2026-09-29T13:35:40.922Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 100,
+    "companyQuestions": 103,
     "companies": 6,
     "planned": 598
   },
@@ -7401,6 +7401,162 @@
           ],
           "updated": "2026-09-28",
           "chars": 6501
+        },
+        {
+          "id": "anthropic-26",
+          "order": 26,
+          "title": "设计一个文件共享/分发系统。",
+          "titleEn": "Design a file-sharing / distribution system.",
+          "file": "公司题库/anthropic/26-设计文件共享与分发系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "对象存储",
+            "去重",
+            "权限模型",
+            "增量同步"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "anthropic-22",
+            "anthropic-24",
+            "anthropic-25",
+            "anthropic-17",
+            "system-design-10"
+          ],
+          "sources": [
+            {
+              "title": "RFC 9110：HTTP Semantics（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "author": "IETF (Fielding, Nottingham, Reschke)",
+              "published": "2022-06"
+            },
+            {
+              "title": "AIP-158：Pagination（Google API 改进提案）（延伸）",
+              "url": "https://google.aip.dev/158",
+              "author": "Google",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5490
+        },
+        {
+          "id": "anthropic-27",
+          "order": 27,
+          "title": "你会如何设计一个实验，来检验大语言模型中某种特定的涌现能力或偏见？",
+          "titleEn": "How would you design an experiment to test for a specific emergent capability or bias in a large language model?",
+          "file": "公司题库/anthropic/27-设计检验涌现能力或偏见的实验.md",
+          "level": "高阶",
+          "tags": [
+            "实验设计",
+            "涌现能力",
+            "偏见测量",
+            "统计功效",
+            "污染控制"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "evaluation-04",
+            "evaluation-06",
+            "anthropic-21",
+            "safety-10",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "Are Emergent Abilities of Large Language Models a Mirage?（延伸）",
+              "url": "https://arxiv.org/abs/2304.15004",
+              "author": "Schaeffer, Miranda, Koyejo (NeurIPS 2023)",
+              "published": "2023-04-28"
+            },
+            {
+              "title": "Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models（BIG-bench）（延伸）",
+              "url": "https://arxiv.org/abs/2206.04615",
+              "author": "Srivastava et al.",
+              "published": "2022-06-09"
+            },
+            {
+              "title": "Scaling Laws for Neural Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2001.08361",
+              "author": "Kaplan et al. (OpenAI)",
+              "published": "2020-01-23"
+            },
+            {
+              "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2406.19314",
+              "author": "White et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5240
+        },
+        {
+          "id": "anthropic-28",
+          "order": 28,
+          "title": "你的 agent 会读取收到的邮件，并且能够发送回复、搜索内部文档。请讲一讲 prompt injection 的攻击面和你的防御措施。",
+          "titleEn": "Your agent reads inbound email and can send replies and search internal docs. Walk me through the prompt-injection attack surface and your defences.",
+          "file": "公司题库/anthropic/28-邮件-agent-的-prompt-injection-攻防.md",
+          "level": "高阶",
+          "tags": [
+            "prompt-injection",
+            "agent-安全",
+            "最小权限",
+            "出网控制",
+            "人工审批"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "safety-01",
+            "safety-03",
+            "agents-11",
+            "anthropic-19",
+            "anthropic-18"
+          ],
+          "sources": [
+            {
+              "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）",
+              "url": "https://arxiv.org/abs/2302.12173",
+              "author": "Greshake et al.",
+              "published": "2023-02-23"
+            },
+            {
+              "title": "Defeating Prompt Injections by Design（CaMeL）（延伸）",
+              "url": "https://arxiv.org/abs/2503.18813",
+              "author": "Debenedetti et al.",
+              "published": "2025-03-24"
+            },
+            {
+              "title": "Prompt Injection in LLMs",
+              "url": "https://outcomeschool.com/blog/prompt-injection-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "什么是 prompt injection 以及分层防御",
+              "url": "https://outcomeschool.com/blog/what-is-prompt-injection",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6804
         }
       ]
     },
