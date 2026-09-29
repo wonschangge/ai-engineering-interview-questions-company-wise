@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:37:08.405Z",
+  "generated": "2026-09-29T19:40:18.876Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 240,
+    "companyQuestions": 243,
     "companies": 17,
     "planned": 598
   },
@@ -12969,6 +12969,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5938
+        },
+        {
+          "id": "gdm-15",
+          "order": 15,
+          "title": "为服务数亿用户的多模态助手（输入文本 + 图像，输出流式文本）设计服务系统。",
+          "titleEn": "Design a serving system for a multimodal assistant with hundreds of millions of users: text plus image input, streaming text output.",
+          "file": "公司题库/google-deepmind/15-多模态助手服务系统.md",
+          "level": "高阶",
+          "tags": [
+            "多模态服务",
+            "图像 token",
+            "容量规划",
+            "流式输出",
+            "TTFT"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "openai-17",
+            "system-design-04",
+            "inference-serving-03",
+            "llm-internals-01",
+            "moonshot-04"
+          ],
+          "sources": [
+            {
+              "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale（延伸）",
+              "url": "https://arxiv.org/abs/2010.11929",
+              "author": "Dosovitskiy et al. (Google)",
+              "published": "2020-10-22"
+            },
+            {
+              "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM（延伸）",
+              "url": "https://arxiv.org/abs/2104.04473",
+              "author": "Narayanan et al. (NVIDIA)",
+              "published": "2021-04-09"
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al.",
+              "published": "2024-01-23"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6093
+        },
+        {
+          "id": "gdm-16",
+          "order": 16,
+          "title": "使用人口统计信息、房源元数据、配套设施、价格、评论和位置，为租房房源设计个性化推荐系统。",
+          "titleEn": "Design a personalized recommendation system for rental listings using demographics, listing metadata, amenities, price, reviews and location.",
+          "file": "公司题库/google-deepmind/16-租房推荐系统.md",
+          "level": "高阶",
+          "tags": [
+            "推荐系统",
+            "双塔召回",
+            "冷启动",
+            "地理过滤",
+            "漏斗上限"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "gdm-15",
+            "rag-02",
+            "evaluation-01",
+            "coding-26",
+            "applied-02"
+          ],
+          "sources": [
+            {
+              "title": "Sampling-Based Approximations to Matrix Multiplication（延伸）",
+              "url": "https://arxiv.org/abs/1607.06450",
+              "author": "Drineas & Mahoney",
+              "published": "2016-07-21"
+            },
+            {
+              "title": "Deep Neural Networks for YouTube Recommendations（延伸）",
+              "url": "https://research.google/pubs/pub45530/",
+              "author": "Covington, Adams & Sargin (Google)",
+              "published": "2016-09-15"
+            },
+            {
+              "title": "Practical Lessons from Predicting Clicks on Ads at Facebook（延伸）",
+              "url": "https://research.facebook.com/publications/practical-lessons-from-predicting-clicks-on-ads-at-facebook/",
+              "author": "He et al. (Facebook)",
+              "published": "2014-08-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5119
+        },
+        {
+          "id": "gdm-17",
+          "order": 17,
+          "title": "设计一个分类器，预测在视频中插入广告时段的最佳时机。",
+          "titleEn": "Design a classifier that predicts the best moment to insert an ad break in a video.",
+          "file": "公司题库/google-deepmind/17-视频广告时段分类器.md",
+          "level": "高阶",
+          "tags": [
+            "标签定义",
+            "反事实",
+            "类别不平衡",
+            "时间容差",
+            "离线在线差距"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "gdm-16",
+            "gdm-12",
+            "evaluation-01",
+            "evaluation-06",
+            "applied-02"
+          ],
+          "sources": [
+            {
+              "title": "To Explain or to Predict?（延伸）",
+              "url": "https://projecteuclid.org/journals/statistical-science/volume-25/issue-3/To-Explain-or-to-Predict/10.1214/10-STS330.full",
+              "author": "Galit Shmueli",
+              "published": "2010-08-01"
+            },
+            {
+              "title": "The Case for Learned Index Structures（延伸）",
+              "url": "https://arxiv.org/abs/1712.01208",
+              "author": "Kraska et al. (Google)",
+              "published": "2017-12-04"
+            },
+            {
+              "title": "Practical Lessons from Predicting Clicks on Ads at Facebook（延伸）",
+              "url": "https://research.facebook.com/publications/practical-lessons-from-predicting-clicks-on-ads-at-facebook/",
+              "author": "He et al. (Facebook)",
+              "published": "2014-08-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5549
         }
       ]
     },
