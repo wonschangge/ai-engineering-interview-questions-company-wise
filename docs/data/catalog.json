@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:01:59.482Z",
+  "generated": "2026-09-29T17:03:40.665Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 168,
+    "companyQuestions": 169,
     "companies": 13,
     "planned": 598
   },
@@ -14321,6 +14321,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6955
+        },
+        {
+          "id": "moonshot-04",
+          "order": 4,
+          "title": "如何把一个在 8K–32K 上训练的模型变得能支持 128K 甚至更长？",
+          "titleEn": "How do you take a model trained at 8K-32K and make it support 128K or more?",
+          "file": "公司题库/moonshot/04-把-8K-32K-模型扩到-128K.md",
+          "level": "高阶",
+          "tags": [
+            "RoPE",
+            "位置插值",
+            "NTK",
+            "YaRN",
+            "长上下文继续预训练"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "moonshot-01",
+            "moonshot-02",
+            "moonshot-03",
+            "llm-internals-05",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "YaRN: Efficient Context Window Extension of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2309.00071",
+              "author": "Peng et al.",
+              "published": "2023-08-31"
+            },
+            {
+              "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding（延伸）",
+              "url": "https://arxiv.org/abs/2104.09864",
+              "author": "Su et al.",
+              "published": "2021-04-20"
+            },
+            {
+              "title": "Extending Context Window of Large Language Models via Positional Interpolation（延伸）",
+              "url": "https://arxiv.org/abs/2306.15595",
+              "author": "Chen et al. (Meta)",
+              "published": "2023-06-28"
+            },
+            {
+              "title": "上下文从 8K 推到几十万时最先崩什么（本仓库公司题库 · Moonshot AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6916
         }
       ]
     },
