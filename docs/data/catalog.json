@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T21:40:09.746Z",
+  "generated": "2026-09-29T21:44:59.096Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 332,
-    "companies": 23,
+    "companyQuestions": 335,
+    "companies": 24,
     "planned": 598
   },
   "topics": [
@@ -22117,6 +22117,157 @@
           "chars": 5057,
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-sierra",
+      "name": "sierra",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "sierra",
+      "overviewFile": null,
+      "overviewTitle": "sierra",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "sierra-01",
+          "order": 1,
+          "title": "你接手了一个陌生的小型 agent 代码库。用户反馈它有时会确认一笔实际从未下单的订单。你会如何调试？",
+          "titleEn": "You inherit an unfamiliar small agent codebase. Users report it sometimes confirms an order that was never actually placed. How do you debug it?",
+          "file": "公司题库/sierra/01-调试陌生-agent-的假订单确认.md",
+          "level": "高阶",
+          "tags": [
+            "agent 调试",
+            "轨迹分析",
+            "幻觉确认",
+            "fail closed",
+            "幂等"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "sierra-04",
+            "sierra-07",
+            "sierra-09",
+            "scale-10",
+            "palantir-06"
+          ],
+          "sources": [
+            {
+              "title": "Debugging: The 9 Indispensable Rules（延伸）",
+              "url": "https://www.oreilly.com/library/view/debugging/9781449328276/",
+              "author": "David J. Agans",
+              "published": "2002-01-01"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4525
+        },
+        {
+          "id": "sierra-02",
+          "order": 2,
+          "title": "这个 agent 基于客户的知识库作答，而知识库中存在过期且相互矛盾的文章。你如何避免它自信地给出错误答案？",
+          "titleEn": "This agent answers from the customer's knowledge base, which contains stale and mutually contradictory articles. How do you stop it from answering confidently and wrongly?",
+          "file": "公司题库/sierra/02-过期与矛盾的知识库.md",
+          "level": "高阶",
+          "tags": [
+            "过期文档",
+            "取代检测",
+            "矛盾检测",
+            "弃答",
+            "上游治理"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "sierra-01",
+            "sierra-05",
+            "sierra-07",
+            "perplexity-02",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook AI)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al.",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Measuring and Mitigating Duplicate Detection（延伸）",
+              "url": "http://www.mmds.org/",
+              "author": "Leskovec, Rajaraman & Ullman",
+              "published": "2014-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4458
+        },
+        {
+          "id": "sierra-03",
+          "order": 3,
+          "title": "为一家航空公司设计一个面向客户的 agent，它能够取消并改签航班。你如何防止它违反票价政策？",
+          "titleEn": "Design a customer-facing agent for an airline that can cancel and rebook flights. How do you prevent it from violating fare rules?",
+          "file": "公司题库/sierra/03-航空公司的票价政策防护.md",
+          "level": "高阶",
+          "tags": [
+            "票价政策",
+            "策略引擎",
+            "prompt vs 代码",
+            "例外通道",
+            "五道防线"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "sierra-01",
+            "sierra-04",
+            "sierra-05",
+            "sierra-09",
+            "agents-05"
+          ],
+          "sources": [
+            {
+              "title": "Twelve-Factor App（延伸）",
+              "url": "https://12factor.net/",
+              "author": "Adam Wiggins",
+              "published": "2011-01-01"
+            },
+            {
+              "title": "Google SRE Book: Release Engineering（延伸）",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4470
         }
       ]
     },
