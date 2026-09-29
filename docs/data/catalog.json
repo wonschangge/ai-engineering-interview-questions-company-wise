@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:10:05.435Z",
+  "generated": "2026-09-29T14:15:00.953Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 116,
+    "companyQuestions": 118,
     "companies": 7,
     "planned": 598
   },
@@ -11839,6 +11839,105 @@
           ],
           "updated": "2026-09-28",
           "chars": 6108
+        },
+        {
+          "id": "together-05",
+          "order": 5,
+          "title": "客户在你的 GPU 集群上运行的分布式训练任务，在 64 节点时只有 55% 的扩展效率。请排查。",
+          "titleEn": "A customer's distributed training job on your GPU cluster only reaches 55% scaling efficiency at 64 nodes. Debug it.",
+          "file": "公司题库/together/05-64-节点训练只有-55-扩展效率的排查.md",
+          "level": "高阶",
+          "tags": [
+            "分布式训练",
+            "扩展效率",
+            "通信开销",
+            "流水线气泡",
+            "故障排查"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "inference-serving-07",
+            "together-04",
+            "together-06",
+            "inference-serving-08",
+            "llm-internals-03"
+          ],
+          "sources": [
+            {
+              "title": "Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism（延伸）",
+              "url": "https://arxiv.org/abs/1909.08053",
+              "author": "Shoeybi et al. (NVIDIA)",
+              "published": "2019-09-17"
+            },
+            {
+              "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）",
+              "url": "https://arxiv.org/abs/1910.02054",
+              "author": "Rajbhandari et al. (Microsoft)",
+              "published": "2019-10-13"
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6358
+        },
+        {
+          "id": "together-06",
+          "order": 6,
+          "title": "设计一个 serverless 推理平台，在共享的 GPU 资源池上服务 100 多个开源模型。",
+          "titleEn": "Design a serverless inference platform serving 100+ open models on a shared GPU pool.",
+          "file": "公司题库/together/06-在共享-GPU-池上服务-100-多个模型的-serverless-平台.md",
+          "level": "高阶",
+          "tags": [
+            "serverless",
+            "多模型服务",
+            "GPU-池化",
+            "冷启动",
+            "多租户",
+            "装箱"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "together-04",
+            "together-05",
+            "together-07",
+            "anthropic-17",
+            "inference-serving-11"
+          ],
+          "sources": [
+            {
+              "title": "LLM 推理优化",
+              "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2407.00079",
+              "author": "Moonshot AI",
+              "published": "2024-06-24"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5796
         }
       ]
     }
