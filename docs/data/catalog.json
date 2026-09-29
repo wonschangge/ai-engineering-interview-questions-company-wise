@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:57:43.978Z",
+  "generated": "2026-09-29T14:59:57.679Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 134,
+    "companyQuestions": 135,
     "companies": 9,
     "planned": 598
   },
@@ -8470,6 +8470,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6338
+        },
+        {
+          "id": "cognition-08",
+          "order": 8,
+          "title": "一个自主 agent 拥有对客户仓库的写权限、CI 凭证以及网络访问权限。你的威胁模型是什么？",
+          "titleEn": "An autonomous agent has write access to a customer's repository, CI credentials, and network access. What is your threat model?",
+          "file": "公司题库/cognition/08-有写权限与-CI-凭证的-agent-威胁模型.md",
+          "level": "高阶",
+          "tags": [
+            "威胁模型",
+            "confused-deputy",
+            "prompt-injection",
+            "最小权限",
+            "防御纵深"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "cognition-05",
+            "cognition-07",
+            "cognition-09",
+            "safety-01",
+            "agents-10"
+          ],
+          "sources": [
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "什么是 prompt injection 以及分层防御（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "在生产系统中如何让 agent 的操作可逆或至少可审计（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为即将发布的模型设计一套红队测试方案（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7142
         }
       ]
     },
