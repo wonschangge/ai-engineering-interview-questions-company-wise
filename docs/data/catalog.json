@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T13:51:32.513Z",
+  "generated": "2026-09-29T14:04:25.616Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 112,
-    "companies": 6,
+    "companyQuestions": 114,
+    "companies": 7,
     "planned": 598
   },
   "topics": [
@@ -11624,6 +11624,117 @@
           "chars": 16143,
           "topicName": "AI 系统设计",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-together",
+      "name": "together",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "together",
+      "overviewFile": null,
+      "overviewTitle": "together",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "together-01",
+          "order": 1,
+          "title": "为流式 token 生成编写服务端 handler，并正确处理客户端断开连接的情况。",
+          "titleEn": "Write a server-side handler for streaming token generation that handles client disconnects correctly.",
+          "file": "公司题库/together/01-流式-token-生成的服务端-handler-与断连处理.md",
+          "level": "进阶",
+          "tags": [
+            "流式",
+            "SSE",
+            "断连处理",
+            "取消",
+            "幂等"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "together-02",
+            "together-03",
+            "anthropic-17",
+            "inference-serving-02",
+            "together-06"
+          ],
+          "sources": [
+            {
+              "title": "Token Streaming 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-token-streaming-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5149
+        },
+        {
+          "id": "together-02",
+          "order": 2,
+          "title": "为 continuous batching 推理引擎设计 scheduler。",
+          "titleEn": "Design the scheduler for a continuous batching inference engine.",
+          "file": "公司题库/together/02-continuous-batching-推理引擎的调度器设计.md",
+          "level": "高阶",
+          "tags": [
+            "调度器",
+            "continuous-batching",
+            "chunked-prefill",
+            "抢占",
+            "KV-显存"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "together-01",
+            "together-03",
+            "together-04",
+            "anthropic-16",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "LLM 中的 Continuous Batching",
+              "url": "https://outcomeschool.com/blog/continuous-batching-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al. (Microsoft, OSDI 2024)",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5328
         }
       ]
     }
