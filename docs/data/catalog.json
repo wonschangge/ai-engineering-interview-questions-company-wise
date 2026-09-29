@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T23:50:58.898Z",
+  "generated": "2026-09-29T23:56:06.857Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 413,
-    "companies": 30,
+    "companyQuestions": 416,
+    "companies": 31,
     "planned": 598
   },
   "topics": [
@@ -15689,6 +15689,157 @@
           "chars": 4810,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-harvey",
+      "name": "harvey",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "harvey",
+      "overviewFile": null,
+      "overviewTitle": "harvey",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "harvey-01",
+          "order": 1,
+          "title": "结对编程：为一份法律文档编写 chunker，要求绝不拆分条款，并且携带足够的上下文，使检索到的 chunk 能够自包含。",
+          "titleEn": "Pair programming: write a chunker for a legal document that never splits a clause and carries enough context that a retrieved chunk is self-contained.",
+          "file": "公司题库/harvey/01-法律文档的-chunker.md",
+          "level": "高阶",
+          "tags": [
+            "法律文档切分",
+            "条款边界",
+            "上下文头",
+            "交叉引用",
+            "字符偏移"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "harvey-02",
+            "harvey-03",
+            "harvey-07",
+            "rag-01",
+            "coding-01"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook AI)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Dense Passage Retrieval for Open-Domain Question Answering（延伸）",
+              "url": "https://arxiv.org/abs/2004.04906",
+              "author": "Karpukhin et al. (Facebook AI)",
+              "published": "2020-04-10"
+            },
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia (Stanford)",
+              "published": "2020-04-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4731
+        },
+        {
+          "id": "harvey-02",
+          "order": 2,
+          "title": "一位律师问的是一份 200 页的信贷协议，其中第 140 页的关键条款依赖于第 8 页的一个定义术语。你会如何构建能正确处理这一点的 retrieval？",
+          "titleEn": "A lawyer asks about a 200-page credit agreement where a key clause on page 140 depends on a defined term on page 8. How would you build retrieval that handles this correctly?",
+          "file": "公司题库/harvey/02-跨页定义引用的检索.md",
+          "level": "高阶",
+          "tags": [
+            "交叉引用检索",
+            "两跳检索",
+            "定义索引",
+            "Jaccard",
+            "自包含上下文"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "harvey-01",
+            "harvey-03",
+            "harvey-05",
+            "rag-02",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (Stanford)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels（延伸）",
+              "url": "https://arxiv.org/abs/2212.10496",
+              "author": "Gao et al. (Waterloo)",
+              "published": "2022-12-20"
+            },
+            {
+              "title": "Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1571941.1572114",
+              "author": "Cormack et al. (Waterloo)",
+              "published": "2009-07-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4714
+        },
+        {
+          "id": "harvey-03",
+          "order": 3,
+          "title": "什么时候你会把整份合同放进 context window，而不是对它做 retrieval？请用数据论证你的回答。",
+          "titleEn": "When would you put the whole contract into the context window instead of doing retrieval over it? Argue it with numbers.",
+          "file": "公司题库/harvey/03-整份合同进上下文还是检索.md",
+          "level": "高阶",
+          "tags": [
+            "整份进上下文",
+            "前缀缓存",
+            "成本对比",
+            "lost in the middle",
+            "判据"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "harvey-01",
+            "harvey-02",
+            "harvey-05",
+            "rag-04",
+            "apple-04"
+          ],
+          "sources": [
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (Stanford)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (Stanford)",
+              "published": "2023-12-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4802
         }
       ]
     },
