@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:46:35.594Z",
+  "generated": "2026-09-29T14:50:27.284Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 129,
+    "companyQuestions": 131,
     "companies": 9,
     "planned": 598
   },
@@ -8209,6 +8209,110 @@
           ],
           "updated": "2026-09-28",
           "chars": 6125
+        },
+        {
+          "id": "cognition-03",
+          "order": 3,
+          "title": "你的 agent 在第一轮里有超过一半时间都花在查找相关代码上。你如何解决这个问题？",
+          "titleEn": "Your agent spends more than half of the first turn just locating the relevant code. How do you fix it?",
+          "file": "公司题库/cognition/03-第一轮一半时间花在查找相关代码上.md",
+          "level": "高阶",
+          "tags": [
+            "代码检索",
+            "仓库地图",
+            "工作集",
+            "符号索引",
+            "步骤预算"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "cognition-01",
+            "cognition-02",
+            "cognition-05",
+            "agents-05",
+            "agents-07"
+          ],
+          "sources": [
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "Multi-Agents: What's Actually Working（Cognition 博客）",
+              "url": "https://cognition.ai/blog/multi-agents-working",
+              "author": "Walden Yan (Cognition)",
+              "published": "2026-04-22"
+            },
+            {
+              "title": "工具数量多少算太多？如何设计 LLM 能正确使用的工具 schema（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为长时间运行的 agent 设计记忆（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5419
+        },
+        {
+          "id": "cognition-04",
+          "order": 4,
+          "title": "你在自己的 harness 里用端到端 RL 训练一个 agent 模型。请讲讲环境与奖励设计。",
+          "titleEn": "You are training an agent model with end-to-end RL inside your own harness. Talk through the environment and reward design.",
+          "file": "公司题库/cognition/04-harness-里的端到端-RL-环境与奖励设计.md",
+          "level": "高阶",
+          "tags": [
+            "agent-RL",
+            "环境设计",
+            "奖励设计",
+            "奖励攻击",
+            "可验证奖励"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "cognition-01",
+            "cognition-05",
+            "cognition-07",
+            "finetuning-01",
+            "evaluation-10"
+          ],
+          "sources": [
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "端到端讲一遍 RLHF：reward model、策略优化与 KL 惩罚（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "与评估单个模型回复相比如何评估一个 agent（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6039
         }
       ]
     },
