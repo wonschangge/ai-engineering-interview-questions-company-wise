@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:38:47.151Z",
+  "generated": "2026-09-29T18:40:58.070Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 214,
+    "companyQuestions": 215,
     "companies": 16,
     "planned": 598
   },
@@ -16259,6 +16259,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7386
+        },
+        {
+          "id": "openai-20",
+          "order": 20,
+          "title": "设计一个内存数据库 / 设计 Slack。",
+          "titleEn": "Design an in-memory database / Design Slack.",
+          "file": "公司题库/openai/20-内存数据库与设计-Slack.md",
+          "level": "高阶",
+          "tags": [
+            "内存数据库",
+            "淘汰策略",
+            "组提交",
+            "扇出",
+            "在线状态"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "openai-19",
+            "openai-21",
+            "system-design-04",
+            "system-design-06",
+            "rag-02"
+          ],
+          "sources": [
+            {
+              "title": "The Case for Learned Index Structures（延伸）",
+              "url": "https://arxiv.org/abs/1712.01208",
+              "author": "Kraska et al. (Google)",
+              "published": "2017-12-04"
+            },
+            {
+              "title": "In Search of an Understandable Consensus Algorithm (Raft)（延伸）",
+              "url": "https://raft.github.io/raft.pdf",
+              "author": "Ongaro & Ousterhout",
+              "published": "2014-05-01"
+            },
+            {
+              "title": "Scaling Memcache at Facebook（延伸）",
+              "url": "https://www.usenix.org/conference/nsdi13/technical-sessions/presentation/nishtala",
+              "author": "Nishtala et al. (Facebook)",
+              "published": "2013-04-02"
+            },
+            {
+              "title": "分布式任务调度（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8484
         }
       ]
     },
