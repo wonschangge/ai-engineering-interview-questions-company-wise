@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T17:20:06.202Z",
+  "generated": "2026-09-29T17:23:36.892Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 175,
-    "companies": 13,
+    "companyQuestions": 176,
+    "companies": 14,
     "planned": 598
   },
   "topics": [
@@ -15086,6 +15086,65 @@
           "chars": 5751,
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-xai",
+      "name": "xai",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "xai",
+      "overviewFile": null,
+      "overviewTitle": "xai",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "xai-01",
+          "order": 1,
+          "title": "实现一个支持 SET/GET/DELETE 的内存 key-value 存储，然后加上 BEGIN/COMMIT/ROLLBACK 事务，并支持嵌套事务。",
+          "titleEn": "Implement an in-memory key-value store supporting SET/GET/DELETE, then add BEGIN/COMMIT/ROLLBACK transactions with support for nesting.",
+          "file": "公司题库/xai/01-带嵌套事务的内存-KV-存储.md",
+          "level": "高阶",
+          "tags": [
+            "数据结构",
+            "事务",
+            "撤销日志",
+            "嵌套事务",
+            "差分测试"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "xai-02",
+            "xai-03",
+            "coding-01",
+            "coding-05",
+            "databases-02"
+          ],
+          "sources": [
+            {
+              "title": "ARIES: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/128765.128770",
+              "author": "Mohan et al. (IBM)",
+              "published": "1992-03-01"
+            },
+            {
+              "title": "Design Patterns: Elements of Reusable Object-Oriented Software（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Design_Patterns",
+              "author": "Gamma et al.",
+              "published": "1994-10-21"
+            },
+            {
+              "title": "一个没有规格说明的调度器桩方法（本仓库公司题库 · xAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5998
         }
       ]
     }
