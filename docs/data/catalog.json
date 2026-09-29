@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:58:56.022Z",
+  "generated": "2026-09-29T20:01:59.809Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 254,
+    "companyQuestions": 257,
     "companies": 18,
     "planned": 598
   },
@@ -18298,6 +18298,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5393
+        },
+        {
+          "id": "palantir-07",
+          "order": 7,
+          "title": "给定来自三个客户系统的导出数据，每个系统都有自己的客户记录，请编写代码产出去重后的统一实体集合，并说明你的设计。",
+          "titleEn": "Given exports from three customer systems, each with its own customer records, write code that produces a deduplicated unified entity set, and explain your design.",
+          "file": "公司题库/palantir/07-三源客户去重.md",
+          "level": "高阶",
+          "tags": [
+            "实体解析",
+            "阻塞",
+            "传递闭包",
+            "过合并",
+            "幸存者选择"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "palantir-04",
+            "palantir-06",
+            "coding-25",
+            "coding-28",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "Data Matching: Concepts and Techniques for Record Linkage, Entity Resolution, and Duplicate Detection（延伸）",
+              "url": "https://link.springer.com/book/10.1007/978-3-642-31164-2",
+              "author": "Peter Christen",
+              "published": "2012-07-01"
+            },
+            {
+              "title": "String Comparator Metrics and Enhanced Decision Rules in the Fellegi-Sunter Model of Record Linkage（延伸）",
+              "url": "https://www.tandfonline.com/doi/abs/10.1080/01621459.1969.10501049",
+              "author": "Fellegi & Sunter",
+              "published": "1969-12-01"
+            },
+            {
+              "title": "Overview of Record Linkage and Current Research Directions（延伸）",
+              "url": "https://www.census.gov/library/working-papers/2006/adrm/rrc2006-02.html",
+              "author": "William Winkler",
+              "published": "2006-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5531
+        },
+        {
+          "id": "palantir-08",
+          "order": 8,
+          "title": "用户问\"有多少未完成订单因供应商问题被卡住？\"朴素 RAG 会答错。为什么，正确的架构是什么？",
+          "titleEn": "A user asks \"how many open orders are stuck because of supplier issues?\" Naive RAG answers incorrectly. Why, and what is the correct architecture?",
+          "file": "公司题库/palantir/08-朴素-RAG-为何答错计数.md",
+          "level": "高阶",
+          "tags": [
+            "RAG 局限",
+            "聚合问题",
+            "text-to-SQL",
+            "语义层",
+            "校验"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "palantir-07",
+            "palantir-09",
+            "openai-16",
+            "rag-02",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al.",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Spider: A Large-Scale Human-Labeled Dataset for Complex and Cross-Domain Semantic Parsing and Text-to-SQL（延伸）",
+              "url": "https://arxiv.org/abs/1809.08887",
+              "author": "Yu et al. (Yale)",
+              "published": "2018-09-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5592
+        },
+        {
+          "id": "palantir-09",
+          "order": 9,
+          "title": "在 Palantir 的语境里，ontology 是什么？为什么要把 LLM agent 放在 ontology 之上，而不是直接放在原始表和文档之上？",
+          "titleEn": "In Palantir’s context, what is an ontology? Why put an LLM agent on top of the ontology rather than directly on raw tables and documents?",
+          "file": "公司题库/palantir/09-ontology-与-LLM-agent.md",
+          "level": "高阶",
+          "tags": [
+            "ontology",
+            "语义层",
+            "连接路径歧义",
+            "类型化 action",
+            "权限"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "palantir-08",
+            "palantir-10",
+            "palantir-16",
+            "agents-05",
+            "rag-02"
+          ],
+          "sources": [
+            {
+              "title": "Ontology-Based Data Access: A Survey（延伸）",
+              "url": "https://www.ijcai.org/proceedings/2018/0768.pdf",
+              "author": "Xiao et al.",
+              "published": "2018-07-13"
+            },
+            {
+              "title": "The Semantic Web（延伸）",
+              "url": "https://www.scientificamerican.com/article/the-semantic-web/",
+              "author": "Berners-Lee, Hendler & Lassila",
+              "published": "2001-05-17"
+            },
+            {
+              "title": "Zanzibar: Google’s Consistent, Global Authorization System（延伸）",
+              "url": "https://www.usenix.org/conference/atc19/presentation/pang",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6064
         }
       ]
     },
