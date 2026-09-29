@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:27:01.559Z",
+  "generated": "2026-09-29T18:28:21.662Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 207,
+    "companyQuestions": 208,
     "companies": 16,
     "planned": 598
   },
@@ -15895,6 +15895,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7254
+        },
+        {
+          "id": "openai-13",
+          "order": 13,
+          "title": "交叉熵、KL 散度与困惑度（perplexity）之间是什么关系？为什么交叉熵是语言模型的训练损失？",
+          "titleEn": "What is the relationship between cross-entropy, KL divergence and perplexity? Why is cross-entropy the training loss for language models?",
+          "file": "公司题库/openai/13-交叉熵-KL-与困惑度.md",
+          "level": "进阶",
+          "tags": [
+            "交叉熵",
+            "KL 散度",
+            "困惑度",
+            "tokenizer",
+            "bits-per-byte"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "openai-12",
+            "openai-14",
+            "llm-internals-01",
+            "evaluation-02",
+            "coding-27"
+          ],
+          "sources": [
+            {
+              "title": "Elements of Information Theory（延伸）",
+              "url": "https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X",
+              "author": "Cover & Thomas",
+              "published": "2006-07-18"
+            },
+            {
+              "title": "A Mathematical Theory of Communication（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/6773024",
+              "author": "Shannon",
+              "published": "1948-07-01"
+            },
+            {
+              "title": "The Unreasonable Effectiveness of Recurrent Neural Networks（延伸）",
+              "url": "https://karpathy.github.io/2015/05/21/rnn-effectiveness/",
+              "author": "Karpathy",
+              "published": "2015-05-21"
+            },
+            {
+              "title": "KL 散度的计算（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7806
         }
       ]
     },
