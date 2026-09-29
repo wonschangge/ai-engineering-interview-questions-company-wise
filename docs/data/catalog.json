@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T23:44:45.877Z",
+  "generated": "2026-09-29T23:48:36.084Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 408,
+    "companyQuestions": 411,
     "companies": 30,
     "planned": 598
   },
@@ -15978,6 +15978,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4804
+        },
+        {
+          "id": "hf-07",
+          "order": 7,
+          "title": "在单张 24 GB GPU 上微调一个 8B 模型。说说你的显存账怎么算，以及具体会用什么技术栈。",
+          "titleEn": "Fine-tune an 8B model on a single 24 GB GPU. Walk me through the memory accounting and the stack you would use.",
+          "file": "公司题库/huggingface/07-单卡-24GB-微调-8B-的显存账.md",
+          "level": "高阶",
+          "tags": [
+            "QLoRA",
+            "显存账",
+            "梯度检查点",
+            "优化器状态",
+            "激活"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "hf-04",
+            "hf-06",
+            "hf-08",
+            "apple-02",
+            "finetuning-01"
+          ],
+          "sources": [
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al. (Microsoft)",
+              "published": "2021-06-17"
+            },
+            {
+              "title": "QLoRA: Efficient Finetuning of Quantized LLMs（延伸）",
+              "url": "https://arxiv.org/abs/2305.14314",
+              "author": "Dettmers et al. (UW)",
+              "published": "2023-05-23"
+            },
+            {
+              "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）",
+              "url": "https://arxiv.org/abs/1910.02054",
+              "author": "Rajbhandari et al. (Microsoft)",
+              "published": "2019-10-13"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5020
+        },
+        {
+          "id": "hf-08",
+          "order": 8,
+          "title": "你在构建 web 规模的预训练语料（FineWeb 风格）。说说整条流水线，以及你如何判断每个 filter 是否值得保留。",
+          "titleEn": "You are building a web-scale pretraining corpus (FineWeb style). Describe the pipeline, and how you decide whether each filter is worth keeping.",
+          "file": "公司题库/huggingface/08-web-规模语料的流水线.md",
+          "level": "高阶",
+          "tags": [
+            "语料流水线",
+            "保留率",
+            "消融训练",
+            "去重",
+            "filter 交互"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "hf-03",
+            "hf-05",
+            "hf-09",
+            "applied-02",
+            "scale-11"
+          ],
+          "sources": [
+            {
+              "title": "The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale（延伸）",
+              "url": "https://arxiv.org/abs/2406.17557",
+              "author": "Penedo et al. (Hugging Face)",
+              "published": "2024-06-25"
+            },
+            {
+              "title": "The RefinedWeb Dataset for Falcon LLM（延伸）",
+              "url": "https://arxiv.org/abs/2306.01116",
+              "author": "Penedo et al. (TII)",
+              "published": "2023-06-01"
+            },
+            {
+              "title": "Deduplicating Training Data Makes Language Models Better（延伸）",
+              "url": "https://arxiv.org/abs/2107.06499",
+              "author": "Lee et al. (Google)",
+              "published": "2021-07-14"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4583
+        },
+        {
+          "id": "hf-09",
+          "order": 9,
+          "title": "设计 Hugging Face Hub：数百万个 git 仓库，其中单个文件就有几十到几百 GB。",
+          "titleEn": "Design the Hugging Face Hub: millions of git repositories, where a single file can be tens to hundreds of GB.",
+          "file": "公司题库/huggingface/09-设计-Hugging-Face-Hub.md",
+          "level": "高阶",
+          "tags": [
+            "Hub 设计",
+            "内容寻址",
+            "块级去重",
+            "CDC",
+            "CDN"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "hf-02",
+            "hf-03",
+            "hf-04",
+            "hf-08",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "The Xet Protocol（延伸）",
+              "url": "https://huggingface.co/blog/xet-on-the-hub",
+              "author": "Hugging Face",
+              "published": "2024-10-01"
+            },
+            {
+              "title": "Git Large File Storage（延伸）",
+              "url": "https://git-lfs.com/",
+              "author": "GitHub",
+              "published": "2015-01-01"
+            },
+            {
+              "title": "Cassandra: A Decentralized Structured Storage System（延伸）",
+              "url": "https://www.cs.cornell.edu/Projects/ladis2009/papers/lakshman-ladis2009.pdf",
+              "author": "Lakshman & Malik (Facebook)",
+              "published": "2009-10-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4929
         }
       ]
     },
