@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T12:41:17.671Z",
+  "generated": "2026-09-29T13:11:05.863Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 75,
-    "companies": 5,
+    "companyQuestions": 91,
+    "companies": 6,
     "planned": 598
   },
   "topics": [
@@ -6107,6 +6107,829 @@
           "chars": 5071,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-anthropic",
+      "name": "anthropic",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "anthropic",
+      "overviewFile": null,
+      "overviewTitle": "anthropic",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "anthropic-01",
+          "order": 1,
+          "title": "为一个玩具银行应用编写核心业务逻辑：一份会分四个递进层级不断扩展的需求规格，由黑盒评测器判定。",
+          "titleEn": "Build core business logic for a toy banking application: a spec that grows in four progressive levels against a black-box evaluator.",
+          "file": "公司题库/anthropic/01-为玩具银行编写分四个递进层级的核心业务逻辑.md",
+          "level": "进阶",
+          "tags": [
+            "实现题",
+            "递进需求",
+            "黑盒评测",
+            "金额精度",
+            "幂等",
+            "并发"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-07",
+            "coding-06",
+            "coding-09",
+            "coding-08",
+            "agents-02"
+          ],
+          "sources": [
+            {
+              "title": "decimal — 十进制定点与浮点运算（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/decimal.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Test-driven development（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Test-driven_development",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 10356
+        },
+        {
+          "id": "anthropic-02",
+          "order": 2,
+          "title": "实现一个内存数据库：先支持 SET/GET/DELETE，再加上带过滤的扫描，然后是带时间戳的 TTL，最后是文件 compaction。",
+          "titleEn": "Build an in-memory database: SET/GET/DELETE first, then filtered scans, then TTL with timestamps, then file compaction.",
+          "file": "公司题库/anthropic/02-实现内存数据库：过滤扫描、时间戳 TTL 与文件 compaction.md",
+          "level": "高阶",
+          "tags": [
+            "内存数据库",
+            "kv-store",
+            "ttl",
+            "compaction",
+            "实现题"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-06",
+            "coding-07",
+            "coding-11",
+            "rag-11"
+          ],
+          "sources": [
+            {
+              "title": "Key eviction（Redis 文档）（延伸）",
+              "url": "https://redis.io/docs/latest/develop/reference/eviction/",
+              "author": "Redis",
+              "published": ""
+            },
+            {
+              "title": "Log-structured merge-tree（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Log-structured_merge-tree",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "decimal — 十进制定点与浮点运算（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/decimal.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 7912
+        },
+        {
+          "id": "anthropic-03",
+          "order": 3,
+          "title": "创建一个任务调度器。",
+          "titleEn": "Create a task scheduler.",
+          "file": "公司题库/anthropic/03-创建一个任务调度器：优先级、并发上限与失败重试.md",
+          "level": "高阶",
+          "tags": [
+            "任务调度器",
+            "实现题",
+            "优先级队列",
+            "并发与背压",
+            "重试与幂等",
+            "租约"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-08",
+            "coding-07",
+            "coding-06",
+            "coding-12",
+            "agents-09",
+            "system-design-09",
+            "evaluation-07"
+          ],
+          "sources": [
+            {
+              "title": "Coroutines and Tasks（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-task.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            },
+            {
+              "title": "Scheduling (computing)（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Scheduling_(computing)",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Priority queue（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Priority_queue",
+              "author": "Wikipedia",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9805
+        },
+        {
+          "id": "anthropic-04",
+          "order": 4,
+          "title": "构建一个用于管理课程、成绩和学生的面向对象系统。",
+          "titleEn": "Build an object-oriented system for managing courses, grades and students.",
+          "file": "公司题库/anthropic/04-构建课程成绩与学生的面向对象系统.md",
+          "level": "进阶",
+          "tags": [
+            "实现题",
+            "领域建模",
+            "不变量",
+            "策略模式",
+            "十进制精度"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-01",
+            "anthropic-02",
+            "anthropic-03",
+            "anthropic-07"
+          ],
+          "sources": [
+            {
+              "title": "dataclasses — 数据类（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/dataclasses.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "decimal — 十进制定点与浮点运算（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/decimal.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Test-driven development（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Test-driven_development",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5217
+        },
+        {
+          "id": "anthropic-05",
+          "order": 5,
+          "title": "给定一个用于抓取 URL 的辅助方法，编写一个针对某个域名的爬虫：先实现同步版本，再改成异步。",
+          "titleEn": "Given a helper that fetches a URL, write a crawler for one domain: first synchronous, then convert it to async.",
+          "file": "公司题库/anthropic/05-爬虫的同步实现与异步改造.md",
+          "level": "进阶",
+          "tags": [
+            "实现题",
+            "爬虫",
+            "异步",
+            "并发控制",
+            "礼貌抓取"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-03",
+            "anthropic-06",
+            "anthropic-07",
+            "anthropic-08",
+            "coding-07"
+          ],
+          "sources": [
+            {
+              "title": "Coroutines and Tasks（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-task.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Synchronization Primitives（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-sync.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            },
+            {
+              "title": "Robots Exclusion Protocol（RFC 9309）（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc9309",
+              "author": "Koster et al. (IETF)",
+              "published": "2022-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5069
+        },
+        {
+          "id": "anthropic-06",
+          "order": 6,
+          "title": "把嵌套的 stack trace 转换成离散的起始事件和结束事件。",
+          "titleEn": "Convert nested stack traces into discrete start and end events.",
+          "file": "公司题库/anthropic/06-把嵌套栈轨迹转换成起始与结束事件.md",
+          "level": "进阶",
+          "tags": [
+            "实现题",
+            "解析",
+            "状态机",
+            "畸形输入",
+            "事件流"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-04",
+            "anthropic-05",
+            "evaluation-07",
+            "anthropic-01"
+          ],
+          "sources": [
+            {
+              "title": "Stack trace（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Stack_trace",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Flame graph（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Flame_graph",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "re — 正则表达式操作（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/re.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "dataclasses — 数据类（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/dataclasses.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4328
+        },
+        {
+          "id": "anthropic-07",
+          "order": 7,
+          "title": "构建一个限流器。每隔十分钟我会新增一条需求：先是按租户限流，然后是突发额度，再然后是滑动窗口。你如何避免代码失控？",
+          "titleEn": "Build a rate limiter. Every ten minutes I add a requirement: per-tenant limits, then burst allowance, then sliding windows. How do you keep the code from spiralling?",
+          "file": "公司题库/anthropic/07-需求持续演进的限流器如何避免代码失控.md",
+          "level": "高阶",
+          "tags": [
+            "实现题",
+            "限流",
+            "策略模式",
+            "可扩展性",
+            "假时钟测试"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-03",
+            "anthropic-05",
+            "anthropic-08",
+            "coding-07",
+            "inference-serving-09"
+          ],
+          "sources": [
+            {
+              "title": "Token bucket（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Token_bucket",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "A Single Rate Three Color Marker（RFC 2697）（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc2697",
+              "author": "Heinanen & Guerin (IETF)",
+              "published": "1999-09"
+            },
+            {
+              "title": "Counting a lot of different things（Cloudflare 工程博客）（延伸）",
+              "url": "https://blog.cloudflare.com/counting-things-a-lot-of-different-things/",
+              "author": "Cloudflare",
+              "published": "2017-06-19"
+            },
+            {
+              "title": "Synchronization Primitives（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-sync.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4873
+        },
+        {
+          "id": "anthropic-08",
+          "order": 8,
+          "title": "你需要对 50,000 份文档执行 LLM 调用。该 API 允许约 100 个并发请求，并且偶尔会返回 429 和超时。请写出 Python 代码。",
+          "titleEn": "You need to run an LLM call over 50,000 documents. The API allows ~100 concurrent requests and occasionally returns 429s and timeouts. Write the Python.",
+          "file": "公司题库/anthropic/08-为五万份文档编写并发-LLM-调用代码.md",
+          "level": "高阶",
+          "tags": [
+            "实现题",
+            "并发",
+            "429",
+            "退避抖动",
+            "断点续跑",
+            "自适应并发"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-07",
+            "anthropic-09",
+            "anthropic-05",
+            "inference-serving-09",
+            "anthropic-03"
+          ],
+          "sources": [
+            {
+              "title": "Coroutines and Tasks（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-task.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Synchronization Primitives（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-sync.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5286
+        },
+        {
+          "id": "anthropic-09",
+          "order": 9,
+          "title": "你会如何并行化这个任务？（并发与数据变更在多个轮次中反复被问到。）",
+          "titleEn": "How would you parallelise this task? (Concurrency and data mutation come up repeatedly across rounds.)",
+          "file": "公司题库/anthropic/09-如何并行化这个任务.md",
+          "level": "高阶",
+          "tags": [
+            "并行化",
+            "分片",
+            "幂等",
+            "Amdahl",
+            "数据变更"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-08",
+            "anthropic-07",
+            "anthropic-05",
+            "inference-serving-09",
+            "anthropic-14"
+          ],
+          "sources": [
+            {
+              "title": "Coroutines and Tasks（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-task.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "concurrent.futures — 启动并行任务（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/concurrent.futures.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Amdahl's law（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Amdahl%27s_law",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "MapReduce（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/MapReduce",
+              "author": "Wikipedia",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4506
+        },
+        {
+          "id": "anthropic-10",
+          "order": 10,
+          "title": "SQL：写一个查询，找出最常被一起购买的前五对商品。",
+          "titleEn": "SQL: write a query to find the top five pairs of products most frequently purchased together.",
+          "file": "公司题库/anthropic/10-SQL-找出最常被一起购买的前五对商品.md",
+          "level": "进阶",
+          "tags": [
+            "SQL",
+            "自连接",
+            "关联规则",
+            "组合计数",
+            "性能"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-11",
+            "anthropic-12",
+            "rag-01",
+            "anthropic-08",
+            "coding-09"
+          ],
+          "sources": [
+            {
+              "title": "SELECT（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_select.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            },
+            {
+              "title": "WITH clause（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_with.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            },
+            {
+              "title": "Core Functions（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_corefunc.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4109
+        },
+        {
+          "id": "anthropic-11",
+          "order": 11,
+          "title": "SQL：判断是否存在任何用户的订阅日期区间相互重叠。",
+          "titleEn": "SQL: determine whether any user has overlapping subscription date ranges.",
+          "file": "公司题库/anthropic/11-SQL-判断是否存在重叠的订阅日期区间.md",
+          "level": "进阶",
+          "tags": [
+            "SQL",
+            "区间重叠",
+            "半开区间",
+            "自连接",
+            "时态数据"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-10",
+            "anthropic-12",
+            "consumer-ml-13",
+            "anthropic-08",
+            "coding-09"
+          ],
+          "sources": [
+            {
+              "title": "SELECT（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_select.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            },
+            {
+              "title": "Date And Time Functions（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_datefunc.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            },
+            {
+              "title": "WITH clause（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_with.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4441
+        },
+        {
+          "id": "anthropic-12",
+          "order": 12,
+          "title": "SQL：在 ETL 错误导致每年都插入一条新薪资行之后，返回每位员工当前的薪资。",
+          "titleEn": "SQL: return each employee's current salary after an ETL error inserted a new salary row every year.",
+          "file": "公司题库/anthropic/12-SQL-返回每位员工当前的薪资.md",
+          "level": "进阶",
+          "tags": [
+            "SQL",
+            "窗口函数",
+            "时态数据",
+            "数据修复",
+            "去重"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "anthropic-11",
+            "anthropic-10",
+            "consumer-ml-13",
+            "anthropic-08",
+            "anthropic-09"
+          ],
+          "sources": [
+            {
+              "title": "Window Functions（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/windowfunctions.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            },
+            {
+              "title": "SELECT（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_select.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            },
+            {
+              "title": "WITH clause（SQLite 文档）（延伸）",
+              "url": "https://www.sqlite.org/lang_with.html",
+              "author": "SQLite Consortium",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4746
+        },
+        {
+          "id": "anthropic-13",
+          "order": 13,
+          "title": "Transformer 模型的关键组成部分有哪些，为什么每一部分都很重要？",
+          "titleEn": "What are the key components of a Transformer model, and why does each matter?",
+          "file": "公司题库/anthropic/13-Transformer-的关键组成部分与各自的作用.md",
+          "level": "进阶",
+          "tags": [
+            "Transformer",
+            "注意力",
+            "位置编码",
+            "归一化",
+            "前馈网络"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-01",
+            "llm-internals-02",
+            "llm-internals-04",
+            "anthropic-15",
+            "anthropic-16"
+          ],
+          "sources": [
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (NeurIPS 2017)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "Math Behind RoPE (Rotary Position Embedding)",
+              "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "RMSNorm (Root Mean Square Layer Normalization)",
+              "url": "https://outcomeschool.com/blog/rmsnorm-root-mean-square-layer-normalization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al. (NeurIPS 2022)",
+              "published": "2022-05-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5311
+        },
+        {
+          "id": "anthropic-14",
+          "order": 14,
+          "title": "解释无 attention 的 Transformer 架构及其取舍。",
+          "titleEn": "Explain attention-free Transformer architectures and their trade-offs.",
+          "file": "公司题库/anthropic/14-无-attention-的-Transformer-架构及其取舍.md",
+          "level": "高阶",
+          "tags": [
+            "架构",
+            "状态空间模型",
+            "线性注意力",
+            "长上下文",
+            "硬件效率"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-01",
+            "llm-internals-02",
+            "anthropic-13",
+            "inference-serving-04",
+            "anthropic-17"
+          ],
+          "sources": [
+            {
+              "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces（延伸）",
+              "url": "https://arxiv.org/abs/2312.00752",
+              "author": "Gu & Dao",
+              "published": "2023-12-01"
+            },
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (NeurIPS 2017)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al. (NeurIPS 2022)",
+              "published": "2022-05-27"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (TACL 2024)",
+              "published": "2023-07-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5870
+        },
+        {
+          "id": "anthropic-15",
+          "order": 15,
+          "title": "讲讲与 LLM 架构相关的矩阵操作。",
+          "titleEn": "Talk through the matrix operations involved in LLM architectures.",
+          "file": "公司题库/anthropic/15-与-LLM-架构相关的矩阵操作与-roofline-分析.md",
+          "level": "高阶",
+          "tags": [
+            "矩阵运算",
+            "GEMM",
+            "roofline",
+            "算术强度",
+            "量化"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "anthropic-13",
+            "anthropic-14",
+            "anthropic-16",
+            "inference-serving-01",
+            "inference-serving-03"
+          ],
+          "sources": [
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (NeurIPS 2017)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al. (NeurIPS 2022)",
+              "published": "2022-05-27"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6317
+        },
+        {
+          "id": "anthropic-16",
+          "order": 16,
+          "title": "设计一个 batching 推理系统，让 100 个请求与 1 个请求耗时相同。",
+          "titleEn": "Design a batching inference system where 100 requests take the same time as one.",
+          "file": "公司题库/anthropic/16-设计让-100-个请求与-1-个请求同耗时的-batching-推理系统.md",
+          "level": "高阶",
+          "tags": [
+            "推理服务",
+            "batching",
+            "continuous-batching",
+            "chunked-prefill",
+            "KV-显存"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "anthropic-15",
+            "anthropic-17",
+            "inference-serving-02",
+            "inference-serving-03",
+            "anthropic-13"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al. (Microsoft, OSDI 2024)",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al. (OSDI 2024)",
+              "published": "2024-01-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6231
         }
       ]
     },
