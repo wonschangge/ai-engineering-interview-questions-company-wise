@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:37:19.848Z",
+  "generated": "2026-09-29T14:40:09.230Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 126,
+    "companyQuestions": 127,
     "companies": 8,
     "planned": 598
   },
@@ -9793,15 +9793,15 @@
       ]
     },
     {
-      "id": "company-elevenlabs",
-      "name": "elevenlabs",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "group": "AI 原生产品公司",
+      "summary": "八道题覆盖 ElevenLabs 这类语音 AI 公司的完整链条：两篇实现（流式 TTS 代理与离开页面的取消、实时 TTS 的容量经济学）、两篇语音特有难题（实时语音 agent 的 TTFA 预算、生产环境里的文本规范化）、两篇系统与安全（配音流水线、语音克隆安全栈）、两篇客户交付（医院集团电话预约、联络中心 IVR 替换）。",
+      "updated": "2026-09-28",
       "dir": "elevenlabs",
-      "overviewFile": null,
-      "overviewTitle": "elevenlabs",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/elevenlabs/README.md",
+      "overviewTitle": "ElevenLabs 面试题库",
+      "declaredTotal": 8,
       "questions": [
         {
           "id": "elevenlabs-01",
@@ -9848,7 +9848,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5232
+          "chars": 5232,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "elevenlabs-02",
@@ -9900,7 +9902,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5770
+          "chars": 5770,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "elevenlabs-03",
@@ -9952,7 +9956,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5559
+          "chars": 5559,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
         },
         {
           "id": "elevenlabs-04",
@@ -10005,7 +10011,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5991
+          "chars": 5991,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 1
         },
         {
           "id": "elevenlabs-05",
@@ -10057,12 +10065,14 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5580
+          "chars": 5580,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 2
         },
         {
           "id": "elevenlabs-06",
           "order": 6,
-          "title": "为视频平台做配音流水线：英语→西班牙语，必须保留说话人身份与时间轴。",
+          "title": "设计配音流水线：一段英语视频变成西班牙语，说话人不变，时间轴不变。",
           "titleEn": "Build a dubbing pipeline: English to Spanish, preserving speaker identity and the timeline.",
           "file": "公司题库/elevenlabs/06-配音流水线保留说话人与时间轴.md",
           "level": "高阶",
@@ -10109,7 +10119,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5264
+          "chars": 5264,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 3
         },
         {
           "id": "elevenlabs-07",
@@ -10161,7 +10173,64 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5589
+          "chars": 5589,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
+        },
+        {
+          "id": "elevenlabs-08",
+          "order": 8,
+          "title": "一个联络中心想用语音 agent 替换它的 IVR。请主导这次客户交付。",
+          "titleEn": "A contact centre wants to replace its IVR with a voice agent. Lead the customer engagement.",
+          "file": "公司题库/elevenlabs/08-联络中心-IVR-替换的客户交付.md",
+          "level": "高阶",
+          "tags": [
+            "联络中心",
+            "IVR",
+            "客户交付",
+            "承接率",
+            "ROI",
+            "分阶段放量"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "elevenlabs-07",
+            "elevenlabs-04",
+            "elevenlabs-01",
+            "evaluation-04",
+            "anthropic-32"
+          ],
+          "sources": [
+            {
+              "title": "设计实时语音 AI Agent",
+              "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "为实时语音 agent 做 latency 预算（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5473,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 2
         }
       ]
     },
