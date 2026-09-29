@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T23:16:17.592Z",
+  "generated": "2026-09-29T23:20:55.825Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 397,
+    "companyQuestions": 400,
     "companies": 29,
     "planned": 598
   },
@@ -24714,6 +24714,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4583
+        },
+        {
+          "id": "tesla-07",
+          "order": 7,
+          "title": "车载算力预算是固定的。请讲一下，如何在不损失小目标 recall 的前提下，对视觉模型做 quantization 和剪枝。",
+          "titleEn": "The on-vehicle compute budget is fixed. How do you quantise and prune a vision model without losing small-object recall?",
+          "file": "公司题库/tesla/07-量化与剪枝不损小目标-recall.md",
+          "level": "高阶",
+          "tags": [
+            "量化",
+            "剪枝",
+            "小目标",
+            "动态范围",
+            "Pareto 前沿"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "tesla-01",
+            "tesla-03",
+            "tesla-06",
+            "apple-02",
+            "inference-05"
+          ],
+          "sources": [
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al.",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "Learning Efficient Convolutional Networks through Network Slimming（延伸）",
+              "url": "https://arxiv.org/abs/1708.06519",
+              "author": "Liu et al.",
+              "published": "2017-08-21"
+            },
+            {
+              "title": "Feature Pyramid Networks for Object Detection（延伸）",
+              "url": "https://arxiv.org/abs/1612.03144",
+              "author": "Lin et al. (Facebook AI)",
+              "published": "2016-12-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5377
+        },
+        {
+          "id": "tesla-08",
+          "order": 8,
+          "title": "脱离率是个很弱的代理指标。你会如何真正衡量某个自动驾驶版本是否比上一版更安全？",
+          "titleEn": "The disengagement rate is a weak proxy. How would you actually measure whether one autonomous driving version is safer than the previous one?",
+          "file": "公司题库/tesla/08-如何比较两个版本更安全.md",
+          "level": "高阶",
+          "tags": [
+            "配对比较",
+            "方差削减",
+            "非劣性",
+            "切片校正",
+            "混杂"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "tesla-06",
+            "tesla-09",
+            "waymo-07",
+            "waymo-09",
+            "sierra-07"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4683
+        },
+        {
+          "id": "tesla-09",
+          "order": 9,
+          "title": "设计数据引擎：车队触发 → 上传 → 标注 → 重新训练 → shadow-mode 验证 → 发布。",
+          "titleEn": "Design the data engine: fleet trigger, upload, label, retrain, shadow-mode validation, release.",
+          "file": "公司题库/tesla/09-数据引擎的设计.md",
+          "level": "高阶",
+          "tags": [
+            "数据引擎",
+            "触发器",
+            "上传分级",
+            "周期时间",
+            "收益递减"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "tesla-05",
+            "tesla-06",
+            "tesla-07",
+            "tesla-08",
+            "scale-11"
+          ],
+          "sources": [
+            {
+              "title": "The Unreasonable Effectiveness of Data（延伸）",
+              "url": "https://research.google/pubs/pub35198/",
+              "author": "Halevy, Norvig & Pereira (Google)",
+              "published": "2009-03-01"
+            },
+            {
+              "title": "Google SRE Book: Release Engineering（延伸）",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4732
         }
       ]
     },
