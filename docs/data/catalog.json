@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:06:43.739Z",
+  "generated": "2026-09-29T17:08:45.889Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 171,
+    "companyQuestions": 172,
     "companies": 13,
     "planned": 598
   },
@@ -14477,6 +14477,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7571
+        },
+        {
+          "id": "moonshot-07",
+          "order": 7,
+          "title": "对于长上下文助手，什么时候 1M token 的上下文窗口才是合适的工具，什么时候应该改用 retrieval？",
+          "titleEn": "For a long-context assistant, when is a 1M-token window the right tool, and when should you use retrieval instead?",
+          "file": "公司题库/moonshot/07-1M-窗口与检索的取舍.md",
+          "level": "高阶",
+          "tags": [
+            "长上下文",
+            "检索",
+            "多文档综合",
+            "覆盖率",
+            "成本模型"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "moonshot-01",
+            "moonshot-06",
+            "rag-01",
+            "rag-03",
+            "moonshot-10"
+          ],
+          "sources": [
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (TACL 2024)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook AI)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Retrieval-Augmented Generation for Large Language Models: A Survey（延伸）",
+              "url": "https://arxiv.org/abs/2312.10997",
+              "author": "Gao et al.",
+              "published": "2023-12-18"
+            },
+            {
+              "title": "上下文从 8K 推到几十万时最先崩什么（本仓库公司题库 · Moonshot AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6148
         }
       ]
     },
