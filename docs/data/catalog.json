@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:51:30.756Z",
+  "generated": "2026-09-29T21:55:48.649Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 341,
+    "companyQuestions": 344,
     "companies": 24,
     "planned": 598
   },
@@ -22121,15 +22121,15 @@
       ]
     },
     {
-      "id": "company-sierra",
-      "name": "sierra",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "sierra",
+      "name": "Sierra",
+      "group": "AI 原生产品公司",
+      "summary": "十二道题全部落在\"agent 会真的动客户的账户\"这一个前提上——一道编程（调试一个\"确认了从未下单的订单\"的 agent）、一道 RAG（过期且相互矛盾的知识库）、三道 agent（航空公司的取消改签与票价政策、prompting 与代码的界线、人工转接路径）、三道评估（发布前如何评估对话式 agent、92% 通过率为什么误导、模型升级后转人工率翻倍）、一道安全（提示注入的纵深防御）、一道多模态（聊天迁到电话渠道），以及两道行为题（两小时 build session、端到端负责客户问题的经历）。",
+      "updated": "2026-09-28",
       "dir": "sierra",
-      "overviewFile": null,
-      "overviewTitle": "sierra",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/sierra/README.md",
+      "overviewTitle": "Sierra 面试题库",
+      "declaredTotal": 12,
       "questions": [
         {
           "id": "sierra-01",
@@ -22175,7 +22175,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4525
+          "chars": 4525,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "sierra-02",
@@ -22221,7 +22223,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4458
+          "chars": 4458,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
         },
         {
           "id": "sierra-03",
@@ -22267,7 +22271,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4470
+          "chars": 4470,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "sierra-04",
@@ -22313,7 +22319,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4509
+          "chars": 4509,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 2
         },
         {
           "id": "sierra-05",
@@ -22359,7 +22367,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4491
+          "chars": 4491,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 3
         },
         {
           "id": "sierra-06",
@@ -22405,7 +22415,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4506
+          "chars": 4506,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "sierra-07",
@@ -22451,7 +22463,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4338
+          "chars": 4338,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
         },
         {
           "id": "sierra-08",
@@ -22497,7 +22511,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4309
+          "chars": 4309,
+          "topicName": "评估与可观测性",
+          "topicOrder": 3
         },
         {
           "id": "sierra-09",
@@ -22543,7 +22559,153 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4401
+          "chars": 4401,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "sierra-10",
+          "order": 10,
+          "title": "你的聊天 agent 要迁移到电话渠道。实际会发生哪些变化？",
+          "titleEn": "Your chat agent is moving to the phone channel. What actually changes?",
+          "file": "公司题库/sierra/10-聊天-agent-迁到电话渠道.md",
+          "level": "高阶",
+          "tags": [
+            "渠道迁移",
+            "延迟预算",
+            "朗读速度",
+            "读回确认",
+            "升级率"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "sierra-04",
+            "sierra-05",
+            "sierra-06",
+            "sarvam-07",
+            "sarvam-10"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Elements of User Experience（延伸）",
+              "url": "https://www.uxmatters.com/",
+              "author": "Jesse James Garrett",
+              "published": "2010-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4587,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "sierra-11",
+          "order": 11,
+          "title": "在我们的 build session 中，你有两小时和任意你想要的 AI 工具。你如何决定构建什么，以及如何分配时间？",
+          "titleEn": "In our build session you have two hours and whatever AI tools you want. How do you decide what to build, and how do you allocate the time?",
+          "file": "公司题库/sierra/11-两小时-build-session-如何规划.md",
+          "level": "高阶",
+          "tags": [
+            "build session",
+            "时间分配",
+            "AI 杠杆",
+            "行走骨架",
+            "验证"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "sierra-06",
+            "sierra-12",
+            "scale-11",
+            "palantir-06",
+            "groq-12"
+          ],
+          "sources": [
+            {
+              "title": "The Mom Test（延伸）",
+              "url": "https://www.momtestbook.com/",
+              "author": "Rob Fitzpatrick",
+              "published": "2013-01-01"
+            },
+            {
+              "title": "Twelve-Factor App（延伸）",
+              "url": "https://12factor.net/",
+              "author": "Adam Wiggins",
+              "published": "2011-01-01"
+            },
+            {
+              "title": "Debugging: The 9 Indispensable Rules（延伸）",
+              "url": "https://www.oreilly.com/library/view/debugging/9781449328276/",
+              "author": "David J. Agans",
+              "published": "2002-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4230,
+          "topicName": "行为与文化",
+          "topicOrder": 1
+        },
+        {
+          "id": "sierra-12",
+          "order": 12,
+          "title": "请讲一次你端到端负责一个面向客户的问题的经历。",
+          "titleEn": "Tell me about a time you owned a customer-facing problem end to end.",
+          "file": "公司题库/sierra/12-端到端负责客户问题的经历.md",
+          "level": "高阶",
+          "tags": [
+            "端到端负责",
+            "结果闭环",
+            "跨边界",
+            "防复发",
+            "回答结构"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "sierra-01",
+            "sierra-08",
+            "sierra-11",
+            "behavioral-01",
+            "palantir-18"
+          ],
+          "sources": [
+            {
+              "title": "The Trusted Advisor（延伸）",
+              "url": "https://www.simonandschuster.com/books/The-Trusted-Advisor/David-H-Maister/9780743212342",
+              "author": "Maister, Green & Galford",
+              "published": "2000-09-18"
+            },
+            {
+              "title": "Crucial Conversations: Tools for Talking When Stakes Are High（延伸）",
+              "url": "https://www.mcgrawhillprofessional.com/books/crucial-conversations-tools-for-talking-when-stakes-are-high-9781260474183",
+              "author": "Patterson, Grenny, McMillan & Switzler",
+              "published": "2021-10-26"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4689,
+          "topicName": "行为与文化",
+          "topicOrder": 2
         }
       ]
     },
