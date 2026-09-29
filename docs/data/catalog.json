@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:11:21.692Z",
+  "generated": "2026-09-29T17:18:04.930Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 173,
+    "companyQuestions": 174,
     "companies": 13,
     "planned": 598
   },
@@ -14581,6 +14581,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7139
+        },
+        {
+          "id": "moonshot-09",
+          "order": 9,
+          "title": "Kimi K1.5 在没有过程奖励模型和树搜索的情况下，用 RL 扩展了推理能力。为什么要刻意让 RL 方案保持这么简单？",
+          "titleEn": "Kimi K1.5 scaled reasoning with RL without a process reward model and without tree search. Why deliberately keep the RL recipe that simple?",
+          "file": "公司题库/moonshot/09-K1.5-为何刻意保持-RL-简单.md",
+          "level": "高阶",
+          "tags": [
+            "K1.5",
+            "RL 扩展",
+            "PRM",
+            "树搜索",
+            "奖励设计"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "moonshot-08",
+            "moonshot-10",
+            "deepseek-06",
+            "finetuning-08",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "Kimi k1.5: Scaling Reinforcement Learning with LLMs（延伸）",
+              "url": "https://arxiv.org/abs/2501.12599",
+              "author": "Kimi Team (Moonshot AI)",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "Let's Verify Step by Step（延伸）",
+              "url": "https://arxiv.org/abs/2305.20050",
+              "author": "Lightman et al. (OpenAI)",
+              "published": "2023-05-31"
+            },
+            {
+              "title": "R1-Zero 纯 RL 与 SFT 的回归（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7062
         }
       ]
     },
