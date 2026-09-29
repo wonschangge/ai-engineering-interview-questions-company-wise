@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:21:23.692Z",
+  "generated": "2026-09-29T20:25:06.111Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 271,
+    "companyQuestions": 274,
     "companies": 19,
     "planned": 598
   },
@@ -19132,6 +19132,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4828
+        },
+        {
+          "id": "perplexity-04",
+          "order": 4,
+          "title": "为自回归模型实现 beam search。答案引擎在什么情况下会真正用到它？",
+          "titleEn": "Implement beam search for an autoregressive model. When would an answer engine actually use it?",
+          "file": "公司题库/perplexity/04-beam-search-与答案引擎.md",
+          "level": "高阶",
+          "tags": [
+            "beam search",
+            "长度归一化",
+            "多样性",
+            "采样",
+            "受限解码"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "perplexity-03",
+            "perplexity-06",
+            "perplexity-08",
+            "llm-internals-01",
+            "coding-31"
+          ],
+          "sources": [
+            {
+              "title": "Sequence to Sequence Learning with Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1409.3215",
+              "author": "Sutskever, Vinyals & Le (Google)",
+              "published": "2014-09-10"
+            },
+            {
+              "title": "The Curious Case of Neural Text Degeneration（延伸）",
+              "url": "https://arxiv.org/abs/1904.09751",
+              "author": "Holtzman et al.",
+              "published": "2019-04-22"
+            },
+            {
+              "title": "Diverse Beam Search（延伸）",
+              "url": "https://arxiv.org/abs/1610.02424",
+              "author": "Vijayakumar et al.",
+              "published": "2016-10-08"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5591
+        },
+        {
+          "id": "perplexity-05",
+          "order": 5,
+          "title": "一次发版后，p95 time-to-first-token 从 1.2 s 恶化到 3 s。请讲讲你会如何定位并修复它。",
+          "titleEn": "After a release, p95 time-to-first-token degrades from 1.2 s to 3 s. How would you diagnose and fix it?",
+          "file": "公司题库/perplexity/05-TTFT-恶化排查.md",
+          "level": "高阶",
+          "tags": [
+            "TTFT",
+            "归因分解",
+            "p50 与 p95",
+            "前缀缓存",
+            "队列效应"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "perplexity-04",
+            "perplexity-08",
+            "openai-22",
+            "openai-14",
+            "inference-serving-03"
+          ],
+          "sources": [
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al.",
+              "published": "2024-01-23"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5663
+        },
+        {
+          "id": "perplexity-06",
+          "order": 6,
+          "title": "讨论 reranker 的架构选择：cross-encoder、ColBERT、基于 LLM 的方案。",
+          "titleEn": "Discuss reranker architecture choices: cross-encoder, ColBERT, and LLM-based approaches.",
+          "file": "公司题库/perplexity/06-reranker-架构选择.md",
+          "level": "高阶",
+          "tags": [
+            "reranker",
+            "cross-encoder",
+            "ColBERT",
+            "LLM 重排",
+            "算力预算"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "perplexity-05",
+            "perplexity-07",
+            "perplexity-09",
+            "rag-02",
+            "openai-16"
+          ],
+          "sources": [
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia",
+              "published": "2020-04-27"
+            },
+            {
+              "title": "Passage Re-ranking with BERT（延伸）",
+              "url": "https://arxiv.org/abs/1901.04085",
+              "author": "Nogueira & Cho",
+              "published": "2019-01-31"
+            },
+            {
+              "title": "RankGPT: Is ChatGPT Good at Search? Investigating Large Language Models as Re-Ranking Agents（延伸）",
+              "url": "https://arxiv.org/abs/2304.09542",
+              "author": "Sun et al.",
+              "published": "2023-04-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6121
         }
       ]
     },
