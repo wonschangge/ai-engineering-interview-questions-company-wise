@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:45:48.125Z",
+  "generated": "2026-09-29T20:49:17.841Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 289,
+    "companyQuestions": 292,
     "companies": 20,
     "planned": 598
   },
@@ -16611,6 +16611,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5500
+        },
+        {
+          "id": "nvidia-07",
+          "order": 7,
+          "title": "在没有预先标注分组的情况下，你如何评估聚类模型的效果？",
+          "titleEn": "How do you evaluate a clustering model when you have no pre-labelled groups?",
+          "file": "公司题库/nvidia/07-无标注时的聚类评估.md",
+          "level": "进阶",
+          "tags": [
+            "聚类评估",
+            "内部指标",
+            "稳定性",
+            "成对约束",
+            "下游指标"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "nvidia-08",
+            "nvidia-04",
+            "evaluation-01",
+            "gdm-20",
+            "coding-25"
+          ],
+          "sources": [
+            {
+              "title": "Silhouettes: A Graphical Aid to the Interpretation and Validation of Cluster Analysis（延伸）",
+              "url": "https://www.sciencedirect.com/science/article/pii/0377042787901257",
+              "author": "Rousseeuw",
+              "published": "1987-11-01"
+            },
+            {
+              "title": "Objective Criteria for the Evaluation of Clustering Methods（延伸）",
+              "url": "https://www.tandfonline.com/doi/abs/10.1080/01621459.1971.10482356",
+              "author": "Rand",
+              "published": "1971-12-01"
+            },
+            {
+              "title": "Scikit-learn: Clustering Performance Evaluation（延伸）",
+              "url": "https://scikit-learn.org/stable/modules/clustering.html",
+              "author": "scikit-learn developers",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5129
+        },
+        {
+          "id": "nvidia-08",
+          "order": 8,
+          "title": "你想在单张 80 GB GPU 上服务一个 70B 参数的模型。请讲讲它是否放得下，以及你预期的单流 tokens/sec 是多少。",
+          "titleEn": "You want to serve a 70B parameter model on a single 80 GB GPU. Does it fit, and what single-stream tokens/sec do you expect?",
+          "file": "公司题库/nvidia/08-单卡-80GB-服务-70B.md",
+          "level": "高阶",
+          "tags": [
+            "显存预算",
+            "KV cache",
+            "带宽受限",
+            "批处理",
+            "roofline"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "nvidia-02",
+            "nvidia-09",
+            "nvidia-01",
+            "inference-serving-03",
+            "perplexity-08"
+          ],
+          "sources": [
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (UC Berkeley)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al.",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6129
+        },
+        {
+          "id": "nvidia-09",
+          "order": 9,
+          "title": "TensorRT / TensorRT-LLM 究竟对模型做了什么让它变快，什么情况下它帮不上忙？",
+          "titleEn": "What does TensorRT / TensorRT-LLM actually do to a model to make it faster, and when does it not help?",
+          "file": "公司题库/nvidia/09-TensorRT-做了什么.md",
+          "level": "高阶",
+          "tags": [
+            "TensorRT",
+            "算子融合",
+            "量化",
+            "内核调优",
+            "优化空间"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "nvidia-08",
+            "nvidia-01",
+            "nvidia-03",
+            "inference-serving-03",
+            "system-design-07"
+          ],
+          "sources": [
+            {
+              "title": "TensorRT Developer Guide（延伸）",
+              "url": "https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/",
+              "author": "NVIDIA",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al.",
+              "published": "2022-05-27"
+            },
+            {
+              "title": "Roofline: An Insightful Visual Performance Model for Multicore Architectures（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson",
+              "published": "2009-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5882
         }
       ]
     },
