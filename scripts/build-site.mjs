@@ -148,6 +148,9 @@ function validateQuestion(doc, file, seenIds) {
   if (Array.isArray(data.asked_at) && data.asked_at.length > 0 && !hasCompany) {
     errors.push(`${at}: asked_at 非空，必须包含「## 公司变体」一节`);
   }
+  if (data.company && hasCompany) {
+    warnings.push(`${at}: 公司题不应包含「## 公司变体」一节（公司由 company 字段表达）`);
+  }
   const order = headings.filter((h) => !['一句话答案', '面试官在考什么', '原理与推导', '数值与代码验证', '常见追问', '公司变体', '相关题目', '参考资料与归属'].includes(h));
   if (order.length) errors.push(`${at}: 出现了规范之外的二级标题：${order.join('、')}`);
 
@@ -160,6 +163,14 @@ function validateQuestion(doc, file, seenIds) {
 
   const words = toPlain(body).length;
   if (words < 800) warnings.push(`${at}: 正文只有 ${words} 字，可能过于简略（参考 150–300 行）`);
+
+  // 占位符扫描：出现这些说明还没写完
+  for (const bad of ['TODO', '待补', '暂略', 'PLACEHOLDER', 'XXX', '？？？', '此处省略']) {
+    if (prose.includes(bad)) errors.push(`${at}: 正文含占位符「${bad}」，说明尚未写完`);
+  }
+  // 中文正文里的 ASCII 双引号（规范要求用「」）
+  const asciiQuotes = countMatches(prose, /"[^"\n]{1,40}"/g);
+  if (asciiQuotes > 0) warnings.push(`${at}: 正文出现 ${asciiQuotes} 处 ASCII 双引号，规范要求改用「」`);
 }
 
 function validateTopic(doc, file) {

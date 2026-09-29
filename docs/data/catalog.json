@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T11:43:37.674Z",
+  "generated": "2026-09-29T12:03:25.165Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 8,
-    "companies": 1,
+    "companyQuestions": 18,
+    "companies": 2,
     "planned": 598
   },
   "topics": [
@@ -5572,6 +5572,544 @@
     }
   ],
   "companies": [
+    {
+      "id": "alibaba",
+      "name": "阿里巴巴（Qwen）",
+      "group": "前沿 AI 实验室",
+      "summary": "十道题围绕 Qwen 的技术选择展开：仓库级 FIM、151K 字节级 BPE、统一思考模式、dense 与 MoE 选型、免训练长上下文扩展、强到弱蒸馏、可验证奖励的 RL、榜单可信度、原生动态分辨率 VLM，以及 Apache 2.0 开源战略。",
+      "updated": "2026-09-28",
+      "dir": "alibaba",
+      "overviewFile": "公司题库/alibaba/README.md",
+      "overviewTitle": "阿里巴巴（Qwen）面试题库",
+      "declaredTotal": 10,
+      "questions": [
+        {
+          "id": "alibaba-01",
+          "order": 1,
+          "title": "Qwen2.5-Coder 使用仓库级 fill-in-the-middle 训练，用到 <|fim_prefix|>、<|fim_suffix|>、<|repo_name|> 这类 token。请写出格式化一个仓库级 FIM 样本的函数，并解释为什么仓库级优于文件级。",
+          "titleEn": "Qwen2.5-Coder trains with repository-level fill-in-the-middle using tokens like <|fim_prefix|>, <|fim_suffix|>, <|repo_name|>. Write the function that formats a repo-level FIM example, and explain why repo-level beats file-level.",
+          "file": "公司题库/alibaba/01-格式化仓库级 FIM 训练样本.md",
+          "level": "进阶",
+          "tags": [
+            "FIM",
+            "仓库级补全",
+            "特殊 token",
+            "数据打包",
+            "实现题"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-04",
+            "coding-10",
+            "system-design-02",
+            "llm-internals-13"
+          ],
+          "sources": [
+            {
+              "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems（延伸）",
+              "url": "https://arxiv.org/abs/2306.03091",
+              "author": "Liu et al.",
+              "published": "2023-06-05"
+            },
+            {
+              "title": "CodeRAG-Bench: Can Retrieval Augment Code Generation?（延伸）",
+              "url": "https://arxiv.org/abs/2406.14497",
+              "author": "Wang et al.",
+              "published": "2024-06-20"
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, Liang",
+              "published": "2023-07-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9213,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
+        },
+        {
+          "id": "alibaba-02",
+          "order": 2,
+          "title": "Qwen 使用字节级 BPE，词表约 151K，为多语言覆盖做了增强，并把数字拆成单个字符。为什么做这些选择，各自的取舍是什么？",
+          "titleEn": "Qwen uses byte-level BPE with a ~151K vocabulary, augmented for multilingual coverage and with digits split into single characters. Why those choices, and what are the trade-offs?",
+          "file": "公司题库/alibaba/02-Qwen 字节级 BPE 的 151K 词表与数字逐位切分.md",
+          "level": "进阶",
+          "tags": [
+            "bpe",
+            "tokenizer",
+            "多语言",
+            "数字切分",
+            "词表大小"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-06",
+            "llm-internals-16",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "Byte Pair Encoding",
+              "url": "https://outcomeschool.com/blog/bpe-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）",
+              "url": "https://arxiv.org/abs/1508.07909",
+              "author": "Sennrich, Haddow, Birch",
+              "published": "2015-08-31"
+            },
+            {
+              "title": "SentencePiece: A simple and language independent subword tokenizer（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo, Richardson",
+              "published": "2018-08-17"
+            },
+            {
+              "title": "大型语言模型（LLM）中的 Tokenization",
+              "url": "https://www.youtube.com/watch?v=sK2s9I84EVI",
+              "author": "",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10092,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
+        },
+        {
+          "id": "alibaba-03",
+          "order": 3,
+          "title": "Qwen3 在一个模型里统一了思考模式与非思考模式，并支持调用方设置思考预算。你会如何训练它，又如何把它部署成服务？",
+          "titleEn": "Qwen3 unifies a thinking mode and a non-thinking mode in one model with a caller-settable thinking budget. How would you train that, and how would you serve it?",
+          "file": "公司题库/alibaba/03-统一思考模式与可调思考预算的训练与服务.md",
+          "level": "高阶",
+          "tags": [
+            "思考预算",
+            "混合推理",
+            "GRPO",
+            "推理服务",
+            "SLO"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-11",
+            "finetuning-10",
+            "inference-serving-09",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "大型推理模型（LRMs）",
+              "url": "https://outcomeschool.com/blog/large-reasoning-models",
+              "author": "",
+              "published": ""
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "Group Relative Policy Optimization (GRPO)",
+              "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Continuous Batching in LLMs",
+              "url": "https://outcomeschool.com/blog/continuous-batching-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10379,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 2
+        },
+        {
+          "id": "alibaba-04",
+          "order": 4,
+          "title": "Qwen 同时提供 dense 与 MoE 模型（30B 约 3B 激活；235B 约 22B 激活）。什么时候你会选 30B-A3B 的 MoE，而不是 32B 的 dense 模型？",
+          "titleEn": "Qwen ships both dense and MoE models (30B with ~3B active; 235B with ~22B active). When would you pick the 30B-A3B MoE over a 32B dense?",
+          "file": "公司题库/alibaba/04-30B-A3B MoE 与 32B dense 的选型取舍.md",
+          "level": "进阶",
+          "tags": [
+            "MoE",
+            "稀疏激活",
+            "模型选型",
+            "推理成本",
+            "显存与吞吐"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-10",
+            "llm-internals-09",
+            "mistral-03",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "MoE 详解",
+              "url": "https://outcomeschool.com/blog/mixture-of-experts",
+              "author": "",
+              "published": ""
+            },
+            {
+              "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity（延伸）",
+              "url": "https://arxiv.org/abs/2101.03961",
+              "author": "Fedus et al.",
+              "published": "2021-01-11"
+            },
+            {
+              "title": "Mixtral of Experts（延伸）",
+              "url": "https://arxiv.org/abs/2401.04088",
+              "author": "Jiang et al. (Mistral AI)",
+              "published": "2024-01-08"
+            },
+            {
+              "title": "Beyond Chinchilla-Optimal: Accounting for Inference in Language Model Scaling Laws（延伸）",
+              "url": "https://arxiv.org/abs/2401.00448",
+              "author": "Sardana et al.",
+              "published": "2023-12-31"
+            },
+            {
+              "title": "Continuous Batching in LLMs",
+              "url": "https://outcomeschool.com/blog/continuous-batching-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 12454,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 3
+        },
+        {
+          "id": "alibaba-05",
+          "order": 5,
+          "title": "Qwen2.5 借助 YaRN 加 Dual Chunk Attention 把上下文扩展到 128K（Turbo 约 1M），且基本无需训练。请解释其原理，以及为什么事后扩展如此有吸引力。",
+          "titleEn": "Qwen2.5 extends context to 128K (and ~1M for Turbo) using YaRN plus Dual Chunk Attention, mostly training-free. Explain how, and why post-hoc extension is attractive.",
+          "file": "公司题库/alibaba/05-YaRN 与 DCA 的免训练长上下文扩展.md",
+          "level": "高阶",
+          "tags": [
+            "rope",
+            "yarn",
+            "DCA",
+            "长上下文外推",
+            "免训练"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-08",
+            "llm-internals-13",
+            "llm-internals-02",
+            "alibaba-03"
+          ],
+          "sources": [
+            {
+              "title": "RoPE（旋转位置编码）背后的数学",
+              "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding",
+              "author": "",
+              "published": ""
+            },
+            {
+              "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding（延伸）",
+              "url": "https://arxiv.org/abs/2104.09864",
+              "author": "Jianlin Su et al.",
+              "published": "2021-04-20"
+            },
+            {
+              "title": "YaRN: Efficient Context Window Extension of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2309.00071",
+              "author": "Bowen Peng et al.",
+              "published": "2023-08-31"
+            },
+            {
+              "title": "RULER: What's the Real Context Size of Your Long-Context Language Models?（延伸）",
+              "url": "https://arxiv.org/abs/2404.06654",
+              "author": "Hsieh, Sun, Kriman, Acharya, Rekesh, Jia, Zhang, Ginsburg",
+              "published": "2024-04-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 12717,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 4
+        },
+        {
+          "id": "alibaba-06",
+          "order": 6,
+          "title": "Qwen3 采用强到弱蒸馏（strong-to-weak distillation），用旗舰模型带动更小的模型。它是如何工作的，为什么成本更低？",
+          "titleEn": "Qwen3 uses strong-to-weak distillation, bootstrapping smaller models from flagship ones. How does that work and why is it cheaper?",
+          "file": "公司题库/alibaba/06-强到弱蒸馏的机制与成本账.md",
+          "level": "高阶",
+          "tags": [
+            "知识蒸馏",
+            "强到弱蒸馏",
+            "on-policy 蒸馏",
+            "推理能力迁移",
+            "成本账"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "finetuning-12",
+            "finetuning-07",
+            "finetuning-10",
+            "alibaba-03"
+          ],
+          "sources": [
+            {
+              "title": "知识蒸馏是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-knowledge-distillation-work",
+              "author": "",
+              "published": ""
+            },
+            {
+              "title": "Distilling the Knowledge in a Neural Network（延伸）",
+              "url": "https://arxiv.org/abs/1503.02531",
+              "author": "Hinton, Vinyals, Dean",
+              "published": "2015-03-09"
+            },
+            {
+              "title": "DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter（延伸）",
+              "url": "https://arxiv.org/abs/1910.01108",
+              "author": "Sanh et al.",
+              "published": "2019-10-02"
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9616,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
+        },
+        {
+          "id": "alibaba-07",
+          "order": 7,
+          "title": "Qwen 的推理模型在数学与代码上使用可验证奖励的 RL 进行训练。为什么在这些领域，这比带学习式奖励模型的 PPO 更受青睐？",
+          "titleEn": "Qwen's reasoning models train with RL using verifiable rewards on maths and code. Why is that preferred in those domains over PPO with a learned reward model?",
+          "file": "公司题库/alibaba/07-可验证奖励的 RL 为什么在数学与代码上优于学习式奖励模型.md",
+          "level": "高阶",
+          "tags": [
+            "rlvr",
+            "verifier",
+            "reward-model",
+            "grpo",
+            "推理"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "finetuning-10",
+            "finetuning-03",
+            "finetuning-11",
+            "alibaba-06",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "Group Relative Policy Optimization (GRPO)",
+              "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2402.03300",
+              "author": "Shao et al.",
+              "published": "2024-02-05"
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "Tulu 3: Pushing Frontiers in Open Language Model Post-Training（延伸）",
+              "url": "https://arxiv.org/abs/2411.15124",
+              "author": "Lambert et al.",
+              "published": "2024-11-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5855,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
+        },
+        {
+          "id": "alibaba-08",
+          "order": 8,
+          "title": "Qwen 发布的开放权重常居公开榜单前列。作为发布工程师，你如何确保 benchmark 数字可信且未被污染？",
+          "titleEn": "Qwen ships open weights that top public leaderboards. As the release engineer, how do you make the benchmark numbers trustworthy and uncontaminated?",
+          "file": "公司题库/alibaba/08-作为发布工程师如何确保 benchmark 数字可信且未被污染.md",
+          "level": "高阶",
+          "tags": [
+            "benchmark-污染",
+            "去污染",
+            "发布工程",
+            "评测治理"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "evaluation-06",
+            "evaluation-05",
+            "evaluation-04",
+            "evaluation-02",
+            "alibaba-07"
+          ],
+          "sources": [
+            {
+              "title": "LLM 评估",
+              "url": "https://outcomeschool.com/blog/llm-evaluation",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2406.19314",
+              "author": "White et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            },
+            {
+              "title": "Investigating Data Contamination in Modern Benchmarks for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2311.09783",
+              "author": "Deng et al. (NAACL 2024)",
+              "published": "2023-11-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5365,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
+        },
+        {
+          "id": "alibaba-09",
+          "order": 9,
+          "title": "Qwen2.5-VL 使用原生动态分辨率的 ViT，配合 window attention 与多模态 RoPE。为什么用原生分辨率而不是固定切块，MRoPE 又编码了什么？",
+          "titleEn": "Qwen2.5-VL uses a native dynamic-resolution ViT with window attention and multimodal RoPE. Why native resolution instead of fixed tiling, and what does MRoPE encode?",
+          "file": "公司题库/alibaba/09-Qwen2.5-VL 的原生动态分辨率与 MRoPE.md",
+          "level": "高阶",
+          "tags": [
+            "vlm",
+            "动态分辨率",
+            "window-attention",
+            "m-rope",
+            "视觉-token"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "multimodal-01",
+            "multimodal-02",
+            "multimodal-10",
+            "coding-02",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "多模态 AI",
+              "url": "https://outcomeschool.com/blog/multimodal-ai",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "解读 Vision Transformer (ViT)",
+              "url": "https://outcomeschool.com/blog/decoding-vision-transformer-vit",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Qwen2-VL: Enhancing Vision-Language Model's Perception of the World at Any Resolution（延伸）",
+              "url": "https://arxiv.org/abs/2409.12191",
+              "author": "Wang et al.",
+              "published": "2024-09-18"
+            },
+            {
+              "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale（延伸）",
+              "url": "https://arxiv.org/abs/2010.11929",
+              "author": "Dosovitskiy et al. (ViT, ICLR 2021)",
+              "published": "2020-10-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6473,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "alibaba-10",
+          "order": 10,
+          "title": "阿里巴巴以 Apache 2.0 开源 Qwen，同时又经营商业云业务。请讲讲这一战略，并谈谈你端到端负责过的一个模糊的技术决策。",
+          "titleEn": "Alibaba open-sources Qwen under Apache 2.0 while running a commercial cloud business. Walk me through that strategy, then tell me about an ambiguous technical decision you owned end to end.",
+          "file": "公司题库/alibaba/10-Apache 2.0 开源战略与一个模糊的技术决策.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "开源战略",
+            "模糊决策",
+            "决策记录"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "system-design-09",
+            "evaluation-04",
+            "agents-11",
+            "safety-10",
+            "alibaba-08"
+          ],
+          "sources": [
+            {
+              "title": "Apache License, Version 2.0（延伸）",
+              "url": "https://www.apache.org/licenses/LICENSE-2.0",
+              "author": "Apache Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "AI Risk Management Framework（延伸）",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "author": "NIST",
+              "published": ""
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5071,
+          "topicName": "行为与文化",
+          "topicOrder": 1
+        }
+      ]
+    },
     {
       "id": "mistral",
       "name": "Mistral AI",
