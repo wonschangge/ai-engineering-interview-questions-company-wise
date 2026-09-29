@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:36:11.338Z",
+  "generated": "2026-09-29T22:39:15.336Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 371,
+    "companyQuestions": 374,
     "companies": 27,
     "planned": 598
   },
@@ -24416,6 +24416,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4886
+        },
+        {
+          "id": "waymo-04",
+          "order": 4,
+          "title": "在自动驾驶栈中，视觉语言模型和基础模型真正能发挥作用的地方在哪里，又在哪些地方会成为隐患？",
+          "titleEn": "In an autonomous driving stack, where do vision-language models and foundation models genuinely help, and where are they a liability?",
+          "file": "公司题库/waymo/04-VLM-在自驾栈的定位.md",
+          "level": "高阶",
+          "tags": [
+            "VLM",
+            "基础模型",
+            "车外 vs 车内",
+            "非确定性",
+            "可验证性"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "waymo-02",
+            "waymo-05",
+            "waymo-06",
+            "waymo-07",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control（延伸）",
+              "url": "https://arxiv.org/abs/2307.15818",
+              "author": "Brohan et al. (Google DeepMind)",
+              "published": "2023-07-28"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "PaLM-E: An Embodied Multimodal Language Model（延伸）",
+              "url": "https://arxiv.org/abs/2303.03378",
+              "author": "Driess et al. (Google)",
+              "published": "2023-03-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4458
+        },
+        {
+          "id": "waymo-05",
+          "order": 5,
+          "title": "为车载计算栈做算力与延迟预算。当模型变得更大时，哪些环节会先出问题？",
+          "titleEn": "Budget compute and latency for the on-vehicle stack. As models get bigger, what breaks first?",
+          "file": "公司题库/waymo/05-车载算力与延迟预算.md",
+          "level": "高阶",
+          "tags": [
+            "车载预算",
+            "带宽墙",
+            "算术强度",
+            "尾延迟",
+            "散热"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "waymo-02",
+            "waymo-04",
+            "waymo-09",
+            "figure-ai-11",
+            "character-ai-06"
+          ],
+          "sources": [
+            {
+              "title": "Roofline: An Insightful Visual Performance Model（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson",
+              "published": "2009-04-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5049
+        },
+        {
+          "id": "waymo-06",
+          "order": 6,
+          "title": "你拥有数亿英里的车队行驶里程。你如何找出并利用那些真正重要的罕见场景？",
+          "titleEn": "You have hundreds of millions of fleet miles. How do you find and exploit the rare scenarios that actually matter?",
+          "file": "公司题库/waymo/06-数亿英里里找罕见场景.md",
+          "level": "高阶",
+          "tags": [
+            "罕见场景",
+            "漏斗",
+            "触发器",
+            "边际递减",
+            "覆盖率"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "waymo-04",
+            "waymo-07",
+            "waymo-08",
+            "waymo-09",
+            "scale-11"
+          ],
+          "sources": [
+            {
+              "title": "The Unreasonable Effectiveness of Data（延伸）",
+              "url": "https://research.google/pubs/pub35198/",
+              "author": "Halevy, Norvig & Pereira (Google)",
+              "published": "2009-03-01"
+            },
+            {
+              "title": "Mining of Massive Datasets（延伸）",
+              "url": "http://www.mmds.org/",
+              "author": "Leskovec, Rajaraman & Ullman",
+              "published": "2014-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4663
         }
       ]
     },
