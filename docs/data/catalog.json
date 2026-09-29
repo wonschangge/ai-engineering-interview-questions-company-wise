@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T19:49:01.739Z",
+  "generated": "2026-09-29T19:54:25.745Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 248,
-    "companies": 17,
+    "companyQuestions": 251,
+    "companies": 18,
     "planned": 598
   },
   "topics": [
@@ -18009,6 +18009,157 @@
           "chars": 6608,
           "topicName": "行为与文化",
           "topicOrder": 5
+        }
+      ]
+    },
+    {
+      "id": "company-palantir",
+      "name": "palantir",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "palantir",
+      "overviewFile": null,
+      "overviewTitle": "palantir",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "palantir-01",
+          "order": 1,
+          "title": "实现一组计算面积的形状类，然后扩展它们以支持一种新的形状。",
+          "titleEn": "Implement a set of shape classes that compute area, then extend them to support a new shape.",
+          "file": "公司题库/palantir/01-形状类与扩展.md",
+          "level": "进阶",
+          "tags": [
+            "面向对象",
+            "开闭原则",
+            "多态",
+            "输入校验",
+            "浮点比较"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "palantir-02",
+            "palantir-04",
+            "coding-28",
+            "coding-22",
+            "coding-25"
+          ],
+          "sources": [
+            {
+              "title": "Design Patterns: Elements of Reusable Object-Oriented Software（延伸）",
+              "url": "https://www.oreilly.com/library/view/design-patterns-elements/0201633612/",
+              "author": "Gamma, Helm, Johnson & Vlissides",
+              "published": "1994-10-31"
+            },
+            {
+              "title": "Clean Code: A Handbook of Agile Software Craftsmanship（延伸）",
+              "url": "https://www.oreilly.com/library/view/clean-code-a/9780136083238/",
+              "author": "Robert C. Martin",
+              "published": "2008-08-01"
+            },
+            {
+              "title": "What Every Computer Scientist Should Know About Floating-Point Arithmetic（延伸）",
+              "url": "https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html",
+              "author": "David Goldberg",
+              "published": "1991-03-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4802
+        },
+        {
+          "id": "palantir-02",
+          "order": 2,
+          "title": "写一条 SQL 查询，跨表 join 并聚合，以回答某个业务问题。",
+          "titleEn": "Write a SQL query that joins across tables and aggregates to answer a business question.",
+          "file": "公司题库/palantir/02-SQL-join-与聚合.md",
+          "level": "高阶",
+          "tags": [
+            "SQL",
+            "join 扇出",
+            "聚合陷阱",
+            "NULL 语义",
+            "查询正确性"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "palantir-01",
+            "palantir-03",
+            "palantir-07",
+            "coding-25",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "SQL for Smarties: Advanced SQL Programming（延伸）",
+              "url": "https://www.oreilly.com/library/view/sql-for-smarties/9780128007617/",
+              "author": "Joe Celko",
+              "published": "2014-11-01"
+            },
+            {
+              "title": "Use The Index, Luke!（延伸）",
+              "url": "https://use-the-index-luke.com/",
+              "author": "Markus Winand",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "PostgreSQL Documentation: Aggregate Functions（延伸）",
+              "url": "https://www.postgresql.org/docs/current/functions-aggregate.html",
+              "author": "PostgreSQL Global Development Group",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5664
+        },
+        {
+          "id": "palantir-03",
+          "order": 3,
+          "title": "构建一个函数，从 REST API 分页拉取数据，并处理 page size 与总页数逻辑。",
+          "titleEn": "Build a function that pulls data from a paginated REST API, handling page size and total-pages logic.",
+          "file": "公司题库/palantir/03-REST-API-分页拉取.md",
+          "level": "进阶",
+          "tags": [
+            "分页",
+            "游标",
+            "数据漂移",
+            "限流重试",
+            "幂等"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "palantir-02",
+            "palantir-06",
+            "palantir-07",
+            "coding-31",
+            "system-design-04"
+          ],
+          "sources": [
+            {
+              "title": "REST API Design Rulebook（延伸）",
+              "url": "https://www.oreilly.com/library/view/rest-api-design/9781449317904/",
+              "author": "Mark Masse",
+              "published": "2011-10-25"
+            },
+            {
+              "title": "Microsoft REST API Guidelines（延伸）",
+              "url": "https://github.com/microsoft/api-guidelines/blob/vNext/azure/Guidelines.md",
+              "author": "Microsoft",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4937
         }
       ]
     },
