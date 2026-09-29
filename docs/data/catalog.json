@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:17:38.627Z",
+  "generated": "2026-09-29T21:20:40.080Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 314,
+    "companyQuestions": 317,
     "companies": 22,
     "planned": 598
   },
@@ -21228,6 +21228,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4650
+        },
+        {
+          "id": "scale-07",
+          "order": 7,
+          "title": "你的标注者没有 ground truth：这些任务是主观偏好判断。你如何衡量并提升标注质量？",
+          "titleEn": "Your annotators have no ground truth: these are subjective preference judgements. How do you measure and improve annotation quality?",
+          "file": "公司题库/scale-ai/07-主观偏好下如何衡量标注质量.md",
+          "level": "高阶",
+          "tags": [
+            "主观标注",
+            "自我一致性",
+            "位置偏置",
+            "传递性",
+            "退化样本"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "scale-01",
+            "scale-05",
+            "scale-06",
+            "evaluation-01",
+            "gdm-20"
+          ],
+          "sources": [
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al.",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "Measuring Nominal Scale Agreement Among Many Raters（延伸）",
+              "url": "https://psycnet.apa.org/record/1972-00210-001",
+              "author": "Fleiss",
+              "published": "1971-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4923
+        },
+        {
+          "id": "scale-08",
+          "order": 8,
+          "title": "你会如何对 LLM agent 的 tool use 做基准测试，比如针对组合 10+ 个 API 的企业工作流？",
+          "titleEn": "How would you benchmark LLM agent tool use, for example on enterprise workflows that compose 10+ APIs?",
+          "file": "公司题库/scale-ai/08-agent-的-tool-use-基准.md",
+          "level": "高阶",
+          "tags": [
+            "agent 基准",
+            "工具调用",
+            "部分分",
+            "环境设计",
+            "统计功效"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "scale-04",
+            "scale-06",
+            "scale-07",
+            "agents-01",
+            "agents-05"
+          ],
+          "sources": [
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "Toolformer: Language Models Can Teach Themselves to Use Tools（延伸）",
+              "url": "https://arxiv.org/abs/2302.04761",
+              "author": "Schick et al. (Meta)",
+              "published": "2023-02-09"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4720
+        },
+        {
+          "id": "scale-09",
+          "order": 9,
+          "title": "你负责的一条 eval 流水线突然报告某客户的模型在周二到周三之间下降了 6 分。模型并没有变化。请排查。",
+          "titleEn": "An eval pipeline you own suddenly reports that a customer's model dropped 6 points between Tuesday and Wednesday. The model did not change. Investigate.",
+          "file": "公司题库/scale-ai/09-eval-下降-6-分的排查.md",
+          "level": "高阶",
+          "tags": [
+            "eval 排查",
+            "2x2 分解",
+            "噪声",
+            "判分器",
+            "污染"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "scale-06",
+            "scale-08",
+            "perplexity-05",
+            "openai-22",
+            "nvidia-04"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Systems Performance: Enterprise and the Cloud（延伸）",
+              "url": "https://www.brendangregg.com/systems-performance-2nd-edition-book.html",
+              "author": "Brendan Gregg",
+              "published": "2020-12-01"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4795
         }
       ]
     },
