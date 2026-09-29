@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:51:14.978Z",
+  "generated": "2026-09-29T18:52:50.239Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 221,
+    "companyQuestions": 222,
     "companies": 16,
     "planned": 598
   },
@@ -16623,6 +16623,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7458
+        },
+        {
+          "id": "openai-27",
+          "order": 27,
+          "title": "你最喜欢的产品是什么？为什么？",
+          "titleEn": "What is your favourite product and why?",
+          "file": "公司题库/openai/27-最喜欢的产品.md",
+          "level": "进阶",
+          "tags": [
+            "产品分析",
+            "留存与 LTV",
+            "期望价值",
+            "单位经济",
+            "行为面试"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "openai-26",
+            "openai-28",
+            "applied-02",
+            "evaluation-01",
+            "microsoft-04"
+          ],
+          "sources": [
+            {
+              "title": "Hacking Growth（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/538328/hacking-growth-by-sean-ellis-and-morgan-brown/",
+              "author": "Ellis & Brown",
+              "published": "2017-04-25"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Hidden Technical Debt in Machine Learning Systems（延伸）",
+              "url": "https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems",
+              "author": "Sculley et al. (Google)",
+              "published": "2015-12-07"
+            },
+            {
+              "title": "API 经验与 C-suite 沟通（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6933
         }
       ]
     },
