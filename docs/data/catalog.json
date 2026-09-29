@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T20:53:27.055Z",
+  "generated": "2026-09-29T20:58:18.865Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 296,
-    "companies": 20,
+    "companyQuestions": 299,
+    "companies": 21,
     "planned": 598
   },
   "topics": [
@@ -13381,6 +13381,157 @@
           "chars": 5094,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-groq",
+      "name": "groq",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "groq",
+      "overviewFile": null,
+      "overviewTitle": "groq",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "groq-01",
+          "order": 1,
+          "title": "我们的编译器对每条指令和每一次 chip-to-chip 传输都做静态调度。相比 NVCC 风格的编译器，它需要额外知道哪些信息？一旦调度出错，会坏在哪里？",
+          "titleEn": "Our compiler statically schedules every instruction and every chip-to-chip transfer. Compared with an NVCC-style compiler, what extra information does it need? When the schedule is wrong, how does it fail?",
+          "file": "公司题库/groq/01-静态调度需要知道什么.md",
+          "level": "高阶",
+          "tags": [
+            "静态调度",
+            "延迟表",
+            "静默错误",
+            "爆炸半径",
+            "确定性"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "groq-02",
+            "groq-03",
+            "groq-04",
+            "groq-08",
+            "nvidia-01"
+          ],
+          "sources": [
+            {
+              "title": "Compiling for the Groq TSP（延伸）",
+              "url": "https://groq.com/",
+              "author": "Groq",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "TVM: An Automated End-to-End Optimizing Compiler for Deep Learning（延伸）",
+              "url": "https://www.usenix.org/conference/osdi18/presentation/chen",
+              "author": "Chen et al.",
+              "published": "2018-10-08"
+            },
+            {
+              "title": "CUDA C++ Programming Guide（延伸）",
+              "url": "https://docs.nvidia.com/cuda/cuda-c-programming-guide/",
+              "author": "NVIDIA",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5158
+        },
+        {
+          "id": "groq-02",
+          "order": 2,
+          "title": "为面向 spatial dataflow 加速器的编译器设计 IR 与 pass pipeline。内存驻留（memory residency）的决策应该放在哪一层？为什么？",
+          "titleEn": "Design an IR and pass pipeline for a compiler targeting a spatial dataflow accelerator. At which layer should the memory residency decision live, and why?",
+          "file": "公司题库/groq/02-IR-与-residency-决策层.md",
+          "level": "高阶",
+          "tags": [
+            "编译器 IR",
+            "pass pipeline",
+            "residency",
+            "分块",
+            "SRAM"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "groq-01",
+            "groq-03",
+            "groq-05",
+            "groq-09",
+            "nvidia-01"
+          ],
+          "sources": [
+            {
+              "title": "TVM: An Automated End-to-End Optimizing Compiler for Deep Learning（延伸）",
+              "url": "https://www.usenix.org/conference/osdi18/presentation/chen",
+              "author": "Chen et al.",
+              "published": "2018-10-08"
+            },
+            {
+              "title": "Halide: A Language and Compiler for Optimizing Parallelism, Locality, and Recomputation in Image Processing Pipelines（延伸）",
+              "url": "https://people.csail.mit.edu/jrk/halide-pldi13.pdf",
+              "author": "Ragan-Kelley et al.",
+              "published": "2013-06-16"
+            },
+            {
+              "title": "MLIR: A Compiler Infrastructure for the End of Moore\\u2019s Law（延伸）",
+              "url": "https://arxiv.org/abs/2002.11054",
+              "author": "Lattner et al.",
+              "published": "2020-02-25"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5435
+        },
+        {
+          "id": "groq-03",
+          "order": 3,
+          "title": "编写 host 侧 runtime，为跨多芯片的确定性加速器持续供数。它真正难在哪里？",
+          "titleEn": "Write the host-side runtime that keeps a multi-chip deterministic accelerator fed. What is actually hard about it?",
+          "file": "公司题库/groq/03-host-侧-runtime-的难点.md",
+          "level": "高阶",
+          "tags": [
+            "host runtime",
+            "抖动预算",
+            "硬件队列",
+            "确定性",
+            "DMA"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "groq-01",
+            "groq-02",
+            "groq-04",
+            "groq-08",
+            "system-design-04"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "The Google File System（延伸）",
+              "url": "https://research.google/pubs/pub51/",
+              "author": "Ghemawat, Gobioff & Leung (Google)",
+              "published": "2003-10-19"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4960
         }
       ]
     },
