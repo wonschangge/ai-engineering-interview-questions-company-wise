@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:35:38.325Z",
+  "generated": "2026-09-29T18:38:47.151Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 213,
+    "companyQuestions": 214,
     "companies": 16,
     "planned": 598
   },
@@ -16207,6 +16207,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7511
+        },
+        {
+          "id": "openai-19",
+          "order": 19,
+          "title": "设计一个分布式任务调度系统。",
+          "titleEn": "Design a distributed task scheduling system.",
+          "file": "公司题库/openai/19-分布式任务调度.md",
+          "level": "高阶",
+          "tags": [
+            "任务调度",
+            "租约",
+            "饥饿",
+            "公平性",
+            "至少一次"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "openai-18",
+            "openai-20",
+            "system-design-04",
+            "system-design-05",
+            "agents-04"
+          ],
+          "sources": [
+            {
+              "title": "Apache Hadoop YARN: Yet Another Resource Negotiator（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/2523616.2523633",
+              "author": "Vavilapalli et al.",
+              "published": "2013-10-01"
+            },
+            {
+              "title": "Borg, Omega, and Kubernetes（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/2890784",
+              "author": "Burns et al. (Google)",
+              "published": "2016-05-01"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE Team",
+              "published": "2016-03-01"
+            },
+            {
+              "title": "webhook 投递系统（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7386
         }
       ]
     },
