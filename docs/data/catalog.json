@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:55:34.597Z",
+  "generated": "2026-09-29T22:58:42.779Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 386,
+    "companyQuestions": 389,
     "companies": 28,
     "planned": 598
   },
@@ -8381,6 +8381,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4978
+        },
+        {
+          "id": "apple-07",
+          "order": 7,
+          "title": "如何在不收集用户内容的前提下，利用用户设备上的信号来改进端侧模型？",
+          "titleEn": "How do you use signals on the user\\u2019s device to improve the on-device model without collecting their content?",
+          "file": "公司题库/apple/07-不收集内容如何改进端侧模型.md",
+          "level": "高阶",
+          "tags": [
+            "联邦学习",
+            "差分隐私",
+            "端侧个性化",
+            "隐私预算",
+            "小语种"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "apple-06",
+            "apple-08",
+            "apple-10",
+            "safety-03",
+            "finetuning-03"
+          ],
+          "sources": [
+            {
+              "title": "Communication-Efficient Learning of Deep Networks from Decentralized Data（延伸）",
+              "url": "https://arxiv.org/abs/1602.05629",
+              "author": "McMahan et al. (Google)",
+              "published": "2016-02-17"
+            },
+            {
+              "title": "Deep Learning with Differential Privacy（延伸）",
+              "url": "https://arxiv.org/abs/1607.00133",
+              "author": "Abadi et al. (Google)",
+              "published": "2016-07-06"
+            },
+            {
+              "title": "The Algorithmic Foundations of Differential Privacy（延伸）",
+              "url": "https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf",
+              "author": "Dwork & Roth",
+              "published": "2014-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4607
+        },
+        {
+          "id": "apple-08",
+          "order": 8,
+          "title": "设计一个路由层，决定用户请求是由端侧处理、由第一方服务端模型处理，还是由第三方模型处理。",
+          "titleEn": "Design a routing layer that decides whether a user request is handled on-device, by a first-party server model, or by a third-party model.",
+          "file": "公司题库/apple/08-端侧与云端的路由层.md",
+          "level": "高阶",
+          "tags": [
+            "路由层",
+            "硬约束",
+            "隐私等级",
+            "成本结构",
+            "静默升级"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "apple-01",
+            "apple-05",
+            "apple-07",
+            "apple-09",
+            "sierra-08"
+          ],
+          "sources": [
+            {
+              "title": "RouteLLM: Learning to Route LLMs with Preference Data（延伸）",
+              "url": "https://arxiv.org/abs/2406.18665",
+              "author": "Ong et al. (LMSYS)",
+              "published": "2024-06-26"
+            },
+            {
+              "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance（延伸）",
+              "url": "https://arxiv.org/abs/2305.05176",
+              "author": "Chen, Zaharia & Zou (Stanford)",
+              "published": "2023-05-09"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4579
+        },
+        {
+          "id": "apple-09",
+          "order": 9,
+          "title": "用户说“把周六徒步的照片发给 Maya”。请设计从这句话到参数已解析的结构化 app action 的端侧链路。",
+          "titleEn": "A user says \"send Maya the photos from Saturday\\u2019s hike\". Design the on-device chain from that utterance to a fully resolved structured app action.",
+          "file": "公司题库/apple/09-从一句话到结构化-action.md",
+          "level": "高阶",
+          "tags": [
+            "端侧链路",
+            "实体解析",
+            "歧义处理",
+            "照片检索",
+            "错误不对称"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "apple-04",
+            "apple-05",
+            "apple-07",
+            "apple-08",
+            "agents-01"
+          ],
+          "sources": [
+            {
+              "title": "Whisper: Robust Speech Recognition via Large-Scale Weak Supervision（延伸）",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2022-12-06"
+            },
+            {
+              "title": "SentencePiece: A Simple and Language Independent Subword Tokenizer（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo & Richardson (Google)",
+              "published": "2018-08-13"
+            },
+            {
+              "title": "Efficient Guided Generation for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2307.09702",
+              "author": "Willard & Louf",
+              "published": "2023-07-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4451
         }
       ]
     },
