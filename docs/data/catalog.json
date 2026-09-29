@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:03:40.665Z",
+  "generated": "2026-09-29T17:05:14.153Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 169,
+    "companyQuestions": 170,
     "companies": 13,
     "planned": 598
   },
@@ -14373,6 +14373,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6916
+        },
+        {
+          "id": "moonshot-05",
+          "order": 5,
+          "title": "请讲讲为什么你会像 Mooncake 那样把 prefill 和 decode 拆分到不同的机器上。这样做能带来什么，又要付出什么代价？",
+          "titleEn": "Why would you split prefill and decode onto different machines, as Mooncake does? What does it buy, and what does it cost?",
+          "file": "公司题库/moonshot/05-prefill-decode-分离的收益与代价.md",
+          "level": "高阶",
+          "tags": [
+            "PD 分离",
+            "Mooncake",
+            "TTFT",
+            "TPOT",
+            "KV 传输"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "moonshot-06",
+            "moonshot-01",
+            "moonshot-02",
+            "inference-serving-07",
+            "deepseek-05"
+          ],
+          "sources": [
+            {
+              "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2407.00079",
+              "author": "Qin et al. (Moonshot AI)",
+              "published": "2024-06-28"
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al.",
+              "published": "2024-01-22"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al.",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "显存受限下低延迟服务 671B MoE（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7322
         }
       ]
     },
