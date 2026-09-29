@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:52:20.584Z",
+  "generated": "2026-09-29T22:55:34.597Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 383,
+    "companyQuestions": 386,
     "companies": 28,
     "planned": 598
   },
@@ -8243,6 +8243,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5377
+        },
+        {
+          "id": "apple-04",
+          "order": 4,
+          "title": "你端侧功能的 time-to-first-token 是 1.8 s。请讲讲你会如何诊断并修复它。",
+          "titleEn": "Your on-device feature has a time-to-first-token of 1.8 s. How would you diagnose and fix it?",
+          "file": "公司题库/apple/04-TTFT-1.8-秒的诊断.md",
+          "level": "高阶",
+          "tags": [
+            "TTFT",
+            "prefill",
+            "前缀缓存",
+            "分块 prefill",
+            "诊断顺序"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "apple-01",
+            "apple-03",
+            "apple-05",
+            "apple-06",
+            "sierra-05"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al.",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "Roofline: An Insightful Visual Performance Model（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson",
+              "published": "2009-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5138
+        },
+        {
+          "id": "apple-05",
+          "order": 5,
+          "title": "你的端侧模型必须输出合法且符合 schema 的 tool call。你如何保证其合法性，而不是指望它碰巧正确？",
+          "titleEn": "Your on-device model must emit legal, schema-conforming tool calls. How do you guarantee legality rather than hoping it happens to be right?",
+          "file": "公司题库/apple/05-端侧-tool-call-的合法性.md",
+          "level": "高阶",
+          "tags": [
+            "约束解码",
+            "文法掩码",
+            "重试成本",
+            "语义校验",
+            "词表 trie"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "apple-04",
+            "apple-06",
+            "apple-08",
+            "agents-01",
+            "sierra-09"
+          ],
+          "sources": [
+            {
+              "title": "Efficient Guided Generation for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2307.09702",
+              "author": "Willard & Louf",
+              "published": "2023-07-19"
+            },
+            {
+              "title": "Synchromesh: Reliable Code Generation from Pre-trained Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2201.11227",
+              "author": "Poesia et al. (Stanford)",
+              "published": "2022-01-27"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5047
+        },
+        {
+          "id": "apple-06",
+          "order": 6,
+          "title": "你只有一个端侧 base model，却要支撑十几个功能：摘要、改写、回复建议、语气调整。如何在不发布十几个模型的前提下完成特化？",
+          "titleEn": "You have a single on-device base model but a dozen features to support: summarisation, rewriting, reply suggestions, tone adjustment. How do you specialise without shipping a dozen models?",
+          "file": "公司题库/apple/06-一个底座支撑十几个功能.md",
+          "level": "进阶",
+          "tags": [
+            "LoRA",
+            "适配器",
+            "内存约束",
+            "质量增益",
+            "分层配置"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "apple-01",
+            "apple-02",
+            "apple-04",
+            "apple-05",
+            "finetuning-03"
+          ],
+          "sources": [
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al. (Microsoft)",
+              "published": "2021-06-17"
+            },
+            {
+              "title": "QLoRA: Efficient Finetuning of Quantized LLMs（延伸）",
+              "url": "https://arxiv.org/abs/2305.14314",
+              "author": "Dettmers et al.",
+              "published": "2023-05-23"
+            },
+            {
+              "title": "The Power of Scale for Parameter-Efficient Prompt Tuning（延伸）",
+              "url": "https://arxiv.org/abs/2104.08691",
+              "author": "Lester, Al-Rfou & Constant (Google)",
+              "published": "2021-04-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4978
         }
       ]
     },
