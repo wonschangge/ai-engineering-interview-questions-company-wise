@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:28:21.662Z",
+  "generated": "2026-09-29T18:29:31.294Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 208,
+    "companyQuestions": 209,
     "companies": 16,
     "planned": 598
   },
@@ -15894,7 +15894,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7254
+          "chars": 7248
         },
         {
           "id": "openai-13",
@@ -15946,7 +15946,59 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7806
+          "chars": 7793
+        },
+        {
+          "id": "openai-14",
+          "order": 14,
+          "title": "调整 LLM 的上下文窗口大小会带来什么影响？",
+          "titleEn": "What are the effects of adjusting the context window size of an LLM?",
+          "file": "公司题库/openai/14-调整上下文窗口的影响.md",
+          "level": "高阶",
+          "tags": [
+            "上下文窗口",
+            "位置外推",
+            "迷失在中间",
+            "上下文稀释",
+            "KV 成本"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "openai-12",
+            "openai-13",
+            "moonshot-04",
+            "moonshot-07",
+            "xai-04"
+          ],
+          "sources": [
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al.",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Extending Context Window of Large Language Models via Positional Interpolation（延伸）",
+              "url": "https://arxiv.org/abs/2306.15595",
+              "author": "Chen et al. (Meta)",
+              "published": "2023-06-28"
+            },
+            {
+              "title": "YaRN: Efficient Context Window Extension of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2309.00071",
+              "author": "Peng et al.",
+              "published": "2023-09-01"
+            },
+            {
+              "title": "self-attention 与长上下文（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8099
         }
       ]
     },
