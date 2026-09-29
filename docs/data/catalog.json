@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T23:56:06.857Z",
+  "generated": "2026-09-29T23:58:43.875Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 416,
+    "companyQuestions": 419,
     "companies": 31,
     "planned": 598
   },
@@ -15840,6 +15840,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4802
+        },
+        {
+          "id": "harvey-04",
+          "order": 4,
+          "title": "设计一个 agent：输入一份 NDA 草稿，返回一份体现该律所 playbook 的带修订标记的 Word 文档，而不是一段聊天回复。",
+          "titleEn": "Design an agent that takes an NDA draft and returns a Word document with tracked changes reflecting the firm’s playbook, rather than a chat reply.",
+          "file": "公司题库/harvey/04-NDA-修订标记-agent.md",
+          "level": "高阶",
+          "tags": [
+            "OOXML",
+            "修订标记",
+            "run 切分",
+            "playbook",
+            "精确率优先"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "harvey-01",
+            "harvey-05",
+            "harvey-07",
+            "agents-01",
+            "coding-02"
+          ],
+          "sources": [
+            {
+              "title": "Office Open XML: WordprocessingML Reference（延伸）",
+              "url": "https://learn.microsoft.com/en-us/office/open-xml/word/overview",
+              "author": "Microsoft",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "python-docx Documentation（延伸）",
+              "url": "https://python-docx.readthedocs.io/",
+              "author": "Steve Canny",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (Princeton)",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5095
+        },
+        {
+          "id": "harvey-05",
+          "order": 5,
+          "title": "介绍一个工作流的架构：它依据一份 18 个问题的尽调清单审查 5,000 份合同，并返回一张审查网格。",
+          "titleEn": "Describe the architecture of a workflow that reviews 5,000 contracts against an 18-question diligence checklist and returns a review grid.",
+          "file": "公司题库/harvey/05-18-问尽调网格的架构.md",
+          "level": "高阶",
+          "tags": [
+            "尽调网格",
+            "前缀缓存",
+            "假阴性",
+            "未找到",
+            "人工复核路由"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "harvey-01",
+            "harvey-02",
+            "harvey-04",
+            "harvey-10",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "Map-Reduce for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.12588",
+              "author": "Chen et al. (Meta)",
+              "published": "2022-11-22"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (Stanford)",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4267
+        },
+        {
+          "id": "harvey-06",
+          "order": 6,
+          "title": "一个新的前沿模型发布了，在你的 benchmark 上得分更高。在它触达客户之前，会发生什么？",
+          "titleEn": "A new frontier model is released and scores higher on your benchmark. What happens before it reaches customers?",
+          "file": "公司题库/harvey/06-新模型上线前的流程.md",
+          "level": "高阶",
+          "tags": [
+            "模型上线门禁",
+            "污染",
+            "切片回归",
+            "成本质量前沿",
+            "提示敏感性"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "harvey-05",
+            "harvey-07",
+            "harvey-08",
+            "tesla-09",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al. (UC Berkeley)",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford)",
+              "published": "2022-11-16"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4655
         }
       ]
     },
