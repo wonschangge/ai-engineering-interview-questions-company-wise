@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:00:54.913Z",
+  "generated": "2026-09-29T18:02:44.441Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 192,
+    "companyQuestions": 193,
     "companies": 15,
     "planned": 598
   },
@@ -14008,6 +14008,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7650
+        },
+        {
+          "id": "microsoft-08",
+          "order": 8,
+          "title": "你的 Copilot 会对收到的邮件做摘要。攻击者给目标用户发了一封邮件，里面藏着写给模型的隐藏指令。请讲一下这个攻击过程以及你的防御方案。",
+          "titleEn": "Your Copilot summarizes incoming email. An attacker sends the target user an email containing hidden instructions aimed at the model. Walk through the attack and your defenses.",
+          "file": "公司题库/microsoft/08-邮件里的提示注入.md",
+          "level": "高阶",
+          "tags": [
+            "提示注入",
+            "数据与指令不分",
+            "能力最小化",
+            "外泄通道",
+            "纵深防御"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "microsoft-05",
+            "microsoft-06",
+            "microsoft-07",
+            "safety-01",
+            "agents-03"
+          ],
+          "sources": [
+            {
+              "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）",
+              "url": "https://arxiv.org/abs/2302.12173",
+              "author": "Greshake et al.",
+              "published": "2023-02-22"
+            },
+            {
+              "title": "Ignore This Title and HackAPrompt: Exposing Systemic Vulnerabilities of LLMs（延伸）",
+              "url": "https://arxiv.org/abs/2311.16119",
+              "author": "Schulhoff et al.",
+              "published": "2023-11-27"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            },
+            {
+              "title": "权限感知的 Copilot（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7819
         }
       ]
     },
