@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:35:16.994Z",
+  "generated": "2026-09-29T14:37:19.848Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 125,
+    "companyQuestions": 126,
     "companies": 8,
     "planned": 598
   },
@@ -10110,6 +10110,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5264
+        },
+        {
+          "id": "elevenlabs-07",
+          "order": 7,
+          "title": "一个医院集团靠三名员工轮班、用电话人工安排和确认门诊预约。请设计我们会为他们构建的系统。",
+          "titleEn": "A hospital group schedules and confirms outpatient appointments by phone with three staff working shifts. Design the system we would build for them.",
+          "file": "公司题库/elevenlabs/07-医院集团电话预约系统的设计.md",
+          "level": "高阶",
+          "tags": [
+            "语音-agent",
+            "医疗预约",
+            "安全边界",
+            "整合",
+            "容量规划"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "elevenlabs-08",
+            "elevenlabs-04",
+            "elevenlabs-03",
+            "agent-10",
+            "anthropic-17"
+          ],
+          "sources": [
+            {
+              "title": "设计实时语音 AI Agent",
+              "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "为实时语音 agent 做 latency 预算（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "在生产系统中如何让 agent 的操作可逆或至少可审计（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5589
         }
       ]
     },
