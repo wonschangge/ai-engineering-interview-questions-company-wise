@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:25:36.883Z",
+  "generated": "2026-09-29T18:27:01.559Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 206,
+    "companyQuestions": 207,
     "companies": 16,
     "planned": 598
   },
@@ -15843,6 +15843,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 8316
+        },
+        {
+          "id": "openai-12",
+          "order": 12,
+          "title": "解释 self-attention。它的计算复杂度是多少？当上下文变长时你有哪些可选方案？",
+          "titleEn": "Explain self-attention. What is its computational complexity? What options do you have as context grows?",
+          "file": "公司题库/openai/12-self-attention-与长上下文.md",
+          "level": "高阶",
+          "tags": [
+            "self-attention",
+            "复杂度",
+            "FlashAttention",
+            "KV cache",
+            "长上下文"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "openai-13",
+            "openai-14",
+            "moonshot-02",
+            "moonshot-04",
+            "xai-04"
+          ],
+          "sources": [
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (Google)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al.",
+              "published": "2022-05-27"
+            },
+            {
+              "title": "Longformer: The Long-Document Transformer（延伸）",
+              "url": "https://arxiv.org/abs/2004.05150",
+              "author": "Beltagy, Peters & Cohan",
+              "published": "2020-04-10"
+            },
+            {
+              "title": "128k 上下文下 70B 的 KV cache（本仓库公司题库 · xAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7254
         }
       ]
     },
