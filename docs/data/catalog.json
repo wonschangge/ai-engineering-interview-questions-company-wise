@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T19:40:18.876Z",
+  "generated": "2026-09-29T19:45:38.213Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 243,
+    "companyQuestions": 246,
     "companies": 17,
     "planned": 598
   },
@@ -13107,6 +13107,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5549
+        },
+        {
+          "id": "gdm-18",
+          "order": 18,
+          "title": "你会如何改进商品搜索结果，重点关注检索到的相关文档占比（recall）？",
+          "titleEn": "How would you improve product search results, focusing on the fraction of relevant documents retrieved (recall)?",
+          "file": "公司题库/google-deepmind/18-商品搜索的召回改进.md",
+          "level": "高阶",
+          "tags": [
+            "召回率",
+            "归因分解",
+            "查询扩展",
+            "硬过滤",
+            "排序截断"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "gdm-16",
+            "rag-02",
+            "evaluation-01",
+            "openai-16",
+            "coding-26"
+          ],
+          "sources": [
+            {
+              "title": "Introduction to Information Retrieval（延伸）",
+              "url": "https://nlp.stanford.edu/IR-book/",
+              "author": "Manning, Raghavan & Schütze",
+              "published": "2008-07-07"
+            },
+            {
+              "title": "Dense Passage Retrieval for Open-Domain Question Answering（延伸）",
+              "url": "https://arxiv.org/abs/2004.04906",
+              "author": "Karpukhin et al. (Facebook)",
+              "published": "2020-04-10"
+            },
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia",
+              "published": "2020-04-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5184
+        },
+        {
+          "id": "gdm-19",
+          "order": 19,
+          "title": "为某个问题论证使用神经网络是否合理：关于网络、数据集、时间线和业务背景，你需要了解哪些信息？",
+          "titleEn": "Argue whether using a neural network is justified for a problem: what do you need to know about the network, the dataset, the timeline and the business context?",
+          "file": "公司题库/google-deepmind/19-神经网络是否合理.md",
+          "level": "高阶",
+          "tags": [
+            "神经网络合理性",
+            "简单基线",
+            "代价不对称",
+            "延迟预算",
+            "判据清单"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "gdm-05",
+            "gdm-13",
+            "gdm-14",
+            "applied-02",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "Do We Need Deep Learning for Tabular Data?（延伸）",
+              "url": "https://arxiv.org/abs/2110.13891",
+              "author": "Shwartz-Ziv & Armon",
+              "published": "2021-10-26"
+            },
+            {
+              "title": "Machine Learning: The High-Interest Credit Card of Technical Debt（延伸）",
+              "url": "https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf",
+              "author": "Sculley et al. (Google)",
+              "published": "2015-12-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5894
+        },
+        {
+          "id": "gdm-20",
+          "order": 20,
+          "title": "为一次新的前沿模型发布搭建评估 harness。它需要具备哪些能力？",
+          "titleEn": "Build an evaluation harness for a new frontier model release. What capabilities does it need?",
+          "file": "公司题库/google-deepmind/20-前沿模型的评估-harness.md",
+          "level": "高阶",
+          "tags": [
+            "评估 harness",
+            "统计功效",
+            "多重比较",
+            "污染检测",
+            "能力激发"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "gdm-12",
+            "evaluation-01",
+            "evaluation-06",
+            "evaluation-02",
+            "safety-03"
+          ],
+          "sources": [
+            {
+              "title": "Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford CRFM)",
+              "published": "2022-11-16"
+            },
+            {
+              "title": "Language Models are Few-Shot Learners（延伸）",
+              "url": "https://arxiv.org/abs/2005.14165",
+              "author": "Brown et al. (OpenAI)",
+              "published": "2020-05-28"
+            },
+            {
+              "title": "Studying Large Language Model Generalization with Influence Functions（延伸）",
+              "url": "https://arxiv.org/abs/2308.03296",
+              "author": "Grosse et al. (Anthropic)",
+              "published": "2023-08-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5483
         }
       ]
     },
