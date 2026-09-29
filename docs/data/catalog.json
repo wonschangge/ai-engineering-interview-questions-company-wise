@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:44:43.684Z",
+  "generated": "2026-09-29T18:46:24.675Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 217,
+    "companyQuestions": 218,
     "companies": 16,
     "planned": 598
   },
@@ -16415,6 +16415,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7455
+        },
+        {
+          "id": "openai-23",
+          "order": 23,
+          "title": "你会如何为消费级 GenAI 产品做安全？",
+          "titleEn": "How would you approach safety for a consumer GenAI product?",
+          "file": "公司题库/openai/23-消费级-GenAI-安全.md",
+          "level": "高阶",
+          "tags": [
+            "安全",
+            "基率谬误",
+            "阈值取舍",
+            "纵深防御",
+            "未成年人保护"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "openai-24",
+            "microsoft-08",
+            "safety-01",
+            "safety-02",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "GPT-4 System Card（延伸）",
+              "url": "https://arxiv.org/abs/2303.08774",
+              "author": "OpenAI",
+              "published": "2023-03-15"
+            },
+            {
+              "title": "The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions（延伸）",
+              "url": "https://arxiv.org/abs/2404.13208",
+              "author": "Wallace et al. (OpenAI)",
+              "published": "2024-04-19"
+            },
+            {
+              "title": "Universal and Transferable Adversarial Attacks on Aligned Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2307.15043",
+              "author": "Zou et al.",
+              "published": "2023-07-27"
+            },
+            {
+              "title": "提示注入（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8122
         }
       ]
     },
