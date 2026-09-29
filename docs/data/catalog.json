@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:20:17.160Z",
+  "generated": "2026-09-29T15:21:54.469Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 141,
+    "companyQuestions": 142,
     "companies": 10,
     "planned": 598
   },
@@ -10546,6 +10546,59 @@
           ],
           "updated": "2026-09-28",
           "chars": 6772
+        },
+        {
+          "id": "databricks-06",
+          "order": 6,
+          "title": "什么情况下你会选择 fine-tuning，而不是用 RAG 或 prompt engineering？如果确实要微调，是选 LoRA 还是全量微调？",
+          "titleEn": "When would you choose fine-tuning over RAG or prompt engineering? And if you do fine-tune, LoRA or full fine-tuning?",
+          "file": "公司题库/databricks/06-何时微调以及-LoRA-与全量微调的选择.md",
+          "level": "高阶",
+          "tags": [
+            "微调",
+            "RAG",
+            "LoRA",
+            "QLoRA",
+            "成本模型",
+            "决策框架"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "databricks-07",
+            "databricks-02",
+            "finetuning-08",
+            "finetuning-05",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al. (ICLR 2022)",
+              "published": "2021-06-17"
+            },
+            {
+              "title": "QLoRA: Efficient Finetuning of Quantized LLMs（延伸）",
+              "url": "https://arxiv.org/abs/2305.14314",
+              "author": "Dettmers et al. (NeurIPS 2023)",
+              "published": "2023-05-23"
+            },
+            {
+              "title": "Prompting、RAG 还是 fine-tuning：决策框架与成本权衡（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为大型商品目录设计语义搜索（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6227
         }
       ]
     },
