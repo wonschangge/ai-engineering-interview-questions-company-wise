@@ -1,0 +1,329 @@
+{
+  "company": "OpenAI",
+  "slug": "openai",
+  "dir": "openai",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "openai",
+  "total": 31,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "llm-internals",
+    "agents",
+    "system-design",
+    "evaluation",
+    "safety",
+    "applied",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "设计并实现一个内存 key-value 存储，支持 set、事务 begin、commit 和 abort。",
+      "questionEn": "Design and implement an in-memory key-value store supporting set, transactional begin, commit and abort.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "一步步实现一个数据库 ORM。",
+      "questionEn": "Create a database ORM, step by step.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "用 Go 编写一个简单的 web 爬虫。",
+      "questionEn": "Code a trivial web crawler using Go.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "根据 mockup，使用给定的 CSS 和 API 实现一个 UI。",
+      "questionEn": "Implement a UI from a mockup with provided CSS and API.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "重构糟糕的代码：这里有约 120 行能正常运行但很混乱的代码，且测试是通过的。在不破坏测试的前提下改进架构。你会先改什么？",
+      "questionEn": "Refactor bad code: here are ~120 lines of working but messy code with passing tests. Improve the architecture without breaking them. What do you change first?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "写一个 Python 函数，打印前 n 个斐波那契数。",
+      "questionEn": "Write a Python function that displays the first n Fibonacci numbers.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "传染病传播模拟。",
+      "questionEn": "Infection-spread simulation.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "给定不同的随机变量，计算 KL 散度。",
+      "questionEn": "Compute the KL divergence given different random variables.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "如果一个分类器的准确率是 1，那么对单个训练样本而言，损失函数的下界/上界是多少？",
+      "questionEn": "If the accuracy of a classifier is 1, what is the lower/upper bound on the loss function for a single training example?",
+      "sources": [
+        {
+          "title": "交叉熵损失背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-cross-entropy-loss",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "我们有两个模型，准确率分别是 85% 和 82%。你选哪个？",
+      "questionEn": "We have two models, 85% and 82% accuracy. Which do you pick?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "在 Pandas 中你如何处理缺失数据？",
+      "questionEn": "How do you handle missing data in Pandas?",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "解释 self-attention。它的计算复杂度是多少？当上下文变长时你有哪些可选方案？",
+      "questionEn": "Explain self-attention. What is its computational complexity, and what are your options when contexts get long?",
+      "sources": [
+        {
+          "title": "Transformer 中的 Self Attention",
+          "url": "https://outcomeschool.com/blog/self-attention-in-transformers",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Sliding Window Attention 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-sliding-window-attention-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "交叉熵、KL 散度与困惑度（perplexity）之间是什么关系？为什么交叉熵是语言模型的训练损失？",
+      "questionEn": "What is the relationship between cross-entropy, KL divergence and perplexity, and why is cross-entropy the training loss for language models?",
+      "sources": [
+        {
+          "title": "交叉熵损失背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-cross-entropy-loss",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 14,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "调整 LLM 的上下文窗口大小会带来什么影响？",
+      "questionEn": "What is the effect of adjusting an LLM's context window size?",
+      "sources": [
+        {
+          "title": "LLM 中的上下文窗口",
+          "url": "https://www.linkedin.com/posts/amit-shekhar-iitbhu_the-context-window-is-the-llms-working-memory-activity-7437754426175672320-MH9c",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "为什么 LLM 的上下文窗口是有限的？",
+          "url": "https://www.youtube.com/watch?v=CGIhxIaOg3M&lc",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 15,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "你正在构建一个调用工具（function calling）的生产级 agent。怎样让这个循环足够可靠，达到可以上线的程度？",
+      "questionEn": "You are building a production agent that calls tools (function calling). What makes the loop reliable enough to ship?",
+      "sources": [
+        {
+          "title": "LLM 中的 Function Calling 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "AI Agent 循环",
+          "url": "https://outcomeschool.com/blog/ai-agent-loop",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 16,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你会如何构建一个由 LLM 驱动的企业搜索系统？",
+      "questionEn": "How would you build an LLM-powered enterprise search system?",
+      "sources": []
+    },
+    {
+      "order": 17,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为一个 ChatGPT 规模的消费者助手设计服务栈：数亿周活用户、流式聊天、多个模型档位。",
+      "questionEn": "Design the serving stack for a ChatGPT-scale consumer assistant: hundreds of millions of weekly users, streaming chat, multiple model tiers.",
+      "sources": [
+        {
+          "title": "深入 ChatGPT：按下回车之后会发生什么",
+          "url": "https://outcomeschool.substack.com/p/inside-chatgpt-what-happens-after",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 18,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计并构建一个 webhook 投递系统，能够可靠地把事件投递到客户注册的 URL。",
+      "questionEn": "Design and build a webhook delivery system that reliably delivers events to customer-registered URLs.",
+      "sources": []
+    },
+    {
+      "order": 19,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个在分布式环境中调度任务的系统。",
+      "questionEn": "Design a system to schedule jobs in a distributed environment.",
+      "sources": []
+    },
+    {
+      "order": 20,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个内存数据库。/ 设计 Slack。",
+      "questionEn": "Design an in-memory database. / Design Slack.",
+      "sources": []
+    },
+    {
+      "order": 21,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "在你为客户部署升级了模型版本后，客户说“模型变差了”。你如何验证并回应？",
+      "questionEn": "A customer says “the model got worse” after you upgraded model versions in their deployment. How do you verify and respond?",
+      "sources": []
+    },
+    {
+      "order": 22,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "一个企业客户反馈，你部署的系统响应变慢了。请讲讲你的排查过程。",
+      "questionEn": "An enterprise customer reports that responses from your deployed system have gotten slow. Walk me through the diagnosis.",
+      "sources": []
+    },
+    {
+      "order": 23,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "在消费级产品中，你会如何处理 GenAI 安全？",
+      "questionEn": "How do you approach GenAI safety in consumer products?",
+      "sources": []
+    },
+    {
+      "order": 24,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "对于一个能够代表用户执行操作的 AI 系统，你会如何设计防护措施？",
+      "questionEn": "How would you design safeguards for an AI system that can take actions on behalf of a user?",
+      "sources": []
+    },
+    {
+      "order": 25,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一个企业客户说：“我们希望用 AI 自动化我们的理赔处理。”你就是现场的那位工程师。前两周会是什么样？",
+      "questionEn": "An enterprise customer says: “We want AI to automate our claims processing.” You're the engineer in the room. What do the first two weeks look like?",
+      "sources": []
+    },
+    {
+      "order": 26,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "你有使用 API 的经验吗？你习惯与 C-suite 高管打交道吗？",
+      "questionEn": "Do you have experience working with APIs? Are you used to working with C-suite executives?",
+      "sources": []
+    },
+    {
+      "order": 27,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "你最喜欢的产品是什么，为什么？",
+      "questionEn": "What is your favourite product and why?",
+      "sources": []
+    },
+    {
+      "order": 28,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你犯过的一次错误。",
+      "questionEn": "Tell me about a time you made a mistake.",
+      "sources": []
+    },
+    {
+      "order": 29,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你和别人发生过冲突的一次经历。你是如何解决的，又学到了什么？",
+      "questionEn": "Tell me about a time you had a conflict with someone. How did you resolve it and what did you learn?",
+      "sources": []
+    },
+    {
+      "order": 30,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你和相关方在优先级上出现分歧的一次经历，以及你是如何促成一致的。",
+      "questionEn": "Tell me about a time you had conflicting priorities with stakeholders and how you secured alignment.",
+      "sources": []
+    },
+    {
+      "order": 31,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "你最引以为豪的项目是什么？",
+      "questionEn": "What is the project you are most proud of?",
+      "sources": []
+    }
+  ]
+}

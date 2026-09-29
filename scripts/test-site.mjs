@@ -174,7 +174,7 @@ async function waitFor(fn, timeout = 4000) {
   }
   return false;
 }
-const allQuestions = catalog.topics.flatMap((t) => t.questions);
+const allQuestions = [...catalog.topics.flatMap((t) => t.questions), ...((catalog.companies || []).flatMap((c) => c.questions))];
 const badRender = [];
 for (const q of allQuestions) {
   const src = fs.readFileSync(path.join(DOCS, q.file), 'utf8');

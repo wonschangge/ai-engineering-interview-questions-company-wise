@@ -1,0 +1,165 @@
+{
+  "company": "Moonshot AI（Kimi）",
+  "slug": "moonshot",
+  "dir": "moonshot",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "moonshot",
+  "total": 10,
+  "topics": [
+    "llm-internals",
+    "inference-serving",
+    "rag",
+    "finetuning",
+    "evaluation"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Kimi 最突出的特性是超长上下文。当你把上下文从 8K 推到几十万 tokens 时，最先崩溃的是什么，为什么？",
+      "questionEn": "Kimi's headline feature is very long context. When you push from 8K to hundreds of thousands of tokens, what actually breaks first, and why?",
+      "sources": [
+        {
+          "title": "LLM 中的 lost-in-the-middle 问题",
+          "url": "https://outcomeschool.com/blog/lost-in-the-middle-problem-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "为什么 LLM 的上下文窗口是有限的？",
+          "url": "https://www.youtube.com/watch?v=CGIhxIaOg3M&lc",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Kimi K2 使用了 Multi-head Latent Attention (MLA)。请解释它的作用，以及相比 GQA，它在减少 KV cache 方面表现如何。",
+      "questionEn": "Kimi K2 uses Multi-head Latent Attention (MLA). Explain what it does and how it compares to GQA for KV-cache reduction.",
+      "sources": [
+        {
+          "title": "KV Cache 压缩",
+          "url": "https://outcomeschool.com/blog/kv-cache-compression",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "分组查询注意力（GQA）",
+          "url": "https://outcomeschool.com/blog/grouped-query-attention",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Kimi K2 是一个 1T 参数的 MoE，每个 token 激活约 32B 参数，拥有数百个专家。请解释其路由机制以及训练它的系统成本。",
+      "questionEn": "Kimi K2 is a 1T-parameter MoE with ~32B active per token and hundreds of experts. Explain the routing and the systems cost of training it.",
+      "sources": [
+        {
+          "title": "MoE 详解",
+          "url": "https://outcomeschool.com/blog/mixture-of-experts",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "如何把一个在 8K–32K 上训练的模型变得能支持 128K 甚至更长？",
+      "questionEn": "How do you take a model trained at 8K–32K and make it work at 128K or more?",
+      "sources": [
+        {
+          "title": "RoPE（旋转位置编码）背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "请讲讲为什么你会像 Mooncake 那样把 prefill 和 decode 拆分到不同的机器上。这样做能带来什么，又要付出什么代价？",
+      "questionEn": "Walk me through why you would disaggregate prefill and decode onto separate machines, as Mooncake does. What does that buy you and what does it cost?",
+      "sources": [
+        {
+          "title": "LLM 推理中的 Prefill-Decode 分离",
+          "url": "https://outcomeschool.com/blog/prefill-decode-disaggregation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "聊天助手在每一轮都会重新发送很长的对话历史。你如何避免把这一切全部重算一遍，其中又有哪些坑？",
+      "questionEn": "A chat assistant re-sends a long conversation history on every turn. How do you avoid recomputing all of it, and what are the pitfalls?",
+      "sources": [
+        {
+          "title": "Prompt Caching 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "对于长上下文助手，什么时候 1M token 的上下文窗口才是合适的工具，什么时候应该改用 retrieval？",
+      "questionEn": "For a long-context assistant, when is a 1M-token context window the right tool, and when should you use retrieval instead?",
+      "sources": [
+        {
+          "title": "LLM 中的 lost-in-the-middle 问题",
+          "url": "https://outcomeschool.com/blog/lost-in-the-middle-problem-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "训练万亿参数模型时，attention logits 可能会爆炸并让这次训练失稳。这到底是怎么回事，MuonClip 这类方法又是如何解决的？",
+      "questionEn": "Training a trillion-parameter model, attention logits can blow up and destabilise the run. What is going on, and how does something like MuonClip address it?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "Kimi K1.5 在没有过程奖励模型和树搜索的情况下，用 RL 扩展了推理能力。为什么要刻意让 RL 方案保持这么简单？",
+      "questionEn": "Kimi K1.5 scaled RL for reasoning without a process reward model or tree search. Why deliberately keep the RL recipe that simple?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "Kimi K2 面向 agentic 与编程任务。除了单一的 benchmark 分数，你会如何评估一个 agentic 模型是否真的优秀？",
+      "questionEn": "Kimi K2 targets agentic and coding tasks. How would you evaluate whether an agentic model is actually good, beyond a single benchmark number?",
+      "sources": [
+        {
+          "title": "AI Agent 评估",
+          "url": "https://outcomeschool.com/blog/ai-agent-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    }
+  ]
+}

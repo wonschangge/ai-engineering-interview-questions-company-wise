@@ -1,0 +1,110 @@
+{
+  "company": "xAI",
+  "slug": "xai",
+  "dir": "xai",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "xai",
+  "total": 10,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "finetuning",
+    "system-design",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现一个支持 SET/GET/DELETE 的内存 key-value 存储，然后加上 BEGIN/COMMIT/ROLLBACK 事务，并支持嵌套事务。",
+      "questionEn": "Build an in-memory key-value store with SET/GET/DELETE, then add transactions with BEGIN/COMMIT/ROLLBACK, including nested transactions.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "写一个迭代器类，惰性地展平任意嵌套的列表（列表里套列表或整数）：不能用生成器，状态必须显式维护。",
+      "questionEn": "Write an iterator class that lazily flattens an arbitrarily nested list of lists/integers: no generators, explicit state.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "这是一个小型 LLM 推理引擎里的调度器类。其中一个方法 \\_admit_requests 只是桩：没有规格说明、没有 docstring、没有测试。说说你最初三十分钟会怎么做。",
+      "questionEn": "Here is a scheduler class from a small LLM inference engine. One method, \\_admit_requests, is a stub: no spec, no docstring, no tests. Walk me through your first thirty minutes.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "估算在 128k 上下文下服务一个 70B 级别模型所需的 KV cache 显存。如果放不下，你会怎么办？",
+      "questionEn": "Estimate the KV-cache memory to serve a 70B-class model at 128k context. What do you do when it doesn't fit?",
+      "sources": [
+        {
+          "title": "LLM 中的 KV Cache 是什么？",
+          "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "KV Cache 压缩",
+          "url": "https://outcomeschool.com/blog/kv-cache-compression",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "为一个按 token 而非请求数计费的 LLM API 设计限流器。",
+      "questionEn": "Design a rate limiter for an LLM API where cost scales with tokens, not requests.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "你在数万张 GPU 上训练，硬件不断故障。如何让 goodput 保持在高位？",
+      "questionEn": "You're training on tens of thousands of GPUs and hardware fails constantly. How do you keep goodput high?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "大规模预训练任务训练中途出现 loss 尖峰。说说你的排查过程。",
+      "questionEn": "Loss spikes mid-run on a large pretraining job. Walk me through your debugging process.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "为 web 规模的预训练语料设计去重流水线，而且必须以流式方式运行。",
+      "questionEn": "Design a deduplication pipeline for a web-scale pretraining corpus. It has to run as a streaming process.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为一个面向消费者的聊天机器人设计服务栈，它要在社交媒体实时数据流上做实时搜索。",
+      "questionEn": "Design the serving stack for a consumer chatbot with real-time search over a social-media firehose.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "你有四个小时来构建并演示一个可用的 AI 产品。你会怎么分配这四小时？",
+      "questionEn": "You have four hours to build and demo a working AI-powered product. How do you spend them?",
+      "sources": []
+    }
+  ]
+}

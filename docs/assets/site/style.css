@@ -230,6 +230,9 @@ html[data-theme='light'] .error { color: #b42318; }
 }
 .q-row a { color: var(--text); }
 .q-row.is-pending { background: transparent; }
+.q-row.is-done { border-color: color-mix(in oklab, var(--accent-2) 30%, var(--border)); }
+.q-link { display: flex; align-items: flex-start; gap: 14px; width: 100%; }
+.q-link:hover .q-title { color: var(--accent); }
 .q-row .q-order { font-variant-numeric: tabular-nums; color: var(--text-3); font-size: 13px; padding-top: 2px; }
 .q-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .q-title { font-size: 15px; line-height: 1.6; }

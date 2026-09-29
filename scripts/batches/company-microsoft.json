@@ -1,0 +1,151 @@
+{
+  "company": "Microsoft",
+  "slug": "microsoft",
+  "dir": "microsoft",
+  "group": "大型科技公司的 AI 组织",
+  "idPrefix": "microsoft",
+  "total": 10,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "system-design",
+    "evaluation",
+    "safety",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "在一个大规模查询日志上实现“top-k 最高频搜索查询”，然后说说当日志变成跨多台机器的无界流时，哪些地方会出问题。",
+      "questionEn": "Implement “top-k most frequent search queries” over a large query log, then tell me what breaks when the log becomes an unbounded stream across many machines.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "low-level design：为一个 agent host 的工具调用层设计类与接口，其中的工具可以来自原生代码、OpenAPI spec 或 MCP server。",
+      "questionEn": "Low-level design: sketch the classes and interfaces for the tool-calling layer of an agent host, where tools can come from native code, an OpenAPI spec, or an MCP server.",
+      "sources": [
+        {
+          "title": "什么是 MCP（Model Context Protocol）？",
+          "url": "https://outcomeschool.com/blog/what-is-mcp-model-context-protocol",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 中的 Function Calling 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "一个 Copilot 聊天功能的 p95 预算是 3 秒内给出首个有用内容。时间都花在哪里了，你会如何把它压缩？",
+      "questionEn": "A Copilot chat feature has a p95 budget of 3 seconds to first useful content. Where does the time go, and how do you cut it?",
+      "sources": [
+        {
+          "title": "LLM 中的首 token 延迟问题",
+          "url": "https://www.youtube.com/watch?v=XD8DD4cEHu0",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Prefill 与 Decode：LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "估算为 1 亿周活跃用户新增一个 LLM 摘要功能所需的年度服务成本，以及你会如何把它降低 10 倍。",
+      "questionEn": "Estimate the annual serving cost of adding an LLM summary feature for 100 million weekly active users, and how you'd cut it by 10x.",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://www.youtube.com/watch?v=jV2sCj4lHYk",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个 Copilot 功能，让它能基于用户的工作邮件、文档和会议回答问题，同时绝不泄露用户无权访问的内容。",
+      "questionEn": "Design a Copilot feature that answers questions over a user's work email, documents and meetings, without ever leaking content the user can't access.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个能在电子表格中执行操作的 agent（“插入一张按地区统计 Q3 销售额的数据透视表”）：编排、工具与失败处理。",
+      "questionEn": "Design an agent that can take actions in a spreadsheet (“insert a pivot table of Q3 sales by region”): orchestration, tools and failure handling.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "在把会议摘要功能发布给一亿用户之前，你会如何评估它？",
+      "questionEn": "How would you evaluate a meeting-summarisation feature before shipping it to a hundred million users?",
+      "sources": [
+        {
+          "title": "LLM 评估",
+          "url": "https://outcomeschool.com/blog/llm-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "你的 Copilot 会对收到的邮件做摘要。攻击者给目标用户发了一封邮件，里面藏着写给模型的隐藏指令。请讲一下这个攻击过程以及你的防御方案。",
+      "questionEn": "Your Copilot summarises incoming email. An attacker emails a target user with hidden instructions addressed to the model. Walk me through the attack and your defence.",
+      "sources": [
+        {
+          "title": "LLM 中的 prompt injection",
+          "url": "https://outcomeschool.com/blog/prompt-injection-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "一个已上线的 Copilot 功能会为招聘人员摘要求职者资料，却被指对某些群体表现更差。你如何确认这是否属实，又会如何处理？",
+      "questionEn": "A shipped Copilot feature that summarises job applicants for recruiters is accused of working worse for some groups. How do you establish whether that's true, and what do you do about it?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲一个你力主推动的技术决策后来被证明是错的经历。当时发生了什么，之后你做了哪些改变？",
+      "questionEn": "Tell me about a time a technical decision you championed turned out to be wrong. What happened, and what did you change afterward?",
+      "sources": []
+    }
+  ]
+}

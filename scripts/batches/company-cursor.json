@@ -1,0 +1,215 @@
+{
+  "company": "Cursor（Anysphere）",
+  "slug": "cursor",
+  "dir": "cursor",
+  "group": "AI 原生产品公司",
+  "idPrefix": "cursor",
+  "total": 17,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "rag",
+    "agents",
+    "system-design",
+    "evaluation",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "构建一棵哈希树来组织仓库中的数据。",
+      "questionEn": "Build a hash tree to organise data in a repository.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "给定一个仓库快照（路径 → 内容），构建一棵 Merkle 树，并编写函数返回两个快照之间发生变更的文件，且不比较每个文件的内容。",
+      "questionEn": "Given a repository snapshot (path → content), build a Merkle tree and write the function returning which files changed between two snapshots without comparing every file's content.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "打印二叉树节点的顶视图。",
+      "questionEn": "Print the top view of nodes in a binary tree.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "在文件系统中找出重复文件。",
+      "questionEn": "Find duplicate files in a file system.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现编辑器文本缓冲区的核心：在任意位置高效地插入/删除，以及快速按行查找。你会选择什么数据结构？",
+      "questionEn": "Implement the core of an editor text buffer: efficient insert/delete at arbitrary positions and fast line lookup. What structure do you pick?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "要把自研补全模型服务给数百万 DAU：请讲讲推理成本模型，以及你最优先的三个抓手。",
+      "questionEn": "Serving a custom completion model to millions of DAU: walk me through the inference-cost model and your top three levers.",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://www.youtube.com/watch?v=jV2sCj4lHYk",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Cursor 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "长上下文窗口越来越便宜。为什么不干脆去掉 retrieval，把整个仓库都塞进每次请求的上下文里？",
+      "questionEn": "Long context windows keep getting cheaper. Why not drop retrieval and stuff the whole repo into context for every request?",
+      "sources": [
+        {
+          "title": "LLM 中的 lost-in-the-middle 问题",
+          "url": "https://outcomeschool.com/blog/lost-in-the-middle-problem-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Cursor 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "为一个能根据自然语言任务做多文件改动的 agent 设计 harness。如何避免它把代码库搞坏？",
+      "questionEn": "Design the harness for an agent that makes multi-file changes from a natural-language task. How do you keep it from wrecking a codebase?",
+      "sources": [
+        {
+          "title": "Cursor 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Harness Engineering in AI",
+          "url": "https://outcomeschool.com/blog/harness-engineering-in-ai",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计一个能自主适应新任务的 agentic AI 系统。",
+      "questionEn": "Design an agentic AI system that can autonomously adapt to new tasks.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计 Cursor 的 tab（下一处编辑预测）系统：对数百万日活用户来说，它必须让人感觉是即时的（感知延迟低于 100 ms）。",
+      "questionEn": "Design Cursor's tab (next-edit prediction) system: it must feel instant (sub-100 ms perceived latency) for millions of daily users.",
+      "sources": [
+        {
+          "title": "Cursor 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你会如何为包含 10 万个文件的 monorepo 建立索引，让 AI 编辑器能够检索到相关上下文，并在用户编辑时保持索引更新？",
+      "questionEn": "How would you index a 100k-file monorepo so an AI editor can retrieve relevant context, and keep the index fresh as the user edits?",
+      "sources": [
+        {
+          "title": "Cursor 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "模型正在流式输出一次多文件编辑，而用户还在其中某个文件里继续输入。你如何在不破坏缓冲区的前提下应用这些编辑？",
+      "questionEn": "The model is streaming a multi-file edit while the user keeps typing in one of those files. How do you apply the edits without corrupting the buffer?",
+      "sources": []
+    },
+    {
+      "order": 13,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你的 agent 模型输出了一个 500 行文件的修改版本。逐字应用既慢又容易出错。你如何让“应用”这一步又快又可靠？",
+      "questionEn": "Your agent model outputs an edited version of a 500-line file. Applying it verbatim is slow and error-prone. How do you make “apply” fast and reliable?",
+      "sources": [
+        {
+          "title": "Cursor 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 14,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "一个 agent 需要在代码上反复迭代（运行构建、测试、lint），同时不干扰用户在编辑器里看到的内容。请设计这样的架构。",
+      "questionEn": "An agent needs to iterate on code (run builds, tests, lints) without disturbing what the user sees in their editor. Architect that.",
+      "sources": []
+    },
+    {
+      "order": 15,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "在上线之前，你如何评估一个代码编辑模型？请为 tab 或 agent 编辑设计离线与在线评估方案。",
+      "questionEn": "How do you evaluate a code-editing model before shipping it? Design the offline and online eval story for tab or agent edits.",
+      "sources": []
+    },
+    {
+      "order": 16,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "你可以在我们的代码库里待两天，且没有被分配任务。你会构建什么？又会如何安排这段时间？",
+      "questionEn": "You have two days in our codebase and no assigned task. What do you build, and how do you spend the time?",
+      "sources": []
+    },
+    {
+      "order": 17,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你为了长期收益而做出短期牺牲的一次经历。",
+      "questionEn": "Tell me about a time you made short-term sacrifices for long-term gains.",
+      "sources": []
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "company": "Cohere",
+  "slug": "cohere",
+  "dir": "cohere",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "cohere",
+  "total": 10,
+  "topics": [
+    "coding",
+    "llm-internals",
+    "rag",
+    "agents",
+    "system-design",
+    "evaluation",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "为一个多租户 LLM API 设计基于 token 的限流器。先实现核心部分，然后告诉我改成分布式后会有哪些变化。",
+      "questionEn": "Design a token-based rate limiter for a multi-tenant LLM API. Implement the core, then tell me what changes when it's distributed.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "我们的旗舰模型是稀疏 MoE，总参数量约为激活参数量的 10 倍。为什么这种架构很适合私有化企业部署，它又在哪些地方带来代价？",
+      "questionEn": "Our flagship is a sparse MoE with ~10x more total than active parameters. Why is that architecture a good fit for private enterprise deployment, and where does it hurt?",
+      "sources": [
+        {
+          "title": "MoE 详解",
+          "url": "https://outcomeschool.com/blog/mixture-of-experts",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "你有一个 embedding 模型和一个 reranker。为什么两个都要卖？请设计两阶段的检索流水线，并告诉我 reranker 在什么情况下值得付出那部分 latency。",
+      "questionEn": "You have an embedding model and a reranker. Why sell both? Design the two-stage retrieval pipeline and tell me when the reranker earns its latency.",
+      "sources": [
+        {
+          "title": "Reranker 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-a-reranker-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "一家企业想对约 1 亿份文档做语义搜索，但被向量索引的成本劝退。请讲讲 embedding 压缩的几种方案以及其中的数学。",
+      "questionEn": "An enterprise wants semantic search over ~100M documents but is balking at vector-index cost. Walk me through embedding compression options and the maths.",
+      "sources": [
+        {
+          "title": "向量数据库是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-a-vector-database-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "当员工用法语和韩语查询以英文为主的文档时，你如何评估多语言检索质量？",
+      "questionEn": "How would you evaluate multilingual retrieval quality when employees query in French and Korean over mostly-English documents?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "某个客户的索引文档量变成了原来的 10 倍，并反馈回答质量“明显变差了”。请主导这次排查。",
+      "questionEn": "A customer 10x'd their indexed documents and reports answer quality “got noticeably worse.” Drive the investigation.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计一个能自动化企业工作流的 agent，比如根据内部文档和 CRM 起草 RFP 回复。“企业级”还会额外要求什么？",
+      "questionEn": "Design an agent that automates an enterprise workflow, say, drafting RFP responses from internal documents and a CRM. What does “enter-prise-grade” add?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "一家银行希望把整套技术栈（模型、RAG、agent）以气隙（air-gapped）方式部署在自己的 GPU 上。相比你们的 SaaS，实际会有哪些变化？",
+      "questionEn": "A bank wants the whole stack (model, RAG, agents) deployed air-gapped on their own GPUs. What actually changes versus your SaaS?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "一个企业客户想部署你们的 RAG 系统，但没有任何标注数据。上线前后你分别如何评估它？",
+      "questionEn": "An enterprise customer wants to deploy your RAG system but has no labelled data. How do you evaluate it before and after launch?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你曾在缺少明确指导的情况下，端到端负责一个模糊问题的经历。",
+      "questionEn": "Tell me about a time you owned an ambiguous problem end-to-end without much direction.",
+      "sources": []
+    }
+  ]
+}

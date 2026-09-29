@@ -1,0 +1,186 @@
+{
+  "company": "Palantir",
+  "slug": "palantir",
+  "dir": "palantir",
+  "group": "前置部署与企业级 AI",
+  "idPrefix": "palantir",
+  "total": 20,
+  "topics": [
+    "coding",
+    "rag",
+    "agents",
+    "system-design",
+    "evaluation",
+    "applied",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现一组计算面积的形状类，然后扩展它们以支持一种新的形状。",
+      "questionEn": "Implement a set of shape classes that compute area, then extend them to handle a new shape.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "写一条 SQL 查询，跨表 join 并聚合，以回答某个业务问题。",
+      "questionEn": "Write a SQL query that joins and aggregates across tables to answer a business question.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "构建一个函数，从 REST API 分页拉取数据，并处理 page size 与总页数逻辑。",
+      "questionEn": "Build a function that fetches paginated data from a REST API, handling page size and total-page logic.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "在一个用 HashMap 统计数值的函数中，找出并修复重复计数的 bug。",
+      "questionEn": "Find and fix a double-counting bug in a function that tallies values in a HashMap.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "调试一个在社交图谱上模拟感染传播的程序。",
+      "questionEn": "Debug a program that models infection spread across a social graph.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "你从上一个部署项目接手了一个 800 行的 pipeline 脚本。它很慢，而且偶尔会算出错误的数字。原作者已经离职。开始吧。",
+      "questionEn": "You inherit an 800-line pipeline script from a previous deployment. It's slow and occasionally produces wrong numbers. The original author is gone. Go.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "给定来自三个客户系统的导出数据，每个系统都有自己的客户记录，请编写代码产出去重后的统一实体集合，并说明你的设计。",
+      "questionEn": "Given exports from three customer systems, each with its own customer records, write code to produce one deduplicated set of entities and explain your design.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "用户问“有多少未完成订单因供应商问题被卡住？”朴素 RAG 会答错。为什么，正确的架构是什么？",
+      "questionEn": "Users ask “how many open orders are blocked on a supplier issue?” Plain RAG gets this wrong. Why, and what's the right architecture?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "在 Palantir 的语境里，ontology 是什么？为什么要把 LLM agent 放在 ontology 之上，而不是直接放在原始表和文档之上？",
+      "questionEn": "What is an ontology in the Palantir sense, and why put LLM agents on top of one instead of on raw tables and documents?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计一个 LLM agent，在客户的 ERP 中提交和更新工单：这是对生产系统的真实写入。你如何保证其安全性？",
+      "questionEn": "Design an LLM agent that files and updates work orders in a customer's ERP: real writes to a production system. How do you make that safe?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你的平台必须支持多家 LLM 供应商，包括在受限环境中只提供部分模型的部署。你如何设计模型选择的架构？",
+      "questionEn": "Your platform must support multiple LLM providers, including deployments in restricted environments where only some models are available. How do you architect model selection?",
+      "sources": [
+        {
+          "title": "LLM 路由",
+          "url": "https://outcomeschool.com/blog/llm-routing",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "在让 LLM 工作流接入生产运维之前和之后，你分别如何评估它？",
+      "questionEn": "How do you evaluate an LLM workflow before and after giving it access to production operations?",
+      "sources": []
+    },
+    {
+      "order": 13,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一家货运铁路运营商每年因机车非计划停机损失数千万。请把它拆解成一份工程计划。",
+      "questionEn": "A freight rail operator loses tens of millions a year to unplanned locomotive downtime. Decompose this into an engineering plan.",
+      "sources": []
+    },
+    {
+      "order": 14,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "设计一个改善 NYC 交通的系统。",
+      "questionEn": "Design a system to improve traffic in NYC.",
+      "sources": []
+    },
+    {
+      "order": 15,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "设计两个员工记录系统之间的同步系统。",
+      "questionEn": "Design a sync system between two employee record systems.",
+      "sources": []
+    },
+    {
+      "order": 16,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "设计一个让多个团队都能查询共享数据集、又不暴露原始数据的系统。",
+      "questionEn": "Design a system that lets multiple teams query a shared dataset without exposing raw data.",
+      "sources": []
+    },
+    {
+      "order": 17,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "设计一个在探索陌生环境时对物种进行编目和记录的应用。",
+      "questionEn": "Design an application to catalog and log species while exploring an unfamiliar environment.",
+      "sources": []
+    },
+    {
+      "order": 18,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一位客户高管说“这个 AI 老是出错”，并想取消试点。请说明你接下来 48 小时会怎么做。",
+      "questionEn": "A customer executive says “the AI keeps getting things wrong” and wants to cancel the pilot. Walk me through your next 48 hours.",
+      "sources": []
+    },
+    {
+      "order": 19,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "为什么选择 Palantir，为什么是这个团队？讲一次你对客户需求提出异议的经历。",
+      "questionEn": "Why Palantir, and why this team? Tell me about a time you pushed back on a customer request.",
+      "sources": []
+    },
+    {
+      "order": 20,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "Palantir 与国防和情报机构合作。你如何看待这一点？如果被要求构建让你感到不适的东西，你会怎么做？",
+      "questionEn": "Palantir works with defence and intelligence agencies. How do you think about that, and what would you do if asked to build something you're uncomfortable with?",
+      "sources": []
+    }
+  ]
+}

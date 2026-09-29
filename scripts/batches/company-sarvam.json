@@ -1,0 +1,197 @@
+{
+  "company": "Sarvam AI",
+  "slug": "sarvam",
+  "dir": "sarvam",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "sarvam",
+  "total": 12,
+  "topics": [
+    "coding",
+    "llm-internals",
+    "inference-serving",
+    "rag",
+    "finetuning",
+    "system-design",
+    "evaluation",
+    "multimodal",
+    "applied"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "编写代码衡量 tokenizer 在不同语言上的 fertility，并说明拿到这个结果后你会怎么做。",
+      "questionEn": "Write code to measure a tokenizer's fertility across languages, and explain what you would do with the result.",
+      "sources": [
+        {
+          "title": "Byte Pair Encoding",
+          "url": "https://outcomeschool.com/blog/bpe-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "为什么 tokenization 是印度语言 LLM 的第一道瓶颈？低 fertility 的 tokenizer 又如何改变成本经济性？",
+      "questionEn": "Why is tokenization the first bottleneck for Indian-language LLMs, and how does a low-fertility tokenizer change the economics?",
+      "sources": [
+        {
+          "title": "Byte Pair Encoding",
+          "url": "https://outcomeschool.com/blog/bpe-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "大型语言模型（LLM）中的 Tokenization",
+          "url": "https://www.youtube.com/watch?v=sK2s9I84EVI",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "在没有数据中心 GPU 的情况下，如何把一个能力足够的助手部署到对成本敏感或端侧的硬件上？请完整梳理一遍效率工具箱。",
+      "questionEn": "How do you deploy a capable assistant on cost-sensitive or on-device hardware without a datacentre GPU? Walk through the efficiency toolkit.",
+      "sources": [
+        {
+          "title": "Model Quantization 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Small Language Models (SLMs)",
+          "url": "https://outcomeschool.com/blog/small-language-models-slms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "设计跨语言 RAG：知识库是英文和印地语，但用户用泰米尔语、泰卢固语或音译的 Hinglish 提问。",
+      "questionEn": "Design cross-lingual RAG: the knowledge base is in English and Hindi, but users ask in Tamil, Telugu or transliterated Hinglish.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "Sarvam-M 提供混合的 think/non-think 模式，并且先用 SFT、再用 RLVR 完成 post-training。你会如何构建它？为什么选择 RLVR 而不是原版 RLHF？",
+      "questionEn": "Sarvam-M ships hybrid think/non-think modes and was post-trained with SFT then RLVR. How would you build that, and why RLVR over vanilla RLHF?",
+      "sources": [
+        {
+          "title": "大型推理模型（LRMs）",
+          "url": "https://outcomeschool.com/blog/large-reasoning-models",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "组相对策略优化（GRPO）",
+          "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "某地方政府想要一个低资源语言的助手，而可用的干净文本只有几千句。你会如何让模型适配它？",
+      "questionEn": "A regional government wants an assistant in a low-resource language with only a few thousand sentences of clean text. How do you adapt a model to it?",
+      "sources": [
+        {
+          "title": "微调是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-fine-tuning-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LoRA - LLM 的低秩适配",
+          "url": "https://outcomeschool.com/blog/lora-low-rank-adaptation-of-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为印地语和三种地区语言的公民求助热线设计实时语音 agent，目标是在电话线路上把感知延迟控制在 250 ms 以内。",
+      "questionEn": "Design a real-time voice agent for a citizen helpline in Hindi and three regional languages, targeting sub-250 ms perceived latency over a phone line.",
+      "sources": [
+        {
+          "title": "设计实时语音 AI Agent",
+          "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你会如何正确评估一个 Indic LLM？为什么直接跑翻译过来的英文 benchmark 不够？",
+      "questionEn": "How would you evaluate an Indic LLM properly? Why is running translated English benchmarks not enough?",
+      "sources": [
+        {
+          "title": "LLM 评估",
+          "url": "https://outcomeschool.com/blog/llm-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "从零实现一个 Voice Activity Detector。如何让它对电话音质的印度语言音频保持鲁棒？",
+      "questionEn": "Build a Voice Activity Detector from scratch. How do you make it robust for phone-quality Indian-language audio?",
+      "sources": [
+        {
+          "title": "设计实时语音 AI Agent",
+          "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "Whisper 对 Hinglish 的转写效果很差，常常强行把输出统一成一种语言，或者产生幻觉。为什么会这样？你会如何构建一个能处理 code-mixed 语音的 ASR？",
+      "questionEn": "Whisper transcribes Hinglish poorly, often forcing output into one language or hallucinating. Why, and how would you build an ASR that handles code-mixed speech?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "Bulbul 风格的 TTS 必须自然地朗读 code-mixed、混合书写系统的文本。对印度语言 TTS 而言，文本归一化与韵律难在哪里？",
+      "questionEn": "Bulbul-style TTS has to speak code-mixed, mixed-script text naturally. What are the hard parts of text normalization and prosody for Indian-language TTS?",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "某州政府机构想把以纸质表单和呼叫中心为主的福利计划服务迁到多语言助手上，并出于数据驻留要求采用本地部署（on-prem）。你会如何界定范围并把它交付上线？",
+      "questionEn": "A state agency wants to move a paper-and-call-centre welfare-scheme service onto a multilingual assistant, on-prem for data residency. How do you scope and ship it?",
+      "sources": []
+    }
+  ]
+}

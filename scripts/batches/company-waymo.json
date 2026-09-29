@@ -1,0 +1,114 @@
+{
+  "company": "Waymo",
+  "slug": "waymo",
+  "dir": "waymo",
+  "group": "AI 原生产品公司",
+  "idPrefix": "waymo",
+  "total": 12,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "inference-serving",
+    "system-design",
+    "evaluation",
+    "multimodal"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "在 NumPy 中，为多模态轨迹预测计算 minADE 和 minFDE，且 ground truth 长度可变。不允许使用任何 Python 循环。",
+      "questionEn": "In NumPy, compute minADE and minFDE for multi-modal trajectory predictions with variable-length ground truth. No Python loops.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "应该采用模块化的感知、预测与规划，还是端到端学习式驾驶？请给出论证，然后告诉我你实际会构建什么。",
+      "questionEn": "Modular perception, prediction and planning, or end-to-end learned driving? Make the case, then tell me what you would actually build.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "为行为预测模型设计输出表示。你会用什么指标来判断它是否达标？",
+      "questionEn": "Design the output representation for a behaviour prediction model. What metrics would you gate it on?",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "在自动驾驶栈中，视觉语言模型和基础模型真正能发挥作用的地方在哪里，又在哪些地方会成为隐患？",
+      "questionEn": "Where do vision-language models and foundation models genuinely help in an autonomy stack, and where are they a liability?",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "为车载计算栈做算力与延迟预算。当模型变得更大时，哪些环节会先出问题？",
+      "questionEn": "Budget the compute and latency for the onboard stack. What breaks when a model gets bigger?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你拥有数亿英里的车队行驶里程。你如何找出并利用那些真正重要的罕见场景？",
+      "questionEn": "You have hundreds of millions of fleet miles. How do you find and use the rare scenarios that matter?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个系统，在整个车队档案中找出与给定片段相似的驾驶片段。",
+      "questionEn": "Design a system that finds driving segments similar to a given one across the entire fleet archive.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你要在一个新城市开城。请梳理出 safety case 的结构。",
+      "questionEn": "You are opening in a new city. Structure the safety case.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "脱离接管率（disengagement rate）是一个很弱的安全代理指标。你会如何真正衡量 Driver 是否足够安全、可以发布？",
+      "questionEn": "Disengagement rate is a weak safety proxy. How would you actually measure whether the Driver is safe enough to ship?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你如何构建一个自己有信心用来把关发布的仿真器？",
+      "questionEn": "How do you build a simulator you would trust to gate a release?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "距离发布决策还有两天，仿真显示某个场景簇中的急刹车事件增加了 15%。请讲讲你会怎么做。",
+      "questionEn": "Two days before a release decision, simulation shows a 15% increase in hard-braking events in one scenario cluster. Walk me through what you do.",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "为什么要同时搭载 lidar、radar 和摄像头，而不是只用摄像头？你会在哪里做融合？",
+      "questionEn": "Why carry lidar, radar and cameras rather than cameras alone? Where would you fuse them?",
+      "sources": []
+    }
+  ]
+}

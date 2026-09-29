@@ -1,0 +1,128 @@
+{
+  "company": "Harvey",
+  "slug": "harvey",
+  "dir": "harvey",
+  "group": "AI 原生产品公司",
+  "idPrefix": "harvey",
+  "total": 11,
+  "topics": [
+    "coding",
+    "rag",
+    "agents",
+    "system-design",
+    "evaluation",
+    "safety",
+    "applied"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "结对编程：为一份法律文档编写 chunker，要求绝不拆分条款，并且携带足够的上下文，使检索到的 chunk 能够自包含。",
+      "questionEn": "Paired coding: write a chunker for a legal document that never splits a clause and carries enough context that a retrieved chunk is self-contained.",
+      "sources": [
+        {
+          "title": "RAG 的 chunking 策略",
+          "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "一位律师问的是一份 200 页的信贷协议，其中第 140 页的关键条款依赖于第 8 页的一个定义术语。你会如何构建能正确处理这一点的 retrieval？",
+      "questionEn": "A lawyer asks about a 200-page credit agreement where the operative clause on page 140 depends on a defined term on page 8. How do you build retrieval that gets this right?",
+      "sources": [
+        {
+          "title": "RAG 的 chunking 策略",
+          "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "什么时候你会把整份合同放进 context window，而不是对它做 retrieval？请用数据论证你的回答。",
+      "questionEn": "When would you put a whole contract in the context window instead of retrieving over it? Defend the answer with numbers.",
+      "sources": [
+        {
+          "title": "LLM 中的 lost-in-the-middle 问题",
+          "url": "https://outcomeschool.com/blog/lost-in-the-middle-problem-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计一个 agent：输入一份 NDA 草稿，返回一份体现该律所 playbook 的带修订标记的 Word 文档，而不是一段聊天回复。",
+      "questionEn": "Design an agent that takes a draft NDA and returns a redlined Word document reflecting the firm's playbook, not a chat response.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "介绍一个工作流的架构：它依据一份 18 个问题的尽调清单审查 5,000 份合同，并返回一张审查网格。",
+      "questionEn": "Present the architecture for a workflow reviewing 5,000 contracts against an 18-question diligence checklist, returning a review grid.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "一个新的前沿模型发布了，在你的 benchmark 上得分更高。在它触达客户之前，会发生什么？",
+      "questionEn": "A new frontier model is released and scores better on your benchmarks. What happens before it reaches customers?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "Harvey 的每个回答中的每一条断言都需要链接回某个具体段落。请设计这套 grounding 系统，并告诉我你会如何衡量无支撑断言率。",
+      "questionEn": "Every assertion in a Harvey answer needs to link back to a specific passage. Design the grounding system, and tell me how you would measure the unsupported-claim rate.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "一次 agentic 研究查询返回了一份备忘录，其中引用了一个已被推翻的判例。这个问题会在哪里被拦截住？",
+      "questionEn": "An agentic research query returns a memo citing a case that was overruled. Where does that get caught?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "同一家律所的两位合伙人在一笔交易中处于对立双方。在常规多租户之上，为这种情况设计数据隔离。",
+      "questionEn": "Two partners at the same firm are on opposite sides of a deal. Design the data isolation for that, on top of normal multi-tenancy.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "估算在包含 5,000 份文档的 data room 上运行你的尽调工作流的成本与周转时间，并告诉我你会最先拉动哪个杠杆。",
+      "questionEn": "Estimate the cost and turnaround of running your diligence workflow over a 5,000-document data room, and tell me which lever you'd pull first.",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一位合伙人反馈，Harvey 漏掉了它审查的一份合同中的控制权变更条款。请排查这个问题。",
+      "questionEn": "A partner reports that Harvey missed a change-of-control clause in a contract it reviewed. Debug it.",
+      "sources": []
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "company": "Groq",
+  "slug": "groq",
+  "dir": "groq",
+  "group": "AI 基础设施与平台公司",
+  "idPrefix": "groq",
+  "total": 12,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "system-design",
+    "applied",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "我们的编译器对每条指令和每一次 chip-to-chip 传输都做静态调度。相比 NVCC 风格的编译器，它需要额外知道哪些信息？一旦调度出错，会坏在哪里？",
+      "questionEn": "Our compiler statically schedules every instruction and every chip-to-chip transfer. What does that compiler need to know that an NVCC-style compiler does not, and what breaks when it's wrong?",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "为面向 spatial dataflow 加速器的编译器设计 IR 与 pass pipeline。内存驻留（memory residency）的决策应该放在哪一层？为什么？",
+      "questionEn": "Design the IR and pass pipeline for a compiler targeting a spatial dataflow accelerator. Where does the memory-residency decision live, and why?",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "编写 host 侧 runtime，为跨多芯片的确定性加速器持续供数。它真正难在哪里？",
+      "questionEn": "Write the host-side runtime that feeds a deterministic accelerator across many chips. What is genuinely hard about it?",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "一个模型在单芯片上与功能模拟器逐位一致（bit-exact），但在整机架规模下输出错误。你如何定位？",
+      "questionEn": "A model passes bit-exact against the functional simulator on one chip but produces wrong output at rack scale. How do you find it?",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "LPU 完全没有 HBM，只有片上 SRAM。请针对这台机器重新推导 decode 的 roofline 论证，并说明哪些结论会改变。",
+      "questionEn": "An LPU has no HBM at all, just on-die SRAM. Redo the decode roofline argument for that machine and tell me what changes.",
+      "sources": [
+        {
+          "title": "LPU 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-an-lpu-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "一个 70B 稠密模型，8-bit 权重，每颗芯片约 230 MB SRAM。请讲一遍部署方案和单位经济性。",
+      "questionEn": "A 70B dense model at 8-bit weights, chips with ~230 MB of SRAM each. Walk me through the deployment and the unit economics.",
+      "sources": [
+        {
+          "title": "LPU 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-an-lpu-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "在 GPU 上你会用 batching 来摊薄权重读取。在纯 SRAM 机器上，batching 这笔账该怎么算？它又应该如何改变我们的定价方式？",
+      "questionEn": "On a GPU you batch to amortise weight reads. What is the batching calculus on an SRAM-only machine, and how should that change how we price?",
+      "sources": [
+        {
+          "title": "LPU 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-an-lpu-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "确定性是主打卖点。它在 p99 上究竟带来了什么实际收益？为什么它对 agentic 负载尤其重要？",
+      "questionEn": "Determinism is the headline claim. What does it actually buy at p99, and why does it matter especially for agentic workloads?",
+      "sources": [
+        {
+          "title": "LPU 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-an-lpu-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "当专家选择依赖数据时，你如何在静态调度的 fabric 上服务一个大型 mixture-of-experts 模型？",
+      "questionEn": "How would you serve a large mixture-of-experts model on a statically scheduled fabric when expert selection is data-dependent?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "我们把 LPX decode 加速器与负责 prefill 和 attention 的 NVIDIA GPU 搭配使用。请设计跨这两类机器的服务链路。",
+      "questionEn": "We pair LPX decode accelerators with NVIDIA GPUs doing prefill and attention. Design the serving path across those two machines.",
+      "sources": [
+        {
+          "title": "LLM 推理中的 Prefill-Decode 分离",
+          "url": "https://outcomeschool.com/blog/prefill-decode-disaggregation",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LPU 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-an-lpu-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一个潜在客户目前把负载跑在 H100 上。请讲讲你在什么情况下会建议他们不要迁移。",
+      "questionEn": "A prospective customer runs their workload on H100s. Talk me through when you would tell them not to move.",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲一个你落地过的性能优化。给出具体数字，并告诉我为什么我应该相信这些数字。",
+      "questionEn": "Tell me about a performance optimisation you shipped. Give me the numbers, and tell me why I should believe them.",
+      "sources": []
+    }
+  ]
+}

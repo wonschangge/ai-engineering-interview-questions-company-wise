@@ -1,0 +1,228 @@
+{
+  "company": "Google DeepMind 与 Google AI",
+  "slug": "google-deepmind",
+  "dir": "google-deepmind",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "google-deepmind",
+  "total": 22,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "finetuning",
+    "system-design",
+    "evaluation",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "你收到一个无界的 event ID 流。要求在任意时刻、用有界内存返回目前出现频率最高的 k 个 ID。",
+      "questionEn": "You are receiving an unbounded stream of event IDs. Return the k most frequent IDs seen so far, at any point, with bounded memory.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "最接近的 key：给定一个键为字母、值为字母列表的字典，找出最接近的 key。",
+      "questionEn": "Closest key: given a dictionary with letter keys and lists of letters as values, find the closest key.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "给定 y_pred 和 y_true 列表，写一个函数计算均方根误差（root-mean-square error）。",
+      "questionEn": "Write a function to compute root-mean-square error given y_pred and y_true lists.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "解析 bigram：从字符串中提取两词短语，用于 NLP 特征工程。",
+      "questionEn": "Parse bigrams: extract two-word phrases from strings for NLP feature engineering.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "定义 bias-variance trade-off（偏差-方差权衡），并讨论二者之间的关系。",
+      "questionEn": "Define the bias-variance trade-off and discuss the relationship between the two.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "线性回归有哪些假设？",
+      "questionEn": "What are the assumptions of linear regression?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "区分正则化与验证：各自适用的场景分别是什么？",
+      "questionEn": "Distinguish regularization from validation: when is each the right tool?",
+      "sources": [
+        {
+          "title": "机器学习中的正则化：L1 vs L2",
+          "url": "https://outcomeschool.com/blog/regularization-in-machine-learning",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "推导 softmax 输入下交叉熵损失的梯度，并解释为什么在数值上要把二者融合（fuse）。",
+      "questionEn": "Derive the gradient of cross-entropy loss with softmax inputs, and explain why we fuse them numerically.",
+      "sources": [
+        {
+          "title": "交叉熵损失背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-cross-entropy-loss",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "反向传播背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-backpropagation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "解释 SVD，并给出它在现代深度学习中出现的两个地方。",
+      "questionEn": "Explain the SVD and give two places it shows up in modern deep learning.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "平均需要抛多少次公平硬币，才能第一次出现连续两次正面？请讲一下你的推导过程。",
+      "questionEn": "On average, how many fair coin flips until you see two heads in a row? Walk me through it.",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "什么情况下你会选择 Q-learning 而不是 policy gradient，反之又如何？",
+      "questionEn": "When would you choose Q-learning over policy gradients, and vice versa?",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "你有一个二分类的贷款审批模型，且只能有限地访问特征权重。你如何解释一次拒贷？",
+      "questionEn": "You have a binary loan-approval classifier and limited access to feature weights. How do you explain a rejection?",
+      "sources": []
+    },
+    {
+      "order": 13,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "你的预训练 loss 在一次长训练的 300k step 处突然发散。请诊断并修复它。",
+      "questionEn": "Your pretraining loss suddenly diverges at step 300k of a long run. Diagnose and fix it.",
+      "sources": []
+    },
+    {
+      "order": 14,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "为一个放不进单个加速器的模型设计训练方案，比如在一个 pod 上训练 70B 参数。",
+      "questionEn": "Design the training setup for a model that doesn't fit on one accelerator, say 70B parameters on a pod.",
+      "sources": []
+    },
+    {
+      "order": 15,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为服务数亿用户的多模态助手（输入文本 + 图像，输出流式文本）设计服务系统。",
+      "questionEn": "Design the serving system for a multimodal assistant (text + image in, streaming text out) at hundreds of millions of users.",
+      "sources": []
+    },
+    {
+      "order": 16,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "使用人口统计信息、房源元数据、配套设施、价格、评论和位置，为租房房源设计个性化推荐系统。",
+      "questionEn": "Design a personalised recommendation system for rental listings using demographics, property metadata, amenities, price, reviews and location.",
+      "sources": []
+    },
+    {
+      "order": 17,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个分类器，预测在视频中插入广告时段的最佳时机。",
+      "questionEn": "Design a classifier that predicts the optimal moment to insert a commercial break in a video.",
+      "sources": []
+    },
+    {
+      "order": 18,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你会如何改进商品搜索结果，重点关注检索到的相关文档占比（recall）？",
+      "questionEn": "How would you improve product search results, focusing on the fraction of relevant documents retrieved (recall)?",
+      "sources": [
+        {
+          "title": "精确率 vs 召回率",
+          "url": "https://outcomeschool.com/blog/precision-vs-recall",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 19,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为某个问题论证使用神经网络是否合理：关于网络、数据集、时间线和业务背景，你需要了解哪些信息？",
+      "questionEn": "Justify using a neural network for a given problem: what do you need to know about the network, dataset, timeline and business context?",
+      "sources": []
+    },
+    {
+      "order": 20,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "为一次新的前沿模型发布搭建评估 harness。它需要具备哪些能力？",
+      "questionEn": "Build the evaluation harness for a new frontier model release. What does it need to do?",
+      "sources": [
+        {
+          "title": "LLM 评估",
+          "url": "https://outcomeschool.com/blog/llm-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 21,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "100 万次西雅图行程数据足以构建一个准确的 ETA 预测模型吗？你会如何判断？",
+      "questionEn": "Do 1 million Seattle ride trips suffice to build an accurate ETA prediction model? How would you decide?",
+      "sources": []
+    },
+    {
+      "order": 22,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲一次你在优先级问题上与 researcher 或 tech lead 意见不一致的经历，以及后来发生了什么。",
+      "questionEn": "Tell me about a time you disagreed with a researcher or tech lead about priorities, and what happened.",
+      "sources": []
+    }
+  ]
+}

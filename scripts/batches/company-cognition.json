@@ -1,0 +1,117 @@
+{
+  "company": "Cognition（Devin、Windsurf）",
+  "slug": "cognition",
+  "dir": "cognition",
+  "group": "AI 原生产品公司",
+  "idPrefix": "cognition",
+  "total": 9,
+  "topics": [
+    "agents",
+    "finetuning",
+    "system-design",
+    "evaluation",
+    "safety",
+    "applied"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "你有八个小时从零构建一个 coding agent。请描述你会构建什么，更重要的是，你会砍掉什么。",
+      "questionEn": "You have eight hours to build a coding agent from scratch. Describe what you build and, more importantly, what you cut.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "Cognition 曾发表文章反对 multi-agent 系统，后来又发表了真正行之有效的做法。请调和这两种立场。",
+      "questionEn": "Cognition published an argument against multi-agent systems and later published what actually works. Reconcile those two positions.",
+      "sources": [
+        {
+          "title": "多 Agent 系统",
+          "url": "https://outcomeschool.com/blog/multi-agent-systems",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "AI 子 Agent",
+          "url": "https://outcomeschool.com/blog/ai-subagents",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "你的 agent 在第一轮里有超过一半时间都花在查找相关代码上。你如何解决这个问题？",
+      "questionEn": "Your agent spends over half its first turn just finding the relevant code. How do you fix that?",
+      "sources": [
+        {
+          "title": "Claude Code 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "你在自己的 harness 里用端到端 RL 训练一个 agent 模型。请讲讲环境与奖励设计。",
+      "questionEn": "You are training an agent model with end-to-end RL in your own harness. Walk through the environment and reward design.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为数千个并发的云端 coding agent 设计执行环境。它必须能在 agent 等待 CI 长达四十分钟的情况下依然稳定运行。",
+      "questionEn": "Design the execution environment for thousands of concurrent cloud coding agents. It must survive the agent waiting forty minutes for CI.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "Devin 在云端异步运行；Windsurf 的 Cascade 在用户身边的编辑器里运行。从技术角度看，这两个产品真正的差异究竟在哪里？",
+      "questionEn": "Devin runs asynchronously in the cloud; Windsurf's Cascade runs in the editor next to the user. What actually changes between those two products, technically?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你会如何评估一个自主软件工程 agent？请解释为什么 SWE-bench 的通过率具有误导性。",
+      "questionEn": "How would you evaluate an autonomous software engineering agent? Explain why SWE-bench pass rates mislead.",
+      "sources": [
+        {
+          "title": "AI Agent 评估",
+          "url": "https://outcomeschool.com/blog/ai-agent-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "一个自主 agent 拥有对客户仓库的写权限、CI 凭证以及网络访问权限。你的威胁模型是什么？",
+      "questionEn": "An autonomous agent has write access to a customer's repository, CI credentials and network access. What is your threat model?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "作为 Deployed Engineer，你要把 Devin 推广到一家拥有两千名工程师的组织中。最初的九十天会是什么样的？",
+      "questionEn": "As a Deployed Engineer, you are rolling Devin into a 2,000-engineer organisation. What do the first ninety days look like?",
+      "sources": []
+    }
+  ]
+}

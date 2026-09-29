@@ -1,0 +1,284 @@
+{
+  "company": "Meta（超级智能实验室、FAIR、Llama）",
+  "slug": "meta",
+  "dir": "meta",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "meta",
+  "total": 26,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "llm-internals",
+    "inference-serving",
+    "agents",
+    "finetuning",
+    "system-design",
+    "evaluation",
+    "safety",
+    "multimodal",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "给定一个包含 n 个整数的数组 nums，其中 n > 1，返回一个输出数组（除自身以外所有元素的乘积）。",
+      "questionEn": "Given an array nums of n integers where n > 1, return an output array (product of array except self).",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "找出 S 中包含 T 中所有字符的最小窗口。",
+      "questionEn": "Find the minimum window in S which will contain all the characters in T.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "序列化和反序列化一棵二叉树。",
+      "questionEn": "Serialize and deserialize a binary tree.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "将一棵二叉树转换为循环双向链表。",
+      "questionEn": "Convert a binary tree to a circular doubly linked list.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "外星人词典：根据一个已排序的单词列表推断字符顺序。",
+      "questionEn": "Alien dictionary: determine character ordering from a sorted word list.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "距离原点最近的 K 个点；出现频率最高的前 k 个元素；最少的会议室数量。",
+      "questionEn": "K closest points to origin; top-k frequent elements; minimum number of conference rooms.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "支持 '.' 和 '\\*' 的正则表达式匹配。",
+      "questionEn": "Regular expression matching with '.' and '\\*'.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "分两部分的暖场题：给定一个用户行为流，返回互动最多的 k 个条目。接着问：为什么你的堆方案在生产环境中可能是错误的选择？",
+      "questionEn": "Two-part warm-up: given a stream of user actions, return the k most engaged-with items. Then: why might your heap solution be the wrong choice in production?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "你的广告 CTR 模型显示离线 AUC 提升 2%，但在线 A/B 实验收入持平，且校准（calibration）更差。这是怎么回事，你会怎么做？",
+      "questionEn": "Your ads CTR model shows a 2% offline AUC gain, but the online A/B is revenue-neutral with worse calibration. What is going on, and what do you do?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "解释 Llama 级别模型中的架构选择：为什么用 grouped-query attention、RoPE 和 SwiGLU，而不是 2017 年的原版 Transformer？",
+      "questionEn": "Explain the architectural choices in a Llama-class model: why grouped-query attention, RoPE and SwiGLU instead of the vanilla 2017 Transformer?",
+      "sources": [
+        {
+          "title": "分组查询注意力（GQA）",
+          "url": "https://outcomeschool.com/blog/grouped-query-attention",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "RoPE（旋转位置编码）背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 中的前馈网络",
+          "url": "https://outcomeschool.com/blog/feed-forward-networks-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "当把 LLM 训练从 8 张 GPU 扩展到数千张时，会出现什么问题，现代技术栈又是如何应对的？",
+      "questionEn": "What breaks when you scale LLM training from 8 GPUs to thousands, and how do modern stacks deal with it?",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "你需要为数亿助手用户提供 Llama 级别的 70B+ 模型服务。服务栈长什么样，钱又花在哪里？",
+      "questionEn": "You need to serve a Llama-class 70B+ model to hundreds of millions of assistant users. What does the serving stack look like and where does the money go?",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "你被丢进一个陌生的多文件代码库，其中某个行为出了问题，而你可以使用一个 LLM 助手。请讲讲你会如何修复它。",
+      "questionEn": "You're dropped into an unfamiliar multi-file codebase with a failing behaviour and an LLM assistant available. Walk me through how you'd fix it.",
+      "sources": []
+    },
+    {
+      "order": 14,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "请讲讲一套 post-training 方案，把预训练基座模型变成一个个性化助手。",
+      "questionEn": "Walk me through a post-training recipe to turn a pretrained base model into a personalised assistant.",
+      "sources": [
+        {
+          "title": "解读 InstructGPT",
+          "url": "https://outcomeschool.com/blog/decoding-instructgpt",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "基于人类反馈的强化学习（RLHF）",
+          "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 15,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为 Instagram Reels 设计推荐系统。",
+      "questionEn": "Design the recommendation system for Instagram Reels.",
+      "sources": []
+    },
+    {
+      "order": 16,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为 Facebook 的信息流设计一套个性化排序系统 / “下一篇帖子”逻辑。",
+      "questionEn": "Design a personalised news-feed ranking system / the “next post” logic for Facebook's feed.",
+      "sources": []
+    },
+    {
+      "order": 17,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为 Facebook Ads 设计推荐系统，以及一套广告排序的评估框架。",
+      "questionEn": "Design a recommendation system for Facebook Ads, and an evaluation framework for ads ranking.",
+      "sources": []
+    },
+    {
+      "order": 18,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为某个 Instagram Story 功能设计其背后的 ML 组件。",
+      "questionEn": "Design the ML components behind an Instagram Story feature.",
+      "sources": []
+    },
+    {
+      "order": 19,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为 Marketplace 商品列表设计端到端分类流水线。",
+      "questionEn": "Design an end-to-end classification pipeline for Marketplace listings.",
+      "sources": []
+    },
+    {
+      "order": 20,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个语言翻译模型 / 服务。",
+      "questionEn": "Design a language translation model / service.",
+      "sources": []
+    },
+    {
+      "order": 21,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你会如何为 Meta AI 助手搭建每次模型发布前后的评估系统？",
+      "questionEn": "How would you build the evaluation system for a Meta AI assistant before and after each model release?",
+      "sources": [
+        {
+          "title": "LLM 评估",
+          "url": "https://outcomeschool.com/blog/llm-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 22,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "为 Facebook 和 Instagram 的上传内容设计有害内容检测系统。",
+      "questionEn": "Design the harmful-content detection system for Facebook and Instagram uploads.",
+      "sources": []
+    },
+    {
+      "order": 23,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "现代多模态模型是如何把图像和视频理解能力接入 LLM 的，针对视频又有什么特殊变化？",
+      "questionEn": "How do modern multimodal models get image and video understanding into an LLM, and what changes for video specifically?",
+      "sources": [
+        {
+          "title": "多模态 AI",
+          "url": "https://outcomeschool.com/blog/multimodal-ai",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 24,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "举一个你使用数据和机器学习的项目实例。你遇到了哪些障碍？",
+      "questionEn": "Give me an example of a project where you used data and machine learning. What obstacles did you hit?",
+      "sources": []
+    },
+    {
+      "order": 25,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你有一次在模糊环境中推动取得重要成果的经历，以及一次你判断错误的经历。",
+      "questionEn": "Tell me about a time you drove a significant result through ambiguity, and a time you were wrong.",
+      "sources": []
+    },
+    {
+      "order": 26,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你如何维护生产环境中的 ML 流水线。为什么选择 Meta？",
+      "questionEn": "Tell me about maintaining a production ML pipeline. Why Meta?",
+      "sources": []
+    }
+  ]
+}

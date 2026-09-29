@@ -1,0 +1,147 @@
+{
+  "company": "Scale AI",
+  "slug": "scale-ai",
+  "dir": "scale-ai",
+  "group": "AI 基础设施与平台公司",
+  "idPrefix": "scale-ai",
+  "total": 12,
+  "topics": [
+    "coding",
+    "finetuning",
+    "system-design",
+    "evaluation",
+    "safety",
+    "applied"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "构建一个标注平台的任务生命周期核心。先从简单版本做起；我会陆续加入 k 个标注者之间的一致性、然后是优先级复审，最后是标注者冷却时间。",
+      "questionEn": "Build the task-lifecycle core of an annotation platform. Start simple; I'll add consensus of k annotators, then priority re-review, then annotator cooldowns.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "给定以 (start, end) 时间戳表示的标注会话，返回并发标注者的峰值数量，以及峰值负载对应的时间区间。",
+      "questionEn": "Given annotation sessions as (start, end) timestamps, return the peak number of concurrent annotators and the intervals at peak load.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "比较 SFT、RLHF、DPO 与 RLVR 在提升一个指令微调模型上的差异。各自需要什么数据，什么情况下你会选哪个？",
+      "questionEn": "Compare SFT, RLHF, DPO and RLVR for improving an instruction-tuned model. What data does each need, and when would you pick which?",
+      "sources": [
+        {
+          "title": "基于人类反馈的强化学习（RLHF）",
+          "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "直接偏好优化（DPO）",
+          "url": "https://outcomeschool.com/blog/direct-preference-optimization-dpo",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "组相对策略优化（GRPO）",
+          "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "我们销售 RL 环境。请为“在网页旅行 App 中预订多城市行程”设计一个环境，指定 reward，并说明你如何防止 policy 钻空子。",
+      "questionEn": "We sell RL environments. Design one for “book a multi-city trip in a web travel app”, specify the reward, and tell me how you stop the policy hacking it.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为一家前沿实验室设计一条产出 RLHF 偏好数据的端到端流水线：每周 10 万条 prompt-response 对比，并且要有质量保证。",
+      "questionEn": "Design an end-to-end pipeline producing RLHF preference data for a frontier lab: 100k prompt-response comparisons a week, with quality guarantees.",
+      "sources": [
+        {
+          "title": "基于人类反馈的强化学习（RLHF）",
+          "url": "https://outcomeschool.com/blog/reinforcement-learning-from-human-feedback-rlhf",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个私有 LLM 基准与排行榜（SEAL 风格）。当各家实验室针对它做优化时，你如何保持它的可信度？",
+      "questionEn": "Design a private LLM benchmark and leaderboard (SEAL-style). How do you keep it trustworthy as labs optimise against it?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你的标注者没有 ground truth：这些任务是主观偏好判断。你如何衡量并提升标注质量？",
+      "questionEn": "Your annotators have no ground truth: the tasks are subjective preference judgments. How do you measure and improve label quality?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你会如何对 LLM agent 的 tool use 做基准测试，比如针对组合 10+ 个 API 的企业工作流？",
+      "questionEn": "How would you benchmark an LLM agent's tool use, say, for enterprise workflows composing 10+ APIs?",
+      "sources": [
+        {
+          "title": "AI Agent 评估",
+          "url": "https://outcomeschool.com/blog/ai-agent-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你负责的一条 eval 流水线突然报告某客户的模型在周二到周三之间下降了 6 分。模型并没有变化。请排查。",
+      "questionEn": "An eval pipeline you own suddenly reports a 6-point drop for a customer's model between Tuesday and Wednesday. The model didn't change. Debug it.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "有些标注者把你的任务粘贴进 ChatGPT，然后直接提交输出。你如何检测并处理？",
+      "questionEn": "Some annotators are pasting your tasks into ChatGPT and submitting the output. How do you detect and handle it?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一家企业想要一个基于 200 万份内部文档的文档问答助手，要在四周内完成试点，而他们的安全团队禁止数据离开自己的 VPC。请界定范围并给出设计。",
+      "questionEn": "An enterprise wants a document-Q&A assistant over 2M internal documents, pilot in four weeks, and their security team forbids data leaving their VPC. Scope and design it.",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一家机器人客户需要 5 万小时的操作演示数据，覆盖 12 个任务和三种 embodiment。请设计采集流水线，并说明什么样的演示数据值得保留。",
+      "questionEn": "A robotics customer asks for 50,000 hours of manipulation demonstrations across 12 tasks and three embodiments. Design the collection pipeline, and tell me what makes one demonstration worth keeping.",
+      "sources": []
+    }
+  ]
+}

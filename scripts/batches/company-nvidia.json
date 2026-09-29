@@ -1,0 +1,169 @@
+{
+  "company": "NVIDIA",
+  "slug": "nvidia",
+  "dir": "nvidia",
+  "group": "大型科技公司的 AI 组织",
+  "idPrefix": "nvidia",
+  "total": 13,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "inference-serving",
+    "system-design",
+    "applied",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "这里有一个比预期慢 10 倍的 CUDA kernel。在不运行它的前提下，常见的嫌疑点有哪些，你如何逐一确认？",
+      "questionEn": "Here's a CUDA kernel that's 10x slower than expected. Without running it, what are the usual suspects, and how do you confirm each?",
+      "sources": [
+        {
+          "title": "GPU 是如何用于深度学习的？",
+          "url": "https://outcomeschool.com/blog/how-does-a-gpu-work-for-deep-learning",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现 paged KV cache 的 block manager：分配、追加、释放，以及写时复制的前缀共享。",
+      "questionEn": "Implement the block manager for a paged KV cache: allocate, append, free, and copy-on-write prefix sharing.",
+      "sources": [
+        {
+          "title": "LLM 中的 Paged Attention",
+          "url": "https://outcomeschool.com/blog/paged-attention-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "一个模型在 FP32 下运行正常，但转换成 FP16 后输出结果完全不对。请调试它。",
+      "questionEn": "A model runs fine in FP32 but produces garbage after conversion to FP16. Debug it.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "解释在基于树的分类模型中对抗过拟合的策略。",
+      "questionEn": "Explain strategies to combat overfitting in tree-based classification models.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "总结在神经网络图像分类中，Adam 优化器相比其他方法的差异与优势。",
+      "questionEn": "Summarize the differences and benefits of the Adam optimizer compared with other methods for neural-network image classification.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "一个网络会把巴哥犬和比特犬搞混，而且部分训练标签是错的。你会如何调整模型和数据？",
+      "questionEn": "A network confuses pugs and pit bulls and some training labels are wrong. How do you modify the model and the data?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "在没有预先标注分组的情况下，你如何评估聚类模型的效果？",
+      "questionEn": "How do you evaluate a clustering model's effectiveness without pre-labelled groups?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "你想在单张 80 GB GPU 上服务一个 70B 参数的模型。请讲讲它是否放得下，以及你预期的单流 tokens/sec 是多少。",
+      "questionEn": "You want to serve a 70B-parameter model on a single 80 GB GPU. Walk me through whether it fits and what single-stream tokens/sec you'd expect.",
+      "sources": [
+        {
+          "title": "Model Quantization 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 中的 KV Cache 是什么？",
+          "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "TensorRT / TensorRT-LLM 究竟对模型做了什么让它变快，什么情况下它帮不上忙？",
+      "questionEn": "What does TensorRT / TensorRT-LLM actually do to a model to make it faster, and when will it not help?",
+      "sources": [
+        {
+          "title": "TensorRT-LLM 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-tensorrt-llm-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "为服务一个 405B 参数的稠密模型设计并行策略。TP、PP、EP：分别用在哪里，为什么？",
+      "questionEn": "Design the parallelism strategy for serving a 405B-parameter dense model. TP, PP, EP: what goes where and why?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个带转写文本索引的播客搜索引擎。/ 为即输即搜设计一个推荐算法。",
+      "questionEn": "Design a podcast search engine with transcript indexing. / Design a recommendation algorithm for type-ahead search.",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "客户跑在 8 张 GPU 上的 LLM 聊天机器人“又慢又贵”。你有一周时间和他们一起工作。你会怎么做？",
+      "questionEn": "A customer's LLM chatbot on 8 GPUs is “too slow and too expensive.” You have one week with them. What do you do?",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://www.youtube.com/watch?v=jV2sCj4lHYk",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "描述一次你处理优先级冲突或干系人反馈的经历。你现在的经理会如何评价你？",
+      "questionEn": "Describe a time you dealt with conflicting priorities or stakeholder feedback. What would your current manager say about you?",
+      "sources": []
+    }
+  ]
+}

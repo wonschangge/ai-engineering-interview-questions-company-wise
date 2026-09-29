@@ -1,0 +1,136 @@
+{
+  "company": "Mistral AI",
+  "slug": "mistral",
+  "dir": "mistral",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "mistral",
+  "total": 8,
+  "topics": [
+    "coding",
+    "llm-internals",
+    "inference-serving",
+    "agents",
+    "finetuning",
+    "system-design"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "结对编程：构建一个服务，接收用户问题，用第三方 API 的数据做补充，再通过 chat-model API 给出回答。你会如何组织它？",
+      "questionEn": "Pair-programming: build a service that takes a user question, enriches it with data from a third-party API, and answers via a chat-model API. How do you structure it?",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Mistral 7B 发布时采用了 grouped-query attention 和 sliding-window attention。两者各自带来什么好处，又各自付出什么代价？",
+      "questionEn": "Mistral 7B shipped with grouped-query attention and sliding-window attention. What does each buy you, and what does each cost?",
+      "sources": [
+        {
+          "title": "分组查询注意力（GQA）",
+          "url": "https://outcomeschool.com/blog/grouped-query-attention",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Sliding Window Attention 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-sliding-window-attention-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "解释 Mixtral 风格的稀疏 mixture-of-experts 模型是如何工作的。为什么一个约 47B 参数的模型，运行成本大致只相当于约 13B 的模型？",
+      "questionEn": "Explain how a Mixtral-style sparse mixture-of-experts model works. Why does a ~47B-parameter model run at roughly the cost of a ~13B one?",
+      "sources": [
+        {
+          "title": "MoE 详解",
+          "url": "https://outcomeschool.com/blog/mixture-of-experts",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "估算服务 Mistral 7B 所需的 KV cache 显存，并设计 sliding-window attention 所支持的滚动缓冲区缓存。",
+      "questionEn": "Estimate the KV-cache memory for serving Mistral 7B, and design the rolling-buffer cache that sliding-window attention enables.",
+      "sources": [
+        {
+          "title": "LLM 中的 KV Cache 是什么？",
+          "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Sliding Window Attention 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-sliding-window-attention-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "你需要针对客户的硬件量化一个模型。你如何选择量化方案，又如何证明质量没有下降？",
+      "questionEn": "You need to quantize a model for a customer's hardware. How do you choose a scheme, and how do you prove quality hasn't regressed?",
+      "sources": [
+        {
+          "title": "Model Quantization 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "function calling 与 LLM 配合时到底是如何工作的？如何让它可靠到足以支撑生产环境的 agent？",
+      "questionEn": "How does function calling actually work with an LLM, and how do you make it reliable enough for production agents?",
+      "sources": [
+        {
+          "title": "LLM 中的 Function Calling 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "在客户的任务上 fine-tuning 之后，目标指标准确率提升了，但模型在其他方面都变差了。发生了什么，你会怎么做？",
+      "questionEn": "After fine-tuning on a customer's task, target accuracy is up but the model got worse at everything else. What happened and what do you do?",
+      "sources": [
+        {
+          "title": "LLM 中的 Continual Learning",
+          "url": "https://outcomeschool.com/blog/continual-learning-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为一家不能把数据发往任何外部 API 的欧洲银行，设计 open-weight 模型的 on-prem 部署方案。",
+      "questionEn": "Design an on-prem deployment of an open-weight model for a European bank that cannot send data to any external API.",
+      "sources": []
+    }
+  ]
+}

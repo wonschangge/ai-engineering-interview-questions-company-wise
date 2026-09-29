@@ -1,0 +1,137 @@
+{
+  "company": "DeepSeek",
+  "slug": "deepseek",
+  "dir": "deepseek",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "deepseek",
+  "total": 10,
+  "topics": [
+    "llm-internals",
+    "inference-serving",
+    "finetuning",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "讲讲 DeepSeekMoE。它与 Mixtral 这类标准的 top-2 MoE 有何不同？",
+      "questionEn": "Walk me through DeepSeekMoE. How is it different from a standard top-2 MoE like Mixtral?",
+      "sources": [
+        {
+          "title": "MoE 详解",
+          "url": "https://outcomeschool.com/blog/mixture-of-experts",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "DeepSeek-V4 架构详解",
+          "url": "https://outcomeschool.com/blog/decoding-deepseek-v4",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "DeepSeek-V3 使用无辅助损失的负载均衡。辅助损失有什么问题，bias 技巧又是如何起作用的？",
+      "questionEn": "DeepSeek-V3 uses auxiliary-loss-free load balancing. What was wrong with the auxiliary loss, and how does the bias trick work?",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "什么是 multi-token prediction（MTP），为什么要用它来训练？",
+      "questionEn": "What is multi-token prediction (MTP) and why train with it?",
+      "sources": [
+        {
+          "title": "DeepSeek-V4 架构详解",
+          "url": "https://outcomeschool.com/blog/decoding-deepseek-v4",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "用 PyTorch 实现带共享专家的 top-k MoE 路由，并指出其中在效率与正确性上的陷阱。",
+      "questionEn": "Implement top-k MoE routing with a shared expert in PyTorch, and point out the efficiency and correctness traps.",
+      "sources": [
+        {
+          "title": "MoE 详解",
+          "url": "https://outcomeschool.com/blog/mixture-of-experts",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "请描述在 GPU 显存受限的情况下，你会如何以低 latency 服务一个 671B 参数的 MoE 模型。",
+      "questionEn": "Sketch how you would serve a 671B-parameter MoE model with low latency under GPU-memory constraints.",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "R1-Zero 完全用 RL 训练，基本没有先做 SFT。这说明了什么，为什么完整的 R1 又把 SFT 加了回来？",
+      "questionEn": "R1-Zero was trained with RL and essentially no SFT first. What did that show, and why did full R1 add SFT back?",
+      "sources": [
+        {
+          "title": "大型推理模型（LRMs）",
+          "url": "https://outcomeschool.com/blog/large-reasoning-models",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "在 671B 规模上做 FP8 训练非常困难。低精度下究竟哪里会出问题，你如何让它保持稳定？",
+      "questionEn": "FP8 training at 671B scale is hard. What actually breaks in low precision, and how do you make it stable?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "当大部分数据都是合成数据时，你如何构建训练数据集而不触发模型崩溃（model collapse）？",
+      "questionEn": "How do you build a training dataset without triggering model collapse when much of your data is synthetic?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "DualPipe 在训练中让计算与通信重叠。为什么在这个规模下这种重叠是决定性的，代价又是什么？",
+      "questionEn": "DualPipe overlaps computation and communication in training. Why is that overlap the whole game at this scale, and what is the trade-off?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "DeepSeek 声称以通常训练成本的一小部分取得了前沿级的结果。如果面试官问“这怎么可能”，你会怎样结构化地回答？",
+      "questionEn": "DeepSeek claims frontier-class results at a fraction of the usual training cost. If an interviewer asks “how is that even possible,” what is your structured answer?",
+      "sources": []
+    }
+  ]
+}

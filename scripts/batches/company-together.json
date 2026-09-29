@@ -1,0 +1,113 @@
+{
+  "company": "Together AI",
+  "slug": "together",
+  "dir": "together",
+  "group": "AI 基础设施与平台公司",
+  "idPrefix": "together",
+  "total": 7,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "finetuning",
+    "system-design",
+    "applied"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "为流式 token 生成编写服务端 handler，并正确处理客户端断开连接的情况。",
+      "questionEn": "Write the server-side handler for streaming token generation. Handle client disconnects correctly.",
+      "sources": [
+        {
+          "title": "Token Streaming 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-token-streaming-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "为 continuous batching 推理引擎设计 scheduler。",
+      "questionEn": "Design the scheduler for a continuous-batching inference engine.",
+      "sources": [
+        {
+          "title": "LLM 中的 Continuous Batching",
+          "url": "https://outcomeschool.com/blog/continuous-batching-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "vLLM 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-vllm-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "解释 speculative decoding。它何时有帮助、何时有害，以及为什么要让 speculator 适配实时流量？",
+      "questionEn": "Explain speculative decoding. When does it help, when does it hurt, and why adapt the speculator to live traffic?",
+      "sources": [
+        {
+          "title": "Speculative Decoding",
+          "url": "https://outcomeschool.com/blog/speculative-decoding",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 中的 N-gram Speculation",
+          "url": "https://outcomeschool.com/blog/n-gram-speculation-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "为专用 endpoint 定价：估算 70B 模型每百万输出 token 的成本，并解释 throughput 与 latency 之间的权衡。",
+      "questionEn": "Price a dedicated endpoint: estimate cost per million output tokens for a 70B model, and explain the throughput-latency trade.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "客户在你的 GPU 集群上运行的分布式训练任务，在 64 节点时只有 55% 的扩展效率。请排查。",
+      "questionEn": "A customer's distributed training job on your GPU cluster gets 55% scaling efficiency at 64 nodes. Debug it.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个 serverless 推理平台，在共享的 GPU 资源池上服务 100 多个开源模型。",
+      "questionEn": "Design a serverless inference platform serving 100+ open models on a shared GPU fleet.",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "客户想从闭源前沿模型的 API 迁移到开源模型。你会如何推进这次合作？",
+      "questionEn": "A customer wants to migrate from a proprietary frontier-model API to an open model. How do you run that engagement?",
+      "sources": []
+    }
+  ]
+}

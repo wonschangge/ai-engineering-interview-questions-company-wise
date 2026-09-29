@@ -15,6 +15,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DOCS = path.join(ROOT, 'docs');
 const DATA = path.join(DOCS, 'data');
 const CHECK_ONLY = process.argv.includes('--check');
+const NO_WRITE = process.argv.includes('--no-write');   // 只校验不写数据（多人并行撰写时用）
 
 const TOPIC_SLUGS = {
   'LLM 内部原理与架构': 'llm-internals',
@@ -32,7 +33,10 @@ const REQUIRED_SECTIONS = ['一句话答案', '面试官在考什么', '原理�
 const TRAILING_SECTIONS = ['相关题目', '参考资料与归属'];
 const LEVELS = ['入门', '进阶', '高阶'];
 const COMPANY_GROUPS = new Set(['前沿 AI 实验室', '大型科技公司的 AI 组织', 'AI 基础设施与平台公司', 'AI 原生产品公司', '前置部署与企业级 AI']);
-const SKIP_DIRS = new Set(['assets', 'data', '公司题库']);
+const SKIP_DIRS = new Set(['assets', 'data']);
+const COMPANY_ROOT = '公司题库';
+/** 公司专属小节（不对应跨公司专题文档，因此不算「未知专题」） */
+const COMPANY_SECTION_SLUGS = new Set(['ml-fundamentals', 'applied', 'behavioral']);
 
 const errors = [];
 const warnings = [];
@@ -41,6 +45,11 @@ const rel = (p) => path.relative(ROOT, p).split(path.sep).join('/');
 const sitePath = (p) => path.relative(DOCS, p).split(path.sep).join('/');
 
 /* ---------------------------------------------------------------- YAML 子集 */
+
+/** 题面比对用的归一化：去掉空白与句末标点 */
+function normQ(t) {
+  return String(t || '').replace(/\s+/g, '').replace(/[。？！.?!]+$/, '');
+}
 
 function unquote(v) {
   if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) return v.slice(1, -1);
@@ -142,8 +151,10 @@ function validateQuestion(doc, file, seenIds) {
   const order = headings.filter((h) => !['一句话答案', '面试官在考什么', '原理与推导', '数值与代码验证', '常见追问', '公司变体', '相关题目', '参考资料与归属'].includes(h));
   if (order.length) errors.push(`${at}: 出现了规范之外的二级标题：${order.join('、')}`);
 
-  const dollars = countMatches(body, /\$/g);
-  if (dollars % 2 !== 0) errors.push(`${at}: $ 数量为奇数（${dollars}），KaTeX 公式可能未闭合`);
+  // 只在围栏代码块之外统计 $（代码里的 shell $、内联代码里的 $ 不参与 KaTeX 配对）
+  const prose = stripFences(body).replace(/`[^`\n]*`/g, '');
+  const dollars = countMatches(prose, /(?<!\\)\$/g);   // 转义美元符号（\$47）不参与配对
+  if (dollars % 2 !== 0) errors.push(`${at}: 正文 $ 数量为奇数（${dollars}），KaTeX 公式可能未闭合`);
   const fences = countMatches(body, /^```/gm);
   if (fences % 2 !== 0) errors.push(`${at}: 代码围栏数量为奇数（${fences}）`);
 
@@ -197,17 +208,43 @@ const mdFiles = walkMd(DOCS);
 const questions = [];
 const topics = [];
 
+const companyDocs = [];
 for (const file of mdFiles) {
   const doc = readDoc(file);
-  const type = doc.data.type || (path.basename(file) === 'README.md' ? 'topic' : 'question');
-  if (type === 'topic') { validateTopic(doc, file); topics.push({ file, ...doc }); }
-  else { questions.push({ file, ...doc }); }
+  const inCompanyRoot = path.relative(DOCS, file).split(path.sep)[0] === COMPANY_ROOT;
+  const type = doc.data.type || (path.basename(file) === 'README.md' ? (inCompanyRoot ? 'company' : 'topic') : 'question');
+  if (type === 'company') companyDocs.push({ file, ...doc, _kind: 'overview' });
+  else if (type === 'topic') { validateTopic(doc, file); topics.push({ file, ...doc }); }
+  else if (inCompanyRoot) companyDocs.push({ file, ...doc, _kind: 'question' });
+  else questions.push({ file, ...doc });
 }
-for (const doc of [...topics, ...questions]) checkLocalLinks(doc.file, doc.body);
+for (const doc of [...topics, ...questions, ...companyDocs]) checkLocalLinks(doc.file, doc.body);
 
 const seenIds = new Set();
 questions.sort((a, b) => (Number(a.data.order) || 0) - (Number(b.data.order) || 0));
 for (const q of questions) validateQuestion(q, q.file, seenIds);
+
+const companyQuestions = companyDocs.filter((d) => d._kind === 'question');
+companyQuestions.sort((a, b) => (Number(a.data.order) || 0) - (Number(b.data.order) || 0));
+for (const q of companyQuestions) validateQuestion(q, q.file, seenIds);
+const companyNameByDir = new Map();
+for (const d of companyDocs.filter((x) => x._kind === 'overview')) {
+  const dn = path.basename(path.dirname(d.file));
+  companyNameByDir.set(dn, d.data.name || dn);
+}
+for (const q of companyQuestions) {
+  const dirName = path.basename(path.dirname(q.file));
+  const expect = companyNameByDir.get(dirName);
+  if (!q.data.company) errors.push(`${rel(q.file)}: 公司题缺少 company 字段`);
+  else if (expect && q.data.company !== expect) errors.push(`${rel(q.file)}: company 字段（${q.data.company}）与公司目录 ${dirName} 的 name（${expect}）不一致`);
+  else if (!expect) warnings.push(`${rel(q.file)}: 公司目录 ${dirName} 还没有导读 README.md，无法核对 company 字段`);
+  if (!q.data.topic) errors.push(`${rel(q.file)}: 公司题缺少 topic 字段（用于关联十个专题之一）`);
+}
+for (const d of companyDocs.filter((x) => x._kind === 'overview')) {
+  const dirName = path.basename(path.dirname(d.file));
+  if (!d.data.id || !d.data.title) errors.push(`${rel(d.file)}: 公司导读缺少 id 或 title`);
+  if (!d.data.name) errors.push(`${rel(d.file)}: 公司导读缺少 name 字段（用于与 README 公司清单对应）`);
+}
 
 const topicById = new Map();
 for (const t of topics) {
@@ -255,10 +292,58 @@ for (const topic of topicById.values()) {
 }
 const topicList = [...topicById.values()].sort((a, b) => a.order - b.order);
 const topicIds = new Set(topicList.map((t) => t.id));
-for (const q of questions) {
+for (const q of companyQuestions) {
+  const slug = TOPIC_SLUGS[q.data.topic] || q.data.topic;
+  if (q.data.topic && !topicIds.has(slug) && !COMPANY_SECTION_SLUGS.has(slug)) errors.push(`${rel(q.file)}: topic 字段（${q.data.topic}）不是已知专题或公司专属小节`);
+}
+const knownIds = new Set([...questions, ...companyQuestions].map((x) => x.data.id));
+for (const q of [...questions, ...companyQuestions]) {
   for (const rid of q.data.related || []) {
     if (topicIds.has(rid)) continue;   // 允许指向整个专题
-    if (!questions.some((x) => x.data.id === rid)) warnings.push(`${rel(q.file)}: related 指向尚未撰写的题目 ${rid}`);
+    if (!knownIds.has(rid)) warnings.push(`${rel(q.file)}: related 指向尚未撰写的题目 ${rid}`);
+  }
+}
+
+/* ------------------------------------------------- 公司集合（docs/公司题库/<公司名>/） */
+
+const companyDirs = new Map();
+for (const d of companyDocs) {
+  const dirName = path.basename(path.dirname(d.file));
+  if (!companyDirs.has(dirName)) companyDirs.set(dirName, { dir: dirName, overview: null, questions: [] });
+  const c = companyDirs.get(dirName);
+  if (d._kind === 'overview') c.overview = d; else c.questions.push(d);
+}
+const companyList = [...companyDirs.values()].map((c) => ({
+  id: (c.overview && c.overview.data.id) || 'company-' + c.dir,
+  name: (c.overview && c.overview.data.name) || c.dir,
+  group: '',
+  summary: (c.overview && c.overview.data.summary) || '',
+  updated: (c.overview && c.overview.data.updated) || null,
+  dir: c.dir,
+  overviewFile: c.overview ? sitePath(c.overview.file) : null,
+  overviewTitle: c.overview ? firstHeading(c.overview.body) : c.dir,
+  declaredTotal: null,
+  questions: c.questions.map((q) => ({
+    id: q.data.id,
+    order: Number(q.data.order),
+    title: q.data.question || firstHeading(q.body),
+    titleEn: q.data.question_en || '',
+    file: sitePath(q.file),
+    level: q.data.level || '',
+    tags: q.data.tags || [],
+    topic: TOPIC_SLUGS[q.data.topic] || q.data.topic || '',
+    askedAt: q.data.asked_at || [],
+    related: q.data.related || [],
+    sources: (q.data.sources || []).map((x) => ({ title: x.title || '', url: x.url || '', author: x.author || '', published: x.published || '' })),
+    updated: q.data.updated || null,
+    chars: toPlain(q.body).length
+  }))
+}));
+for (const c of companyList) if (!c.overviewFile) warnings.push(`公司 ${c.name}: 缺少导读 README.md`);
+for (const c of companyList) {
+  const orders = c.questions.map((q) => q.order);
+  for (let i = 0; i < orders.length; i++) {
+    if (orders[i] !== i + 1) { errors.push(`公司 ${c.name}: order 必须从 1 连续编号（得到 ${orders.join(',')}）`); break; }
   }
 }
 
@@ -341,6 +426,16 @@ function buildSearchIndex(catalog, outline) {
       items.push({ kind: 'question', id: q.id, route: `#/q/${q.id}`, title: q.title, topic: topic.title, askedAt: q.askedAt, text: toPlain(body).slice(0, 2500) });
     }
   }
+  for (const c of catalog.companies || []) {
+    if (c.overviewFile) {
+      const body = readDoc(path.join(DOCS, c.overviewFile)).body;
+      items.push({ kind: 'company', id: c.id, route: `#/company/${encodeURIComponent(c.name)}`, title: c.name, topic: c.name, text: toPlain(body).slice(0, 1200) });
+    }
+    for (const q of c.questions) {
+      const body = readDoc(path.join(DOCS, q.file)).body;
+      items.push({ kind: 'question', id: q.id, route: `#/q/${q.id}`, title: q.title, topic: c.name, askedAt: q.askedAt, text: toPlain(body).slice(0, 2500) });
+    }
+  }
   return { generated: new Date().toISOString(), items };
 }
 
@@ -348,11 +443,34 @@ function buildSearchIndex(catalog, outline) {
 
 const catalog = {
   generated: new Date().toISOString(),
-  stats: { topics: topicList.length, questions: questions.length, planned: null },
-  topics: topicList
+  stats: { topics: topicList.length, questions: questions.length, companyQuestions: companyList.reduce((n, c) => n + c.questions.length, 0), companies: companyList.length, planned: null },
+  topics: topicList,
+  companies: companyList
 };
 const outline = buildOutline();
-if (outline) catalog.stats.planned = outline.stats.total;
+if (outline) {
+  catalog.stats.planned = outline.stats.total;
+  const byName = new Map(outline.companies.map((c) => [c.name, c]));
+  for (const c of catalog.companies) {
+    const o = byName.get(c.name);
+    if (!o) { warnings.push(`公司 ${c.name}: 在 README.zh-CN.md 的公司清单里找不到同名公司`); continue; }
+    c.group = o.group;
+    c.declaredTotal = o.questions.length + o.topics.reduce((s2, t) => s2 + t.questions.length, 0);
+    const rows = new Map();
+    const add = (name, q) => rows.set(normQ(q.question), { name, order: q.order });
+    for (const q of o.questions) add('', q);
+    for (const t of o.topics) for (const q of t.questions) add(t.name, q);
+    for (const q of c.questions) {
+      const key = normQ(q.title);
+      const hit = rows.get(key);
+      if (!hit) errors.push(`${c.name}/${q.file}: 题面与 README.zh-CN.md 的公司题单不匹配：${q.title.slice(0, 40)}…`);
+      else { q.topicName = hit.name; q.topicOrder = hit.order; }
+    }
+    for (const [key, v] of rows) {
+      if (!c.questions.some((q) => normQ(q.title) === key)) c.pending = (c.pending || 0) + 1;
+    }
+  }
+}
 const searchIndex = buildSearchIndex(catalog, outline);
 
 const outputs = [
@@ -361,10 +479,10 @@ const outputs = [
 ];
 if (outline) outputs.push([path.join(DATA, 'outline.json'), JSON.stringify(outline, null, 2) + '\n']);
 
-if (!CHECK_ONLY) {
+if (!CHECK_ONLY && !NO_WRITE) {
   fs.mkdirSync(DATA, { recursive: true });
   for (const [file, content] of outputs) fs.writeFileSync(file, content);
-} else {
+} else if (!NO_WRITE) {
   for (const [file, content] of outputs) {
     const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
     const strip = (s) => (s === null ? null : s.replace(/"generated": "[^"]+",\n/, ''));
@@ -378,7 +496,7 @@ for (const w of warnings) console.warn('warn  ' + w);
 for (const e of errors) console.error('error ' + e);
 const s = catalog.stats;
 console.log(
-  `${CHECK_ONLY ? '[check] ' : ''}专题 ${s.topics} 个 / 已撰写题解 ${s.questions} 道` +
+  `${CHECK_ONLY ? '[check] ' : (NO_WRITE ? '[no-write] ' : '')}专题 ${s.topics} 个 / 专题题解 ${s.questions} 道 / 公司 ${s.companies} 家 ${s.companyQuestions} 道` +
   (outline ? ` / 题库总量 ${outline.stats.total}（专题题 ${outline.stats.topicQuestions} + 公司题 ${outline.stats.companyQuestions}）` : '')
 );
 console.log(`errors: ${errors.length}, warnings: ${warnings.length}`);

@@ -1,0 +1,126 @@
+{
+  "company": "Glean",
+  "slug": "glean",
+  "dir": "glean",
+  "group": "AI 原生产品公司",
+  "idPrefix": "glean",
+  "total": 10,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "rag",
+    "agents",
+    "system-design",
+    "evaluation"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "把来自 N 个连接器分片的排序结果合并成全局 top-k，并施加按用户维度的权限过滤。要求实现得足够高效。",
+      "questionEn": "Merge ranked results from N connector shards into a global top-k, applying a per-user permission filter. Do it efficiently.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "请给我梳理一次查询的 latency 预算：查询理解 → retrieval → rerank → LLM 回答。时间主要花在哪里，又该从哪里削减？",
+      "questionEn": "Walk me through the latency budget of a query: query understanding → retrieval → rerank → LLM answer. Where do you spend and where do you cut?",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "你会如何对异构的企业内容做 chunk 与 embedding：Slack 会话串、Jira 工单、Google Docs、PDF？",
+      "questionEn": "How would you chunk and embed heterogeneous enterprise content: Slack threads, Jira tickets, Google Docs, PDFs?",
+      "sources": [
+        {
+          "title": "RAG 的 chunking 策略",
+          "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "为什么对企业助手来说，RAG 比在公司数据上做 fine-tuning 更合适？RAG 会在哪些地方失效？",
+      "questionEn": "Why is RAG the right architecture for an enterprise assistant instead of fine-tuning on the company's data? Where does RAG break?",
+      "sources": [
+        {
+          "title": "AI 工程讲解：LLM、RAG、MCP、Agent、微调、量化",
+          "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计一个代表用户在企业工具中执行动作（提交 Jira 工单、起草邮件）的 agent。你如何处理权限并评估它？",
+      "questionEn": "Design an agent that takes actions in enterprise tools (file a Jira ticket, draft an email) on a user's behalf. How do you handle permissions and evaluate it?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计横跨数十个已连接 SaaS 系统的 agent 编排。鉴权在哪里强制执行，为什么它不能放在模型里？",
+      "questionEn": "Design agent orchestration across dozens of connected SaaS systems. Where is authorization enforced, and why can it not live in the model?",
+      "sources": [
+        {
+          "title": "AI 编排",
+          "url": "https://outcomeschool.com/blog/ai-orchestration",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个连接器框架，把 100+ 个 SaaS 应用的内容与权限同步进同一个索引。",
+      "questionEn": "Design a connector framework that syncs content and permissions from 100+ SaaS apps into one index.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "Glean 的排序依赖一个由人员、内容和活动构成的知识图谱。你会如何构建这张图，它又如何让 retrieval 超越 embedding 相似度？",
+      "questionEn": "Glean's ranking leans on a knowledge graph of people, content and activity. How would you build that graph, and how does it improve retrieval beyond embedding similarity?",
+      "sources": [
+        {
+          "title": "GraphRAG",
+          "url": "https://outcomeschool.com/blog/graphrag",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你有几十个排序信号，以及一个完全没有交互数据的全新租户。你如何排序，又如何改进？",
+      "questionEn": "You have dozens of ranking signals and a brand-new tenant with zero interaction data. How do you rank, and how do you improve?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "在无法查看客户数据的前提下，为企业级 AI 助手设计评估框架。",
+      "questionEn": "Design the evaluation framework for an enterprise AI assistant when you cannot look at customer data.",
+      "sources": []
+    }
+  ]
+}

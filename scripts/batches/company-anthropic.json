@@ -1,0 +1,373 @@
+{
+  "company": "Anthropic",
+  "slug": "anthropic",
+  "dir": "anthropic",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "anthropic",
+  "total": 37,
+  "topics": [
+    "coding",
+    "llm-internals",
+    "inference-serving",
+    "agents",
+    "finetuning",
+    "system-design",
+    "evaluation",
+    "safety",
+    "applied",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "为一个玩具银行应用编写核心业务逻辑：一份会分四个递进层级不断扩展的需求规格，由黑盒评测器判定。",
+      "questionEn": "Build core business logic for a toy banking application: a spec that grows in four progressive levels against a black-box evaluator.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现一个内存数据库：先支持 SET/GET/DELETE，再加上带过滤的扫描，然后是带时间戳的 TTL，最后是文件 compaction。",
+      "questionEn": "Build an in-memory database: SET/GET/DELETE first, then filtered scans, then TTL with timestamps, then file compaction.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "创建一个任务调度器。",
+      "questionEn": "Create a task scheduler.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "构建一个用于管理课程、成绩和学生的面向对象系统。",
+      "questionEn": "Build an OOP system for managing courses, grades and students.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "给定一个用于抓取 URL 的辅助方法，编写一个针对某个域名的爬虫：先实现同步版本，再改成异步。",
+      "questionEn": "Given a helper method that crawls a URL, write a crawler over a domain: first synchronous, then make it async.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "把嵌套的 stack trace 转换成离散的起始事件和结束事件。",
+      "questionEn": "Convert nested stack traces into discrete start and end events.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "构建一个限流器。每隔十分钟我会新增一条需求：先是按租户限流，然后是突发额度，再然后是滑动窗口。你如何避免代码失控？",
+      "questionEn": "Build a rate limiter. Every ten minutes I add a requirement: per-tenant limits, burst allowances, then a sliding window. How do you keep the code from collapsing?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "你需要对 50,000 份文档执行 LLM 调用。该 API 允许约 100 个并发请求，并且偶尔会返回 429 和超时。请写出 Python 代码。",
+      "questionEn": "You need to run an LLM call over 50,000 documents. The API allows ~100 concurrent requests and occasionally returns 429s and timeouts. Write the Python.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "你会如何并行化这个任务？（并发与数据变更在多个轮次中反复被问到。）",
+      "questionEn": "How would you parallelise this task? (Concurrency and data mutation come up repeatedly across rounds.)",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "SQL：写一个查询，找出最常被一起购买的前五对商品。",
+      "questionEn": "SQL: write a query to find the top five pairs of products most frequently purchased together.",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "SQL：判断是否存在任何用户的订阅日期区间相互重叠。",
+      "questionEn": "SQL: determine whether any user has overlapping subscription date ranges.",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "SQL：在 ETL 错误导致每年都插入一条新薪资行之后，返回每位员工当前的薪资。",
+      "questionEn": "SQL: return each employee's current salary after an ETL error inserted a new salary row every year.",
+      "sources": []
+    },
+    {
+      "order": 13,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Transformer 模型的关键组成部分有哪些，为什么每一部分都很重要？",
+      "questionEn": "What are the key components of a Transformer model and why does each matter?",
+      "sources": [
+        {
+          "title": "解读 Transformer 架构",
+          "url": "https://outcomeschool.com/blog/decoding-transformer-architecture",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 14,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "解释无 attention 的 Transformer 架构及其取舍。",
+      "questionEn": "Explain attention-free transformer architectures and their trade-offs.",
+      "sources": []
+    },
+    {
+      "order": 15,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "讲讲与 LLM 架构相关的矩阵操作。",
+      "questionEn": "Walk me through matrix manipulations relevant to LLM architectures.",
+      "sources": [
+        {
+          "title": "注意力背后的数学：Q、K 与 V",
+          "url": "https://outcomeschool.com/blog/math-behind-attention-qkv",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 16,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "设计一个 batching 推理系统，让 100 个请求与 1 个请求耗时相同。",
+      "questionEn": "Design a batched inference system where 100 requests take the same time as 1.",
+      "sources": [
+        {
+          "title": "LLM 中的 Continuous Batching",
+          "url": "https://outcomeschool.com/blog/continuous-batching-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 17,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "为 Claude 级别的 LLM API 设计服务栈。在不破坏 p99 latency 的前提下最大化 GPU 利用率。",
+      "questionEn": "Design the serving stack for a Claude-scale LLM API. Maximise GPU utilisation without wrecking p99 latency.",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 18,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "对于 Claude Code 这样的 agentic 编程工具，模型和 harness 哪个更重要？请设计这个循环。",
+      "questionEn": "What matters more for an agentic coding tool like Claude Code: the model or the harness? Design the loop.",
+      "sources": [
+        {
+          "title": "Claude Code 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Harness Engineering in AI",
+          "url": "https://outcomeschool.com/blog/harness-engineering-in-ai",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 19,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "为编程 agent 设计工具面（tool surface）：有哪些工具、它们的 schema 长什么样、结果如何返回。",
+      "questionEn": "Design the tool surface for a coding agent: which tools exist, what their schemas look like, and how results come back.",
+      "sources": [
+        {
+          "title": "Claude Code 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 20,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "解释 Constitutional AI。相比朴素的 RLHF，它带来了什么，又没能解决什么？",
+      "questionEn": "Explain Constitutional AI. What does it buy you over vanilla RLHF, and what doesn't it solve?",
+      "sources": []
+    },
+    {
+      "order": 21,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "缩放定律如何影响大模型的安全评估？",
+      "questionEn": "How do scaling laws influence the safety evaluation of large models?",
+      "sources": []
+    },
+    {
+      "order": 22,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计 Claude 聊天服务。",
+      "questionEn": "Design the Claude chat service.",
+      "sources": []
+    },
+    {
+      "order": 23,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个让大语言模型能在单个会话线程中处理多个问题的系统。",
+      "questionEn": "Design a system that enables a large language model to handle multiple questions in a single thread.",
+      "sources": []
+    },
+    {
+      "order": 24,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为 10 亿份文档、100 万 QPS 设计一个分布式搜索系统。",
+      "questionEn": "Design a distributed search system for 1 billion documents at 1 million QPS.",
+      "sources": []
+    },
+    {
+      "order": 25,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计供开发者安全、高效地访问 Anthropic 模型的 API。",
+      "questionEn": "Design APIs for developers to access Anthropic's models securely and efficiently.",
+      "sources": []
+    },
+    {
+      "order": 26,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个文件共享/分发系统。",
+      "questionEn": "Design a file-sharing / distribution system.",
+      "sources": []
+    },
+    {
+      "order": 27,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你会如何设计一个实验，来检验大语言模型中某种特定的涌现能力或偏见？",
+      "questionEn": "How would you design an experiment to test for a specific emergent capability or bias in a large language model?",
+      "sources": []
+    },
+    {
+      "order": 28,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "你的 agent 会读取收到的邮件，并且能够发送回复、搜索内部文档。请讲一讲 prompt injection 的攻击面和你的防御措施。",
+      "questionEn": "Your agent reads inbound email and can send replies and search internal docs. Walk me through the prompt-injection attack surface and your defences.",
+      "sources": [
+        {
+          "title": "LLM 中的 prompt injection",
+          "url": "https://outcomeschool.com/blog/prompt-injection-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 29,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "你认为 AI 对齐领域最紧迫的未解问题是什么？",
+      "questionEn": "What do you see as the most pressing unsolved problem in AI alignment?",
+      "sources": []
+    },
+    {
+      "order": 30,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "你会如何平衡性能优化与模型可解释性？",
+      "questionEn": "How would you balance performance optimisation with model interpretability?",
+      "sources": []
+    },
+    {
+      "order": 31,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "你会如何着手设计一个系统，以确保 AI 模型在生产环境中的安全部署？",
+      "questionEn": "How would you approach designing a system to ensure the safe deployment of AI models in production?",
+      "sources": []
+    },
+    {
+      "order": 32,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "某企业客户说，在他们基于 RAG 的知识助手里“Claude 幻觉太多”。你是负责这个客户的 applied engineer。前 48 小时里你会做什么？",
+      "questionEn": "An enterprise customer says “Claude hallucinates too much” in their RAG-based knowledge assistant. You're the applied engineer on the account. What happens in the first 48 hours?",
+      "sources": []
+    },
+    {
+      "order": 33,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "你会如何让复杂的 AI 研究成果变得对非技术受众也能理解？",
+      "questionEn": "How would you make complex AI research findings accessible to a non-technical audience?",
+      "sources": []
+    },
+    {
+      "order": 34,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你端到端负责过的一个项目。关键的技术决策有哪些？",
+      "questionEn": "Walk me through a project you owned end to end. What were the key technical decisions?",
+      "sources": []
+    },
+    {
+      "order": 35,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "为什么偏偏选 Anthropic，以及你在哪些方面不认同 Anthropic？",
+      "questionEn": "Why Anthropic specifically, and where do you disagree with Anthropic?",
+      "sources": []
+    },
+    {
+      "order": 36,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲一讲一次导致项目延期的技术误判。",
+      "questionEn": "Tell me about a technical misjudgement that delayed a project.",
+      "sources": []
+    },
+    {
+      "order": 37,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "你对 AI 安全以及先进 AI 系统的风险有什么看法？",
+      "questionEn": "What are your thoughts on AI safety and the risks of advanced AI systems?",
+      "sources": []
+    }
+  ]
+}

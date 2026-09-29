@@ -1,0 +1,101 @@
+{
+  "company": "Databricks",
+  "slug": "databricks",
+  "dir": "databricks",
+  "group": "AI 基础设施与平台公司",
+  "idPrefix": "databricks",
+  "total": 9,
+  "topics": [
+    "coding",
+    "finetuning",
+    "evaluation",
+    "applied"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现一个线程安全的批处理 logger：多个生产者线程调用 log(msg)；后台线程每秒或批量满时，将最多 100 条消息成批刷出。",
+      "questionEn": "Implement a thread-safe batching logger: many producer threads call log(msg); a background thread flushes batches of up to 100 messages every second or when full.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "你有一个数十亿事件的流，需要在内存受限的前提下求出出现频率最高的 top-K 个 key。精确解不可能做到：你会怎么做？",
+      "questionEn": "You have a stream of billions of events and need the top-K most frequent keys with bounded memory. Exact is impossible: what do you do?",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "给定以 CIDR 块表示的白名单 IP 段以及显式的拒绝网段，实现高效的 is_allowed(ip)，要能支撑每秒数百万次校验。",
+      "questionEn": "Given allowed IP ranges as CIDR blocks plus explicit deny ranges, implement is_allowed(ip) efficiently for millions of checks per second.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "一个 Spark 作业把 2 TB 的事实表与 50 GB 的维表做 join，其中一个 straggler task 的运行时间是其余任务的 100 倍。请诊断并修复。",
+      "questionEn": "A Spark job joining a 2 TB fact table to a 50 GB dimension table has one straggler task running 100x longer than the rest. Diagnose and fix it.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "一个 Structured Streaming 作业从 Kafka 读取数据并写入 Delta 表。集群在一个 batch 处理到一半时被杀掉并重启。客户会看到重复行吗？请从 checkpoint 和事务日志的层面解释。",
+      "questionEn": "A Structured Streaming job reads Kafka and writes to a Delta table. The cluster is killed mid-batch and restarts. Does the customer get duplicate rows? Explain at the level of the checkpoint and the transaction log.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "什么情况下你会选择 fine-tuning，而不是用 RAG 或 prompt engineering？如果确实要微调，是选 LoRA 还是全量微调？",
+      "questionEn": "When would you fine-tune instead of using RAG or prompt engineering, and if you do, LoRA or full fine-tuning?",
+      "sources": [
+        {
+          "title": "AI 工程讲解：LLM、RAG、MCP、Agent、微调、量化",
+          "url": "https://www.youtube.com/watch?v=lnfWvX66FUk",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "微调是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-fine-tuning-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "要把一个已经能跑通的 GenAI agent 原型在企业中上线。从 demo 到正式发布之间，你的检查清单是什么？",
+      "questionEn": "Take a working GenAI agent prototype to production for an enterprise. What's your checklist between demo and launch?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "客户坚持要用他们的客服工单微调一个开源模型，理由是“我们想要自己的模型”。而你认为 RAG 就能解决。你会怎么做？",
+      "questionEn": "A customer insists on fine-tuning an open model on their support tickets because “we want our own model.” You think RAG solves it. What do you do?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "你四个月前上线的 agent 依赖的基座模型将在 60 天后下线。你如何在不造成质量回退的前提下替换模型？为此事先必须具备哪些条件？",
+      "questionEn": "An agent you shipped four months ago runs on a base model being deprecated in 60 days. How do you swap the model without regressing quality, and what had to be in place beforehand?",
+      "sources": []
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "company": "ElevenLabs",
+  "slug": "elevenlabs",
+  "dir": "elevenlabs",
+  "group": "AI 原生产品公司",
+  "idPrefix": "elevenlabs",
+  "total": 8,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "safety",
+    "multimodal",
+    "applied"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "写一个把流式 TTS 代理到浏览器的服务，并能在用户离开页面时干净利落地取消。",
+      "questionEn": "Write a service that proxies streaming TTS to a browser and cancels cleanly when the user navigates away.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "为实时 TTS 提供服务与为文本 LLM 提供服务是不同的容量问题。为什么？你会如何做容量规划？",
+      "questionEn": "Serving real-time TTS is a different capacity problem from serving a text LLM. Why, and how do you plan capacity?",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "为语音克隆设计安全技术栈：用户同意、水印与滥用响应。",
+      "questionEn": "Design the safety stack for voice cloning: consent, watermarking and abuse response.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "为实时语音 agent 做端到端延迟预算。为什么 time-to-first-audio 与 LLM 的 time-to-first-token 是不同的难题？",
+      "questionEn": "Budget the end-to-end latency for a real-time voice agent. Why is time-to-first-audio a different problem from an LLM's time-to-first-token?",
+      "sources": [
+        {
+          "title": "设计实时语音 AI Agent",
+          "url": "https://outcomeschool.com/blog/design-a-real-time-voice-ai-agent",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "在生产环境里，TTS 质量真正崩掉的地方就是文本规范化。请详细讲讲你会怎么做。",
+      "questionEn": "Text normalisation is where TTS quality actually dies in production. Walk me through it.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "设计配音流水线：一段英语视频变成西班牙语，说话人不变，时间轴不变。",
+      "questionEn": "Design the dubbing pipeline: an English video becomes Spanish, same speakers, same timing.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一个医院集团靠三名员工轮班、用电话人工安排和确认门诊预约。请设计我们会为他们构建的系统。",
+      "questionEn": "A hospital group schedules and confirms outpatient appointments by phone, manually, with three staff on a rota. Design what we would build for them.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "applied",
+      "topicName": "应用与前置部署场景",
+      "question": "一个联络中心想用语音 agent 替换它的 IVR。请主导这次客户交付。",
+      "questionEn": "A contact centre wants to replace its IVR with voice agents. Run the engagement.",
+      "sources": []
+    }
+  ]
+}

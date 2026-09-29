@@ -1,0 +1,180 @@
+{
+  "company": "Apple",
+  "slug": "apple",
+  "dir": "apple",
+  "group": "大型科技公司的 AI 组织",
+  "idPrefix": "apple",
+  "total": 11,
+  "topics": [
+    "inference-serving",
+    "agents",
+    "finetuning",
+    "system-design",
+    "evaluation",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "你需要在内存和功耗预算都很紧张的手机上运行一个约 3B 参数的语言模型。与在数据中心服务同一个模型相比，有哪些变化？",
+      "questionEn": "You need to run a ~3B-parameter language model on a phone with tight memory and power budgets. What changes versus serving the same model in a datacenter?",
+      "sources": [
+        {
+          "title": "云端部署 vs 端侧模型部署",
+          "url": "https://outcomeschool.com/blog/cloud-vs-on-device-model-deployment",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Model Quantization 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "解释 post-training quantization 与 quantization-aware training 的区别。当把权重压到 2–4 bit 时会出现什么问题，你如何恢复质量？",
+      "questionEn": "Explain post-training quantization versus quantization-aware training. What breaks when you push weights to 2–4 bits, and how do you recover quality?",
+      "sources": [
+        {
+          "title": "Model Quantization 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "估算一个 3B 端侧模型在 4k 上下文下的 KV cache 内存占用，并指出有哪些手段可以把它压小。",
+      "questionEn": "Estimate the KV-cache memory for a 3B on-device model at 4k context, and name the levers that shrink it.",
+      "sources": [
+        {
+          "title": "LLM 中的 KV Cache 是什么？",
+          "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "KV Cache 压缩",
+          "url": "https://outcomeschool.com/blog/kv-cache-compression",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "你端侧功能的 time-to-first-token 是 1.8 s。请讲讲你会如何诊断并修复它。",
+      "questionEn": "Time-to-first-token for your on-device feature is 1.8 s. Walk me through diagnosing and fixing it.",
+      "sources": [
+        {
+          "title": "LLM 中的首 token 延迟问题",
+          "url": "https://www.youtube.com/watch?v=XD8DD4cEHu0",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "你的端侧模型必须输出合法且符合 schema 的 tool call。你如何保证其合法性，而不是指望它碰巧正确？",
+      "questionEn": "Your on-device model must emit valid, schema-conforming tool calls. How do you guarantee validity rather than hope for it?",
+      "sources": [
+        {
+          "title": "LLM 中的 Function Calling 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "你只有一个端侧 base model，却要支撑十几个功能：摘要、改写、回复建议、语气调整。如何在不发布十几个模型的前提下完成特化？",
+      "questionEn": "You have one on-device base model but a dozen features: summarization, rewriting, reply suggestions, tone adjustment. How do you specialise without shipping a dozen models?",
+      "sources": [
+        {
+          "title": "LoRA - LLM 的低秩适配",
+          "url": "https://outcomeschool.com/blog/lora-low-rank-adaptation-of-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "如何在不收集用户内容的前提下，利用用户设备上的信号来改进端侧模型？",
+      "questionEn": "How would you improve an on-device model using signals from user devices without collecting user content?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个路由层，决定用户请求是由端侧处理、由第一方服务端模型处理，还是由第三方模型处理。",
+      "questionEn": "Design the routing layer that decides whether a user request is handled on-device, by a first-party server model, or by a third-party model.",
+      "sources": [
+        {
+          "title": "LLM 路由",
+          "url": "https://outcomeschool.com/blog/llm-routing",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "云端部署 vs 端侧模型部署",
+          "url": "https://outcomeschool.com/blog/cloud-vs-on-device-model-deployment",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "用户说“把周六徒步的照片发给 Maya”。请设计从这句话到参数已解析的结构化 app action 的端侧链路。",
+      "questionEn": "A user says “send Maya the photos from Saturday's hike.” Design the on-device path from that utterance to a structured app action with resolved parameters.",
+      "sources": [
+        {
+          "title": "LLM 中的 Function Calling 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你要向 30 多个语言区域的数亿用户上线通知摘要功能，而且不能记录用户内容。请设计评估与回归检测方案。",
+      "questionEn": "You're shipping notification summarization to hundreds of millions of users in 30+ locales, and you cannot log user content. Design the evaluation and regression-detection story.",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "请讲一次你在信息不完整的情况下推进工作的经历：当时你无法被告知自己所做工作的完整背景。",
+      "questionEn": "Tell me about a time you had to make progress with incomplete information: you couldn't be told the full context of what you were building.",
+      "sources": []
+    }
+  ]
+}

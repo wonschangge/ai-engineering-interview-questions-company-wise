@@ -257,6 +257,19 @@
     ['第五阶段：专项准备', '按目标公司刷题，按专题回顾，把高频题整理成自己的答题模板。']
   ];
 
+  /** 题面归一化：去空白与句末标点，用于把 README 题单与已写题解对应起来 */
+  function normQ(t) {
+    return String(t || '').replace(/\s+/g, '').replace(/[。？！.?!]+$/, '');
+  }
+
+  /** 某家公司已撰写的题解：归一化题面 -> catalog 里的题目对象 */
+  function companyWritten(name) {
+    const c = (state.catalog && state.catalog.companies || []).find((x) => x.name === name);
+    const m = new Map();
+    if (c) for (const q of c.questions) m.set(normQ(q.title), q);
+    return { company: c, map: m };
+  }
+
   function companyGroups() {
     if (!state.outline) return [];
     const groups = new Map();
@@ -390,13 +403,27 @@
       '<section class="panel" id="topic-overview"><div class="markdown" id="topic-overview-body"><p class="muted">正在加载专题导读…</p></div></section>';
   }
 
+  /** 公司页底部内联渲染公司导读（README.md），并支持页内 #sN 锚点 */
+  async function fillCompanyOverview(comp) {
+    const box = $('#company-overview-body');
+    if (!box || !comp.overviewFile) return;
+    try {
+      const text = await fetchRaw(comp.overviewFile);
+      box.innerHTML = renderMarkdown(text);
+      enhance(box, comp.overviewFile);
+    } catch (err) {
+      box.innerHTML = '<p class="error">公司导读加载失败：' + esc(err.message) + '</p>';
+    }
+  }
+
   /* ------------------------------------------------------------ 题目视图 */
 
   function viewQuestion(id, section) {
     const q = state.questionById.get(id);
     if (!q) return viewMissing('这道题的题解还没有撰写');
     const topic = state.topicById.get(q.topicId);
-    const siblings = topic ? topic.questions : [];
+    const comp = q.companyTitle ? state.companyByName.get(q.companyTitle) : null;
+    const siblings = topic ? topic.questions : (comp ? comp.questions : []);
     const idx = siblings.findIndex((x) => x.id === id);
     const prev = idx > 0 ? siblings[idx - 1] : null;
     const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null;
@@ -407,6 +434,7 @@
     return '' +
       '<nav class="crumbs"><a href="#/">首页</a><span>/</span>' +
       (topic ? '<a href="#/topic/' + topic.id + '">' + esc(topic.title) + '</a><span>/</span>' : '') +
+      (comp ? '<a href="#/companies">公司题库</a><span>/</span><a href="#/company/' + encodeURIComponent(comp.name) + '">' + esc(comp.name) + '</a><span>/</span>' : '') +
       '<span>第 ' + q.order + ' 题</span></nav>' +
       '<header class="page-head">' +
       '<h1>' + esc(q.title) + '</h1>' +
@@ -476,8 +504,9 @@
       '<section class="panel"><h2>' + esc(group) + '</h2><div class="grid grid-3">' +
       companies.map((c) => {
         const n = c.questions.length + c.topics.reduce((s, t) => s + t.questions.length, 0);
+        const w = companyWritten(c.name).map.size;
         return '<a class="card company-card" href="#/company/' + encodeURIComponent(c.name) + '">' +
-          '<div class="card-head"><h3>' + esc(c.name) + '</h3><span class="pill">' + n + ' 题</span></div>' +
+          '<div class="card-head"><h3>' + esc(c.name) + '</h3><span class="pill">' + w + ' / ' + n + ' 题</span></div>' +
           '<p class="muted">' + c.topics.map((t) => esc(t.name)).join(' · ') + '</p></a>';
       }).join('') + '</div></section>'
     ).join('');
@@ -490,16 +519,28 @@
   function viewCompany(name) {
     const c = state.outline ? state.outline.companies.find((x) => x.name === name) : null;
     if (!c) return viewMissing('没有找到这家公司');
-    const rows = (items, topicName) => items.map((q) =>
-      '<li class="q-row is-pending"><span class="q-order">' + String(q.order).padStart(2, '0') + '</span>' +
-      '<span class="q-body"><span class="q-title">' + esc(q.question) + '</span>' +
-      (topicName ? '<span class="chip chip-ghost">' + esc(topicName) + '</span>' : '') +
-      ((q.askedAt && q.askedAt.length) ? '' : '') + '</span>' +
-      '<span class="q-state">待撰写</span></li>').join('');
+    const w = companyWritten(name);
+    const rows = (items, topicName) => items.map((q) => {
+      const doc = w.map.get(normQ(q.question));
+      const head = '<span class="q-order">' + String(q.order).padStart(2, '0') + '</span>' +
+        '<span class="q-body"><span class="q-title">' + esc(q.question) + '</span>' +
+        (topicName ? '<span class="chip chip-ghost">' + esc(topicName) + '</span>' : '') + '</span>';
+      if (doc) {
+        return '<li class="q-row is-done"><a class="q-link" href="#/q/' + doc.id + '">' + head +
+          '<span class="q-state is-done">已撰写</span></a></li>';
+      }
+      return '<li class="q-row is-pending">' + head + '<span class="q-state">待撰写</span></li>';
+    }).join('');
+    const done = w.map.size;
+    const total = c.questions.length + c.topics.reduce((s, t) => s + t.questions.length, 0);
+    const overview = '';
     return '<nav class="crumbs"><a href="#/">首页</a><span>/</span><a href="#/companies">公司题库</a><span>/</span><span>' + esc(c.name) + '</span></nav>' +
-      '<header class="page-head"><h1>' + esc(c.name) + '</h1><p class="lede">' + esc(c.group) + '</p></header>' +
+      '<header class="page-head"><h1>' + esc(c.name) + '</h1><p class="lede">' + esc(c.group) + ' · 已撰写 ' + done + ' / ' + total + ' 题</p>' + overview + '</header>' +
       (c.questions.length ? '<section class="panel"><h2>公司专属题</h2><ul class="q-list">' + rows(c.questions, '') + '</ul></section>' : '') +
-      c.topics.map((t) => '<section class="panel"><h2>' + esc(t.name) + '</h2><ul class="q-list">' + rows(t.questions, '') + '</ul></section>').join('');
+      c.topics.map((t) => '<section class="panel"><h2>' + esc(t.name) + '</h2><ul class="q-list">' + rows(t.questions, '') + '</ul></section>').join('') +
+      (w.company && w.company.overviewFile
+        ? '<section class="panel" id="company-overview"><div class="markdown" id="company-overview-body"><p class="muted">正在加载公司导读…</p></div></section>'
+        : '');
   }
 
   async function ensureSearchIndex() {
@@ -573,6 +614,10 @@
     if (a === 'topic' && b) {
       const topic = state.topicById.get(b);
       if (topic) fillTopicOverview(topic);
+    }
+    if (a === 'company' && b) {
+      const comp = state.companyByName.get(b);
+      if (comp) fillCompanyOverview(comp);
     }
     if (a === 'q' && b) {
       const q = state.questionById.get(b);
@@ -700,6 +745,15 @@
           state.questionById.set(q.id, Object.assign({ topicId: t.id, topicTitle: t.title }, q));
           state.fileToRoute.set(q.file, '#/q/' + q.id);
         }
+      }
+      state.companies = catalog.companies || [];
+      state.companyByName = new Map(state.companies.map((c) => [c.name, c]));
+      for (const c of state.companies) {
+        if (c.overviewFile) state.fileToRoute.set(c.overviewFile, '#/company/' + encodeURIComponent(c.name));
+        c.questions.forEach((q, i) => {
+          state.questionById.set(q.id, Object.assign({ companyId: c.id, companyTitle: c.name, companyIndex: i }, q));
+          state.fileToRoute.set(q.file, '#/q/' + q.id);
+        });
       }
       bind();
       render();

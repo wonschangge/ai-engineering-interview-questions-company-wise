@@ -1,0 +1,131 @@
+{
+  "company": "Hugging Face",
+  "slug": "huggingface",
+  "dir": "huggingface",
+  "group": "AI 基础设施与平台公司",
+  "idPrefix": "huggingface",
+  "total": 11,
+  "topics": [
+    "coding",
+    "llm-internals",
+    "finetuning",
+    "system-design",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "`transformers` 以代码重复著称：每个模型都有自己独立、自包含的 modeling 文件。请先为这个决定辩护，再对它提出批评。",
+      "questionEn": "`transformers` famously repeats code: each model gets its own self-contained modeling file. Defend that decision, then critique it.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "在基于 pickle 的 checkpoint 已经到处都能用的情况下，Hugging Face 为什么还要做 safetensors？",
+      "questionEn": "Why did Hugging Face create safetensors when pickle-based checkpoints already worked everywhere?",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "用户在一台 64 GB 内存的机器上用 `datasets` 加载 2 TB 数据集，居然跑通了。怎么做到的？又在什么时候会失效？",
+      "questionEn": "A user loads a 2 TB dataset with `datasets` on a 64 GB RAM machine and it works. How? And when does it stop working?",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "说说当有人调用 AutoModelForCausalLM.from_pretrained(…, device_map=“auto”, torch_dtype=“auto”) 时，实际都发生了什么。",
+      "questionEn": "Walk me through what actually happens when someone calls AutoModelForCausalLM.from_pretrained(…, device_map=“auto”, torch_dtype=“auto”).",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "比较 BPE、WordPiece 与 Unigram 三种 tokenization。`tokenizers` 为什么用 Rust 写，实践中又有哪些 tokenizer bug 容易坑到人？",
+      "questionEn": "Compare BPE, WordPiece and Unigram tokenization. Why is `tokenizers` written in Rust, and what tokenizer bugs bite people in practice?",
+      "sources": [
+        {
+          "title": "Byte Pair Encoding",
+          "url": "https://outcomeschool.com/blog/bpe-in-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "大型语言模型（LLM）中的 Tokenization",
+          "url": "https://www.youtube.com/watch?v=sK2s9I84EVI",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "chat template 解决了什么问题，被忽略时又会出什么错？",
+      "questionEn": "What problem do chat templates solve, and what goes wrong when they're ignored?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "在单张 24 GB GPU 上微调一个 8B 模型。说说你的显存账怎么算，以及具体会用什么技术栈。",
+      "questionEn": "Fine-tune an 8B model on a single 24 GB GPU. Walk me through the memory maths and the exact stack you'd use.",
+      "sources": [
+        {
+          "title": "LoRA - LLM 的低秩适配",
+          "url": "https://outcomeschool.com/blog/lora-low-rank-adaptation-of-llms",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "微调是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-fine-tuning-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "你在构建 web 规模的预训练语料（FineWeb 风格）。说说整条流水线，以及你如何判断每个 filter 是否值得保留。",
+      "questionEn": "You're building a web-scale pretraining corpus (FineWeb-style). Walk me through the pipeline and how you decide whether each filter earns its place.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计 Hugging Face Hub：数百万个 git 仓库，其中单个文件就有几十到几百 GB。",
+      "questionEn": "Design the Hugging Face Hub: millions of git repos where individual files are tens to hundreds of GB.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计 serverless 推理层：Hub 上数千个模型中的任何一个都可能随时收到请求。",
+      "questionEn": "Design the serverless inference layer: any of thousands of Hub models can receive a request at any moment.",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "一位社区贡献者提了一个 PR，要给 `transformers` 增加一个新的模型架构。你是负责 review 的 maintainer：你会检查什么，又会如何处理这次交流？",
+      "questionEn": "A community contributor opens a PR adding a new model architecture to `transformers`. You're the reviewing maintainer: what do you check, and how do you handle the interaction?",
+      "sources": []
+    }
+  ]
+}

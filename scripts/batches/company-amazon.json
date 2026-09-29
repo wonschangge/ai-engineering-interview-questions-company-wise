@@ -1,0 +1,311 @@
+{
+  "company": "Amazon（AWS）",
+  "slug": "amazon",
+  "dir": "amazon",
+  "group": "大型科技公司的 AI 组织",
+  "idPrefix": "amazon",
+  "total": 23,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "llm-internals",
+    "inference-serving",
+    "agents",
+    "system-design",
+    "evaluation",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "如何在内存受限的情况下，从高吞吐的事件流中找出出现频率最高的 top-K 项？",
+      "questionEn": "Find the top-K most frequent items in a high-volume event stream with bounded memory.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "不使用乘法、除法和取模运算实现两个整数相除。求图中连通分量的数量。检查括号是否配对。",
+      "questionEn": "Divide two integers without using multiplication, division or modulo. Find the number of connected components in a graph. Check balanced parentheses.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "线性回归的闭式解是什么？什么情况下你会改用梯度下降？",
+      "questionEn": "What is the closed-form solution of linear regression, and when do you use gradient descent instead?",
+      "sources": [
+        {
+          "title": "梯度下降背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-gradient-descent",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "逻辑回归中 L1 与 L2 正则化有什么区别？",
+      "questionEn": "What are the differences between L1 and L2 regularization in logistic regression?",
+      "sources": [
+        {
+          "title": "机器学习中的正则化：L1 vs L2",
+          "url": "https://outcomeschool.com/blog/regularization-in-machine-learning",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "写出逻辑回归的损失函数，并证明它具有全局最小值。",
+      "questionEn": "Write the loss function for logistic regression and prove it has a global minimum.",
+      "sources": [
+        {
+          "title": "交叉熵损失背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-cross-entropy-loss",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "线性回归 vs 逻辑回归",
+          "url": "https://outcomeschool.com/blog/linear-regression-vs-logistic-regression",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "KL 散度损失与交叉熵损失有什么不同？与对比损失又有什么不同？",
+      "questionEn": "How is KL divergence loss different from cross-entropy loss? And from contrastive loss?",
+      "sources": [
+        {
+          "title": "交叉熵损失背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-cross-entropy-loss",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "什么是对比学习？",
+          "url": "https://outcomeschool.com/blog/contrastive-learning",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "bagging 与 boosting 有什么区别？XGBoost 和 Random Forest 在计算上有什么差异？",
+      "questionEn": "How do bagging and boosting differ? What is the computational difference between XGBoost and Random Forest?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "解释偏差-方差权衡、交叉验证和维度灾难。",
+      "questionEn": "Explain the bias-variance trade-off, cross-validation, and the curse of dimensionality.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "GRU 单元是如何工作的？它是如何解决梯度消失问题的？BiLSTM 又是如何工作的？",
+      "questionEn": "How do GRU cells work, and how do they address the vanishing gradient problem? How does a BiLSTM work?",
+      "sources": [
+        {
+          "title": "循环神经网络（RNN）",
+          "url": "https://outcomeschool.com/blog/recurrent-neural-network",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "机器学习模型中的 attention 是什么？如果把神经网络中所有隐藏层都去掉会发生什么？",
+      "questionEn": "What is Attention in machine learning models? What happens in a neural network if you remove all the hidden layers?",
+      "sources": [
+        {
+          "title": "注意力背后的数学：Q、K 与 V",
+          "url": "https://outcomeschool.com/blog/math-behind-attention-qkv",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "讨论精确率、召回率和 F1：什么情况下你会优先选择其中一个而非其他？",
+      "questionEn": "Discuss precision, recall and F1: when would you prioritise one over the others?",
+      "sources": [
+        {
+          "title": "精确率 vs 召回率",
+          "url": "https://outcomeschool.com/blog/precision-vs-recall",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "你如何处理数据不平衡、共线性、特征选择和正则化？",
+      "questionEn": "How do you handle data imbalance, collinearity, feature selection and regularization?",
+      "sources": [
+        {
+          "title": "机器学习中的特征工程",
+          "url": "https://outcomeschool.com/blog/feature-engineering",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "机器学习中的正则化：L1 vs L2",
+          "url": "https://outcomeschool.com/blog/regularization-in-machine-learning",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "说明你会如何设计和评估一个 A/B 测试。什么是 p 值？在这个场景中你如何解读它？",
+      "questionEn": "Explain how you would design and evaluate an A/B test. What is a p-value and how do you interpret it here?",
+      "sources": []
+    },
+    {
+      "order": 14,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "什么是最大似然估计？它与贝叶斯推断有什么不同？",
+      "questionEn": "What is Maximum Likelihood Estimation and how does it differ from Bayesian inference?",
+      "sources": []
+    },
+    {
+      "order": 15,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "为什么 transformer 在语言建模中取代了 RNN？在推理阶段 KV cache 究竟带来了什么收益？",
+      "questionEn": "Why did transformers displace RNNs for language modelling, and what exactly does the KV cache buy you at inference time?",
+      "sources": [
+        {
+          "title": "RNN 与 Transformer 有什么不同？",
+          "url": "https://outcomeschool.com/blog/how-do-rnns-and-transformers-differ",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 中的 KV Cache 是什么？",
+          "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 16,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "某个客户托管在 Bedrock 上的工作负载成本过高。请在不造成不可接受的质量损失的前提下，大幅削减推理成本。",
+      "questionEn": "A customer's Bedrock-hosted workload costs too much. Cut inference cost dramatically without unacceptable quality loss.",
+      "sources": [
+        {
+          "title": "LLM 推理优化",
+          "url": "https://www.youtube.com/watch?v=jV2sCj4lHYk",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM 推理优化",
+          "url": "https://outcomeschool.com/blog/llm-inference-optimization",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 17,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计一个操作网页浏览器完成多步任务的 agent。如何让它可靠到可以上线？",
+      "questionEn": "Design an agent that operates a web browser to complete multi-step tasks. How do you make it reliable enough to ship?",
+      "sources": [
+        {
+          "title": "Computer-Use Agent 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-do-computer-use-agents-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 18,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个多租户推理平台，向数千家客户提供多种基础模型的服务（类似 Bedrock 的形态）。",
+      "questionEn": "Design a multi-tenant inference platform that serves many foundation models to thousands of customers (Bedrock-shaped).",
+      "sources": []
+    },
+    {
+      "order": 19,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "你会如何设计一个向用户推荐书籍的推荐系统？你会如何为仓库库存问题建模？",
+      "questionEn": "How would you design a recommendation system to suggest books to users? How would you model a warehouse inventory problem?",
+      "sources": []
+    },
+    {
+      "order": 20,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你如何判断一个由 LLM 驱动的助手已经可以面向数百万客户上线了？",
+      "questionEn": "How would you decide an LLM-powered assistant is ready to launch to millions of customers?",
+      "sources": []
+    },
+    {
+      "order": 21,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲一次你与团队的技术方向意见相左的经历。你当时是怎么做的？（Have Backbone; Disagree and Commit）",
+      "questionEn": "Tell me about a time you disagreed with your team's technical direction. What did you do? (Have Backbone; Disagree and Commit)",
+      "sources": []
+    },
+    {
+      "order": 22,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你最大的一次失败。发生了什么？之后你做了哪些改变？",
+      "questionEn": "Tell me about your most significant failure. What happened, and what did you change afterward?",
+      "sources": []
+    },
+    {
+      "order": 23,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "请讲一次你发现有机会去做超出最初范围的事情的经历。（Think Big）",
+      "questionEn": "Tell me about a time you saw an opportunity to do something bigger than the initial scope. (Think Big)",
+      "sources": []
+    }
+  ]
+}

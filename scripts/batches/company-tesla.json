@@ -1,0 +1,114 @@
+{
+  "company": "Tesla",
+  "slug": "tesla",
+  "dir": "tesla",
+  "group": "大型科技公司的 AI 组织",
+  "idPrefix": "tesla",
+  "total": 11,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "inference-serving",
+    "system-design",
+    "evaluation",
+    "multimodal",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现非极大值抑制（non-maximum suppression）。然后把它向量化。",
+      "questionEn": "Implement non-maximum suppression. Then vectorise it.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "在内存预算固定的前提下，为高频率传感器数据写一个高效的环形缓冲区（ring buffer）。",
+      "questionEn": "Write an efficient ring buffer for high-rate sensor data with a fixed memory budget.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "在没有 lidar 的情况下，你会如何设计多摄像头 3D 目标检测的神经网络架构？",
+      "questionEn": "How would you design the neural network architecture for multi-camera 3D object detection without lidar?",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "在稀有事件检测（例如小孩跑到马路上）中，你如何处理极端的类别不平衡？",
+      "questionEn": "How do you handle extreme class imbalance in rare-event detection (e.g. a child running into the road)?",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "说明你会如何对车队数据集做自动标注，以及你会对它施加哪些质量控制。",
+      "questionEn": "Explain how you would auto-label a fleet dataset and what quality controls you would put on it.",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "你会如何检测并处理车队数据与训练集之间的分布偏移（distribution shift）？",
+      "questionEn": "How would you detect and handle distribution shift between fleet data and your training set?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "车载算力预算是固定的。请讲一下，如何在不损失小目标 recall 的前提下，对视觉模型做 quantization 和剪枝。",
+      "questionEn": "The onboard compute budget is fixed. Walk me through quantizing and pruning a vision model without losing recall on small objects.",
+      "sources": [
+        {
+          "title": "Model Quantization 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计数据引擎：车队触发 → 上传 → 标注 → 重新训练 → shadow-mode 验证 → 发布。",
+      "questionEn": "Design the data engine: fleet triggers → upload → labelling → retraining → shadow-mode validation → release.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "脱离率是个很弱的代理指标。你会如何真正衡量某个自动驾驶版本是否比上一版更安全？",
+      "questionEn": "Disengagement rate is a weak proxy. How would you actually measure whether an autonomy release is safer than the last one?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "你会如何把摄像头、雷达和 IMU 的输入融合进单一的感知栈，以及在哪个环节融合？",
+      "questionEn": "How would you fuse camera, radar and IMU inputs into a single perception stack, and where would you fuse them?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你交付过的技术难度最高的东西，以及你会有哪些不同的做法。",
+      "questionEn": "Tell me about the most technically demanding thing you have shipped, and what you would do differently.",
+      "sources": []
+    }
+  ]
+}

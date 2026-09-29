@@ -1,0 +1,154 @@
+{
+  "company": "阿里巴巴（Qwen）",
+  "slug": "alibaba",
+  "dir": "alibaba",
+  "group": "前沿 AI 实验室",
+  "idPrefix": "alibaba",
+  "total": 10,
+  "topics": [
+    "coding",
+    "llm-internals",
+    "finetuning",
+    "evaluation",
+    "multimodal",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "Qwen2.5-Coder 使用仓库级 fill-in-the-middle 训练，用到 <|fim_prefix|>、<|fim_suffix|>、<|repo_name|> 这类 token。请写出格式化一个仓库级 FIM 样本的函数，并解释为什么仓库级优于文件级。",
+      "questionEn": "Qwen2.5-Coder trains with repository-level fill-in-the-middle using tokens like <|fim_prefix|>, <|fim_suffix|>, <|repo_name|>. Write the function that formats a repo-level FIM example, and explain why repo-level beats file-level.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Qwen 使用字节级 BPE，词表约 151K，为多语言覆盖做了增强，并把数字拆成单个字符。为什么做这些选择，各自的取舍是什么？",
+      "questionEn": "Qwen uses byte-level BPE with a ~151K vocabulary, augmented for multilingual coverage and with digits split into single characters. Why those choices, and what are the trade-offs?",
+      "sources": [
+        {
+          "title": "Byte Pair Encoding",
+          "url": "https://outcomeschool.com/blog/bpe-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Qwen3 在一个模型里统一了思考模式与非思考模式，并支持调用方设置思考预算。你会如何训练它，又如何把它部署成服务？",
+      "questionEn": "Qwen3 unifies a thinking mode and a non-thinking mode in one model with a caller-settable thinking budget. How would you train that, and how would you serve it?",
+      "sources": [
+        {
+          "title": "大型推理模型（LRMs）",
+          "url": "https://outcomeschool.com/blog/large-reasoning-models",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Qwen 同时提供 dense 与 MoE 模型（30B 约 3B 激活；235B 约 22B 激活）。什么时候你会选 30B-A3B 的 MoE，而不是 32B 的 dense 模型？",
+      "questionEn": "Qwen ships both dense and MoE models (30B with ~3B active; 235B with ~22B active). When would you pick the 30B-A3B MoE over a 32B dense?",
+      "sources": [
+        {
+          "title": "MoE 详解",
+          "url": "https://outcomeschool.com/blog/mixture-of-experts",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "Qwen2.5 借助 YaRN 加 Dual Chunk Attention 把上下文扩展到 128K（Turbo 约 1M），且基本无需训练。请解释其原理，以及为什么事后扩展如此有吸引力。",
+      "questionEn": "Qwen2.5 extends context to 128K (and ~1M for Turbo) using YaRN plus Dual Chunk Attention, mostly training-free. Explain how, and why post-hoc extension is attractive.",
+      "sources": [
+        {
+          "title": "RoPE（旋转位置编码）背后的数学",
+          "url": "https://outcomeschool.com/blog/math-behind-rope-rotary-position-embedding",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "Qwen3 采用强到弱蒸馏（strong-to-weak distillation），用旗舰模型带动更小的模型。它是如何工作的，为什么成本更低？",
+      "questionEn": "Qwen3 uses strong-to-weak distillation, bootstrapping smaller models from flagship ones. How does that work and why is it cheaper?",
+      "sources": [
+        {
+          "title": "知识蒸馏是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-knowledge-distillation-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "finetuning",
+      "topicName": "微调、后训练与对齐",
+      "question": "Qwen 的推理模型在数学与代码上使用可验证奖励的 RL 进行训练。为什么在这些领域，这比带学习式奖励模型的 PPO 更受青睐？",
+      "questionEn": "Qwen's reasoning models train with RL using verifiable rewards on maths and code. Why is that preferred over PPO with a learned reward model for these domains?",
+      "sources": [
+        {
+          "title": "组相对策略优化（GRPO）",
+          "url": "https://outcomeschool.com/blog/group-relative-policy-optimization-grpo",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "Qwen 发布的开放权重常居公开榜单前列。作为发布工程师，你如何确保 benchmark 数字可信且未被污染？",
+      "questionEn": "Qwen ships open weights that top public leaderboards. As the release engineer, how do you make sure the benchmark numbers are trustworthy and not contaminated?",
+      "sources": [
+        {
+          "title": "LLM 评估",
+          "url": "https://outcomeschool.com/blog/llm-evaluation",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "Qwen2.5-VL 使用原生动态分辨率的 ViT，配合 window attention 与多模态 RoPE。为什么用原生分辨率而不是固定切块，MRoPE 又编码了什么？",
+      "questionEn": "Qwen2.5-VL uses a native dynamic-resolution ViT with window attention and multimodal RoPE. Why native resolution instead of fixed tiling, and what does MRoPE encode?",
+      "sources": [
+        {
+          "title": "解读 Vision Transformer (ViT)",
+          "url": "https://outcomeschool.com/blog/decoding-vision-transformer-vit",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "阿里巴巴以 Apache 2.0 开源 Qwen，同时又经营商业云业务。请讲讲这一战略，并谈谈你端到端负责过的一个模糊的技术决策。",
+      "questionEn": "Alibaba open-sources Qwen under Apache 2.0 while running a commercial cloud business. Walk me through the strategy, and tell me about an ambiguous technical decision you owned end to end.",
+      "sources": []
+    }
+  ]
+}

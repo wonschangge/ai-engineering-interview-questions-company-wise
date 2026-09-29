@@ -1,0 +1,114 @@
+{
+  "company": "Figure AI",
+  "slug": "figure-ai",
+  "dir": "figure-ai",
+  "group": "AI 原生产品公司",
+  "idPrefix": "figure-ai",
+  "total": 12,
+  "topics": [
+    "ml-fundamentals",
+    "inference-serving",
+    "system-design",
+    "evaluation",
+    "safety",
+    "multimodal"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "在遥操作数据上做行为克隆存在一个众所周知的失效模式。它是什么？在真实人形机器人上你如何应对？",
+      "questionEn": "Behaviour cloning on teleoperation data has a well-known failure mode. What is it, and what do you do about it on a real humanoid?",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "一个完全在仿真中训练的全身控制器必须运行在真实硬件上。哪些能迁移，哪些不能，你如何弥补这个差距？",
+      "questionEn": "A whole-body controller trained entirely in simulation has to run on real hardware. What transfers, what does not, and how do you close the gap?",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "在操作任务中，强化学习如何叠加在模仿学习之上？为什么奖励是最难的部分？",
+      "questionEn": "Where does reinforcement learning fit on top of imitation learning for manipulation, and what makes the reward the hard part?",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "一位同事想把语义层搬到云端，以便使用大得多的模型。请讲一讲延迟预算。",
+      "questionEn": "A colleague wants to move the semantic layer to the cloud so you can use a much bigger model. Walk me through the latency budget.",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计遥操作数据管线。为什么在机器人领域，瓶颈是数据采集而不是算力？",
+      "questionEn": "Design the teleoperation data pipeline. Why is data collection the bottleneck in robotics rather than compute?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "对于一个新任务，你有 10 小时的示范数据，以及再采集 50 小时的预算。你如何决定采集什么？预期能获得什么回报？",
+      "questionEn": "You have 10 hours of demonstrations for a new task and budget for 50 more. How do you decide what to collect, and what return do you expect?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "当每次试验都要消耗机器人的时间、且每次失败都会带来物理后果时，你如何评估一个操作策略？",
+      "questionEn": "How do you evaluate a manipulation policy when every trial costs robot time and every failure has physical consequences?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你把一个策略部署到 300 台机器人。它在实验室里能用，到了现场却性能下降。请排查。",
+      "questionEn": "You ship a policy to 300 robots. It works in the lab and degrades in the field. Debug it.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "为在人员附近运行的学习型全身策略设计安全架构。",
+      "questionEn": "Design the safety architecture for a learned whole-body policy operating near people.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "什么是 vision-language-action 模型？它与带工具的 LLM 有何不同？",
+      "questionEn": "What is a vision-language-action model, and how is it different from an LLM with tools?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "Helix 拆分为一个大的慢模型和一个小而快的模型。为什么不直接跑一个单一的端到端网络？",
+      "questionEn": "Helix splits into a large slow model and a small fast one. Why not run a single end-to-end network?",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "解释 action chunking。为什么要预测未来的一系列动作，而不是只预测下一个动作？",
+      "questionEn": "Explain action chunking. Why predict a sequence of future actions instead of the next one?",
+      "sources": []
+    }
+  ]
+}

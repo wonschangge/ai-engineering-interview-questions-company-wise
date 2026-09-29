@@ -1,0 +1,168 @@
+{
+  "company": "Character.AI",
+  "slug": "character-ai",
+  "dir": "character-ai",
+  "group": "AI 原生产品公司",
+  "idPrefix": "character-ai",
+  "total": 12,
+  "topics": [
+    "coding",
+    "llm-internals",
+    "inference-serving",
+    "system-design",
+    "evaluation",
+    "safety"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "现场编程：在固定的 token 预算下构建下一轮的 prompt。难点在于我们的 prefix cache。",
+      "questionEn": "Live coding: build the prompt for the next turn under a fixed token budget. The catch is our prefix cache.",
+      "sources": [
+        {
+          "title": "Prompt Caching 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Context Engineering",
+          "url": "https://outcomeschool.com/blog/context-engineering",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "llm-internals",
+      "topicName": "LLM 内部原理与架构",
+      "question": "一次对话超出了上下文窗口。你会保留什么，又如何决定？",
+      "questionEn": "A conversation runs past the context window. What do you keep, and how do you decide?",
+      "sources": [
+        {
+          "title": "上下文压缩是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-context-compaction-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "AI Agent 记忆",
+          "url": "https://outcomeschool.com/blog/ai-agent-memory",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "我们的服务成本主要由 KV cache 而非权重决定。把它降低一个数量级，并告诉我你要为此放弃什么。",
+      "questionEn": "Our serving cost is dominated by KV cache, not weights. Get it down by an order of magnitude and tell me what you give up.",
+      "sources": [
+        {
+          "title": "KV Cache 压缩",
+          "url": "https://outcomeschool.com/blog/kv-cache-compression",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "这里的对话平均约 180 条消息。请设计位于各个轮次之间的缓存。",
+      "questionEn": "Dialogues here average around 180 messages. Design the cache that sits between turns.",
+      "sources": [
+        {
+          "title": "Prompt Caching 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "你们原生以 int8 训练，而不是做 post-training quantization。请为这一做法辩护。",
+      "questionEn": "You train natively in int8 rather than doing post-training quantization. Defend that.",
+      "sources": [
+        {
+          "title": "Model Quantization 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "估算我们服务一条消息的成本，并告诉我哪个杠杆对它的影响最大。",
+      "questionEn": "Estimate what one message costs us to serve, and tell me which lever moves it most.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为数百万个用户创建的角色设计发现与搜索功能。",
+      "questionEn": "Design discovery and search across millions of user-created characters.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "用户抱怨角色在长时间会话后会偏离人设。请诊断这个问题。",
+      "questionEn": "Users complain that characters drift out of persona after a long session. Diagnose it.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "互动指标与身心健康指标相互矛盾。你会如何构建一个能解决这一矛盾的系统？",
+      "questionEn": "Engagement metrics and wellbeing metrics disagree. How do you build a system that resolves that?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "为开放式角色聊天设计安全系统。",
+      "questionEn": "Design the safety system for open-ended character chat.",
+      "sources": [
+        {
+          "title": "LLM guardrails 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-do-llm-guardrails-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "什么时候在 decode 过程中介入比过滤已生成的回复更好？",
+      "questionEn": "When is intervening during decoding better than filtering the finished reply?",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "为一个 18 岁以下用户体验有本质区别的平台设计年龄验证。",
+      "questionEn": "Design age assurance for a platform where the under-18 experience is fundamentally different.",
+      "sources": []
+    }
+  ]
+}

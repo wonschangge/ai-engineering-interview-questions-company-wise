@@ -1,0 +1,136 @@
+{
+  "company": "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）",
+  "slug": "consumer-ml",
+  "dir": "consumer-ml",
+  "group": "大型科技公司的 AI 组织",
+  "idPrefix": "consumer-ml",
+  "total": 14,
+  "topics": [
+    "coding",
+    "ml-fundamentals",
+    "system-design",
+    "evaluation",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "用有界内存的 sketch 实现流式 top-k；实现一个滑动窗口速率计数器。",
+      "questionEn": "Implement a streaming top-k with a bounded-memory sketch; implement a sliding-window rate counter.",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "你的离线指标提升了，但线上 A/B 没有提升。请列举出现这种情况的原因，以及你会如何区分它们。",
+      "questionEn": "Your offline metric improved but the online A/B did not. Enumerate the reasons this happens and how you would tell them apart.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "解释排序数据中的 position bias，以及你会如何对训练数据进行去偏。",
+      "questionEn": "Explain position bias in ranking data and how you would debias training.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "你会如何设计 feature store？造成 training/serving skew 的原因是什么？",
+      "questionEn": "How do you design a feature store, and what causes training/serving skew?",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为网约车市场设计 ETA 预测系统。使用哪些特征、什么模型，如何在 <100 ms 内完成推理服务？",
+      "questionEn": "Design the ETA prediction system for a ride-hailing marketplace. What features, what model, how do you serve it in <100 ms?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个个性化 feed 排序系统，采用两阶段的候选生成与排序架构。",
+      "questionEn": "Design a personalised feed ranking system with a two-stage candidate generation and ranking architecture.",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为流媒体内容目录设计内容推荐系统，包括新剧集和新用户的冷启动。",
+      "questionEn": "Design a content recommendation system for a streaming catalogue, including cold-start for new titles and new users.",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "在职业社交网络的规模下设计“你可能认识的人” / 职位推荐排序。",
+      "questionEn": "Design “people you may know” / job-recommendation ranking at a professional network's scale.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "为双边市场设计动态定价 / 高峰溢价（surge），并描述可能出问题的反馈回路。",
+      "questionEn": "Design dynamic pricing / surge for a two-sided marketplace and describe the feedback loops that can go wrong.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个以图搜图系统：用户上传一张图片，你返回目录中视觉上相似的物品。",
+      "questionEn": "Design a visual search system: user uploads an image, you return visually similar in-catalogue items.",
+      "sources": [
+        {
+          "title": "图像 Embedding 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-do-image-embeddings-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个欺诈检测系统，面临严重的类别不平衡以及具有对抗性的对手。",
+      "questionEn": "Design a fraud-detection system with heavy class imbalance and an adversarial opponent.",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "在现有帮助中心之上设计一个由 LLM 驱动的客服助手，并支持升级转人工。",
+      "questionEn": "Design an LLM-powered customer-support assistant on top of an existing help centre, with escalation to humans.",
+      "sources": []
+    },
+    {
+      "order": 13,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你如何监控已上线的排序模型是否发生漂移？什么会触发重新训练？",
+      "questionEn": "How do you monitor a deployed ranking model for drift, and what triggers a retrain?",
+      "sources": []
+    },
+    {
+      "order": 14,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "讲讲你上线过的一个带来了可衡量业务价值的模型，以及一个没有带来业务价值的模型。",
+      "questionEn": "Tell me about a model you shipped that made a measurable business difference, and one that did not.",
+      "sources": []
+    }
+  ]
+}

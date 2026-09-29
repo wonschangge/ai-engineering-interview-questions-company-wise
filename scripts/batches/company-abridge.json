@@ -1,0 +1,115 @@
+{
+  "company": "Abridge",
+  "slug": "abridge",
+  "dir": "abridge",
+  "group": "AI 原生产品公司",
+  "idPrefix": "abridge",
+  "total": 11,
+  "topics": [
+    "ml-fundamentals",
+    "inference-serving",
+    "rag",
+    "agents",
+    "system-design",
+    "evaluation",
+    "safety",
+    "multimodal"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "ml-fundamentals",
+      "topicName": "机器学习与深度学习基础",
+      "question": "把对话转成可计费的诊断编码。准确率门槛是多少，你如何按这个门槛构建？",
+      "questionEn": "Turn a conversation into billable diagnosis codes. What is the accuracy bar, and how do you build to it?",
+      "sources": []
+    },
+    {
+      "order": 2,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "病历记录要在医生离开诊室之前就绪。给我做出延迟预算，并告诉我钱花在哪里。",
+      "questionEn": "The note should be ready before the clinician leaves the room. Build me the latency budget, and tell me where the money goes.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "患者的病历（chart）里已经列出了用药。你会如何利用它来改进药名转写，又如何避免它适得其反？",
+      "questionEn": "The patient's chart already lists their medications. How would you use that to improve transcription of drug names, and how would you keep it from backfiring?",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "agents",
+      "topicName": "Agent 与工具调用",
+      "question": "设计一个服务，把对话转成医嘱草稿：检验、影像、转诊、处方，通过针对 EHR 的 tool calls 完成。",
+      "questionEn": "Design a service that turns the conversation into draft orders: labs, imaging, referrals, prescriptions, via tool calls against the EHR.",
+      "sources": [
+        {
+          "title": "LLM 中的 Function Calling 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "请讲讲如何把完成的病历记录写回 Epic。哪里会出问题？",
+      "questionEn": "Walk me through writing a finished note back into Epic. What goes wrong?",
+      "sources": []
+    },
+    {
+      "order": 6,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "两位优秀的医生对同一次就诊会写出不同的病历记录。那你究竟该如何评估病历记录质量？",
+      "questionEn": "Two good clinicians write different notes for the same visit. So how do you evaluate note quality at all?",
+      "sources": []
+    },
+    {
+      "order": 7,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "编辑率是衡量医生信任度最直观的指标。它掩盖了什么，你会改用什么指标来埋点？",
+      "questionEn": "Edit rate is the obvious measure of clinician trust. What does it hide, and what would you instrument instead?",
+      "sources": []
+    },
+    {
+      "order": 8,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "生成的病历记录里出现了患者从未提到的药物。把它当作安全事件：你如何在医生看到之前检测出来？",
+      "questionEn": "A generated note contains a medication the patient never mentioned. Treat that as a safety incident: how do you detect it before a clinician sees it?",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "医生不会签署自己无法核实的内容。你会如何构建 span 级溯源，把病历记录的每一行都追溯回对话？",
+      "questionEn": "Clinicians will not sign what they cannot verify. How would you build span-level provenance from every line of the note back to the conversation?",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "你接触的每一个音频文件、转写文本和病历记录里都有 PHI。这会如何塑造架构，什么内容可以发给第三方模型 API？",
+      "questionEn": "PHI is in every audio file, transcript and note you touch. How does that shape the architecture, and what can you send to a third-party model API?",
+      "sources": []
+    },
+    {
+      "order": 11,
+      "topic": "multimodal",
+      "topicName": "多模态、语音与声音 AI",
+      "question": "我们的音频来自诊室：两三个说话人、背景噪声、口音，以及满是药名的词汇表。你会如何为这种场景构建并改进 ASR？",
+      "questionEn": "Our audio is a clinic room: two or three speakers, background noise, accents, and a vocabulary full of drug names. How would you build and improve the ASR for that?",
+      "sources": []
+    }
+  ]
+}

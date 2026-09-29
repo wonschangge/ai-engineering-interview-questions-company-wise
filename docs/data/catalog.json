@@ -1,8 +1,10 @@
 {
-  "generated": "2026-09-29T04:37:36.382Z",
+  "generated": "2026-09-29T10:22:34.956Z",
   "stats": {
     "topics": 10,
     "questions": 119,
+    "companyQuestions": 8,
+    "companies": 1,
     "planned": 598
   },
   "topics": [
@@ -4833,7 +4835,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 12106
+          "chars": 12107
         },
         {
           "id": "system-design-08",
@@ -5565,6 +5567,529 @@
           ],
           "updated": "2026-09-28",
           "chars": 7689
+        }
+      ]
+    }
+  ],
+  "companies": [
+    {
+      "id": "mistral",
+      "name": "Mistral AI",
+      "group": "前沿 AI 实验室",
+      "summary": "八道题的主线是开源权重与推理效率——自家模型的 GQA / 滑窗 / MoE 是背景知识，落点在量化交付、客户场景微调与私有化部署。",
+      "updated": "2026-09-28",
+      "dir": "mistral",
+      "overviewFile": "公司题库/mistral/README.md",
+      "overviewTitle": "Mistral AI 面试题库",
+      "declaredTotal": 8,
+      "questions": [
+        {
+          "id": "mistral-01",
+          "order": 1,
+          "title": "结对编程：构建一个服务，接收用户问题，用第三方 API 的数据做补充，再通过 chat-model API 给出回答。你会如何组织它？",
+          "titleEn": "Pair-programming: build a service that takes a user question, enriches it with data from a third-party API, and answers via a chat-model API. How do you structure it?",
+          "file": "公司题库/mistral/01-结对编程：构建一个接收用户问题、用第三方 API 补充数据并由 chat-model API 作答的服务.md",
+          "level": "进阶",
+          "tags": [
+            "结对编程",
+            "实现题",
+            "系统设计",
+            "错误隔离",
+            "流式输出"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-12",
+            "coding-08",
+            "coding-09",
+            "agents-02"
+          ],
+          "sources": [
+            {
+              "title": "AI Agent 循环",
+              "url": "https://outcomeschool.com/blog/ai-agent-loop",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (ICLR 2023)",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "Coroutines and Tasks（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-task.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            },
+            {
+              "title": "Token Streaming 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-token-streaming-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11477,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
+        },
+        {
+          "id": "mistral-02",
+          "order": 2,
+          "title": "Mistral 7B 发布时采用了 grouped-query attention 和 sliding-window attention。两者各自带来什么好处，又各自付出什么代价？",
+          "titleEn": "Mistral 7B shipped with grouped-query attention and sliding-window attention. What does each buy you, and what does each cost?",
+          "file": "公司题库/mistral/02-Mistral 7B 的 GQA 与 sliding-window attention 各自的好处与代价.md",
+          "level": "进阶",
+          "tags": [
+            "gqa",
+            "sliding-window-attention",
+            "kv-cache",
+            "长上下文",
+            "数值推导"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-03",
+            "llm-internals-02",
+            "llm-internals-13",
+            "inference-serving-03"
+          ],
+          "sources": [
+            {
+              "title": "分组查询注意力（GQA）",
+              "url": "https://outcomeschool.com/blog/grouped-query-attention",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-22"
+            },
+            {
+              "title": "Sliding Window Attention 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-sliding-window-attention-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-05"
+            },
+            {
+              "title": "KV Cache in LLMs",
+              "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-27"
+            },
+            {
+              "title": "KV Cache Compression",
+              "url": "https://outcomeschool.com/blog/kv-cache-compression",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-12"
+            },
+            {
+              "title": "Mistral 7B 论文（延伸）",
+              "url": "https://arxiv.org/abs/2310.06825",
+              "author": "Albert Q. Jiang 等（Mistral AI）",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "Mistral-7B-v0.1 config.json（延伸）",
+              "url": "https://huggingface.co/mistralai/Mistral-7B-v0.1/raw/main/config.json",
+              "author": "Mistral AI（Hugging Face）",
+              "published": "2023-09-27"
+            },
+            {
+              "title": "Mistral-7B-Instruct-v0.2 Model Card（延伸）",
+              "url": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2",
+              "author": "Mistral AI（Hugging Face）",
+              "published": "2023-12-11"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 10890,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
+        },
+        {
+          "id": "mistral-03",
+          "order": 3,
+          "title": "解释 Mixtral 风格的稀疏 mixture-of-experts 模型是如何工作的。为什么一个约 47B 参数的模型，运行成本大致只相当于约 13B 的模型？",
+          "titleEn": "Explain how a Mixtral-style sparse mixture-of-experts model works. Why does a ~47B-parameter model run at roughly the cost of a ~13B one?",
+          "file": "公司题库/mistral/03-解释 Mixtral 风格的稀疏 MoE 为什么 47B 参数只有 13B 的运行成本.md",
+          "level": "进阶",
+          "tags": [
+            "moe",
+            "稀疏激活",
+            "Mixtral",
+            "数值推导",
+            "系统设计"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "llm-internals-10",
+            "llm-internals-02",
+            "llm-internals-16",
+            "llm-internals-09"
+          ],
+          "sources": [
+            {
+              "title": "MoE 详解",
+              "url": "https://outcomeschool.com/blog/mixture-of-experts",
+              "author": "",
+              "published": ""
+            },
+            {
+              "title": "Mixtral of Experts（延伸）",
+              "url": "https://arxiv.org/abs/2401.04088",
+              "author": "Jiang et al. (Mistral AI)",
+              "published": "2024-01-08"
+            },
+            {
+              "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity（延伸）",
+              "url": "https://arxiv.org/abs/2101.03961",
+              "author": "Fedus et al.",
+              "published": "2021-01-11"
+            },
+            {
+              "title": "KV Cache in LLMs",
+              "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-27"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 9703,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 2
+        },
+        {
+          "id": "mistral-04",
+          "order": 4,
+          "title": "估算服务 Mistral 7B 所需的 KV cache 显存，并设计 sliding-window attention 所支持的滚动缓冲区缓存。",
+          "titleEn": "Estimate the KV-cache memory for serving Mistral 7B, and design the rolling-buffer cache that sliding-window attention enables.",
+          "file": "公司题库/mistral/04-估算服务 Mistral 7B 的 KV cache 显存与滚动缓冲区缓存.md",
+          "level": "进阶",
+          "tags": [
+            "数值推导",
+            "系统设计",
+            "kv-cache",
+            "sliding-window-attention",
+            "gqa"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "inference-serving-08",
+            "llm-internals-02",
+            "llm-internals-03",
+            "inference-serving-03"
+          ],
+          "sources": [
+            {
+              "title": "LLM 中的 KV Cache 是什么？",
+              "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-27"
+            },
+            {
+              "title": "Sliding Window Attention 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-sliding-window-attention-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-05"
+            },
+            {
+              "title": "What is Grouped Query Attention (GQA) and Why Do LLMs Use It?",
+              "url": "https://outcomeschool.com/blog/grouped-query-attention",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-04-22"
+            },
+            {
+              "title": "Paged Attention in LLMs",
+              "url": "https://outcomeschool.com/blog/paged-attention-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-29"
+            },
+            {
+              "title": "KV Cache Compression",
+              "url": "https://outcomeschool.com/blog/kv-cache-compression",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-09-12"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 9274,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
+        },
+        {
+          "id": "mistral-05",
+          "order": 5,
+          "title": "你需要针对客户的硬件量化一个模型。你如何选择量化方案，又如何证明质量没有下降？",
+          "titleEn": "You need to quantize a model for a customer's hardware. How do you choose a scheme, and how do you prove quality hasn't regressed?",
+          "file": "公司题库/mistral/05-为客户硬件选择量化方案并证明质量没有下降.md",
+          "level": "进阶",
+          "tags": [
+            "量化",
+            "PTQ",
+            "数值推导",
+            "精度回归",
+            "实现题"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "inference-serving-06",
+            "inference-serving-08",
+            "inference-serving-10",
+            "llm-internals-02"
+          ],
+          "sources": [
+            {
+              "title": "Model Quantization 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+              "author": "",
+              "published": ""
+            },
+            {
+              "title": "How does Model Quantization work?",
+              "url": "https://outcomeschool.com/blog/how-does-model-quantization-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-07-15"
+            },
+            {
+              "title": "FP8 Formats for Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2209.05433",
+              "author": "Micikevicius et al.",
+              "published": "2022-09-12"
+            },
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al. (ICLR 2023)",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration（延伸）",
+              "url": "https://arxiv.org/abs/2306.00978",
+              "author": "Lin et al. (MLSys 2024)",
+              "published": "2023-06-01"
+            },
+            {
+              "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.10438",
+              "author": "Xiao et al. (ICML 2023)",
+              "published": "2022-11-18"
+            },
+            {
+              "title": "KV Cache in LLMs",
+              "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-03-27"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11013,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 2
+        },
+        {
+          "id": "mistral-06",
+          "order": 6,
+          "title": "function calling 与 LLM 配合时到底是如何工作的？如何让它可靠到足以支撑生产环境的 agent？",
+          "titleEn": "How does function calling actually work with an LLM, and how do you make it reliable enough for production agents?",
+          "file": "公司题库/mistral/06-function calling 与 LLM 配合的工作机制与生产可靠性.md",
+          "level": "进阶",
+          "tags": [
+            "function-calling",
+            "约束解码",
+            "工具 schema",
+            "可靠性",
+            "实现题"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "agents-03",
+            "agents-05",
+            "agents-02",
+            "agents-09"
+          ],
+          "sources": [
+            {
+              "title": "LLM 中的 Function Calling 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-function-calling-work-in-llms",
+              "author": "",
+              "published": ""
+            },
+            {
+              "title": "AI Agent Loop",
+              "url": "https://outcomeschool.com/blog/ai-agent-loop",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Writing Tools for Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+              "author": "Anthropic",
+              "published": ""
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 9627,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
+        },
+        {
+          "id": "mistral-07",
+          "order": 7,
+          "title": "在客户的任务上 fine-tuning 之后，目标指标准确率提升了，但模型在其他方面都变差了。发生了什么，你会怎么做？",
+          "titleEn": "After fine-tuning on a customer's task, target accuracy is up but the model got worse at everything else. What happened and what do you do?",
+          "file": "公司题库/mistral/07-客户任务微调后目标指标上升但通用能力退化怎么办.md",
+          "level": "进阶",
+          "tags": [
+            "灾难性遗忘",
+            "能力回归",
+            "回放",
+            "PEFT",
+            "实现题"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "finetuning-07",
+            "finetuning-06",
+            "finetuning-08",
+            "finetuning-12"
+          ],
+          "sources": [
+            {
+              "title": "LLM 中的 Continual Learning",
+              "url": "https://outcomeschool.com/blog/continual-learning-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": "2026-06-01"
+            },
+            {
+              "title": "An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning（延伸）",
+              "url": "https://arxiv.org/abs/2308.08747",
+              "author": "Luo et al.",
+              "published": "2023-08-17"
+            },
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al.",
+              "published": "2021-06-17"
+            },
+            {
+              "title": "LIMA: Less Is More for Alignment（延伸）",
+              "url": "https://arxiv.org/abs/2305.11206",
+              "author": "Zhou et al.",
+              "published": "2023-05-18"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 9421,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
+        },
+        {
+          "id": "mistral-08",
+          "order": 8,
+          "title": "为一家不能把数据发往任何外部 API 的欧洲银行，设计 open-weight 模型的 on-prem 部署方案。",
+          "titleEn": "Design an on-prem deployment of an open-weight model for a European bank that cannot send data to any external API.",
+          "file": "公司题库/mistral/08-为不能外发数据的欧洲银行设计 open-weight 的 on-prem 部署.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "on-prem 部署",
+            "数据合规",
+            "open-weight",
+            "容量规划"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "system-design-01",
+            "system-design-09",
+            "system-design-10",
+            "inference-serving-08"
+          ],
+          "sources": [
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（vLLM）（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al. (OSDI 2024)",
+              "published": "2024-01-18"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al.",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al.",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "RouteLLM: Learning to Route LLMs with Preference Data（延伸）",
+              "url": "https://arxiv.org/abs/2406.18665",
+              "author": "Ong et al.",
+              "published": "2024-06-26"
+            },
+            {
+              "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance（延伸）",
+              "url": "https://arxiv.org/abs/2305.05176",
+              "author": "Chen, Zaharia, Zou",
+              "published": "2023-05-09"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 16143,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         }
       ]
     }

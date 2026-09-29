@@ -1,0 +1,199 @@
+{
+  "company": "Perplexity",
+  "slug": "perplexity",
+  "dir": "perplexity",
+  "group": "AI 基础设施与平台公司",
+  "idPrefix": "perplexity",
+  "total": 15,
+  "topics": [
+    "coding",
+    "inference-serving",
+    "rag",
+    "system-design",
+    "evaluation",
+    "safety",
+    "behavioral"
+  ],
+  "questions": [
+    {
+      "order": 1,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "实现一个跨多个 LLM 提供商的客户端连接池并支持故障转移：提供商会失败、超时或限流，而调用方只应拿到一个 completion 结果。",
+      "questionEn": "Implement a client pool over multiple LLM providers with failover: providers fail, time out, or rate-limit, and callers should just get a completion.",
+      "sources": [
+        {
+          "title": "LLM 路由",
+          "url": "https://outcomeschool.com/blog/llm-routing",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "你每天要摄入数百万个网页。请高效检测近似重复内容（同一篇文章、不同的样板文案）。",
+      "questionEn": "You're ingesting millions of web pages a day. Detect near-duplicates (same article, different boilerplate) efficiently.",
+      "sources": []
+    },
+    {
+      "order": 3,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "你需要对数百万个文本块做 embedding。该 embedding 服务按批接收请求，有最大批大小和最大总 token 上限。请编写这个 batcher 并让它足够快。",
+      "questionEn": "You need to embed millions of text chunks. The embedding service takes batches with a max batch size and a max total-token limit. Write the batcher and make it fast.",
+      "sources": []
+    },
+    {
+      "order": 4,
+      "topic": "coding",
+      "topicName": "编程与数据结构",
+      "question": "为自回归模型实现 beam search。答案引擎在什么情况下会真正用到它？",
+      "questionEn": "Implement beam search for an autoregressive model. When would an answer engine actually use it?",
+      "sources": []
+    },
+    {
+      "order": 5,
+      "topic": "inference-serving",
+      "topicName": "推理、服务与 GPU 性能",
+      "question": "一次发版后，p95 time-to-first-token 从 1.2 s 恶化到 3 s。请讲讲你会如何定位并修复它。",
+      "questionEn": "p95 time-to-first-token regressed from 1.2 s to 3 s after a release. Walk me through finding and fixing it.",
+      "sources": [
+        {
+          "title": "LLM 中的首 token 延迟问题",
+          "url": "https://www.youtube.com/watch?v=XD8DD4cEHu0",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "讨论 reranker 的架构选择：cross-encoder、ColBERT、基于 LLM 的方案。",
+      "questionEn": "Discuss reranker architecture choices: cross-encoder, ColBERT, LLM-based.",
+      "sources": [
+        {
+          "title": "Reranker 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-a-reranker-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "ColBERT：延迟交互检索详解",
+          "url": "https://outcomeschool.com/blog/decoding-colbert",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "topic": "rag",
+      "topicName": "RAG 与检索",
+      "question": "你检索到 50 个候选段落，但模型真正有用的上下文预算只有约 10 个。你如何取舍，又怎么知道自己选得好不好？",
+      "questionEn": "You retrieved 50 candidate passages but the model's useful context budget is ~10. How do you choose, and how do you know your choices are good?",
+      "sources": [
+        {
+          "title": "Reranker 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-a-reranker-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个答案引擎：用户输入一个问题，得到带引用、流式输出的答案。你的端到端预算是 3 秒内给出一个完整的简短回答。",
+      "questionEn": "Design an answer engine: a user types a question and gets a cited, streamed answer. Your end-to-end budget is 3 seconds to a complete short answer.",
+      "sources": []
+    },
+    {
+      "order": 9,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一条从 1000 亿网页中拉取数据的 retrieval 流水线，要求亚秒级延迟并有新鲜度保证。",
+      "questionEn": "Design the retrieval pipeline pulling from 100B web pages with sub-second latency and freshness guarantees.",
+      "sources": []
+    },
+    {
+      "order": 10,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计一个跨多个索引、结合 BM25、dense retrieval 与 LLM reranking 的排序系统。",
+      "questionEn": "Design the ranking system combining BM25, dense retrieval and LLM reranking across multiple indexes.",
+      "sources": [
+        {
+          "title": "Hybrid Search 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-hybrid-search-work",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "Reranker 是如何工作的？",
+          "url": "https://outcomeschool.com/blog/how-does-a-reranker-work",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "设计 Comet 的混合浏览器架构，把端侧隐私与云端 AI 辅助结合起来。",
+      "questionEn": "Design Comet's hybrid browser architecture combining on-device privacy with cloud AI assistance.",
+      "sources": []
+    },
+    {
+      "order": 12,
+      "topic": "system-design",
+      "topicName": "AI 系统设计",
+      "question": "答案引擎如何处理突发新闻：比如查询 20 分钟前刚发生的事？",
+      "questionEn": "How does an answer engine handle breaking news: a query about something that happened 20 minutes ago?",
+      "sources": []
+    },
+    {
+      "order": 13,
+      "topic": "evaluation",
+      "topicName": "评估与可观测性",
+      "question": "你会如何持续、大规模地评估答案引擎的答案质量，并同时使用自动信号与人工信号？",
+      "questionEn": "How would you evaluate answer quality for an answer engine, continuously and at scale, with both automated and human signals?",
+      "sources": [
+        {
+          "title": "LLM 评估",
+          "url": "https://outcomeschool.com/blog/llm-evaluation",
+          "author": "",
+          "published": ""
+        },
+        {
+          "title": "LLM as a Judge",
+          "url": "https://outcomeschool.com/blog/llm-as-a-judge",
+          "author": "",
+          "published": ""
+        }
+      ]
+    },
+    {
+      "order": 14,
+      "topic": "safety",
+      "topicName": "安全、安保与负责任 AI",
+      "question": "设计引用校验系统，以减少生成答案中的幻觉。你如何确保每一个论断都确实被其引用的来源支持？",
+      "questionEn": "Design the citation-verification system to reduce hallucinations in generated answers. How do you ensure every claim is actually supported by its cited source?",
+      "sources": []
+    },
+    {
+      "order": 15,
+      "topic": "behavioral",
+      "topicName": "行为与文化",
+      "question": "什么样的 Perplexity 回答算出色，什么样的算平庸？Perplexity 在哪些地方输给传统搜索，又在哪些地方胜出？你显然在用它：它哪里不好用，你会发布什么来修复？",
+      "questionEn": "What makes a Perplexity answer great vs mediocre? Where does Perplexity lose to traditional search, and where does it win? You clearly use it: what's broken, and what would you ship to fix it?",
+      "sources": []
+    }
+  ]
+}
