@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:47:53.218Z",
+  "generated": "2026-09-29T18:49:27.414Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 219,
+    "companyQuestions": 220,
     "companies": 16,
     "planned": 598
   },
@@ -16519,6 +16519,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7478
+        },
+        {
+          "id": "openai-25",
+          "order": 25,
+          "title": "你被派到客户现场做理赔自动化。前两周你会做什么？",
+          "titleEn": "You are deployed at a customer site for claims automation. What do you do in the first two weeks?",
+          "file": "公司题库/openai/25-理赔现场的前两周.md",
+          "level": "进阶",
+          "tags": [
+            "现场交付",
+            "流程分解",
+            "盈亏平衡",
+            "窄试点",
+            "信任建设"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "openai-26",
+            "microsoft-04",
+            "microsoft-07",
+            "applied-01",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Hidden Technical Debt in Machine Learning Systems（延伸）",
+              "url": "https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems",
+              "author": "Sculley et al. (Google)",
+              "published": "2015-12-07"
+            },
+            {
+              "title": "Machine Learning: The High-Interest Credit Card of Technical Debt（延伸）",
+              "url": "https://research.google/pubs/pub43146/",
+              "author": "Sculley et al. (Google)",
+              "published": "2014-12-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "1 亿 WAU 的成本（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6628
         }
       ]
     },
