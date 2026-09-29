@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:25:06.111Z",
+  "generated": "2026-09-29T20:29:09.136Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 274,
+    "companyQuestions": 277,
     "companies": 19,
     "planned": 598
   },
@@ -19270,6 +19270,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 6121
+        },
+        {
+          "id": "perplexity-07",
+          "order": 7,
+          "title": "你检索到 50 个候选段落，但模型真正有用的上下文预算只有约 10 个。你如何取舍，又怎么知道自己选得好不好？",
+          "titleEn": "You retrieve 50 candidate passages but the model has useful context budget for only about 10. How do you choose, and how do you know you chose well?",
+          "file": "公司题库/perplexity/07-50-选-10-的取舍与验证.md",
+          "level": "高阶",
+          "tags": [
+            "上下文选择",
+            "冗余",
+            "MMR",
+            "leave-one-out",
+            "位置效应"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "perplexity-06",
+            "perplexity-08",
+            "rag-02",
+            "openai-12",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "The Use of MMR, Diversity-Based Reranking for Reordering Documents（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/290941.291025",
+              "author": "Carbonell & Goldstein",
+              "published": "1998-08-01"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al.",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia",
+              "published": "2020-04-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5158
+        },
+        {
+          "id": "perplexity-08",
+          "order": 8,
+          "title": "设计一个答案引擎：用户输入一个问题，得到带引用、流式输出的答案。你的端到端预算是 3 秒内给出一个完整的简短回答。",
+          "titleEn": "Design an answer engine: the user asks a question and gets a cited, streamed answer. Your end-to-end budget is a complete short answer within 3 seconds.",
+          "file": "公司题库/perplexity/08-答案引擎的-3-秒预算.md",
+          "level": "高阶",
+          "tags": [
+            "答案引擎",
+            "token 预算",
+            "流式",
+            "感知延迟",
+            "推测解码"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "perplexity-05",
+            "perplexity-07",
+            "perplexity-09",
+            "perplexity-12",
+            "openai-17"
+          ],
+          "sources": [
+            {
+              "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving（延伸）",
+              "url": "https://arxiv.org/abs/2401.09670",
+              "author": "Zhong et al.",
+              "published": "2024-01-23"
+            },
+            {
+              "title": "Fast Inference from Transformers via Speculative Decoding（延伸）",
+              "url": "https://arxiv.org/abs/2211.17192",
+              "author": "Leviathan, Kalman & Matias (Google)",
+              "published": "2022-11-30"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al.",
+              "published": "2023-12-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5923
+        },
+        {
+          "id": "perplexity-09",
+          "order": 9,
+          "title": "设计一条从 1000 亿网页中拉取数据的 retrieval 流水线，要求亚秒级延迟并有新鲜度保证。",
+          "titleEn": "Design a retrieval pipeline over 100 billion web pages with sub-second latency and freshness guarantees.",
+          "file": "公司题库/perplexity/09-千亿网页的检索流水线.md",
+          "level": "高阶",
+          "tags": [
+            "千亿规模",
+            "分片路由",
+            "两级索引",
+            "新鲜度",
+            "热温冷分层"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "perplexity-08",
+            "perplexity-06",
+            "perplexity-12",
+            "rag-02",
+            "system-design-04"
+          ],
+          "sources": [
+            {
+              "title": "Efficient and Robust Approximate Nearest Neighbor Search Using Hierarchical Navigable Small World Graphs（延伸）",
+              "url": "https://arxiv.org/abs/1603.09320",
+              "author": "Malkov & Yashunin",
+              "published": "2016-03-30"
+            },
+            {
+              "title": "Billion-scale Similarity Search with GPUs（延伸）",
+              "url": "https://arxiv.org/abs/1702.08734",
+              "author": "Johnson, Douze & Jégou (Facebook)",
+              "published": "2017-02-28"
+            },
+            {
+              "title": "The Google File System（延伸）",
+              "url": "https://research.google/pubs/pub51/",
+              "author": "Ghemawat, Gobioff & Leung (Google)",
+              "published": "2003-10-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5375
         }
       ]
     },
