@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:26:07.153Z",
+  "generated": "2026-09-29T13:30:14.013Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 98,
+    "companyQuestions": 100,
     "companies": 6,
     "planned": 598
   },
@@ -7290,6 +7290,117 @@
           ],
           "updated": "2026-09-28",
           "chars": 5242
+        },
+        {
+          "id": "anthropic-24",
+          "order": 24,
+          "title": "设计一个 10 亿文档、100 万 QPS 的分布式搜索系统。",
+          "titleEn": "Design a distributed search system for a billion documents at a million QPS.",
+          "file": "公司题库/anthropic/24-十亿文档百万-QPS-的分布式搜索系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "分布式检索",
+            "分片",
+            "尾延迟",
+            "ANN",
+            "缓存"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "anthropic-22",
+            "anthropic-25",
+            "anthropic-17",
+            "rag-02",
+            "rag-10"
+          ],
+          "sources": [
+            {
+              "title": "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs（HNSW）（延伸）",
+              "url": "https://arxiv.org/abs/1603.09320",
+              "author": "Malkov & Yashunin",
+              "published": "2016-03-30"
+            },
+            {
+              "title": "Billion-scale similarity search with GPUs（FAISS）（延伸）",
+              "url": "https://arxiv.org/abs/1702.08734",
+              "author": "Johnson, Douze, Jégou",
+              "published": "2017-02-28"
+            },
+            {
+              "title": "The Faiss library（延伸）",
+              "url": "https://arxiv.org/abs/2401.08281",
+              "author": "Douze et al.",
+              "published": "2024-01-16"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/the-tail-at-scale/",
+              "author": "Dean & Barroso (CACM 2013)",
+              "published": "2013-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5588
+        },
+        {
+          "id": "anthropic-25",
+          "order": 25,
+          "title": "为开发者设计 LLM API（面向外部开发者的接口、版本与配额）。",
+          "titleEn": "Design an LLM API for developers (interface, versioning, quotas).",
+          "file": "公司题库/anthropic/25-为开发者设计-LLM-API.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "API-设计",
+            "版本兼容",
+            "配额",
+            "幂等"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "anthropic-17",
+            "anthropic-24",
+            "anthropic-08",
+            "system-design-09",
+            "anthropic-23"
+          ],
+          "sources": [
+            {
+              "title": "RFC 9110：HTTP Semantics（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "author": "IETF (Fielding, Nottingham, Reschke)",
+              "published": "2022-06"
+            },
+            {
+              "title": "AIP-158：Pagination（Google API 改进提案）（延伸）",
+              "url": "https://google.aip.dev/158",
+              "author": "Google",
+              "published": ""
+            },
+            {
+              "title": "AIP-180：Backwards compatibility（Google API 改进提案）（延伸）",
+              "url": "https://google.aip.dev/180",
+              "author": "Google",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6501
         }
       ]
     },
