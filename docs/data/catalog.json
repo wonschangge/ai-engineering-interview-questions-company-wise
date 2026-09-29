@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:18:04.930Z",
+  "generated": "2026-09-29T17:20:06.202Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 174,
+    "companyQuestions": 175,
     "companies": 13,
     "planned": 598
   },
@@ -14156,15 +14156,15 @@
       ]
     },
     {
-      "id": "company-moonshot",
-      "name": "moonshot",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "moonshot",
+      "name": "Moonshot AI（Kimi）",
+      "group": "前沿 AI 实验室",
+      "summary": "十道题围绕一条主线——超长上下文：从 8K 到几十万 token 时四条限制的增长速率、MLA 的 KV 压缩、K2 的 MoE 训练系统成本、位置编码扩展、prefill/decode 分离、多轮前缀缓存、1M 窗口与检索的分工，再到 attention logits 爆炸与 MuonClip、K1.5 的简单 RL、以及 agentic 模型的评估方法。",
+      "updated": "2026-09-28",
       "dir": "moonshot",
-      "overviewFile": null,
-      "overviewTitle": "moonshot",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/moonshot/README.md",
+      "overviewTitle": "Moonshot AI（Kimi）面试题库",
+      "declaredTotal": 10,
       "questions": [
         {
           "id": "moonshot-01",
@@ -14216,7 +14216,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5827
+          "chars": 5827,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "moonshot-02",
@@ -14268,7 +14270,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6533
+          "chars": 6533,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 2
         },
         {
           "id": "moonshot-03",
@@ -14320,7 +14324,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6955
+          "chars": 6955,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 3
         },
         {
           "id": "moonshot-04",
@@ -14372,7 +14378,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6916
+          "chars": 6916,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 4
         },
         {
           "id": "moonshot-05",
@@ -14424,7 +14432,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7322
+          "chars": 7322,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "moonshot-06",
@@ -14476,7 +14486,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7571
+          "chars": 7571,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 2
         },
         {
           "id": "moonshot-07",
@@ -14528,7 +14540,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6148
+          "chars": 6148,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
         },
         {
           "id": "moonshot-08",
@@ -14580,7 +14594,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7139
+          "chars": 7139,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "moonshot-09",
@@ -14632,7 +14648,63 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7062
+          "chars": 7062,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
+        },
+        {
+          "id": "moonshot-10",
+          "order": 10,
+          "title": "Kimi K2 面向 agentic 与编程任务。除了单一的 benchmark 分数，你会如何评估一个 agentic 模型是否真的优秀？",
+          "titleEn": "Kimi K2 targets agentic and coding tasks. Beyond a single benchmark score, how would you evaluate whether an agentic model is genuinely good?",
+          "file": "公司题库/moonshot/10-agentic-模型如何超越单一-benchmark.md",
+          "level": "高阶",
+          "tags": [
+            "agentic 评估",
+            "pass^k",
+            "可靠性",
+            "过程指标",
+            "成本维度"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "moonshot-09",
+            "moonshot-07",
+            "evaluation-05",
+            "agents-03",
+            "cohere-09"
+          ],
+          "sources": [
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al. (Sierra)",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al.",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "LiveBench: A Challenging, Contamination-Free LLM Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2406.19314",
+              "author": "White et al.",
+              "published": "2024-06-27"
+            },
+            {
+              "title": "K1.5 为何刻意保持 RL 简单（本仓库公司题库 · Moonshot AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7158,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         }
       ]
     },
