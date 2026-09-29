@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:55:38.814Z",
+  "generated": "2026-09-29T17:57:02.582Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 189,
+    "companyQuestions": 190,
     "companies": 15,
     "planned": 598
   },
@@ -13852,6 +13852,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7339
+        },
+        {
+          "id": "microsoft-05",
+          "order": 5,
+          "title": "设计一个 Copilot 功能，让它能基于用户的工作邮件、文档和会议回答问题，同时绝不泄露用户无权访问的内容。",
+          "titleEn": "Design a Copilot feature that answers questions from a user's work email, documents and meetings, while never leaking content the user has no access to.",
+          "file": "公司题库/microsoft/05-权限感知的-Copilot.md",
+          "level": "高阶",
+          "tags": [
+            "权限感知检索",
+            "访问控制",
+            "缓存隔离",
+            "泄露路径",
+            "可验证性"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "microsoft-03",
+            "microsoft-04",
+            "microsoft-06",
+            "microsoft-08",
+            "rag-05"
+          ],
+          "sources": [
+            {
+              "title": "Google Zanzibar: Google's Consistent, Global Authorization System（延伸）",
+              "url": "https://research.google/pubs/pub48190/",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al.",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Extracting Training Data from Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2012.07805",
+              "author": "Carlini et al.",
+              "published": "2020-12-14"
+            },
+            {
+              "title": "1 亿 WAU 摘要功能的成本（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7240
         }
       ]
     },
