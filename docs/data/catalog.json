@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:09:37.597Z",
+  "generated": "2026-09-29T18:11:17.312Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 196,
+    "companyQuestions": 197,
     "companies": 16,
     "planned": 598
   },
@@ -15323,6 +15323,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6663
+        },
+        {
+          "id": "openai-02",
+          "order": 2,
+          "title": "一步步实现一个数据库 ORM。",
+          "titleEn": "Implement a database ORM, step by step.",
+          "file": "公司题库/openai/02-一步步实现一个-ORM.md",
+          "level": "高阶",
+          "tags": [
+            "ORM",
+            "查询构建器",
+            "身份映射",
+            "N+1",
+            "连接池"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "openai-01",
+            "openai-20",
+            "coding-08",
+            "coding-09",
+            "databricks-03"
+          ],
+          "sources": [
+            {
+              "title": "Patterns of Enterprise Application Architecture（延伸）",
+              "url": "https://martinfowler.com/books/eaa.html",
+              "author": "Martin Fowler",
+              "published": "2002-11-15"
+            },
+            {
+              "title": "SQL Injection Prevention Cheat Sheet（延伸）",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+              "author": "OWASP",
+              "published": "2023-01-01"
+            },
+            {
+              "title": "Design Patterns: Elements of Reusable Object-Oriented Software（延伸）",
+              "url": "https://www.oreilly.com/library/view/design-patterns-elements/0201633612/",
+              "author": "Gamma, Helm, Johnson & Vlissides",
+              "published": "1994-10-31"
+            },
+            {
+              "title": "支持事务的内存 KV 存储（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7120
         }
       ]
     },
