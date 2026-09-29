@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:40:56.925Z",
+  "generated": "2026-09-29T20:45:48.125Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 286,
+    "companyQuestions": 289,
     "companies": 20,
     "planned": 598
   },
@@ -16473,6 +16473,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5611
+        },
+        {
+          "id": "nvidia-04",
+          "order": 4,
+          "title": "解释在基于树的分类模型中对抗过拟合的策略。",
+          "titleEn": "Explain the strategies for combating overfitting in tree-based classification models.",
+          "file": "公司题库/nvidia/04-树模型对抗过拟合.md",
+          "level": "进阶",
+          "tags": [
+            "树模型",
+            "过拟合",
+            "偏差方差",
+            "正则化",
+            "早停"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "nvidia-05",
+            "nvidia-06",
+            "coding-26",
+            "evaluation-01",
+            "llm-internals-01"
+          ],
+          "sources": [
+            {
+              "title": "XGBoost: A Scalable Tree Boosting System（延伸）",
+              "url": "https://arxiv.org/abs/1603.02754",
+              "author": "Chen & Guestrin",
+              "published": "2016-03-09"
+            },
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "LightGBM: A Highly Efficient Gradient Boosting Decision Tree（延伸）",
+              "url": "https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree",
+              "author": "Ke et al. (Microsoft)",
+              "published": "2017-12-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5504
+        },
+        {
+          "id": "nvidia-05",
+          "order": 5,
+          "title": "总结在神经网络图像分类中，Adam 优化器相比其他方法的差异与优势。",
+          "titleEn": "Summarise how the Adam optimiser differs from alternatives and what its advantages are in neural network image classification.",
+          "file": "公司题库/nvidia/05-Adam-优化器的差异与优势.md",
+          "level": "进阶",
+          "tags": [
+            "Adam",
+            "尺度不变性",
+            "偏差修正",
+            "AdamW",
+            "优化器对比"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "nvidia-04",
+            "nvidia-06",
+            "llm-internals-01",
+            "openai-09",
+            "system-design-07"
+          ],
+          "sources": [
+            {
+              "title": "Adam: A Method for Stochastic Optimization（延伸）",
+              "url": "https://arxiv.org/abs/1412.6980",
+              "author": "Kingma & Ba",
+              "published": "2014-12-22"
+            },
+            {
+              "title": "Decoupled Weight Decay Regularization（延伸）",
+              "url": "https://arxiv.org/abs/1711.05101",
+              "author": "Loshchilov & Hutter",
+              "published": "2017-11-14"
+            },
+            {
+              "title": "On the Variance of the Adaptive Learning Rate and Beyond（延伸）",
+              "url": "https://arxiv.org/abs/1908.03265",
+              "author": "Liu et al.",
+              "published": "2019-08-08"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5187
+        },
+        {
+          "id": "nvidia-06",
+          "order": 6,
+          "title": "一个网络会把巴哥犬和比特犬搞混，而且部分训练标签是错的。你会如何调整模型和数据？",
+          "titleEn": "A network confuses pugs with pit bulls, and some of the training labels are wrong. How would you adjust the model and the data?",
+          "file": "公司题库/nvidia/06-巴哥犬与比特犬的混淆与错标.md",
+          "level": "高阶",
+          "tags": [
+            "标签噪声",
+            "细粒度分类",
+            "混淆矩阵",
+            "低置信样本",
+            "基率"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "nvidia-04",
+            "nvidia-05",
+            "perplexity-14",
+            "coding-25",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Confident Learning: Estimating Uncertainty in Dataset Labels（延伸）",
+              "url": "https://arxiv.org/abs/1911.00068",
+              "author": "Northcutt, Jiang & Chuang",
+              "published": "2019-10-31"
+            },
+            {
+              "title": "Training Convolutional Networks with Noisy Labels（延伸）",
+              "url": "https://arxiv.org/abs/1406.1097",
+              "author": "Sukhbaatar et al. (Facebook AI)",
+              "published": "2014-06-04"
+            },
+            {
+              "title": "Bilinear CNN Models for Fine-Grained Visual Recognition（延伸）",
+              "url": "https://arxiv.org/abs/1509.07838",
+              "author": "Lin, RoyChowdhury & Maji",
+              "published": "2015-09-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5500
         }
       ]
     },
