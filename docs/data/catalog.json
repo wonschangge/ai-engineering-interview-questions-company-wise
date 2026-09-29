@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:55:26.981Z",
+  "generated": "2026-09-29T15:56:46.360Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 152,
+    "companyQuestions": 153,
     "companies": 11,
     "planned": 598
   },
@@ -8970,6 +8970,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5467
+        },
+        {
+          "id": "cohere-08",
+          "order": 8,
+          "title": "一家银行希望把整套技术栈（模型、RAG、agent）以气隙（air-gapped）方式部署在自己的 GPU 上。相比你们的 SaaS，实际会有哪些变化？",
+          "titleEn": "A bank wants the whole stack (models, RAG, agents) deployed air-gapped on its own GPUs. What actually changes compared to your SaaS?",
+          "file": "公司题库/cohere/08-银行整栈气隙部署的实际变化.md",
+          "level": "高阶",
+          "tags": [
+            "气隙部署",
+            "交付与升级",
+            "离线许可",
+            "支持模式",
+            "容量规划"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cohere-07",
+            "cohere-09",
+            "cohere-02",
+            "databricks-09",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "从 demo 到企业上线的检查清单（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "企业工作流 agent 的企业级要求（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "稀疏 MoE 为何适合私有化部署（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "估算服务一个 70B 模型所需的 GPU 显存（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5746
         }
       ]
     },
