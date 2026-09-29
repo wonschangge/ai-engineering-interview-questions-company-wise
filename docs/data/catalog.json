@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:55:32.598Z",
+  "generated": "2026-09-29T14:57:43.978Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 133,
+    "companyQuestions": 134,
     "companies": 9,
     "planned": 598
   },
@@ -8418,6 +8418,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5851
+        },
+        {
+          "id": "cognition-07",
+          "order": 7,
+          "title": "你会如何评估一个自主软件工程 agent？请解释为什么 SWE-bench 的通过率具有误导性。",
+          "titleEn": "How would you evaluate an autonomous software engineering agent? Explain why SWE-bench pass rates are misleading.",
+          "file": "公司题库/cognition/07-如何评估自主软件工程-agent.md",
+          "level": "高阶",
+          "tags": [
+            "agent-评估",
+            "SWE-bench",
+            "通过率",
+            "置信区间",
+            "复合指标"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "cognition-04",
+            "cognition-06",
+            "cognition-08",
+            "evaluation-10",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering（延伸）",
+              "url": "https://arxiv.org/abs/2405.15793",
+              "author": "Yang et al. (NeurIPS 2024)",
+              "published": "2024-05-24"
+            },
+            {
+              "title": "与评估单个模型回复相比如何评估一个 agent（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为什么 benchmark 分数在提升用户却说系统变差了（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6338
         }
       ]
     },
