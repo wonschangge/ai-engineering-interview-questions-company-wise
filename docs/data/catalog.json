@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T21:55:48.649Z",
+  "generated": "2026-09-29T22:03:07.590Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 344,
-    "companies": 24,
+    "companyQuestions": 347,
+    "companies": 25,
     "planned": 598
   },
   "topics": [
@@ -8092,6 +8092,157 @@
           "chars": 5633,
           "topicName": "行为与文化",
           "topicOrder": 4
+        }
+      ]
+    },
+    {
+      "id": "company-character-ai",
+      "name": "character-ai",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "character-ai",
+      "overviewFile": null,
+      "overviewTitle": "character-ai",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "character-ai-01",
+          "order": 1,
+          "title": "现场编程：在固定的 token 预算下构建下一轮的 prompt。难点在于我们的 prefix cache。",
+          "titleEn": "Live coding: build the next-turn prompt under a fixed token budget. The hard part is our prefix cache.",
+          "file": "公司题库/character-ai/01-固定预算下的-prompt-组装.md",
+          "level": "高阶",
+          "tags": [
+            "prefix cache",
+            "prompt 组装",
+            "token 预算",
+            "命中率",
+            "追加式摘要"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "character-ai-02",
+            "character-ai-04",
+            "character-ai-06",
+            "nvidia-08",
+            "inference-serving-04"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al.",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al.",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4798
+        },
+        {
+          "id": "character-ai-02",
+          "order": 2,
+          "title": "一次对话超出了上下文窗口。你会保留什么，又如何决定？",
+          "titleEn": "A conversation has exceeded the context window. What do you keep, and how do you decide?",
+          "file": "公司题库/character-ai/02-超出上下文窗口时保留什么.md",
+          "level": "高阶",
+          "tags": [
+            "上下文管理",
+            "结构化记忆",
+            "摘要",
+            "探针",
+            "人设一致性"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "character-ai-01",
+            "character-ai-03",
+            "character-ai-08",
+            "rag-01",
+            "llm-internals-01"
+          ],
+          "sources": [
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al.",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "MemGPT: Towards LLMs as Operating Systems（延伸）",
+              "url": "https://arxiv.org/abs/2310.08560",
+              "author": "Packer et al.",
+              "published": "2023-10-12"
+            },
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (Google)",
+              "published": "2017-06-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4441
+        },
+        {
+          "id": "character-ai-03",
+          "order": 3,
+          "title": "我们的服务成本主要由 KV cache 而非权重决定。把它降低一个数量级，并告诉我你要为此放弃什么。",
+          "titleEn": "Our serving cost is driven by the KV cache rather than the weights. Reduce it by an order of magnitude, and tell me what you give up.",
+          "file": "公司题库/character-ai/03-把-KV-cache-降低一个数量级.md",
+          "level": "高阶",
+          "tags": [
+            "KV cache",
+            "跨层共享",
+            "KV 量化",
+            "滑动窗口",
+            "前缀共享"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "character-ai-01",
+            "character-ai-02",
+            "character-ai-06",
+            "nvidia-08",
+            "deepseek-02"
+          ],
+          "sources": [
+            {
+              "title": "Fast Transformer Decoding: One Write-Head is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1911.02150",
+              "author": "Shazeer (Google)",
+              "published": "2019-11-06"
+            },
+            {
+              "title": "GQA: Training Generalized Multi-Query Transformer Models（延伸）",
+              "url": "https://arxiv.org/abs/2305.13245",
+              "author": "Ainslie et al. (Google)",
+              "published": "2023-05-22"
+            },
+            {
+              "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model（延伸）",
+              "url": "https://arxiv.org/abs/2405.04434",
+              "author": "DeepSeek-AI",
+              "published": "2024-05-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5029
         }
       ]
     },
