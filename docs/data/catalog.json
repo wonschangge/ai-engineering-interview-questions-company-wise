@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:58:59.805Z",
+  "generated": "2026-09-29T18:00:54.913Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 191,
+    "companyQuestions": 192,
     "companies": 15,
     "planned": 598
   },
@@ -13956,6 +13956,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7603
+        },
+        {
+          "id": "microsoft-07",
+          "order": 7,
+          "title": "在把会议摘要功能发布给一亿用户之前，你会如何评估它？",
+          "titleEn": "How would you evaluate a meeting summarization feature before shipping it to a hundred million users?",
+          "file": "公司题库/microsoft/07-会议摘要功能的发布前评估.md",
+          "level": "高阶",
+          "tags": [
+            "评估体系",
+            "样本量",
+            "罕见事件",
+            "分阶段发布",
+            "切片分析"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "microsoft-04",
+            "microsoft-05",
+            "microsoft-08",
+            "evaluation-01",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al.",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "ROUGE: A Package for Automatic Evaluation of Summaries（延伸）",
+              "url": "https://aclanthology.org/W04-1013/",
+              "author": "Lin (ISI)",
+              "published": "2004-07-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "1 亿 WAU 摘要功能的成本（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7650
         }
       ]
     },
