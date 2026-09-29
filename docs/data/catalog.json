@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T16:57:00.707Z",
+  "generated": "2026-09-29T16:58:34.743Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 165,
-    "companies": 12,
+    "companyQuestions": 166,
+    "companies": 13,
     "planned": 598
   },
   "topics": [
@@ -14152,6 +14152,71 @@
           "chars": 16143,
           "topicName": "AI 系统设计",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-moonshot",
+      "name": "moonshot",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "moonshot",
+      "overviewFile": null,
+      "overviewTitle": "moonshot",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "moonshot-01",
+          "order": 1,
+          "title": "Kimi 最突出的特性是超长上下文。当你把上下文从 8K 推到几十万 tokens 时，最先崩溃的是什么，为什么？",
+          "titleEn": "Kimi's headline feature is very long context. As you push context from 8K to hundreds of thousands of tokens, what breaks first, and why?",
+          "file": "公司题库/moonshot/01-上下文从-8K-推到几十万时最先崩什么.md",
+          "level": "高阶",
+          "tags": [
+            "长上下文",
+            "KV cache",
+            "注意力平方",
+            "位置外推",
+            "TTFT"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "moonshot-02",
+            "moonshot-04",
+            "moonshot-05",
+            "moonshot-06",
+            "moonshot-07"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (TACL 2024)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al.",
+              "published": "2022-05-27"
+            },
+            {
+              "title": "显存受限下低延迟服务 671B MoE（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5827
         }
       ]
     },
