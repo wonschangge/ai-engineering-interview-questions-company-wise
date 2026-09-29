@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:20:40.080Z",
+  "generated": "2026-09-29T21:23:22.670Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 317,
+    "companyQuestions": 320,
     "companies": 22,
     "planned": 598
   },
@@ -20943,15 +20943,15 @@
       ]
     },
     {
-      "id": "company-scale-ai",
-      "name": "scale-ai",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "scale-ai",
+      "name": "Scale AI",
+      "group": "AI 基础设施与平台公司",
+      "summary": "十二道题全部落在\"数据与评测的可信度\"这一个主题上——两道编程（标注平台的任务生命周期、并发标注者的峰值与区间）、两道微调（SFT/RLHF/DPO/RLVR 的对比、网页旅行 App 的 RL 环境）、两道系统设计（每周 10 万条偏好数据流水线、私有基准与排行榜）、三道评估（主观偏好下如何衡量标注质量、agent 的 tool use 基准、eval 下降 6 分的排查）、一道安全（标注者用 ChatGPT 代做），以及两道落地场景（VPC 内的文档问答、机器人演示数据采集）。",
+      "updated": "2026-09-28",
       "dir": "scale-ai",
-      "overviewFile": null,
-      "overviewTitle": "scale-ai",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/scale-ai/README.md",
+      "overviewTitle": "Scale AI 面试题库",
+      "declaredTotal": 12,
       "questions": [
         {
           "id": "scale-01",
@@ -20997,7 +20997,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5241
+          "chars": 5241,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "scale-02",
@@ -21043,7 +21045,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4448
+          "chars": 4448,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "scale-03",
@@ -21089,7 +21093,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5097
+          "chars": 5097,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "scale-04",
@@ -21135,7 +21141,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4815
+          "chars": 4815,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
         },
         {
           "id": "scale-05",
@@ -21181,7 +21189,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4835
+          "chars": 4835,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "scale-06",
@@ -21227,7 +21237,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4650
+          "chars": 4650,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "scale-07",
@@ -21273,7 +21285,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4923
+          "chars": 4923,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "scale-08",
@@ -21319,7 +21333,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4720
+          "chars": 4720,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
         },
         {
           "id": "scale-09",
@@ -21365,7 +21381,153 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4795
+          "chars": 4795,
+          "topicName": "评估与可观测性",
+          "topicOrder": 3
+        },
+        {
+          "id": "scale-10",
+          "order": 10,
+          "title": "有些标注者把你的任务粘贴进 ChatGPT，然后直接提交输出。你如何检测并处理？",
+          "titleEn": "Some annotators paste your task into ChatGPT and submit the output directly. How do you detect and handle it?",
+          "file": "公司题库/scale-ai/10-标注者用-ChatGPT-代做的检测.md",
+          "level": "进阶",
+          "tags": [
+            "作弊检测",
+            "时间信号",
+            "金标准题",
+            "混淆矩阵",
+            "数据追溯"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "scale-01",
+            "scale-07",
+            "scale-05",
+            "scale-09",
+            "behavioral-04"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "The Mom Test（延伸）",
+              "url": "https://www.momtestbook.com/",
+              "author": "Rob Fitzpatrick",
+              "published": "2013-01-01"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4680,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "scale-11",
+          "order": 11,
+          "title": "一家企业想要一个基于 200 万份内部文档的文档问答助手，要在四周内完成试点，而他们的安全团队禁止数据离开自己的 VPC。请界定范围并给出设计。",
+          "titleEn": "An enterprise wants a document Q&A assistant over 2 million internal documents, delivered as a four-week pilot, and their security team forbids data leaving their VPC. Scope it and give the design.",
+          "file": "公司题库/scale-ai/11-VPC-内的文档问答助手.md",
+          "level": "高阶",
+          "tags": [
+            "VPC 内",
+            "RAG 界定",
+            "自托管",
+            "摄入规模",
+            "四周计划"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "scale-05",
+            "scale-06",
+            "scale-09",
+            "rag-01",
+            "nvidia-08"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook AI)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al.",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (UC Berkeley)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4780,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 1
+        },
+        {
+          "id": "scale-12",
+          "order": 12,
+          "title": "一家机器人客户需要 5 万小时的操作演示数据，覆盖 12 个任务和三种 embodiment。请设计采集流水线，并说明什么样的演示数据值得保留。",
+          "titleEn": "A robotics customer needs 50,000 hours of manipulation demonstration data covering 12 tasks and three embodiments. Design the collection pipeline, and say what demonstration data is worth keeping.",
+          "file": "公司题库/scale-ai/12-机器人演示数据采集.md",
+          "level": "高阶",
+          "tags": [
+            "机器人数据",
+            "演示采集",
+            "多样性",
+            "审核瓶颈",
+            "保留率"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "scale-04",
+            "scale-05",
+            "scale-11",
+            "multimodal-03",
+            "agents-05"
+          ],
+          "sources": [
+            {
+              "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware（延伸）",
+              "url": "https://arxiv.org/abs/2304.13705",
+              "author": "Zhao et al. (Stanford)",
+              "published": "2023-04-26"
+            },
+            {
+              "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models（延伸）",
+              "url": "https://arxiv.org/abs/2310.08864",
+              "author": "Open X-Embodiment Collaboration",
+              "published": "2023-10-13"
+            },
+            {
+              "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（延伸）",
+              "url": "https://arxiv.org/abs/2303.04137",
+              "author": "Chi et al.",
+              "published": "2023-03-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5057,
+          "topicName": "应用与前置部署场景",
+          "topicOrder": 2
         }
       ]
     },
