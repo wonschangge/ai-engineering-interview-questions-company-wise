@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:55:36.378Z",
+  "generated": "2026-09-29T18:57:33.362Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 224,
+    "companyQuestions": 225,
     "companies": 16,
     "planned": 598
   },
@@ -16779,6 +16779,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 7013
+        },
+        {
+          "id": "openai-30",
+          "order": 30,
+          "title": "讲一次你和别人在优先级上有分歧的经历。",
+          "titleEn": "Tell me about a time you disagreed with someone about priorities.",
+          "file": "公司题库/openai/30-优先级分歧.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "代价延迟",
+            "可逆性",
+            "单向门",
+            "决策权"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "openai-29",
+            "openai-31",
+            "openai-25",
+            "behavioral-01",
+            "applied-02"
+          ],
+          "sources": [
+            {
+              "title": "Principles: Life and Work（延伸）",
+              "url": "https://www.simonandschuster.com/books/Principles/Ray-Dalio/9781501124020",
+              "author": "Ray Dalio",
+              "published": "2017-09-19"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/72441/high-output-management-by-andrew-s-grove/",
+              "author": "Andrew Grove",
+              "published": "1983-01-01"
+            },
+            {
+              "title": "The Art of Action（延伸）",
+              "url": "https://www.hachette.co.uk/titles/stephen-bungay/the-art-of-action/9781857885590/",
+              "author": "Stephen Bungay",
+              "published": "2010-11-26"
+            },
+            {
+              "title": "与别人的冲突（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6667
         }
       ]
     },
