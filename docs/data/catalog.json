@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T19:00:16.976Z",
+  "generated": "2026-09-29T19:17:35.454Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 226,
-    "companies": 16,
+    "companyQuestions": 228,
+    "companies": 17,
     "planned": 598
   },
   "topics": [
@@ -12317,6 +12317,111 @@
           "chars": 5473,
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-google-deepmind",
+      "name": "google-deepmind",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "google-deepmind",
+      "overviewFile": null,
+      "overviewTitle": "google-deepmind",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "gdm-01",
+          "order": 1,
+          "title": "你收到一个无界的 event ID 流。要求在任意时刻、用有界内存返回目前出现频率最高的 k 个 ID。",
+          "titleEn": "You receive an unbounded stream of event IDs. Return the k most frequent IDs at any moment using bounded memory.",
+          "file": "公司题库/google-deepmind/01-流式-top-k-有界内存.md",
+          "level": "高阶",
+          "tags": [
+            "流式算法",
+            "Space-Saving",
+            "有界内存",
+            "误差上界",
+            "过采样"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "microsoft-01",
+            "gdm-02",
+            "coding-21",
+            "system-design-04",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "Finding Frequent Items in Data Streams（延伸）",
+              "url": "https://dl.acm.org/doi/10.5555/128765.128770",
+              "author": "Metwally, Agrawal & El Abbadi",
+              "published": "2005-01-01"
+            },
+            {
+              "title": "Approximate Frequency Counts over Data Streams（延伸）",
+              "url": "https://www.vldb.org/conf/2002/S18P03.pdf",
+              "author": "Manku & Motwani",
+              "published": "2002-08-20"
+            },
+            {
+              "title": "An Improved Data Stream Summary: The Count-Min Sketch and its Applications（延伸）",
+              "url": "https://www.sciencedirect.com/science/article/pii/S0196677403001913",
+              "author": "Cormode & Muthukrishnan",
+              "published": "2005-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5863
+        },
+        {
+          "id": "gdm-02",
+          "order": 2,
+          "title": "最接近的 key：给定一个键为字母、值为字母列表的字典，找出最接近的 key。",
+          "titleEn": "Closest key: given a dictionary whose keys are letters and whose values are lists of letters, find the closest key.",
+          "file": "公司题库/google-deepmind/02-最接近的-key.md",
+          "level": "进阶",
+          "tags": [
+            "编辑距离",
+            "图距离",
+            "规格澄清",
+            "确定性",
+            "BK-tree"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "gdm-01",
+            "coding-22",
+            "coding-28",
+            "coding-25",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "Binary Codes Capable of Correcting Deletions, Insertions and Reversals（延伸）",
+              "url": "https://ieeexplore.ieee.org/document/1055501",
+              "author": "Levenshtein",
+              "published": "1966-02-01"
+            },
+            {
+              "title": "Fast Approximate String Matching in a Dictionary（延伸）",
+              "url": "https://www.researchgate.net/publication/221654173_Fast_Approximate_String_Matching_in_a_Dictionary",
+              "author": "Bocek, Hunt & Stiller",
+              "published": "2008-01-01"
+            },
+            {
+              "title": "A Metric for Spelling Errors（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1461390.1461395",
+              "author": "Damerau",
+              "published": "1964-03-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5143
         }
       ]
     },
