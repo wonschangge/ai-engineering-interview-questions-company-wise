@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:47:28.156Z",
+  "generated": "2026-09-29T16:50:33.034Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 162,
+    "companyQuestions": 163,
     "companies": 12,
     "planned": 598
   },
@@ -11699,6 +11699,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5974
+        },
+        {
+          "id": "deepseek-08",
+          "order": 8,
+          "title": "当大部分数据都是合成数据时，你如何构建训练数据集而不触发模型崩溃（model collapse）？",
+          "titleEn": "When most of your data is synthetic, how do you build the training set without triggering model collapse?",
+          "file": "公司题库/deepseek/08-合成数据与模型崩溃.md",
+          "level": "高阶",
+          "tags": [
+            "合成数据",
+            "模型崩溃",
+            "递归训练",
+            "数据配比",
+            "质量过滤"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "deepseek-07",
+            "deepseek-06",
+            "cohere-09",
+            "finetuning-08",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "The Curse of Recursion: Training on Generated Data Makes Models Forget（延伸）",
+              "url": "https://arxiv.org/abs/2305.17493",
+              "author": "Shumailov et al.",
+              "published": "2023-05-27"
+            },
+            {
+              "title": "客户坚持微调而你认为 RAG 够用（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5527
         }
       ]
     },
