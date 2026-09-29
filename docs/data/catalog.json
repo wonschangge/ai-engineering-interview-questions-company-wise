@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T12:28:09.375Z",
+  "generated": "2026-09-29T12:41:17.671Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 58,
-    "companies": 4,
+    "companyQuestions": 75,
+    "companies": 5,
     "planned": 598
   },
   "topics": [
@@ -6845,6 +6845,965 @@
           "chars": 4634,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor（Anysphere）",
+      "group": "AI 原生产品公司",
+      "summary": "十七道编辑器场景的题：哈希树与 Merkle 差异、文本缓冲区数据结构、百万 DAU 的补全成本模型、长上下文为何不能取代检索、多文件 agent 的 harness 与沙箱、tab 预测的 100 ms 预算、十万文件 monorepo 的索引与增量更新、流式编辑的并发应用、补丁的可靠应用、代码编辑模型的评估，以及两道行为题。",
+      "updated": "2026-09-28",
+      "dir": "cursor",
+      "overviewFile": "公司题库/cursor/README.md",
+      "overviewTitle": "Cursor（Anysphere）面试题库",
+      "declaredTotal": 17,
+      "questions": [
+        {
+          "id": "cursor-01",
+          "order": 1,
+          "title": "构建一棵哈希树来组织仓库中的数据。",
+          "titleEn": "Build a hash tree to organise data in a repository.",
+          "file": "公司题库/cursor/01-构建哈希树来组织仓库中的数据.md",
+          "level": "进阶",
+          "tags": [
+            "哈希树",
+            "Merkle 树",
+            "内容寻址",
+            "去重",
+            "增量索引",
+            "实现题"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "system-design-02",
+            "rag-11",
+            "coding-10",
+            "coding-06",
+            "inference-serving-05"
+          ],
+          "sources": [
+            {
+              "title": "hashlib — 安全哈希与消息摘要（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/hashlib.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Merkle tree（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Merkle_tree",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "pathlib — 面向对象的文件系统路径（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/pathlib.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems（延伸）",
+              "url": "https://arxiv.org/abs/2306.03091",
+              "author": "Liu et al.",
+              "published": "2023-06-05"
+            },
+            {
+              "title": "hashlib — 安全哈希与消息摘要（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/hashlib.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Merkle tree（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Merkle_tree",
+              "author": "Wikipedia",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9414,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
+        },
+        {
+          "id": "cursor-02",
+          "order": 2,
+          "title": "给定一个仓库快照（路径 → 内容），构建一棵 Merkle 树，并编写函数返回两个快照之间发生变更的文件，且不比较每个文件的内容。",
+          "titleEn": "Given a repository snapshot (path → content), build a Merkle tree and write the function returning which files changed between two snapshots without comparing every file's content.",
+          "file": "公司题库/cursor/02-构建 Merkle 树并按摘要定位变更文件.md",
+          "level": "进阶",
+          "tags": [
+            "merkle-tree",
+            "增量索引",
+            "内容寻址",
+            "哈希",
+            "仓库快照"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-03",
+            "coding-06",
+            "coding-09",
+            "coding-10",
+            "rag-01",
+            "coding"
+          ],
+          "sources": [
+            {
+              "title": "Merkle tree（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Merkle_tree",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "hashlib — 安全哈希与消息摘要（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/hashlib.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Git Internals — Packfiles（Pro Git）（延伸）",
+              "url": "https://git-scm.com/book/en/v2/Git-Internals-Packfiles",
+              "author": "Scott Chacon, Ben Straub",
+              "published": ""
+            },
+            {
+              "title": "Merkle tree（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Merkle_tree",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "hashlib — 安全哈希与消息摘要（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/hashlib.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Git Internals — Packfiles（Pro Git）（延伸）",
+              "url": "https://git-scm.com/book/en/v2/Git-Internals-Packfiles",
+              "author": "Scott Chacon, Ben Straub",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8311,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
+        },
+        {
+          "id": "cursor-03",
+          "order": 3,
+          "title": "打印二叉树节点的顶视图。",
+          "titleEn": "Print the top view of nodes in a binary tree.",
+          "file": "公司题库/cursor/03-打印二叉树节点的顶视图-BFS 首次访问与水平距离列.md",
+          "level": "入门",
+          "tags": [
+            "二叉树",
+            "树的遍历",
+            "BFS",
+            "水平距离",
+            "实现题",
+            "增量维护"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-06",
+            "coding-12",
+            "coding-10",
+            "coding-11",
+            "coding-09"
+          ],
+          "sources": [
+            {
+              "title": "Tree traversal（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Tree_traversal",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "collections — deque 与 OrderedDict（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/collections.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7399,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
+        },
+        {
+          "id": "cursor-04",
+          "order": 4,
+          "title": "在文件系统中找出重复文件。",
+          "titleEn": "Find duplicate files in a file system.",
+          "file": "公司题库/cursor/04-在文件系统中找出重复文件-大小分桶与三级哈希漏斗.md",
+          "level": "进阶",
+          "tags": [
+            "重复文件检测",
+            "内容哈希",
+            "去重",
+            "文件系统遍历",
+            "内容定义分块",
+            "实现题"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-10",
+            "coding-11",
+            "coding-06",
+            "coding-09",
+            "rag-11",
+            "system-design-02"
+          ],
+          "sources": [
+            {
+              "title": "hashlib — 安全哈希与消息摘要（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/hashlib.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "pathlib — 面向对象的文件系统路径（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/pathlib.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 11368,
+          "topicName": "编程与数据结构",
+          "topicOrder": 4
+        },
+        {
+          "id": "cursor-05",
+          "order": 5,
+          "title": "实现编辑器文本缓冲区的核心：在任意位置高效地插入/删除，以及快速按行查找。你会选择什么数据结构？",
+          "titleEn": "Implement the core of an editor text buffer: efficient insert/delete at arbitrary positions and fast line lookup. What structure do you pick?",
+          "file": "公司题库/cursor/05-实现编辑器文本缓冲区-插入删除与按行查找的数据结构.md",
+          "level": "进阶",
+          "tags": [
+            "文本缓冲区",
+            "rope",
+            "piece-table",
+            "gap-buffer",
+            "行索引",
+            "数据结构",
+            "实现题"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-09",
+            "coding-06",
+            "coding-10",
+            "cursor-02",
+            "cursor-03",
+            "coding-12",
+            "coding"
+          ],
+          "sources": [
+            {
+              "title": "Rope (data structure)（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Rope_(data_structure)",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Gap buffer（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Gap_buffer",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "collections — deque 与 OrderedDict（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/collections.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9669,
+          "topicName": "编程与数据结构",
+          "topicOrder": 5
+        },
+        {
+          "id": "cursor-06",
+          "order": 6,
+          "title": "要把自研补全模型服务给数百万 DAU：请讲讲推理成本模型，以及你最优先的三个抓手。",
+          "titleEn": "Serving a custom completion model to millions of DAU: walk me through the inference-cost model and your top three levers.",
+          "file": "公司题库/cursor/06-百万 DAU 补全服务的推理成本模型与三个抓手.md",
+          "level": "高阶",
+          "tags": [
+            "推理成本",
+            "prefix caching",
+            "容量规划",
+            "连续批处理",
+            "量化",
+            "路由",
+            "goodput"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "inference-serving-12",
+            "inference-serving-05",
+            "inference-serving-09",
+            "inference-serving-08",
+            "inference-serving-10",
+            "inference-serving-02"
+          ],
+          "sources": [
+            {
+              "title": "How does Prompt Caching work?",
+              "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (TACL 2024)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Prefill vs Decode：LLM 推理优化",
+              "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems（延伸）",
+              "url": "https://arxiv.org/abs/2306.03091",
+              "author": "Liu et al.",
+              "published": "2023-06-05"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10122,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
+        },
+        {
+          "id": "cursor-07",
+          "order": 7,
+          "title": "长上下文窗口越来越便宜。为什么不干脆去掉 retrieval，把整个仓库都塞进每次请求的上下文里？",
+          "titleEn": "Long context windows keep getting cheaper. Why not drop retrieval and stuff the whole repo into context for every request?",
+          "file": "公司题库/cursor/07-长上下文为何不能取代代码检索.md",
+          "level": "高阶",
+          "tags": [
+            "RAG",
+            "长上下文",
+            "lost-in-the-middle",
+            "成本模型",
+            "代码检索"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "rag-01",
+            "rag-07",
+            "cursor-11",
+            "inference-serving-05",
+            "cursor-06"
+          ],
+          "sources": [
+            {
+              "title": "LLM 中的 lost-in-the-middle 问题",
+              "url": "https://outcomeschool.com/blog/lost-in-the-middle-problem-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (TACL 2024)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (NeurIPS 2020)",
+              "published": "2020-05-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5000,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
+        },
+        {
+          "id": "cursor-08",
+          "order": 8,
+          "title": "为一个能根据自然语言任务做多文件改动的 agent 设计 harness。如何避免它把代码库搞坏？",
+          "titleEn": "Design the harness for an agent that makes multi-file changes from a natural-language task. How do you keep it from wrecking a codebase?",
+          "file": "公司题库/cursor/08-为多文件改动的-agent-设计-harness.md",
+          "level": "高阶",
+          "tags": [
+            "Agent",
+            "harness",
+            "多文件编辑",
+            "沙箱",
+            "可回滚"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "cursor-12",
+            "cursor-13",
+            "cursor-14",
+            "system-design-02",
+            "agents-11"
+          ],
+          "sources": [
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Harness Engineering in AI",
+              "url": "https://outcomeschool.com/blog/harness-engineering-in-ai",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4937,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
+        },
+        {
+          "id": "cursor-09",
+          "order": 9,
+          "title": "设计一个能自主适应新任务的 agentic AI 系统。",
+          "titleEn": "Design an agentic AI system that can autonomously adapt to new tasks.",
+          "file": "公司题库/cursor/09-设计能自主适应新任务的-agentic-系统.md",
+          "level": "高阶",
+          "tags": [
+            "Agent",
+            "自主适应",
+            "记忆体系",
+            "自我验证",
+            "数据飞轮"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "agents-01",
+            "agents-11",
+            "agents-12",
+            "cursor-08",
+            "cursor-14"
+          ],
+          "sources": [
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "AI Agent 循环",
+              "url": "https://outcomeschool.com/blog/ai-agent-loop",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4999,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 2
+        },
+        {
+          "id": "cursor-10",
+          "order": 10,
+          "title": "设计 Cursor 的 tab（下一处编辑预测）系统：对数百万日活用户来说，它必须让人感觉是即时的（感知延迟低于 100 ms）。",
+          "titleEn": "Design Cursor's tab (next-edit prediction) system: it must feel instant (sub-100 ms perceived latency) for millions of daily users.",
+          "file": "公司题库/cursor/10-设计-tab-下一处编辑预测系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "延迟预算",
+            "投机渲染",
+            "前缀缓存",
+            "接受率"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cursor-06",
+            "cursor-11",
+            "cursor-15",
+            "inference-serving-05",
+            "inference-serving-04"
+          ],
+          "sources": [
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Prefill vs Decode：LLM 推理优化",
+              "url": "https://outcomeschool.com/blog/prefill-vs-decode-llm-inference-optimization",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "How does Prompt Caching work?",
+              "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Accelerating Large Language Model Decoding with Speculative Sampling（延伸）",
+              "url": "https://arxiv.org/abs/2302.01318",
+              "author": "Leviathan et al. (DeepMind)",
+              "published": "2023-02-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4894,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
+        },
+        {
+          "id": "cursor-11",
+          "order": 11,
+          "title": "你会如何为包含 10 万个文件的 monorepo 建立索引，让 AI 编辑器能够检索到相关上下文，并在用户编辑时保持索引更新？",
+          "titleEn": "How would you index a 100k-file monorepo so an AI editor can retrieve relevant context, and keep the index fresh as the user edits?",
+          "file": "公司题库/cursor/11-为十万文件的-monorepo-建立索引并保持更新.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "代码索引",
+            "增量更新",
+            "Merkle 树",
+            "混合检索"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cursor-07",
+            "cursor-10",
+            "rag-01",
+            "rag-08",
+            "system-design-02"
+          ],
+          "sources": [
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Claude Code 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems（延伸）",
+              "url": "https://arxiv.org/abs/2306.03091",
+              "author": "Liu et al.",
+              "published": "2023-06-05"
+            },
+            {
+              "title": "CodeRAG-Bench: Can Retrieval Augment Code Generation?（延伸）",
+              "url": "https://arxiv.org/abs/2406.14497",
+              "author": "Wang et al.",
+              "published": "2024-06-20"
+            },
+            {
+              "title": "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs（HNSW）（延伸）",
+              "url": "https://arxiv.org/abs/1603.09320",
+              "author": "Malkov & Yashunin",
+              "published": "2016-03-30"
+            },
+            {
+              "title": "Merkle tree（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Merkle_tree",
+              "author": "Wikipedia",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5229,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
+        },
+        {
+          "id": "cursor-12",
+          "order": 12,
+          "title": "模型正在流式输出一次多文件编辑，而用户还在其中某个文件里继续输入。你如何在不破坏缓冲区的前提下应用这些编辑？",
+          "titleEn": "The model is streaming a multi-file edit while the user keeps typing in one of those files. How do you apply the edits without clobbering the buffer?",
+          "file": "公司题库/cursor/12-模型流式输出编辑而用户仍在输入时如何应用.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "并发编辑",
+            "冲突解决",
+            "流式应用",
+            "协作一致性"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cursor-08",
+            "cursor-13",
+            "cursor-14",
+            "system-design-02",
+            "agents-11"
+          ],
+          "sources": [
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Operational transformation（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Operational_transformation",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Conflict-free replicated data type（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Three-way merge（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Three-way_merge",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Server-sent events（HTML Living Standard）（延伸）",
+              "url": "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+              "author": "WHATWG",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4416,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
+        },
+        {
+          "id": "cursor-13",
+          "order": 13,
+          "title": "你的 agent 模型输出了一个 500 行文件的修改版本。逐字应用既慢又容易出错。你如何让“应用”这一步又快又可靠？",
+          "titleEn": "Your agent model emitted a modified version of a 500-line file. Applying it verbatim is slow and error-prone. How do you make the apply step fast and reliable?",
+          "file": "公司题库/cursor/13-如何让大文件修改的应用又快又可靠.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "补丁应用",
+            "模糊匹配",
+            "失败重试",
+            "幂等"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cursor-08",
+            "cursor-12",
+            "cursor-14",
+            "cursor-15",
+            "agents-11"
+          ],
+          "sources": [
+            {
+              "title": "Harness Engineering in AI",
+              "url": "https://outcomeschool.com/blog/harness-engineering-in-ai",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Cursor 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-cursor-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Diff（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Diff",
+              "author": "Wikipedia",
+              "published": ""
+            },
+            {
+              "title": "Patch (computing)（维基百科）（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Patch_(computing)",
+              "author": "Wikipedia",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4083,
+          "topicName": "AI 系统设计",
+          "topicOrder": 4
+        },
+        {
+          "id": "cursor-14",
+          "order": 14,
+          "title": "一个 agent 需要在代码上反复迭代（运行构建、测试、lint），同时不干扰用户在编辑器里看到的内容。请设计这样的架构。",
+          "titleEn": "An agent needs to iterate on code (run builds, tests, lint) without disturbing what the user sees in the editor. Design that architecture.",
+          "file": "公司题库/cursor/14-agent-反复迭代构建测试而不干扰编辑器的架构.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "沙箱",
+            "工作区隔离",
+            "构建缓存",
+            "迭代循环"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cursor-08",
+            "cursor-12",
+            "cursor-13",
+            "cursor-15",
+            "system-design-02"
+          ],
+          "sources": [
+            {
+              "title": "Harness Engineering in AI",
+              "url": "https://outcomeschool.com/blog/harness-engineering-in-ai",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Claude Code 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-claude-code-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4702,
+          "topicName": "AI 系统设计",
+          "topicOrder": 5
+        },
+        {
+          "id": "cursor-15",
+          "order": 15,
+          "title": "在上线之前，你如何评估一个代码编辑模型？请为 tab 或 agent 编辑设计离线与在线评估方案。",
+          "titleEn": "How do you evaluate a code-editing model before shipping? Design the offline and online evaluation for tab or agent edits.",
+          "file": "公司题库/cursor/15-如何评估代码编辑模型的离线与在线方案.md",
+          "level": "高阶",
+          "tags": [
+            "评估",
+            "代码编辑",
+            "离线基准",
+            "接受率",
+            "代理指标"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "cursor-10",
+            "cursor-13",
+            "evaluation-04",
+            "evaluation-06",
+            "cursor-11"
+          ],
+          "sources": [
+            {
+              "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems（延伸）",
+              "url": "https://arxiv.org/abs/2306.03091",
+              "author": "Liu et al.",
+              "published": "2023-06-05"
+            },
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（延伸）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (ICLR 2024)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "CodeRAG-Bench: Can Retrieval Augment Code Generation?（延伸）",
+              "url": "https://arxiv.org/abs/2406.14497",
+              "author": "Wang et al.",
+              "published": "2024-06-20"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4793,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
+        },
+        {
+          "id": "cursor-16",
+          "order": 16,
+          "title": "你可以在我们的代码库里待两天，且没有被分配任务。你会构建什么？又会如何安排这段时间？",
+          "titleEn": "You get two days in our codebase with no assigned task. What do you build, and how do you spend the time?",
+          "file": "公司题库/cursor/16-在代码库里自主安排两天的选择与排期.md",
+          "level": "进阶",
+          "tags": [
+            "行为面试",
+            "主动性",
+            "代码库探索",
+            "小步交付"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "cursor-08",
+            "cursor-09",
+            "meta-24",
+            "meta-26",
+            "cursor-15"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture（延伸）",
+              "url": "https://arxiv.org/abs/2205.02302",
+              "author": "Kreuzberger et al.",
+              "published": "2022-05-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4016,
+          "topicName": "行为与文化",
+          "topicOrder": 1
+        },
+        {
+          "id": "cursor-17",
+          "order": 17,
+          "title": "讲讲你为了长期收益而做出短期牺牲的一次经历。",
+          "titleEn": "Tell me about a time you took a short-term sacrifice for a long-term gain.",
+          "file": "公司题库/cursor/17-为长期收益做出短期牺牲的一次经历.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "长期主义",
+            "权衡量化",
+            "回本周期"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "meta-25",
+            "meta-26",
+            "cursor-16",
+            "consumer-ml-14",
+            "alibaba-10"
+          ],
+          "sources": [
+            {
+              "title": "Counterfactual Reasoning and Learning Systems（延伸）",
+              "url": "https://arxiv.org/abs/1209.2355",
+              "author": "Bottou et al.",
+              "published": "2012-09-11"
+            },
+            {
+              "title": "Machine Learning Operations: A Mapping Study（延伸）",
+              "url": "https://arxiv.org/abs/2409.19416",
+              "author": "Chakraborty et al. (CSCI'24)",
+              "published": "2024-09-28"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 3947,
+          "topicName": "行为与文化",
+          "topicOrder": 2
         }
       ]
     },
