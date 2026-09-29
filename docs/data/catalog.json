@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:22:00.198Z",
+  "generated": "2026-09-29T13:26:07.153Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 96,
+    "companyQuestions": 98,
     "companies": 6,
     "planned": 598
   },
@@ -7185,6 +7185,111 @@
           ],
           "updated": "2026-09-28",
           "chars": 5571
+        },
+        {
+          "id": "anthropic-22",
+          "order": 22,
+          "title": "设计 Claude 聊天服务。",
+          "titleEn": "Design the Claude chat service.",
+          "file": "公司题库/anthropic/22-设计-Claude-聊天服务.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "聊天服务",
+            "会话记忆",
+            "流式",
+            "安全层",
+            "容量规划"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "anthropic-17",
+            "anthropic-23",
+            "system-design-10",
+            "inference-serving-05",
+            "anthropic-24"
+          ],
+          "sources": [
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "How does Prompt Caching work?",
+              "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "深入 ChatGPT：按下回车之后会发生什么",
+              "url": "https://outcomeschool.substack.com/p/inside-chatgpt-what-happens-after",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "SGLang：Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (RadixAttention)",
+              "published": "2023-12-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5218
+        },
+        {
+          "id": "anthropic-23",
+          "order": 23,
+          "title": "设计一个让 LLM 在单个会话线程中处理多个问题的系统。",
+          "titleEn": "Design a system that lets an LLM handle multiple questions in a single conversation thread.",
+          "file": "公司题库/anthropic/23-单会话多问题的调度与上下文共享设计.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "会话调度",
+            "上下文共享",
+            "流式多路复用",
+            "取消"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "anthropic-22",
+            "anthropic-17",
+            "anthropic-16",
+            "inference-serving-05",
+            "agents-10"
+          ],
+          "sources": [
+            {
+              "title": "How does Prompt Caching work?",
+              "url": "https://outcomeschool.com/blog/how-does-prompt-caching-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "SGLang：Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (RadixAttention)",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "Taming Throughput-Latency Tradeoff in LLM Inference with Sarathi-Serve（延伸）",
+              "url": "https://arxiv.org/abs/2403.02310",
+              "author": "Agrawal et al. (Microsoft, OSDI 2024)",
+              "published": "2024-03-04"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5242
         }
       ]
     },
