@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:07:18.700Z",
+  "generated": "2026-09-29T16:32:49.657Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 156,
+    "companyQuestions": 157,
     "companies": 12,
     "planned": 598
   },
@@ -11386,6 +11386,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5446
+        },
+        {
+          "id": "deepseek-02",
+          "order": 2,
+          "title": "DeepSeek-V3 使用无辅助损失的负载均衡。辅助损失有什么问题，bias 技巧又是如何起作用的？",
+          "titleEn": "DeepSeek-V3 uses auxiliary-loss-free load balancing. What is wrong with the auxiliary loss, and how does the bias trick work?",
+          "file": "公司题库/deepseek/02-无辅助损失的负载均衡.md",
+          "level": "高阶",
+          "tags": [
+            "负载均衡",
+            "辅助损失",
+            "bias 控制回路",
+            "专家专业化",
+            "序列级均衡"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "deepseek-01",
+            "deepseek-04",
+            "deepseek-09",
+            "cohere-02",
+            "inference-serving-07"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity（延伸）",
+              "url": "https://arxiv.org/abs/2101.03961",
+              "author": "Fedus et al. (Google)",
+              "published": "2021-01-11"
+            },
+            {
+              "title": "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2401.06066",
+              "author": "Dai et al. (DeepSeek-AI)",
+              "published": "2024-01-11"
+            },
+            {
+              "title": "DeepSeekMoE 与标准 top-2 MoE 的差异（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5977
         }
       ]
     },
