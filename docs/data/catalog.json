@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T22:13:39.502Z",
+  "generated": "2026-09-29T22:18:48.456Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 356,
-    "companies": 25,
+    "companyQuestions": 359,
+    "companies": 26,
     "planned": 598
   },
   "topics": [
@@ -12906,6 +12906,157 @@
           "chars": 5473,
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-figure-ai",
+      "name": "figure-ai",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "figure-ai",
+      "overviewFile": null,
+      "overviewTitle": "figure-ai",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "figure-ai-01",
+          "order": 1,
+          "title": "在遥操作数据上做行为克隆存在一个众所周知的失效模式。它是什么？在真实人形机器人上你如何应对？",
+          "titleEn": "Behavioural cloning on teleoperation data has a well-known failure mode. What is it, and how do you deal with it on a real humanoid?",
+          "file": "公司题库/figure-ai/01-行为克隆的失效模式.md",
+          "level": "高阶",
+          "tags": [
+            "行为克隆",
+            "复合误差",
+            "action chunking",
+            "恢复数据",
+            "DAgger"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "figure-ai-02",
+            "figure-ai-03",
+            "figure-ai-12",
+            "applied-01",
+            "nvidia-04"
+          ],
+          "sources": [
+            {
+              "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning（延伸）",
+              "url": "https://arxiv.org/abs/1011.0686",
+              "author": "Ross, Gordon & Bagnell",
+              "published": "2010-11-02"
+            },
+            {
+              "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware（延伸）",
+              "url": "https://arxiv.org/abs/2304.13705",
+              "author": "Zhao et al. (Stanford)",
+              "published": "2023-04-26"
+            },
+            {
+              "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（延伸）",
+              "url": "https://arxiv.org/abs/2303.04137",
+              "author": "Chi et al.",
+              "published": "2023-03-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4992
+        },
+        {
+          "id": "figure-ai-02",
+          "order": 2,
+          "title": "一个完全在仿真中训练的全身控制器必须运行在真实硬件上。哪些能迁移，哪些不能，你如何弥补这个差距？",
+          "titleEn": "A whole-body controller trained entirely in simulation has to run on real hardware. What transfers, what does not, and how do you close the gap?",
+          "file": "公司题库/figure-ai/02-仿真训练的全身控制器迁移.md",
+          "level": "高阶",
+          "tags": [
+            "sim-to-real",
+            "域随机化",
+            "系统辨识",
+            "执行器模型",
+            "延迟"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "figure-ai-01",
+            "figure-ai-03",
+            "figure-ai-09",
+            "nvidia-04",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World（延伸）",
+              "url": "https://arxiv.org/abs/1703.06907",
+              "author": "Tobin et al. (OpenAI)",
+              "published": "2017-03-20"
+            },
+            {
+              "title": "Learning to Walk in Minutes Using Massively Parallel Deep Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2109.11978",
+              "author": "Rudin, Hoeller, Reist & Hutter (ETH)",
+              "published": "2021-09-24"
+            },
+            {
+              "title": "Sim-to-Real Transfer of Robotic Control with Dynamics Randomization（延伸）",
+              "url": "https://arxiv.org/abs/1710.06537",
+              "author": "Peng, Andrychowicz, Zaremba & Abbeel",
+              "published": "2017-10-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4853
+        },
+        {
+          "id": "figure-ai-03",
+          "order": 3,
+          "title": "在操作任务中，强化学习如何叠加在模仿学习之上？为什么奖励是最难的部分？",
+          "titleEn": "In manipulation, how does RL stack on top of imitation learning? Why is the reward the hardest part?",
+          "file": "公司题库/figure-ai/03-RL-如何叠加在模仿学习之上.md",
+          "level": "高阶",
+          "tags": [
+            "RL 微调",
+            "奖励塑形",
+            "reward hacking",
+            "重置成本",
+            "离线 RL"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "figure-ai-01",
+            "figure-ai-02",
+            "figure-ai-06",
+            "scale-04",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（延伸）",
+              "url": "https://arxiv.org/abs/2303.04137",
+              "author": "Chi et al.",
+              "published": "2023-03-07"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models（延伸）",
+              "url": "https://arxiv.org/abs/2310.08864",
+              "author": "Open X-Embodiment Collaboration",
+              "published": "2023-10-13"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4772
         }
       ]
     },
