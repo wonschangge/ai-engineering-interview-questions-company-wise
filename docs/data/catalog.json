@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:22:15.625Z",
+  "generated": "2026-09-29T22:26:04.816Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 362,
+    "companyQuestions": 365,
     "companies": 26,
     "planned": 598
   },
@@ -13195,6 +13195,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4831
+        },
+        {
+          "id": "figure-ai-07",
+          "order": 7,
+          "title": "当每次试验都要消耗机器人的时间、且每次失败都会带来物理后果时，你如何评估一个操作策略？",
+          "titleEn": "When every trial costs robot time and every failure has physical consequences, how do you evaluate a manipulation policy?",
+          "file": "公司题库/figure-ai/07-试验昂贵且失败有后果时的评估.md",
+          "level": "高阶",
+          "tags": [
+            "真机评估",
+            "置信区间",
+            "序贯检验",
+            "仿真校准",
+            "影子模式"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "figure-ai-02",
+            "figure-ai-06",
+            "figure-ai-08",
+            "figure-ai-09",
+            "scale-06"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Domain Randomization for Transferring Deep Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1703.06907",
+              "author": "Tobin et al. (OpenAI)",
+              "published": "2017-03-20"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4666
+        },
+        {
+          "id": "figure-ai-08",
+          "order": 8,
+          "title": "你把一个策略部署到 300 台机器人。它在实验室里能用，到了现场却性能下降。请排查。",
+          "titleEn": "You deploy a policy to 300 robots. It works in the lab but degrades in the field. Debug it.",
+          "file": "公司题库/figure-ai/08-300-台机器人现场性能下降的排查.md",
+          "level": "高阶",
+          "tags": [
+            "现场排查",
+            "分层",
+            "2x2 归因",
+            "检测功效",
+            "停机成本"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "figure-ai-02",
+            "figure-ai-04",
+            "figure-ai-07",
+            "sierra-07",
+            "scale-09"
+          ],
+          "sources": [
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Domain Randomization for Transferring Deep Neural Networks（延伸）",
+              "url": "https://arxiv.org/abs/1703.06907",
+              "author": "Tobin et al. (OpenAI)",
+              "published": "2017-03-20"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4687
+        },
+        {
+          "id": "figure-ai-09",
+          "order": 9,
+          "title": "为在人员附近运行的学习型全身策略设计安全架构。",
+          "titleEn": "Design a safety architecture for a learned whole-body policy operating near people.",
+          "file": "公司题库/figure-ai/09-人员附近的安全架构.md",
+          "level": "高阶",
+          "tags": [
+            "安全架构",
+            "停止距离",
+            "反射延迟",
+            "故障树",
+            "安全状态"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "figure-ai-02",
+            "figure-ai-04",
+            "figure-ai-07",
+            "sierra-09",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Google SRE Book: Release Engineering（延伸）",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "ISO/TS 15066: Robots and Robotic Devices -- Collaborative Robots（延伸）",
+              "url": "https://www.iso.org/standard/62996.html",
+              "author": "ISO",
+              "published": "2016-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4696
         }
       ]
     },
