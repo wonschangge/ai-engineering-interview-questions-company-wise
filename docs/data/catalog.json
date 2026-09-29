@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:39:15.336Z",
+  "generated": "2026-09-29T22:41:56.623Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 374,
+    "companyQuestions": 377,
     "companies": 27,
     "planned": 598
   },
@@ -24554,6 +24554,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4663
+        },
+        {
+          "id": "waymo-07",
+          "order": 7,
+          "title": "脱离接管率（disengagement rate）是一个很弱的安全代理指标。你会如何真正衡量 Driver 是否足够安全、可以发布？",
+          "titleEn": "The disengagement rate is a weak safety proxy. How would you actually measure whether the Driver is safe enough to launch?",
+          "file": "公司题库/waymo/07-如何真正衡量安全性.md",
+          "level": "高阶",
+          "tags": [
+            "脱离接管率",
+            "代理指标",
+            "三次法则",
+            "TTC/PET",
+            "暴露量"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "waymo-03",
+            "waymo-06",
+            "waymo-08",
+            "waymo-09",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4758
+        },
+        {
+          "id": "waymo-08",
+          "order": 8,
+          "title": "你要在一个新城市开城。请梳理出 safety case 的结构。",
+          "titleEn": "You are launching in a new city. Lay out the structure of the safety case.",
+          "file": "公司题库/waymo/08-新城市的-safety-case-结构.md",
+          "level": "高阶",
+          "tags": [
+            "safety case",
+            "ODD",
+            "危害枚举",
+            "证据金字塔",
+            "增量论证"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "waymo-02",
+            "waymo-06",
+            "waymo-07",
+            "waymo-09",
+            "figure-ai-09"
+          ],
+          "sources": [
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "ISO/TS 15066: Robots and Robotic Devices -- Collaborative Robots（延伸）",
+              "url": "https://www.iso.org/standard/62996.html",
+              "author": "ISO",
+              "published": "2016-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4606
+        },
+        {
+          "id": "waymo-09",
+          "order": 9,
+          "title": "距离发布决策还有两天，仿真显示某个场景簇中的急刹车事件增加了 15%。请讲讲你会怎么做。",
+          "titleEn": "Two days before a launch decision, simulation shows a 15% increase in hard braking in one scenario cluster. What do you do?",
+          "file": "公司题库/waymo/09-发布前的场景簇回归.md",
+          "level": "高阶",
+          "tags": [
+            "多重比较",
+            "泊松噪声",
+            "代理到真实",
+            "决策不对称",
+            "预注册"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "waymo-06",
+            "waymo-07",
+            "waymo-08",
+            "sierra-08",
+            "scale-09"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4568
         }
       ]
     },
