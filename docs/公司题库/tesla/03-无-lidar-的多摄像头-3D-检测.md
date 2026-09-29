@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2203.17270
     author: Li et al.
     published: 2022-03-31
-related: [tesla-01, tesla-04, tesla-05, tesla-09, waymo-12]
+related: [tesla-01, tesla-04, tesla-05, tesla-10, waymo-12]
 updated: 2026-09-28
 ---
 
@@ -265,7 +265,7 @@ print('        而**"BEV 变换的 scatter 是隐藏成本"**（**它不规则�
 - [[tesla-01]]：NMS 与向量化——**检测头的输出后处理**。
 - [[tesla-04]]：稀有事件的类别不平衡——**训练数据的难点**。
 - [[tesla-05]]：车队数据的自动标注——**标注从哪来**。
-- [[tesla-09]]：摄像头/雷达/IMU 的融合——**加上雷达后的方案**。
+- [[tesla-10]]：摄像头、雷达与 IMU 的融合——**加上雷达后的方案**。
 - [[waymo-12]]：为什么同时搭载三种传感器——**去掉 lidar 的代价**。
 
 ## 参考资料与归属
