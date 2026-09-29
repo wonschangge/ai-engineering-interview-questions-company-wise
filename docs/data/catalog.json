@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:29:09.136Z",
+  "generated": "2026-09-29T20:32:38.369Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 277,
+    "companyQuestions": 280,
     "companies": 19,
     "planned": 598
   },
@@ -19408,6 +19408,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5375
+        },
+        {
+          "id": "perplexity-10",
+          "order": 10,
+          "title": "设计一个跨多个索引、结合 BM25、dense retrieval 与 LLM reranking 的排序系统。",
+          "titleEn": "Design a ranking system that spans multiple indexes and combines BM25, dense retrieval and LLM reranking.",
+          "file": "公司题库/perplexity/10-多路检索的融合与排序.md",
+          "level": "高阶",
+          "tags": [
+            "混合检索",
+            "分数融合",
+            "RRF",
+            "召回互补",
+            "分级重排"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "perplexity-06",
+            "perplexity-09",
+            "perplexity-07",
+            "rag-02",
+            "openai-16"
+          ],
+          "sources": [
+            {
+              "title": "Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1571941.1572114",
+              "author": "Cormack, Clarke & Buettcher",
+              "published": "2009-07-19"
+            },
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia",
+              "published": "2020-04-27"
+            },
+            {
+              "title": "Okapi at TREC-3（延伸）",
+              "url": "https://www.microsoft.com/en-us/research/publication/okapi-at-trec-3/",
+              "author": "Robertson et al.",
+              "published": "1995-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5146
+        },
+        {
+          "id": "perplexity-11",
+          "order": 11,
+          "title": "设计 Comet 的混合浏览器架构，把端侧隐私与云端 AI 辅助结合起来。",
+          "titleEn": "Design the hybrid browser architecture for Comet, combining on-device privacy with cloud AI assistance.",
+          "file": "公司题库/perplexity/11-Comet-混合浏览器架构.md",
+          "level": "高阶",
+          "tags": [
+            "混合架构",
+            "端侧推理",
+            "隐私边界",
+            "模型可行性",
+            "离线可用"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "perplexity-08",
+            "perplexity-16",
+            "palantir-16",
+            "palantir-20",
+            "system-design-04"
+          ],
+          "sources": [
+            {
+              "title": "LLM in a Flash: Efficient Large Language Model Inference with Limited Memory（延伸）",
+              "url": "https://arxiv.org/abs/2312.11514",
+              "author": "Alizadeh et al. (Apple)",
+              "published": "2023-12-18"
+            },
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al.",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "Chrome Privacy Sandbox（延伸）",
+              "url": "https://privacysandbox.com/",
+              "author": "Google",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5188
+        },
+        {
+          "id": "perplexity-12",
+          "order": 12,
+          "title": "答案引擎如何处理突发新闻：比如查询 20 分钟前刚发生的事？",
+          "titleEn": "How does an answer engine handle breaking news, such as a query about something that happened 20 minutes ago?",
+          "file": "公司题库/perplexity/12-突发新闻的处理.md",
+          "level": "高阶",
+          "tags": [
+            "突发新闻",
+            "新鲜度",
+            "来源冲突",
+            "意图检测",
+            "答案更新"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "perplexity-09",
+            "perplexity-08",
+            "perplexity-10",
+            "evaluation-01",
+            "palantir-12"
+          ],
+          "sources": [
+            {
+              "title": "The Google File System（延伸）",
+              "url": "https://research.google/pubs/pub51/",
+              "author": "Ghemawat, Gobioff & Leung (Google)",
+              "published": "2003-10-19"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "The Elements of Journalism（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/562324/the-elements-of-journalism-third-edition-by-bill-kovach-and-tom-rosenstiel/",
+              "author": "Kovach & Rosenstiel",
+              "published": "2014-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5132
         }
       ]
     },
