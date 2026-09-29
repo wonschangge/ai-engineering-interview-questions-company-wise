@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:00:23.633Z",
+  "generated": "2026-09-29T17:01:59.482Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 167,
+    "companyQuestions": 168,
     "companies": 13,
     "planned": 598
   },
@@ -14269,6 +14269,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6533
+        },
+        {
+          "id": "moonshot-03",
+          "order": 3,
+          "title": "Kimi K2 是一个 1T 参数的 MoE，每个 token 激活约 32B 参数，拥有数百个专家。请解释其路由机制以及训练它的系统成本。",
+          "titleEn": "Kimi K2 is a 1T-parameter MoE activating about 32B parameters per token, with hundreds of experts. Explain its routing mechanism and the system cost of training it.",
+          "file": "公司题库/moonshot/03-K2-的-MoE-路由与训练系统成本.md",
+          "level": "高阶",
+          "tags": [
+            "K2",
+            "MoE 路由",
+            "专家并行",
+            "训练成本",
+            "all-to-all"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "moonshot-02",
+            "moonshot-04",
+            "moonshot-08",
+            "deepseek-04",
+            "deepseek-09"
+          ],
+          "sources": [
+            {
+              "title": "Kimi K2: Open Agentic Intelligence（延伸）",
+              "url": "https://arxiv.org/abs/2507.20534",
+              "author": "Kimi Team (Moonshot AI)",
+              "published": "2025-07-28"
+            },
+            {
+              "title": "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2401.06066",
+              "author": "Dai et al. (DeepSeek-AI)",
+              "published": "2024-01-11"
+            },
+            {
+              "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts（延伸）",
+              "url": "https://arxiv.org/abs/2211.15841",
+              "author": "Gale et al.",
+              "published": "2022-11-29"
+            },
+            {
+              "title": "用 PyTorch 实现带共享专家的 top-k MoE 路由（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6955
         }
       ]
     },
