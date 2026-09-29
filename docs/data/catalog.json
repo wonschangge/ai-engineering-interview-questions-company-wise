@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:03:07.590Z",
+  "generated": "2026-09-29T22:06:36.704Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 347,
+    "companyQuestions": 350,
     "companies": 25,
     "planned": 598
   },
@@ -8243,6 +8243,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5029
+        },
+        {
+          "id": "character-ai-04",
+          "order": 4,
+          "title": "这里的对话平均约 180 条消息。请设计位于各个轮次之间的缓存。",
+          "titleEn": "Conversations here average about 180 messages. Design the cache that sits between turns.",
+          "file": "公司题库/character-ai/04-180-条消息的轮次间缓存.md",
+          "level": "高阶",
+          "tags": [
+            "轮次间缓存",
+            "TTL",
+            "分层缓存",
+            "重算 vs 重载",
+            "KV 卸载"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "character-ai-01",
+            "character-ai-03",
+            "character-ai-06",
+            "deepseek-07",
+            "perplexity-05"
+          ],
+          "sources": [
+            {
+              "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving（延伸）",
+              "url": "https://arxiv.org/abs/2407.00079",
+              "author": "Qin et al. (Moonshot AI)",
+              "published": "2024-06-28"
+            },
+            {
+              "title": "vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al.",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al.",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4923
+        },
+        {
+          "id": "character-ai-05",
+          "order": 5,
+          "title": "你们原生以 int8 训练，而不是做 post-training quantization。请为这一做法辩护。",
+          "titleEn": "You train natively in int8 rather than doing post-training quantisation. Defend that choice.",
+          "file": "公司题库/character-ai/05-原生-int8-训练的辩护.md",
+          "level": "高阶",
+          "tags": [
+            "原生 int8",
+            "PTQ",
+            "量化感知训练",
+            "回本算术",
+            "工程代价"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "character-ai-03",
+            "character-ai-06",
+            "nvidia-09",
+            "deepseek-03",
+            "inference-serving-05"
+          ],
+          "sources": [
+            {
+              "title": "FP8 Formats for Deep Learning（延伸）",
+              "url": "https://arxiv.org/abs/2209.05433",
+              "author": "Micikevicius et al. (NVIDIA)",
+              "published": "2022-09-12"
+            },
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al.",
+              "published": "2022-10-31"
+            },
+            {
+              "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.10438",
+              "author": "Xiao et al.",
+              "published": "2022-11-18"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4746
+        },
+        {
+          "id": "character-ai-06",
+          "order": 6,
+          "title": "估算我们服务一条消息的成本，并告诉我哪个杠杆对它的影响最大。",
+          "titleEn": "Estimate the cost of serving one message for us, and tell me which lever moves it most.",
+          "file": "公司题库/character-ai/06-估算每条消息的成本与最大杠杆.md",
+          "level": "高阶",
+          "tags": [
+            "成本模型",
+            "prefill vs decode",
+            "并发",
+            "杠杆排序",
+            "prefix cache"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "character-ai-01",
+            "character-ai-03",
+            "character-ai-04",
+            "nvidia-08",
+            "inference-serving-01"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Roofline: An Insightful Visual Performance Model（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson",
+              "published": "2009-04-01"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5041
         }
       ]
     },
