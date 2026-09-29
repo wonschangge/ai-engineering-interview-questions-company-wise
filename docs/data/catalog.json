@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:52:11.469Z",
+  "generated": "2026-09-29T16:57:00.707Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 164,
+    "companyQuestions": 165,
     "companies": 12,
     "planned": 598
   },
@@ -11325,15 +11325,15 @@
       ]
     },
     {
-      "id": "company-deepseek",
-      "name": "deepseek",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "group": "前沿 AI 实验室",
+      "summary": "十道题覆盖 DeepSeek 的技术主线——MoE 架构（细粒度专家与共享专家、无辅助损失的负载均衡、路由实现）、训练工程（FP8 稳定性、DualPipe 重叠、合成数据与模型崩溃）、训练方法（MTP、R1-Zero 的纯 RL 与 SFT 的回归），外加一道 671B 的低延迟服务题与一道关于\"低成本\"叙事的行为题。",
+      "updated": "2026-09-28",
       "dir": "deepseek",
-      "overviewFile": null,
-      "overviewTitle": "deepseek",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/deepseek/README.md",
+      "overviewTitle": "DeepSeek 面试题库",
+      "declaredTotal": 10,
       "questions": [
         {
           "id": "deepseek-01",
@@ -11385,7 +11385,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5446
+          "chars": 5446,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "deepseek-02",
@@ -11437,7 +11439,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5977
+          "chars": 5977,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 2
         },
         {
           "id": "deepseek-03",
@@ -11489,7 +11493,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5288
+          "chars": 5288,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 3
         },
         {
           "id": "deepseek-04",
@@ -11541,7 +11547,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7098
+          "chars": 7098,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 4
         },
         {
           "id": "deepseek-05",
@@ -11594,7 +11602,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6486
+          "chars": 6486,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "deepseek-06",
@@ -11646,7 +11656,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6001
+          "chars": 6001,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "deepseek-07",
@@ -11698,7 +11710,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5974
+          "chars": 5974,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
         },
         {
           "id": "deepseek-08",
@@ -11750,7 +11764,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5527
+          "chars": 5527,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 3
         },
         {
           "id": "deepseek-09",
@@ -11802,7 +11818,63 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5673
+          "chars": 5673,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 4
+        },
+        {
+          "id": "deepseek-10",
+          "order": 10,
+          "title": "DeepSeek 声称以通常训练成本的一小部分取得了前沿级的结果。如果面试官问“这怎么可能”，你会怎样结构化地回答？",
+          "titleEn": "DeepSeek claims frontier-level results at a fraction of the usual training cost. If an interviewer asks \"how is that possible\", how would you structure your answer?",
+          "file": "公司题库/deepseek/10-如何结构化回答成本问题.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "成本口径",
+            "效率分解",
+            "可证伪",
+            "结构性回答"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "deepseek-01",
+            "deepseek-07",
+            "deepseek-09",
+            "cohere-10",
+            "databricks-06"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "缺少明确指导下的端到端负责经历（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5992,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         }
       ]
     },
