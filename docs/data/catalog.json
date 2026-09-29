@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:23:10.529Z",
+  "generated": "2026-09-29T15:30:40.272Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 143,
+    "companyQuestions": 144,
     "companies": 10,
     "planned": 598
   },
@@ -10651,6 +10651,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5371
+        },
+        {
+          "id": "databricks-08",
+          "order": 8,
+          "title": "客户坚持要用他们的客服工单微调一个开源模型，理由是「我们想要自己的模型」。而你认为 RAG 就能解决。你会怎么做？",
+          "titleEn": "A customer insists on fine-tuning an open model on their support tickets because 「we want our own model」, while you believe RAG would solve it. What do you do?",
+          "file": "公司题库/databricks/08-客户坚持微调而你认为-RAG-够用.md",
+          "level": "高阶",
+          "tags": [
+            "客户交付",
+            "对照实验",
+            "预注册判据",
+            "数据污染",
+            "总拥有成本"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "databricks-06",
+            "databricks-07",
+            "databricks-09",
+            "finetuning-08",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Prompting、RAG 还是 fine-tuning：决策框架与成本权衡（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "何时微调以及 LoRA 与全量微调的选择（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "客户从闭源 API 迁移到开源模型的交付（本仓库公司题库 · Together AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5827
         }
       ]
     },
