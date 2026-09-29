@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T22:30:05.508Z",
+  "generated": "2026-09-29T22:36:11.338Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 368,
-    "companies": 26,
+    "companyQuestions": 371,
+    "companies": 27,
     "planned": 598
   },
   "topics": [
@@ -24265,6 +24265,157 @@
           "chars": 5751,
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-waymo",
+      "name": "waymo",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "waymo",
+      "overviewFile": null,
+      "overviewTitle": "waymo",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "waymo-01",
+          "order": 1,
+          "title": "在 NumPy 中，为多模态轨迹预测计算 minADE 和 minFDE，且 ground truth 长度可变。不允许使用任何 Python 循环。",
+          "titleEn": "In NumPy, compute minADE and minFDE for multimodal trajectory prediction with variable-length ground truth. No Python loops allowed.",
+          "file": "公司题库/waymo/01-向量化计算-minADE-与-minFDE.md",
+          "level": "进阶",
+          "tags": [
+            "minADE",
+            "minFDE",
+            "向量化",
+            "掩码",
+            "广播"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "waymo-02",
+            "waymo-03",
+            "waymo-06",
+            "coding-01",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "nuScenes: A Multimodal Dataset for Autonomous Driving（延伸）",
+              "url": "https://arxiv.org/abs/1903.11027",
+              "author": "Caesar et al.",
+              "published": "2019-03-26"
+            },
+            {
+              "title": "MultiPath: Multiple Probabilistic Anchor Trajectory Hypotheses for Behavior Prediction（延伸）",
+              "url": "https://arxiv.org/abs/1910.05449",
+              "author": "Chai et al. (Waymo)",
+              "published": "2019-10-12"
+            },
+            {
+              "title": "NumPy: Array Programming for Python（延伸）",
+              "url": "https://numpy.org/doc/stable/",
+              "author": "NumPy Developers",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5120
+        },
+        {
+          "id": "waymo-02",
+          "order": 2,
+          "title": "应该采用模块化的感知、预测与规划，还是端到端学习式驾驶？请给出论证，然后告诉我你实际会构建什么。",
+          "titleEn": "Should you use modular perception, prediction and planning, or end-to-end learned driving? Argue it, then tell me what you would actually build.",
+          "file": "公司题库/waymo/02-模块化还是端到端.md",
+          "level": "高阶",
+          "tags": [
+            "模块化",
+            "端到端",
+            "接口损失",
+            "可验证性",
+            "影子模式"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "waymo-01",
+            "waymo-03",
+            "waymo-08",
+            "waymo-09",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "End to End Learning for Self-Driving Cars（延伸）",
+              "url": "https://arxiv.org/abs/1604.07316",
+              "author": "Bojarski et al. (NVIDIA)",
+              "published": "2016-04-25"
+            },
+            {
+              "title": "MultiPath: Multiple Probabilistic Anchor Trajectory Hypotheses for Behavior Prediction（延伸）",
+              "url": "https://arxiv.org/abs/1910.05449",
+              "author": "Chai et al. (Waymo)",
+              "published": "2019-10-12"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4526
+        },
+        {
+          "id": "waymo-03",
+          "order": 3,
+          "title": "为行为预测模型设计输出表示。你会用什么指标来判断它是否达标？",
+          "titleEn": "Design the output representation for a behaviour prediction model. What metrics would you use to judge whether it is good enough?",
+          "file": "公司题库/waymo/03-行为预测的输出表示与指标.md",
+          "level": "高阶",
+          "tags": [
+            "输出表示",
+            "minADE 的局限",
+            "miss rate",
+            "校准",
+            "模式坍塌"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "waymo-01",
+            "waymo-02",
+            "waymo-07",
+            "waymo-09",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "MultiPath: Multiple Probabilistic Anchor Trajectory Hypotheses for Behavior Prediction（延伸）",
+              "url": "https://arxiv.org/abs/1910.05449",
+              "author": "Chai et al. (Waymo)",
+              "published": "2019-10-12"
+            },
+            {
+              "title": "CoverNet: Multimodal Behavior Prediction using Trajectory Sets（延伸）",
+              "url": "https://arxiv.org/abs/1911.10298",
+              "author": "Phan-Minh et al. (Motional)",
+              "published": "2019-11-25"
+            },
+            {
+              "title": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?（延伸）",
+              "url": "https://arxiv.org/abs/1703.04977",
+              "author": "Kendall & Gal",
+              "published": "2017-03-14"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4886
         }
       ]
     },
