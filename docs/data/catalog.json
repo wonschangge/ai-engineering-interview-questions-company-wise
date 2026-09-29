@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T23:37:04.441Z",
+  "generated": "2026-09-29T23:44:45.877Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 405,
+    "companyQuestions": 408,
     "companies": 30,
     "planned": 598
   },
@@ -15840,6 +15840,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5151
+        },
+        {
+          "id": "hf-04",
+          "order": 4,
+          "title": "说说当有人调用 AutoModelForCausalLM.from_pretrained(…, device_map=“auto”, torch_dtype=“auto”) 时，实际都发生了什么。",
+          "titleEn": "Walk me through what actually happens when someone calls AutoModelForCausalLM.from_pretrained(..., device_map=\"auto\", torch_dtype=\"auto\").",
+          "file": "公司题库/huggingface/04-from_pretrained-实际发生了什么.md",
+          "level": "进阶",
+          "tags": [
+            "from_pretrained",
+            "meta 设备",
+            "device_map",
+            "KV cache",
+            "dtype"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "hf-02",
+            "hf-03",
+            "hf-07",
+            "hf-09",
+            "apple-01"
+          ],
+          "sources": [
+            {
+              "title": "Accelerate: Training and Inference at Scale Made Simple（延伸）",
+              "url": "https://huggingface.co/docs/accelerate/",
+              "author": "Hugging Face",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models（延伸）",
+              "url": "https://arxiv.org/abs/1910.02054",
+              "author": "Rajbhandari et al. (Microsoft)",
+              "published": "2019-10-13"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5807
+        },
+        {
+          "id": "hf-05",
+          "order": 5,
+          "title": "比较 BPE、WordPiece 与 Unigram 三种 tokenization。`tokenizers` 为什么用 Rust 写，实践中又有哪些 tokenizer bug 容易坑到人？",
+          "titleEn": "Compare BPE, WordPiece and Unigram tokenisation. Why is `tokenizers` written in Rust, and which tokenizer bugs bite people in practice?",
+          "file": "公司题库/huggingface/05-三种-tokenization-与-Rust.md",
+          "level": "进阶",
+          "tags": [
+            "BPE",
+            "WordPiece",
+            "Unigram",
+            "Rust",
+            "tokenizer bug"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "hf-01",
+            "hf-04",
+            "hf-06",
+            "hf-08",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）",
+              "url": "https://arxiv.org/abs/1508.07909",
+              "author": "Sennrich et al. (Edinburgh)",
+              "published": "2015-08-31"
+            },
+            {
+              "title": "SentencePiece: A Simple and Language Independent Subword Tokenizer（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo & Richardson (Google)",
+              "published": "2018-08-13"
+            },
+            {
+              "title": "Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates（延伸）",
+              "url": "https://arxiv.org/abs/1804.10959",
+              "author": "Kudo (Google)",
+              "published": "2018-04-30"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5403
+        },
+        {
+          "id": "hf-06",
+          "order": 6,
+          "title": "chat template 解决了什么问题，被忽略时又会出什么错？",
+          "titleEn": "What problem does the chat template solve, and what goes wrong when it is ignored?",
+          "file": "公司题库/huggingface/06-chat-template-解决什么问题.md",
+          "level": "进阶",
+          "tags": [
+            "chat template",
+            "训练分布",
+            "生成提示",
+            "提示注入",
+            "格式漂移"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "hf-05",
+            "hf-07",
+            "hf-08",
+            "hf-11",
+            "safety-02"
+          ],
+          "sources": [
+            {
+              "title": "Training Language Models to Follow Instructions with Human Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (OpenAI)",
+              "published": "2022-03-04"
+            },
+            {
+              "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models（延伸）",
+              "url": "https://arxiv.org/abs/2307.09288",
+              "author": "Touvron et al. (Meta)",
+              "published": "2023-07-18"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4804
         }
       ]
     },
