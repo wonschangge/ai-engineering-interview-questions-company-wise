@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:19:15.102Z",
+  "generated": "2026-09-29T18:21:02.633Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 202,
+    "companyQuestions": 203,
     "companies": 16,
     "planned": 598
   },
@@ -15635,6 +15635,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6593
+        },
+        {
+          "id": "openai-08",
+          "order": 8,
+          "title": "给定不同的随机变量，计算 KL 散度。",
+          "titleEn": "Given different random variables, compute the KL divergence.",
+          "file": "公司题库/openai/08-KL-散度的计算.md",
+          "level": "进阶",
+          "tags": [
+            "KL 散度",
+            "解析式",
+            "数值稳定性",
+            "支撑不匹配",
+            "估计偏差"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "openai-07",
+            "openai-09",
+            "finetuning-01",
+            "finetuning-02",
+            "evaluation-02"
+          ],
+          "sources": [
+            {
+              "title": "Elements of Information Theory（延伸）",
+              "url": "https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X",
+              "author": "Cover & Thomas",
+              "published": "2006-07-18"
+            },
+            {
+              "title": "Auto-Encoding Variational Bayes（延伸）",
+              "url": "https://arxiv.org/abs/1312.6114",
+              "author": "Kingma & Welling",
+              "published": "2013-12-20"
+            },
+            {
+              "title": "f-Divergences and Their Applications（延伸）",
+              "url": "https://arxiv.org/abs/2006.00785",
+              "author": "Sason & Verdú",
+              "published": "2020-06-01"
+            },
+            {
+              "title": "打印前 n 个斐波那契数（本仓库公司题库 · OpenAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6404
         }
       ]
     },
