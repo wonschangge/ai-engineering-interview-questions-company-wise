@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:16:16.796Z",
+  "generated": "2026-09-29T15:18:27.358Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 139,
+    "companyQuestions": 140,
     "companies": 10,
     "planned": 598
   },
@@ -10440,6 +10440,59 @@
           ],
           "updated": "2026-09-28",
           "chars": 5480
+        },
+        {
+          "id": "databricks-04",
+          "order": 4,
+          "title": "一个 Spark 作业把 2 TB 的事实表与 50 GB 的维表做 join，其中一个 straggler task 的运行时间是其余任务的 100 倍。请诊断并修复。",
+          "titleEn": "A Spark job joins a 2 TB fact table with a 50 GB dimension table, and one straggler task runs 100× longer than the rest. Diagnose and fix it.",
+          "file": "公司题库/databricks/04-Spark-join-的-100-倍-straggler-诊断与修复.md",
+          "level": "高阶",
+          "tags": [
+            "Spark",
+            "数据倾斜",
+            "straggler",
+            "AQE",
+            "加盐",
+            "广播 join"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "databricks-02",
+            "databricks-05",
+            "databricks-01",
+            "inference-serving-07",
+            "anthropic-16"
+          ],
+          "sources": [
+            {
+              "title": "Databricks 文档：Adaptive Query Execution（AQE）",
+              "url": "https://docs.databricks.com/aws/en/optimizations/aqe",
+              "author": "Databricks",
+              "published": ""
+            },
+            {
+              "title": "Databricks 文档：在 Delta Lake 上使用 Structured Streaming",
+              "url": "https://docs.databricks.com/aws/en/structured-streaming/delta-lake",
+              "author": "Databricks",
+              "published": ""
+            },
+            {
+              "title": "一个 Structured Streaming 作业从 Kafka 读取数据并写入 Delta 表（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "内存受限下数十亿事件的 top-K（本仓库公司题库 · Databricks 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6571
         }
       ]
     },
