@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:16:44.676Z",
+  "generated": "2026-09-29T13:22:00.198Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 94,
+    "companyQuestions": 96,
     "companies": 6,
     "planned": 598
   },
@@ -7087,6 +7087,104 @@
           ],
           "updated": "2026-09-28",
           "chars": 5604
+        },
+        {
+          "id": "anthropic-20",
+          "order": 20,
+          "title": "解释 Constitutional AI。相比朴素的 RLHF，它带来了什么，又没能解决什么？",
+          "titleEn": "Explain Constitutional AI. What does it bring over naive RLHF, and what does it not solve?",
+          "file": "公司题库/anthropic/20-Constitutional-AI-带来了什么与没解决什么.md",
+          "level": "高阶",
+          "tags": [
+            "Constitutional-AI",
+            "RLAIF",
+            "对齐",
+            "价值锁定",
+            "过度优化"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "safety-05",
+            "safety-03",
+            "finetuning-11",
+            "anthropic-21",
+            "safety-10"
+          ],
+          "sources": [
+            {
+              "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2212.08073",
+              "author": "Bai et al. (Anthropic)",
+              "published": "2022-12-15"
+            },
+            {
+              "title": "Scaling Laws for Reward Model Overoptimization（延伸）",
+              "url": "https://arxiv.org/abs/2210.10760",
+              "author": "Gao, Schulman, Hilton (OpenAI)",
+              "published": "2022-10-19"
+            },
+            {
+              "title": "Training language models to follow instructions with human feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (InstructGPT, OpenAI)",
+              "published": "2022-03-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5454
+        },
+        {
+          "id": "anthropic-21",
+          "order": 21,
+          "title": "缩放定律如何影响大模型的安全评估？",
+          "titleEn": "How do scaling laws affect safety evaluation of large models?",
+          "file": "公司题库/anthropic/21-缩放定律如何影响大模型的安全评估.md",
+          "level": "高阶",
+          "tags": [
+            "缩放定律",
+            "安全评估",
+            "过度优化",
+            "算力阈值",
+            "评估可扩展性"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "anthropic-20",
+            "evaluation-04",
+            "evaluation-06",
+            "safety-10",
+            "anthropic-17"
+          ],
+          "sources": [
+            {
+              "title": "Scaling Laws for Neural Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2001.08361",
+              "author": "Kaplan et al. (OpenAI)",
+              "published": "2020-01-23"
+            },
+            {
+              "title": "Training Compute-Optimal Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2203.15556",
+              "author": "Hoffmann et al. (DeepMind)",
+              "published": "2022-03-29"
+            },
+            {
+              "title": "Scaling Laws for Reward Model Overoptimization（延伸）",
+              "url": "https://arxiv.org/abs/2210.10760",
+              "author": "Gao, Schulman, Hilton (OpenAI)",
+              "published": "2022-10-19"
+            },
+            {
+              "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark（延伸）",
+              "url": "https://arxiv.org/abs/2406.19314",
+              "author": "White et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5571
         }
       ]
     },
