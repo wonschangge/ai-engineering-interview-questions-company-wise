@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:58:18.865Z",
+  "generated": "2026-09-29T21:01:34.717Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 299,
+    "companyQuestions": 302,
     "companies": 21,
     "planned": 598
   },
@@ -13532,6 +13532,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4960
+        },
+        {
+          "id": "groq-04",
+          "order": 4,
+          "title": "一个模型在单芯片上与功能模拟器逐位一致（bit-exact），但在整机架规模下输出错误。你如何定位？",
+          "titleEn": "A model is bit-exact against the functional simulator on a single chip, but produces wrong output at rack scale. How do you localise it?",
+          "file": "公司题库/groq/04-单芯片对但整机架错.md",
+          "level": "高阶",
+          "tags": [
+            "多芯片调试",
+            "二分定位",
+            "逐芯片 dump",
+            "确定性",
+            "拓扑"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "groq-01",
+            "groq-02",
+            "groq-03",
+            "groq-08",
+            "palantir-06"
+          ],
+          "sources": [
+            {
+              "title": "The Google File System（延伸）",
+              "url": "https://research.google/pubs/pub51/",
+              "author": "Ghemawat, Gobioff & Leung (Google)",
+              "published": "2003-10-19"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Debugging: The 9 Indispensable Rules（延伸）",
+              "url": "https://www.oreilly.com/library/view/debugging/9781449328276/",
+              "author": "David J. Agans",
+              "published": "2002-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4562
+        },
+        {
+          "id": "groq-05",
+          "order": 5,
+          "title": "LPU 完全没有 HBM，只有片上 SRAM。请针对这台机器重新推导 decode 的 roofline 论证，并说明哪些结论会改变。",
+          "titleEn": "The LPU has no HBM at all, only on-chip SRAM. Re-derive the decode roofline argument for this machine and say which conclusions change.",
+          "file": "公司题库/groq/05-没有-HBM-的-decode-roofline.md",
+          "level": "高阶",
+          "tags": [
+            "roofline",
+            "SRAM",
+            "fabric 带宽",
+            "容量约束",
+            "长上下文"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "groq-04",
+            "groq-06",
+            "groq-07",
+            "nvidia-01",
+            "nvidia-08"
+          ],
+          "sources": [
+            {
+              "title": "Roofline: An Insightful Visual Performance Model for Multicore Architectures（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson",
+              "published": "2009-04-01"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (UC Berkeley)",
+              "published": "2023-09-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5797
+        },
+        {
+          "id": "groq-06",
+          "order": 6,
+          "title": "一个 70B 稠密模型，8-bit 权重，每颗芯片约 230 MB SRAM。请讲一遍部署方案和单位经济性。",
+          "titleEn": "A 70B dense model, 8-bit weights, about 230 MB of SRAM per chip. Walk through the deployment plan and the unit economics.",
+          "file": "公司题库/groq/06-70B-的部署方案与单位经济性.md",
+          "level": "高阶",
+          "tags": [
+            "部署方案",
+            "分布式常驻",
+            "芯片数",
+            "单位经济性",
+            "盈亏平衡"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "groq-05",
+            "groq-07",
+            "groq-11",
+            "nvidia-08",
+            "nvidia-10"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (UC Berkeley)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers（延伸）",
+              "url": "https://arxiv.org/abs/2210.17323",
+              "author": "Frantar et al.",
+              "published": "2022-10-31"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5227
         }
       ]
     },
