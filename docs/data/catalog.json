@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:35:40.922Z",
+  "generated": "2026-09-29T13:40:18.599Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 103,
+    "companyQuestions": 106,
     "companies": 6,
     "planned": 598
   },
@@ -7557,6 +7557,162 @@
           ],
           "updated": "2026-09-28",
           "chars": 6804
+        },
+        {
+          "id": "anthropic-29",
+          "order": 29,
+          "title": "你认为 AI 对齐领域最紧迫的未解问题是什么？",
+          "titleEn": "What do you see as the most pressing unsolved problem in AI alignment?",
+          "file": "公司题库/anthropic/29-对齐领域最紧迫的未解问题.md",
+          "level": "高阶",
+          "tags": [
+            "对齐",
+            "研究判断",
+            "可扩展监督",
+            "可解释性",
+            "评估"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "safety-05",
+            "safety-10",
+            "anthropic-21",
+            "anthropic-30",
+            "anthropic-37"
+          ],
+          "sources": [
+            {
+              "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2212.08073",
+              "author": "Bai et al. (Anthropic)",
+              "published": "2022-12-15"
+            },
+            {
+              "title": "Scaling Laws for Reward Model Overoptimization（延伸）",
+              "url": "https://arxiv.org/abs/2210.10760",
+              "author": "Gao, Schulman, Hilton (OpenAI)",
+              "published": "2022-10-19"
+            },
+            {
+              "title": "Defeating Prompt Injections by Design（CaMeL）（延伸）",
+              "url": "https://arxiv.org/abs/2503.18813",
+              "author": "Debenedetti et al.",
+              "published": "2025-03-24"
+            },
+            {
+              "title": "Are Emergent Abilities of Large Language Models a Mirage?（延伸）",
+              "url": "https://arxiv.org/abs/2304.15004",
+              "author": "Schaeffer, Miranda, Koyejo (NeurIPS 2023)",
+              "published": "2023-04-28"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5673
+        },
+        {
+          "id": "anthropic-30",
+          "order": 30,
+          "title": "你会如何平衡性能优化与模型可解释性？",
+          "titleEn": "How would you balance performance optimisation with model interpretability?",
+          "file": "公司题库/anthropic/30-如何平衡性能优化与模型可解释性.md",
+          "level": "高阶",
+          "tags": [
+            "可解释性",
+            "性能预算",
+            "取舍框架",
+            "监控",
+            "稀疏自编码器"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "anthropic-15",
+            "anthropic-16",
+            "anthropic-29",
+            "anthropic-31",
+            "safety-07"
+          ],
+          "sources": [
+            {
+              "title": "Scaling Laws for Neural Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2001.08361",
+              "author": "Kaplan et al. (OpenAI)",
+              "published": "2020-01-23"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al. (NeurIPS 2022)",
+              "published": "2022-05-27"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（延伸）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (vLLM, SOSP 2023)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "Scaling Laws for Reward Model Overoptimization（延伸）",
+              "url": "https://arxiv.org/abs/2210.10760",
+              "author": "Gao, Schulman, Hilton (OpenAI)",
+              "published": "2022-10-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5284
+        },
+        {
+          "id": "anthropic-31",
+          "order": 31,
+          "title": "你会如何着手设计一个系统，以确保 AI 模型在生产环境中的安全部署？",
+          "titleEn": "How would you approach designing a system to ensure the safe deployment of AI models in production?",
+          "file": "公司题库/anthropic/31-确保模型安全部署的生产系统设计.md",
+          "level": "高阶",
+          "tags": [
+            "安全部署",
+            "发布门禁",
+            "分级发布",
+            "监控",
+            "回滚"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "anthropic-17",
+            "anthropic-21",
+            "anthropic-27",
+            "anthropic-28",
+            "anthropic-30"
+          ],
+          "sources": [
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/the-tail-at-scale/",
+              "author": "Dean & Barroso (CACM 2013)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection（延伸）",
+              "url": "https://arxiv.org/abs/2302.12173",
+              "author": "Greshake et al.",
+              "published": "2023-02-23"
+            },
+            {
+              "title": "Defeating Prompt Injections by Design（CaMeL）（延伸）",
+              "url": "https://arxiv.org/abs/2503.18813",
+              "author": "Debenedetti et al.",
+              "published": "2025-03-24"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5771
         }
       ]
     },
