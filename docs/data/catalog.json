@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:26:04.816Z",
+  "generated": "2026-09-29T22:30:05.508Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 365,
+    "companyQuestions": 368,
     "companies": 26,
     "planned": 598
   },
@@ -12910,15 +12910,15 @@
       ]
     },
     {
-      "id": "company-figure-ai",
-      "name": "figure-ai",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "figure-ai",
+      "name": "Figure AI",
+      "group": "AI 原生产品公司",
+      "summary": "十二道题全部落在\"每次试验都消耗机器人的时间、每次失败都有物理后果\"这一个前提上——三道机器学习基础（行为克隆的失效模式、仿真训练的全身控制器迁移、RL 如何叠加在模仿学习之上）、一道推理服务（语义层搬到云端的延迟预算）、两道系统设计（遥操作数据管线、10 小时示范加 50 小时预算的分配）、两道评估（试验昂贵时的评估、300 台机器人现场性能下降的排查）、一道安全（人员附近的安全架构），以及三道多模态（VLA 与带工具的 LLM 的区别、为什么拆成慢模型与快模型、action chunking）。",
+      "updated": "2026-09-28",
       "dir": "figure-ai",
-      "overviewFile": null,
-      "overviewTitle": "figure-ai",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/figure-ai/README.md",
+      "overviewTitle": "Figure AI 面试题库",
+      "declaredTotal": 12,
       "questions": [
         {
           "id": "figure-ai-01",
@@ -12964,7 +12964,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4992
+          "chars": 4992,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 1
         },
         {
           "id": "figure-ai-02",
@@ -13010,7 +13012,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4853
+          "chars": 4853,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 2
         },
         {
           "id": "figure-ai-03",
@@ -13056,7 +13060,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4772
+          "chars": 4772,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 3
         },
         {
           "id": "figure-ai-04",
@@ -13102,7 +13108,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4960
+          "chars": 4960,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "figure-ai-05",
@@ -13148,7 +13156,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4691
+          "chars": 4691,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "figure-ai-06",
@@ -13194,7 +13204,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4831
+          "chars": 4831,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "figure-ai-07",
@@ -13240,7 +13252,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4666
+          "chars": 4666,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "figure-ai-08",
@@ -13286,7 +13300,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4687
+          "chars": 4687,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
         },
         {
           "id": "figure-ai-09",
@@ -13332,7 +13348,153 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4696
+          "chars": 4696,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "figure-ai-10",
+          "order": 10,
+          "title": "什么是 vision-language-action 模型？它与带工具的 LLM 有何不同？",
+          "titleEn": "What is a vision-language-action model, and how does it differ from a tool-using LLM?",
+          "file": "公司题库/figure-ai/10-VLA-与带工具的-LLM-的区别.md",
+          "level": "进阶",
+          "tags": [
+            "VLA",
+            "延迟预算",
+            "连续动作",
+            "数据规模",
+            "约束"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "figure-ai-09",
+            "figure-ai-11",
+            "figure-ai-12",
+            "multimodal-01",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control（延伸）",
+              "url": "https://arxiv.org/abs/2307.15818",
+              "author": "Brohan et al. (Google DeepMind)",
+              "published": "2023-07-28"
+            },
+            {
+              "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models（延伸）",
+              "url": "https://arxiv.org/abs/2310.08864",
+              "author": "Open X-Embodiment Collaboration",
+              "published": "2023-10-13"
+            },
+            {
+              "title": "PaLM-E: An Embodied Multimodal Language Model（延伸）",
+              "url": "https://arxiv.org/abs/2303.03378",
+              "author": "Driess et al. (Google)",
+              "published": "2023-03-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4394,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "figure-ai-11",
+          "order": 11,
+          "title": "Helix 拆分为一个大的慢模型和一个小而快的模型。为什么不直接跑一个单一的端到端网络？",
+          "titleEn": "Helix splits into a large slow model and a small fast one. Why not just run a single end-to-end network?",
+          "file": "公司题库/figure-ai/11-为什么拆成慢模型与快模型.md",
+          "level": "高阶",
+          "tags": [
+            "慢快拆分",
+            "带宽约束",
+            "目标陈旧",
+            "接口设计",
+            "早退出"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "figure-ai-01",
+            "figure-ai-09",
+            "figure-ai-10",
+            "figure-ai-12",
+            "character-ai-06"
+          ],
+          "sources": [
+            {
+              "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control（延伸）",
+              "url": "https://arxiv.org/abs/2307.15818",
+              "author": "Brohan et al. (Google DeepMind)",
+              "published": "2023-07-28"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（延伸）",
+              "url": "https://arxiv.org/abs/2303.04137",
+              "author": "Chi et al.",
+              "published": "2023-03-07"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5005,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 2
+        },
+        {
+          "id": "figure-ai-12",
+          "order": 12,
+          "title": "解释 action chunking。为什么要预测未来的一系列动作，而不是只预测下一个动作？",
+          "titleEn": "Explain action chunking. Why predict a sequence of future actions rather than just the next one?",
+          "file": "公司题库/figure-ai/12-action-chunking-为什么预测一串动作.md",
+          "level": "进阶",
+          "tags": [
+            "action chunking",
+            "多模态动作",
+            "时间集成",
+            "反应性",
+            "复合误差"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "figure-ai-01",
+            "figure-ai-09",
+            "figure-ai-10",
+            "figure-ai-11",
+            "applied-01"
+          ],
+          "sources": [
+            {
+              "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware（延伸）",
+              "url": "https://arxiv.org/abs/2304.13705",
+              "author": "Zhao et al. (Stanford)",
+              "published": "2023-04-26"
+            },
+            {
+              "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（延伸）",
+              "url": "https://arxiv.org/abs/2303.04137",
+              "author": "Chi et al.",
+              "published": "2023-03-07"
+            },
+            {
+              "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning（延伸）",
+              "url": "https://arxiv.org/abs/1011.0686",
+              "author": "Ross, Gordon & Bagnell",
+              "published": "2010-11-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5028,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 3
         }
       ]
     },
