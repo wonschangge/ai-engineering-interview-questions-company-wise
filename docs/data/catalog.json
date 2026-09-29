@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T15:48:11.090Z",
+  "generated": "2026-09-29T15:49:54.140Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 149,
+    "companyQuestions": 150,
     "companies": 11,
     "planned": 598
   },
@@ -8814,6 +8814,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5785
+        },
+        {
+          "id": "cohere-05",
+          "order": 5,
+          "title": "当员工用法语和韩语查询以英文为主的文档时，你如何评估多语言检索质量？",
+          "titleEn": "When employees query an English-dominant corpus in French and Korean, how do you evaluate multilingual retrieval quality?",
+          "file": "公司题库/cohere/05-多语言检索质量的评估.md",
+          "level": "高阶",
+          "tags": [
+            "跨语言检索",
+            "分群评估",
+            "语言鸿沟",
+            "Unicode 规范化",
+            "评测集构建"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "cohere-03",
+            "cohere-04",
+            "cohere-06",
+            "rag-07",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "Multilingual Universal Sentence Encoder for Semantic Retrieval（延伸）",
+              "url": "https://arxiv.org/abs/1907.04307",
+              "author": "Yang et al. (Google)",
+              "published": "2019-07-09"
+            },
+            {
+              "title": "Language-agnostic BERT Sentence Embedding（LaBSE）（延伸）",
+              "url": "https://arxiv.org/abs/2007.01852",
+              "author": "Feng et al. (Google)",
+              "published": "2020-07-03"
+            },
+            {
+              "title": "BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models（延伸）",
+              "url": "https://arxiv.org/abs/2104.08663",
+              "author": "Thakur et al. (NeurIPS 2021)",
+              "published": "2021-04-18"
+            },
+            {
+              "title": "如何评估多语言检索（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6045
         }
       ]
     },
