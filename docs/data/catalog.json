@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T14:50:27.284Z",
+  "generated": "2026-09-29T14:52:52.567Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 131,
+    "companyQuestions": 132,
     "companies": 9,
     "planned": 598
   },
@@ -8313,6 +8313,59 @@
           ],
           "updated": "2026-09-28",
           "chars": 6039
+        },
+        {
+          "id": "cognition-05",
+          "order": 5,
+          "title": "为数千个并发的云端 coding agent 设计执行环境。它必须能在 agent 等待 CI 长达四十分钟的情况下依然稳定运行。",
+          "titleEn": "Design the execution environment for thousands of concurrent cloud coding agents. It must stay stable while agents wait up to forty minutes for CI.",
+          "file": "公司题库/cognition/05-数千并发云端-coding-agent-的执行环境.md",
+          "level": "高阶",
+          "tags": [
+            "执行环境",
+            "沙箱",
+            "挂起恢复",
+            "资源池化",
+            "CI-等待",
+            "准入控制"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "cognition-04",
+            "cognition-08",
+            "cognition-02",
+            "system-design-01",
+            "anthropic-17"
+          ],
+          "sources": [
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "Don't Build Multi-Agents（Cognition 博客）",
+              "url": "https://cognition.ai/blog/dont-build-multi-agents",
+              "author": "Walden Yan (Cognition)",
+              "published": "2025-06-12"
+            },
+            {
+              "title": "在生产系统中如何让 agent 的操作可逆或至少可审计（本仓库专题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            },
+            {
+              "title": "为数千个并发的云端 coding agent 设计执行环境（本仓库公司题库 · Anthropic 篇的相关题）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5560
         }
       ]
     },
