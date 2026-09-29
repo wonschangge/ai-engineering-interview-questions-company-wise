@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T16:03:21.113Z",
+  "generated": "2026-09-29T16:07:18.700Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 155,
-    "companies": 11,
+    "companyQuestions": 156,
+    "companies": 12,
     "planned": 598
   },
   "topics": [
@@ -11321,6 +11321,71 @@
           "chars": 5732,
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
+        }
+      ]
+    },
+    {
+      "id": "company-deepseek",
+      "name": "deepseek",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "deepseek",
+      "overviewFile": null,
+      "overviewTitle": "deepseek",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "deepseek-01",
+          "order": 1,
+          "title": "讲讲 DeepSeekMoE。它与 Mixtral 这类标准的 top-2 MoE 有何不同？",
+          "titleEn": "Tell me about DeepSeekMoE. How does it differ from a standard top-2 MoE such as Mixtral?",
+          "file": "公司题库/deepseek/01-DeepSeekMoE-与标准-top-2-MoE-的差异.md",
+          "level": "高阶",
+          "tags": [
+            "DeepSeekMoE",
+            "细粒度专家",
+            "共享专家",
+            "路由组合",
+            "负载均衡"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "deepseek-02",
+            "deepseek-04",
+            "deepseek-05",
+            "cohere-02",
+            "inference-serving-07"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2401.06066",
+              "author": "Dai et al. (DeepSeek-AI)",
+              "published": "2024-01-11"
+            },
+            {
+              "title": "Mixtral of Experts（延伸）",
+              "url": "https://arxiv.org/abs/2401.04088",
+              "author": "Jiang et al. (Mistral AI)",
+              "published": "2024-01-08"
+            },
+            {
+              "title": "DeepSeek-V3 Technical Report（延伸）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "稀疏 MoE 为何适合私有化部署（本仓库公司题库 · Cohere 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5446
         }
       ]
     },
