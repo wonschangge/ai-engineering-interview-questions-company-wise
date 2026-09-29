@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T16:58:34.743Z",
+  "generated": "2026-09-29T17:00:23.633Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 166,
+    "companyQuestions": 167,
     "companies": 13,
     "planned": 598
   },
@@ -14217,6 +14217,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5827
+        },
+        {
+          "id": "moonshot-02",
+          "order": 2,
+          "title": "Kimi K2 使用了 Multi-head Latent Attention (MLA)。请解释它的作用，以及相比 GQA，它在减少 KV cache 方面表现如何。",
+          "titleEn": "Kimi K2 uses Multi-head Latent Attention (MLA). Explain what it does, and how it compares with GQA at reducing the KV cache.",
+          "file": "公司题库/moonshot/02-MLA-与-GQA-的-KV-压缩对比.md",
+          "level": "高阶",
+          "tags": [
+            "MLA",
+            "GQA",
+            "MQA",
+            "KV cache",
+            "权重吸收"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "moonshot-01",
+            "moonshot-03",
+            "deepseek-05",
+            "inference-serving-08",
+            "llm-internals-05"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model（延伸）",
+              "url": "https://arxiv.org/abs/2405.04434",
+              "author": "DeepSeek-AI",
+              "published": "2024-05-07"
+            },
+            {
+              "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints（延伸）",
+              "url": "https://arxiv.org/abs/2305.13245",
+              "author": "Ainslie et al. (Google)",
+              "published": "2023-05-22"
+            },
+            {
+              "title": "Fast Transformer Decoding: One Write-Head is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1911.02150",
+              "author": "Shazeer (Google)",
+              "published": "2019-11-06"
+            },
+            {
+              "title": "上下文从 8K 推到几十万时最先崩什么（本仓库公司题库 · Moonshot AI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6533
         }
       ]
     },
