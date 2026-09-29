@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T22:06:36.704Z",
+  "generated": "2026-09-29T22:10:00.861Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 350,
+    "companyQuestions": 353,
     "companies": 25,
     "planned": 598
   },
@@ -8381,6 +8381,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5041
+        },
+        {
+          "id": "character-ai-07",
+          "order": 7,
+          "title": "为数百万个用户创建的角色设计发现与搜索功能。",
+          "titleEn": "Design discovery and search for millions of user-created characters.",
+          "file": "公司题库/character-ai/07-百万角色的发现与搜索.md",
+          "level": "高阶",
+          "tags": [
+            "发现与搜索",
+            "冷启动",
+            "候选池",
+            "探索预算",
+            "质量先验"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "character-ai-02",
+            "character-ai-06",
+            "character-ai-08",
+            "perplexity-02",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "The Unreasonable Effectiveness of Data（延伸）",
+              "url": "https://research.google/pubs/pub35198/",
+              "author": "Halevy, Norvig & Pereira (Google)",
+              "published": "2009-03-01"
+            },
+            {
+              "title": "Mining of Massive Datasets（延伸）",
+              "url": "http://www.mmds.org/",
+              "author": "Leskovec, Rajaraman & Ullman",
+              "published": "2014-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4559
+        },
+        {
+          "id": "character-ai-08",
+          "order": 8,
+          "title": "用户抱怨角色在长时间会话后会偏离人设。请诊断这个问题。",
+          "titleEn": "Users complain that characters drift out of persona after long sessions. Diagnose it.",
+          "file": "公司题库/character-ai/08-长会话后人设偏离的诊断.md",
+          "level": "高阶",
+          "tags": [
+            "人设漂移",
+            "截断",
+            "重注入",
+            "2x2 归因",
+            "探针"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "character-ai-01",
+            "character-ai-02",
+            "character-ai-07",
+            "sierra-07",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al.",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "Measuring and Mitigating Sycophancy（延伸）",
+              "url": "https://arxiv.org/abs/2310.13548",
+              "author": "Sharma et al.",
+              "published": "2023-10-20"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4773
+        },
+        {
+          "id": "character-ai-09",
+          "order": 9,
+          "title": "互动指标与身心健康指标相互矛盾。你会如何构建一个能解决这一矛盾的系统？",
+          "titleEn": "Engagement metrics and wellbeing metrics contradict each other. How would you build a system that resolves the contradiction?",
+          "file": "公司题库/character-ai/09-互动指标与身心健康指标的矛盾.md",
+          "level": "高阶",
+          "tags": [
+            "护栏指标",
+            "行为代理",
+            "问卷",
+            "否决权",
+            "组织设计"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "character-ai-07",
+            "character-ai-08",
+            "character-ai-10",
+            "sierra-08",
+            "scale-09"
+          ],
+          "sources": [
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4701
         }
       ]
     },
