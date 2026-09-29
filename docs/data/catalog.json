@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:25:51.668Z",
+  "generated": "2026-09-29T17:29:44.358Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 177,
+    "companyQuestions": 178,
     "companies": 14,
     "planned": 598
   },
@@ -15191,6 +15191,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 5973
+        },
+        {
+          "id": "xai-03",
+          "order": 3,
+          "title": "这是一个小型 LLM 推理引擎里的调度器类。其中一个方法 `_admit_requests` 只是桩：没有规格说明、没有 docstring、没有测试。说说你最初三十分钟会怎么做。",
+          "titleEn": "This is the scheduler class in a small LLM inference engine. One method, `_admit_requests`, is just a stub: no spec, no docstring, no tests. What do you do in your first thirty minutes?",
+          "file": "公司题库/xai/03-没有规格说明的调度器桩方法.md",
+          "level": "高阶",
+          "tags": [
+            "契约推断",
+            "性质测试",
+            "遗留代码",
+            "调度器",
+            "工程流程"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "xai-01",
+            "xai-02",
+            "xai-04",
+            "coding-03",
+            "agents-05"
+          ],
+          "sources": [
+            {
+              "title": "Working Effectively with Legacy Code（延伸）",
+              "url": "https://www.oreilly.com/library/view/working-effectively-with/0131177052/",
+              "author": "Michael Feathers",
+              "published": "2004-09-01"
+            },
+            {
+              "title": "Property-Based Testing with PropEr, Erlang, and Elixir（延伸）",
+              "url": "https://propertesting.com/",
+              "author": "Fred Hebert",
+              "published": "2019-01-31"
+            },
+            {
+              "title": "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation（延伸）",
+              "url": "https://www.oreilly.com/library/view/continuous-delivery/9780321670250/",
+              "author": "Humble & Farley",
+              "published": "2010-07-27"
+            },
+            {
+              "title": "带嵌套事务的内存 KV 存储（本仓库公司题库 · xAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7049
         }
       ]
     }
