@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T17:37:19.067Z",
+  "generated": "2026-09-29T17:39:27.021Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 182,
+    "companyQuestions": 183,
     "companies": 14,
     "planned": 598
   },
@@ -15451,6 +15451,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6969
+        },
+        {
+          "id": "xai-08",
+          "order": 8,
+          "title": "为 web 规模的预训练语料设计去重流水线，而且必须以流式方式运行。",
+          "titleEn": "Design a deduplication pipeline for a web-scale pretraining corpus, and it has to run in streaming fashion.",
+          "file": "公司题库/xai/08-web-规模语料的流式去重.md",
+          "level": "高阶",
+          "tags": [
+            "去重",
+            "流式处理",
+            "MinHash",
+            "LSH",
+            "Bloom 过滤器"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "xai-06",
+            "xai-07",
+            "deepseek-08",
+            "rag-05",
+            "evaluation-05"
+          ],
+          "sources": [
+            {
+              "title": "Deduplicating Training Data Makes Language Models Better（延伸）",
+              "url": "https://arxiv.org/abs/2107.06499",
+              "author": "Lee et al.",
+              "published": "2021-07-14"
+            },
+            {
+              "title": "Scaling Up All Pairs Similarity Search（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1242572.1242591",
+              "author": "Bayardo et al. (Google)",
+              "published": "2007-05-08"
+            },
+            {
+              "title": "Mining of Massive Datasets（延伸）",
+              "url": "http://www.mmds.org/",
+              "author": "Leskovec, Rajaraman & Ullman",
+              "published": "2014-11-01"
+            },
+            {
+              "title": "合成数据与模型崩溃（本仓库公司题库 · DeepSeek 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7491
         }
       ]
     }
