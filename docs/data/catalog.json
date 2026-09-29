@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:32:38.369Z",
+  "generated": "2026-09-29T20:35:35.119Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 280,
+    "companyQuestions": 283,
     "companies": 19,
     "planned": 598
   },
@@ -18985,15 +18985,15 @@
       ]
     },
     {
-      "id": "company-perplexity",
-      "name": "perplexity",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "perplexity",
+      "name": "Perplexity",
+      "group": "AI 基础设施与平台公司",
+      "summary": "十五道题全部围绕\"答案引擎\"这一个产品形态——四道编程（跨提供商连接池、近似重复检测、embedding 批处理器、beam search）、一道推理服务（TTFT 从 1.2s 恶化到 3s 的排查）、两道检索（reranker 架构选择、50 选 10 的取舍与验证）、五道系统设计（答案引擎的 3 秒预算、千亿网页的检索流水线、多路融合排序、Comet 混合浏览器、突发新闻）、一道评估（持续大规模评估答案质量）、一道安全（引用校验系统），以及一道产品判断的行为题。",
+      "updated": "2026-09-28",
       "dir": "perplexity",
-      "overviewFile": null,
-      "overviewTitle": "perplexity",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/perplexity/README.md",
+      "overviewTitle": "Perplexity 面试题库",
+      "declaredTotal": 15,
       "questions": [
         {
           "id": "perplexity-01",
@@ -19039,7 +19039,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4987
+          "chars": 4987,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "perplexity-02",
@@ -19085,7 +19087,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4999
+          "chars": 4999,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "perplexity-03",
@@ -19131,7 +19135,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4828
+          "chars": 4828,
+          "topicName": "编程与数据结构",
+          "topicOrder": 3
         },
         {
           "id": "perplexity-04",
@@ -19177,7 +19183,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5591
+          "chars": 5591,
+          "topicName": "编程与数据结构",
+          "topicOrder": 4
         },
         {
           "id": "perplexity-05",
@@ -19223,7 +19231,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5663
+          "chars": 5663,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "perplexity-06",
@@ -19269,7 +19279,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6121
+          "chars": 6121,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
         },
         {
           "id": "perplexity-07",
@@ -19315,7 +19327,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5158
+          "chars": 5158,
+          "topicName": "RAG 与检索",
+          "topicOrder": 2
         },
         {
           "id": "perplexity-08",
@@ -19361,7 +19375,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5923
+          "chars": 5923,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "perplexity-09",
@@ -19407,7 +19423,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5375
+          "chars": 5375,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "perplexity-10",
@@ -19453,7 +19471,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5146
+          "chars": 5146,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
         },
         {
           "id": "perplexity-11",
@@ -19499,7 +19519,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5188
+          "chars": 5188,
+          "topicName": "AI 系统设计",
+          "topicOrder": 4
         },
         {
           "id": "perplexity-12",
@@ -19545,7 +19567,152 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5132
+          "chars": 5132,
+          "topicName": "AI 系统设计",
+          "topicOrder": 5
+        },
+        {
+          "id": "perplexity-13",
+          "order": 13,
+          "title": "你会如何持续、大规模地评估答案引擎的答案质量，并同时使用自动信号与人工信号？",
+          "titleEn": "How would you continuously evaluate answer quality at scale, using both automatic and human signals?",
+          "file": "公司题库/perplexity/13-持续评估答案质量.md",
+          "level": "高阶",
+          "tags": [
+            "持续评估",
+            "样本量",
+            "代理噪声",
+            "分层抽样",
+            "自动与人工"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "perplexity-14",
+            "perplexity-08",
+            "evaluation-01",
+            "evaluation-06",
+            "openai-21"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al.",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford CRFM)",
+              "published": "2022-11-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4984,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
+        },
+        {
+          "id": "perplexity-14",
+          "order": 14,
+          "title": "设计引用校验系统，以减少生成答案中的幻觉。你如何确保每一个论断都确实被其引用的来源支持？",
+          "titleEn": "Design a citation verification system to reduce hallucination in generated answers. How do you ensure every claim is actually supported by the source it cites?",
+          "file": "公司题库/perplexity/14-引用校验系统.md",
+          "level": "高阶",
+          "tags": [
+            "引用校验",
+            "幻觉",
+            "基率谬误",
+            "NLI",
+            "断言分解"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "perplexity-13",
+            "perplexity-08",
+            "perplexity-16",
+            "safety-03",
+            "palantir-12"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook AI)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Enabling Large Language Models to Generate Text with Citations（延伸）",
+              "url": "https://arxiv.org/abs/2305.14627",
+              "author": "Gao et al.",
+              "published": "2023-05-24"
+            },
+            {
+              "title": "Measuring Attribution in Natural Language Generation Models（延伸）",
+              "url": "https://arxiv.org/abs/2112.12870",
+              "author": "Rashkin et al. (Google)",
+              "published": "2021-12-23"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5042,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
+        },
+        {
+          "id": "perplexity-15",
+          "order": 15,
+          "title": "什么样的 Perplexity 回答算出色，什么样的算平庸？Perplexity 在哪些地方输给传统搜索，又在哪些地方胜出？你显然在用它：它哪里不好用，你会发布什么来修复？",
+          "titleEn": "What makes a Perplexity answer excellent versus mediocre? Where does Perplexity lose to traditional search, and where does it win? You clearly use it: what is bad about it, and what would you ship to fix it?",
+          "file": "公司题库/perplexity/15-什么样的回答算出色.md",
+          "level": "高阶",
+          "tags": [
+            "产品判断",
+            "查询分层",
+            "会话长度",
+            "发布取舍"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "perplexity-08",
+            "perplexity-12",
+            "perplexity-13",
+            "applied-02",
+            "behavioral-01"
+          ],
+          "sources": [
+            {
+              "title": "The Elements of User Experience（延伸）",
+              "url": "https://www.uxmatters.com/",
+              "author": "Jesse James Garrett",
+              "published": "2010-12-01"
+            },
+            {
+              "title": "Don\\u2019t Make Me Think, Revisited（延伸）",
+              "url": "https://www.sensible.com/dont-make-me-think/",
+              "author": "Steve Krug",
+              "published": "2013-12-24"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4906,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         }
       ]
     },
