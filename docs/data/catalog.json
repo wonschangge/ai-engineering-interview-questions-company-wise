@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T13:40:18.599Z",
+  "generated": "2026-09-29T13:44:53.020Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 106,
+    "companyQuestions": 108,
     "companies": 6,
     "planned": 598
   },
@@ -7713,6 +7713,110 @@
           ],
           "updated": "2026-09-28",
           "chars": 5771
+        },
+        {
+          "id": "anthropic-32",
+          "order": 32,
+          "title": "某企业客户说，在他们基于 RAG 的知识助手里「Claude 幻觉太多」。你是负责这个客户的 applied engineer。前 48 小时里你会做什么？",
+          "titleEn": "An enterprise customer says 「Claude hallucinates too much」 in their RAG-based knowledge assistant. You're the applied engineer on the account. What happens in the first 48 hours?",
+          "file": "公司题库/anthropic/32-客户-RAG-幻觉投诉的前-48-小时.md",
+          "level": "高阶",
+          "tags": [
+            "客户支持",
+            "RAG",
+            "归因分诊",
+            "度量",
+            "48-小时"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "rag-01",
+            "rag-02",
+            "rag-10",
+            "anthropic-27",
+            "evaluation-02"
+          ],
+          "sources": [
+            {
+              "title": "Benchmarking Large Language Models in Retrieval-Augmented Generation（延伸）",
+              "url": "https://arxiv.org/abs/2309.01431",
+              "author": "Chen et al. (AAAI 2024)",
+              "published": "2023-09-04"
+            },
+            {
+              "title": "Enabling Large Language Models to Generate Text with Citations（ALCE）（延伸）",
+              "url": "https://arxiv.org/abs/2305.14627",
+              "author": "Gao et al. (EMNLP 2023)",
+              "published": "2023-05-23"
+            },
+            {
+              "title": "Chunking Strategies for RAG",
+              "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6262
+        },
+        {
+          "id": "anthropic-33",
+          "order": 33,
+          "title": "你会如何让复杂的 AI 研究成果变得对非技术受众也能理解？",
+          "titleEn": "How would you make complex AI research findings accessible to a non-technical audience?",
+          "file": "公司题库/anthropic/33-让复杂的-AI-研究成果对非技术受众可理解.md",
+          "level": "进阶",
+          "tags": [
+            "科普",
+            "沟通",
+            "受众分析",
+            "可读性",
+            "理解度测试"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "anthropic-32",
+            "anthropic-29",
+            "evaluation-05",
+            "anthropic-21",
+            "safety-05"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Handling Overload（Google SRE Book 第 21 章）（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google SRE",
+              "published": ""
+            },
+            {
+              "title": "Are Emergent Abilities of Large Language Models a Mirage?（延伸）",
+              "url": "https://arxiv.org/abs/2304.15004",
+              "author": "Schaeffer, Miranda, Koyejo (NeurIPS 2023)",
+              "published": "2023-04-28"
+            },
+            {
+              "title": "Constitutional AI: Harmlessness from AI Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2212.08073",
+              "author": "Bai et al. (Anthropic)",
+              "published": "2022-12-15"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5232
         }
       ]
     },
