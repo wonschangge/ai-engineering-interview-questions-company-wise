@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T20:04:59.898Z",
+  "generated": "2026-09-29T20:07:49.603Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 260,
+    "companyQuestions": 263,
     "companies": 18,
     "planned": 598
   },
@@ -18574,6 +18574,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5126
+        },
+        {
+          "id": "palantir-13",
+          "order": 13,
+          "title": "一家货运铁路运营商每年因机车非计划停机损失数千万。请把它拆解成一份工程计划。",
+          "titleEn": "A freight rail operator loses tens of millions a year to unplanned locomotive downtime. Break this down into an engineering plan.",
+          "file": "公司题库/palantir/13-机车预测性维护计划.md",
+          "level": "高阶",
+          "tags": [
+            "预测性维护",
+            "价值量化",
+            "基率陷阱",
+            "标签泄漏",
+            "分阶段计划"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "palantir-12",
+            "palantir-15",
+            "gdm-19",
+            "evaluation-01",
+            "coding-26"
+          ],
+          "sources": [
+            {
+              "title": "Machine Learning: The High-Interest Credit Card of Technical Debt（延伸）",
+              "url": "https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf",
+              "author": "Sculley et al. (Google)",
+              "published": "2015-12-07"
+            },
+            {
+              "title": "Predicting the Remaining Useful Life of Machinery（延伸）",
+              "url": "https://www.sciencedirect.com/science/article/pii/S0951832012000863",
+              "author": "Sikorska, Hodkiewicz & Ma",
+              "published": "2011-08-01"
+            },
+            {
+              "title": "The Case for Learned Index Structures（延伸）",
+              "url": "https://arxiv.org/abs/1712.01208",
+              "author": "Kraska et al. (Google)",
+              "published": "2017-12-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5648
+        },
+        {
+          "id": "palantir-14",
+          "order": 14,
+          "title": "设计一个改善 NYC 交通的系统。",
+          "titleEn": "Design a system to improve traffic in NYC.",
+          "file": "公司题库/palantir/14-NYC-交通改善系统.md",
+          "level": "高阶",
+          "tags": [
+            "交通系统",
+            "干预对比",
+            "效果归因",
+            "公平性",
+            "范围收敛"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "palantir-13",
+            "palantir-15",
+            "system-design-04",
+            "gdm-16",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "The Fundamental Diagram of Road Traffic（延伸）",
+              "url": "https://en.wikipedia.org/wiki/Fundamental_diagram_of_traffic_flow",
+              "author": "Wikipedia",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Traffic Congestion and Reliability: Trends and Advanced Strategies for Congestion Mitigation（延伸）",
+              "url": "https://ops.fhwa.dot.gov/congestion_report/",
+              "author": "Federal Highway Administration",
+              "published": "2005-09-01"
+            },
+            {
+              "title": "Road Pricing and Congestion Charging（延伸）",
+              "url": "https://www.sciencedirect.com/topics/economics-econometrics-and-finance/congestion-pricing",
+              "author": "Elsevier",
+              "published": "2024-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5385
+        },
+        {
+          "id": "palantir-15",
+          "order": 15,
+          "title": "设计两个员工记录系统之间的同步系统。",
+          "titleEn": "Design a synchronization system between two employee record systems.",
+          "file": "公司题库/palantir/15-员工记录系统同步.md",
+          "level": "高阶",
+          "tags": [
+            "双向同步",
+            "权威源",
+            "冲突解决",
+            "乱序",
+            "幽灵账号"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "palantir-14",
+            "palantir-16",
+            "system-design-04",
+            "coding-31",
+            "evaluation-02"
+          ],
+          "sources": [
+            {
+              "title": "Designing Data-Intensive Applications（延伸）",
+              "url": "https://dataintensive.net/",
+              "author": "Martin Kleppmann",
+              "published": "2017-03-16"
+            },
+            {
+              "title": "CRDTs and the Quest for Distributed Consistency（延伸）",
+              "url": "https://www.usenix.org/conference/atc18/presentation/shapiro",
+              "author": "Marc Shapiro",
+              "published": "2018-07-11"
+            },
+            {
+              "title": "Enterprise Integration Patterns（延伸）",
+              "url": "https://www.enterpriseintegrationpatterns.com/",
+              "author": "Hohpe & Woolf",
+              "published": "2003-10-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4902
         }
       ]
     },
