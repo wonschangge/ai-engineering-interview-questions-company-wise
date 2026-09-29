@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T11:59:04.998Z",
+  "generated": "2026-09-29T04:37:36.382Z",
   "stats": {
-    "topics": 9,
-    "questions": 107,
+    "topics": 10,
+    "questions": 119,
     "planned": 598
   },
   "topics": [
@@ -5027,6 +5027,544 @@
           ],
           "updated": "2026-09-28",
           "chars": 13391
+        }
+      ]
+    },
+    {
+      "id": "coding",
+      "title": "编程与数据结构",
+      "order": 10,
+      "summary": "十二道手写实现题：attention 与 GQA、KV cache、BPE、采样、LRU 与 TTL、限流器、异步批处理、SSE 解析、分块器、余弦检索、agent loop。",
+      "declaredTotal": 12,
+      "updated": "2026-09-28",
+      "dir": "编程与数据结构",
+      "overviewFile": "编程与数据结构/README.md",
+      "overviewTitle": "编程与数据结构",
+      "questions": [
+        {
+          "id": "coding-01",
+          "order": 1,
+          "title": "用 NumPy 或 PyTorch 从零实现带因果掩码的 scaled dot-product attention。",
+          "titleEn": "Implement causal-masked scaled dot-product attention from scratch in NumPy or PyTorch.",
+          "file": "编程与数据结构/01-用 NumPy 或 PyTorch 从零实现带因果掩码的 scaled dot-product attention.md",
+          "level": "进阶",
+          "tags": [
+            "attention",
+            "实现题",
+            "数值稳定",
+            "因果掩码"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "Google DeepMind",
+            "Amazon（AWS）"
+          ],
+          "related": [
+            "coding-02",
+            "coding-03",
+            "llm-internals-01",
+            "llm-internals-04",
+            "llm-internals-05"
+          ],
+          "sources": [
+            {
+              "title": "注意力背后的数学：Q、K 与 V",
+              "url": "https://outcomeschool.com/blog/math-behind-attention-qkv",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Attention 中的因果掩码",
+              "url": "https://outcomeschool.com/blog/causal-masking-in-attention",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Attention Is All You Need（延伸）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (NeurIPS 2017)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）",
+              "url": "https://arxiv.org/abs/2205.14135",
+              "author": "Dao et al. (NeurIPS 2022)",
+              "published": "2022-05-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8473
+        },
+        {
+          "id": "coding-02",
+          "order": 2,
+          "title": "实现 multi-head attention，再把它改造成 grouped-query attention。",
+          "titleEn": "Implement multi-head attention, then convert it to grouped-query attention.",
+          "file": "编程与数据结构/02-实现 multi-head attention 并改造成 grouped-query attention.md",
+          "level": "进阶",
+          "tags": [
+            "mha",
+            "gqa",
+            "mqa",
+            "kv-heads"
+          ],
+          "askedAt": [
+            "Google DeepMind",
+            "Mistral AI",
+            "阿里巴巴（Qwen）"
+          ],
+          "related": [
+            "coding-01",
+            "coding-03",
+            "llm-internals-04",
+            "inference-serving-03",
+            "inference-serving-07"
+          ],
+          "sources": [
+            {
+              "title": "Transformer 中的 Multi-Head Attention",
+              "url": "https://outcomeschool.com/blog/multi-head-attention-in-transformers",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "分组查询注意力（GQA）",
+              "url": "https://outcomeschool.com/blog/grouped-query-attention",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints（延伸）",
+              "url": "https://arxiv.org/abs/2305.13245",
+              "author": "Ainslie et al. (EMNLP 2023)",
+              "published": "2023-05-22"
+            },
+            {
+              "title": "Fast Transformer Decoding: One Write-Head is All You Need（MQA）（延伸）",
+              "url": "https://arxiv.org/abs/1911.02150",
+              "author": "Shazeer",
+              "published": "2019-11-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 8621
+        },
+        {
+          "id": "coding-03",
+          "order": 3,
+          "title": "实现 KV cache 与单步 decode。",
+          "titleEn": "Implement a KV cache and single-step decoding.",
+          "file": "编程与数据结构/03-实现 KV cache 与单步 decode.md",
+          "level": "进阶",
+          "tags": [
+            "kv-cache",
+            "decode",
+            "实现题",
+            "增量推理"
+          ],
+          "askedAt": [
+            "Moonshot AI（Kimi）"
+          ],
+          "related": [
+            "coding-02",
+            "inference-serving-01",
+            "inference-serving-03",
+            "inference-serving-05",
+            "coding-01"
+          ],
+          "sources": [
+            {
+              "title": "LLM 中的 KV Cache 是什么？",
+              "url": "https://outcomeschool.com/blog/kv-cache-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding（延伸）",
+              "url": "https://arxiv.org/abs/2104.09864",
+              "author": "Su et al.",
+              "published": "2021-04-20"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7711
+        },
+        {
+          "id": "coding-04",
+          "order": 4,
+          "title": "从零实现 BPE 的训练与编码。",
+          "titleEn": "Implement BPE training and encoding from scratch.",
+          "file": "编程与数据结构/04-从零实现 BPE 的训练与编码.md",
+          "level": "进阶",
+          "tags": [
+            "bpe",
+            "tokenizer",
+            "实现题",
+            "unicode"
+          ],
+          "askedAt": [],
+          "related": [
+            "llm-internals-06",
+            "coding-10",
+            "llm-internals-07",
+            "coding-05"
+          ],
+          "sources": [
+            {
+              "title": "Byte Pair Encoding",
+              "url": "https://outcomeschool.com/blog/bpe-in-llms",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）",
+              "url": "https://arxiv.org/abs/1508.07909",
+              "author": "Sennrich et al. (ACL 2016)",
+              "published": "2015-08-31"
+            },
+            {
+              "title": "SentencePiece: A simple and language independent subword tokenizer and detokenizer（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo & Richardson (EMNLP 2018 demo)",
+              "published": "2018-08-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9050
+        },
+        {
+          "id": "coding-05",
+          "order": 5,
+          "title": "在 logits 向量上实现 top-k、top-p 与 temperature 采样。",
+          "titleEn": "Implement top-k, top-p and temperature sampling over a logits vector.",
+          "file": "编程与数据结构/05-在 logits 上实现 top-k、top-p 与 temperature 采样.md",
+          "level": "进阶",
+          "tags": [
+            "采样",
+            "top-p",
+            "temperature",
+            "实现题"
+          ],
+          "askedAt": [
+            "Google DeepMind",
+            "Apple"
+          ],
+          "related": [
+            "llm-internals-12",
+            "coding-04",
+            "inference-serving-09",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Temperature 如何控制 LLM 的输出？",
+              "url": "https://outcomeschool.com/blog/how-does-temperature-control-llm-output",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Top-k 与 Top-p 采样是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-do-top-k-and-top-p-sampling-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "The Curious Case of Neural Text Degeneration（nucleus sampling）（延伸）",
+              "url": "https://arxiv.org/abs/1904.09751",
+              "author": "Holtzman et al. (ICLR 2020)",
+              "published": "2019-04-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9633
+        },
+        {
+          "id": "coding-06",
+          "order": 6,
+          "title": "实现一个 get/put 为 O(1) 的 LRU cache，然后加上 TTL。",
+          "titleEn": "Implement an LRU cache with O(1) get/put, then add TTL.",
+          "file": "编程与数据结构/06-实现 get-put 为 O(1) 的 LRU cache 并加上 TTL.md",
+          "level": "进阶",
+          "tags": [
+            "lru",
+            "ttl",
+            "数据结构",
+            "缓存"
+          ],
+          "askedAt": [
+            "OpenAI",
+            "xAI",
+            "阿里巴巴（Qwen）"
+          ],
+          "related": [
+            "system-design-09",
+            "inference-serving-05",
+            "coding-07",
+            "system-design-10"
+          ],
+          "sources": [
+            {
+              "title": "collections — OrderedDict（Python 标准库文档）（延伸）",
+              "url": "https://docs.python.org/3/library/collections.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Key eviction（Redis 文档）（延伸）",
+              "url": "https://redis.io/docs/latest/develop/reference/eviction/",
+              "author": "Redis",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7518
+        },
+        {
+          "id": "coding-07",
+          "order": 7,
+          "title": "实现一个 token-bucket 限流器，然后把它改造成分布式的。",
+          "titleEn": "Implement a token-bucket rate limiter, then make it distributed.",
+          "file": "编程与数据结构/07-实现 token-bucket 限流器并改造成分布式.md",
+          "level": "高阶",
+          "tags": [
+            "限流",
+            "token-bucket",
+            "分布式",
+            "实现题"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "OpenAI",
+            "xAI",
+            "Cohere"
+          ],
+          "related": [
+            "system-design-09",
+            "coding-06",
+            "inference-serving-09",
+            "system-design-10"
+          ],
+          "sources": [
+            {
+              "title": "A Single Rate Three Color Marker（RFC 2697）（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc2697",
+              "author": "Heinanen & Guerin (IETF)",
+              "published": "1999-09"
+            },
+            {
+              "title": "Counting a lot of different things（Cloudflare 工程博客）（延伸）",
+              "url": "https://blog.cloudflare.com/counting-things-a-lot-of-different-things/",
+              "author": "Cloudflare",
+              "published": "2017-06-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 9711
+        },
+        {
+          "id": "coding-08",
+          "order": 8,
+          "title": "编写一个针对 API 的异步批处理器，支持并发上限、带 jitter 的重试和错误隔离。",
+          "titleEn": "Write an async batcher for an API with a concurrency cap, jittered retries, and error isolation.",
+          "file": "编程与数据结构/08-编写针对 API 的异步批处理器.md",
+          "level": "高阶",
+          "tags": [
+            "异步",
+            "批处理",
+            "重试",
+            "并发"
+          ],
+          "askedAt": [
+            "Anthropic",
+            "Perplexity"
+          ],
+          "related": [
+            "agents-02",
+            "inference-serving-09",
+            "system-design-09",
+            "coding-07",
+            "evaluation-07"
+          ],
+          "sources": [
+            {
+              "title": "Coroutines and Tasks（Python asyncio 文档）（延伸）",
+              "url": "https://docs.python.org/3/library/asyncio-task.html",
+              "author": "Python Software Foundation",
+              "published": ""
+            },
+            {
+              "title": "Exponential Backoff And Jitter（延伸）",
+              "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+              "author": "Marc Brooker (AWS Architecture Blog)",
+              "published": "2015-03-04"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7761
+        },
+        {
+          "id": "coding-09",
+          "order": 9,
+          "title": "编写一个流式 SSE/JSON 解析器，能处理任意 chunk 边界。",
+          "titleEn": "Write a streaming SSE/JSON parser that handles arbitrary chunk boundaries.",
+          "file": "编程与数据结构/09-编写能处理任意 chunk 边界的流式 SSE-JSON 解析器.md",
+          "level": "高阶",
+          "tags": [
+            "sse",
+            "流式解析",
+            "实现题",
+            "增量-json"
+          ],
+          "askedAt": [
+            "Cohere"
+          ],
+          "related": [
+            "inference-serving-09",
+            "coding-08",
+            "multimodal-08",
+            "evaluation-07",
+            "agents-02"
+          ],
+          "sources": [
+            {
+              "title": "Token Streaming 是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-token-streaming-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "HTML Living Standard: Server-sent events（延伸）",
+              "url": "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+              "author": "WHATWG",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7787
+        },
+        {
+          "id": "coding-10",
+          "order": 10,
+          "title": "实现一个带重叠的文本分块器，且绝不切开语义单元。",
+          "titleEn": "Implement an overlapping text chunker that never splits a semantic unit.",
+          "file": "编程与数据结构/10-实现带重叠且不切开语义单元的文本分块器.md",
+          "level": "进阶",
+          "tags": [
+            "chunking",
+            "实现题",
+            "边界处理",
+            "重叠"
+          ],
+          "askedAt": [
+            "Harvey"
+          ],
+          "related": [
+            "rag-01",
+            "coding-04",
+            "rag-10",
+            "coding-09",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "RAG 的 chunking 策略",
+              "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7589
+        },
+        {
+          "id": "coding-11",
+          "order": 11,
+          "title": "在 embedding 上实现余弦相似度检索，然后解释为什么你不会把它上线。",
+          "titleEn": "Implement cosine-similarity retrieval over embeddings, then explain why you would not ship it as-is.",
+          "file": "编程与数据结构/11-在 embedding 上实现余弦相似度检索并解释为什么不会直接上线.md",
+          "level": "进阶",
+          "tags": [
+            "余弦相似度",
+            "检索",
+            "实现题",
+            "ann"
+          ],
+          "askedAt": [],
+          "related": [
+            "rag-09",
+            "rag-02",
+            "rag-03",
+            "multimodal-10",
+            "coding-10"
+          ],
+          "sources": [
+            {
+              "title": "向量数据库是如何工作的？",
+              "url": "https://outcomeschool.com/blog/how-does-a-vector-database-work",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Billion-scale similarity search with GPUs（FAISS）（延伸）",
+              "url": "https://arxiv.org/abs/1702.08734",
+              "author": "Johnson, Douze, Jégou",
+              "published": "2017-02-28"
+            },
+            {
+              "title": "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs（HNSW）（延伸）",
+              "url": "https://arxiv.org/abs/1603.09320",
+              "author": "Malkov & Yashunin",
+              "published": "2016-03-30"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 10448
+        },
+        {
+          "id": "coding-12",
+          "order": 12,
+          "title": "实现一个最小化的 agent loop，包含工具分发、错误处理和步数预算。",
+          "titleEn": "Implement a minimal agent loop with tool dispatch, error handling and a step budget.",
+          "file": "编程与数据结构/12-实现一个最小化的 agent loop.md",
+          "level": "高阶",
+          "tags": [
+            "agent-loop",
+            "实现题",
+            "工具分发",
+            "预算"
+          ],
+          "askedAt": [
+            "Cognition（Devin、Windsurf）"
+          ],
+          "related": [
+            "agents-01",
+            "agents-09",
+            "agents-02",
+            "coding-08",
+            "agents-10"
+          ],
+          "sources": [
+            {
+              "title": "AI Agent 循环",
+              "url": "https://outcomeschool.com/blog/ai-agent-loop",
+              "author": "Amit Shekhar (Outcome School)",
+              "published": ""
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (ICLR 2023)",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7689
         }
       ]
     }

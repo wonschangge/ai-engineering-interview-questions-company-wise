@@ -1,0 +1,310 @@
+{
+  "topic": "编程与数据结构",
+  "topic_id": "coding",
+  "guide": "scripts/DOC-GUIDE.md",
+  "dir": "docs/编程与数据结构",
+  "all_questions": [
+    { "id": "coding-01", "order": 1, "title": "用 NumPy 或 PyTorch 从零实现带因果掩码的 scaled dot-product attention。" },
+    { "id": "coding-02", "order": 2, "title": "实现 multi-head attention，再把它改造成 grouped-query attention。" },
+    { "id": "coding-03", "order": 3, "title": "实现 KV cache 与单步 decode。" },
+    { "id": "coding-04", "order": 4, "title": "从零实现 BPE 的训练与编码。" },
+    { "id": "coding-05", "order": 5, "title": "在 logits 向量上实现 top-k、top-p 与 temperature 采样。" },
+    { "id": "coding-06", "order": 6, "title": "实现一个 get/put 为 O(1) 的 LRU cache，然后加上 TTL。" },
+    { "id": "coding-07", "order": 7, "title": "实现一个 token-bucket 限流器，然后把它改造成分布式的。" },
+    { "id": "coding-08", "order": 8, "title": "编写一个针对 API 的异步批处理器，支持并发上限、带 jitter 的重试和错误隔离。" },
+    { "id": "coding-09", "order": 9, "title": "编写一个流式 SSE/JSON 解析器，能处理任意 chunk 边界。" },
+    { "id": "coding-10", "order": 10, "title": "实现一个带重叠的文本分块器，且绝不切开语义单元。" },
+    { "id": "coding-11", "order": 11, "title": "在 embedding 上实现余弦相似度检索，然后解释为什么你不会把它上线。" },
+    { "id": "coding-12", "order": 12, "title": "实现一个最小化的 agent loop，包含工具分发、错误处理和步数预算。" }
+  ],
+  "questions": [
+    {
+      "id": "coding-01",
+      "order": 1,
+      "file": "docs/编程与数据结构/01-用 NumPy 或 PyTorch 从零实现带因果掩码的 scaled dot-product attention.md",
+      "question": "用 NumPy 或 PyTorch 从零实现带因果掩码的 scaled dot-product attention。",
+      "question_en": "Implement causal-masked scaled dot-product attention from scratch in NumPy or PyTorch.",
+      "asked_at": ["Anthropic", "Google DeepMind", "Amazon（AWS）"],
+      "level": "进阶",
+      "tags": ["attention", "实现题", "数值稳定", "因果掩码"],
+      "sources": [
+        { "title": "注意力背后的数学：Q、K 与 V", "url": "https://outcomeschool.com/blog/math-behind-attention-qkv", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Attention 中的因果掩码", "url": "https://outcomeschool.com/blog/causal-masking-in-attention", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Attention Is All You Need（延伸）", "url": "https://arxiv.org/abs/1706.03762", "author": "Vaswani et al. (NeurIPS 2017)", "published": "2017-06-12" },
+        { "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness（延伸）", "url": "https://arxiv.org/abs/2205.14135", "author": "Dao et al. (NeurIPS 2022)", "published": "2022-05-27" }
+      ],
+      "related": ["coding-02", "coding-03", "llm-internals-01", "llm-internals-04", "llm-internals-05"],
+      "brief": [
+        "先写清接口与形状约定（实现题的第一步是把契约写清楚）：输入 q、k、v，形状 (B, H, T, d) 或 (B, T, d) 由你定但要一致；输出 (B, H, T, d_v)；缩放因子 1/sqrt(d_k)；返回的 attention 权重形状 (B, H, T, T)。要说明为什么默认带 batch 与 head 维度（与真实模型对齐）。",
+        "实现分三步并解释每一步：① 打分 S = QK^T / sqrt(d_k)；② 因果掩码——把 j 大于 i 的位置置为负无穷（实现上用很大的负数如 -1e9 或 float 的负无穷，要说明用负无穷在部分后端会产生 NaN，所以工程上常用有限大负数，并给出验证方式）；③ softmax 后与 V 相乘。必须包含两件工程细节：softmax 数值稳定（减最大值）与掩码必须在 softmax 之前（在之后乘 0 会破坏归一化，这是最常见的面试错误，要明确指出并给出错误实现的对比结果）。",
+        "给出可运行代码并实跑：用固定随机种子构造 B=2、H=4、T=8、d=16 的输入，跑一遍，打印输出形状、第一行与第二行的注意力权重（验证第一行只有一个 1.0、第二行是 0.5 与 0.5 这类可检验的性质），并断言每行权重之和为 1 与权重矩阵的上三角全为 0。这些断言本身就是「数值与代码验证」一节的内容。",
+        "与参考实现对齐：用 PyTorch 的 F.scaled_dot_product_attention（或手写 einsum 版本）做对照，报告最大绝对误差（应在 1e-6 量级，bf16 下更大，要说明 dtype 差异）。这一步是回答「你怎么知道自己的实现是对的」的标准做法（链到 [[evaluation-04]] 的门禁思路）。",
+        "讲复杂度与显存（面试必追问）：标准实现的时间 O(T^2 d)、显存 O(T^2)（要物化 T 乘 T 的权重矩阵）；当 T=8192、H=32、B=1 时权重矩阵是 32 × 8192^2 × 2 字节 ≈ 4 GiB（自己算一遍），这正是 FlashAttention 要解决的问题——可引用其口径：IO 感知的分块算法减少 HBM 读写、无需物化完整的 T 乘 T 矩阵（链到 [[llm-internals-05]]、[[inference-serving-03]]）。",
+        "讲常见错误与边界：mask 方向写反（上三角与下三角搞混，导致看到未来却仍能跑出数字）、缩放写成 1/d_k 而不是 1/sqrt(d_k)、在负无穷上做 softmax 得到 NaN、训练与推理是否需要 mask（生成式解码时 query 长度是 1 而 key 很长，此时掩码只在训练或并行生成时需要）、以及 dtype 与 torch.compile 或 einsum 的差异。",
+        "常见追问：为什么要除以 sqrt(d_k)（方差角度）？softmax 的数值稳定怎么实现？如果不物化 T 乘 T 矩阵，怎么算（FlashAttention 的分块与在线 softmax）？"
+      ]
+    },
+    {
+      "id": "coding-02",
+      "order": 2,
+      "file": "docs/编程与数据结构/02-实现 multi-head attention 并改造成 grouped-query attention.md",
+      "question": "实现 multi-head attention，再把它改造成 grouped-query attention。",
+      "question_en": "Implement multi-head attention, then convert it to grouped-query attention.",
+      "asked_at": ["Google DeepMind", "Mistral AI", "阿里巴巴（Qwen）"],
+      "level": "进阶",
+      "tags": ["mha", "gqa", "mqa", "kv-heads"],
+      "sources": [
+        { "title": "Transformer 中的 Multi-Head Attention", "url": "https://outcomeschool.com/blog/multi-head-attention-in-transformers", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "分组查询注意力（GQA）", "url": "https://outcomeschool.com/blog/grouped-query-attention", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints（延伸）", "url": "https://arxiv.org/abs/2305.13245", "author": "Ainslie et al. (EMNLP 2023)", "published": "2023-05-22" },
+        { "title": "Fast Transformer Decoding: One Write-Head is All You Need（MQA）（延伸）", "url": "https://arxiv.org/abs/1911.02150", "author": "Shazeer", "published": "2019-11-06" }
+      ],
+      "related": ["coding-01", "coding-03", "llm-internals-04", "inference-serving-03", "inference-serving-07"],
+      "brief": [
+        "先实现标准 MHA 并把参数量写清楚：d_model、H 个 head、每头 d_h = d_model/H；W_q、W_k、W_v、W_o 各为 d_model 乘 d_model，总参数量 4 乘 d_model^2（自己推导并给出 d_model=4096 时的数字，约 67.1M）。实现要包含分头（reshape 加 transpose）、调用第 1 题的 attention、合并、输出投影——把分头这一步的形状变化写成注释（这是最容易写错的地方）。",
+        "改造成 GQA 或 MQA 的关键只有一处：K/V 的头数从 H 变成 H_kv。要写清 H_kv 等于 H 是 MHA、H_kv 等于 1 是 MQA、介于两者之间是 GQA；实现上用 repeat_interleave 或 reshape 加 broadcast 把 K/V 扩到 H 个头（给出两种写法与显存差异：repeat_interleave 会真实复制、broadcast 不会——这个细节能体现工程水平）。要引用 MQA 论文的动机：增量推理慢在反复加载大 K/V 张量的内存带宽成本上，共享 K/V 头能大幅缩小这些张量（标注这是论文口径）；再引用 GQA 的口径：MQA 会带来质量下降，而 GQA 用介于 1 与 H 之间的 K/V 头数在质量与速度间取折中，并给出把已有 MHA checkpoint 继续训练（uptrain）成 GQA 的配方（用约 5% 的原始预训练算力）。",
+        "算 KV cache 的收益（这是 GQA 存在的全部理由，必须算）：每 token 每层的 KV 元素数是 2 乘 H_kv 乘 d_h，字节数再乘 dtype 大小。以 LLaMA-3-70B 口径（80 层、H=64、d_h=128、H_kv=8、bf16）算：2×8×128×2 = 4096 字节每层，乘 80 层 = 327,680 字节 = 320 KiB 每 token，与 MHA（H_kv=64）相比缩小 8 倍（MHA 会是 2.5 MiB 每 token）。要把这个算式跑一遍并与本仓库其它专题的统一常数对齐。",
+        "给出可运行验证：用小配置（例如 d_model=64、H=8）断言三种设置的输出形状一致、参数量符合预期；再断言 H_kv 等于 H 时 GQA 的实现与 MHA 逐元素相等（数值对齐，这是最有说服力的正确性证据）；最后打印三种设置下的 KV cache 字节数与理论加速比。",
+        "讲工程细节与坑：H 必须能被 H_kv 整除；分头时用 reshape 还是 view（非连续张量会报错）；repeat_interleave 的内存开销在长序列上不可忽略；导出到推理引擎时 GQA 需要内核支持（链到 [[inference-serving-11]]）；张量并行下 K/V 头可能被切分到不同卡（链到 [[inference-serving-07]]）。",
+        "常见追问：为什么 GQA 不像 MQA 那样掉点（用可学习的头数折中）？uptrain 的具体做法（对 K/V 投影权重做 mean-pool 再继续训练）？为什么 KV cache 是推理的主要显存占用（链到 [[inference-serving-08]]）？"
+      ]
+    },
+    {
+      "id": "coding-03",
+      "order": 3,
+      "file": "docs/编程与数据结构/03-实现 KV cache 与单步 decode.md",
+      "question": "实现 KV cache 与单步 decode。",
+      "question_en": "Implement a KV cache and single-step decoding.",
+      "asked_at": ["Moonshot AI（Kimi）"],
+      "level": "进阶",
+      "tags": ["kv-cache", "decode", "实现题", "增量推理"],
+      "sources": [
+        { "title": "LLM 中的 KV Cache 是什么？", "url": "https://outcomeschool.com/blog/kv-cache-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding（延伸）", "url": "https://arxiv.org/abs/2104.09864", "author": "Su et al.", "published": "2021-04-20" }
+      ],
+      "related": ["coding-02", "inference-serving-01", "inference-serving-03", "inference-serving-05", "coding-01"],
+      "brief": [
+        "先讲清为什么需要 cache：自回归解码每步只新增一个 token，如果不缓存就要重算整段前缀的 K/V（要给出对比：生成 T 个 token 时，无 cache 的每步都要重算全部投影，总工作量随步数平方增长）。",
+        "实现分两部分：① prefill——整段 prompt 一次前向，把每层的 K、V 存下来；② decode——每步只输入新 token，用它算 q，从 cache 里取全部 K、V 计算注意力，再把新的 k、v 追加到 cache。给出数据结构：每层一个张量，形状 (B, H_kv, T_max, d_h)，用拼接或预分配加索引写入（要比较两种方式：每步重新拼接会反复分配内存，预分配后按位置写入更快——给出实测耗时对比）。",
+        "把位置编码讲进去（这一步最容易出错）：由于 decode 时 q 只有 1 个位置而 k 有 T 个，位置信息必须按绝对位置施加——以 RoPE 为例，要说明它是对 q 与 k 分别做旋转、且旋转角度只依赖该 token 的绝对位置，因此 cache 里存的是已经施加过 RoPE 的 k（存未施加的也行，但必须在取出后按位置施加，且不能重复施加）——可引用 RoPE 论文的口径：用旋转矩阵编码绝对位置，同时在注意力中引入显式的相对位置依赖。要指出学习式绝对位置编码与 RoPE 的差异，以及 ALiBi 这类方案的取舍。",
+        "给出可运行对比实验（本题的核心验证）：写一个不带 cache 的完整前向与带 cache 的增量前向，断言两者在同样的输入下输出逐元素一致（误差小于 1e-5，这是最有说服力的正确性证明）；然后测 50 步、100 步、200 步 decode 的耗时，打印加速比（会随步数增长而扩大），并解释原因——无 cache 时第 t 步要算 t 个位置的注意力；有 cache 时每步只算 1 个 query 对 T 个 key 的注意力。要点出这个细节：cache 省的是 K/V 投影的重复计算与随之而来的显存读写，注意力的规模仍随上下文增长（所以 KV cache 不能把 decode 变成 O(1)）。",
+        "把显存算清楚并与仓库统一口径对齐：2 乘 layers 乘 H_kv 乘 d_h 乘 bytes 乘 T；以 LLaMA-3-70B（80 层、8 个 KV 头、d_h=128、bf16）算 320 KiB 每 token，32k 上下文约 10 GiB（自算并与 [[inference-serving-08]] 对齐）；再讲工程优化方向：PagedAttention 解决碎片（链到 [[inference-serving-03]]）、prefix cache 复用公共前缀（链到 [[inference-serving-05]]）、量化 KV（链到 [[inference-serving-06]]）。",
+        "讲常见错误与边界：① cache 的写入位置与 attention mask 错位（把新 token 放在第 0 位）；② 拼接维度写错（拼在 head 维而不是序列维）；③ 位置编码重复施加或漏施加（结果会看起来通顺但语义错乱，必须用对比测试才能发现）；④ 多轮对话时 cache 与前缀的复用边界（哪部分能复用、哪部分必须重算）。",
+        "常见追问：为什么 decode 是带宽受限而 prefill 是计算受限（链到 [[inference-serving-01]]）？chunked prefill 如何与 cache 交互（链到 [[inference-serving-14]]）？如何实现 beam search 下的 cache（要按 beam 重排）？"
+      ]
+    },
+    {
+      "id": "coding-04",
+      "order": 4,
+      "file": "docs/编程与数据结构/04-从零实现 BPE 的训练与编码.md",
+      "question": "从零实现 BPE 的训练与编码。",
+      "question_en": "Implement BPE training and encoding from scratch.",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["bpe", "tokenizer", "实现题", "unicode"],
+      "sources": [
+        { "title": "Byte Pair Encoding", "url": "https://outcomeschool.com/blog/bpe-in-llms", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Neural Machine Translation of Rare Words with Subword Units（延伸）", "url": "https://arxiv.org/abs/1508.07909", "author": "Sennrich et al. (ACL 2016)", "published": "2015-08-31" },
+        { "title": "SentencePiece: A simple and language independent subword tokenizer and detokenizer（延伸）", "url": "https://arxiv.org/abs/1808.06226", "author": "Kudo & Richardson (EMNLP 2018 demo)", "published": "2018-08-19" }
+      ],
+      "related": ["llm-internals-06", "coding-10", "llm-internals-07", "coding-05"],
+      "brief": [
+        "先讲 BPE 要解决什么问题：开放词表——用固定词表表达任意文本，把罕见词拆成子词单元。可引用 BPE 原始论文的口径：把罕见与未登录词编码成子词序列（名字靠字符复制或音译、复合词靠组合翻译、同源词与借词靠音系与形态变换），并在 WMT15 英德与英俄上比回退词典基线分别提升 1.1 与 1.3 BLEU（标注口径）。",
+        "实现训练（写清算法步骤）：① 预处理——按空格分词，并说明真实实现还会先做规范化与预分词（可引用 SentencePiece 的口径：它可以直接从原始句子训练子词模型而无需预分词，从而做到语言无关）；② 把每个词表示为字符序列并加词尾标记（要解释词尾标记的作用：区分词中与词尾的同一字符）；③ 统计相邻符号对的频次；④ 合并频次最高的对，记录合并规则并更新所有词；⑤ 重复直到达到目标词表大小或没有可合并的对。要给复杂度：每轮重扫全语料是 O(N)，k 轮是 O(kN)——真实实现用优先队列与增量更新频次优化，要说明你选的是哪种并给出实测。",
+        "实现编码：按训练得到的合并规则顺序贪心合并（注意：必须按训练时的合并顺序，而不是按频次——顺序错了结果就不同，这是本实现题的经典坑）；对未登录词要能退回字符级（保证任何输入都能编码，这是 BPE 的核心保证）；给出把 token 映射到 id 的环节（含特殊 token 处理）。",
+        "给出可运行验证（要真的跑）：① 用一小段语料训练，打印学到的合并规则（按顺序）与最终词表；② 对训练中出现的词与未出现的词分别编码，打印结果（例如 lowest 切成 low 与 est 这类可检验的切分）；③ 断言 encode 与 decode 往返一致（对含空格、标点、中文、emoji 的字符串都要测）；④ 统计压缩率（平均每词 token 数）随词表大小的变化并列成表——这张表能说明词表越大压缩越好但收益递减这个工程结论。",
+        "讲工程细节与边界（区分写过玩具与做过生产）：① Unicode——按字符切分还是按字节切分（字节级 BPE 能覆盖所有字符，但会让中文与 emoji 的序列变长；要给出中文按字符 BPE 与按字节 BPE 的 token 数对比）；② 规范化（NFC 与 NFKC）与大小写处理；③ 特殊 token 与 unk 的处理；④ 前缀空格的表示法（GPT 系列用 Ġ、SentencePiece 用 ▁），这决定了 detokenize 能否无损；⑤ 训练语料的配比决定词表偏差（英文为中心的语料会让中文更碎，链到 [[llm-internals-06]]）；⑥ 并行与缓存（编码是高频操作，要能批量与缓存，链到 [[inference-serving-05]]）。",
+        "常见追问：BPE 与 WordPiece、Unigram 的区别？为什么词表大小通常是 32k 到 128k（压缩率、embedding 参数量与 softmax 计算量的三方权衡）？为什么换 tokenizer 通常要重训模型（tokenizer 与权重绑定）？"
+      ]
+    },
+    {
+      "id": "coding-05",
+      "order": 5,
+      "file": "docs/编程与数据结构/05-在 logits 上实现 top-k、top-p 与 temperature 采样.md",
+      "question": "在 logits 向量上实现 top-k、top-p 与 temperature 采样。",
+      "question_en": "Implement top-k, top-p and temperature sampling over a logits vector.",
+      "asked_at": ["Google DeepMind", "Apple"],
+      "level": "进阶",
+      "tags": ["采样", "top-p", "temperature", "实现题"],
+      "sources": [
+        { "title": "Temperature 如何控制 LLM 的输出？", "url": "https://outcomeschool.com/blog/how-does-temperature-control-llm-output", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Top-k 与 Top-p 采样是如何工作的？", "url": "https://outcomeschool.com/blog/how-do-top-k-and-top-p-sampling-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "The Curious Case of Neural Text Degeneration（nucleus sampling）（延伸）", "url": "https://arxiv.org/abs/1904.09751", "author": "Holtzman et al. (ICLR 2020)", "published": "2019-04-22" }
+      ],
+      "related": ["llm-internals-12", "coding-04", "inference-serving-09", "evaluation-01"],
+      "brief": [
+        "先实现三个可独立测试的纯函数：apply_temperature（logits 除以 T）、top_k_filter、top_p_filter，再加一个 sample 把三者串起来。要求传入随机数生成器以便可复现——这是评测与调试的基本要求（链到 [[evaluation-04]] 的可复现性）。",
+        "逐个讲清语义与实现细节：① temperature——T 小于 1 使分布更尖（更确定）、T 大于 1 更平（更随机）、T 趋近 0 退化为贪心；必须处理 T 等于 0 的除零（直接走 argmax）。② top-k——保留概率最大的 k 个，其余置负无穷（实现上取第 k 大的值做阈值即可，不必排序全部；给出 O(V) 而非 O(V log V) 的复杂度）。③ top-p（nucleus）——按概率降序累加，保留累计概率首次达到 p 的最小集合（注意：是包含跨过阈值的那一个 token，而不是严格小于 p 的部分——这个边界最容易写错，要给出两种实现的差异用例）。可引用 nucleus sampling 论文的口径作为动机：以似然为解码目标会产生平淡且重复的文本，而人类文本与机器文本在分布上有显著差异；nucleus sampling 从动态的概率核中采样，在截断不可靠尾部的同时保持多样性（标注这是论文口径）。",
+        "顺序很重要，要讲清为什么：先温度、再 top-k、再 top-p、最后 softmax 归一化并采样（也有的实现先 top-k 再温度，结果不同——要指出这是实现约定，必须在文档与代码里写死，否则同一组参数在不同框架下行为不同）。同时说明过滤与归一化的关系：过滤后必须重新归一化（把保留部分的概率除以它们的和），否则采样权重是错的（这是看起来能跑但分布错了的经典 bug）。",
+        "给出可运行验证（要打印可检验的数字）：① 用一个固定的 logits 向量（例如 2.0、1.0、0.5、0.1、-1.0）跑三种设置，打印保留的 token 集合与重归一化后的概率，手工可核对；② 用大样本（例如 100 万次）采样统计经验频率并与目标概率对比，报告最大绝对偏差（应随样本量下降，约 1e-3 量级）——这是证明采样器正确的最直接方式；③ 测边界：k 等于 1 时必须等于 argmax、p 取极小值的行为、p 等于 1 应等于不过滤、全部 logits 相等时的行为（top-p 会退化成只保留一个，因为第一个就跨过阈值，这个反直觉结果值得写出来并讨论）；④ NaN 与 Inf 输入的处理。",
+        "讲工程与性能：采样在全词表（10 万以上）上做，需要排序或部分选择——给出 torch.topk 与 numpy argpartition 的耗时对比（10^5 量级的差异可测）；batch 场景下每个序列的 k 与 p 可能不同，要写成向量化实现（说明为什么循环会拖慢吞吐，链到 [[inference-serving-02]]）；采样必须在 logits 上做而不能在概率上做（数值精度）；以及可复现性（记录 seed 与参数才能复现一次生成，链到 [[evaluation-07]] 的日志设计）。",
+        "常见追问：为什么生产里常用 top-p 而不是 top-k（top-k 不考虑分布形状）？temperature 与 top-p 同时用时谁先谁后？为什么贪心解码在长文本上容易退化（重复）？重复惩罚与频率惩罚怎么实现（要从 logits 上减，且要注意它对采样分布的影响）？"
+      ]
+    },
+    {
+      "id": "coding-06",
+      "order": 6,
+      "file": "docs/编程与数据结构/06-实现 get-put 为 O(1) 的 LRU cache 并加上 TTL.md",
+      "question": "实现一个 get/put 为 O(1) 的 LRU cache，然后加上 TTL。",
+      "question_en": "Implement an LRU cache with O(1) get/put, then add TTL.",
+      "asked_at": ["OpenAI", "xAI", "阿里巴巴（Qwen）"],
+      "level": "进阶",
+      "tags": ["lru", "ttl", "数据结构", "缓存"],
+      "sources": [
+        { "title": "collections — OrderedDict（Python 标准库文档）（延伸）", "url": "https://docs.python.org/3/library/collections.html", "author": "Python Software Foundation", "published": "" },
+        { "title": "Key eviction（Redis 文档）（延伸）", "url": "https://redis.io/docs/latest/develop/reference/eviction/", "author": "Redis", "published": "" }
+      ],
+      "related": ["system-design-09", "inference-serving-05", "coding-07", "system-design-10"],
+      "brief": [
+        "先实现经典 LRU 并说明为什么需要两个结构：哈希表（O(1) 定位节点）加双向链表（O(1) 移动与删除，且能维护访问顺序）。要写清四个操作的指针变换（get 命中后移到头部、put 新增到头部、超容量时删尾部），并强调使用哨兵头尾节点可以消除大量边界判断（这是写出无 bug 链表的标准技巧，面试官会看这一点）。",
+        "要求给出两个实现并对比：① 自己写双向链表（展示数据结构功底）；② 用标准库的 OrderedDict（move_to_end 加 popitem(last=False)，可引用 Python 文档说明其语义）。要点：生产代码优先用库（少 bug），面试时能两个都写出来才是加分项。要给出各自 get 与 put 时间复杂度都是 O(1) 的论证（均摊）。",
+        "加 TTL 要讲清三个设计决策（这是本题的真正考点，很多人只会给节点加一个过期时间戳）：① 过期语义——是到期即不可读（惰性删除）还是到期即释放内存（主动删除，需要定时器或优先队列）；两者通常都要（惰性删除保证正确性，后台清扫保证内存）；② 数据结构——按过期时间排序的最小堆或时间轮，或者更简单地利用「访问顺序约等于插入顺序」的性质做近似淘汰（说明这是近似，会漏掉长时间未访问但未过期的项，也可能提前淘汰）；③ 过期与 LRU 的交互——一旦引入 TTL，容量淘汰就应按「优先清过期项、其次按 LRU」的策略，并要考虑过期项是否算占用容量（不算就会出现缓存看起来没满但一直淘汰的怪象）。可引用 Redis 的 eviction 文档作为工业实现参考：它把过期策略与内存淘汰策略（含 LRU 与 LFU 近似、随机、ttl 优先）明确分成两套机制，并说明近似 LRU 的采样做法——这个两套机制分开的观点正是本题的答案骨架。",
+        "给出可运行验证：① 功能测试——put 与 get 序列的命中与淘汰顺序断言（经典用例：容量为 2 时依次 put(1)、put(2)、get(1)、put(3) 之后，键 2 应被淘汰）；② 时序测试——用可注入的时钟（不要 sleep，把取当前时间做成可注入的依赖）验证 TTL 到期前后的行为、以及同一毫秒内插入多项的边界；③ 复杂度验证——插入 10^6 项测总耗时与单次均摊（证明是 O(1) 而不是 O(n)）；④ 线程安全（如果声明支持并发，要加锁或用分片，并说明锁粒度对吞吐的影响——单锁 LRU 在高并发下会成为瓶颈，这正是真实缓存要分片的原因，链到 [[system-design-09]]）。",
+        "讲生产化的差距（这部分让答案从写完算法变成能上线）：① 内存核算与大对象（缓存值的大小差异巨大，按条目数淘汰会导致内存不可控，要按字节数记账）；② 命中率与指标（命中率、淘汰率、过期率要可观测，链到 [[evaluation-07]]）；③ 冷启动与缓存击穿或雪崩（大量键同时过期要加抖动，链到 [[system-design-09]]）；④ 多进程与多机下的一致性（本地 LRU 与共享缓存的分层，链到 [[inference-serving-05]] 的 prefix cache 与 [[coding-07]]）。",
+        "常见追问：为什么不用 functools 的 lru_cache（不可控、无 TTL、绑定函数参数）？LFU 与 LRU 的取舍？为什么 Redis 用近似 LRU（精确 LRU 的元数据与锁成本）？缓存与数据库的一致性怎么处理？"
+      ]
+    },
+    {
+      "id": "coding-07",
+      "order": 7,
+      "file": "docs/编程与数据结构/07-实现 token-bucket 限流器并改造成分布式.md",
+      "question": "实现一个 token-bucket 限流器，然后把它改造成分布式的。",
+      "question_en": "Implement a token-bucket rate limiter, then make it distributed.",
+      "asked_at": ["Anthropic", "OpenAI", "xAI", "Cohere"],
+      "level": "高阶",
+      "tags": ["限流", "token-bucket", "分布式", "实现题"],
+      "sources": [
+        { "title": "A Single Rate Three Color Marker（RFC 2697）（延伸）", "url": "https://www.rfc-editor.org/rfc/rfc2697", "author": "Heinanen & Guerin (IETF)", "published": "1999-09" },
+        { "title": "Counting a lot of different things（Cloudflare 工程博客）（延伸）", "url": "https://blog.cloudflare.com/counting-things-a-lot-of-different-things/", "author": "Cloudflare", "published": "2017-06-19" }
+      ],
+      "related": ["system-design-09", "coding-06", "inference-serving-09", "system-design-10"],
+      "brief": [
+        "先实现单机 token bucket 并讲清两个参数：速率 r（每秒补充多少 token）与容量 b（桶能存多少 token，决定突发上限）。核心是懒补充——不要起定时器，而是在每次请求时按时间差乘 r 计算应补充的 token（这样实现无后台线程、无精度漂移）；给出代码与「取 min(b, tokens + elapsed 乘 r)」的更新式，并说明为什么必须取最小值（否则长时间空闲会攒出无限的突发额度）。",
+        "讲清它与其他算法的区别（面试常连问）：固定窗口（简单但有窗口边界双倍突发问题）、滑动窗口日志（精确但存储量与请求数成正比）、滑动窗口计数（近似，两个窗口加权）、漏桶（恒定输出速率，不允许突发）、GCRA 或虚拟调度（把 bucket 表达为理论到达时间，可只用单个时间戳，是很多 CDN 的实现方式——可引用 Cloudflare 那篇工程博客的口径：他们讨论了多种限流算法的取舍，并给出用近似计数在分布式下扩容的思路）。可引用 RFC 2697 的单速率三色标记作为「桶加突发」这套模型的标准化先例（标注这是网络流量整形的语境）。",
+        "改造成分布式是本题的重点，要讲清三条路线并对比：① 中心化存储（Redis）——用原子脚本或 INCR 加 EXPIRE 实现，简单但每次请求多一次网络往返（给出延迟量级），且有热点键问题；② 局部令牌加周期性同步——每个实例分到总速率的 N 分之一，本地判断、定期向中心同步（精度换延迟，要考虑实例数变化时的配额重分配）；③ 租借式（lease）——实例向中心批量租借 token（例如一次租 100 个），用完再租（减少往返但会有实例持有未使用配额的浪费，要算这个浪费的期望值）。要给出「一致性、延迟、精度」这个三角的总结。",
+        "把并发正确性讲到位（这是分布式限流的真正难点）：① Redis 上的实现必须是原子的（Lua 脚本、MULTI 与 EXEC，或把逻辑写成单条命令）——先 GET 再 SET 会有竞态；② 时钟问题——不同实例的时钟漂移会让按时间补充出错，所以时间应由中心统一提供（例如用 Redis 的 TIME 命令或在脚本内取时间），而不是用各实例的本地时间；③ 限流键的设计（按用户、租户、接口的哪一层限，是否需要多级限流——全局加租户加用户三级同时约束）；④ 拒绝策略（返回 429 与 Retry-After 头，以及是否排队）。",
+        "给出可运行验证：① 单机——用可控时钟模拟请求序列，断言在速率 r、容量 b 下第 n 个请求是否通过（给出可手算的用例表）；② 突发测试——一次性发 b 加 10 个请求，断言恰好通过 b 个；③ 限流精度——用固定时间步跑 10 秒，统计通过数与理论值的偏差；④ 并发测试——多线程同时请求，断言总数不超过配额（这是验证原子性的关键测试，做错了会超发）；⑤ 分布式模拟——用两个实例共享一个假 Redis，验证全局配额不随实例数变化。",
+        "讲生产化的差距：① 限流的目的分层（防滥用、公平性、成本控制、保护下游），不同目的用不同参数（链到 [[system-design-09]] 的预算与限流）；② 超发与漏发哪个更糟（取决于场景——保护下游时宁可严格，保护体验时宁可宽松）；③ 限流的可观测性（被限流的比例、Top 被限流主体，链到 [[evaluation-07]]）；④ 与重试的相互作用（被限流的客户端会重试，重试会加剧拥塞——所以必须配合退避与抖动，链到 [[coding-08]]）。",
+        "常见追问：为什么不要用本地时间做懒补充（时钟漂移与多实例不一致）？令牌桶与漏桶怎么选？如何在网关层与应用层分担限流（链到 [[inference-serving-09]] 的吞吐与延迟权衡）？"
+      ]
+    },
+    {
+      "id": "coding-08",
+      "order": 8,
+      "file": "docs/编程与数据结构/08-编写针对 API 的异步批处理器.md",
+      "question": "编写一个针对 API 的异步批处理器，支持并发上限、带 jitter 的重试和错误隔离。",
+      "question_en": "Write an async batcher for an API with a concurrency cap, jittered retries, and error isolation.",
+      "asked_at": ["Anthropic", "Perplexity"],
+      "level": "高阶",
+      "tags": ["异步", "批处理", "重试", "并发"],
+      "sources": [
+        { "title": "Coroutines and Tasks（Python asyncio 文档）（延伸）", "url": "https://docs.python.org/3/library/asyncio-task.html", "author": "Python Software Foundation", "published": "" },
+        { "title": "Exponential Backoff And Jitter（延伸）", "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/", "author": "Marc Brooker (AWS Architecture Blog)", "published": "2015-03-04" }
+      ],
+      "related": ["agents-02", "inference-serving-09", "system-design-09", "coding-07", "evaluation-07"],
+      "brief": [
+        "先澄清需求（实现题也要先定契约）：① 批量成组——把短时间内的多个请求攒成一个 batch（按大小阈值、时间窗口、或两者取先到），要说明为什么 LLM 场景要这样（批处理能显著提高 GPU 利用率，链到 [[inference-serving-02]]）；② 并发上限——同时最多 N 个在途请求（信号量）；③ 重试——只重试可重试的错误，带指数退避加 jitter；④ 错误隔离——一个子请求失败不能拖垮整批（部分成功要能分别返回）。",
+        "批处理的实现要点：用异步队列或条件变量聚合请求，配合超时窗口；每个请求带自己的 Future，批处理完成后分别设置结果或异常；要处理两种边界——① batch 攒不满时也要在超时后发出（不能无限等）；② 批内某个请求超时不应取消整个 batch。可引用 asyncio 文档里的原语（TaskGroup、Semaphore、wait_for、as_completed）并说明为什么选它（TaskGroup 的「一个失败是否取消其它」语义要讲清楚，这是错误隔离的关键选择）。",
+        "重试策略要讲透并给出公式：① 只重试幂等且可重试的错误（429、5xx、超时；4xx 参数错误重试无意义，链到 [[agents-02]] 的错误分类）；② 指数退避，第 n 次等待时间为 d_0 乘 2^n，并与上限 d_max 取小；③ jitter——可引用 AWS 那篇的口径：全抖动（full jitter，等待时间取 0 到 d_n 之间的随机值）在实践中表现最好，比无抖动或等抖动更能避免同步重试造成的拥塞峰值；要给出为什么无抖动会形成惊群的机制解释（所有客户端同一时刻重试导致二次拥塞）；④ 重试预算（不能无限重试：给定最大次数与总超时，并与调用方的时间预算联动，链到 [[agents-09]]）；⑤ 尊重服务端返回的 Retry-After 头（它已经告诉你等多久，别自作聪明）。",
+        "错误隔离与降级：① 每个子请求独立记录结果（成功、失败、超时）并返回给调用方，而不是抛异常终止整批；② 部分失败时的处理策略（整批重试还是只重试失败项——后者更省但要考虑顺序与依赖）；③ 熔断（连续失败就快速失败一段时间，避免把下游打死）；④ 背压（队列满时是阻塞还是拒绝？要给出选择与理由）。",
+        "给出可运行验证（都要真的跑）：① 用一个假的异步 API（可控延迟与可控失败率）验证并发上限严格生效（记录最大并发数并断言不超过 N）；② batch 大小分布符合预期（打印每批大小的直方图）；③ 重试次数与退避间隔符合公式（打印实际等待序列并与理论值对比）；④ jitter 的实证——模拟 100 个客户端同时收到 429，比较无 jitter 与 full jitter 下的重试时间分布（打印方差或直方图），这个对比能直观证明 jitter 的价值；⑤ 错误隔离——让批内一个请求必然失败，断言其它请求仍成功返回。",
+        "讲生产化差距：① 超时预算要逐层递减（总预算、单次尝试、连接超时），否则重试会把总延迟拖爆；② 限流与重试的相互作用（链到 [[coding-07]]）；③ 可观测性（每批的大小、成功率、重试率、P99 延迟，链到 [[evaluation-07]]）；④ 队列积压时的公平性（不能饿死老请求）；⑤ 跨进程与跨机器的批量（本地 batch 只能合并同一实例的请求，真正的大 batch 需要上层聚合，链到 [[system-design-09]]）。",
+        "常见追问：为什么要 full jitter 而不是固定抖动？批处理的延迟与吞吐如何权衡（batch 越大吞吐越高但尾延迟越差）？如何避免重试风暴（重试预算加熔断加 jitter）？"
+      ]
+    },
+    {
+      "id": "coding-09",
+      "order": 9,
+      "file": "docs/编程与数据结构/09-编写能处理任意 chunk 边界的流式 SSE-JSON 解析器.md",
+      "question": "编写一个流式 SSE/JSON 解析器，能处理任意 chunk 边界。",
+      "question_en": "Write a streaming SSE/JSON parser that handles arbitrary chunk boundaries.",
+      "asked_at": ["Cohere"],
+      "level": "高阶",
+      "tags": ["sse", "流式解析", "实现题", "增量-json"],
+      "sources": [
+        { "title": "Token Streaming 是如何工作的？", "url": "https://outcomeschool.com/blog/how-does-token-streaming-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "HTML Living Standard: Server-sent events（延伸）", "url": "https://html.spec.whatwg.org/multipage/server-sent-events.html", "author": "WHATWG", "published": "" }
+      ],
+      "related": ["inference-serving-09", "coding-08", "multimodal-08", "evaluation-07", "agents-02"],
+      "brief": [
+        "先讲清 SSE 的协议细节（可引用 WHATWG 的规范口径）：事件流是 UTF-8 文本，事件之间以空行分隔；每行形如「字段名 冒号 空格 值」，字段包括 event、data、id、retry；以冒号开头的行是注释（常用于心跳保活）；多行 data 要以换行拼接。要指出规范里的两个细节：① 行分隔符可以是换行、回车换行或单独的回车（不处理单独回车是常见 bug）；② 事件只在遇到空行时才派发（所以流结束时可能残留未派发的事件）。",
+        "核心是增量解析，要写成状态机而不是每次 chunk 都重新切分：维护一个 buffer，收到 chunk 后追加、按行切分、把不完整的最后一行留在 buffer 里（这就是处理任意 chunk 边界的全部秘密——永远不要假设一个 chunk 包含完整的行或事件）。要处理：① 一个 chunk 包含多个事件；② 一个事件跨多个 chunk；③ 一个 UTF-8 多字节字符被切在两半（如果按字节读就要用增量解码器，这个细节很能体现经验）；④ buffer 无限增长的防护（设上限并对超长行报错）。",
+        "再套一层增量 JSON 解析：LLM 流式返回的 data 通常是 JSON（例如 delta 字段里带 content），而每个事件里的 JSON 一般是完整的；但如果你要处理跨事件的 JSON（某些服务端把一个大 JSON 分片发送），就需要增量解析器。要讲清三种做法：① 每个 data 是完整 JSON，直接解析（最常见，优先这样做）；② 累积 buffer 直到括号配平（要正确处理字符串内的括号与转义引号——这是写对状态机的关键）；③ 逐 token 增量解析（复杂，通常不必）。要求给出前两种实现并说明何时用哪个。",
+        "给出可运行验证（必须真的跑，且要覆盖边界）：① 切分压力测试——对同一段完整流，按 1 字节、2 字节、3 字节、随机长度等各种切分方式喂给解析器，断言所有切分方式产出的最终事件序列完全一致（这是本题最有说服力的测试，直接证明能处理任意 chunk 边界）；② 边界用例——回车换行与单独回车分隔、注释行（心跳）、多行 data、空 data、事件末尾没有空行、UTF-8 多字节被切开（中文与 emoji）、超长行、JSON 跨 chunk；③ 用真实格式的样例（data 行加 JSON 加空行）跑一遍并打印事件。",
+        "讲生产化细节：① 超时与心跳——服务端长时间无数据时客户端要有读超时，而注释行是心跳（要区分「心跳但无内容」与真卡住）；② 取消——用户中断时要把连接关掉并停止解析（链到 [[multimodal-04]] 的取消语义）；③ 重连与断点续传（Last-Event-ID 头与 id 字段的用途）；④ 错误处理——流中途断开时已收到的内容要不要保留（对用户体验影响很大，通常是保留并标注未完成）；⑤ 背压——下游消费慢时不能让 buffer 无限增长（链到 [[coding-08]]）；⑥ 可观测性——首字节延迟、事件间隔分布、中断率（链到 [[evaluation-07]]）。",
+        "常见追问：为什么不直接按连续两个换行切分整个 buffer（会漏掉跨 chunk 事件，且最后一段处理不对）？SSE 与 WebSocket 的选择（单向推送与双向通信，链到 [[multimodal-03]]）？如何做到边收边渲染而不破坏 Markdown 格式（未闭合的代码块与表格是真实痛点）？"
+      ]
+    },
+    {
+      "id": "coding-10",
+      "order": 10,
+      "file": "docs/编程与数据结构/10-实现带重叠且不切开语义单元的文本分块器.md",
+      "question": "实现一个带重叠的文本分块器，且绝不切开语义单元。",
+      "question_en": "Implement an overlapping text chunker that never splits a semantic unit.",
+      "asked_at": ["Harvey"],
+      "level": "进阶",
+      "tags": ["chunking", "实现题", "边界处理", "重叠"],
+      "sources": [
+        { "title": "RAG 的 chunking 策略", "url": "https://outcomeschool.com/blog/chunking-strategies-for-rag", "author": "Amit Shekhar (Outcome School)", "published": "" }
+      ],
+      "related": ["rag-01", "coding-04", "rag-10", "coding-09", "evaluation-04"],
+      "brief": [
+        "先定契约与优先级（绝不切开语义单元是一个约束，而不是一个算法）：给定 chunk 大小上限（以 token 计）与重叠比例，按优先级回退——段落、句子、子句（逗号与分号）、词、字符（最后兜底）；当低优先级边界找不到时，要明确是否允许超出上限。要给明确策略：对代码块与表格这类原子单元宁可超限也不切（并说明超限后如何处理——单独成块，或与相邻块合并时标记）。这个优先级链加兜底策略就是本题的答案骨架。",
+        "实现要点逐条：① 先在结构层切（Markdown 标题层级、代码围栏、列表、表格），再在文本层切（链到 [[rag-01]] 的结构感知切分原则）；② 句子边界检测要处理缩写（例如 e.g. 与 i.e.）、小数点、中文标点（句号、叹号、问号、分号）、省略号——不要用简单的按句点切分；③ token 计数必须用真实 tokenizer 而不是字符数（要说明为什么：中英文的字符与 token 比差异极大，链到 [[coding-04]] 与 [[llm-internals-06]]）；④ 重叠要从前一块的语义边界开始（例如回退若干句），而不是按固定字符数切回（后者会把一句话切成两半，正好违反题目要求）；⑤ 代码围栏与表格不能被重叠切断（重叠时要跳过这些单元或整块重复——要说明选择与代价）。",
+        "给出可运行实现与验证（要打印可检验的结果）：① 用一段含标题、代码块、表格、中英文混排、长句与短句的样例，打印每块的起止位置、token 数与首尾片段，肉眼可核对没有在句子中间切断；② 断言测试——遍历所有块，断言每块长度不超过上限（除非是豁免的原子单元）、相邻块的重叠不少于设定值、没有任何块以半个句子结尾（用句子边界检查器验证）、代码块要么完整包含要么完全不包含；③ 不变量测试——把块按位置区间合并后应能还原原文（这是防止丢内容的关键测试，重叠会让简单拼接失败，所以要按区间合并）；④ 边界——空文档、超长单句（比上限还长的句子怎么办？必须给策略）、全是代码的文档、只有标点的文档。",
+        "讲参数与取舍（这是从能跑到该用的部分）：① chunk 大小与重叠的常见起点（例如 256 到 512 token、重叠 10% 到 20%）与调整依据（链到 [[rag-01]]）；② 重叠的代价——存储与检索冗余（重叠会让同一内容被检索到多次，去重与排序会变复杂，链到 [[rag-03]]）；③ 元数据设计——每块要带来源、标题路径、位置区间（用于引用与高亮，链到 [[rag-12]]）；④ 大单元（表格、代码）单独处理的路径（链到 [[rag-10]] 与 [[multimodal-10]] 的页面图像检索）；⑤ 性能——百万级文档的分块要能并行与流式处理（不要一次把整篇读进内存再切，链到 [[coding-09]] 的流式思路）。",
+        "讲评测闭环（本题的最后一层）：分块策略必须用检索指标验证而不是靠直觉——固定检索器与生成器，只变分块策略做 A/B，看 recall@k 与答案正确率（链到 [[rag-04]]、[[evaluation-04]]）；并给出一个反直觉但常见的观察：把块切得更小、重叠更多不一定提升端到端指标（因为上下文变碎、噪声变多）。",
+        "常见追问：为什么不能按固定字符数切（语义被切断，加上中英文 token 比差异）？重叠要不要包含元数据？如何处理一句话超过 chunk 上限（按子句回退，最后按词，仍超限则接受并标注）？"
+      ]
+    },
+    {
+      "id": "coding-11",
+      "order": 11,
+      "file": "docs/编程与数据结构/11-在 embedding 上实现余弦相似度检索并解释为什么不会直接上线.md",
+      "question": "在 embedding 上实现余弦相似度检索，然后解释为什么你不会把它上线。",
+      "question_en": "Implement cosine-similarity retrieval over embeddings, then explain why you would not ship it as-is.",
+      "asked_at": [],
+      "level": "进阶",
+      "tags": ["余弦相似度", "检索", "实现题", "ann"],
+      "sources": [
+        { "title": "向量数据库是如何工作的？", "url": "https://outcomeschool.com/blog/how-does-a-vector-database-work", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Billion-scale similarity search with GPUs（FAISS）（延伸）", "url": "https://arxiv.org/abs/1702.08734", "author": "Johnson, Douze, Jégou", "published": "2017-02-28" },
+        { "title": "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs（HNSW）（延伸）", "url": "https://arxiv.org/abs/1603.09320", "author": "Malkov & Yashunin", "published": "2016-03-30" }
+      ],
+      "related": ["rag-09", "rag-02", "rag-03", "multimodal-10", "coding-10"],
+      "brief": [
+        "先实现最朴素的版本：给定查询向量 q（d 维）与矩阵 X（N 行 d 列），计算余弦相似度（内积除以两个模长的乘积），返回 top-k。要求给出向量化实现（一行矩阵乘法加归一化）而不是循环，并说明如果先把所有向量归一化，余弦相似度就退化成内积（这个观察是后面所有优化的基础：归一化在入库时做一次，检索时只做一次矩阵乘）。要给出三种实现并测耗时：Python 循环、numpy 向量化、用 argpartition 取 top-k（说明为什么用 argpartition 而不是 argsort：O(N) 对 O(N log N)）。",
+        "把为什么不会上线讲成一份工程清单（这是本题真正的考点，代码只是引子）：① 规模——朴素实现的每次查询要扫全库：给出算例（N 等于 10^8、d 等于 768、fp32 的向量本身约 307 GB，算一次全量相似度约 1.5 乘 10^11 FLOPs，单卡 A100 约 312 TFLOPs bf16 的理论下限约 0.5 ms，但内存带宽要读 307 GB，按 2 TB/s 也要 150 ms 以上，且还要排序取 top-k），所以瓶颈是带宽不是算力（链到 [[inference-serving-01]] 的 roofline 思路、[[rag-09]] 的索引账）；② 延迟 SLO——检索要几十毫秒内完成，全量扫描加排序不达标；③ 内存——fp32 全量常驻不可行，需要量化或分片；④ 索引缺失——没有 ANN 结构就只能暴力；⑤ 过滤——真实检索要带权限与元数据过滤（链到 [[rag-08]]），纯相似度不够；⑥ 多租户与更新——增量写入与删除怎么办（链到 [[rag-11]]）；⑦ 质量——余弦相似度只是代理，检索质量要靠标注集验证（链到 [[rag-04]]），而且 embedding 模型本身的领域适配也影响很大（链到 [[rag-07]]）。",
+        "讲 ANN 的替代方案并引用两篇原始论文的口径：① HNSW——可引用其论文口径：基于可导航小世界图的可控层级结构，无需额外的粗搜结构，用指数衰减的层级分布把链接按特征距离尺度分离，从上层开始搜索带来对数级复杂度，且对高召回与聚集数据有明显优势；② FAISS 与 GPU 暴力或量化——可引用其口径：把 k-selection 优化到理论峰值的 55%，使最近邻实现比此前 GPU 最好结果快 8.5 倍，并在暴力、近似与乘积量化压缩域上都超过当时最好结果（例如 4 张 Maxwell Titan X 上 12 小时内构建 10 亿向量的图）；③ 结论要落在取舍上：暴力检索精度 100% 但不可扩展，ANN 用 recall 换延迟，乘积量化用量化误差换内存（链到 [[rag-09]] 的三者对比）。",
+        "给出可运行验证：① 正确性——自己实现的余弦 top-k 与参考实现（sklearn 或 torch）对比（断言索引一致）；② 归一化前后的一致性（归一化后内积等于余弦，断言最大误差）；③ 性能曲线——对 N 取 10^4、10^5、10^6 与 d 等于 768 测查询耗时，画出随 N 的增长趋势（应接近线性），并与理论带宽下限对比，说明差距来自哪里；④ recall 对比——用暴力检索的结果作为 ground truth，测一个 ANN 索引（或模拟的近似，例如先用 IVF 桶筛选）在不同参数下的 recall@10 与耗时（这张表就是用 recall 换延迟的实证，链到 [[rag-09]]）。",
+        "讲检索之外的工程（把答案从算法拉到系统）：① embedding 的入库流水线（归一化、量化、批量编码、版本绑定）；② 混合检索（纯向量在精确匹配上会输，需要 BM25 融合，链到 [[rag-02]]）；③ 重排（向量召回后必须精排，链到 [[rag-03]]）；④ 缓存（查询向量与常见查询的复用，链到 [[inference-serving-05]]）；⑤ 评测（recall@k 与端到端任务指标，链到 [[rag-04]]）。",
+        "常见追问：为什么用余弦而不是欧氏距离（归一化后等价，但余弦对长度不敏感）？为什么很多系统用内积（归一化后等价且更快）？维度越高检索越难（维度灾难）？量化后还要不要回表取原向量重排（链到 [[rag-03]]、[[rag-09]]）？"
+      ]
+    },
+    {
+      "id": "coding-12",
+      "order": 12,
+      "file": "docs/编程与数据结构/12-实现一个最小化的 agent loop.md",
+      "question": "实现一个最小化的 agent loop，包含工具分发、错误处理和步数预算。",
+      "question_en": "Implement a minimal agent loop with tool dispatch, error handling and a step budget.",
+      "asked_at": ["Cognition（Devin、Windsurf）"],
+      "level": "高阶",
+      "tags": ["agent-loop", "实现题", "工具分发", "预算"],
+      "sources": [
+        { "title": "AI Agent 循环", "url": "https://outcomeschool.com/blog/ai-agent-loop", "author": "Amit Shekhar (Outcome School)", "published": "" },
+        { "title": "Building Effective Agents（延伸）", "url": "https://www.anthropic.com/engineering/building-effective-agents", "author": "Anthropic", "published": "2024-12-19" },
+        { "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）", "url": "https://arxiv.org/abs/2210.03629", "author": "Yao et al. (ICLR 2023)", "published": "2022-10-06" }
+      ],
+      "related": ["agents-01", "agents-09", "agents-02", "coding-08", "agents-10"],
+      "brief": [
+        "先定接口与最小闭环：一个 run 方法接收任务并返回结果，内部循环是「模型输出、若有工具调用则分发执行、把结果回灌、重复；若输出最终答案则结束」。要求实现四个组件：① 工具注册表（名字到函数加 JSON Schema，含参数校验）；② 分发器（按名字查找、校验参数、执行、捕获异常、把结果序列化回灌）；③ 循环控制（最大步数、token 与时间预算、终止条件）；④ 轨迹记录（每一步的输入输出，用于调试与评测）。可引用 ReAct 的口径说明循环的由来（推理与行动交错、观察结果回灌以纠正推理），并可引用 Anthropic《Building Effective Agents》的取向：优先最简单可控的模式，只在必要时增加复杂度。",
+        "工具分发要写扎实（这是最容易写出能跑但危险的地方）：① 白名单查找（不要用动态属性访问或 eval 构造调用，这是安全漏洞，链到 [[safety-06]]）；② 参数校验（用 schema 校验类型与枚举，校验失败要把可操作的错误信息回灌给模型而不是抛异常终止，链到 [[agents-02]]）；③ 结果序列化与截断（工具可能返回巨大 JSON，必须截断或分页并告诉模型被截断了，否则上下文被吃光）；④ 副作用声明（只读工具可直接执行，写操作要幂等或走审批，链到 [[agents-11]]）；⑤ 超时（每个工具调用设超时并传入剩余预算）。",
+        "错误处理按类型分支（与 [[agents-02]] 的五类错误对应）：① 可重试的瞬时错误，走退避重试（复用第 8 题的思路，链到 [[coding-08]]）；② 参数错误，回灌校验信息让模型自我修正；③ 语义失败（工具成功但结果为空），作为事实回灌而不是重试；④ 工具不存在或模型幻觉出工具名，明确告知可用工具列表并继续；⑤ 模型输出无法解析，用结构化输出从源头消除（链到 [[agents-03]]）并保留一次兜底。要强调错误必须是可恢复的观察而不是崩溃。",
+        "循环终止与预算（本题明确要求的部分）：① 显式完成信号（模型输出最终答案）；② 最大步数（按 token 预算反推，链到 [[agents-09]]）；③ 时间与成本预算（累计扣减，超了就用现有信息收尾并标注未完成）；④ 无进展检测（连续 N 步的观察高度相似或重复同一动作就提前退出，给出相似度判定方式）；⑤ 循环检测（动作序列哈希）。要给出「失败也要有正常出口」的设计：返回部分结果加原因，而不是抛异常或无限重试。",
+        "给出可运行实现与验证（用一个假的模型（脚本化的响应序列）与几个假工具，就能在无网络下完整测试循环）：① 正常路径——两步后给出答案，断言轨迹长度与最终答案；② 工具报错后自我修正——第一次调用参数非法、模型收到错误后改正并成功（断言重试路径被走到）；③ 死循环防护——假模型连续输出同一个工具调用，断言在 N 步后终止且返回无进展原因；④ 预算耗尽——断言超预算时返回部分结果；⑤ 工具返回超大结果——断言被截断且模型看到截断标记；⑥ 轨迹可回放——把轨迹序列化再反序列化，断言能重放（链到 [[agents-12]] 的诊断思路）。",
+        "讲生产化的差距（把玩具升级成系统）：① 并发——多个工具调用可并行时要处理（链到 [[coding-08]]）；② 人机交互——写操作前暂停等审批（链到 [[agents-11]]）；③ 可观测与审计——每步的模型版本、prompt 版本、工具参数、成本都要记录（链到 [[agents-10]]、[[evaluation-07]]）；④ 评测——任务成功率与 pass^k（链到 [[evaluation-10]]）；⑤ 上下文管理——轨迹变长后要压缩与摘要（链到 [[agents-07]]）；⑥ 模型能力——可引用公开基准的警示：即使最好的 function calling agent 在真实领域任务上成功率也不到 50%、pass^8 不到 25%（τ-bench 口径，链到 [[agents-09]]），所以循环本身要按会失败来设计。",
+        "常见追问：为什么用最大步数而不是一直跑到模型说完成？无进展检测怎么定义（观察相似度与动作重复）？如何让循环在流式输出下可取消（链到 [[coding-09]]）？"
+      ]
+    }
+  ]
+}
