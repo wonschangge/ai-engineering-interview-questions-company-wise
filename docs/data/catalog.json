@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:04:14.436Z",
+  "generated": "2026-09-29T18:05:49.464Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 194,
+    "companyQuestions": 195,
     "companies": 15,
     "planned": 598
   },
@@ -13635,15 +13635,15 @@
       ]
     },
     {
-      "id": "company-microsoft",
-      "name": "microsoft",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "microsoft",
+      "name": "Microsoft",
+      "group": "大型科技公司的 AI 组织",
+      "summary": "十道题围绕\"把 AI 能力做成能上线、能规模化、能负责的产品\"——两道编码（大规模日志的 top-k、agent host 的工具调用层）、两道推理与服务（Copilot 的 3 秒 p95 预算、1 亿 WAU 摘要功能的成本）、两道系统设计（权限感知的 Copilot、电子表格 agent）、一道评估（会议摘要的发布前评估）、两道安全（邮件提示注入、招聘摘要的公平性指控），以及一道关于错误决策的行为题。",
+      "updated": "2026-09-28",
       "dir": "microsoft",
-      "overviewFile": null,
-      "overviewTitle": "microsoft",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/microsoft/README.md",
+      "overviewTitle": "Microsoft 面试题库",
+      "declaredTotal": 10,
       "questions": [
         {
           "id": "microsoft-01",
@@ -13695,7 +13695,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7744
+          "chars": 7744,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "microsoft-02",
@@ -13747,7 +13749,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 8836
+          "chars": 8836,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "microsoft-03",
@@ -13799,7 +13803,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7609
+          "chars": 7609,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "microsoft-04",
@@ -13851,7 +13857,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7339
+          "chars": 7339,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 2
         },
         {
           "id": "microsoft-05",
@@ -13903,7 +13911,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7240
+          "chars": 7240,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "microsoft-06",
@@ -13955,7 +13965,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7603
+          "chars": 7603,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "microsoft-07",
@@ -14007,7 +14019,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7650
+          "chars": 7650,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "microsoft-08",
@@ -14059,7 +14073,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7819
+          "chars": 7819,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
         },
         {
           "id": "microsoft-09",
@@ -14111,7 +14127,63 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7660
+          "chars": 7660,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 2
+        },
+        {
+          "id": "microsoft-10",
+          "order": 10,
+          "title": "讲一个你力主推动的技术决策后来被证明是错的经历。当时发生了什么，之后你做了哪些改变？",
+          "titleEn": "Tell me about a time you pushed hard for a technical decision that turned out to be wrong. What happened, and what did you change afterwards?",
+          "file": "公司题库/microsoft/10-力主推动的错误决策.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "决策质量",
+            "止损",
+            "复盘",
+            "校准"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "microsoft-06",
+            "microsoft-09",
+            "xai-10",
+            "cohere-10",
+            "anthropic-34"
+          ],
+          "sources": [
+            {
+              "title": "Thinking, Fast and Slow（延伸）",
+              "url": "https://us.macmillan.com/books/9780374533557/thinkingfastandslow",
+              "author": "Kahneman",
+              "published": "2011-10-25"
+            },
+            {
+              "title": "How to Measure Anything: Finding the Value of Intangibles in Business（延伸）",
+              "url": "https://www.howtomeasureanything.com/",
+              "author": "Douglas Hubbard",
+              "published": "2014-03-17"
+            },
+            {
+              "title": "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation（延伸）",
+              "url": "https://www.oreilly.com/library/view/continuous-delivery/9780321670250/",
+              "author": "Humble & Farley",
+              "published": "2010-07-27"
+            },
+            {
+              "title": "四小时构建并演示一个产品（本仓库公司题库 · xAI 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 6605,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         }
       ]
     },
