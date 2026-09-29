@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T21:14:53.630Z",
+  "generated": "2026-09-29T21:17:38.627Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 311,
+    "companyQuestions": 314,
     "companies": 22,
     "planned": 598
   },
@@ -21090,6 +21090,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5097
+        },
+        {
+          "id": "scale-04",
+          "order": 4,
+          "title": "我们销售 RL 环境。请为“在网页旅行 App 中预订多城市行程”设计一个环境，指定 reward，并说明你如何防止 policy 钻空子。",
+          "titleEn": "We sell RL environments. Design one for \"booking a multi-city trip in a web travel app\", specify the reward, and explain how you prevent the policy from gaming it.",
+          "file": "公司题库/scale-ai/04-网页旅行-App-的-RL-环境.md",
+          "level": "高阶",
+          "tags": [
+            "RL 环境",
+            "reward 塑形",
+            "钻空子",
+            "后端校验",
+            "沙箱"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "scale-03",
+            "scale-05",
+            "scale-06",
+            "agents-01",
+            "palantir-12"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（延伸）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al.",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4815
+        },
+        {
+          "id": "scale-05",
+          "order": 5,
+          "title": "为一家前沿实验室设计一条产出 RLHF 偏好数据的端到端流水线：每周 10 万条 prompt-response 对比，并且要有质量保证。",
+          "titleEn": "Design an end-to-end pipeline that produces RLHF preference data for a frontier lab: 100,000 prompt-response comparisons per week, with quality assurance.",
+          "file": "公司题库/scale-ai/05-每周-10-万条偏好数据流水线.md",
+          "level": "高阶",
+          "tags": [
+            "RLHF 数据",
+            "产能规划",
+            "QA 抽样",
+            "标注者效率",
+            "成本结构"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "scale-01",
+            "scale-03",
+            "scale-04",
+            "scale-07",
+            "system-design-04"
+          ],
+          "sources": [
+            {
+              "title": "Training Language Models to Follow Instructions with Human Feedback（延伸）",
+              "url": "https://arxiv.org/abs/2203.02155",
+              "author": "Ouyang et al. (OpenAI)",
+              "published": "2022-03-04"
+            },
+            {
+              "title": "Measuring Nominal Scale Agreement Among Many Raters（延伸）",
+              "url": "https://psycnet.apa.org/record/1972-00210-001",
+              "author": "Fleiss",
+              "published": "1971-01-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4835
+        },
+        {
+          "id": "scale-06",
+          "order": 6,
+          "title": "设计一个私有 LLM 基准与排行榜（SEAL 风格）。当各家实验室针对它做优化时，你如何保持它的可信度？",
+          "titleEn": "Design a private LLM benchmark and leaderboard (SEAL-style). How do you keep it credible when labs optimise against it?",
+          "file": "公司题库/scale-ai/06-私有基准与排行榜的可信度.md",
+          "level": "高阶",
+          "tags": [
+            "私有基准",
+            "排行榜",
+            "过拟合",
+            "统计功效",
+            "污染检测"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "scale-03",
+            "scale-05",
+            "scale-07",
+            "evaluation-01",
+            "gdm-20"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "HELM: Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford CRFM)",
+              "published": "2022-11-16"
+            },
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al.",
+              "published": "2023-06-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4650
         }
       ]
     },
