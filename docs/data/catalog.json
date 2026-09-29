@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T12:03:25.165Z",
+  "generated": "2026-09-29T12:11:03.682Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 18,
-    "companies": 2,
+    "companyQuestions": 32,
+    "companies": 3,
     "planned": 598
   },
   "topics": [
@@ -6105,6 +6105,744 @@
           ],
           "updated": "2026-09-28",
           "chars": 5071,
+          "topicName": "行为与文化",
+          "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "consumer-ml",
+      "name": "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）",
+      "group": "大型科技公司的 AI 组织",
+      "summary": "十四道消费级规模 ML 题：流式 sketch 与限流、离线-在线不一致、位置偏差、feature store、ETA、feed 排序、内容推荐、社交图推荐、动态定价、以图搜图、欺诈检测、LLM 客服助手、漂移监控与业务价值复盘。",
+      "updated": "2026-09-28",
+      "dir": "consumer-ml",
+      "overviewFile": "公司题库/consumer-ml/README.md",
+      "overviewTitle": "面向消费者的规模化 ML 公司面试题库",
+      "declaredTotal": 14,
+      "questions": [
+        {
+          "id": "consumer-ml-01",
+          "order": 1,
+          "title": "用有界内存的 sketch 实现流式 top-k；实现一个滑动窗口速率计数器。",
+          "titleEn": "Implement a streaming top-k with a bounded-memory sketch; implement a sliding-window rate counter.",
+          "file": "公司题库/consumer-ml/01-用有界内存 sketch 实现流式 top-k 与滑动窗口速率计数器.md",
+          "level": "高阶",
+          "tags": [
+            "流式算法",
+            "sketch",
+            "top-k",
+            "滑动窗口",
+            "速率限制",
+            "实现题"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "coding-07",
+            "coding-06",
+            "coding-05",
+            "evaluation-07",
+            "system-design-09"
+          ],
+          "sources": [
+            {
+              "title": "Counting a lot of different things（Cloudflare 工程博客）（延伸）",
+              "url": "https://blog.cloudflare.com/counting-things-a-lot-of-different-things/",
+              "author": "Cloudflare",
+              "published": "2017-06-19"
+            },
+            {
+              "title": "A Single Rate Three Color Marker（RFC 2697）（延伸）",
+              "url": "https://www.rfc-editor.org/rfc/rfc2697",
+              "author": "Heinanen & Guerin (IETF)",
+              "published": "1999-09"
+            },
+            {
+              "title": "Key eviction（Redis 文档）（延伸）",
+              "url": "https://redis.io/docs/latest/develop/reference/eviction/",
+              "author": "Redis",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 9856,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
+        },
+        {
+          "id": "consumer-ml-02",
+          "order": 2,
+          "title": "你的离线指标提升了，但线上 A/B 没有提升。请列举出现这种情况的原因，以及你会如何区分它们。",
+          "titleEn": "Your offline metric improved but the online A/B did not. Enumerate the reasons this happens and how you would tell them apart.",
+          "file": "公司题库/consumer-ml/02-离线指标提升但线上 A-B 没提升的原因与区分.md",
+          "level": "进阶",
+          "tags": [
+            "离线-线上失配",
+            "分布偏移",
+            "在线实验",
+            "统计功效",
+            "位置偏差",
+            "反馈回路"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "evaluation-05",
+            "evaluation-09",
+            "evaluation-04",
+            "evaluation-07"
+          ],
+          "sources": [
+            {
+              "title": "Performative Prediction（延伸）",
+              "url": "https://arxiv.org/abs/2002.06673",
+              "author": "Perdomo et al. (ICML 2020)",
+              "published": "2020-02-16"
+            },
+            {
+              "title": "Counterfactual Reasoning and Learning Systems（延伸）",
+              "url": "https://arxiv.org/abs/1209.2355",
+              "author": "Bottou et al.",
+              "published": "2012-09-11"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 8170,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 1
+        },
+        {
+          "id": "consumer-ml-03",
+          "order": 3,
+          "title": "解释排序数据中的 position bias，以及你会如何对训练数据进行去偏。",
+          "titleEn": "Explain position bias in ranking data and how you would debias training.",
+          "file": "公司题库/consumer-ml/03-解释排序数据中的 position bias 并给出去偏方案.md",
+          "level": "进阶",
+          "tags": [
+            "position-bias",
+            "learning-to-rank",
+            "点击数据",
+            "去偏",
+            "feedback-loop",
+            "在线实验"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "evaluation-01",
+            "evaluation-09",
+            "rag-07",
+            "system-design-04",
+            "llm-internals-13"
+          ],
+          "sources": [
+            {
+              "title": "Unbiased LambdaMART: An Unbiased Pairwise Learning-to-Rank Algorithm（延伸）",
+              "url": "https://arxiv.org/abs/1809.05818",
+              "author": "Hu et al.",
+              "published": "2018-09-16"
+            },
+            {
+              "title": "Counterfactual Reasoning and Learning Systems（延伸）",
+              "url": "https://arxiv.org/abs/1209.2355",
+              "author": "Bottou et al.",
+              "published": "2012-09-11"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11441,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 2
+        },
+        {
+          "id": "consumer-ml-04",
+          "order": 4,
+          "title": "你会如何设计 feature store？造成 training/serving skew 的原因是什么？",
+          "titleEn": "How do you design a feature store, and what causes training/serving skew?",
+          "file": "公司题库/consumer-ml/04-设计 feature store 并解释训练-服务偏斜的成因.md",
+          "level": "进阶",
+          "tags": [
+            "特征存储",
+            "feature-store",
+            "训练-服务偏斜",
+            "point-in-time-correctness",
+            "在线特征",
+            "新鲜度-SLO",
+            "数据泄漏"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "system-design-04",
+            "rag-11",
+            "evaluation-09",
+            "evaluation-05",
+            "evaluation-07",
+            "consumer-ml-02"
+          ],
+          "sources": [
+            {
+              "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture（延伸）",
+              "url": "https://arxiv.org/abs/2205.02302",
+              "author": "Kreuzberger et al.",
+              "published": "2022-05-04"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Evidently 文档（延伸）",
+              "url": "https://docs.evidentlyai.com/",
+              "author": "Evidently AI",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11615,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 3
+        },
+        {
+          "id": "consumer-ml-05",
+          "order": 5,
+          "title": "为网约车市场设计 ETA 预测系统。使用哪些特征、什么模型，如何在 <100 ms 内完成推理服务？",
+          "titleEn": "Design the ETA prediction system for a ride-hailing marketplace. What features, what model, how do you serve it in <100 ms?",
+          "file": "公司题库/consumer-ml/05-为网约车市场设计 ETA 预测系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "ETA 预测",
+            "网约车市场",
+            "实时特征",
+            "延迟预算",
+            "分位数回归"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "system-design-04",
+            "system-design-10",
+            "system-design-09",
+            "system-design-05",
+            "consumer-ml-02",
+            "consumer-ml-03"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture（延伸）",
+              "url": "https://arxiv.org/abs/2205.02302",
+              "author": "Kreuzberger et al.",
+              "published": "2022-05-04"
+            },
+            {
+              "title": "Counterfactual Reasoning and Learning Systems（延伸）",
+              "url": "https://arxiv.org/abs/1209.2355",
+              "author": "Bottou et al.",
+              "published": "2012-09-11"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 13246,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
+        },
+        {
+          "id": "consumer-ml-06",
+          "order": 6,
+          "title": "设计一个个性化 feed 排序系统，采用两阶段的候选生成与排序架构。",
+          "titleEn": "Design a personalised feed ranking system with a two-stage candidate generation and ranking architecture.",
+          "file": "公司题库/consumer-ml/06-设计个性化 feed 的两阶段候选生成与排序系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "个性化推荐",
+            "两阶段漏斗",
+            "候选生成",
+            "排序模型",
+            "位置偏差",
+            "冷启动",
+            "在线实验"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "system-design-04",
+            "system-design-10",
+            "system-design-01",
+            "consumer-ml-02",
+            "consumer-ml-03",
+            "evaluation-09"
+          ],
+          "sources": [
+            {
+              "title": "Wide & Deep Learning for Recommender Systems（延伸）",
+              "url": "https://arxiv.org/abs/1606.07792",
+              "author": "Cheng et al. (Google)",
+              "published": "2016-06-24"
+            },
+            {
+              "title": "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction（延伸）",
+              "url": "https://arxiv.org/abs/1703.04247",
+              "author": "Guo et al.",
+              "published": "2017-03-13"
+            },
+            {
+              "title": "Unbiased LambdaMART: An Unbiased Pairwise Learning-to-Rank Algorithm（延伸）",
+              "url": "https://arxiv.org/abs/1809.05818",
+              "author": "Hu et al.",
+              "published": "2018-09-16"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11097,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
+        },
+        {
+          "id": "consumer-ml-07",
+          "order": 7,
+          "title": "为流媒体内容目录设计内容推荐系统，包括新剧集和新用户的冷启动。",
+          "titleEn": "Design a content recommendation system for a streaming catalogue, including cold-start for new titles and new users.",
+          "file": "公司题库/consumer-ml/07-设计流媒体内容推荐系统与冷启动.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "内容推荐",
+            "冷启动",
+            "新剧集",
+            "新用户",
+            "两阶段漏斗",
+            "探索与利用",
+            "位置偏差"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "consumer-ml-06",
+            "consumer-ml-03",
+            "consumer-ml-04",
+            "consumer-ml-02",
+            "system-design-04",
+            "system-design-10"
+          ],
+          "sources": [
+            {
+              "title": "Wide & Deep Learning for Recommender Systems（延伸）",
+              "url": "https://arxiv.org/abs/1606.07792",
+              "author": "Cheng et al. (Google)",
+              "published": "2016-06-24"
+            },
+            {
+              "title": "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction（延伸）",
+              "url": "https://arxiv.org/abs/1703.04247",
+              "author": "Guo et al.",
+              "published": "2017-03-13"
+            },
+            {
+              "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture（延伸）",
+              "url": "https://arxiv.org/abs/2205.02302",
+              "author": "Kreuzberger et al.",
+              "published": "2022-05-04"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11817,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
+        },
+        {
+          "id": "consumer-ml-08",
+          "order": 8,
+          "title": "在职业社交网络的规模下设计“你可能认识的人” / 职位推荐排序。",
+          "titleEn": "Design “people you may know” / job-recommendation ranking at a professional network's scale.",
+          "file": "公司题库/consumer-ml/08-设计职业社交网络的你可能认识的人与职位推荐排序.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "人脉推荐",
+            "职位推荐",
+            "社交图",
+            "两阶段漏斗",
+            "图簇随机化",
+            "冷启动"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "consumer-ml-06",
+            "consumer-ml-03",
+            "consumer-ml-02",
+            "consumer-ml-04",
+            "system-design-04",
+            "system-design-01",
+            "system-design-10"
+          ],
+          "sources": [
+            {
+              "title": "Wide & Deep Learning for Recommender Systems（延伸）",
+              "url": "https://arxiv.org/abs/1606.07792",
+              "author": "Cheng et al. (Google)",
+              "published": "2016-06-24"
+            },
+            {
+              "title": "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction（延伸）",
+              "url": "https://arxiv.org/abs/1703.04247",
+              "author": "Guo et al.",
+              "published": "2017-03-13"
+            },
+            {
+              "title": "Unbiased LambdaMART: An Unbiased Pairwise Learning-to-Rank Algorithm（延伸）",
+              "url": "https://arxiv.org/abs/1809.05818",
+              "author": "Hu et al.",
+              "published": "2018-09-16"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11154,
+          "topicName": "AI 系统设计",
+          "topicOrder": 4
+        },
+        {
+          "id": "consumer-ml-09",
+          "order": 9,
+          "title": "为双边市场设计动态定价 / 高峰溢价（surge），并描述可能出问题的反馈回路。",
+          "titleEn": "Design dynamic pricing / surge for a two-sided marketplace and describe the feedback loops that can go wrong.",
+          "file": "公司题库/consumer-ml/09-为双边市场设计动态定价与反馈回路.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "动态定价",
+            "双边市场",
+            "反馈回路",
+            "控制论"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "consumer-ml-05",
+            "consumer-ml-02",
+            "evaluation-09",
+            "system-design-04",
+            "alibaba-10"
+          ],
+          "sources": [
+            {
+              "title": "Performative Prediction（延伸）",
+              "url": "https://arxiv.org/abs/2002.06673",
+              "author": "Perdomo et al. (ICML 2020)",
+              "published": "2020-02-16"
+            },
+            {
+              "title": "Counterfactual Reasoning and Learning Systems（延伸）",
+              "url": "https://arxiv.org/abs/1209.2355",
+              "author": "Bottou et al.",
+              "published": "2012-09-11"
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4801,
+          "topicName": "AI 系统设计",
+          "topicOrder": 5
+        },
+        {
+          "id": "consumer-ml-10",
+          "order": 10,
+          "title": "设计一个以图搜图系统：用户上传一张图片，你返回目录中视觉上相似的物品。",
+          "titleEn": "Design a visual search system: user uploads an image, you return visually similar in-catalogue items.",
+          "file": "公司题库/consumer-ml/10-设计以图搜图的视觉相似检索系统.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "以图搜图",
+            "视觉检索",
+            "多模态检索",
+            "向量索引",
+            "容量规划"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "system-design-04",
+            "multimodal-10",
+            "system-design-01",
+            "rag-09",
+            "rag-11",
+            "consumer-ml-03",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "Learning Transferable Visual Models From Natural Language Supervision（CLIP）（延伸）",
+              "url": "https://arxiv.org/abs/2103.00020",
+              "author": "Radford et al. (ICML 2021)",
+              "published": "2021-02-26"
+            },
+            {
+              "title": "Sigmoid Loss for Language Image Pre-Training（SigLIP）（延伸）",
+              "url": "https://arxiv.org/abs/2303.15343",
+              "author": "Zhai et al. (ICCV 2023)",
+              "published": "2023-03-27"
+            },
+            {
+              "title": "Billion-scale similarity search with GPUs（FAISS）（延伸）",
+              "url": "https://arxiv.org/abs/1702.08734",
+              "author": "Johnson, Douze, Jégou",
+              "published": "2017-02-28"
+            },
+            {
+              "title": "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs（HNSW）（延伸）",
+              "url": "https://arxiv.org/abs/1603.09320",
+              "author": "Malkov & Yashunin",
+              "published": "2016-03-30"
+            },
+            {
+              "title": "ColPali: Efficient Document Retrieval with Vision Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2407.01449",
+              "author": "Faysse et al. (ICLR 2025)",
+              "published": "2024-06-27"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11183,
+          "topicName": "AI 系统设计",
+          "topicOrder": 6
+        },
+        {
+          "id": "consumer-ml-11",
+          "order": 11,
+          "title": "设计一个欺诈检测系统，面临严重的类别不平衡以及具有对抗性的对手。",
+          "titleEn": "Design a fraud-detection system with heavy class imbalance and an adversarial opponent.",
+          "file": "公司题库/consumer-ml/11-设计欺诈检测系统：类别不平衡与对抗性对手.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "欺诈检测",
+            "类别不平衡",
+            "对抗性对手",
+            "代价敏感决策",
+            "人审与申诉",
+            "反馈回路"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "system-design-05",
+            "system-design-03",
+            "system-design-04",
+            "consumer-ml-04",
+            "consumer-ml-02",
+            "evaluation-09",
+            "safety-10"
+          ],
+          "sources": [
+            {
+              "title": "Focal Loss for Dense Object Detection（延伸）",
+              "url": "https://arxiv.org/abs/1708.02002",
+              "author": "Lin et al.",
+              "published": "2017-08-07"
+            },
+            {
+              "title": "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations（NIST AI 100-2）（延伸）",
+              "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf",
+              "author": "Vassilev et al. (NIST)",
+              "published": "2024-01"
+            },
+            {
+              "title": "Performative Prediction（延伸）",
+              "url": "https://arxiv.org/abs/2002.06673",
+              "author": "Perdomo et al. (ICML 2020)",
+              "published": "2020-02-16"
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 11403,
+          "topicName": "AI 系统设计",
+          "topicOrder": 7
+        },
+        {
+          "id": "consumer-ml-12",
+          "order": 12,
+          "title": "在现有帮助中心之上设计一个由 LLM 驱动的客服助手，并支持升级转人工。",
+          "titleEn": "Design an LLM-powered customer-support assistant on top of an existing help centre, with escalation to humans.",
+          "file": "公司题库/consumer-ml/12-在现有帮助中心之上设计 LLM 客服助手并支持转人工.md",
+          "level": "高阶",
+          "tags": [
+            "系统设计",
+            "客服助手",
+            "帮助中心",
+            "RAG",
+            "升级人工",
+            "自助解决率",
+            "坐席容量",
+            "接地与引用"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "system-design-03",
+            "system-design-01",
+            "system-design-09",
+            "system-design-10",
+            "agents-11",
+            "rag-08",
+            "evaluation-04",
+            "evaluation-09"
+          ],
+          "sources": [
+            {
+              "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（延伸）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al.",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (NeurIPS 2020)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Building Effective Agents（延伸）",
+              "url": "https://www.anthropic.com/engineering/building-effective-agents",
+              "author": "Anthropic",
+              "published": "2024-12-19"
+            },
+            {
+              "title": "Document-level security（Elasticsearch 参考文档）（延伸）",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/document-level-security.html",
+              "author": "Elasticsearch",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-29",
+          "chars": 12619,
+          "topicName": "AI 系统设计",
+          "topicOrder": 8
+        },
+        {
+          "id": "consumer-ml-13",
+          "order": 13,
+          "title": "你如何监控已上线的排序模型是否发生漂移？什么会触发重新训练？",
+          "titleEn": "How do you monitor a deployed ranking model for drift, and what triggers a retrain?",
+          "file": "公司题库/consumer-ml/13-如何监控排序模型的漂移以及什么触发重训.md",
+          "level": "高阶",
+          "tags": [
+            "漂移监控",
+            "重训触发",
+            "概念漂移",
+            "数据集漂移检测"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "consumer-ml-02",
+            "consumer-ml-03",
+            "evaluation-07",
+            "rag-07",
+            "consumer-ml-09"
+          ],
+          "sources": [
+            {
+              "title": "Failing Loudly: An Empirical Study of Methods for Detecting Dataset Shift（延伸）",
+              "url": "https://arxiv.org/abs/1810.11953",
+              "author": "Rabanser et al. (NeurIPS 2019)",
+              "published": "2018-10-29"
+            },
+            {
+              "title": "Learning under Concept Drift: an Overview（延伸）",
+              "url": "https://arxiv.org/abs/1010.4784",
+              "author": "Žliobaitė",
+              "published": "2010-10-22"
+            },
+            {
+              "title": "Evidently 文档（延伸）",
+              "url": "https://docs.evidentlyai.com/",
+              "author": "Evidently AI",
+              "published": ""
+            },
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5138,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
+        },
+        {
+          "id": "consumer-ml-14",
+          "order": 14,
+          "title": "讲讲你上线过的一个带来了可衡量业务价值的模型，以及一个没有带来业务价值的模型。",
+          "titleEn": "Tell me about a model you shipped that made a measurable business difference, and one that did not.",
+          "file": "公司题库/consumer-ml/14-讲一个带来业务价值的模型与一个没有带来价值的模型.md",
+          "level": "高阶",
+          "tags": [
+            "行为面试",
+            "业务价值",
+            "增量归因",
+            "复盘机制"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "consumer-ml-02",
+            "evaluation-09",
+            "alibaba-10",
+            "system-design-05"
+          ],
+          "sources": [
+            {
+              "title": "Rules of Machine Learning: Best Practices for ML Engineering（延伸）",
+              "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+              "author": "Martin Zinkevich (Google)",
+              "published": ""
+            },
+            {
+              "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture（延伸）",
+              "url": "https://arxiv.org/abs/2205.02302",
+              "author": "Kreuzberger et al.",
+              "published": "2022-05-04"
+            },
+            {
+              "title": "Performative Prediction（延伸）",
+              "url": "https://arxiv.org/abs/2002.06673",
+              "author": "Perdomo et al. (ICML 2020)",
+              "published": "2020-02-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4634,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
