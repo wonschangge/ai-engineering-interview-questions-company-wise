@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T18:49:27.414Z",
+  "generated": "2026-09-29T18:51:14.978Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 220,
+    "companyQuestions": 221,
     "companies": 16,
     "planned": 598
   },
@@ -16571,6 +16571,58 @@
           ],
           "updated": "2026-09-28",
           "chars": 6628
+        },
+        {
+          "id": "openai-26",
+          "order": 26,
+          "title": "讲讲你的 API 经验，以及你如何与 C-suite（高管层）沟通。",
+          "titleEn": "Tell me about your API experience and how you work with the C-suite.",
+          "file": "公司题库/openai/26-API-经验与-C-suite-沟通.md",
+          "level": "进阶",
+          "tags": [
+            "API 设计",
+            "开发者体验",
+            "指标翻译",
+            "三方权衡",
+            "汇报结构"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "openai-25",
+            "openai-27",
+            "openai-18",
+            "microsoft-04",
+            "applied-02"
+          ],
+          "sources": [
+            {
+              "title": "APIs: A Strategy Guide（延伸）",
+              "url": "https://www.oreilly.com/library/view/apis-a-strategy/9781449321642/",
+              "author": "Jacobson, Brail & Woods",
+              "published": "2011-12-01"
+            },
+            {
+              "title": "Google SRE Book: Service Level Objectives（延伸）",
+              "url": "https://sre.google/sre-book/service-level-objectives/",
+              "author": "Google SRE Team",
+              "published": "2016-03-01"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "1 亿 WAU 的成本（本仓库公司题库 · Microsoft 篇）",
+              "url": "https://github.com/wonschangge/ai-engineering-interview-questions-company-wise",
+              "author": "本仓库",
+              "published": ""
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 7458
         }
       ]
     },
