@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2210.03629
     author: Yao et al. (Princeton)
     published: 2022-10-06
-related: [zhipu-03, zhipu-06, zhipu-10, finetuning-06, inference-06]
+related: [zhipu-03, zhipu-06, zhipu-10, finetuning-06, inference-serving-06]
 updated: 2026-09-28
 ---
 
@@ -268,7 +268,7 @@ print('        而**"权重同步通道的带宽是瓶颈"**（**因为要推几
 - [[zhipu-06]]：GUI agent 的设计——**长尾轨迹的来源**。
 - [[zhipu-10]]：端到端设计 AutoGLM——**agent 的系统外壳**。
 - [[finetuning-06]]：RLHF 的流程与成本——**RL 训练的基础**。
-- [[inference-06]]：推理与训练的分离部署——**分离式架构的通用形态**。
+- [[inference-serving-06]]：推理与训练的分离部署——**分离式架构的通用形态**。
 
 ## 参考资料与归属
 

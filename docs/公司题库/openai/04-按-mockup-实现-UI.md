@@ -26,7 +26,7 @@ sources:
     url: https://github.com/wonschangge/ai-engineering-interview-questions-company-wise
     author: 本仓库
     published: 
-related: [openai-05, openai-17, coding-13, coding-14, agents-07]
+related: [openai-05, openai-17, agents-07]
 updated: 2026-09-28
 ---
 
@@ -378,8 +378,6 @@ print("  读法：**把「我实现了 UI」升级为「我交付了可验证的
 
 - [[openai-05]]：重构糟糕但测试通过的代码——同一家公司的"工程判断"题。
 - [[openai-17]]：ChatGPT 规模的服务栈——前端与后端的边界。
-- [[coding-13]]：前端状态管理与 URL 状态——本篇第 2 节的展开。
-- [[coding-14]]：可访问性工程——对比度与键盘可达的通用版本。
 - [[agents-07]]：多轮交互的失败与恢复——**"partial 状态"在对话场景的对应物**。
 
 ## 参考资料与归属

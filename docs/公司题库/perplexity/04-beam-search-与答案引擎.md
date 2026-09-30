@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/1610.02424
     author: Vijayakumar et al.
     published: 2016-10-08
-related: [perplexity-03, perplexity-06, perplexity-08, llm-internals-01, coding-31]
+related: [perplexity-03, perplexity-06, perplexity-08, llm-internals-01]
 updated: 2026-09-28
 ---
 
@@ -230,7 +230,6 @@ print('        所以「开放式答案」要用采样；**beam search 只适合
 - [[perplexity-06]]：reranker 架构选择——**质量-延迟-成本权衡**。
 - [[perplexity-08]]：答案引擎（3 秒预算）——**beam 的延迟不可接受**。
 - [[llm-internals-01]]：语言模型的训练目标——**概率与困惑度**。
-- [[coding-31]]：随机化算法与期望分析——**采样的分析**。
 
 ## 参考资料与归属
 

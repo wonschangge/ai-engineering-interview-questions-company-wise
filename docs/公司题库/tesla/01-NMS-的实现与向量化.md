@@ -22,7 +22,7 @@ sources:
     url: https://numpy.org/doc/stable/
     author: NumPy Developers
     published: 2024-01-01
-related: [tesla-03, tesla-07, waymo-01, coding-01, applied-01]
+related: [tesla-03, tesla-07, waymo-01, coding-01]
 updated: 2026-09-28
 ---
 
@@ -311,7 +311,6 @@ print('        而**"小目标"要用中心距离而不是 IoU**（**因为小�
 - [[tesla-07]]：量化与剪枝不损小目标 recall——**小目标问题的另一半**。
 - [[waymo-01]]：minADE/minFDE 的向量化——**能完全向量化的对照**。
 - [[coding-01]]：数组编程与向量化——**通用技巧**。
-- [[applied-01]]：模仿学习的基本框架——**检测在感知栈里的位置**。
 
 ## 参考资料与归属
 

@@ -22,7 +22,7 @@ sources:
     url: https://use-the-index-luke.com/
     author: Markus Winand
     published: 2024-01-01
-related: [palantir-02, palantir-03, palantir-04, palantir-05, coding-25]
+related: [palantir-02, palantir-03, palantir-04, palantir-05]
 updated: 2026-09-28
 ---
 
@@ -257,7 +257,6 @@ print('        类似的还有：**循环里查数据库（N+1）**、**循环�
 - [[palantir-03]]：REST API 分页——**数据漂移导致的重复/漏读**。
 - [[palantir-04]]：HashMap 重复计数——**归一化与状态污染**。
 - [[palantir-05]]：感染传播仿真——**时间轴上的静默错误**。
-- [[coding-25]]：数据清洗与质量检查——**对账与总量守恒**。
 
 ## 参考资料与归属
 

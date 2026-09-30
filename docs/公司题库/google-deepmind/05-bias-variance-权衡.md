@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/1812.11118
     author: Belkin et al.
     published: 2018-12-28
-related: [gdm-03, gdm-06, evaluation-01, evaluation-06, coding-29]
+related: [gdm-03, gdm-06, evaluation-01, evaluation-06]
 updated: 2026-09-28
 ---
 
@@ -234,7 +234,6 @@ print("        所以「模型复杂度」要选在 U 形底部（本机 5 次�
 - [[gdm-06]]：线性回归假设——**高偏差的来源之一**。
 - [[evaluation-01]]：离线评估的陷阱——**训练/验证/测试的划分**。
 - [[evaluation-06]]：不确定性与区间——**"方差"的另一种表述**。
-- [[coding-29]]：交叉验证与超参数搜索——**实践方法**。
 
 ## 参考资料与归属
 

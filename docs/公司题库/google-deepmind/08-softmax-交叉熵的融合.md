@@ -22,7 +22,7 @@ sources:
     url: https://www.deeplearningbook.org/contents/numerical.html
     author: Goodfellow, Bengio & Courville
     published: 2016-01-01
-related: [gdm-05, gdm-07, openai-13, coding-27, llm-internals-01]
+related: [gdm-05, gdm-07, openai-13, llm-internals-01]
 updated: 2026-09-28
 ---
 
@@ -241,7 +241,6 @@ print('        而梯度形式"q - onehot"极其简洁（这是交叉熵在工�
 - [[gdm-07]]：正则化 vs 验证——**同一家公司的另一道 ML 基础题**。
 - [[openai-13]]：交叉熵、KL 与困惑度——**交叉熵的语义与换算**。
 - [[openai-12]]：self-attention 与长上下文——**在线 softmax 的应用**。
-- [[coding-27]]：log-softmax 的数值稳定实现——**工程版本**。
 - [[llm-internals-01]]：语言模型的训练目标——**混合精度下的数值问题**。
 
 ## 参考资料与归属

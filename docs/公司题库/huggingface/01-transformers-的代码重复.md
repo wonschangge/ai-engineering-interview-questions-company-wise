@@ -22,7 +22,7 @@ sources:
     url: https://12factor.net/
     author: Adam Wiggins
     published: 2011-01-01
-related: [hf-02, hf-05, hf-07, coding-01, applied-01]
+related: [hf-02, hf-05, hf-07, coding-01]
 updated: 2026-09-28
 ---
 
@@ -243,7 +243,6 @@ print('        而**"迁移要渐进"**（**因为生态里有大量依赖旧结
 - [[hf-05]]：三种 tokenization 与 tokenizer bug——**另一处"共享 vs 分散"**。
 - [[hf-07]]：单卡微调 8B 的显存账——**下游用户面对的复杂度**。
 - [[coding-01]]：数组编程与向量化——**工程取舍**。
-- [[applied-01]]：模仿学习的基本框架——**模型实现的分歧**。
 
 ## 参考资料与归属
 

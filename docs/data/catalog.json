@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T09:37:21.910Z",
+  "generated": "2026-09-30T09:50:26.584Z",
   "stats": {
     "topics": 10,
     "questions": 119,
@@ -5604,7 +5604,6 @@
             "abridge-02",
             "abridge-06",
             "abridge-08",
-            "applied-01",
             "safety-01"
           ],
           "sources": [
@@ -5628,7 +5627,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4681,
+          "chars": 4643,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 1
         },
@@ -5653,7 +5652,7 @@
             "abridge-03",
             "abridge-09",
             "apple-04",
-            "inference-02"
+            "inference-serving-02"
           ],
           "sources": [
             {
@@ -5676,7 +5675,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4653,
+          "chars": 4661,
           "topicName": "推理、服务与 GPU 性能",
           "topicOrder": 1
         },
@@ -6782,9 +6781,7 @@
           "related": [
             "amazon-01",
             "amazon-12",
-            "amazon-14",
-            "ml-01",
-            "ml-05"
+            "amazon-14"
           ],
           "sources": [
             {
@@ -6807,7 +6804,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5070,
+          "chars": 5007,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 1
         },
@@ -6830,9 +6827,7 @@
           "related": [
             "amazon-03",
             "amazon-05",
-            "amazon-12",
-            "ml-02",
-            "ml-06"
+            "amazon-12"
           ],
           "sources": [
             {
@@ -6855,7 +6850,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5316,
+          "chars": 5254,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 2
         },
@@ -6878,9 +6873,7 @@
           "related": [
             "amazon-03",
             "amazon-04",
-            "amazon-14",
-            "ml-01",
-            "ml-05"
+            "amazon-14"
           ],
           "sources": [
             {
@@ -6903,7 +6896,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4773,
+          "chars": 4708,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 3
         },
@@ -6928,7 +6921,6 @@
             "amazon-04",
             "amazon-05",
             "amazon-11",
-            "ml-03",
             "rag-04"
           ],
           "sources": [
@@ -6952,7 +6944,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5217,
+          "chars": 5184,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 4
         },
@@ -6974,10 +6966,7 @@
           "askedAt": [],
           "related": [
             "amazon-08",
-            "amazon-12",
-            "ml-04",
-            "ml-07",
-            "ml-08"
+            "amazon-12"
           ],
           "sources": [
             {
@@ -7000,7 +6989,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5372,
+          "chars": 5274,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 5
         },
@@ -7023,9 +7012,7 @@
           "related": [
             "amazon-03",
             "amazon-07",
-            "amazon-12",
-            "ml-02",
-            "ml-09"
+            "amazon-12"
           ],
           "sources": [
             {
@@ -7048,7 +7035,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5601,
+          "chars": 5540,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 6
         },
@@ -7071,9 +7058,8 @@
           "related": [
             "amazon-08",
             "amazon-15",
-            "llm-01",
-            "llm-02",
-            "ml-10"
+            "llm-internals-01",
+            "llm-internals-02"
           ],
           "sources": [
             {
@@ -7096,7 +7082,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5199,
+          "chars": 5181,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 7
         },
@@ -7119,9 +7105,8 @@
           "related": [
             "amazon-09",
             "amazon-15",
-            "llm-01",
-            "llm-02",
-            "ml-10"
+            "llm-internals-01",
+            "llm-internals-02"
           ],
           "sources": [
             {
@@ -7144,7 +7129,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5267,
+          "chars": 5243,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 8
         },
@@ -7216,8 +7201,7 @@
             "amazon-03",
             "amazon-04",
             "amazon-08",
-            "amazon-11",
-            "ml-02"
+            "amazon-11"
           ],
           "sources": [
             {
@@ -7240,7 +7224,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5489,
+          "chars": 5459,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 10
         },
@@ -7264,8 +7248,7 @@
             "amazon-08",
             "amazon-11",
             "amazon-14",
-            "evaluation-05",
-            "ml-09"
+            "evaluation-05"
           ],
           "sources": [
             {
@@ -7288,7 +7271,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5330,
+          "chars": 5301,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 11
         },
@@ -7311,9 +7294,7 @@
           "related": [
             "amazon-03",
             "amazon-04",
-            "amazon-13",
-            "ml-01",
-            "ml-11"
+            "amazon-13"
           ],
           "sources": [
             {
@@ -7336,7 +7317,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5154,
+          "chars": 5088,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 12
         },
@@ -7361,7 +7342,7 @@
             "amazon-10",
             "amazon-16",
             "inference-serving-01",
-            "llm-01"
+            "llm-internals-01"
           ],
           "sources": [
             {
@@ -7384,7 +7365,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5816,
+          "chars": 5826,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 1
         },
@@ -7647,9 +7628,7 @@
           "related": [
             "amazon-13",
             "amazon-20",
-            "amazon-22",
-            "behavioral-01",
-            "behavioral-04"
+            "amazon-22"
           ],
           "sources": [
             {
@@ -7672,7 +7651,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4739,
+          "chars": 4658,
           "topicName": "行为与文化",
           "topicOrder": 1
         },
@@ -7694,10 +7673,7 @@
           "askedAt": [],
           "related": [
             "amazon-21",
-            "amazon-23",
-            "behavioral-01",
-            "behavioral-02",
-            "behavioral-05"
+            "amazon-23"
           ],
           "sources": [
             {
@@ -7720,7 +7696,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4870,
+          "chars": 4746,
           "topicName": "行为与文化",
           "topicOrder": 2
         },
@@ -7742,10 +7718,7 @@
           "askedAt": [],
           "related": [
             "amazon-21",
-            "amazon-22",
-            "behavioral-01",
-            "behavioral-03",
-            "behavioral-06"
+            "amazon-22"
           ],
           "sources": [
             {
@@ -7768,7 +7741,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4627,
+          "chars": 4502,
           "topicName": "行为与文化",
           "topicOrder": 3
         }
@@ -9843,7 +9816,7 @@
             "apple-03",
             "apple-05",
             "apple-06",
-            "inference-05"
+            "inference-serving-05"
           ],
           "sources": [
             {
@@ -9866,7 +9839,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5081,
+          "chars": 5089,
           "topicName": "推理、服务与 GPU 性能",
           "topicOrder": 2
         },
@@ -10273,8 +10246,6 @@
           "related": [
             "apple-08",
             "apple-10",
-            "behavioral-01",
-            "behavioral-03",
             "sierra-10"
           ],
           "sources": [
@@ -10298,7 +10269,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4346,
+          "chars": 4262,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
@@ -15043,7 +15014,6 @@
             "elevenlabs-08",
             "elevenlabs-04",
             "elevenlabs-03",
-            "agent-10",
             "anthropic-17"
           ],
           "sources": [
@@ -15073,7 +15043,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5589,
+          "chars": 5502,
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
         },
@@ -15167,7 +15137,6 @@
             "figure-ai-02",
             "figure-ai-03",
             "figure-ai-12",
-            "applied-01",
             "nvidia-04"
           ],
           "sources": [
@@ -15191,7 +15160,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4992,
+          "chars": 4954,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 1
         },
@@ -15215,8 +15184,7 @@
             "figure-ai-01",
             "figure-ai-03",
             "figure-ai-09",
-            "nvidia-04",
-            "applied-01"
+            "nvidia-04"
           ],
           "sources": [
             {
@@ -15239,7 +15207,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4853,
+          "chars": 4814,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 2
         },
@@ -15263,8 +15231,7 @@
             "figure-ai-01",
             "figure-ai-02",
             "figure-ai-06",
-            "scale-04",
-            "applied-01"
+            "scale-04"
           ],
           "sources": [
             {
@@ -15287,7 +15254,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4772,
+          "chars": 4734,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 3
         },
@@ -15359,8 +15326,7 @@
             "figure-ai-01",
             "figure-ai-03",
             "figure-ai-06",
-            "nvidia-04",
-            "applied-01"
+            "nvidia-04"
           ],
           "sources": [
             {
@@ -15383,7 +15349,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4691,
+          "chars": 4654,
           "topicName": "AI 系统设计",
           "topicOrder": 1
         },
@@ -15407,8 +15373,7 @@
             "figure-ai-01",
             "figure-ai-03",
             "figure-ai-05",
-            "scale-06",
-            "applied-01"
+            "scale-06"
           ],
           "sources": [
             {
@@ -15431,7 +15396,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4831,
+          "chars": 4794,
           "topicName": "AI 系统设计",
           "topicOrder": 2
         },
@@ -15599,8 +15564,7 @@
             "figure-ai-09",
             "figure-ai-11",
             "figure-ai-12",
-            "multimodal-01",
-            "applied-01"
+            "multimodal-01"
           ],
           "sources": [
             {
@@ -15623,7 +15587,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4394,
+          "chars": 4353,
           "topicName": "多模态、语音与声音 AI",
           "topicOrder": 1
         },
@@ -15695,8 +15659,7 @@
             "figure-ai-01",
             "figure-ai-09",
             "figure-ai-10",
-            "figure-ai-11",
-            "applied-01"
+            "figure-ai-11"
           ],
           "sources": [
             {
@@ -15719,7 +15682,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5028,
+          "chars": 4989,
           "topicName": "多模态、语音与声音 AI",
           "topicOrder": 3
         }
@@ -15807,7 +15770,7 @@
             "glean-03",
             "glean-08",
             "apple-04",
-            "inference-02"
+            "inference-serving-02"
           ],
           "sources": [
             {
@@ -15830,7 +15793,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4975,
+          "chars": 4983,
           "topicName": "推理、服务与 GPU 性能",
           "topicOrder": 1
         },
@@ -16252,7 +16215,6 @@
           "related": [
             "microsoft-01",
             "gdm-02",
-            "coding-21",
             "system-design-04",
             "evaluation-06"
           ],
@@ -16277,7 +16239,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5863,
+          "chars": 5826,
           "topicName": "编程与数据结构",
           "topicOrder": 1
         },
@@ -16299,9 +16261,6 @@
           "askedAt": [],
           "related": [
             "gdm-01",
-            "coding-22",
-            "coding-28",
-            "coding-25",
             "evaluation-06"
           ],
           "sources": [
@@ -16325,7 +16284,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5143,
+          "chars": 5000,
           "topicName": "编程与数据结构",
           "topicOrder": 2
         },
@@ -16345,8 +16304,6 @@
           "topic": "coding",
           "askedAt": [],
           "related": [
-            "coding-21",
-            "coding-26",
             "evaluation-06",
             "gdm-05",
             "microsoft-09"
@@ -16372,7 +16329,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4927,
+          "chars": 4814,
           "topicName": "编程与数据结构",
           "topicOrder": 3
         },
@@ -16393,7 +16350,6 @@
           "askedAt": [],
           "related": [
             "gdm-03",
-            "coding-25",
             "rag-02",
             "evaluation-02",
             "llm-internals-01"
@@ -16419,7 +16375,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4774,
+          "chars": 4732,
           "topicName": "编程与数据结构",
           "topicOrder": 4
         },
@@ -16442,8 +16398,7 @@
             "gdm-03",
             "gdm-06",
             "evaluation-01",
-            "evaluation-06",
-            "coding-29"
+            "evaluation-06"
           ],
           "sources": [
             {
@@ -16466,7 +16421,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5256,
+          "chars": 5220,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 1
         },
@@ -16489,8 +16444,7 @@
             "gdm-05",
             "gdm-07",
             "evaluation-01",
-            "evaluation-06",
-            "coding-29"
+            "evaluation-06"
           ],
           "sources": [
             {
@@ -16513,7 +16467,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5538,
+          "chars": 5479,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 2
         },
@@ -16536,9 +16490,7 @@
           "related": [
             "gdm-05",
             "gdm-06",
-            "evaluation-01",
-            "coding-29",
-            "coding-30"
+            "evaluation-01"
           ],
           "sources": [
             {
@@ -16561,7 +16513,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5491,
+          "chars": 5372,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 3
         },
@@ -16585,7 +16537,6 @@
             "gdm-05",
             "gdm-07",
             "openai-13",
-            "coding-27",
             "llm-internals-01"
           ],
           "sources": [
@@ -16609,7 +16560,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5283,
+          "chars": 5238,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 4
         },
@@ -16633,8 +16584,7 @@
             "gdm-05",
             "gdm-07",
             "deepseek-05",
-            "llm-internals-01",
-            "coding-30"
+            "llm-internals-01"
           ],
           "sources": [
             {
@@ -16657,7 +16607,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5198,
+          "chars": 5151,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 5
         },
@@ -16679,9 +16629,7 @@
           "related": [
             "gdm-03",
             "gdm-09",
-            "evaluation-06",
-            "coding-22",
-            "coding-31"
+            "evaluation-06"
           ],
           "sources": [
             {
@@ -16704,7 +16652,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5190,
+          "chars": 5061,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 6
         },
@@ -16728,7 +16676,6 @@
             "gdm-10",
             "gdm-05",
             "agents-05",
-            "coding-31",
             "evaluation-06"
           ],
           "sources": [
@@ -16752,7 +16699,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6256,
+          "chars": 6214,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 7
         },
@@ -16776,7 +16723,6 @@
             "gdm-06",
             "gdm-05",
             "evaluation-01",
-            "applied-02",
             "safety-03"
           ],
           "sources": [
@@ -16800,7 +16746,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5874,
+          "chars": 5819,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 8
         },
@@ -16967,9 +16913,7 @@
           "related": [
             "gdm-15",
             "rag-02",
-            "evaluation-01",
-            "coding-26",
-            "applied-02"
+            "evaluation-01"
           ],
           "sources": [
             {
@@ -16992,7 +16936,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5119,
+          "chars": 5062,
           "topicName": "AI 系统设计",
           "topicOrder": 2
         },
@@ -17016,8 +16960,7 @@
             "gdm-16",
             "gdm-12",
             "evaluation-01",
-            "evaluation-06",
-            "applied-02"
+            "evaluation-06"
           ],
           "sources": [
             {
@@ -17040,7 +16983,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5549,
+          "chars": 5511,
           "topicName": "AI 系统设计",
           "topicOrder": 3
         },
@@ -17064,8 +17007,7 @@
             "gdm-16",
             "rag-02",
             "evaluation-01",
-            "openai-16",
-            "coding-26"
+            "openai-16"
           ],
           "sources": [
             {
@@ -17088,7 +17030,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5184,
+          "chars": 5148,
           "topicName": "AI 系统设计",
           "topicOrder": 4
         },
@@ -17112,7 +17054,6 @@
             "gdm-05",
             "gdm-13",
             "gdm-14",
-            "applied-02",
             "evaluation-01"
           ],
           "sources": [
@@ -17136,7 +17077,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5894,
+          "chars": 5839,
           "topicName": "AI 系统设计",
           "topicOrder": 5
         },
@@ -17208,8 +17149,7 @@
             "gdm-05",
             "gdm-18",
             "evaluation-06",
-            "evaluation-01",
-            "coding-29"
+            "evaluation-01"
           ],
           "sources": [
             {
@@ -17232,7 +17172,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5546,
+          "chars": 5487,
           "topicName": "评估与可观测性",
           "topicOrder": 2
         },
@@ -17255,9 +17195,7 @@
           "related": [
             "gdm-21",
             "openai-30",
-            "openai-29",
-            "behavioral-01",
-            "applied-02"
+            "openai-29"
           ],
           "sources": [
             {
@@ -17280,7 +17218,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5094,
+          "chars": 5009,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
@@ -18342,8 +18280,7 @@
             "harvey-05",
             "harvey-06",
             "harvey-11",
-            "system-design-01",
-            "applied-03"
+            "system-design-01"
           ],
           "sources": [
             {
@@ -18366,7 +18303,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4579,
+          "chars": 4543,
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
         },
@@ -18390,8 +18327,7 @@
             "harvey-01",
             "harvey-02",
             "harvey-07",
-            "harvey-10",
-            "applied-02"
+            "harvey-10"
           ],
           "sources": [
             {
@@ -18414,7 +18350,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4564,
+          "chars": 4524,
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
         }
@@ -18453,8 +18389,7 @@
             "hf-02",
             "hf-05",
             "hf-07",
-            "coding-01",
-            "applied-01"
+            "coding-01"
           ],
           "sources": [
             {
@@ -18477,7 +18412,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4856,
+          "chars": 4817,
           "topicName": "编程与数据结构",
           "topicOrder": 1
         },
@@ -18550,7 +18485,7 @@
             "hf-08",
             "hf-09",
             "apple-03",
-            "inference-05"
+            "inference-serving-05"
           ],
           "sources": [
             {
@@ -18573,7 +18508,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5151,
+          "chars": 5159,
           "topicName": "编程与数据结构",
           "topicOrder": 3
         },
@@ -18645,8 +18580,7 @@
             "hf-01",
             "hf-04",
             "hf-06",
-            "hf-08",
-            "applied-01"
+            "hf-08"
           ],
           "sources": [
             {
@@ -18669,7 +18603,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5403,
+          "chars": 5363,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 2
         },
@@ -18789,7 +18723,6 @@
             "hf-03",
             "hf-05",
             "hf-09",
-            "applied-02",
             "scale-11"
           ],
           "sources": [
@@ -18813,7 +18746,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4583,
+          "chars": 4545,
           "topicName": "微调、后训练与对齐",
           "topicOrder": 2
         },
@@ -18933,8 +18866,7 @@
             "hf-01",
             "hf-05",
             "hf-06",
-            "hf-10",
-            "behavioral-02"
+            "hf-10"
           ],
           "sources": [
             {
@@ -18957,7 +18889,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4730,
+          "chars": 4691,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
@@ -22041,8 +21973,7 @@
             "nvidia-01",
             "nvidia-09",
             "nvidia-08",
-            "llm-internals-01",
-            "coding-26"
+            "llm-internals-01"
           ],
           "sources": [
             {
@@ -22065,7 +21996,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5611,
+          "chars": 5568,
           "topicName": "编程与数据结构",
           "topicOrder": 3
         },
@@ -22088,7 +22019,6 @@
           "related": [
             "nvidia-05",
             "nvidia-06",
-            "coding-26",
             "evaluation-01",
             "llm-internals-01"
           ],
@@ -22113,7 +22043,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5504,
+          "chars": 5466,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 1
         },
@@ -22185,7 +22115,6 @@
             "nvidia-04",
             "nvidia-05",
             "perplexity-14",
-            "coding-25",
             "evaluation-01"
           ],
           "sources": [
@@ -22209,7 +22138,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5500,
+          "chars": 5462,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 3
         },
@@ -22233,8 +22162,7 @@
             "nvidia-08",
             "nvidia-04",
             "evaluation-01",
-            "gdm-20",
-            "coding-25"
+            "gdm-20"
           ],
           "sources": [
             {
@@ -22257,7 +22185,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5129,
+          "chars": 5090,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 4
         },
@@ -22521,8 +22449,7 @@
             "nvidia-12",
             "palantir-19",
             "palantir-18",
-            "openai-28",
-            "behavioral-01"
+            "openai-28"
           ],
           "sources": [
             {
@@ -22545,7 +22472,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4885,
+          "chars": 4840,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
@@ -22745,8 +22672,6 @@
           "related": [
             "openai-05",
             "openai-17",
-            "coding-13",
-            "coding-14",
             "agents-07"
           ],
           "sources": [
@@ -22776,7 +22701,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7855,
+          "chars": 7772,
           "topicName": "编程与数据结构",
           "topicOrder": 4
         },
@@ -22798,10 +22723,7 @@
           "askedAt": [],
           "related": [
             "openai-04",
-            "openai-02",
-            "coding-15",
-            "coding-16",
-            "coding-17"
+            "openai-02"
           ],
           "sources": [
             {
@@ -22830,7 +22752,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7021,
+          "chars": 6883,
           "topicName": "编程与数据结构",
           "topicOrder": 5
         },
@@ -22852,10 +22774,7 @@
           "askedAt": [],
           "related": [
             "openai-05",
-            "openai-07",
-            "coding-18",
-            "coding-19",
-            "coding-20"
+            "openai-07"
           ],
           "sources": [
             {
@@ -22884,7 +22803,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6095,
+          "chars": 5944,
           "topicName": "编程与数据结构",
           "topicOrder": 6
         },
@@ -22907,8 +22826,6 @@
           "related": [
             "openai-06",
             "openai-08",
-            "coding-21",
-            "coding-22",
             "evaluation-06"
           ],
           "sources": [
@@ -22938,7 +22855,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6593,
+          "chars": 6511,
           "topicName": "编程与数据结构",
           "topicOrder": 7
         },
@@ -23016,8 +22933,7 @@
             "openai-08",
             "openai-10",
             "finetuning-03",
-            "evaluation-03",
-            "coding-23"
+            "evaluation-03"
           ],
           "sources": [
             {
@@ -23046,7 +22962,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6418,
+          "chars": 6373,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 2
         },
@@ -23070,8 +22986,7 @@
             "openai-09",
             "openai-21",
             "evaluation-01",
-            "evaluation-04",
-            "coding-24"
+            "evaluation-04"
           ],
           "sources": [
             {
@@ -23100,7 +23015,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6740,
+          "chars": 6698,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 3
         },
@@ -23123,8 +23038,6 @@
           "related": [
             "openai-10",
             "openai-12",
-            "coding-25",
-            "coding-26",
             "evaluation-07"
           ],
           "sources": [
@@ -23154,7 +23067,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 8316,
+          "chars": 8228,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 4
         },
@@ -23232,8 +23145,7 @@
             "openai-12",
             "openai-14",
             "llm-internals-01",
-            "evaluation-02",
-            "coding-27"
+            "evaluation-02"
           ],
           "sources": [
             {
@@ -23262,7 +23174,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7793,
+          "chars": 7700,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 2
         },
@@ -23880,7 +23792,6 @@
             "openai-26",
             "microsoft-04",
             "microsoft-07",
-            "applied-01",
             "evaluation-01"
           ],
           "sources": [
@@ -23910,7 +23821,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6628,
+          "chars": 6587,
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
         },
@@ -23934,8 +23845,7 @@
             "openai-25",
             "openai-27",
             "openai-18",
-            "microsoft-04",
-            "applied-02"
+            "microsoft-04"
           ],
           "sources": [
             {
@@ -23964,7 +23874,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7458,
+          "chars": 7421,
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
         },
@@ -23987,7 +23897,6 @@
           "related": [
             "openai-26",
             "openai-28",
-            "applied-02",
             "evaluation-01",
             "microsoft-04"
           ],
@@ -24018,7 +23927,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6933,
+          "chars": 6896,
           "topicName": "行为与文化",
           "topicOrder": 1
         },
@@ -24042,7 +23951,6 @@
             "openai-29",
             "openai-25",
             "openai-30",
-            "behavioral-01",
             "microsoft-07"
           ],
           "sources": [
@@ -24072,7 +23980,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6660,
+          "chars": 6615,
           "topicName": "行为与文化",
           "topicOrder": 2
         },
@@ -24095,8 +24003,6 @@
           "related": [
             "openai-28",
             "openai-30",
-            "behavioral-01",
-            "behavioral-02",
             "microsoft-07"
           ],
           "sources": [
@@ -24126,7 +24032,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7013,
+          "chars": 6925,
           "topicName": "行为与文化",
           "topicOrder": 3
         },
@@ -24149,9 +24055,7 @@
           "related": [
             "openai-29",
             "openai-31",
-            "openai-25",
-            "behavioral-01",
-            "applied-02"
+            "openai-25"
           ],
           "sources": [
             {
@@ -24180,7 +24084,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6667,
+          "chars": 6582,
           "topicName": "行为与文化",
           "topicOrder": 4
         },
@@ -24203,9 +24107,7 @@
           "related": [
             "openai-30",
             "openai-28",
-            "openai-26",
-            "behavioral-01",
-            "applied-02"
+            "openai-26"
           ],
           "sources": [
             {
@@ -24234,7 +24136,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6608,
+          "chars": 6523,
           "topicName": "行为与文化",
           "topicOrder": 5
         }
@@ -24271,10 +24173,7 @@
           "askedAt": [],
           "related": [
             "palantir-02",
-            "palantir-04",
-            "coding-28",
-            "coding-22",
-            "coding-25"
+            "palantir-04"
           ],
           "sources": [
             {
@@ -24297,7 +24196,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4802,
+          "chars": 4692,
           "topicName": "编程与数据结构",
           "topicOrder": 1
         },
@@ -24321,7 +24220,6 @@
             "palantir-01",
             "palantir-03",
             "palantir-07",
-            "coding-25",
             "evaluation-01"
           ],
           "sources": [
@@ -24345,7 +24243,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5664,
+          "chars": 5605,
           "topicName": "编程与数据结构",
           "topicOrder": 2
         },
@@ -24369,7 +24267,6 @@
             "palantir-02",
             "palantir-06",
             "palantir-07",
-            "coding-31",
             "system-design-04"
           ],
           "sources": [
@@ -24393,7 +24290,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4937,
+          "chars": 4897,
           "topicName": "编程与数据结构",
           "topicOrder": 3
         },
@@ -24416,9 +24313,7 @@
           "related": [
             "palantir-01",
             "palantir-03",
-            "palantir-07",
-            "coding-25",
-            "coding-22"
+            "palantir-07"
           ],
           "sources": [
             {
@@ -24441,7 +24336,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5616,
+          "chars": 5539,
           "topicName": "编程与数据结构",
           "topicOrder": 4
         },
@@ -24464,9 +24359,7 @@
           "related": [
             "palantir-04",
             "palantir-06",
-            "coding-31",
-            "evaluation-01",
-            "coding-22"
+            "evaluation-01"
           ],
           "sources": [
             {
@@ -24489,7 +24382,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4835,
+          "chars": 4758,
           "topicName": "编程与数据结构",
           "topicOrder": 5
         },
@@ -24513,8 +24406,7 @@
             "palantir-02",
             "palantir-03",
             "palantir-04",
-            "palantir-05",
-            "coding-25"
+            "palantir-05"
           ],
           "sources": [
             {
@@ -24537,7 +24429,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5393,
+          "chars": 5355,
           "topicName": "编程与数据结构",
           "topicOrder": 6
         },
@@ -24560,8 +24452,6 @@
           "related": [
             "palantir-04",
             "palantir-06",
-            "coding-25",
-            "coding-28",
             "evaluation-06"
           ],
           "sources": [
@@ -24585,7 +24475,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5531,
+          "chars": 5460,
           "topicName": "编程与数据结构",
           "topicOrder": 7
         },
@@ -24849,8 +24739,7 @@
             "palantir-12",
             "palantir-15",
             "gdm-19",
-            "evaluation-01",
-            "coding-26"
+            "evaluation-01"
           ],
           "sources": [
             {
@@ -24873,7 +24762,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5648,
+          "chars": 5609,
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
         },
@@ -24945,7 +24834,6 @@
             "palantir-14",
             "palantir-16",
             "system-design-04",
-            "coding-31",
             "evaluation-02"
           ],
           "sources": [
@@ -25041,8 +24929,7 @@
             "palantir-16",
             "palantir-18",
             "gdm-17",
-            "evaluation-01",
-            "coding-25"
+            "evaluation-01"
           ],
           "sources": [
             {
@@ -25065,7 +24952,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4928,
+          "chars": 4891,
           "topicName": "应用与前置部署场景",
           "topicOrder": 5
         },
@@ -25089,7 +24976,6 @@
             "palantir-13",
             "palantir-17",
             "openai-25",
-            "applied-02",
             "evaluation-01"
           ],
           "sources": [
@@ -25113,7 +24999,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5396,
+          "chars": 5356,
           "topicName": "应用与前置部署场景",
           "topicOrder": 6
         },
@@ -25135,9 +25021,7 @@
           "related": [
             "palantir-18",
             "palantir-20",
-            "openai-26",
-            "applied-02",
-            "behavioral-01"
+            "openai-26"
           ],
           "sources": [
             {
@@ -25160,7 +25044,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5058,
+          "chars": 4953,
           "topicName": "行为与文化",
           "topicOrder": 1
         },
@@ -25184,8 +25068,7 @@
             "palantir-19",
             "palantir-18",
             "safety-03",
-            "agents-05",
-            "behavioral-01"
+            "agents-05"
           ],
           "sources": [
             {
@@ -25208,7 +25091,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5382,
+          "chars": 5336,
           "topicName": "行为与文化",
           "topicOrder": 2
         }
@@ -25247,8 +25130,7 @@
             "perplexity-02",
             "perplexity-05",
             "system-design-04",
-            "palantir-10",
-            "coding-31"
+            "palantir-10"
           ],
           "sources": [
             {
@@ -25294,7 +25176,6 @@
           "related": [
             "perplexity-01",
             "perplexity-03",
-            "coding-25",
             "rag-02",
             "evaluation-01"
           ],
@@ -25319,7 +25200,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4999,
+          "chars": 4941,
           "topicName": "编程与数据结构",
           "topicOrder": 2
         },
@@ -25343,7 +25224,6 @@
             "perplexity-02",
             "perplexity-09",
             "system-design-04",
-            "coding-31",
             "inference-serving-03"
           ],
           "sources": [
@@ -25367,7 +25247,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4828,
+          "chars": 4789,
           "topicName": "编程与数据结构",
           "topicOrder": 3
         },
@@ -25391,8 +25271,7 @@
             "perplexity-03",
             "perplexity-06",
             "perplexity-08",
-            "llm-internals-01",
-            "coding-31"
+            "llm-internals-01"
           ],
           "sources": [
             {
@@ -25415,7 +25294,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5591,
+          "chars": 5554,
           "topicName": "编程与数据结构",
           "topicOrder": 4
         },
@@ -25655,7 +25534,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5375,
+          "chars": 5355,
           "topicName": "AI 系统设计",
           "topicOrder": 2
         },
@@ -25725,7 +25604,6 @@
           "askedAt": [],
           "related": [
             "perplexity-08",
-            "perplexity-16",
             "palantir-16",
             "palantir-20",
             "system-design-04"
@@ -25751,7 +25629,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5188,
+          "chars": 5148,
           "topicName": "AI 系统设计",
           "topicOrder": 4
         },
@@ -25799,7 +25677,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5132,
+          "chars": 5114,
           "topicName": "AI 系统设计",
           "topicOrder": 5
         },
@@ -25870,7 +25748,6 @@
           "related": [
             "perplexity-13",
             "perplexity-08",
-            "perplexity-16",
             "safety-03",
             "palantir-12"
           ],
@@ -25895,7 +25772,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5042,
+          "chars": 4999,
           "topicName": "安全、安保与负责任 AI",
           "topicOrder": 1
         },
@@ -25917,9 +25794,7 @@
           "related": [
             "perplexity-08",
             "perplexity-12",
-            "perplexity-13",
-            "applied-02",
-            "behavioral-01"
+            "perplexity-13"
           ],
           "sources": [
             {
@@ -25942,7 +25817,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4906,
+          "chars": 4821,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
@@ -26076,7 +25951,6 @@
           "related": [
             "sarvam-01",
             "sarvam-04",
-            "sarvam-13",
             "nvidia-08",
             "groq-06"
           ],
@@ -26101,7 +25975,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5256,
+          "chars": 5216,
           "topicName": "推理、服务与 GPU 性能",
           "topicOrder": 1
         },
@@ -26268,7 +26142,6 @@
           "related": [
             "sarvam-09",
             "sarvam-10",
-            "sarvam-13",
             "groq-08",
             "perplexity-11"
           ],
@@ -26293,7 +26166,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4884,
+          "chars": 4850,
           "topicName": "AI 系统设计",
           "topicOrder": 1
         },
@@ -26620,7 +26493,6 @@
             "scale-01",
             "scale-05",
             "palantir-06",
-            "coding-31",
             "evaluation-06"
           ],
           "sources": [
@@ -26644,7 +26516,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4448,
+          "chars": 4411,
           "topicName": "编程与数据结构",
           "topicOrder": 2
         },
@@ -27004,8 +26876,7 @@
             "scale-01",
             "scale-07",
             "scale-05",
-            "scale-09",
-            "behavioral-04"
+            "scale-09"
           ],
           "sources": [
             {
@@ -27028,7 +26899,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4680,
+          "chars": 4642,
           "topicName": "安全、安保与负责任 AI",
           "topicOrder": 1
         },
@@ -27691,7 +27562,6 @@
             "sierra-01",
             "sierra-08",
             "sierra-11",
-            "behavioral-01",
             "palantir-18"
           ],
           "sources": [
@@ -27715,7 +27585,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4689,
+          "chars": 4644,
           "topicName": "行为与文化",
           "topicOrder": 2
         }
@@ -27754,8 +27624,7 @@
             "tesla-03",
             "tesla-07",
             "waymo-01",
-            "coding-01",
-            "applied-01"
+            "coding-01"
           ],
           "sources": [
             {
@@ -27778,7 +27647,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4552,
+          "chars": 4510,
           "topicName": "编程与数据结构",
           "topicOrder": 1
         },
@@ -27898,7 +27767,6 @@
             "tesla-03",
             "tesla-05",
             "tesla-09",
-            "applied-01",
             "safety-01"
           ],
           "sources": [
@@ -27922,7 +27790,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4561,
+          "chars": 4525,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 2
         },
@@ -27946,8 +27814,7 @@
             "tesla-04",
             "tesla-06",
             "tesla-08",
-            "scale-03",
-            "applied-01"
+            "scale-03"
           ],
           "sources": [
             {
@@ -27970,7 +27837,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4823,
+          "chars": 4786,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 3
         },
@@ -28043,7 +27910,7 @@
             "tesla-03",
             "tesla-06",
             "apple-02",
-            "inference-05"
+            "inference-serving-05"
           ],
           "sources": [
             {
@@ -28066,7 +27933,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5377,
+          "chars": 5385,
           "topicName": "推理、服务与 GPU 性能",
           "topicOrder": 1
         },
@@ -28234,7 +28101,6 @@
             "tesla-07",
             "tesla-08",
             "apple-11",
-            "behavioral-02",
             "sierra-11"
           ],
           "sources": [
@@ -28258,7 +28124,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4395,
+          "chars": 4356,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
@@ -28680,8 +28546,7 @@
             "waymo-02",
             "waymo-03",
             "waymo-07",
-            "coding-01",
-            "applied-01"
+            "coding-01"
           ],
           "sources": [
             {
@@ -28704,7 +28569,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5122,
+          "chars": 5083,
           "topicName": "编程与数据结构",
           "topicOrder": 1
         },
@@ -28728,8 +28593,7 @@
             "waymo-01",
             "waymo-03",
             "waymo-08",
-            "waymo-09",
-            "applied-01"
+            "waymo-09"
           ],
           "sources": [
             {
@@ -28752,7 +28616,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4526,
+          "chars": 4486,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 1
         },
@@ -28776,8 +28640,7 @@
             "waymo-01",
             "waymo-02",
             "waymo-09",
-            "waymo-11",
-            "applied-01"
+            "waymo-11"
           ],
           "sources": [
             {
@@ -28800,7 +28663,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4886,
+          "chars": 4847,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 2
         },
@@ -28824,8 +28687,7 @@
             "waymo-02",
             "waymo-05",
             "waymo-06",
-            "waymo-09",
-            "applied-01"
+            "waymo-09"
           ],
           "sources": [
             {
@@ -28848,7 +28710,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4458,
+          "chars": 4417,
           "topicName": "机器学习与深度学习基础",
           "topicOrder": 3
         },
@@ -29271,8 +29133,7 @@
             "xai-02",
             "xai-03",
             "coding-01",
-            "coding-05",
-            "databases-02"
+            "coding-05"
           ],
           "sources": [
             {
@@ -29295,7 +29156,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5998,
+          "chars": 5953,
           "topicName": "编程与数据结构",
           "topicOrder": 1
         },
@@ -29807,8 +29668,8 @@
           "related": [
             "zhipu-02",
             "zhipu-05",
-            "llm-01",
-            "llm-02",
+            "llm-internals-01",
+            "llm-internals-02",
             "finetuning-01"
           ],
           "sources": [
@@ -29832,7 +29693,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4936,
+          "chars": 4956,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 1
         },
@@ -29856,8 +29717,8 @@
             "zhipu-01",
             "zhipu-03",
             "zhipu-04",
-            "inference-01",
-            "inference-04"
+            "inference-serving-01",
+            "inference-serving-04"
           ],
           "sources": [
             {
@@ -29880,7 +29741,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5189,
+          "chars": 5205,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 2
         },
@@ -29905,7 +29766,7 @@
             "zhipu-04",
             "zhipu-08",
             "coding-01",
-            "llm-03"
+            "llm-internals-03"
           ],
           "sources": [
             {
@@ -29928,7 +29789,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5186,
+          "chars": 5196,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 3
         },
@@ -29951,9 +29812,9 @@
           "related": [
             "zhipu-02",
             "zhipu-03",
-            "inference-03",
-            "inference-05",
-            "llm-04"
+            "inference-serving-03",
+            "inference-serving-05",
+            "llm-internals-04"
           ],
           "sources": [
             {
@@ -29976,7 +29837,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4967,
+          "chars": 4993,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 4
         },
@@ -29999,8 +29860,8 @@
           "related": [
             "zhipu-01",
             "zhipu-06",
-            "llm-01",
-            "llm-05",
+            "llm-internals-01",
+            "llm-internals-05",
             "rag-03"
           ],
           "sources": [
@@ -30024,7 +29885,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4800,
+          "chars": 4820,
           "topicName": "LLM 内部原理与架构",
           "topicOrder": 5
         },
@@ -30145,7 +30006,7 @@
             "zhipu-06",
             "zhipu-10",
             "finetuning-06",
-            "inference-06"
+            "inference-serving-06"
           ],
           "sources": [
             {
@@ -30168,7 +30029,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5014,
+          "chars": 5022,
           "topicName": "微调、后训练与对齐",
           "topicOrder": 2
         },
@@ -30193,7 +30054,7 @@
             "zhipu-07",
             "finetuning-02",
             "finetuning-07",
-            "llm-06"
+            "llm-internals-06"
           ],
           "sources": [
             {
@@ -30216,7 +30077,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4800,
+          "chars": 4810,
           "topicName": "微调、后训练与对齐",
           "topicOrder": 3
         },

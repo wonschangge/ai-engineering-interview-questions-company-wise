@@ -26,7 +26,7 @@ sources:
     url: https://github.com/wonschangge/ai-engineering-interview-questions-company-wise
     author: 本仓库
     published: 
-related: [openai-10, openai-12, coding-25, coding-26, evaluation-07]
+related: [openai-10, openai-12, evaluation-07]
 updated: 2026-09-28
 ---
 
@@ -353,8 +353,6 @@ print("  读法：**两个陷阱都会让「缺失处理」看起来生效、实
 
 - [[openai-10]]：两个模型怎么选——**"先诊断再决策"的同一套方法**。
 - [[openai-12]]：self-attention 的复杂度——**另一道"先算清楚再选方案"的题**。
-- [[coding-25]]：数据清洗与质量检查——**缺失诊断的通用版本**。
-- [[coding-26]]：特征工程中的泄漏——**`bfill` 与插补器 fit 的泄漏**。
 - [[evaluation-07]]：数据漂移与分布对比——**"填充前后分布对比"的评估方法**。
 
 ## 参考资料与归属

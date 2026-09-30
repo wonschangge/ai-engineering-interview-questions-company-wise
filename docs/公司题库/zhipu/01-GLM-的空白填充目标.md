@@ -22,7 +22,7 @@ sources:
     url: https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf
     author: Radford et al. (OpenAI)
     published: 2019-02-14
-related: [zhipu-02, zhipu-05, llm-01, llm-02, finetuning-01]
+related: [zhipu-02, zhipu-05, llm-internals-01, llm-internals-02, finetuning-01]
 updated: 2026-09-28
 ---
 
@@ -248,8 +248,8 @@ print("        而**「第 4 条是规模派的观点」**（**值得作为对�
 
 - [[zhipu-02]]：GLM-4.5 的 MoE 经济账——**架构的下一代**。
 - [[zhipu-05]]：中英双语模型的取舍——**GLM 的另一条主线**。
-- [[llm-01]]：Transformer 架构基础——**共同底座**。
-- [[llm-02]]：注意力机制——**双向与因果的实现差别**。
+- [[llm-internals-01]]：Transformer 架构基础——**共同底座**。
+- [[llm-internals-02]]：注意力机制——**双向与因果的实现差别**。
 - [[finetuning-01]]：预训练与微调的范式——**目标函数之争的上下文**。
 
 ## 参考资料与归属

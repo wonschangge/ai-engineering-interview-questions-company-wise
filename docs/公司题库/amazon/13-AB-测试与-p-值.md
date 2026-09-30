@@ -22,7 +22,7 @@ sources:
     url: https://journals.sagepub.com/doi/10.1177/0956797611417632
     author: Simmons, Nelson & Simonsohn
     published: 2011-09-01
-related: [amazon-08, amazon-11, amazon-14, evaluation-05, ml-09]
+related: [amazon-08, amazon-11, amazon-14, evaluation-05]
 updated: 2026-09-28
 ---
 
@@ -292,7 +292,6 @@ print("        而**「这就是为什么『小提升』的 A/B 测试要跑很�
 - [[amazon-11]]：精确率、召回率与 F1——**基础比率效应**。
 - [[amazon-14]]：最大似然与贝叶斯——**p 值 vs 后验**。
 - [[evaluation-05]]：在线实验与因果推断——**A/B 测试的上下文**。
-- [[ml-09]]：统计检验与功效——**方法基础**。
 
 ## 参考资料与归属
 

@@ -22,7 +22,7 @@ sources:
     url: https://ieeexplore.ieee.org/document/650093
     author: Schuster & Paliwal
     published: 1997-11-01
-related: [amazon-08, amazon-15, llm-01, llm-02, ml-10]
+related: [amazon-08, amazon-15, llm-internals-01, llm-internals-02]
 updated: 2026-09-28
 ---
 
@@ -292,9 +292,8 @@ print("        而**「BiLSTM 在需要双向的编码任务上仍有位置」**
 
 - [[amazon-08]]：偏差-方差与维度灾难——**同为 ML 基础题**。
 - [[amazon-15]]：Transformer 与 KV cache——**取代 RNN 的架构**。
-- [[llm-01]]：Transformer 架构基础——**对比的基准**。
-- [[llm-02]]：注意力机制——**为什么它能并行**。
-- [[ml-10]]：序列模型与状态空间模型——**RNN 的当代延续**。
+- [[llm-internals-01]]：Transformer 架构基础——**对比的基准**。
+- [[llm-internals-02]]：注意力机制——**为什么它能并行**。
 
 ## 参考资料与归属
 

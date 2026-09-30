@@ -22,7 +22,7 @@ sources:
     url: https://en.wikipedia.org/wiki/Little%27s_law
     author: Wikipedia
     published: 2024-01-01
-related: [perplexity-02, perplexity-09, system-design-04, coding-31, inference-serving-03]
+related: [perplexity-02, perplexity-09, system-design-04, inference-serving-03]
 updated: 2026-09-28
 ---
 
@@ -247,7 +247,6 @@ print(f'        本机最优 {best:,} 批；**若每请求 50ms，串行要 {bes
 - [[perplexity-02]]：近似重复检测——**"跳过已嵌入"与去重**。
 - [[perplexity-09]]：1000 亿网页的检索流水线——**规模化的批量处理**。
 - [[system-design-04]]：消息队列与投递语义——**背压与重试**。
-- [[coding-31]]：随机化算法与期望分析——**近似算法的分析**。
 - [[inference-serving-03]]：KV cache 与显存——**LLM 推理的批处理**。
 
 ## 参考资料与归属

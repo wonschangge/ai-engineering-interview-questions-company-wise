@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/1707.06347
     author: Schulman et al. (OpenAI)
     published: 2017-07-20
-related: [gdm-10, gdm-05, agents-05, coding-31, evaluation-06]
+related: [gdm-10, gdm-05, agents-05, evaluation-06]
 updated: 2026-09-28
 ---
 
@@ -328,7 +328,6 @@ print('  读法：**"动作是否连续「与」数据能否复用"是两个最�
 - [[gdm-10]]：抛硬币的期望——**同一家公司的另一道概率题**。
 - [[gdm-05]]：bias-variance 权衡——**RL 里的偏差-方差取舍（TD 偏差 vs 蒙特卡洛方差）**。
 - [[agents-05]]：agent 的权限与授权——**RL 在 agent 系统里的位置**。
-- [[coding-31]]：随机化算法与期望分析——**期望与方差的分析工具**。
 - [[evaluation-06]]：不确定性与区间——**"训练曲线波动"的量化**。
 
 ## 参考资料与归属

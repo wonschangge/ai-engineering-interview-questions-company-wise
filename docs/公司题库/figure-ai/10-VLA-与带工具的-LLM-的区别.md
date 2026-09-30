@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2303.03378
     author: Driess et al. (Google)
     published: 2023-03-06
-related: [figure-ai-09, figure-ai-11, figure-ai-12, multimodal-01, applied-01]
+related: [figure-ai-09, figure-ai-11, figure-ai-12, multimodal-01]
 updated: 2026-09-28
 ---
 
@@ -245,7 +245,6 @@ print("        而**「物理接口」带来的是「约束、延迟、安全」
 - [[figure-ai-11]]：Helix 的慢/快双模型——**延迟预算的后果**。
 - [[figure-ai-12]]：action chunking——**多模态动作分布**。
 - [[multimodal-01]]：语音与多模态模型——**多模态的通用架构**。
-- [[applied-01]]：模仿学习的基本框架——**VLA 的训练方式**。
 
 ## 参考资料与归属
 

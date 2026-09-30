@@ -22,7 +22,7 @@ sources:
     url: https://sre.google/sre-book/handling-overload/
     author: Google
     published: 2016-01-01
-related: [palantir-02, palantir-06, palantir-07, coding-31, system-design-04]
+related: [palantir-02, palantir-06, palantir-07, system-design-04]
 updated: 2026-09-28
 ---
 
@@ -264,7 +264,6 @@ print('        按请求 size 算页码会直接漏掉 60% 的数据（**而且�
 - [[palantir-02]]：SQL join 与聚合——**"重复累加"的另一种形态**。
 - [[palantir-06]]：800 行 pipeline 脚本——**"偶尔算错"的综合排查**。
 - [[palantir-07]]：三源客户去重——**实体解析与幂等**。
-- [[coding-31]]：随机化算法与期望分析——**重试与退避的量化**。
 - [[system-design-04]]：消息队列与投递语义——**至少一次与幂等**。
 
 ## 参考资料与归属

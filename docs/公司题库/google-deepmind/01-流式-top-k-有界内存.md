@@ -22,7 +22,7 @@ sources:
     url: https://www.sciencedirect.com/science/article/pii/S0196677403001913
     author: Cormode & Muthukrishnan
     published: 2005-04-01
-related: [microsoft-01, gdm-02, coding-21, system-design-04, evaluation-06]
+related: [microsoft-01, gdm-02, system-design-04, evaluation-06]
 updated: 2026-09-28
 ---
 
@@ -280,7 +280,6 @@ print("  读法：**Space-Saving 给「列表」，CMS 给「点查询」** -> �
 
 - [[gdm-02]]：最接近的 key——**同一家公司的另一道编码题**（**"先问规格"的同一主题**）。
 - [[microsoft-01]]：大规模日志的 top-k 高频查询——**批处理版本**（**CMS + 堆**）。
-- [[coding-21]]：流式算法与概率数据结构——**通用版本**。
 - [[system-design-04]]：消息队列与投递语义——**分片摘要的合并**。
 - [[evaluation-06]]：不确定性与区间——**"近似结果的误差如何报告"**。
 

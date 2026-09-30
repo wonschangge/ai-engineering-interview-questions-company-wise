@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/1011.0686
     author: Ross, Gordon & Bagnell
     published: 2010-11-02
-related: [figure-ai-01, figure-ai-09, figure-ai-10, figure-ai-11, applied-01]
+related: [figure-ai-01, figure-ai-09, figure-ai-10, figure-ai-11]
 updated: 2026-09-28
 ---
 
@@ -266,7 +266,6 @@ print('        而**"只取前一半"是零延迟的折中**（**它牺牲了后
 - [[figure-ai-09]]：人员附近的安全架构——**反应性与安全距离**。
 - [[figure-ai-10]]：VLA 与带工具的 LLM——**输出形式**。
 - [[figure-ai-11]]：Helix 的慢/快双模型——**快模型的推理预算**。
-- [[applied-01]]：模仿学习的基本框架——**策略的输出形式**。
 
 ## 参考资料与归属
 

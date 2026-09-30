@@ -22,7 +22,7 @@ sources:
     url: https://unicode.org/reports/tr15/
     author: Unicode Consortium
     published: 2024-01-01
-related: [palantir-01, palantir-03, palantir-07, coding-25, coding-22]
+related: [palantir-01, palantir-03, palantir-07]
 updated: 2026-09-28
 ---
 
@@ -247,8 +247,6 @@ print('        或**定期把计数落库并重置**（分桶计数）')
 - [[palantir-03]]：REST API 分页——**"数据变动导致重复/漏读"**。
 - [[palantir-06]]：800 行 pipeline 脚本——**静默错误的综合排查**。
 - [[palantir-07]]：三源客户去重——**同一性与实体解析**。
-- [[coding-25]]：数据清洗与质量检查——**归一化的通用讨论**。
-- [[coding-22]]：字符串算法与性质测试——**不变量的断言**。
 
 ## 参考资料与归属
 

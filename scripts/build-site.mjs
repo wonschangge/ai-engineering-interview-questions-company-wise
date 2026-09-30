@@ -310,6 +310,18 @@ for (const topic of topicById.values()) {
 }
 const topicList = [...topicById.values()].sort((a, b) => a.order - b.order);
 const topicIds = new Set(topicList.map((t) => t.id));
+// 提前构建 outline：related 与正文双链的校验需要「全站题单」来判断一个 id 是
+// 「尚未撰写」还是「压根写错了」。
+const outline = buildOutline();
+const plannedIds = outline
+  ? new Set([
+    ...outline.topics.flatMap((t) => t.questions.map((q) => `${t.id}-${String(q.order).padStart(2, '0')}`)),
+    ...outline.companies.flatMap((c) => [
+      ...c.questions.map((q) => `${c.id || c.name}-${String(q.order).padStart(2, '0')}`),
+      ...c.topics.flatMap((t) => t.questions.map((q) => `${c.id || c.name}-${String(q.order).padStart(2, '0')}`))
+    ])
+  ])
+  : null;
 for (const q of companyQuestions) {
   const slug = TOPIC_SLUGS[q.data.topic] || q.data.topic;
   if (q.data.topic && !topicIds.has(slug) && !COMPANY_SECTION_SLUGS.has(slug)) errors.push(`${rel(q.file)}: topic 字段（${q.data.topic}）不是已知专题或公司专属小节`);
@@ -318,7 +330,21 @@ const knownIds = new Set([...questions, ...companyQuestions].map((x) => x.data.i
 for (const q of [...questions, ...companyQuestions]) {
   for (const rid of q.data.related || []) {
     if (topicIds.has(rid)) continue;   // 允许指向整个专题
-    if (!knownIds.has(rid)) warnings.push(`${rel(q.file)}: related 指向尚未撰写的题目 ${rid}`);
+    if (!knownIds.has(rid)) {
+      // 关键区分：id 在全站题单里（outline）但还没写 -> warning；
+      // id 压根不存在 -> error。否则「写错了 id」会被「尚未撰写」这句话长期掩盖。
+      if (plannedIds && plannedIds.has(rid)) warnings.push(`${rel(q.file)}: related 指向尚未撰写的题目 ${rid}`);
+      else errors.push(`${rel(q.file)}: related 里的 id 不存在：${rid}`);
+    }
+  }
+  // 正文双链此前完全不校验，死链会在站点上永久渲染成「待撰写」标签而构建全绿。
+  // 必须先剥代码围栏与行内代码：Python 里的 boxes[[i]]、torch.tensor([[-100, …]]) 都长得像双链。
+  const proseBody = stripFences(String(q.body || '')).replace(/`[^`\n]*`/g, '');
+  for (const m of proseBody.matchAll(/\[\[([^\]]+)\]\]/g)) {
+    const rid = m[1].trim();
+    if (knownIds.has(rid) || topicIds.has(rid)) continue;
+    if (plannedIds && plannedIds.has(rid)) warnings.push(`${rel(q.file)}: 正文双链指向尚未撰写的题目 [[${rid}]]`);
+    else errors.push(`${rel(q.file)}: 正文双链的 id 不存在：[[${rid}]]`);
   }
 }
 
@@ -466,7 +492,6 @@ const catalog = {
   topics: topicList,
   companies: companyList
 };
-const outline = buildOutline();
 if (outline) {
   catalog.stats.planned = outline.stats.total;
   // 公司身份靠名字匹配，而 README.zh-CN.md 的小节标题常带限定语（如「Amazon（AWS）」「智谱 AI（GLM）」），

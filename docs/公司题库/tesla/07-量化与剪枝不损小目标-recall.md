@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/1612.03144
     author: Lin et al. (Facebook AI)
     published: 2016-12-09
-related: [tesla-01, tesla-03, tesla-06, apple-02, inference-05]
+related: [tesla-01, tesla-03, tesla-06, apple-02, inference-serving-05]
 updated: 2026-09-28
 ---
 
@@ -269,7 +269,7 @@ print("        而**「分组 + 混合精度 + P2 + 蒸馏」能在 0.38 倍算�
 - [[tesla-03]]：无 lidar 的多摄像头 3D 检测——**BEV 分辨率与小目标**。
 - [[tesla-06]]：分布偏移——**量化后的性能保持**。
 - [[apple-02]]：PTQ 与 QAT——**权重侧的同类问题**。
-- [[inference-05]]：量化与推理优化——**通用框架**。
+- [[inference-serving-05]]：量化与推理优化——**通用框架**。
 
 ## 参考资料与归属
 

@@ -22,7 +22,7 @@ sources:
     url: https://www.ams.org/notices/200301/fea-svd.pdf
     author: Kalman
     published: 1996-01-01
-related: [gdm-05, gdm-07, deepseek-05, llm-internals-01, coding-30]
+related: [gdm-05, gdm-07, deepseek-05, llm-internals-01]
 updated: 2026-09-28
 ---
 
@@ -251,7 +251,6 @@ print('        但注意：**k > 17.1 时"低秩分解"用的参数比原矩阵�
 - [[gdm-06]]：线性回归的假设——**条件数与共线性**。
 - [[deepseek-05]]：Muon 优化器——**正交化与 SVD**。
 - [[moonshot-02]]：MLA 与 GQA——**低秩投影压 KV**。
-- [[coding-30]]：模型选择与嵌套 CV——**PCA 作为预处理时的泄漏风险**。
 
 ## 参考资料与归属
 

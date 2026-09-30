@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2412.19437
     author: DeepSeek-AI
     published: 2024-12-27
-related: [zhipu-02, zhipu-04, zhipu-08, coding-01, llm-03]
+related: [zhipu-02, zhipu-04, zhipu-08, coding-01, llm-internals-03]
 updated: 2026-09-28
 ---
 
@@ -344,7 +344,7 @@ print("        而**「这也解释了为什么 loss-free 值得实现」**（**
 - [[zhipu-04]]：Multi-Token Prediction——**推理侧的另一项优化**。
 - [[zhipu-08]]：分离式异步 agentic RL——**另一处"分离式设计"**。
 - [[coding-01]]：数组编程与向量化——**变长分组的实现**。
-- [[llm-03]]：FFN 与专家结构——**专家的内部结构**。
+- [[llm-internals-03]]：FFN 与专家结构——**专家的内部结构**。
 
 ## 参考资料与归属
 

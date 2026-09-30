@@ -22,7 +22,7 @@ sources:
     url: https://dl.acm.org/doi/10.1145/1498765.1498785
     author: Williams, Waterman & Patterson (UC Berkeley)
     published: 2009-04-01
-related: [zhipu-01, zhipu-03, zhipu-04, inference-01, inference-04]
+related: [zhipu-01, zhipu-03, zhipu-04, inference-serving-01, inference-serving-04]
 updated: 2026-09-28
 ---
 
@@ -281,8 +281,8 @@ print("        而**「这就是为什么它适合云服务而不适合端侧」
 - [[zhipu-01]]：GLM 的空白填充目标——**架构的上一代**。
 - [[zhipu-03]]：top-k MoE 路由实现——**负载均衡的实现**。
 - [[zhipu-04]]：Multi-Token Prediction——**推理时的另一项优化**。
-- [[inference-01]]：推理性能的基本模型——**算术强度与脊点**。
-- [[inference-04]]：并行策略与通信——**all-to-all 的上下文**。
+- [[inference-serving-01]]：推理性能的基本模型——**算术强度与脊点**。
+- [[inference-serving-04]]：并行策略与通信——**all-to-all 的上下文**。
 
 ## 参考资料与归属
 

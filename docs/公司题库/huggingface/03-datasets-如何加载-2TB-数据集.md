@@ -22,7 +22,7 @@ sources:
     url: https://people.freebsd.org/~lstewart/articles/cpumemory.pdf
     author: Ulrich Drepper (Red Hat)
     published: 2007-09-21
-related: [hf-02, hf-08, hf-09, apple-03, inference-05]
+related: [hf-02, hf-08, hf-09, apple-03, inference-serving-05]
 updated: 2026-09-28
 ---
 
@@ -277,7 +277,7 @@ print("        而**「流式处理可以避免缓存」**（**代价是「每�
 - [[hf-08]]：web 规模语料的流水线——**2 TB 数据集从哪来**。
 - [[hf-09]]：设计 Hub——**存储层与分片**。
 - [[apple-03]]：KV cache 估算——**内存受限下的取舍**。
-- [[inference-05]]：量化与推理优化——**内存层次**。
+- [[inference-serving-05]]：量化与推理优化——**内存层次**。
 
 ## 参考资料与归属
 

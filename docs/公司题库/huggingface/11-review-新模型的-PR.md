@@ -22,7 +22,7 @@ sources:
     url: https://debuggingrules.com/
     author: David J. Agans
     published: 2002-01-01
-related: [hf-01, hf-05, hf-06, hf-10, behavioral-02]
+related: [hf-01, hf-05, hf-06, hf-10]
 updated: 2026-09-28
 ---
 
@@ -272,7 +272,6 @@ print("        而**「合并后致谢」成本极低但回报高**（**因为�
 - [[hf-05]]：tokenizer 的七个 bug——**review 时要重点看的部分**。
 - [[hf-06]]：chat template——**新模型要带的东西之一**。
 - [[hf-10]]：serverless 推理层——**新模型上线后的成本**。
-- [[behavioral-02]]：最有挑战的项目——**同源的行为题**。
 
 ## 参考资料与归属
 

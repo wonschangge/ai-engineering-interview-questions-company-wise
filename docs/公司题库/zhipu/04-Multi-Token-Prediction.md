@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2401.10774
     author: Cai et al. (Princeton)
     published: 2024-01-19
-related: [zhipu-02, zhipu-03, inference-03, inference-05, llm-04]
+related: [zhipu-02, zhipu-03, inference-serving-03, inference-serving-05, llm-internals-04]
 updated: 2026-09-28
 ---
 
@@ -274,9 +274,9 @@ print('        而**「实际部署常用 k=3–5」**（**因为在 k=5 时已�
 
 - [[zhipu-02]]：GLM-4.5 的 MoE 经济账——**推理侧的另一项优化**。
 - [[zhipu-03]]：top-k MoE 路由实现——**同属架构实现题**。
-- [[inference-03]]：投机解码——**MTP 的推理用途**。
-- [[inference-05]]：解码策略与采样——**生成侧的上下文**。
-- [[llm-04]]：输出头与嵌入共享——**MTP 共享参数的基础**。
+- [[inference-serving-03]]：投机解码——**MTP 的推理用途**。
+- [[inference-serving-05]]：解码策略与采样——**生成侧的上下文**。
+- [[llm-internals-04]]：输出头与嵌入共享——**MTP 共享参数的基础**。
 
 ## 参考资料与归属
 

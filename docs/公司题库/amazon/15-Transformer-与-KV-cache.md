@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2305.13245
     author: Ainslie et al. (Google)
     published: 2023-05-22
-related: [amazon-09, amazon-10, amazon-16, inference-serving-01, llm-01]
+related: [amazon-09, amazon-10, amazon-16, inference-serving-01, llm-internals-01]
 updated: 2026-09-28
 ---
 
@@ -310,7 +310,7 @@ print()
 - [[amazon-10]]：attention 与去掉隐藏层——**机制本身**。
 - [[amazon-16]]：削减 Bedrock 推理成本——**本题的直接应用**。
 - [[inference-serving-01]]：推理服务的优化——**系统侧手段**。
-- [[llm-01]]：Transformer 架构基础——**结构细节**。
+- [[llm-internals-01]]：Transformer 架构基础——**结构细节**。
 
 ## 参考资料与归属
 

@@ -22,7 +22,7 @@ sources:
     url: https://sre.google/sre-book/postmortem-culture/
     author: Google
     published: 2016-01-01
-related: [scale-01, scale-07, scale-05, scale-09, behavioral-04]
+related: [scale-01, scale-07, scale-05, scale-09]
 updated: 2026-09-28
 ---
 
@@ -245,7 +245,6 @@ print("        所以**「检测 -> 分层响应 -> 数据追溯」是完整流�
 - [[scale-07]]：主观偏好的质量度量——**无 ground truth 的度量**。
 - [[scale-05]]：偏好数据流水线——**补采与产能**。
 - [[scale-09]]：eval 下降 6 分——**质量异常的排查**。
-- [[behavioral-04]]：处理不诚实的行为——**分层响应**。
 
 ## 参考资料与归属
 

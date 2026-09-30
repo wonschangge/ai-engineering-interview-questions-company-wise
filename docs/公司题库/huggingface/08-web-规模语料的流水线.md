@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2107.06499
     author: Lee et al. (Google)
     published: 2021-07-14
-related: [hf-03, hf-05, hf-09, applied-02, scale-11]
+related: [hf-03, hf-05, hf-09, scale-11]
 updated: 2026-09-28
 ---
 
@@ -271,7 +271,6 @@ print("        而**「检查两两交互」是防止重复过滤**（**如质�
 - [[hf-03]]：2 TB 数据集装进 64 GB——**语料的消费侧**。
 - [[hf-05]]：三种 tokenization——**第 7 步的细节**。
 - [[hf-09]]：设计 Hub——**语料与模型的托管**。
-- [[applied-02]]：数据质量与配比——**数据侧的通用问题**。
 - [[scale-11]]：文档问答的检索——**语料的下游用途**。
 
 ## 参考资料与归属

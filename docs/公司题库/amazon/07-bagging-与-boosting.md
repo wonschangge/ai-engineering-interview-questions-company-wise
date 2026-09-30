@@ -22,7 +22,7 @@ sources:
     url: https://projecteuclid.org/journals/annals-of-statistics/volume-29/issue-5/
     author: Friedman (Stanford)
     published: 2001-10-01
-related: [amazon-08, amazon-12, ml-04, ml-07, ml-08]
+related: [amazon-08, amazon-12]
 updated: 2026-09-28
 ---
 
@@ -266,9 +266,6 @@ print("        而**「外存与缓存感知让 XGBoost 能处理单机放不下
 
 - [[amazon-08]]：偏差-方差、交叉验证与维度灾难——**本题的机制基础**。
 - [[amazon-12]]：不平衡、共线性与特征选择——**集成方法的应用场景**。
-- [[ml-04]]：集成学习——**更广的方法家族**。
-- [[ml-07]]：梯度提升的推导——**XGBoost 的目标函数**。
-- [[ml-08]]：树模型与特征重要性——**模型解释**。
 
 ## 参考资料与归属
 

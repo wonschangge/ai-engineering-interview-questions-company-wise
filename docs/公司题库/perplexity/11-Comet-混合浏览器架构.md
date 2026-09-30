@@ -22,7 +22,7 @@ sources:
     url: https://privacysandbox.com/
     author: Google
     published: 2024-01-01
-related: [perplexity-08, perplexity-16, palantir-16, palantir-20, system-design-04]
+related: [perplexity-08, palantir-16, palantir-20, system-design-04]
 updated: 2026-09-28
 ---
 
@@ -252,7 +252,6 @@ print("        而「复杂推理」要**用户显式确认**（**串 [[palantir
 ## 相关题目
 
 - [[perplexity-08]]：答案引擎（3 秒预算）——**延迟预算的方法**。
-- [[perplexity-16]]：引用校验——**另一个"可信度"问题**。
 - [[palantir-16]]：共享数据不暴露原始数据——**隐私边界**。
 - [[palantir-20]]：与国防机构合作——**"知情决策"**。
 - [[system-design-04]]：消息队列与投递语义——**审计日志的工程**。

@@ -26,7 +26,7 @@ sources:
     url: https://github.com/wonschangge/ai-engineering-interview-questions-company-wise
     author: 本仓库
     published: 
-related: [openai-25, openai-27, openai-18, microsoft-04, applied-02]
+related: [openai-25, openai-27, openai-18, microsoft-04]
 updated: 2026-09-28
 ---
 
@@ -357,7 +357,6 @@ print("  读法：**「主动说风险」与「明确请求」是两件最容易
 - [[openai-27]]：最喜欢的产品——**产品视角的另一道题**。
 - [[openai-18]]：webhook 投递系统——**API 可靠性的具体设计**（**幂等、退避、签名**）。
 - [[microsoft-04]]：1 亿 WAU 的成本——**单位经济口径的来源**。
-- [[applied-02]]：与业务方沟通——**通用的沟通方法论**。
 
 ## 参考资料与归属
 

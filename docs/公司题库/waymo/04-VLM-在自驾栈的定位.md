@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2303.03378
     author: Driess et al. (Google)
     published: 2023-03-06
-related: [waymo-02, waymo-05, waymo-06, waymo-09, applied-01]
+related: [waymo-02, waymo-05, waymo-06, waymo-09]
 updated: 2026-09-28
 ---
 
@@ -250,7 +250,6 @@ print('        而**"把 VLM 的发现固化成规则"是关键一步**（**这�
 - [[waymo-05]]：车载算力与延迟预算——**为什么 VLM 进不了回路**。
 - [[waymo-06]]：数亿英里里找罕见场景——**VLM 在漏斗里的位置**。
 - [[waymo-09]]：如何真正衡量安全性——**归因的同源问题**。
-- [[applied-01]]：模仿学习的基本框架——**基础模型的能力边界**。
 
 ## 参考资料与归属
 

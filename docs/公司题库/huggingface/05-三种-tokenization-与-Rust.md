@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/1804.10959
     author: Kudo (Google)
     published: 2018-04-30
-related: [hf-01, hf-04, hf-06, hf-08, applied-01]
+related: [hf-01, hf-04, hf-06, hf-08]
 updated: 2026-09-28
 ---
 
@@ -300,7 +300,6 @@ print("        而**「fast 与 slow 不一致」最隐蔽**（**因为它只在
 - [[hf-04]]：`from_pretrained` 实际发生了什么——**tokenizer 也是模型的一部分**。
 - [[hf-06]]：chat template——**特殊 token 的用法**。
 - [[hf-08]]：web 规模语料的流水线——**tokenizer 在管线里的位置**。
-- [[applied-01]]：模仿学习的基本框架——**输入表示的重要性**。
 
 ## 参考资料与归属
 

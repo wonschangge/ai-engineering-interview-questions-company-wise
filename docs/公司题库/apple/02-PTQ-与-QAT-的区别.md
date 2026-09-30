@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/2209.05433
     author: Micikevicius et al. (NVIDIA)
     published: 2022-09-12
-related: [apple-01, apple-03, apple-05, apple-06, inference-05]
+related: [apple-01, apple-03, apple-05, apple-06, inference-serving-05]
 updated: 2026-09-28
 ---
 
@@ -269,7 +269,7 @@ print('        而**"int2 要 QAT + 蒸馏才可用"**（**而收益只有 750 M
 - [[apple-03]]：KV cache 估算——**内存预算的另一半**。
 - [[apple-05]]：端侧 tool call 的合法性——**量化后的能力保持**。
 - [[apple-06]]：一个底座支撑十几个功能——**共享权重的架构**。
-- [[inference-05]]：量化与推理优化——**通用的量化框架**。
+- [[inference-serving-05]]：量化与推理优化——**通用的量化框架**。
 
 ## 参考资料与归属
 

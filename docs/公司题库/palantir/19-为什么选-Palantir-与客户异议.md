@@ -22,7 +22,7 @@ sources:
     url: https://www.researchgate.net/publication/221496270_Are_Your_Lights_Off_Using_Problem_Frames_to_Diagnose_Customer_Problems
     author: Jackson & Hall
     published: 2007-05-01
-related: [palantir-18, palantir-20, openai-26, applied-02, behavioral-01]
+related: [palantir-18, palantir-20, openai-26]
 updated: 2026-09-28
 ---
 
@@ -115,7 +115,7 @@ updated: 2026-09-28
 | **"实时处理 10 亿条"** | **"我要在 5 分钟内看到异常"** |
 | **"报表太慢"** | **"数据质量有问题"** |
 
-**读法**：**"客户说的往往是'解决方案'，而不是'问题'"**——**所以要问"这解决了什么问题"**（**串 [[applied-02]]**）。
+**读法**：**"客户说的往往是'解决方案'，而不是'问题'"**——**所以要问"这解决了什么问题"**。
 
 ### 3. ★ 验证的期望价值
 
@@ -231,8 +231,6 @@ print('        **"看到这个仪表盘之后，你会做什么不一样的事�
 - [[palantir-18]]：客户高管要取消试点——**事后挽回**。
 - [[palantir-20]]：与国防机构合作——**价值观类问题的回答结构**。
 - [[openai-26]]：API 经验与 C-suite 沟通——**客户沟通**。
-- [[applied-02]]：与业务方沟通——**"给选项而不是给问题"**。
-- [[behavioral-01]]：行为面试的通用结构——**STAR 与它的局限**。
 
 ## 参考资料与归属
 

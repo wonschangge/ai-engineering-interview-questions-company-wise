@@ -22,7 +22,7 @@ sources:
     url: https://arxiv.org/abs/1804.10959
     author: Kudo
     published: 2018-04-30
-related: [gdm-03, coding-25, rag-02, evaluation-02, llm-internals-01]
+related: [gdm-03, rag-02, evaluation-02, llm-internals-01]
 updated: 2026-09-28
 ---
 
@@ -229,7 +229,6 @@ print('        这直接影响 bigram 的产出（**同一段文本的特征数�
 
 - [[gdm-03]]：RMSE——**同一家公司的另一道实现题**（**边界定义**）。
 - [[gdm-05]]：bias-variance 权衡——**特征数量与过拟合的关系**。
-- [[coding-25]]：数据清洗与质量检查——**规范化与分词的通用版本**。
 - [[rag-02]]：向量索引与倒排——**稀疏特征的存储**。
 - [[evaluation-02]]：分布漂移监控——**特征空间的变化检测**。
 
