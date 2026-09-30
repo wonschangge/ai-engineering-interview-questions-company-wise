@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T01:28:26.955Z",
+  "generated": "2026-09-30T04:10:34.400Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 459,
+    "companyQuestions": 462,
     "companies": 35,
     "planned": 598
   },
@@ -6799,6 +6799,145 @@
           ],
           "updated": "2026-09-28",
           "chars": 5070
+        },
+        {
+          "id": "amazon-04",
+          "order": 4,
+          "title": "逻辑回归中 L1 与 L2 正则化有什么区别？",
+          "titleEn": "What is the difference between L1 and L2 regularization in logistic regression?",
+          "file": "公司题库/amazon/04-L1-与-L2-正则的区别.md",
+          "level": "高阶",
+          "tags": [
+            "稀疏性几何",
+            "拉普拉斯先验",
+            "不可微",
+            "选择稳定性",
+            "Elastic Net"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-03",
+            "amazon-05",
+            "amazon-12",
+            "ml-02",
+            "ml-06"
+          ],
+          "sources": [
+            {
+              "title": "Regression Shrinkage and Selection via the Lasso（原始论文）",
+              "url": "https://www.jstor.org/stable/2346178",
+              "author": "Tibshirani (Toronto)",
+              "published": "1996-01-01"
+            },
+            {
+              "title": "Regularization and Variable Selection via the Elastic Net（原始论文）",
+              "url": "https://www.jstor.org/stable/3647580",
+              "author": "Zou & Hastie",
+              "published": "2005-04-01"
+            },
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman (Stanford)",
+              "published": "2009-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5316
+        },
+        {
+          "id": "amazon-05",
+          "order": 5,
+          "title": "写出逻辑回归的损失函数，并证明它具有全局最小值。",
+          "titleEn": "Write the logistic regression loss function and prove that it has a global minimum.",
+          "file": "公司题库/amazon/05-逻辑回归的凸性与全局最小值.md",
+          "level": "高阶",
+          "tags": [
+            "softplus 凸性",
+            "仿射复合",
+            "黑塞矩阵",
+            "可分数据",
+            "存在性"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-03",
+            "amazon-04",
+            "amazon-14",
+            "ml-01",
+            "ml-05"
+          ],
+          "sources": [
+            {
+              "title": "Convex Optimization（延伸）",
+              "url": "https://web.stanford.edu/~boyd/cvxbook/",
+              "author": "Boyd & Vandenberghe (Stanford)",
+              "published": "2004-03-08"
+            },
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman (Stanford)",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "On the Existence of Maximum Likelihood Estimates in Logistic Regression Models（原始论文）",
+              "url": "https://www.jstor.org/stable/2336394",
+              "author": "Albert & Anderson",
+              "published": "1984-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4773
+        },
+        {
+          "id": "amazon-06",
+          "order": 6,
+          "title": "KL 散度损失与交叉熵损失有什么不同？与对比损失又有什么不同？",
+          "titleEn": "How does KL divergence loss differ from cross-entropy loss? And how do both differ from contrastive loss?",
+          "file": "公司题库/amazon/06-KL-交叉熵与对比损失.md",
+          "level": "高阶",
+          "tags": [
+            "H(p",
+            "q)=H(p)+KL",
+            "等价性",
+            "非对称性",
+            "InfoNCE 温度",
+            "对比学习"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-04",
+            "amazon-05",
+            "amazon-11",
+            "ml-03",
+            "rag-04"
+          ],
+          "sources": [
+            {
+              "title": "Elements of Information Theory（延伸）",
+              "url": "https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X",
+              "author": "Cover & Thomas (Stanford)",
+              "published": "2006-07-18"
+            },
+            {
+              "title": "A Tutorial on Energy-Based Learning（延伸）",
+              "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf",
+              "author": "LeCun et al. (NYU)",
+              "published": "2006-01-01"
+            },
+            {
+              "title": "A Simple Framework for Contrastive Learning of Visual Representations（原始论文）",
+              "url": "https://arxiv.org/abs/2002.05709",
+              "author": "Chen et al. (Google)",
+              "published": "2020-02-13"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5217
         }
       ]
     },
