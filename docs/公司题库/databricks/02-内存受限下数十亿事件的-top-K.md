@@ -122,14 +122,14 @@ $$\hat f(x)\ge f(x)\quad\text{且}\quad \hat f(x)\le f(x)+\varepsilon N\ \text{�
 
 ## 数值与代码验证
 
-### 表 1：三种算法在 Zipf 流上的 top-K 召回（见代码输出）
+### 表 1：三种算法在 Zipf 流上的 top-$K$ 召回（200 万事件、5 万 key、Zipf $s$=1.1、$K$=100）
 
-| 算法 | 内存（计数器） | top-10 召回 | top-100 召回 | 是否低估 |
-| --- | --- | --- | --- | --- |
-| Misra-Gries（k-1=99） | 99 | 见输出 | 见输出 | 是 |
-| Space-Saving（k=100） | 100 | 见输出 | 见输出 | 否（高估） |
-| CMS + 堆（w=2000,d=5） | 10,000 | 见输出 | 见输出 | 否（高估） |
-| 精确（哈希表，仅作对照） | 基数 | 100% | 100% | — |
+| 算法 | 内存（计数器） | top-10 召回 | top-100 召回 | 耗时（随机器变化） | 是否低估 |
+| --- | --- | --- | --- | --- | --- |
+| Misra-Gries（$k-1$=99） | **47**（被减到 0 而淘汰，只剩约一半桶） | **100%** | **29%** | 434 ms | 是（低估） |
+| Space-Saving（$k$=100） | 100 | **100%** | **37%** | 4,669 ms | 否（高估） |
+| CMS + 堆（$w$=2000, $d$=5） | **27,185**（与 key 基数无关） | **100%** | **99%** | 7,048 ms | 否（高估） |
+| 精确（哈希表，仅作对照） | = 基数（50,000） | 100% | 100% | — | — |
 
 ### 表 2：内存与误差的换算（CMS）
 
@@ -143,7 +143,7 @@ $$\hat f(x)\ge f(x)\quad\text{且}\quad \hat f(x)\le f(x)+\varepsilon N\ \text{�
 
 ```python
 # 内存受限下的 top-K：Misra-Gries、Space-Saving、Count-Min Sketch + 堆
-import heapq, math, random, time
+import heapq, math, random, time, zlib
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple
@@ -211,7 +211,9 @@ class CountMinSketch:
         self.rows: List[List[int]] = [[0] * self.w for _ in range(self.d)]
         self.seeds = [random.Random(seed + i).randrange(1, 2 ** 31) for i in range(self.d)]
     def _idx(self, x: str, i: int) -> int:
-        return (hash((x, self.seeds[i])) & 0x7FFFFFFF) % self.w
+        # 不能用内置 hash()：Python 的字符串哈希每个进程都不同（PYTHONHASHSEED 随机化），
+        # 会让下面的召回数字每次运行都不一样、无法复现。改用 crc32。
+        return (zlib.crc32(f'{x}:{self.seeds[i]}'.encode()) & 0x7FFFFFFF) % self.w
     def add(self, x: str, c: int = 1) -> None:
         for i in range(self.d):
             self.rows[i][self._idx(x, i)] += c
@@ -339,7 +341,7 @@ for eps in (0.01, 0.001, 0.0001):
 print("  读法：**误差每降一个数量级，内存涨一个数量级**（线性）—— 这是与产品谈「精度预算」的依据")
 ```
 
-预期输出要点（实跑）：① 数据是 200 万事件、5 万不同 key 的 Zipf 流，真 top-10 占约 40%+ 流量；② 三种算法对照显示**同等桶数下 Space-Saving 的 top-100 召回高于 Misra-Gries**（实测 37% vs 29%，MG 的桶会被「全体减一」减到 0 而淘汰、实测只剩约一半桶），两者的 top-10 都是 100%；**CMS 的计数器数与 key 基数无关**（本例 27,185 个计数器 vs 50,000 个 key），配上**在线候选维护**后 top-10 召回 70%、top-100 召回 58%；③ **MG 的硬保证成立**（所有 $f>N/k$ 的元素都被保留，0 漏检）；④ SS 的区间保证 **$f\in[\text{count}-\text{error},\text{count}]$ 全部覆盖**；⑤ 两段式验证（**候选集多大、草图就配多大**）显示：候选集从 100 增到 500（草图桶数同步配置）时，精确复算后的 top-100 召回从 37.0% → 69.0% → **99.0%**——**近似只用来圈候选，结论来自精确复算**；⑥ CMS 参数换算给出「误差每降一个数量级、内存涨一个数量级」的线性关系。
+预期输出要点（实跑）：① 数据是 200 万事件、5 万不同 key 的 Zipf 流，真 top-10 占约 40%+ 流量；② 三种算法对照显示**同等桶数下 Space-Saving 的 top-100 召回高于 Misra-Gries**（实测 37% vs 29%，MG 的桶会被「全体减一」减到 0 而淘汰、实测只剩约一半桶），两者的 top-10 都是 100%；**CMS 的计数器数与 key 基数无关**（本例 27,185 个计数器 vs 50,000 个 key），配上**在线候选维护**后 top-10 召回 **100%**、top-100 召回 **99%**；③ **MG 的硬保证成立**（所有 $f>N/k$ 的元素都被保留，0 漏检）；④ SS 的区间保证 **$f\in[\text{count}-\text{error},\text{count}]$ 全部覆盖**；⑤ 两段式验证（**候选集多大、草图就配多大**）显示：候选集从 100 增到 500（草图桶数同步配置）时，精确复算后的 top-100 召回从 37.0% → 69.0% → **99.0%**——**近似只用来圈候选，结论来自精确复算**；⑥ CMS 参数换算给出「误差每降一个数量级、内存涨一个数量级」的线性关系。
 
 ## 常见追问
 
