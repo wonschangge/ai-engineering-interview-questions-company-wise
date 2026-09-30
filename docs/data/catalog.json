@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T00:43:52.594Z",
+  "generated": "2026-09-30T00:47:39.745Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 441,
+    "companyQuestions": 444,
     "companies": 33,
     "planned": 598
   },
@@ -14866,6 +14866,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4586
+        },
+        {
+          "id": "glean-07",
+          "order": 7,
+          "title": "设计一个连接器框架，把 100+ 个 SaaS 应用的内容与权限同步进同一个索引。",
+          "titleEn": "Design a connector framework that syncs content and permissions from 100+ SaaS apps into a single index.",
+          "file": "公司题库/glean/07-连接器框架.md",
+          "level": "高阶",
+          "tags": [
+            "连接器框架",
+            "权限同步通道",
+            "撤权延迟",
+            "增量游标",
+            "陈旧度"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "glean-01",
+            "glean-03",
+            "glean-05",
+            "glean-06",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "Zanzibar: Google\\u2019s Consistent, Global Authorization System（延伸）",
+              "url": "https://research.google/pubs/pub48190/",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            },
+            {
+              "title": "Cassandra: A Decentralized Structured Storage System（延伸）",
+              "url": "https://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf",
+              "author": "Lakshman & Malik (Facebook)",
+              "published": "2009-10-01"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4886
+        },
+        {
+          "id": "glean-08",
+          "order": 8,
+          "title": "Glean 的排序依赖一个由人员、内容和活动构成的知识图谱。你会如何构建这张图，它又如何让 retrieval 超越 embedding 相似度？",
+          "titleEn": "Glean’s ranking depends on a knowledge graph of people, content and activity. How would you build that graph, and how does it let retrieval go beyond embedding similarity?",
+          "file": "公司题库/glean/08-知识图谱排序.md",
+          "level": "高阶",
+          "tags": [
+            "知识图谱",
+            "权威性",
+            "活动衰减",
+            "身份解析",
+            "图也要鉴权"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "glean-01",
+            "glean-03",
+            "glean-07",
+            "glean-09",
+            "rag-02"
+          ],
+          "sources": [
+            {
+              "title": "HNSW: Efficient and Robust Approximate Nearest Neighbor Search（延伸）",
+              "url": "https://arxiv.org/abs/1603.09320",
+              "author": "Malkov & Yashunin",
+              "published": "2016-03-30"
+            },
+            {
+              "title": "The PageRank Citation Ranking: Bringing Order to the Web（延伸）",
+              "url": "http://ilpubs.stanford.edu:8090/422/",
+              "author": "Page et al. (Stanford)",
+              "published": "1999-01-29"
+            },
+            {
+              "title": "Zanzibar: Google\\u2019s Consistent, Global Authorization System（延伸）",
+              "url": "https://research.google/pubs/pub48190/",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4845
+        },
+        {
+          "id": "glean-09",
+          "order": 9,
+          "title": "你有几十个排序信号，以及一个完全没有交互数据的全新租户。你如何排序，又如何改进？",
+          "titleEn": "You have dozens of ranking signals and a brand-new tenant with no interaction data at all. How do you rank, and how do you improve?",
+          "file": "公司题库/glean/09-零交互数据的排序.md",
+          "level": "高阶",
+          "tags": [
+            "冷启动",
+            "信号可迁移性",
+            "个性化",
+            "学习权重",
+            "埋点先行"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "glean-02",
+            "glean-04",
+            "glean-08",
+            "glean-10",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "The PageRank Citation Ranking: Bringing Order to the Web（延伸）",
+              "url": "http://ilpubs.stanford.edu:8090/422/",
+              "author": "Page et al. (Stanford)",
+              "published": "1999-01-29"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.amazon.com/dp/0679762884",
+              "author": "Andrew S. Grove",
+              "published": "1983-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4831
         }
       ]
     },
