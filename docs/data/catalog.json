@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T00:19:02.285Z",
+  "generated": "2026-09-30T00:21:39.670Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 430,
+    "companyQuestions": 433,
     "companies": 32,
     "planned": 598
   },
@@ -5858,6 +5858,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4791
+        },
+        {
+          "id": "abridge-07",
+          "order": 7,
+          "title": "编辑率是衡量医生信任度最直观的指标。它掩盖了什么，你会改用什么指标来埋点？",
+          "titleEn": "Edit rate is the most intuitive measure of clinician trust. What does it hide, and what would you instrument instead?",
+          "file": "公司题库/abridge/07-编辑率掩盖了什么.md",
+          "level": "高阶",
+          "tags": [
+            "编辑率",
+            "幸存者偏差",
+            "严重度加权",
+            "安全事件率",
+            "签署时长"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "abridge-06",
+            "abridge-08",
+            "abridge-09",
+            "evaluation-01",
+            "evaluation-03"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Measuring Nominal Scale Agreement Among Many Raters（延伸）",
+              "url": "https://psycnet.apa.org/record/1972-00001-001",
+              "author": "Fleiss (Columbia)",
+              "published": "1971-01-01"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.amazon.com/dp/0679762884",
+              "author": "Andrew S. Grove",
+              "published": "1983-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4649
+        },
+        {
+          "id": "abridge-08",
+          "order": 8,
+          "title": "生成的病历记录里出现了患者从未提到的药物。把它当作安全事件：你如何在医生看到之前检测出来？",
+          "titleEn": "A drug the patient never mentioned shows up in the generated note. Treat it as a safety incident: how do you detect it before the doctor sees it?",
+          "file": "公司题库/abridge/08-病历里出现未提及的药物.md",
+          "level": "高阶",
+          "tags": [
+            "安全事件",
+            "肯定陈述",
+            "否定检测",
+            "阻塞式提示",
+            "漏报率"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "abridge-03",
+            "abridge-04",
+            "abridge-07",
+            "abridge-09",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "Confident Learning: Estimating Uncertainty in Dataset Labels（延伸）",
+              "url": "https://arxiv.org/abs/1911.00068",
+              "author": "Northcutt, Jiang & Chuang (MIT)",
+              "published": "2019-11-01"
+            },
+            {
+              "title": "Concrete Problems in AI Safety（延伸）",
+              "url": "https://arxiv.org/abs/1606.06565",
+              "author": "Amodei et al. (Google Brain)",
+              "published": "2016-06-21"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4675
+        },
+        {
+          "id": "abridge-09",
+          "order": 9,
+          "title": "医生不会签署自己无法核实的内容。你会如何构建 span 级溯源，把病历记录的每一行都追溯回对话？",
+          "titleEn": "Clinicians will not sign what they cannot verify. How would you build span-level provenance tracing every line of the note back to the conversation?",
+          "file": "公司题库/abridge/09-span-级溯源.md",
+          "level": "高阶",
+          "tags": [
+            "span 溯源",
+            "归因",
+            "否定类",
+            "typed provenance",
+            "音频回链"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "abridge-02",
+            "abridge-06",
+            "abridge-07",
+            "abridge-08",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "Enabling Large Language Models to Generate Text with Citations（延伸）",
+              "url": "https://arxiv.org/abs/2305.14627",
+              "author": "Gao et al. (Princeton)",
+              "published": "2023-05-24"
+            },
+            {
+              "title": "Attributed Question Answering（延伸）",
+              "url": "https://arxiv.org/abs/2212.08037",
+              "author": "Bohnet et al. (Google)",
+              "published": "2022-12-15"
+            },
+            {
+              "title": "Automatic Evaluation of Attribution by Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2305.06311",
+              "author": "Yue et al. (USC)",
+              "published": "2023-05-10"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4768
         }
       ]
     },
