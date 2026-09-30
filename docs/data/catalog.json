@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-29T23:58:43.875Z",
+  "generated": "2026-09-30T00:02:12.140Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 419,
+    "companyQuestions": 422,
     "companies": 31,
     "planned": 598
   },
@@ -15978,6 +15978,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4655
+        },
+        {
+          "id": "harvey-07",
+          "order": 7,
+          "title": "Harvey 的每个回答中的每一条断言都需要链接回某个具体段落。请设计这套 grounding 系统，并告诉我你会如何衡量无支撑断言率。",
+          "titleEn": "Every assertion in every Harvey answer needs to link back to a specific passage. Design that grounding system, and tell me how you would measure the unsupported-assertion rate.",
+          "file": "公司题库/harvey/07-grounding-与无支撑断言率.md",
+          "level": "高阶",
+          "tags": [
+            "grounding",
+            "断言分解",
+            "无支撑率",
+            "分母口径",
+            "NLI 代理"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "harvey-01",
+            "harvey-06",
+            "harvey-08",
+            "rag-01",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "Enabling Large Language Models to Generate Text with Citations（延伸）",
+              "url": "https://arxiv.org/abs/2305.14627",
+              "author": "Gao et al. (Princeton)",
+              "published": "2023-05-24"
+            },
+            {
+              "title": "Automatic Evaluation of Attribution by Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2305.06311",
+              "author": "Yue et al. (USC)",
+              "published": "2023-05-10"
+            },
+            {
+              "title": "Attributed Question Answering: Evaluation and Modeling for Attributed Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2212.08037",
+              "author": "Bohnet et al. (Google)",
+              "published": "2022-12-15"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4747
+        },
+        {
+          "id": "harvey-08",
+          "order": 8,
+          "title": "一次 agentic 研究查询返回了一份备忘录，其中引用了一个已被推翻的判例。这个问题会在哪里被拦截住？",
+          "titleEn": "An agentic research query returns a memo citing an overruled case. Where would that be caught?",
+          "file": "公司题库/harvey/08-引用被推翻判例的拦截.md",
+          "level": "高阶",
+          "tags": [
+            "引证库",
+            "引用抽取",
+            "回指",
+            "时效窗口",
+            "分层防御"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "harvey-02",
+            "harvey-06",
+            "harvey-07",
+            "harvey-09",
+            "safety-02"
+          ],
+          "sources": [
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook AI)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-level-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4490
+        },
+        {
+          "id": "harvey-09",
+          "order": 9,
+          "title": "同一家律所的两位合伙人在一笔交易中处于对立双方。在常规多租户之上，为这种情况设计数据隔离。",
+          "titleEn": "Two partners at the same firm are on opposite sides of one deal. Beyond ordinary multi-tenancy, design the data isolation for this.",
+          "file": "公司题库/harvey/09-同所对立双方的数据隔离.md",
+          "level": "高阶",
+          "tags": [
+            "伦理墙",
+            "事项级隔离",
+            "检索层强制",
+            "缓存越墙",
+            "冲突检查"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "harvey-05",
+            "harvey-07",
+            "harvey-08",
+            "safety-03",
+            "system-design-02"
+          ],
+          "sources": [
+            {
+              "title": "Zanzibar: Google\\u2019s Consistent, Global Authorization System（延伸）",
+              "url": "https://research.google/pubs/pub48190/",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            },
+            {
+              "title": "Google SRE Book: Handling Overload（延伸）",
+              "url": "https://sre.google/sre-book/handling-overload/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4629
         }
       ]
     },
