@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T00:36:24.940Z",
+  "generated": "2026-09-30T00:43:52.594Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 438,
+    "companyQuestions": 441,
     "companies": 33,
     "planned": 598
   },
@@ -14728,6 +14728,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4732
+        },
+        {
+          "id": "glean-04",
+          "order": 4,
+          "title": "为什么对企业助手来说，RAG 比在公司数据上做 fine-tuning 更合适？RAG 会在哪些地方失效？",
+          "titleEn": "Why is RAG a better fit than fine-tuning on company data for an enterprise assistant? And where does RAG fail?",
+          "file": "公司题库/glean/04-为什么-RAG-优于微调.md",
+          "level": "高阶",
+          "tags": [
+            "RAG vs 微调",
+            "权限否决",
+            "内容变更率",
+            "聚合类问题",
+            "分层分工"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "glean-01",
+            "glean-02",
+            "glean-03",
+            "glean-10",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks（延伸）",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "author": "Lewis et al. (Facebook AI)",
+              "published": "2020-05-22"
+            },
+            {
+              "title": "Lost in the Middle: How Language Models Use Long Contexts（延伸）",
+              "url": "https://arxiv.org/abs/2307.03172",
+              "author": "Liu et al. (Stanford)",
+              "published": "2023-07-06"
+            },
+            {
+              "title": "LoRA: Low-Rank Adaptation of Large Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2106.09685",
+              "author": "Hu et al. (Microsoft)",
+              "published": "2021-06-17"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4720
+        },
+        {
+          "id": "glean-05",
+          "order": 5,
+          "title": "设计一个代表用户在企业工具中执行动作（提交 Jira 工单、起草邮件）的 agent。你如何处理权限并评估它？",
+          "titleEn": "Design an agent that performs actions in enterprise tools on a user’s behalf (file a Jira ticket, draft an email). How do you handle permissions, and how do you evaluate it?",
+          "file": "公司题库/glean/05-代表用户执行动作的-agent.md",
+          "level": "高阶",
+          "tags": [
+            "混淆代理",
+            "用户令牌",
+            "可撤销性分级",
+            "越权尝试率",
+            "沙箱重放"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "glean-01",
+            "glean-06",
+            "glean-07",
+            "abridge-04",
+            "agents-01"
+          ],
+          "sources": [
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (Princeton)",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "Zanzibar: Google\\u2019s Consistent, Global Authorization System（延伸）",
+              "url": "https://research.google/pubs/pub48190/",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4522
+        },
+        {
+          "id": "glean-06",
+          "order": 6,
+          "title": "设计横跨数十个已连接 SaaS 系统的 agent 编排。鉴权在哪里强制执行，为什么它不能放在模型里？",
+          "titleEn": "Design agent orchestration across dozens of connected SaaS systems. Where is authorisation enforced, and why can it not live in the model?",
+          "file": "公司题库/glean/06-跨-SaaS-编排与鉴权强制点.md",
+          "level": "高阶",
+          "tags": [
+            "工具网关",
+            "令牌交换",
+            "模型不是安全边界",
+            "拒绝率",
+            "审计"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "glean-05",
+            "glean-07",
+            "glean-08",
+            "agents-02",
+            "system-design-02"
+          ],
+          "sources": [
+            {
+              "title": "Zanzibar: Google\\u2019s Consistent, Global Authorization System（延伸）",
+              "url": "https://research.google/pubs/pub48190/",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            },
+            {
+              "title": "Google SRE Book: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google",
+              "published": "2016-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4586
         }
       ]
     },
