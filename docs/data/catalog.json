@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T04:33:15.044Z",
+  "generated": "2026-09-30T04:46:42.040Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 468,
+    "companyQuestions": 471,
     "companies": 35,
     "planned": 598
   },
@@ -7214,6 +7214,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5489
+        },
+        {
+          "id": "amazon-13",
+          "order": 13,
+          "title": "说明你会如何设计和评估一个 A/B 测试。什么是 p 值？在这个场景中你如何解读它？",
+          "titleEn": "Describe how you would design and evaluate an A/B test. What is a p-value, and how would you interpret it in this setting?",
+          "file": "公司题库/amazon/13-AB-测试与-p-值.md",
+          "level": "进阶",
+          "tags": [
+            "功效分析",
+            "偷看",
+            "p 值定义",
+            "贝叶斯真率",
+            "SRM"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-08",
+            "amazon-11",
+            "amazon-14",
+            "evaluation-05",
+            "ml-09"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "The ASA Statement on p-Values: Context, Process, and Purpose（原始论文）",
+              "url": "https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108",
+              "author": "Wasserstein & Lazar",
+              "published": "2016-03-07"
+            },
+            {
+              "title": "False-Positive Psychology（原始论文）",
+              "url": "https://journals.sagepub.com/doi/10.1177/0956797611417632",
+              "author": "Simmons, Nelson & Simonsohn",
+              "published": "2011-09-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5330
+        },
+        {
+          "id": "amazon-14",
+          "order": 14,
+          "title": "什么是最大似然估计？它与贝叶斯推断有什么不同？",
+          "titleEn": "What is maximum likelihood estimation? How does it differ from Bayesian inference?",
+          "file": "公司题库/amazon/14-最大似然与贝叶斯.md",
+          "level": "进阶",
+          "tags": [
+            "点估计 vs 后验",
+            "三种等价",
+            "Bernstein-von Mises",
+            "小样本偏差",
+            "区间解释"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-03",
+            "amazon-04",
+            "amazon-13",
+            "ml-01",
+            "ml-11"
+          ],
+          "sources": [
+            {
+              "title": "On the Mathematical Foundations of Theoretical Statistics（原始论文）",
+              "url": "https://royalsocietypublishing.org/doi/10.1098/rsta.1922.0009",
+              "author": "Fisher",
+              "published": "1922-01-01"
+            },
+            {
+              "title": "An Essay towards Solving a Problem in the Doctrine of Chances（原始论文）",
+              "url": "https://royalsocietypublishing.org/doi/10.1098/rstl.1763.0053",
+              "author": "Bayes",
+              "published": "1763-01-01"
+            },
+            {
+              "title": "Bayesian Data Analysis（延伸）",
+              "url": "https://www.stat.columbia.edu/~gelman/book/",
+              "author": "Gelman et al. (Columbia)",
+              "published": "2013-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5154
+        },
+        {
+          "id": "amazon-15",
+          "order": 15,
+          "title": "为什么 transformer 在语言建模中取代了 RNN？在推理阶段 KV cache 究竟带来了什么收益？",
+          "titleEn": "Why did transformers replace RNNs in language modelling? And what exactly does the KV cache buy you at inference time?",
+          "file": "公司题库/amazon/15-Transformer-与-KV-cache.md",
+          "level": "高阶",
+          "tags": [
+            "并行度",
+            "O(1) 路径",
+            "KV cache 内存",
+            "roofline",
+            "带宽受限"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "amazon-09",
+            "amazon-10",
+            "amazon-16",
+            "inference-serving-01",
+            "llm-01"
+          ],
+          "sources": [
+            {
+              "title": "Attention Is All You Need（原始论文）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (Google)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "Fast Transformer Decoding: One Write-Head is All You Need（原始论文）",
+              "url": "https://arxiv.org/abs/1911.02150",
+              "author": "Shazeer (Google)",
+              "published": "2019-11-06"
+            },
+            {
+              "title": "GQA: Training Generalized Multi-Query Transformer Models（原始论文）",
+              "url": "https://arxiv.org/abs/2305.13245",
+              "author": "Ainslie et al. (Google)",
+              "published": "2023-05-22"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5816
         }
       ]
     },
