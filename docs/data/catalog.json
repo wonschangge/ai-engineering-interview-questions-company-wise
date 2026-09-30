@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T04:22:58.545Z",
+  "generated": "2026-09-30T04:33:15.044Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 465,
+    "companyQuestions": 468,
     "companies": 35,
     "planned": 598
   },
@@ -7076,6 +7076,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5199
+        },
+        {
+          "id": "amazon-10",
+          "order": 10,
+          "title": "机器学习模型中的 attention 是什么？如果把神经网络中所有隐藏层都去掉会发生什么？",
+          "titleEn": "What is attention in machine learning models? And what happens if you remove all hidden layers from a neural network?",
+          "file": "公司题库/amazon/10-attention-与去掉隐藏层.md",
+          "level": "高阶",
+          "tags": [
+            "软查表",
+            "二次型",
+            "表达力",
+            "可学习性",
+            "基准设计"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-09",
+            "amazon-15",
+            "llm-01",
+            "llm-02",
+            "ml-10"
+          ],
+          "sources": [
+            {
+              "title": "Attention Is All You Need（原始论文）",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "author": "Vaswani et al. (Google)",
+              "published": "2017-06-12"
+            },
+            {
+              "title": "Attention is Not All You Need: Pure Attention Loses Rank Doubly Exponentially（原始论文）",
+              "url": "https://arxiv.org/abs/2103.03404",
+              "author": "Dong, Cordonnier & Loukas",
+              "published": "2021-03-05"
+            },
+            {
+              "title": "Neural Machine Translation by Jointly Learning to Align and Translate（原始论文）",
+              "url": "https://arxiv.org/abs/1409.0473",
+              "author": "Bahdanau, Cho & Bengio",
+              "published": "2014-09-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5267
+        },
+        {
+          "id": "amazon-11",
+          "order": 11,
+          "title": "讨论精确率、召回率和 F1：什么情况下你会优先选择其中一个而非其他？",
+          "titleEn": "Discuss precision, recall and F1: when would you prioritise one over the others?",
+          "file": "公司题库/amazon/11-精确率召回率与-F1.md",
+          "level": "进阶",
+          "tags": [
+            "成本不对称",
+            "患病率",
+            "PPV",
+            "MCC",
+            "指标陷阱"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-06",
+            "amazon-12",
+            "amazon-20",
+            "evaluation-02",
+            "evaluation-03"
+          ],
+          "sources": [
+            {
+              "title": "The Relationship Between Precision-Recall and ROC Curves（原始论文）",
+              "url": "https://dl.acm.org/doi/10.1145/1143844.1143874",
+              "author": "Davis & Goadrich",
+              "published": "2006-06-25"
+            },
+            {
+              "title": "The Advantages of the Matthews Correlation Coefficient over F1 Score and Accuracy（原始论文）",
+              "url": "https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-019-6413-7",
+              "author": "Chicco & Jurman",
+              "published": "2020-01-02"
+            },
+            {
+              "title": "Evaluating Performance of Screening Tests（延伸）",
+              "url": "https://www.bmj.com/content/343/bmj.d4002",
+              "author": "BMJ",
+              "published": "2011-07-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5272
+        },
+        {
+          "id": "amazon-12",
+          "order": 12,
+          "title": "你如何处理数据不平衡、共线性、特征选择和正则化？",
+          "titleEn": "How do you handle class imbalance, collinearity, feature selection and regularisation?",
+          "file": "公司题库/amazon/12-不平衡共线性与特征选择.md",
+          "level": "高阶",
+          "tags": [
+            "先验改写",
+            "VIF",
+            "选择偏置",
+            "嵌套 CV",
+            "处理顺序"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-03",
+            "amazon-04",
+            "amazon-08",
+            "amazon-11",
+            "ml-02"
+          ],
+          "sources": [
+            {
+              "title": "Regularization and Variable Selection via the Elastic Net（原始论文）",
+              "url": "https://www.jstor.org/stable/3647580",
+              "author": "Zou & Hastie",
+              "published": "2005-04-01"
+            },
+            {
+              "title": "A Study of Cross-Validation and Bootstrap for Accuracy Estimation（原始论文）",
+              "url": "https://dl.acm.org/doi/10.5555/1622756.1622828",
+              "author": "Kohavi (Stanford)",
+              "published": "1995-08-20"
+            },
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman (Stanford)",
+              "published": "2009-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5489
         }
       ]
     },
