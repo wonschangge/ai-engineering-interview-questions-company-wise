@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-30T00:50:22.024Z",
+  "generated": "2026-09-30T01:01:00.672Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 445,
-    "companies": 33,
+    "companyQuestions": 448,
+    "companies": 34,
     "planned": 598
   },
   "topics": [
@@ -28587,6 +28587,157 @@
           "chars": 6297,
           "topicName": "行为与文化",
           "topicOrder": 1
+        }
+      ]
+    },
+    {
+      "id": "company-zhipu",
+      "name": "zhipu",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "zhipu",
+      "overviewFile": null,
+      "overviewTitle": "zhipu",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "zhipu-01",
+          "order": 1,
+          "title": "GLM 最初的预训练目标是自回归空白填充。它与 BERT 和 GPT 有何不同，为什么团队认为它统一了理解与生成？",
+          "titleEn": "GLM’s original pretraining objective is autoregressive blank infilling. How does it differ from BERT and GPT, and why did the team consider it a unification of understanding and generation?",
+          "file": "公司题库/zhipu/01-GLM-的空白填充目标.md",
+          "level": "高阶",
+          "tags": [
+            "空白填充",
+            "段内自回归",
+            "联合概率",
+            "2D 位置编码",
+            "历史定位"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "zhipu-02",
+            "zhipu-05",
+            "llm-01",
+            "llm-02",
+            "finetuning-01"
+          ],
+          "sources": [
+            {
+              "title": "GLM: General Language Model Pretraining with Autoregressive Blank Infilling（原始论文）",
+              "url": "https://arxiv.org/abs/2103.10360",
+              "author": "Du et al. (Tsinghua)",
+              "published": "2021-03-18"
+            },
+            {
+              "title": "BERT: Pre-training of Deep Bidirectional Transformers（原始论文）",
+              "url": "https://arxiv.org/abs/1810.04805",
+              "author": "Devlin et al. (Google)",
+              "published": "2018-10-11"
+            },
+            {
+              "title": "Language Models are Unsupervised Multitask Learners（原始论文）",
+              "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2019-02-14"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4936
+        },
+        {
+          "id": "zhipu-02",
+          "order": 2,
+          "title": "GLM-4.5 是一个总参数 355B、激活参数 32B 的 MoE。请解释其中的经济账：这样的拆分能带来什么，又要付出什么代价？",
+          "titleEn": "GLM-4.5 is an MoE with 355B total parameters and 32B active. Explain the economics: what does this split buy, and what does it cost?",
+          "file": "公司题库/zhipu/02-GLM-45-的-MoE-经济账.md",
+          "level": "高阶",
+          "tags": [
+            "MoE 稀疏",
+            "算术强度",
+            "all-to-all",
+            "显存与算力解耦",
+            "负载不均"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "zhipu-01",
+            "zhipu-03",
+            "zhipu-04",
+            "inference-01",
+            "inference-04"
+          ],
+          "sources": [
+            {
+              "title": "Mixtral of Experts（原始论文）",
+              "url": "https://arxiv.org/abs/2401.04088",
+              "author": "Jiang et al. (Mistral AI)",
+              "published": "2024-01-08"
+            },
+            {
+              "title": "DeepSeek-V3 Technical Report（原始论文）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "Roofline: An Insightful Visual Performance Model（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/1498765.1498785",
+              "author": "Williams, Waterman & Patterson (UC Berkeley)",
+              "published": "2009-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5189
+        },
+        {
+          "id": "zhipu-03",
+          "order": 3,
+          "title": "用 PyTorch 实现一个 top-k MoE 路由。然后对比辅助损失负载均衡与 loss-free 方案。",
+          "titleEn": "Implement top-k MoE routing in PyTorch. Then compare auxiliary-loss load balancing with loss-free schemes.",
+          "file": "公司题库/zhipu/03-top-k-MoE-路由实现.md",
+          "level": "高阶",
+          "tags": [
+            "top-k 路由",
+            "辅助损失",
+            "loss-free 偏置",
+            "不均衡度",
+            "受控实验"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "zhipu-02",
+            "zhipu-04",
+            "zhipu-08",
+            "coding-01",
+            "llm-03"
+          ],
+          "sources": [
+            {
+              "title": "Switch Transformers: Scaling to Trillion Parameter Models（原始论文）",
+              "url": "https://arxiv.org/abs/2101.03961",
+              "author": "Fedus, Zoph & Shazeer (Google)",
+              "published": "2021-01-12"
+            },
+            {
+              "title": "Mixtral of Experts（原始论文）",
+              "url": "https://arxiv.org/abs/2401.04088",
+              "author": "Jiang et al. (Mistral AI)",
+              "published": "2024-01-08"
+            },
+            {
+              "title": "DeepSeek-V3 Technical Report（原始论文）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5186
         }
       ]
     }
