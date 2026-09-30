@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T01:08:16.575Z",
+  "generated": "2026-09-30T01:19:33.605Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 454,
+    "companyQuestions": 456,
     "companies": 34,
     "planned": 598
   },
@@ -28591,14 +28591,14 @@
       ]
     },
     {
-      "id": "company-zhipu",
-      "name": "zhipu",
+      "id": "zhipu",
+      "name": "智谱",
       "group": "",
-      "summary": "",
-      "updated": null,
+      "summary": "十一题横跨\"架构—后训练—agent—评测\"四层——五道 LLM 内部原理（空白填充目标、MoE 经济账、top-k 路由实现、MTP、中英双语取舍）、三道后训练（混合推理、分离式异步 agentic RL、先训专家再自蒸馏）、两道 agent（GUI agent 设计、端到端 AutoGLM），以及一道评测（agentic 编程模型怎么评才不自欺）。",
+      "updated": "2026-09-28",
       "dir": "zhipu",
-      "overviewFile": null,
-      "overviewTitle": "zhipu",
+      "overviewFile": "公司题库/zhipu/README.md",
+      "overviewTitle": "智谱面试题库",
       "declaredTotal": null,
       "questions": [
         {
@@ -29014,6 +29014,98 @@
           ],
           "updated": "2026-09-28",
           "chars": 4800
+        },
+        {
+          "id": "zhipu-10",
+          "order": 10,
+          "title": "端到端设计 AutoGLM：一个云服务，让用户把多步手机任务（“帮我点我常喝的那杯咖啡”）委托给自主 agent。请说明架构与失效模式。",
+          "titleEn": "Design AutoGLM end to end: a cloud service that lets users delegate multi-step phone tasks (\"order my usual coffee\") to an autonomous agent. Cover the architecture and the failure modes.",
+          "file": "公司题库/zhipu/10-端到端设计-AutoGLM.md",
+          "level": "高阶",
+          "tags": [
+            "端云协同",
+            "技能库",
+            "会话持久化",
+            "不可逆动作",
+            "意图歧义"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "zhipu-02",
+            "zhipu-04",
+            "zhipu-06",
+            "zhipu-08",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "CogAgent: A Visual Language Model for GUI Agents（原始论文）",
+              "url": "https://arxiv.org/abs/2312.08914",
+              "author": "Hong et al. (Tsinghua & Zhipu)",
+              "published": "2023-12-14"
+            },
+            {
+              "title": "Set-of-Mark Prompting Unleashes Extraordinary Visual Grounding in GPT-4V（原始论文）",
+              "url": "https://arxiv.org/abs/2310.11441",
+              "author": "Yang et al. (Microsoft)",
+              "published": "2023-10-17"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4584
+        },
+        {
+          "id": "zhipu-11",
+          "order": 11,
+          "title": "你会如何在 SWE-bench 和 τ-bench 这类 benchmark 上评估一个 agentic 编程模型，而不至于自欺欺人？",
+          "titleEn": "How would you evaluate an agentic coding model on benchmarks like SWE-bench and τ-bench without fooling yourself?",
+          "file": "公司题库/zhipu/11-agentic-编程模型的评估.md",
+          "level": "高阶",
+          "tags": [
+            "数据污染",
+            "脚手架混淆",
+            "运行间方差",
+            "奖励黑客",
+            "模拟器耦合"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "zhipu-06",
+            "zhipu-08",
+            "zhipu-10",
+            "evaluation-01",
+            "evaluation-04"
+          ],
+          "sources": [
+            {
+              "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?（原始论文）",
+              "url": "https://arxiv.org/abs/2310.06770",
+              "author": "Jimenez et al. (Princeton)",
+              "published": "2023-10-10"
+            },
+            {
+              "title": "\\u03c4-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains（原始论文）",
+              "url": "https://arxiv.org/abs/2406.12045",
+              "author": "Yao et al. (Sierra)",
+              "published": "2024-06-17"
+            },
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5210
         }
       ]
     }
