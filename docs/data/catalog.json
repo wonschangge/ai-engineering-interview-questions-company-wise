@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T00:47:39.745Z",
+  "generated": "2026-09-30T00:50:22.024Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 444,
+    "companyQuestions": 445,
     "companies": 33,
     "planned": 598
   },
@@ -14581,15 +14581,15 @@
       ]
     },
     {
-      "id": "company-glean",
-      "name": "glean",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "glean",
+      "name": "Glean",
+      "group": "AI 原生产品公司",
+      "summary": "十题共享一个约束——\"每一条结果都必须按用户权限过滤，而且这件事不能交给模型\"——一道编程（带权限的 top-k 归并）、一道推理服务（查询延迟预算）、两道检索（异构内容切分、RAG 与微调之分）、两道 agent（代表用户执行动作、跨数十个 SaaS 的鉴权强制点）、三道系统设计（连接器框架、知识图谱排序、零交互数据的排序），以及一道评估（无法查看客户数据时的评估框架）。",
+      "updated": "2026-09-28",
       "dir": "glean",
-      "overviewFile": null,
-      "overviewTitle": "glean",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/glean/README.md",
+      "overviewTitle": "Glean 面试题库",
+      "declaredTotal": 10,
       "questions": [
         {
           "id": "glean-01",
@@ -14635,7 +14635,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4879
+          "chars": 4879,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "glean-02",
@@ -14681,7 +14683,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4975
+          "chars": 4975,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "glean-03",
@@ -14727,7 +14731,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4732
+          "chars": 4732,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
         },
         {
           "id": "glean-04",
@@ -14773,7 +14779,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4720
+          "chars": 4720,
+          "topicName": "RAG 与检索",
+          "topicOrder": 2
         },
         {
           "id": "glean-05",
@@ -14819,7 +14827,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4522
+          "chars": 4522,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "glean-06",
@@ -14865,7 +14875,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4586
+          "chars": 4586,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 2
         },
         {
           "id": "glean-07",
@@ -14911,7 +14923,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4886
+          "chars": 4886,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "glean-08",
@@ -14957,7 +14971,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4845
+          "chars": 4845,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "glean-09",
@@ -15003,7 +15019,57 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4831
+          "chars": 4831,
+          "topicName": "AI 系统设计",
+          "topicOrder": 3
+        },
+        {
+          "id": "glean-10",
+          "order": 10,
+          "title": "在无法查看客户数据的前提下，为企业级 AI 助手设计评估框架。",
+          "titleEn": "Design an evaluation framework for an enterprise AI assistant when you cannot look at customer data.",
+          "file": "公司题库/glean/10-无法查看客户数据的评估.md",
+          "level": "高阶",
+          "tags": [
+            "合成租户",
+            "客户侧评测器",
+            "交错实验",
+            "聚合指标",
+            "迁移比"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "glean-02",
+            "glean-04",
+            "glean-08",
+            "glean-09",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford)",
+              "published": "2022-11-16"
+            },
+            {
+              "title": "Interleaving: A New Approach to Online Evaluation（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/2600428.2609601",
+              "author": "Chapelle et al. (Yahoo)",
+              "published": "2012-08-12"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4949,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         }
       ]
     },
