@@ -36,6 +36,12 @@ jobs:
       - name: Check Chinese/English question parity
         run: npm run company-index
 
+      # 上一步会重写 scripts/batches/company-*.json。生成物与已提交内容不一致必须失败：
+      # 否则「源数据改了却没重新生成」会静默通过，退化产物也会被直接提交
+      # （scripts/batches/company-.json 历史上删掉过一次又长了回来，靠的就是没有这道门禁）。
+      - name: Generated files must match what is committed
+        run: git diff --exit-code
+
       # jsdom 端到端：渲染、路由、全部 35 家公司页、全量二级标题一致性
       - name: Site tests
         run: npm test

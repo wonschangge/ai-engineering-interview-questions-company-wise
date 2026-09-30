@@ -51,6 +51,26 @@
 
 **风格样例**：`docs/公司题库/mistral/`（8 篇 + 导读）是本流水线产出的参考实现，动手前先读 1–2 篇对齐语气与颗粒度。
 
+### 1.1 `readme_name`：公司名与 README 小节标题对不上时必填
+
+公司 README 的 `name` 是展示名（目录名、站点路由、catalog 都用它），而 `README.zh-CN.md` 的小节标题常带限定语。两家对不上的必须显式声明：
+
+```yaml
+# docs/公司题库/zhipu/README.md
+name: 智谱                    # 展示名
+readme_name: 智谱 AI（GLM）    # README.zh-CN.md 的 ### 小节标题原文
+```
+
+```yaml
+# docs/公司题库/amazon/README.md
+name: Amazon
+readme_name: Amazon（AWS）
+```
+
+- 绑定顺序是 `name` 逐字 → `readme_name` 别名 → 去掉空白与括号后归一化；三者都失配会让构建**报 error**（以前是 warning，于是整家公司的 `group` / 进度分母静默为空，站点上显示「已撰写 0 / N」）。
+- `company-index.mjs` 也用它查 `SLUGS` / `EN_COMPANY`，漏写会让该公司的题被误报成「缺英文题面」。
+- 其余 33 家两家名字逐字相同，可以不写这个字段。
+
 ## 2. 每家公司的工作流
 
 对一家公司，按 `order` 分块（**每块 4 题**，不要更多——并发过高会导致子代理批量失败），每块调用一次 workflow 工具，脚本如下（把 `<slug>`、`<lane>`、`<from>`、`<to>` 换成实际值）：

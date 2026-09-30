@@ -12,7 +12,7 @@ docs/
 │   ├── 01-<题目>.md              # 题解（type: question）
 │   └── 02-<题目>.md
 └── 公司题库/<slug>/               # 公司专属题（每家一个目录）
-    ├── README.md                 # 公司导读（front matter: type: company, id, name, title, group, summary, total, updated）
+    ├── README.md                 # 公司导读（front matter: type: company, id, name, readme_name?, title, group, summary, total, updated）
     └── NN-<中文题目>.md           # 公司题解（front matter: type: question, id: <slug>-NN, company, topic, order, ...）
     └── 01-<题目>.md
 ```
@@ -112,12 +112,47 @@ node scripts/build-site.mjs --check  # 只校验（含“数据是否过期”�
 - `catalog.json`：题解元数据与专题树，SPA 的导航来源；`file` 字段是**相对 `docs/` 的站点路径**。
 - `outline.json`：从 `README.zh-CN.md` 抽出的全量题库清单（专题题 + 公司题），用于展示「待撰写」占位与进度。
 - `search-index.json`：站内搜索索引。
-- 校验规则：front matter 必备字段、id 唯一且小写连字符、order 从 1 连续、二级标题逐字匹配、`$` 与代码围栏成对、`asked_at` 非空时必须写「公司变体」、**文档里的相对链接必须指向真实存在的文件**（代码块内的内容不参与检查）。
+- 校验规则：
+  - front matter 必备字段齐全（值为空的写法会被当成缺字段，不再静默通过）。
+  - id 全局唯一、小写连字符；`order` 从 1 连续编号。
+  - 8 个二级标题逐字匹配；`asked_at` 非空时必须写「公司变体」。
+  - `$` 成对、代码围栏成对；围栏里的字面 `\n` 视为错误。
+  - **文档里的相对链接必须指向真实存在的文件**（代码块内的内容不参与检查）；链接里的百分号转义必须合法。
+  - **`related` 与正文双链 `[[id]]` 必须指向真实存在的 id**：指向「已规划但还没撰写」的题目只是 warning，指向压根不存在的 id 是 error。扫双链前会先剥掉代码围栏与行内代码，避免把 Python 的 `boxes[[i]]` 当成双链。
+  - **公司绑定**：公司 README 的 `name` 要与 `README.zh-CN.md` 的公司小节标题对得上（顺序：`name` 逐字 → `readme_name` 别名 → 去掉空白与括号限定语后归一化）。三者都失配是 error，不再降级成 warning。
+  - **outline 缩水守卫**：README 抽出的题单比上次 `outline.json` 少题、或公司/专题数量变少时报 error。
+  - 只认识 `--check` 与 `--no-write`；传别的参数直接以退出码 2 结束，避免「参数拼错 = 什么都没校验」。
 - 改了 `.md` 之后必须重新运行构建，否则 `--check` 会报「数据已过期」，Pages 工作流也会因此失败。
-- 站点回归测试：`npm i -D jsdom && node scripts/test-site.mjs`（没有 jsdom 时可用 `JSDOM_MODULE=<jsdom/lib/api.js 路径>` 指定）。它用 jsdom 真跑一遍 SPA，断言路由、渲染、公式、搜索与链接改写；期望值从 `docs/data/*.json` 推导，新增专题不用改测试。
+- 站点回归测试：`npm test`（依赖装在本地 `node_modules`，CI 用 `npm ci` 安装；没有本地依赖时可用 `JSDOM_MODULE=<jsdom/lib/api.js 路径>` 指定）。它用 jsdom 真跑一遍 SPA，断言路由、渲染、公式、搜索与链接改写；期望值从 `docs/data/*.json` 推导，新增专题不用改测试。
 - 站点资产（marked / KaTeX / highlight.js）已经 vendored 到 `docs/assets/site/vendor/`，不要改成 CDN 引用。
 
 临时脚本、抓取缓存与验算草稿一律写在仓库根的 `.work/`（已在 `.gitignore` 中忽略），不要散落到 `docs/` 下。
 
 批次作业单放在 `scripts/batches/<专题 slug>.json`：每题一条记录（题面、front matter 期望值、参考来源、必须覆盖的知识点清单）。
 它是撰写与审校的共同依据，也是后续复核「这篇有没有漏讲」的检查表；新增批次时照抄结构即可。
+
+## 6. 公司导读的 `readme_name`
+
+公司 README 的 `name` 是**站点上的展示名**，`README.zh-CN.md` 的小节标题则常带限定语，两者不一定逐字相同：
+
+| 公司 README 的 `name` | `README.zh-CN.md` 的小节标题 |
+|---|---|
+| `Amazon` | `Amazon（AWS）` |
+| `智谱` | `智谱 AI（GLM）` |
+
+对不上的两家必须在公司 README 的 front matter 里显式声明原标题：
+
+```yaml
+---
+type: company
+id: zhipu
+name: 智谱                    # 展示名：目录名、站点路由、catalog 都用它
+readme_name: 智谱 AI（GLM）    # README.zh-CN.md 的小节标题原文，仅用于绑定
+title: 智谱 AI 面试题库
+---
+```
+
+为什么必须有这个字段：`build-site.mjs` 用它把公司目录绑到 README 小节上，绑定失败就取不到 `group` 与 `declaredTotal`、题面校验被整体跳过，站点上表现为「已撰写 0 / N」（Amazon 与智谱都踩过这个坑，而且是修好之后又复发过一次）。
+`company-index.mjs` 也用它查 `SLUGS` / `EN_COMPANY` 映射——那里查错会让 34 道题被误报成「缺英文题面」。
+
+绑定成功后构建脚本会把 outline 小节的名字规范成 `name`（原标题留在 `readmeName` 里），并给小节贴上公司目录的 `id`。两者缺一不可：路由按名字查找，题解 id 前缀按 `id` 拼接（少了 `id` 会拼出大小写不符的 `Amazon-04`）。
