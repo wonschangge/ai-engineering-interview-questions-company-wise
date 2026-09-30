@@ -145,8 +145,13 @@ const en = parseEnglishReadme(path.join(ROOT, 'README.md'));
 const out = [];
 let enMissing = 0;
 for (const c of outline.companies) {
-  const slug = SLUGS[c.name] || c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  const enName = EN_COMPANY[c.name] || c.name;
+  // SLUGS 与 EN_COMPANY 的键是 README.zh-CN.md 的小节标题原文（如「Amazon（AWS）」「智谱 AI（GLM）」），
+  // 而 outline 的 name 已被规范成公司目录的 canonical name（「Amazon」「智谱」）。
+  // 原标题保存在 readmeName 里，两个映射都必须用它查，否则这两家公司会整体匹配失败、
+  // 34 道题被误报成「缺英文题面」。
+  const sectionName = c.readmeName || c.name;
+  const slug = SLUGS[sectionName] || sectionName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const enName = EN_COMPANY[sectionName] || sectionName;
   const ce = en.find((x) => x.name === enName) || null;
   // 英文按「小节名（译回中文）+ 题序」建立索引
   const enByZh = new Map();
@@ -205,4 +210,6 @@ for (const c of out) {
 }
 console.log(`\n合计 ${out.length} 家 / ${total} 题` + (enMissing ? `（${enMissing} 题缺英文题面）` : '（中英题面全部对齐）'));
 console.log(`已写入 ${path.relative(ROOT, OUT_DIR)}/company-*.json`);
-if (enMissing) process.exitCode = 0;
+// 中英题面缺配应当让 CI 失败：以前这里写的是 process.exitCode = 0（等于什么都没做），
+// 于是「缺英文题面」永远不会阻断任何流程。
+if (enMissing) process.exitCode = 1;

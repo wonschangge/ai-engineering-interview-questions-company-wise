@@ -1,9 +1,9 @@
 {
   "company": "智谱",
-  "slug": "zhipu",
-  "dir": "zhipu",
+  "slug": "",
+  "dir": "",
   "group": "前沿 AI 实验室",
-  "idPrefix": "zhipu",
+  "idPrefix": "",
   "total": 11,
   "topics": [
     "llm-internals",
@@ -18,7 +18,7 @@
       "topic": "llm-internals",
       "topicName": "LLM 内部原理与架构",
       "question": "GLM 最初的预训练目标是自回归空白填充。它与 BERT 和 GPT 有何不同，为什么团队认为它统一了理解与生成？",
-      "questionEn": "GLM's original pre-training objective is autoregressive blank infilling. How does it differ from BERT and GPT, and why did the team argue it unifies understanding and generation?",
+      "questionEn": "",
       "sources": [
         {
           "title": "Transformer 中的 Encoder 与 Decoder",
@@ -33,7 +33,7 @@
       "topic": "llm-internals",
       "topicName": "LLM 内部原理与架构",
       "question": "GLM-4.5 是一个总参数 355B、激活参数 32B 的 MoE。请解释其中的经济账：这样的拆分能带来什么，又要付出什么代价？",
-      "questionEn": "GLM-4.5 is an MoE with 355B total but 32B active parameters. Explain the economics: what does that split buy you and what does it cost?",
+      "questionEn": "",
       "sources": [
         {
           "title": "MoE 详解",
@@ -48,7 +48,7 @@
       "topic": "llm-internals",
       "topicName": "LLM 内部原理与架构",
       "question": "用 PyTorch 实现一个 top-k MoE 路由。然后对比辅助损失负载均衡与 loss-free 方案。",
-      "questionEn": "Implement a top-k MoE router in PyTorch. Then contrast auxiliary-loss load balancing with a loss-free approach.",
+      "questionEn": "",
       "sources": [
         {
           "title": "MoE 详解",
@@ -63,7 +63,7 @@
       "topic": "llm-internals",
       "topicName": "LLM 内部原理与架构",
       "question": "什么是 Multi-Token Prediction (MTP)？为什么要增加一个 MTP 层，它在推理时有什么帮助？",
-      "questionEn": "What is Multi-Token Prediction (MTP), why add an MTP layer, and how does it help at inference time?",
+      "questionEn": "",
       "sources": []
     },
     {
@@ -71,7 +71,7 @@
       "topic": "llm-internals",
       "topicName": "LLM 内部原理与架构",
       "question": "GLM 从 GLM-130B 起就是中英双语模型。当一个模型必须同时服务好两种语言时，分词、数据和评估会发生哪些变化？",
-      "questionEn": "GLM has been bilingual Chinese/English since GLM-130B. What changes in tokenization, data and evaluation when a model must serve both languages well?",
+      "questionEn": "",
       "sources": []
     },
     {
@@ -79,7 +79,7 @@
       "topic": "agents",
       "topicName": "Agent 与工具调用",
       "question": "AutoGLM 和 CogAgent 通过截图在几十步的操作中操控真实 GUI。请设计这个 agent：感知、动作空间，以及面向 50 步任务的错误恢复。",
-      "questionEn": "AutoGLM and CogAgent operate real GUIs from screenshots over tens of steps. Design the agent: perception, action space, and error recovery for a 50-step task.",
+      "questionEn": "",
       "sources": [
         {
           "title": "Computer-Use Agent 是如何工作的？",
@@ -94,7 +94,7 @@
       "topic": "finetuning",
       "topicName": "微调、后训练与对齐",
       "question": "GLM-4.5 是一个混合推理模型，既有思考模式，也有直接回答模式。你如何构建一个两者兼得的模型，训练和服务上又会受到什么影响？",
-      "questionEn": "GLM-4.5 is a hybrid reasoning model with a thinking mode and a direct-response mode. How do you build one model that does both, and what are the training and serving implications?",
+      "questionEn": "",
       "sources": [
         {
           "title": "大型推理模型（LRMs）",
@@ -115,7 +115,7 @@
       "topic": "finetuning",
       "topicName": "微调、后训练与对齐",
       "question": "为什么长周期 agentic RL 需要像 slime 框架那样采用分离式、异步的设计，而不是同机同步（colocated-synchronous）的设计？",
-      "questionEn": "Why does long-horizon agentic RL need a disaggregated, asynchronous design (as in the slime framework) rather than colocated-synchronous?",
+      "questionEn": "",
       "sources": []
     },
     {
@@ -123,7 +123,7 @@
       "topic": "finetuning",
       "topicName": "微调、后训练与对齐",
       "question": "GLM-4.5 的后训练先按领域训练专家模型，再用自蒸馏把它们统一起来。请说明为什么要先训练专家模型再合并它们。",
-      "questionEn": "GLM-4.5's post-training trains expert models per domain then unifies with self-distillation. Walk through why you would train specialists and then merge them.",
+      "questionEn": "",
       "sources": [
         {
           "title": "DeepSeek-V4 架构详解",
@@ -144,7 +144,7 @@
       "topic": "system-design",
       "topicName": "AI 系统设计",
       "question": "端到端设计 AutoGLM：一个云服务，让用户把多步手机任务（“帮我点我常喝的那杯咖啡”）委托给自主 agent。请说明架构与失效模式。",
-      "questionEn": "Design AutoGLM end to end: a cloud service letting users delegate multi-step phone tasks (“order my usual coffee”) to an autonomous agent. Architecture and failure modes.",
+      "questionEn": "",
       "sources": [
         {
           "title": "Computer-Use Agent 是如何工作的？",
@@ -159,7 +159,7 @@
       "topic": "evaluation",
       "topicName": "评估与可观测性",
       "question": "你会如何在 SWE-bench 和 τ-bench 这类 benchmark 上评估一个 agentic 编程模型，而不至于自欺欺人？",
-      "questionEn": "How would you evaluate an agentic coding model on SWE-bench and τ-bench style benchmarks without fooling yourself?",
+      "questionEn": "",
       "sources": [
         {
           "title": "AI Agent 评估",

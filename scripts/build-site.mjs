@@ -14,6 +14,13 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DOCS = path.join(ROOT, 'docs');
 const DATA = path.join(DOCS, 'data');
+const KNOWN_FLAGS = new Set(['--check', '--no-write']);
+const unknownFlags = process.argv.slice(2).filter((a) => !KNOWN_FLAGS.has(a));
+if (unknownFlags.length) {
+  // 以前未知参数会被静默忽略并进入写入模式：`--chek` 这种笔误不会报错、还会改数据文件。
+  console.error(`未知参数：${unknownFlags.join(' ')}（可用：--check、--no-write）`);
+  process.exit(2);
+}
 const CHECK_ONLY = process.argv.includes('--check');
 const NO_WRITE = process.argv.includes('--no-write');   // 只校验不写数据（多人并行撰写时用）
 
@@ -73,6 +80,7 @@ function parseYamlSubset(src, file) {
     const line = raw.trim();
     if (line.startsWith('- ')) {
       if (!list) { errors.push(`${file}: 列表项出现在非列表字段下：${line}`); continue; }
+      if (out.__pendingList) { out[out.__pendingList] = list; out.__pendingList = null; }
       const rest = line.slice(2).trim();
       const m = rest.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
       if (m) { item = { [m[1]]: scalar(m[2]) }; list.push(item); }
@@ -83,9 +91,12 @@ function parseYamlSubset(src, file) {
     if (!m) { errors.push(`${file}: 无法解析的 front matter 行：${line}`); continue; }
     const [, key, value] = m;
     if (indent > 0 && item && !(key in out)) { item[key] = scalar(value); continue; }
-    if (value === '') { list = []; item = null; out[key] = list; }
+    // 空值可能是「空列表的开始」，也可能是「漏填了内容」。这里两者都记为 null，
+    // 由后续的必备字段检查报错；以前记成 []（truthy）会让 `question:` 漏填静默通过。
+    if (value === '') { list = []; item = null; out[key] = null; out.__pendingList = key; }
     else { out[key] = scalar(value); list = null; item = null; }
   }
+  delete out.__pendingList;
   return out;
 }
 
@@ -120,13 +131,16 @@ function toPlain(md) {
     .replace(/\s+/g, ' ')
     .trim();
 }
-const firstHeading = (md) => (md.match(/^#{1,6}\s+(.+)$/m) || [, ''])[1].trim();
+// 先剥围栏：代码块里出现的 `## xxx` 不是文档标题，否则会误报「规范之外的二级标题」
+const firstHeading = (md) => (stripFences(md).match(/^#{1,6}\s+(.+)$/m) || [, ''])[1].trim();
 
 function validateQuestion(doc, file, seenIds) {
   const { data, body } = doc;
   const at = rel(file);
   for (const field of ['id', 'topic', 'order', 'question', 'level', 'sources', 'related']) {
-    if (data[field] === undefined) errors.push(`${at}: front matter 缺少字段 ${field}`);
+    // 同时覆盖 undefined 与 null：YAML 里写成 `question:` 的空键以前会解析成 []（truthy）
+    // 而骗过检查，现在解析成 null，必须在这里被拦住。
+    if (data[field] === undefined || data[field] === null) errors.push(`${at}: front matter 缺少字段 ${field}`);
   }
   if (data.id && !/^[a-z0-9-]+$/.test(data.id)) errors.push(`${at}: id 只能包含小写字母、数字与连字符（当前 ${data.id}）`);
   if (data.id) {
@@ -140,7 +154,9 @@ function validateQuestion(doc, file, seenIds) {
     if (!s || typeof s !== 'object' || !s.url) errors.push(`${at}: sources[${i}] 缺少 url`);
   });
 
-  const headings = [...body.matchAll(/^##\s+(.+?)\s*$/gm)].map((m) => m[1]);
+  // 必须先剥围栏：正文里的示例代码经常包含 `## xxx`（如 Markdown 渲染示例、配置片段），
+  // 用原始 body 抽取会把它们当成违规的二级标题。
+  const headings = [...stripFences(body).matchAll(/^##\s+(.+?)\s*$/gm)].map((m) => m[1]);
   for (const need of [...REQUIRED_SECTIONS, ...TRAILING_SECTIONS]) {
     if (!headings.includes(need)) errors.push(`${at}: 缺少二级标题「${need}」`);
   }
@@ -208,12 +224,16 @@ function stripFences(md) {
 function checkLocalLinks(file, body) {
   const text = stripFences(body);
   const baseDir = path.dirname(file);
-  const re = /\]\(([^()\s]+(?:\([^()]*\)[^()\s]*)*)\)/g;
+  // 目标可以含空格（仓库里已有「LLM 内部原理….md」这类路径），
+  // 但不能含换行；括号允许一层嵌套。旧正则的 [^()\s]+ 会让含空格的链接整条漏检。
+  const re = /\]\(([^()\n]+(?:\([^()]*\)[^()\n]*)*)\)/g;
   let m;
   while ((m = re.exec(text))) {
     const target = m[1];
     if (/^(https?:|mailto:|#|data:)/.test(target)) continue;
-    const decoded = decodeURIComponent(target.split('#')[0]);
+    let decoded;
+    try { decoded = decodeURIComponent(target.split('#')[0]); }
+    catch { errors.push(`${rel(file)}: 链接里的百分号转义非法（孤立 % 或非 UTF-8 序列）：${target}`); continue; }
     if (!decoded) continue;
     const resolved = path.resolve(baseDir, decoded);
     if (!fs.existsSync(resolved)) errors.push(`${rel(file)}: 链接指向不存在的文件 ${target}`);
@@ -494,6 +514,28 @@ const catalog = {
 };
 if (outline) {
   catalog.stats.planned = outline.stats.total;
+  // outline 的结构性缩水必须是 error。以前 README 的标题改一个字就会让整家公司从题单里
+  // 静默消失、所有相关校验一并跳过，而构建仍然全绿。
+  if (outline.stats.companies !== catalog.companies.length) {
+    errors.push(`README.zh-CN.md 里带题目的公司小节有 ${outline.stats.companies} 个，`
+      + `而公司目录有 ${catalog.companies.length} 个 —— 题单可能因为标题改名而缩水`);
+  }
+  if (outline.stats.topics !== catalog.topics.length) {
+    errors.push(`README.zh-CN.md 的跨公司专题有 ${outline.stats.topics} 个，`
+      + `而已撰写专题有 ${catalog.topics.length} 个`);
+  }
+  // 与上一次写出的 outline 比较：题数骤降说明抽题单出了问题（而不是真的删了题）。
+  const prevOutlinePath = path.join(DATA, 'outline.json');
+  if (fs.existsSync(prevOutlinePath)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(prevOutlinePath, 'utf8'));
+      const drop = (prev.stats && prev.stats.total || 0) - outline.stats.total;
+      if (drop > 0) {
+        errors.push(`README.zh-CN.md 抽出的题单比上次少了 ${drop} 题`
+          + `（上次 ${prev.stats.total}，本次 ${outline.stats.total}）—— 若不是有意删题，请检查标题与列表格式`);
+      }
+    } catch { /* 旧文件损坏则跳过比较 */ }
+  }
   // 公司身份靠名字匹配，而 README.zh-CN.md 的小节标题常带限定语（如「Amazon（AWS）」「智谱 AI（GLM）」），
   // 与公司 README 的 name 字段不一定逐字相同。匹配顺序：
   //   1) name 逐字
