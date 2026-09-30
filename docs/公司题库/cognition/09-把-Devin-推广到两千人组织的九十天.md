@@ -270,6 +270,28 @@ print("        ② 若「每个提交 PR 的净节省」接近 0（本例评审 
 print("           盈亏平衡规模会大到不可行 —— 此时唯一出路是**降低单 PR 评审成本**")
 print("           （小 diff、要求自测、附证据、批量提交），而不是等规模变大")
 
+# 楔子任务打分：权重是示例参数（见「参考资料与归属」的说明）
+@dataclass
+class Wedge:
+    name: str
+    verifiability: float      # 目标是否可自动验证
+    review_lightness: float   # 评审是否轻
+    toil_volume: float        # 重复劳动量
+    risk: float               # 失败代价与不可逆性
+    def score(self) -> float:
+        return (self.verifiability + self.review_lightness + self.toil_volume - self.risk) / 3
+
+CAND = [
+    Wedge("补测试 / 提升覆盖率", 0.95, 0.90, 0.85, 0.05),
+    Wedge("依赖升级 / 小重构", 0.90, 0.80, 0.95, 0.10),
+    Wedge("flaky 测试排查", 0.85, 0.75, 0.70, 0.10),
+    Wedge("文档 / 注释更新", 0.55, 0.90, 0.75, 0.05),
+    Wedge("迁移（框架/API 版本）", 0.80, 0.60, 0.85, 0.35),
+    Wedge("简单 bug 修复（有测试）", 0.85, 0.70, 0.55, 0.20),
+    Wedge("跨仓库架构改动", 0.30, 0.25, 0.35, 0.85),
+    Wedge("新功能开发", 0.25, 0.20, 0.15, 0.90),
+]
+
 print("\n④ 楔子任务打分（可验证 + 评审轻 + 重复多 − 风险）")
 print(f"  {'候选任务':<18} {'可验证':>7} {'评审轻':>7} {'重复量':>7} {'风险':>6} {'得分':>7} {'建议':<12}")
 for c in sorted(CAND, key=lambda x: -x.score()):

@@ -270,7 +270,7 @@ new_cp = Checkpoint(app_id="app-2")                                    # ★ 新
 r2 = run_pipeline([100, 100, 100], cp=new_cp, delta=delta)
 print(f"  用新 checkpoint 重启：总行数 {r2['总行数']:,} -> 多出 "
       f"{r2['总行数']-r1['总行数']:,} 行（**重复**）")
-print(f"  Delta 事务日志里的键：{sorted(delta.committed.keys())}")
+print(f"  Delta 事务日志里的幂等键：{sorted(delta.seen)}")
 print("  读法：**appId 变了，幂等键就失效** —— 所以 checkpoint 必须放在持久存储、且重启沿用同一目录；")
 print("        「新集群 + 新目录」是生产里最常见的重复来源")
 
