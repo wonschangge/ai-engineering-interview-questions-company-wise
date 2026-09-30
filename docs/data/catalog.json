@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T05:36:09.594Z",
+  "generated": "2026-09-30T05:40:20.970Z",
   "stats": {
     "topics": 10,
     "questions": 119,
@@ -9068,7 +9068,7 @@
         {
           "id": "anthropic-26",
           "order": 26,
-          "title": "设计一个文件共享/分发系统.",
+          "title": "设计一个文件共享/分发系统。",
           "titleEn": "Design a file-sharing / distribution system.",
           "file": "公司题库/anthropic/26-设计文件共享与分发系统.md",
           "level": "高阶",
