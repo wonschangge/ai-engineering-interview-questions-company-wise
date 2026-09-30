@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T20:07:18.241Z",
+  "generated": "2026-09-30T20:18:43.307Z",
   "stats": {
     "topics": 10,
     "questions": 119,
@@ -21784,7 +21784,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7062,
+          "chars": 7656,
           "topicName": "微调、后训练与对齐",
           "topicOrder": 2
         },
@@ -21838,7 +21838,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7158,
+          "chars": 7889,
           "topicName": "评估与可观测性",
           "topicOrder": 1
         }
