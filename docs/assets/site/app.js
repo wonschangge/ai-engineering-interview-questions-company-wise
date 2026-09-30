@@ -51,8 +51,13 @@
 
   function stripFrontMatter(md) {
     return md
-      .replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '')
-      .replace(/^#\s+.+\r?\n/, '');
+      // 吃掉 front matter 以及它后面的空行。原来的写法只吃到 `---` 那一行的换行，而仓库里
+      // 643/643 篇 markdown 在 `---` 之后都还有一个空行，于是下一个 replace 的 `^#` 锚点
+      // 永远匹配不上——「剥掉正文 H1」这条规则在全仓库一次都没生效过，
+      // 每个 markdown 视图都因此多渲染出一个与页头重复的 H1。
+      .replace(/^---\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n)*/, '')
+      // 容忍前导空白，否则 `\n# 标题` 这种残留仍会漏过去。
+      .replace(/^\s*#\s+[^\n]*\r?\n/, '');
   }
 
   /* -------------------------------------------------------- Markdown 渲染 */
@@ -262,6 +267,11 @@
     return String(t || '').replace(/\s+/g, '').replace(/[。？！.?!]+$/, '');
   }
 
+  /** 公司名归一化：去掉括号限定语与空白后小写，与 build-site.mjs 的 normName 保持一致 */
+  function normName(s) {
+    return String(s || '').replace(/[（(][^）)]*[）)]/g, '').replace(/\s+/g, '').toLowerCase();
+  }
+
   /** 某家公司已撰写的题解：归一化题面 -> catalog 里的题目对象 */
   function companyWritten(name) {
     const c = (state.catalog && state.catalog.companies || []).find((x) => x.name === name);
@@ -403,16 +413,20 @@
       '<section class="panel" id="topic-overview"><div class="markdown" id="topic-overview-body"><p class="muted">正在加载专题导读…</p></div></section>';
   }
 
-  /** 公司页底部内联渲染公司导读（README.md），并支持页内 #sN 锚点 */
+  /** 公司页底部内联渲染公司导读（README.md）；标题锚点由 enhance 统一生成 */
   async function fillCompanyOverview(comp) {
     const box = $('#company-overview-body');
     if (!box || !comp.overviewFile) return;
     try {
-      const text = await fetchRaw(comp.overviewFile);
-      box.innerHTML = renderMarkdown(text);
+      // 这里原来调用的是一个从未定义过的 fetchRaw，导致 35 家公司的导读全部渲染成
+      // 「公司导读加载失败：fetchRaw is not defined」。改用与专题导读同一条路径。
+      const md = await loadMarkdown(comp.overviewFile);
+      box.innerHTML = renderMarkdown(md);
       enhance(box, comp.overviewFile);
     } catch (err) {
-      box.innerHTML = '<p class="error">公司导读加载失败：' + esc(err.message) + '</p>';
+      // loadMarkdown 抛出的文案本身就以「加载失败」开头，直接拼会得到
+      // 「公司导读加载失败：加载失败 docs/…（HTTP 404）」，这里去掉重复的那半句。
+      box.innerHTML = '<p class="error">公司导读加载失败：' + esc(String(err.message).replace(/^加载失败\s*/, '')) + '</p>';
     }
   }
 
@@ -517,8 +531,18 @@
   }
 
   function viewCompany(name) {
-    const c = state.outline ? state.outline.companies.find((x) => x.name === name) : null;
+    if (!state.outline) return viewMissing('没有找到这家公司');
+    // 兼容旧链接：outline 小节的名字在构建时被规范成公司目录的 name，但历史分享出去的
+    // 链接（以及 README.zh-CN.md 里的小节标题）用的是带限定语的原名，例如
+    // 「Amazon（AWS）」「智谱 AI（GLM）」。逐字找不到时退化到归一化名再找一次。
+    const c = state.outline.companies.find((x) => x.name === name)
+      || state.outline.companies.find((x) => normName(x.name) === normName(name));
     if (!c) return viewMissing('没有找到这家公司');
+    return renderCompany(c);
+  }
+
+  function renderCompany(c) {
+    const name = c.name;
     const w = companyWritten(name);
     const rows = (items, topicName) => items.map((q) => {
       const doc = w.map.get(normQ(q.question));

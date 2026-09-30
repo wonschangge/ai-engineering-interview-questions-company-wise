@@ -74,6 +74,17 @@ const FIRST = catalog.topics[0];
 const FIRST_Q = FIRST.questions[0];
 const results = [];
 const check = (name, cond, extra = '') => { results.push({ name, ok: Boolean(cond), extra }); };
+
+// 每个视图只应有 1 个 H1（页头那个）。这条断言是为一个长期存在的事故加的：
+// stripFrontMatter 里「剥掉正文 H1」的正则匹配不到 `---` 之后的空行，全仓库 643/643 篇
+// 都没被剥掉，于是题目页/专题页/公司页都在页头 H1 之后又渲染出一个逐字重复的 H1，
+// 而当时所有断言都只查 `.page-head h1`，对多余的 H1 完全不设防。
+function checkOneH1(label) {
+  const hs = $$('h1');
+  check(label + '只有一个 H1', hs.length === 1,
+    hs.length === 1 ? '' : hs.length + ' 个：' + hs.map((h) => h.textContent.slice(0, 24)).join(' | '));
+}
+
 async function nav(hash) {
   window.location.hash = hash;
   await wait(260);
@@ -83,12 +94,14 @@ await wait(400);
 
 // 1) 首页
 check('首页渲染标题', text('.hero h1').includes('专题题解'));
+checkOneH1('首页');
 check('首页统计包含已撰写题解 ' + TOTAL_WRITTEN + ' 道（专题 ' + TOTAL_QUESTIONS + ' + 公司 ' + TOTAL_COMPANY_QUESTIONS + '）', text('.badges').includes('已撰写题解 ' + TOTAL_WRITTEN + ' 道'), text('.badges'));
-check('首页显示题库总量 598', text('.badges').includes('598'), text('.badges'));
+check('首页显示题库总量 ' + outline.stats.total, text('.badges').includes(String(outline.stats.total)), text('.badges'));
 // 文案不能再说「题解按专题逐步补齐」——公司题解已经写完，旧文案会误导访客
 check('首页不再声称公司题解尚未撰写', !document.body.textContent.includes('题解按专题逐步补齐') && !document.body.textContent.includes('题解在计划中'), '');
 check('首页有 ' + TOTAL_TOPICS + ' 个专题卡片', $$('.topic-card').length === TOTAL_TOPICS, String($$('.topic-card').length));
-check('首页含公司分组（5 组）', $$('.company-card').length === 5, String($$('.company-card').length));
+const TOTAL_GROUPS = new Set(catalog.companies.map((c) => c.group).filter(Boolean)).size;
+check('首页含公司分组（' + TOTAL_GROUPS + ' 组）', $$('.company-card').length === TOTAL_GROUPS, String($$('.company-card').length));
 check('首页含学习路线（5 阶段）', $$('.roadmap li').length === 5, String($$('.roadmap li').length));
 check('首页含资料入口（3 个）', document.body.textContent.includes('资料入口') && document.body.textContent.includes('中文题库'), '');
 
@@ -103,6 +116,7 @@ await nav('#/topic/' + FIRST.id);
 const rows = $$('.q-row');
 check('专题页列出 ' + FIRST.questions.length + ' 道题', rows.length === FIRST.questions.length, String(rows.length));
 check('本专题 ' + FIRST.questions.length + ' 道全部标记已上线', $$('.q-state.is-done').length === FIRST.questions.length, String($$('.q-state.is-done').length));
+checkOneH1('专题页');
 check('专题页进度文案 ' + FIRST.questions.length + ' / ' + FIRST.questions.length, document.body.textContent.includes('已撰写 ' + FIRST.questions.length + ' / ' + FIRST.questions.length + ' 题'), text('.page-head .muted'));
 await wait(200);
 check('专题导读已渲染', $('#topic-overview-body h2') !== null, text('#topic-overview-body').slice(0, 60));
@@ -113,6 +127,7 @@ check('指向仓库 README 的链接转成 GitHub 地址', $$('#topic-overview-b
 // 4) 题目页 01
 await nav('#/q/' + FIRST_Q.id);
 check('题目页标题正确', text('.page-head h1') === FIRST_Q.title, text('.page-head h1').slice(0, 40));
+checkOneH1('题目页');
 check('题解正文渲染出小节', $$('#doc-body h2').length >= 7, String($$('#doc-body h2').length));
 check('KaTeX 公式已渲染', $$('#doc-body .katex').length > 10, String($$('#doc-body .katex').length));
 check('display 公式存在', $$('#doc-body .katex-display').length > 0, String($$('#doc-body .katex-display').length));
@@ -155,8 +170,15 @@ check('搜索结果含高亮', $$('.search-results mark').length >= 1, String($$
 // 7) 公司视图
 await nav('#/companies');
 check('公司页渲染 ' + outline.stats.companies + ' 家', $$('.company-card').length === outline.stats.companies, String($$('.company-card').length));
+checkOneH1('公司列表页');
 await nav('#/company/Anthropic');
 check('公司详情页渲染', text('.page-head h1') === 'Anthropic', text('.page-head h1'));
+checkOneH1('公司详情页');
+// 旧链接兼容：outline 小节名已被规范成公司目录的 name，但历史链接与 README 小节标题
+// 用的是带限定语的原名。这类路由以前直接落到「没有找到这家公司」。
+await nav('#/company/' + encodeURIComponent('Amazon（AWS）'));
+check('旧式公司路由仍能打开', text('.page-head h1') === 'Amazon', text('.page-head h1').slice(0, 40));
+checkOneH1('旧式公司路由页');
 
 // 7b) 遍历全部公司：每家的进度分母必须等于它的题数、且题面不能全部落到「待撰写」。
 // 这条断言是为一个真实事故加的：Amazon 与智谱的公司 README name 与 README.zh-CN.md 的小节标题
@@ -175,8 +197,19 @@ check('公司详情页渲染', text('.page-head h1') === 'Anthropic', text('.pag
     if (!m) { offenders.push(`${c.name}: 页面上找不到进度分子/分母`); continue; }
     if (`${m[1]} / ${m[2]}` !== want) offenders.push(`${c.name}: 进度为 ${m[1]} / ${m[2]}，应为 ${want}`);
     if (c.questions.length && !$$('.q-row').length) offenders.push(`${c.name}: 题面列表为空`);
+    // 公司导读必须真的渲染出来。上一版断言只查标题/进度/题列表，恰好绕过了导读框，
+    // 于是「fetchRaw is not defined」让 35 家导读全部失败却一直是绿的。
+    if (c.overviewFile) {
+      const ok = await waitFor(() => {
+        const b = $('#company-overview-body');
+        return b && !b.textContent.includes('正在加载') && !b.textContent.includes('加载失败');
+      });
+      const b = $('#company-overview-body');
+      if (!ok) offenders.push(`${c.name}: 导读未渲染（${b ? b.textContent.slice(0, 40) : '无容器'}）`);
+      else if ($$('#company-overview-body h2').length === 0) offenders.push(`${c.name}: 导读没有渲染出二级标题`);
+    }
   }
-  check('全部 ' + catalog.companies.length + ' 家公司的进度分母与题面都正确',
+  check('全部 ' + catalog.companies.length + ' 家公司的进度、题面与导读都正确',
     offenders.length === 0, offenders.slice(0, 6).join('；'));
 }
 
@@ -195,7 +228,7 @@ check('未知路由显示 404', text('#content').includes('404'), '');
 
 // 12) 全量渲染检查：每篇题解渲染出的 ## 标题数必须与 markdown 源一致
 //（能抓住「围栏写错导致整段被吞进代码块」「正文没加载出来」这类问题）
-async function waitFor(fn, timeout = 4000) {
+async function waitFor(fn, timeout = 1500) {
   const t0 = Date.now();
   while (Date.now() - t0 < timeout) {
     try { if (fn()) return true; } catch (e) { /* 继续等 */ }
