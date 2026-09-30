@@ -144,27 +144,32 @@ $$T_{\text{join}}\approx O(\text{数据量}/\text{吞吐})\quad\text{且无 shuf
 
 ## 数值与代码验证
 
-### 表 1：不同修复手段的效果（模拟，见代码输出）
+### 表 1：不同修复手段的效果（事实表 110 亿行、shuffle 分区 ≈ 16,384、并行槽位 2,000；模拟）
 
-| 修复 | 最大分区（相对平均） | 估算 stage 时间（相对理想） |
-| --- | --- | --- |
-| 无（原始） | 见输出 | 见输出 |
-| 过滤 NULL | 见输出 | 见输出 |
-| 加盐 $N$ | 见输出 | 见输出 |
-| AQE 拆分 $k$ 片 | 见输出 | 见输出 |
-| 广播维表 | 见输出 | 见输出 |
+| 修复 | 最大分区 | 倾斜比 | 估算 stage 时间（相对理想） |
+|--- |--- |--- |--- |
+| 无（原始） | 1,649,439,405 行 | **2,457.9×** | 2,457.9 |
+| 过滤 NULL | 1,649,439,405 行 | **2,587.2×**（过滤反而更差：平均变小了） | 2,587.2 |
+| 阈值加盐 α=3（复制 4,295 份） | 5,735,756 行 | **9.0×** | **9.0** |
+| 阈值加盐 α=10（复制 1,210 份） | 12,829,755 行 | 20.1× | 20.1 |
+| 阈值加盐 α=50（复制 220 份） | 31,956,845 行 | 50.1× | 50.1 |
+| AQE 拆分 4 / 16 片（按 key 分组） | 1,649,267,441 行 | **2,653.8× / 2,860.8×**（单 key 独占的分区拆不动） | 2,653.8 / 2,860.8 |
+| 广播维表（无 shuffle） | 按输入分片处理 | **1.0×** | **9.0**（= 理想轮数） |
 
-### 表 2：加盐的 $N$ 与维表膨胀
+### 表 2：加盐的 $N$ 与维表膨胀（热 key 占 45%、3 个热 key）
 
-| 热 key 占比 | 倾斜比 $R$ | 目标 $\alpha$ | 需要 $N$ | 维表膨胀 |
-| --- | --- | --- | --- | --- |
-| 见输出 | 见输出 | 3 | 见输出 | 见输出 |
+| 目标 $\alpha$ | 最大热 key（行） | 需要 $N$ | 维表热键部分膨胀 |
+|--- |--- |--- |--- |
+| 1 | 1,649,267,441 | **2,587** | **2,587×** |
+| 3 | 1,649,267,441 | 863 | 863× |
+| 10 | 1,649,267,441 | 259 | 259× |
+| 诊断判据 | shuffle read / 平均值 **100×** 且换节点仍慢 → 数据倾斜；**1.1×** 且换节点就快 → 慢节点；输入分片 200 GB 而 shuffle 正常 → 不可切分的大文件 | — | — |
 
 ### 可运行代码
 
 ```python
 # Spark join straggler：倾斜量化、NULL 影响、加盐 N、AQE 拆分、广播的对比
-import math, random, statistics
+import math, random, statistics, zlib
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import Dict, List, Tuple
@@ -218,7 +223,7 @@ def partition_sizes(dist: Counter, n_parts: int) -> List[int]:
     """按 key 哈希到分区（这里用 Python hash 模拟；同一 key 必落同一分区）"""
     sizes = [0] * n_parts
     for k, v in dist.items():
-        sizes[hash(k) % n_parts] += v
+        sizes[zlib.crc32(str(k).encode()) % n_parts] += v   # 不能用内置 hash()（见下）
     return sizes
 
 def report(sizes: List[int], label: str) -> Dict[str, float]:
@@ -267,7 +272,9 @@ def aqe_split_by_keys(dist: Counter, n_parts: int, k: int,
     所以单个 key 独占的分区**拆不动**（这正是 AQE 的边界）。"""
     parts: Dict[int, List[int]] = {}
     for key, v in dist.items():
-        parts.setdefault(hash(key) % n_parts, []).append(v)
+        # 不能用内置 hash()：Python 的字符串哈希每个进程都不同（PYTHONHASHSEED 随机化），
+        # 会让倾斜比每次运行都不一样、无法复现。改用 crc32。
+        parts.setdefault(zlib.crc32(str(key).encode()) % n_parts, []).append(v)
     out: List[int] = []
     for p, vals in parts.items():
         total = sum(vals)
