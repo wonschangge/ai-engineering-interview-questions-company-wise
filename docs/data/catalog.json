@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T04:10:34.400Z",
+  "generated": "2026-09-30T04:22:58.545Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 462,
+    "companyQuestions": 465,
     "companies": 35,
     "planned": 598
   },
@@ -6938,6 +6938,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5217
+        },
+        {
+          "id": "amazon-07",
+          "order": 7,
+          "title": "bagging 与 boosting 有什么区别？XGBoost 和 Random Forest 在计算上有什么差异？",
+          "titleEn": "What is the difference between bagging and boosting? And how do XGBoost and Random Forest differ computationally?",
+          "file": "公司题库/amazon/07-bagging-与-boosting.md",
+          "level": "高阶",
+          "tags": [
+            "深树平均",
+            "浅树累加",
+            "并行度",
+            "直方图分裂",
+            "早停"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-08",
+            "amazon-12",
+            "ml-04",
+            "ml-07",
+            "ml-08"
+          ],
+          "sources": [
+            {
+              "title": "Random Forests（原始论文）",
+              "url": "https://link.springer.com/article/10.1023/A:1010933404324",
+              "author": "Breiman (UC Berkeley)",
+              "published": "2001-10-01"
+            },
+            {
+              "title": "XGBoost: A Scalable Tree Boosting System（原始论文）",
+              "url": "https://arxiv.org/abs/1603.02754",
+              "author": "Chen & Guestrin (UW)",
+              "published": "2016-03-09"
+            },
+            {
+              "title": "Greedy Function Approximation: A Gradient Boosting Machine（原始论文）",
+              "url": "https://projecteuclid.org/journals/annals-of-statistics/volume-29/issue-5/",
+              "author": "Friedman (Stanford)",
+              "published": "2001-10-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5372
+        },
+        {
+          "id": "amazon-08",
+          "order": 8,
+          "title": "解释偏差-方差权衡、交叉验证和维度灾难。",
+          "titleEn": "Explain the bias-variance tradeoff, cross-validation, and the curse of dimensionality.",
+          "file": "公司题库/amazon/08-偏差方差与维度灾难.md",
+          "level": "高阶",
+          "tags": [
+            "偏差方差分解",
+            "U 形",
+            "k 的选择",
+            "距离集中",
+            "体积集中"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-03",
+            "amazon-07",
+            "amazon-12",
+            "ml-02",
+            "ml-09"
+          ],
+          "sources": [
+            {
+              "title": "The Elements of Statistical Learning（延伸）",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "author": "Hastie, Tibshirani & Friedman (Stanford)",
+              "published": "2009-01-01"
+            },
+            {
+              "title": "A Study of Cross-Validation and Bootstrap for Accuracy Estimation（原始论文）",
+              "url": "https://dl.acm.org/doi/10.5555/1622756.1622828",
+              "author": "Kohavi (Stanford)",
+              "published": "1995-08-20"
+            },
+            {
+              "title": "When Is \"Nearest Neighbor\" Meaningful?（原始论文）",
+              "url": "https://link.springer.com/chapter/10.1007/3-540-49257-7_15",
+              "author": "Beyer et al.",
+              "published": "1999-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5601
+        },
+        {
+          "id": "amazon-09",
+          "order": 9,
+          "title": "GRU 单元是如何工作的？它是如何解决梯度消失问题的？BiLSTM 又是如何工作的？",
+          "titleEn": "How does a GRU cell work? How does it address the vanishing gradient problem? And how does a BiLSTM work?",
+          "file": "公司题库/amazon/09-GRU-与-BiLSTM.md",
+          "level": "高阶",
+          "tags": [
+            "更新门",
+            "加法状态",
+            "常数误差转盘",
+            "缓解而非解决",
+            "双向代价"
+          ],
+          "topic": "ml-fundamentals",
+          "askedAt": [],
+          "related": [
+            "amazon-08",
+            "amazon-15",
+            "llm-01",
+            "llm-02",
+            "ml-10"
+          ],
+          "sources": [
+            {
+              "title": "Learning Phrase Representations using RNN Encoder-Decoder (GRU)（原始论文）",
+              "url": "https://arxiv.org/abs/1406.1078",
+              "author": "Cho et al.",
+              "published": "2014-06-03"
+            },
+            {
+              "title": "Long Short-Term Memory（原始论文）",
+              "url": "https://www.bioinf.jku.at/publications/older/2604.pdf",
+              "author": "Hochreiter & Schmidhuber",
+              "published": "1997-11-01"
+            },
+            {
+              "title": "Bidirectional Recurrent Neural Networks（原始论文）",
+              "url": "https://ieeexplore.ieee.org/document/650093",
+              "author": "Schuster & Paliwal",
+              "published": "1997-11-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5199
         }
       ]
     },
