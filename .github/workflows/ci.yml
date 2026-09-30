@@ -1,0 +1,41 @@
+name: CI
+
+# 以前只有 pages.yml，且只在 push 到 main 时触发 —— PR 合并前零校验，
+# scripts/test-site.mjs 在工作流里一次都没跑过。这个工作流把校验与站点测试放到 PR 上。
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dev dependencies
+        run: npm ci
+
+      # 数据文件是否与 Markdown 源一致（--check 会在过期时报错并退出 1）
+      - name: Validate docs and generated data
+        run: npm run check
+
+      # 中英题面是否对齐；缺配时该脚本退出 1
+      - name: Check Chinese/English question parity
+        run: npm run company-index
+
+      # jsdom 端到端：渲染、路由、全部 35 家公司页、全量二级标题一致性
+      - name: Site tests
+        run: npm test

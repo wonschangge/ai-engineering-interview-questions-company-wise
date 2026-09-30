@@ -22,7 +22,8 @@ let JSDOM, VirtualConsole;
 try {
   ({ JSDOM, VirtualConsole } = await import(process.env.JSDOM_MODULE || 'jsdom'));
 } catch (err) {
-  console.error('需要 jsdom：请先 `npm i -D jsdom`，或用 JSDOM_MODULE=<jsdom/lib/api.js 路径> 指定。');
+  console.error('需要 jsdom：请在仓库根目录运行 `npm ci`（依赖已在 package.json 里声明），'
+    + '或用 JSDOM_MODULE=<jsdom/lib/api.js 路径> 指定已有的安装。');
   console.error('原始错误：' + err.message);
   process.exit(2);
 }

@@ -1,0 +1,22 @@
+{
+  "name": "ai-engineering-interview-questions-company-wise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI 工程面试题库：10 个跨公司专题 + 35 家公司题库。站点由 scripts/build-site.mjs 从 docs/ 的 Markdown 生成。",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "check": "node scripts/build-site.mjs --check",
+    "no-write": "node scripts/build-site.mjs --no-write",
+    "company-index": "node scripts/company-index.mjs",
+    "test": "node scripts/test-site.mjs",
+    "verify": "node scripts/build-site.mjs --check && node scripts/company-index.mjs && node scripts/test-site.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}
