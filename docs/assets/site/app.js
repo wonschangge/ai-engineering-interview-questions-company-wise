@@ -313,7 +313,7 @@
       '<p class="subtitle">按专题整理的中文题解：先讲结论，再给推导、数值与代码验证，最后是面试官真正会追问的东西。' +
       '题面与公司分布来自本仓库的 <a href="https://github.com/wonschangge/ai-engineering-interview-questions-company-wise/blob/main/README.zh-CN.md" target="_blank" rel="noopener">README.zh-CN.md</a>。</p>' +
       '<div class="badges">' +
-      '<span class="badge">已撰写题解 ' + stats.questions + ' 道</span>' +
+      '<span class="badge">已撰写题解 ' + (stats.questions + stats.companyQuestions) + ' 道</span>' +
       '<span class="badge">已上线专题 ' + stats.topics + ' 个</span>' +
       '<span class="badge">题库总量 ' + ostats.total + ' 题</span>' +
       '<span class="badge">' + ostats.companies + ' 家公司</span>' +
@@ -337,7 +337,7 @@
       '</div></section>' +
 
       (groups ? '<section class="panel"><h2>公司分组</h2><div class="grid">' + groups + '</div>' +
-        '<p class="muted">共 ' + ostats.companies + ' 家公司的 ' + ostats.companyQuestions + ' 道公司专属题，当前先提供题面清单，题解按专题逐步补齐。</p></section>' : '') +
+        '<p class="muted">共 ' + ostats.companies + ' 家公司的 ' + ostats.companyQuestions + ' 道公司专属题，题解已全部撰写完成。</p></section>' : '') +
 
       '<section class="panel"><h2>推荐学习路线</h2><ul class="roadmap">' + roadmap + '</ul></section>' +
 
@@ -513,7 +513,7 @@
     return '<nav class="crumbs"><a href="#/">首页</a><span>/</span><span>公司题库</span></nav>' +
       '<header class="page-head"><h1>按公司浏览</h1><p class="lede">共 ' + list.length +
       ' 家公司的 ' + list.reduce((s, c) => s + c.questions.length + c.topics.reduce((x, t) => x + t.questions.length, 0), 0) +
-      ' 道题。题解按专题撰写，公司维度的题解在计划中，当前先提供题面清单。</p></header>' + blocks;
+      ' 道题，题解已全部撰写完成。</p></header>' + blocks;
   }
 
   function viewCompany(name) {

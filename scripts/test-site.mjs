@@ -65,6 +65,10 @@ const catalog = JSON.parse(fs.readFileSync(path.join(DOCS, 'data/catalog.json'),
 const outline = JSON.parse(fs.readFileSync(path.join(DOCS, 'data/outline.json'), 'utf8'));
 const TOTAL_TOPICS = catalog.topics.length;
 const TOTAL_QUESTIONS = catalog.topics.reduce((n, t) => n + t.questions.length, 0);
+// 已撰写题解 = 专题题 + 公司题。之前首页 badge 只数了专题题（119），
+// 而公司题解早已全部写完，导致站点长期低估自己的产出；这条常量让口径只有一处定义。
+const TOTAL_COMPANY_QUESTIONS = catalog.companies.reduce((n, c) => n + c.questions.length, 0);
+const TOTAL_WRITTEN = TOTAL_QUESTIONS + TOTAL_COMPANY_QUESTIONS;
 const FIRST = catalog.topics[0];
 const FIRST_Q = FIRST.questions[0];
 const results = [];
@@ -78,8 +82,10 @@ await wait(400);
 
 // 1) 首页
 check('首页渲染标题', text('.hero h1').includes('专题题解'));
-check('首页统计包含已撰写题解 ' + TOTAL_QUESTIONS + ' 道', text('.badges').includes('已撰写题解 ' + TOTAL_QUESTIONS + ' 道'), text('.badges'));
+check('首页统计包含已撰写题解 ' + TOTAL_WRITTEN + ' 道（专题 ' + TOTAL_QUESTIONS + ' + 公司 ' + TOTAL_COMPANY_QUESTIONS + '）', text('.badges').includes('已撰写题解 ' + TOTAL_WRITTEN + ' 道'), text('.badges'));
 check('首页显示题库总量 598', text('.badges').includes('598'), text('.badges'));
+// 文案不能再说「题解按专题逐步补齐」——公司题解已经写完，旧文案会误导访客
+check('首页不再声称公司题解尚未撰写', !document.body.textContent.includes('题解按专题逐步补齐') && !document.body.textContent.includes('题解在计划中'), '');
 check('首页有 ' + TOTAL_TOPICS + ' 个专题卡片', $$('.topic-card').length === TOTAL_TOPICS, String($$('.topic-card').length));
 check('首页含公司分组（5 组）', $$('.company-card').length === 5, String($$('.company-card').length));
 check('首页含学习路线（5 阶段）', $$('.roadmap li').length === 5, String($$('.roadmap li').length));
@@ -150,6 +156,28 @@ await nav('#/companies');
 check('公司页渲染 ' + outline.stats.companies + ' 家', $$('.company-card').length === outline.stats.companies, String($$('.company-card').length));
 await nav('#/company/Anthropic');
 check('公司详情页渲染', text('.page-head h1') === 'Anthropic', text('.page-head h1'));
+
+// 7b) 遍历全部公司：每家的进度分母必须等于它的题数、且题面不能全部落到「待撰写」。
+// 这条断言是为一个真实事故加的：Amazon 与智谱的公司 README name 与 README.zh-CN.md 的小节标题
+// 不一致，导致匹配失败后 group/declaredTotal 静默为空、页面显示「已撰写 0 / N」，
+// 而当时只测 Anthropic 的断言恰好绕过了这两个坏点。
+{
+  const offenders = [];
+  for (const c of catalog.companies) {
+    await nav('#/company/' + encodeURIComponent(c.name));
+    const h1 = text('.page-head h1');
+    if (h1 !== c.name) { offenders.push(`${c.name}: 标题渲染为「${h1}」`); continue; }
+    const body = text('#content');
+    const want = `${c.questions.length} / ${c.questions.length}`;
+    // 公司页的进度写作「已撰写 N / M」；两者都必须等于该公司的题数
+    const m = body.match(/已撰写\s*(\d+)\s*\/\s*(\d+)/);
+    if (!m) { offenders.push(`${c.name}: 页面上找不到进度分子/分母`); continue; }
+    if (`${m[1]} / ${m[2]}` !== want) offenders.push(`${c.name}: 进度为 ${m[1]} / ${m[2]}，应为 ${want}`);
+    if (c.questions.length && !$$('.q-row').length) offenders.push(`${c.name}: 题面列表为空`);
+  }
+  check('全部 ' + catalog.companies.length + ' 家公司的进度分母与题面都正确',
+    offenders.length === 0, offenders.slice(0, 6).join('；'));
+}
 
 // 8) 主题切换 / 本地进度
 await nav('#/q/' + Q3.id);

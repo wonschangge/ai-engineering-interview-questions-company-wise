@@ -2,6 +2,7 @@
 type: company
 id: amazon
 name: Amazon
+readme_name: Amazon（AWS）
 title: Amazon 面试题库
 group: 大模型
 summary: 二十三题横跨"编程—机器学习基础—LLM 原理—推理成本—Agent—系统设计—评估—行为"八层，是本题库里题量最大的一家；其中十四道 ML 基础题覆盖了从闭式解到报童模型的完整链条，而三道系统题（削减推理成本、浏览器 agent、多租户平台）共享同一套"先定位瓶颈再优化"的方法。

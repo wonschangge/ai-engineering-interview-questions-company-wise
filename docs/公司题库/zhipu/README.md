@@ -2,6 +2,7 @@
 type: company
 id: zhipu
 name: 智谱
+readme_name: 智谱 AI（GLM）
 title: 智谱面试题库
 group: 大模型
 summary: 十一题横跨"架构—后训练—agent—评测"四层——五道 LLM 内部原理（空白填充目标、MoE 经济账、top-k 路由实现、MTP、中英双语取舍）、三道后训练（混合推理、分离式异步 agentic RL、先训专家再自蒸馏）、两道 agent（GUI agent 设计、端到端 AutoGLM），以及一道评测（agentic 编程模型怎么评才不自欺）。

@@ -334,6 +334,7 @@ for (const d of companyDocs) {
 const companyList = [...companyDirs.values()].map((c) => ({
   id: (c.overview && c.overview.data.id) || 'company-' + c.dir,
   name: (c.overview && c.overview.data.name) || c.dir,
+  readmeName: (c.overview && c.overview.data.readme_name) || '',
   group: '',
   summary: (c.overview && c.overview.data.summary) || '',
   updated: (c.overview && c.overview.data.updated) || null,
@@ -468,10 +469,44 @@ const catalog = {
 const outline = buildOutline();
 if (outline) {
   catalog.stats.planned = outline.stats.total;
+  // 公司身份靠名字匹配，而 README.zh-CN.md 的小节标题常带限定语（如「Amazon（AWS）」「智谱 AI（GLM）」），
+  // 与公司 README 的 name 字段不一定逐字相同。匹配顺序：
+  //   1) name 逐字
+  //   2) readme_name 显式别名（公司 README 的 front matter 里可选声明）
+  //   3) 去掉空白与括号限定语后的归一化名
+  // 三者都失配时报 error —— 否则该公司的 group 与 declaredTotal 会静默为空、题面校验被整体跳过，
+  // 站点上表现为「已撰写 0 / N」。
+  const normName = (s) => String(s || '')
+    .replace(/[（(][^）)]*[）)]/g, '')
+    .replace(/\s+/g, '')
+    .toLowerCase();
   const byName = new Map(outline.companies.map((c) => [c.name, c]));
+  const byNorm = new Map();
+  for (const c of outline.companies) {
+    const k = normName(c.name);
+    if (!byNorm.has(k)) byNorm.set(k, c);
+  }
+  const boundSections = new Set();
   for (const c of catalog.companies) {
-    const o = byName.get(c.name);
-    if (!o) { warnings.push(`公司 ${c.name}: 在 README.zh-CN.md 的公司清单里找不到同名公司`); continue; }
+    let o = byName.get(c.name);
+    if (!o && c.readmeName) o = byName.get(c.readmeName);
+    if (!o) o = byNorm.get(normName(c.name));
+    if (!o) {
+      errors.push(`公司 ${c.name}（目录 ${c.dir}）: 无法与 README.zh-CN.md 的公司小节绑定，`
+        + `请在该公司 README 的 front matter 里加一行 readme_name: <小节标题原文>`);
+      continue;
+    }
+    if (boundSections.has(o.name)) {
+      errors.push(`公司 ${c.name}: 绑定到「${o.name}」时发现该小节已被另一家公司占用`);
+      continue;
+    }
+    boundSections.add(o.name);
+    // 统一 canonical key：把 outline 小节的名字改成公司目录的 name。
+    // 路由（app.js 的 viewCompany）用 outline 的名字做查找键，而公司列表用 catalog 的 name 生成链接；
+    // 两者不一致时详情页会取不到数据、渲染成空白。原始小节标题保留在 readmeName 里备查。
+    o.readmeName = o.name;
+    o.name = c.name;
+    c.readmeSection = o.readmeName;
     c.group = o.group;
     c.declaredTotal = o.questions.length + o.topics.reduce((s2, t) => s2 + t.questions.length, 0);
     const rows = new Map();
@@ -486,6 +521,15 @@ if (outline) {
     }
     for (const [key, v] of rows) {
       if (!c.questions.some((q) => normQ(q.title) === key)) c.pending = (c.pending || 0) + 1;
+    }
+  }
+  // 反向检查：README.zh-CN.md 里有题目的小节，必须有公司目录绑定它。
+  // 否则「README 标题改一个字」就会让整家公司从 outline 里静默消失而 CI 仍然全绿。
+  // 判据用 readmeName：绑定成功的小节一定被赋过值（哪怕原名与 canonical 名相同）。
+  for (const o of outline.companies) {
+    const n = o.questions.length + o.topics.reduce((s2, t) => s2 + t.questions.length, 0);
+    if (n > 0 && !o.readmeName) {
+      errors.push(`README.zh-CN.md 的公司小节「${o.name}」（${n} 题）没有任何公司目录与之绑定`);
     }
   }
 }

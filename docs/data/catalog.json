@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T05:40:33.129Z",
+  "generated": "2026-09-30T09:37:21.910Z",
   "stats": {
     "topics": 10,
     "questions": 119,
@@ -5575,6 +5575,7 @@
     {
       "id": "abridge",
       "name": "Abridge",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十一题共享一个约束——\"输出会被医生签署，而签署意味着法律责任\"——一道编码（对话到可计费诊断码的准确率门槛）、一道推理服务（病历记录的延迟预算）、一道检索（用病历里的用药改进药名转写）、一道 agent（医嘱草稿的 EHR tool calls）、一道系统设计（写回 Epic）、两道评估（病历质量怎么评、编辑率掩盖了什么）、三道安全（未提及药物的检测、span 级溯源、PHI 与第三方 API），以及一道多模态（诊室音频的 ASR）。",
       "updated": "2026-09-28",
@@ -6111,11 +6112,13 @@
           "topicName": "多模态、语音与声音 AI",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Abridge"
     },
     {
       "id": "alibaba",
       "name": "阿里巴巴（Qwen）",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "十道题围绕 Qwen 的技术选择展开：仓库级 FIM、151K 字节级 BPE、统一思考模式、dense 与 MoE 选型、免训练长上下文扩展、强到弱蒸馏、可验证奖励的 RL、榜单可信度、原生动态分辨率 VLM，以及 Apache 2.0 开源战略。",
       "updated": "2026-09-28",
@@ -6649,18 +6652,20 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "阿里巴巴（Qwen）"
     },
     {
       "id": "amazon",
       "name": "Amazon",
-      "group": "",
+      "readmeName": "Amazon（AWS）",
+      "group": "大型科技公司的 AI 组织",
       "summary": "二十三题横跨\"编程—机器学习基础—LLM 原理—推理成本—Agent—系统设计—评估—行为\"八层，是本题库里题量最大的一家；其中十四道 ML 基础题覆盖了从闭式解到报童模型的完整链条，而三道系统题（削减推理成本、浏览器 agent、多租户平台）共享同一套\"先定位瓶颈再优化\"的方法。",
       "updated": "2026-09-28",
       "dir": "amazon",
       "overviewFile": "公司题库/amazon/README.md",
       "overviewTitle": "Amazon 面试题库",
-      "declaredTotal": null,
+      "declaredTotal": 23,
       "questions": [
         {
           "id": "amazon-01",
@@ -6706,7 +6711,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5241
+          "chars": 5241,
+          "topicName": "编程与数据结构",
+          "topicOrder": 1
         },
         {
           "id": "amazon-02",
@@ -6752,7 +6759,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4884
+          "chars": 4884,
+          "topicName": "编程与数据结构",
+          "topicOrder": 2
         },
         {
           "id": "amazon-03",
@@ -6798,7 +6807,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5070
+          "chars": 5070,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 1
         },
         {
           "id": "amazon-04",
@@ -6844,7 +6855,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5316
+          "chars": 5316,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 2
         },
         {
           "id": "amazon-05",
@@ -6890,7 +6903,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4773
+          "chars": 4773,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 3
         },
         {
           "id": "amazon-06",
@@ -6937,7 +6952,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5217
+          "chars": 5217,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 4
         },
         {
           "id": "amazon-07",
@@ -6983,7 +7000,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5372
+          "chars": 5372,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 5
         },
         {
           "id": "amazon-08",
@@ -7029,7 +7048,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5601
+          "chars": 5601,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 6
         },
         {
           "id": "amazon-09",
@@ -7075,7 +7096,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5199
+          "chars": 5199,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 7
         },
         {
           "id": "amazon-10",
@@ -7121,7 +7144,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5267
+          "chars": 5267,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 8
         },
         {
           "id": "amazon-11",
@@ -7167,7 +7192,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5272
+          "chars": 5272,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 9
         },
         {
           "id": "amazon-12",
@@ -7213,7 +7240,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5489
+          "chars": 5489,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 10
         },
         {
           "id": "amazon-13",
@@ -7259,7 +7288,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5330
+          "chars": 5330,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 11
         },
         {
           "id": "amazon-14",
@@ -7305,7 +7336,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5154
+          "chars": 5154,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 12
         },
         {
           "id": "amazon-15",
@@ -7351,7 +7384,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5816
+          "chars": 5816,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "amazon-16",
@@ -7397,7 +7432,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5020
+          "chars": 5020,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "amazon-17",
@@ -7443,7 +7480,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5540
+          "chars": 5540,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "amazon-18",
@@ -7489,7 +7528,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5354
+          "chars": 5354,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "amazon-19",
@@ -7535,7 +7576,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5360
+          "chars": 5360,
+          "topicName": "AI 系统设计",
+          "topicOrder": 2
         },
         {
           "id": "amazon-20",
@@ -7581,7 +7624,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5108
+          "chars": 5108,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "amazon-21",
@@ -7627,7 +7672,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4739
+          "chars": 4739,
+          "topicName": "行为与文化",
+          "topicOrder": 1
         },
         {
           "id": "amazon-22",
@@ -7673,7 +7720,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4870
+          "chars": 4870,
+          "topicName": "行为与文化",
+          "topicOrder": 2
         },
         {
           "id": "amazon-23",
@@ -7719,13 +7768,17 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4627
+          "chars": 4627,
+          "topicName": "行为与文化",
+          "topicOrder": 3
         }
-      ]
+      ],
+      "readmeSection": "Amazon（AWS）"
     },
     {
       "id": "anthropic",
       "name": "Anthropic",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "三十七道题覆盖 Anthropic 面试的完整光谱：七道手写实现题（含多次追加需求的演进式编程）、三道 SQL、七道模型与推理基础（Transformer 组成、无 attention 架构、矩阵操作、batching 与服务栈）、六道系统设计（聊天服务、单会话多问题、十亿文档搜索、开发者 API、文件共享）、Agent 与安全六题（模型 vs harness、工具面、Constitutional AI、缩放定律与安全评估、注入攻防、性能与可解释性）、以及评估、应用与行为题。",
       "updated": "2026-09-28",
@@ -9706,11 +9759,13 @@
           "topicName": "行为与文化",
           "topicOrder": 4
         }
-      ]
+      ],
+      "readmeSection": "Anthropic"
     },
     {
       "id": "apple",
       "name": "Apple",
+      "readmeName": "",
       "group": "大型科技公司的 AI 组织",
       "summary": "十一题全部落在一个前提上——\"内存与功耗预算极紧、而且内容不能离开设备\"——四道推理服务（3B 端侧与数据中心的差别、PTQ 与 QAT、KV cache 估算、TTFT 1.8 s 的诊断）、一道 Agent（端侧 tool call 的合法性）、两道微调（一个底座支撑十几个功能、不收集内容如何改进模型）、两道系统设计（端侧与云端的路由层、从一句话到结构化 action）、一道评估（无内容记录下的评估与回归检测），以及一道行为题（信息不完整时如何推进）。",
       "updated": "2026-09-28",
@@ -10247,11 +10302,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Apple"
     },
     {
       "id": "character-ai",
       "name": "Character.AI",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十二道题几乎全部落在同一个物理量上——KV cache——加上一个产品事实：平均会话有 180 条消息。一道编程（固定 token 预算下组装 prompt，难点是 prefix cache）、一道 LLM 内部（超出上下文窗口时保留什么）、四道推理服务（KV cache 降一个数量级、180 条消息的轮次间缓存、原生 int8 训练的辩护、每条消息的成本与最大杠杆）、一道系统设计（数百万角色的发现与搜索）、两道评估（长会话后人设偏离的诊断、互动指标与身心健康指标矛盾）、三道安全（开放式角色聊天的安全系统、decode 中介入 vs 后置过滤、18 岁以下的年龄验证）。",
       "updated": "2026-09-28",
@@ -10836,11 +10893,13 @@
           "topicName": "安全、安保与负责任 AI",
           "topicOrder": 3
         }
-      ]
+      ],
+      "readmeSection": "Character.AI"
     },
     {
       "id": "cognition",
       "name": "Cognition（Devin、Windsurf）",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "九道题覆盖 Cognition 的完整工作面：两篇「动手建」（八小时从零构建 coding agent、如何把第一轮的代码定位时间砍下来）、一篇立场辨析（反对与支持 multi-agent 如何调和）、三篇训练与基础设施（harness 里的端到端 RL、数千并发云端执行环境、云端异步与编辑器内的技术差异）、两篇把关（如何评估自主软件工程 agent、有写权限与 CI 凭证的威胁模型）、一篇客户交付（把 Devin 推广到两千人组织的九十天）。",
       "updated": "2026-09-28",
@@ -11336,11 +11395,13 @@
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Cognition（Devin、Windsurf）"
     },
     {
       "id": "cohere",
       "name": "Cohere",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "十道题覆盖 Cohere 的面试主线——检索与向量索引（两阶段检索、1 亿文档的索引成本与压缩、多语言评估、扩容后质量排查）、私有化与交付（稀疏 MoE 的取舍、银行气隙部署）、企业级能力（工作流 agent 的权限与审批、无标注数据下的评估），外加一道 token 限流器编程题与一道行为题。",
       "updated": "2026-09-28",
@@ -11884,11 +11945,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Cohere"
     },
     {
       "id": "consumer-ml",
       "name": "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）",
+      "readmeName": "",
       "group": "大型科技公司的 AI 组织",
       "summary": "十四道消费级规模 ML 题：流式 sketch 与限流、离线-在线不一致、位置偏差、feature store、ETA、feed 排序、内容推荐、社交图推荐、动态定价、以图搜图、欺诈检测、LLM 客服助手、漂移监控与业务价值复盘。",
       "updated": "2026-09-28",
@@ -12622,11 +12685,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）"
     },
     {
       "id": "cursor",
       "name": "Cursor（Anysphere）",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十七道编辑器场景的题：哈希树与 Merkle 差异、文本缓冲区数据结构、百万 DAU 的补全成本模型、长上下文为何不能取代检索、多文件 agent 的 harness 与沙箱、tab 预测的 100 ms 预算、十万文件 monorepo 的索引与增量更新、流式编辑的并发应用、补丁的可靠应用、代码编辑模型的评估，以及两道行为题。",
       "updated": "2026-09-28",
@@ -13581,11 +13646,13 @@
           "topicName": "行为与文化",
           "topicOrder": 2
         }
-      ]
+      ],
+      "readmeSection": "Cursor（Anysphere）"
     },
     {
       "id": "databricks",
       "name": "Databricks",
+      "readmeName": "",
       "group": "AI 基础设施与平台公司",
       "summary": "九道题覆盖 Databricks 的面试主线——五道数据密集型编程与 Spark 内部机制（线程安全批处理、内存受限下的 top-K、CIDR 百万 QPS 校验、join 的 100 倍 straggler、Streaming 中断后的重复行），一道微调决策（fine-tuning vs RAG、LoRA vs 全量），一道上线检查清单，两道前置部署场景（客户坚持微调、基座模型 60 天下线）。",
       "updated": "2026-09-28",
@@ -14065,11 +14132,13 @@
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
         }
-      ]
+      ],
+      "readmeSection": "Databricks"
     },
     {
       "id": "deepseek",
       "name": "DeepSeek",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "十道题覆盖 DeepSeek 的技术主线——MoE 架构（细粒度专家与共享专家、无辅助损失的负载均衡、路由实现）、训练工程（FP8 稳定性、DualPipe 重叠、合成数据与模型崩溃）、训练方法（MTP、R1-Zero 的纯 RL 与 SFT 的回归），外加一道 671B 的低延迟服务题与一道关于\"低成本\"叙事的行为题。",
       "updated": "2026-09-28",
@@ -14619,11 +14688,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "DeepSeek"
     },
     {
       "id": "elevenlabs",
       "name": "ElevenLabs",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "八道题覆盖 ElevenLabs 这类语音 AI 公司的完整链条：两篇实现（流式 TTS 代理与离开页面的取消、实时 TTS 的容量经济学）、两篇语音特有难题（实时语音 agent 的 TTFA 预算、生产环境里的文本规范化）、两篇系统与安全（配音流水线、语音克隆安全栈）、两篇客户交付（医院集团电话预约、联络中心 IVR 替换）。",
       "updated": "2026-09-28",
@@ -15061,11 +15132,13 @@
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
         }
-      ]
+      ],
+      "readmeSection": "ElevenLabs"
     },
     {
       "id": "figure-ai",
       "name": "Figure AI",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十二道题全部落在\"每次试验都消耗机器人的时间、每次失败都有物理后果\"这一个前提上——三道机器学习基础（行为克隆的失效模式、仿真训练的全身控制器迁移、RL 如何叠加在模仿学习之上）、一道推理服务（语义层搬到云端的延迟预算）、两道系统设计（遥操作数据管线、10 小时示范加 50 小时预算的分配）、两道评估（试验昂贵时的评估、300 台机器人现场性能下降的排查）、一道安全（人员附近的安全架构），以及三道多模态（VLA 与带工具的 LLM 的区别、为什么拆成慢模型与快模型、action chunking）。",
       "updated": "2026-09-28",
@@ -15650,11 +15723,13 @@
           "topicName": "多模态、语音与声音 AI",
           "topicOrder": 3
         }
-      ]
+      ],
+      "readmeSection": "Figure AI"
     },
     {
       "id": "glean",
       "name": "Glean",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十题共享一个约束——\"每一条结果都必须按用户权限过滤，而且这件事不能交给模型\"——一道编程（带权限的 top-k 归并）、一道推理服务（查询延迟预算）、两道检索（异构内容切分、RAG 与微调之分）、两道 agent（代表用户执行动作、跨数十个 SaaS 的鉴权强制点）、三道系统设计（连接器框架、知识图谱排序、零交互数据的排序），以及一道评估（无法查看客户数据时的评估框架）。",
       "updated": "2026-09-28",
@@ -16143,11 +16218,13 @@
           "topicName": "评估与可观测性",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Glean"
     },
     {
       "id": "google-deepmind",
       "name": "Google DeepMind 与 Google AI",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "二十二道题覆盖\"从数学推导到系统设计\"的完整跨度——四道编码（有界内存的流式 top-k、最接近的 key、RMSE、解析 bigram）、八道机器学习基础（bias-variance、线性回归假设、正则化与验证、softmax 交叉熵的融合、SVD、抛硬币的期望、Q-learning 与策略梯度、拒贷的可解释性）、两道训练（300k step 的 loss 发散、70B 的训练方案）、四道系统设计（多模态助手服务、租房推荐、视频广告时段、商品搜索召回）、两道判断与评估（神经网络是否合理、前沿模型的评估 harness）、一道数据充分性（ETA 数据够不够），以及一道与研究者的优先级分歧行为题。",
       "updated": "2026-09-28",
@@ -17207,11 +17284,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Google DeepMind 与 Google AI"
     },
     {
       "id": "groq",
       "name": "Groq",
+      "readmeName": "",
       "group": "AI 基础设施与平台公司",
       "summary": "十二道题全部围绕\"编译器掌握时序、机器没有 HBM\"这一个前提——四道编程（静态调度需要知道什么、IR 与 residency 决策层、host 侧 runtime、单芯片对但整机架错）、五道推理与服务（没有 HBM 的 decode roofline、70B 的部署与经济性、纯 SRAM 上的 batching 与定价、确定性的 p99 收益、静态 fabric 上的 MoE）、一道系统设计（LPX 与 GPU 的服务链路）、一道落地场景（什么情况下不建议迁移），以及一道行为题（性能优化的数字与可信度）。",
       "updated": "2026-09-28",
@@ -17796,11 +17875,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Groq"
     },
     {
       "id": "harvey",
       "name": "Harvey",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十一题围绕一个前提——\"交付物是法律工作产品，而它的错误会变成错误的法律意见\"——一道结对编程（法律文档 chunker）、两道检索（跨 132 页的定义引用、整份合同进上下文还是检索）、一道 agent（输出带修订标记的 Word）、两道系统设计（18 问尽调网格、5,000 份的成本与周转）、一道评估（新模型上线前的流程）、三道安全（grounding 与无支撑断言率、被推翻判例的拦截、同所对立双方的数据隔离），以及一道排查（漏掉控制权变更条款）。",
       "updated": "2026-09-28",
@@ -18337,11 +18418,13 @@
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
         }
-      ]
+      ],
+      "readmeSection": "Harvey"
     },
     {
       "id": "huggingface",
       "name": "Hugging Face",
+      "readmeName": "",
       "group": "AI 基础设施与平台公司",
       "summary": "十一题里只有两道直接问模型——其余都在问\"决定\"：为什么每个模型一个文件、为什么在 pickle 可用时还要做 safetensors、怎么让 2 TB 数据集装进 64 GB、`from_pretrained` 实际发生了什么、三种 tokenization 与它们的 bug、chat template、单卡微调 8B 的显存账、web 规模语料流水线、Hub 的存储设计、serverless 推理层，以及怎么 review 一个社区 PR。",
       "updated": "2026-09-28",
@@ -18878,11 +18961,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Hugging Face"
     },
     {
       "id": "meta",
       "name": "Meta（超级智能实验室、FAIR、Llama）",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "二十六道题覆盖 Meta 的典型面试结构：六道手写实现题、四道模型与训练基础、四道推理服务与 Agent、七道产品级系统设计（信息流、广告、Story、Marketplace、翻译、内容安全）、评估系统，以及三道行为与文化题。",
       "updated": "2026-09-28",
@@ -20192,11 +20277,13 @@
           "topicName": "行为与文化",
           "topicOrder": 3
         }
-      ]
+      ],
+      "readmeSection": "Meta（超级智能实验室、FAIR、Llama）"
     },
     {
       "id": "microsoft",
       "name": "Microsoft",
+      "readmeName": "",
       "group": "大型科技公司的 AI 组织",
       "summary": "十道题围绕\"把 AI 能力做成能上线、能规模化、能负责的产品\"——两道编码（大规模日志的 top-k、agent host 的工具调用层）、两道推理与服务（Copilot 的 3 秒 p95 预算、1 亿 WAU 摘要功能的成本）、两道系统设计（权限感知的 Copilot、电子表格 agent）、一道评估（会议摘要的发布前评估）、两道安全（邮件提示注入、招聘摘要的公平性指控），以及一道关于错误决策的行为题。",
       "updated": "2026-09-28",
@@ -20745,11 +20832,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Microsoft"
     },
     {
       "id": "mistral",
       "name": "Mistral AI",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "八道题的主线是开源权重与推理效率——自家模型的 GQA / 滑窗 / MoE 是背景知识，落点在量化交付、客户场景微调与私有化部署。",
       "updated": "2026-09-28",
@@ -21266,11 +21355,13 @@
           "topicName": "AI 系统设计",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Mistral AI"
     },
     {
       "id": "moonshot",
       "name": "Moonshot AI（Kimi）",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "十道题围绕一条主线——超长上下文：从 8K 到几十万 token 时四条限制的增长速率、MLA 的 KV 压缩、K2 的 MoE 训练系统成本、位置编码扩展、prefill/decode 分离、多轮前缀缓存、1M 窗口与检索的分工，再到 attention logits 爆炸与 MuonClip、K1.5 的简单 RL、以及 agentic 模型的评估方法。",
       "updated": "2026-09-28",
@@ -21819,11 +21910,13 @@
           "topicName": "评估与可观测性",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Moonshot AI（Kimi）"
     },
     {
       "id": "nvidia",
       "name": "NVIDIA",
+      "readmeName": "",
       "group": "大型科技公司的 AI 组织",
       "summary": "十三道题全部落在\"GPU 上的算术\"这一个主题上——三道编程（慢 10 倍的 CUDA kernel、paged KV cache 的 block manager、FP16 转换后输出不对）、四道机器学习基础（树模型过拟合、Adam 优化器、巴哥犬与比特犬的混淆与错标、无标注时的聚类评估）、三道推理与服务（单卡 80GB 服务 70B、TensorRT 做了什么、405B 稠密模型的并行策略）、一道系统设计（播客搜索与即输即搜）、一道落地场景（客户 8 卡的\"又慢又贵\"），以及一道行为题（优先级冲突与干系人反馈）。",
       "updated": "2026-09-28",
@@ -22456,11 +22549,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "NVIDIA"
     },
     {
       "id": "openai",
       "name": "OpenAI",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "三十一道题横跨\"造模型\"与\"交付产品\"两端——六道编码（事务内存 KV、ORM、Go 爬虫、按 mockup 实现 UI、重构糟糕代码、斐波那契）、六道数学与模型原理（传染病模拟、KL 散度、准确率 1 时的损失界、交叉熵与困惑度、self-attention 与长上下文、上下文窗口的影响）、五道系统设计（企业搜索、ChatGPT 规模服务栈、webhook、任务调度、内存数据库/Slack）、四道工程可靠性（两个模型怎么选、生产级 agent 循环、客户说变差了、客户说变慢了）、两道安全（消费级 GenAI 安全、代表用户执行操作的防护），以及八道产品与行为题（理赔现场前两周、API 经验与 C-suite 沟通、最喜欢的产品、犯过的错误、与别人的冲突、优先级分歧、最引以为豪的项目）。",
       "updated": "2026-09-28",
@@ -24143,11 +24238,13 @@
           "topicName": "行为与文化",
           "topicOrder": 5
         }
-      ]
+      ],
+      "readmeSection": "OpenAI"
     },
     {
       "id": "palantir",
       "name": "Palantir",
+      "readmeName": "",
       "group": "前置部署与企业级 AI",
       "summary": "二十道题围绕\"在客户的真实系统里把数据用起来\"——七道编程（形状类扩展、SQL join 与聚合、REST 分页、HashMap 重复计数、感染传播仿真、800 行 pipeline、三源客户去重）、一道 RAG（为什么朴素 RAG 答不出计数）、两道 agent（ontology 是什么、在 ERP 里安全写入）、两道平台架构（多供应商模型选择、LLM 工作流的上线前后评估）、六道前置部署场景（机车预测性维护、NYC 交通、员工记录同步、共享数据不暴露原始数据、物种编目、客户要取消试点），以及两道行为与价值观题（为什么选 Palantir 与客户异议、与国防情报机构合作）。",
       "updated": "2026-09-28",
@@ -25115,11 +25212,13 @@
           "topicName": "行为与文化",
           "topicOrder": 2
         }
-      ]
+      ],
+      "readmeSection": "Palantir"
     },
     {
       "id": "perplexity",
       "name": "Perplexity",
+      "readmeName": "",
       "group": "AI 基础设施与平台公司",
       "summary": "十五道题全部围绕\"答案引擎\"这一个产品形态——四道编程（跨提供商连接池、近似重复检测、embedding 批处理器、beam search）、一道推理服务（TTFT 从 1.2s 恶化到 3s 的排查）、两道检索（reranker 架构选择、50 选 10 的取舍与验证）、五道系统设计（答案引擎的 3 秒预算、千亿网页的检索流水线、多路融合排序、Comet 混合浏览器、突发新闻）、一道评估（持续大规模评估答案质量）、一道安全（引用校验系统），以及一道产品判断的行为题。",
       "updated": "2026-09-28",
@@ -25847,11 +25946,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Perplexity"
     },
     {
       "id": "sarvam-ai",
       "name": "Sarvam AI",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "十二道题全部落在\"低资源语言 + 非数据中心硬件\"这一个前提上——一道编程（衡量 tokenizer 的 fertility）、一道 LLM 内部（为什么 tokenization 是第一道瓶颈）、一道推理服务（没有数据中心 GPU 时的效率工具箱）、一道 RAG（跨语言检索）、两道微调（混合 think 模式与 RLVR、只有几千句时的低资源适配）、一道系统设计（250 ms 的实时语音求助热线）、一道评估（如何正确评估 Indic LLM）、三道语音（从零实现 VAD、Whisper 与 code-mixed ASR、TTS 的文本归一化与韵律），以及一道落地场景（州政府福利服务的本地部署）。",
       "updated": "2026-09-28",
@@ -26436,11 +26537,13 @@
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Sarvam AI"
     },
     {
       "id": "scale-ai",
       "name": "Scale AI",
+      "readmeName": "",
       "group": "AI 基础设施与平台公司",
       "summary": "十二道题全部落在\"数据与评测的可信度\"这一个主题上——两道编程（标注平台的任务生命周期、并发标注者的峰值与区间）、两道微调（SFT/RLHF/DPO/RLVR 的对比、网页旅行 App 的 RL 环境）、两道系统设计（每周 10 万条偏好数据流水线、私有基准与排行榜）、三道评估（主观偏好下如何衡量标注质量、agent 的 tool use 基准、eval 下降 6 分的排查）、一道安全（标注者用 ChatGPT 代做），以及两道落地场景（VPC 内的文档问答、机器人演示数据采集）。",
       "updated": "2026-09-28",
@@ -27025,11 +27128,13 @@
           "topicName": "应用与前置部署场景",
           "topicOrder": 2
         }
-      ]
+      ],
+      "readmeSection": "Scale AI"
     },
     {
       "id": "sierra",
       "name": "Sierra",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十二道题全部落在\"agent 会真的动客户的账户\"这一个前提上——一道编程（调试一个\"确认了从未下单的订单\"的 agent）、一道 RAG（过期且相互矛盾的知识库）、三道 agent（航空公司的取消改签与票价政策、prompting 与代码的界线、人工转接路径）、三道评估（发布前如何评估对话式 agent、92% 通过率为什么误导、模型升级后转人工率翻倍）、一道安全（提示注入的纵深防御）、一道多模态（聊天迁到电话渠道），以及两道行为题（两小时 build session、端到端负责客户问题的经历）。",
       "updated": "2026-09-28",
@@ -27614,11 +27719,13 @@
           "topicName": "行为与文化",
           "topicOrder": 2
         }
-      ]
+      ],
+      "readmeSection": "Sierra"
     },
     {
       "id": "tesla",
       "name": "Tesla",
+      "readmeName": "",
       "group": "大型科技公司的 AI 组织",
       "summary": "十一题落在一个前提上——\"没有 lidar、算力与内存固定、数据来自自己的车队\"——两道编程（NMS 的实现与向量化、高频传感器数据的环形缓冲区）、四道机器学习基础（无 lidar 的多摄像头 3D 检测、稀有事件的极端类别不平衡、车队数据的自动标注与质量控制、检测并处理分布偏移）、一道推理服务（固定算力下的量化与剪枝不损小目标 recall）、一道系统设计（数据引擎）、一道评估（如何比较两个版本更安全）、一道多模态（摄像头/雷达/IMU 的融合），以及一道行为题（交付过的最难的东西）。",
       "updated": "2026-09-28",
@@ -28155,11 +28262,13 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Tesla"
     },
     {
       "id": "together",
       "name": "Together AI",
+      "readmeName": "",
       "group": "AI 基础设施与平台公司",
       "summary": "七道题覆盖 Together AI 这类推理平台公司的核心问题：两道流式与调度实现（流式 handler 的断连取消、continuous batching 调度器）、两道推理经济学（投机解码的收益边界、专用 endpoint 定价）、一道分布式训练排查（64 节点 55% 扩展效率）、一道平台设计（共享 GPU 池上服务 100+ 模型的 serverless 平台）、一道客户交付（从闭源 API 迁移到开源模型）。",
       "updated": "2026-09-28",
@@ -28536,11 +28645,13 @@
           "topicName": "应用与前置部署场景",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Together AI"
     },
     {
       "id": "waymo",
       "name": "Waymo",
+      "readmeName": "",
       "group": "AI 原生产品公司",
       "summary": "十二道题全部围绕\"如何把一个统计上极难验证的系统论证到可接受\"展开——一道编程（NumPy 无循环计算变长真值的 minADE/minFDE）、三道机器学习基础（模块化还是端到端、行为预测的输出表示与指标、VLM 在自驾栈的位置）、一道推理服务（车载算力与延迟预算）、三道系统设计（数亿英里里找罕见场景、全车队档案的相似片段检索、新城市的 safety case）、三道评估（如何真正衡量安全性、如何构建可信的仿真器、发布前的场景簇回归），以及一道多模态（为什么同时搭载三种传感器）。",
       "updated": "2026-09-28",
@@ -29125,11 +29236,13 @@
           "topicName": "多模态、语音与声音 AI",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "Waymo"
     },
     {
       "id": "xai",
       "name": "xAI",
+      "readmeName": "",
       "group": "前沿 AI 实验室",
       "summary": "十道题横跨编码、训练工程、服务与系统设计——两道硬编码题（带嵌套事务的 KV 存储、不用生成器的惰性展平迭代器）、一道\"没有规格说明的桩方法\"的流程题、KV cache 与限流器的服务设计、数万卡 goodput 与 loss 尖峰排查的训练工程、流式去重的数据工程、社媒实时搜索的系统设计，以及一道\"四小时做演示\"的行为题。",
       "updated": "2026-09-28",
@@ -29660,18 +29773,20 @@
           "topicName": "行为与文化",
           "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "xAI"
     },
     {
       "id": "zhipu",
       "name": "智谱",
-      "group": "",
+      "readmeName": "智谱 AI（GLM）",
+      "group": "前沿 AI 实验室",
       "summary": "十一题横跨\"架构—后训练—agent—评测\"四层——五道 LLM 内部原理（空白填充目标、MoE 经济账、top-k 路由实现、MTP、中英双语取舍）、三道后训练（混合推理、分离式异步 agentic RL、先训专家再自蒸馏）、两道 agent（GUI agent 设计、端到端 AutoGLM），以及一道评测（agentic 编程模型怎么评才不自欺）。",
       "updated": "2026-09-28",
       "dir": "zhipu",
       "overviewFile": "公司题库/zhipu/README.md",
       "overviewTitle": "智谱面试题库",
-      "declaredTotal": null,
+      "declaredTotal": 11,
       "questions": [
         {
           "id": "zhipu-01",
@@ -29717,7 +29832,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4936
+          "chars": 4936,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 1
         },
         {
           "id": "zhipu-02",
@@ -29763,7 +29880,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5189
+          "chars": 5189,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 2
         },
         {
           "id": "zhipu-03",
@@ -29809,7 +29928,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5186
+          "chars": 5186,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 3
         },
         {
           "id": "zhipu-04",
@@ -29855,7 +29976,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4967
+          "chars": 4967,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 4
         },
         {
           "id": "zhipu-05",
@@ -29901,7 +30024,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4800
+          "chars": 4800,
+          "topicName": "LLM 内部原理与架构",
+          "topicOrder": 5
         },
         {
           "id": "zhipu-06",
@@ -29947,7 +30072,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5037
+          "chars": 5037,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "zhipu-07",
@@ -29993,7 +30120,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4861
+          "chars": 4861,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 1
         },
         {
           "id": "zhipu-08",
@@ -30039,7 +30168,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5014
+          "chars": 5014,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 2
         },
         {
           "id": "zhipu-09",
@@ -30085,7 +30216,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4800
+          "chars": 4800,
+          "topicName": "微调、后训练与对齐",
+          "topicOrder": 3
         },
         {
           "id": "zhipu-10",
@@ -30131,7 +30264,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4584
+          "chars": 4584,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "zhipu-11",
@@ -30177,9 +30312,12 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 5210
+          "chars": 5210,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         }
-      ]
+      ],
+      "readmeSection": "智谱 AI（GLM）"
     }
   ]
 }
