@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T05:21:28.529Z",
+  "generated": "2026-09-30T05:32:45.378Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 474,
+    "companyQuestions": 477,
     "companies": 35,
     "planned": 598
   },
@@ -7490,6 +7490,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5354
+        },
+        {
+          "id": "amazon-19",
+          "order": 19,
+          "title": "你会如何设计一个向用户推荐书籍的推荐系统？你会如何为仓库库存问题建模？",
+          "titleEn": "How would you design a book recommendation system? And how would you model a warehouse inventory problem?",
+          "file": "公司题库/amazon/19-推荐系统与库存建模.md",
+          "level": "高阶",
+          "tags": [
+            "三段漏斗",
+            "NDCG 位置折扣",
+            "反馈回路",
+            "报童模型",
+            "临界分位数"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "amazon-08",
+            "amazon-11",
+            "amazon-16",
+            "system-design-03",
+            "system-design-06"
+          ],
+          "sources": [
+            {
+              "title": "Amazon.com Recommendations: Item-to-Item Collaborative Filtering（原始论文）",
+              "url": "https://ieeexplore.ieee.org/document/1167344",
+              "author": "Linden, Smith & York (Amazon)",
+              "published": "2003-01-01"
+            },
+            {
+              "title": "The Use of Ranks in a Test of Significance for Comparing Two Treatments（原始论文）",
+              "url": "https://www.jstor.org/stable/3001968",
+              "author": "Friedman",
+              "published": "1937-01-01"
+            },
+            {
+              "title": "Foundations of Inventory Management（延伸）",
+              "url": "https://www.mheducation.com/highered/product/foundations-inventory-management-zipkin.html",
+              "author": "Zipkin (Duke)",
+              "published": "2000-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5360
+        },
+        {
+          "id": "amazon-20",
+          "order": 20,
+          "title": "你如何判断一个由 LLM 驱动的助手已经可以面向数百万客户上线了？",
+          "titleEn": "How would you decide that an LLM-powered assistant is ready to launch to millions of customers?",
+          "file": "公司题库/amazon/20-LLM-助手的上线判据.md",
+          "level": "高阶",
+          "tags": [
+            "六道门",
+            "尾部放大",
+            "灰度暴露量",
+            "检测样本量",
+            "单位经济"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "amazon-11",
+            "amazon-13",
+            "amazon-16",
+            "evaluation-01",
+            "evaluation-06"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "The Tail at Scale（原始论文）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5108
+        },
+        {
+          "id": "amazon-21",
+          "order": 21,
+          "title": "讲一次你与团队的技术方向意见相左的经历。你当时是怎么做的？（Have Backbone; Disagree and Commit）",
+          "titleEn": "Tell me about a time you disagreed with your team's technical direction. What did you do? (Have Backbone; Disagree and Commit)",
+          "file": "公司题库/amazon/21-与团队意见相左的经历.md",
+          "level": "进阶",
+          "tags": [
+            "领导力准则",
+            "升级阶梯",
+            "commit 的证据",
+            "自检资格线",
+            "自评表"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "amazon-13",
+            "amazon-20",
+            "amazon-22",
+            "behavioral-01",
+            "behavioral-04"
+          ],
+          "sources": [
+            {
+              "title": "Amazon Leadership Principles（延伸）",
+              "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles",
+              "author": "Amazon",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/724352/high-output-management-by-andrew-s-grove/",
+              "author": "Grove (Intel)",
+              "published": "1983-01-01"
+            },
+            {
+              "title": "Crucial Conversations: Tools for Talking When Stakes Are High（延伸）",
+              "url": "https://www.mhprofessional.com/crucial-conversations-tools-for-talking-when-stakes-are-high-third-edition-9781260474183-us",
+              "author": "Patterson et al.",
+              "published": "2021-10-26"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4739
         }
       ]
     },
