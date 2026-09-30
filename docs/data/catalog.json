@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T20:02:07.236Z",
+  "generated": "2026-09-30T20:07:18.241Z",
   "stats": {
     "topics": 10,
     "questions": 119,
@@ -21676,7 +21676,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 6148,
+          "chars": 6433,
           "topicName": "RAG 与检索",
           "topicOrder": 1
         },
@@ -21730,7 +21730,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 7139,
+          "chars": 7878,
           "topicName": "微调、后训练与对齐",
           "topicOrder": 1
         },
