@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T05:32:45.378Z",
+  "generated": "2026-09-30T05:36:09.594Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 477,
+    "companyQuestions": 479,
     "companies": 35,
     "planned": 598
   },
@@ -6652,14 +6652,14 @@
       ]
     },
     {
-      "id": "company-amazon",
-      "name": "amazon",
+      "id": "amazon",
+      "name": "Amazon",
       "group": "",
-      "summary": "",
-      "updated": null,
+      "summary": "二十三题横跨\"编程—机器学习基础—LLM 原理—推理成本—Agent—系统设计—评估—行为\"八层，是本题库里题量最大的一家；其中十四道 ML 基础题覆盖了从闭式解到报童模型的完整链条，而三道系统题（削减推理成本、浏览器 agent、多租户平台）共享同一套\"先定位瓶颈再优化\"的方法。",
+      "updated": "2026-09-28",
       "dir": "amazon",
-      "overviewFile": null,
-      "overviewTitle": "amazon",
+      "overviewFile": "公司题库/amazon/README.md",
+      "overviewTitle": "Amazon 面试题库",
       "declaredTotal": null,
       "questions": [
         {
@@ -7628,6 +7628,98 @@
           ],
           "updated": "2026-09-28",
           "chars": 4739
+        },
+        {
+          "id": "amazon-22",
+          "order": 22,
+          "title": "讲讲你最大的一次失败。发生了什么？之后你做了哪些改变？",
+          "titleEn": "Tell me about your biggest failure. What happened, and what did you change afterwards?",
+          "file": "公司题库/amazon/22-最大的一次失败.md",
+          "level": "进阶",
+          "tags": [
+            "Ownership",
+            "归因类型",
+            "系统改变四层",
+            "复盘结构",
+            "自评表"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "amazon-21",
+            "amazon-23",
+            "behavioral-01",
+            "behavioral-02",
+            "behavioral-05"
+          ],
+          "sources": [
+            {
+              "title": "Amazon Leadership Principles（延伸）",
+              "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles",
+              "author": "Amazon",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Site Reliability Engineering: Postmortem Culture（延伸）",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "author": "Google SRE",
+              "published": "2016-04-01"
+            },
+            {
+              "title": "Black Box Thinking（延伸）",
+              "url": "https://www.penguinrandomhouse.com/books/316586/black-box-thinking-by-matthew-syed/",
+              "author": "Syed",
+              "published": "2015-09-08"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4870
+        },
+        {
+          "id": "amazon-23",
+          "order": 23,
+          "title": "请讲一次你发现有机会去做超出最初范围的事情的经历。（Think Big）",
+          "titleEn": "Tell me about a time you spotted an opportunity to go beyond what was originally scoped. (Think Big)",
+          "file": "公司题库/amazon/23-超出最初范围的机会.md",
+          "level": "进阶",
+          "tags": [
+            "机会识别",
+            "去风险",
+            "说服",
+            "范围蔓延",
+            "自评表"
+          ],
+          "topic": "behavioral",
+          "askedAt": [],
+          "related": [
+            "amazon-21",
+            "amazon-22",
+            "behavioral-01",
+            "behavioral-03",
+            "behavioral-06"
+          ],
+          "sources": [
+            {
+              "title": "Amazon Leadership Principles（延伸）",
+              "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles",
+              "author": "Amazon",
+              "published": "2024-01-01"
+            },
+            {
+              "title": "Working Backwards: Insights, Stories, and Secrets from Inside Amazon（延伸）",
+              "url": "https://www.stmartins.com/books/working-backwards",
+              "author": "Bryar & Carr",
+              "published": "2021-02-09"
+            },
+            {
+              "title": "The Mom Test（延伸）",
+              "url": "https://www.momtestbook.com/",
+              "author": "Fitzpatrick",
+              "published": "2013-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4627
         }
       ]
     },
