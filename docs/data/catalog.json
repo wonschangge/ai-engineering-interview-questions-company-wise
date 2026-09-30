@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T01:01:00.672Z",
+  "generated": "2026-09-30T01:04:42.248Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 448,
+    "companyQuestions": 451,
     "companies": 34,
     "planned": 598
   },
@@ -28738,6 +28738,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5186
+        },
+        {
+          "id": "zhipu-04",
+          "order": 4,
+          "title": "什么是 Multi-Token Prediction (MTP)？为什么要增加一个 MTP 层，它在推理时有什么帮助？",
+          "titleEn": "What is Multi-Token Prediction (MTP)? Why add an MTP layer, and how does it help at inference?",
+          "file": "公司题库/zhipu/04-Multi-Token-Prediction.md",
+          "level": "高阶",
+          "tags": [
+            "MTP",
+            "投机解码",
+            "接受率",
+            "训练成本",
+            "草稿长度"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "zhipu-02",
+            "zhipu-03",
+            "inference-03",
+            "inference-05",
+            "llm-04"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-V3 Technical Report（原始论文）",
+              "url": "https://arxiv.org/abs/2412.19437",
+              "author": "DeepSeek-AI",
+              "published": "2024-12-27"
+            },
+            {
+              "title": "Fast Inference from Transformers via Speculative Decoding（原始论文）",
+              "url": "https://arxiv.org/abs/2211.17192",
+              "author": "Leviathan, Kalman & Matias (Google)",
+              "published": "2022-11-01"
+            },
+            {
+              "title": "Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads（原始论文）",
+              "url": "https://arxiv.org/abs/2401.10774",
+              "author": "Cai et al. (Princeton)",
+              "published": "2024-01-19"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4967
+        },
+        {
+          "id": "zhipu-05",
+          "order": 5,
+          "title": "GLM 从 GLM-130B 起就是中英双语模型。当一个模型必须同时服务好两种语言时，分词、数据和评估会发生哪些变化？",
+          "titleEn": "GLM has been bilingual since GLM-130B. When a model must serve two languages well, what changes in tokenization, data and evaluation?",
+          "file": "公司题库/zhipu/05-中英双语模型的取舍.md",
+          "level": "高阶",
+          "tags": [
+            "生育率",
+            "词表预算",
+            "多语言诅咒",
+            "数据配比",
+            "帕累托前沿"
+          ],
+          "topic": "llm-internals",
+          "askedAt": [],
+          "related": [
+            "zhipu-01",
+            "zhipu-06",
+            "llm-01",
+            "llm-05",
+            "rag-03"
+          ],
+          "sources": [
+            {
+              "title": "XLM-R: Unsupervised Cross-lingual Representation Learning at Scale（原始论文）",
+              "url": "https://arxiv.org/abs/1911.02116",
+              "author": "Conneau et al. (Facebook AI)",
+              "published": "2019-11-05"
+            },
+            {
+              "title": "SentencePiece: A Simple and Language Independent Subword Tokenizer（原始论文）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo & Richardson (Google)",
+              "published": "2018-08-13"
+            },
+            {
+              "title": "Unsupervised Cross-lingual Representation Learning at Scale（延伸）",
+              "url": "https://arxiv.org/abs/1901.07291",
+              "author": "Lample & Conneau (Facebook AI)",
+              "published": "2019-01-21"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4800
+        },
+        {
+          "id": "zhipu-06",
+          "order": 6,
+          "title": "AutoGLM 和 CogAgent 通过截图在几十步的操作中操控真实 GUI。请设计这个 agent：感知、动作空间，以及面向 50 步任务的错误恢复。",
+          "titleEn": "AutoGLM and CogAgent operate real GUIs from screenshots over dozens of steps. Design the agent: perception, action space, and error recovery for 50-step tasks.",
+          "file": "公司题库/zhipu/06-GUI-agent-的设计.md",
+          "level": "高阶",
+          "tags": [
+            "GUI agent",
+            "Set-of-Marks",
+            "误差复利",
+            "卡住检测",
+            "恢复预算"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "zhipu-05",
+            "zhipu-07",
+            "zhipu-10",
+            "zhipu-11",
+            "agents-01"
+          ],
+          "sources": [
+            {
+              "title": "Set-of-Mark Prompting Unleashes Extraordinary Visual Grounding in GPT-4V（原始论文）",
+              "url": "https://arxiv.org/abs/2310.11441",
+              "author": "Yang et al. (Microsoft)",
+              "published": "2023-10-17"
+            },
+            {
+              "title": "CogAgent: A Visual Language Model for GUI Agents（原始论文）",
+              "url": "https://arxiv.org/abs/2312.08914",
+              "author": "Hong et al. (Tsinghua & Zhipu)",
+              "published": "2023-12-14"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（原始论文）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (Princeton)",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5037
         }
       ]
     }
