@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-30T00:09:38.298Z",
+  "generated": "2026-09-30T00:16:11.111Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 424,
-    "companies": 31,
+    "companyQuestions": 427,
+    "companies": 32,
     "planned": 598
   },
   "topics": [
@@ -5572,6 +5572,157 @@
     }
   ],
   "companies": [
+    {
+      "id": "company-abridge",
+      "name": "abridge",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "abridge",
+      "overviewFile": null,
+      "overviewTitle": "abridge",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "abridge-01",
+          "order": 1,
+          "title": "把对话转成可计费的诊断编码。准确率门槛是多少，你如何按这个门槛构建？",
+          "titleEn": "Turn a conversation into billable diagnosis codes. What is the accuracy threshold, and how do you build to it?",
+          "file": "公司题库/abridge/01-可计费编码的准确率门槛.md",
+          "level": "高阶",
+          "tags": [
+            "编码门槛",
+            "高编风险",
+            "期望值",
+            "E/M 等级",
+            "证据优先"
+          ],
+          "topic": "applied",
+          "askedAt": [],
+          "related": [
+            "abridge-02",
+            "abridge-06",
+            "abridge-08",
+            "applied-01",
+            "safety-01"
+          ],
+          "sources": [
+            {
+              "title": "Trustworthy Online Controlled Experiments（延伸）",
+              "url": "https://experimentguide.com/",
+              "author": "Kohavi, Tang & Xu",
+              "published": "2020-04-01"
+            },
+            {
+              "title": "Confident Learning: Estimating Uncertainty in Dataset Labels（延伸）",
+              "url": "https://arxiv.org/abs/1911.00068",
+              "author": "Northcutt, Jiang & Chuang (MIT)",
+              "published": "2019-11-01"
+            },
+            {
+              "title": "High Output Management（延伸）",
+              "url": "https://www.amazon.com/dp/0679762884",
+              "author": "Andrew S. Grove",
+              "published": "1983-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4681
+        },
+        {
+          "id": "abridge-02",
+          "order": 2,
+          "title": "病历记录要在医生离开诊室之前就绪。给我做出延迟预算，并告诉我钱花在哪里。",
+          "titleEn": "The note has to be ready before the doctor leaves the room. Give me the latency budget, and tell me where the money goes.",
+          "file": "公司题库/abridge/02-病历记录的延迟预算.md",
+          "level": "高阶",
+          "tags": [
+            "延迟预算",
+            "增量生成",
+            "前缀缓存",
+            "成本结构",
+            "尾延迟"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "abridge-01",
+            "abridge-03",
+            "abridge-09",
+            "apple-04",
+            "inference-02"
+          ],
+          "sources": [
+            {
+              "title": "SGLang: Efficient Execution of Structured Language Model Programs（延伸）",
+              "url": "https://arxiv.org/abs/2312.07104",
+              "author": "Zheng et al. (Stanford)",
+              "published": "2023-12-12"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "Whisper: Robust Speech Recognition via Large-Scale Weak Supervision（延伸）",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2022-12-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4653
+        },
+        {
+          "id": "abridge-03",
+          "order": 3,
+          "title": "患者的病历（chart）里已经列出了用药。你会如何利用它来改进药名转写，又如何避免它适得其反？",
+          "titleEn": "The patient’s chart already lists their medications. How would you use that to improve drug-name transcription, and how would you keep it from backfiring?",
+          "file": "公司题库/abridge/03-用-chart-改进药名转写.md",
+          "level": "高阶",
+          "tags": [
+            "上下文偏置",
+            "过期 chart",
+            "相似药名",
+            "新药压制",
+            "声学优先"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "abridge-02",
+            "abridge-04",
+            "abridge-08",
+            "abridge-11",
+            "rag-01"
+          ],
+          "sources": [
+            {
+              "title": "Contextual Biasing for Speech Recognition（延伸）",
+              "url": "https://arxiv.org/abs/2305.12441",
+              "author": "Zhang et al.",
+              "published": "2023-05-21"
+            },
+            {
+              "title": "Whisper: Robust Speech Recognition via Large-Scale Weak Supervision（延伸）",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2022-12-06"
+            },
+            {
+              "title": "SentencePiece: A Simple and Language Independent Subword Tokenizer（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo & Richardson (Google)",
+              "published": "2018-08-13"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4619
+        }
+      ]
+    },
     {
       "id": "alibaba",
       "name": "阿里巴巴（Qwen）",
