@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T00:21:39.670Z",
+  "generated": "2026-09-30T00:27:23.267Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 433,
+    "companyQuestions": 435,
     "companies": 32,
     "planned": 598
   },
@@ -5573,15 +5573,15 @@
   ],
   "companies": [
     {
-      "id": "company-abridge",
-      "name": "abridge",
-      "group": "",
-      "summary": "",
-      "updated": null,
+      "id": "abridge",
+      "name": "Abridge",
+      "group": "AI 原生产品公司",
+      "summary": "十一题共享一个约束——\"输出会被医生签署，而签署意味着法律责任\"——一道编码（对话到可计费诊断码的准确率门槛）、一道推理服务（病历记录的延迟预算）、一道检索（用病历里的用药改进药名转写）、一道 agent（医嘱草稿的 EHR tool calls）、一道系统设计（写回 Epic）、两道评估（病历质量怎么评、编辑率掩盖了什么）、三道安全（未提及药物的检测、span 级溯源、PHI 与第三方 API），以及一道多模态（诊室音频的 ASR）。",
+      "updated": "2026-09-28",
       "dir": "abridge",
-      "overviewFile": null,
-      "overviewTitle": "abridge",
-      "declaredTotal": null,
+      "overviewFile": "公司题库/abridge/README.md",
+      "overviewTitle": "Abridge 面试题库",
+      "declaredTotal": 11,
       "questions": [
         {
           "id": "abridge-01",
@@ -5627,7 +5627,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4681
+          "chars": 4681,
+          "topicName": "机器学习与深度学习基础",
+          "topicOrder": 1
         },
         {
           "id": "abridge-02",
@@ -5673,7 +5675,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4653
+          "chars": 4653,
+          "topicName": "推理、服务与 GPU 性能",
+          "topicOrder": 1
         },
         {
           "id": "abridge-03",
@@ -5719,7 +5723,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4619
+          "chars": 4619,
+          "topicName": "RAG 与检索",
+          "topicOrder": 1
         },
         {
           "id": "abridge-04",
@@ -5765,7 +5771,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4310
+          "chars": 4310,
+          "topicName": "Agent 与工具调用",
+          "topicOrder": 1
         },
         {
           "id": "abridge-05",
@@ -5811,7 +5819,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4545
+          "chars": 4545,
+          "topicName": "AI 系统设计",
+          "topicOrder": 1
         },
         {
           "id": "abridge-06",
@@ -5857,7 +5867,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4791
+          "chars": 4791,
+          "topicName": "评估与可观测性",
+          "topicOrder": 1
         },
         {
           "id": "abridge-07",
@@ -5903,7 +5915,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4649
+          "chars": 4649,
+          "topicName": "评估与可观测性",
+          "topicOrder": 2
         },
         {
           "id": "abridge-08",
@@ -5949,7 +5963,9 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4675
+          "chars": 4675,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 1
         },
         {
           "id": "abridge-09",
@@ -5995,7 +6011,105 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4768
+          "chars": 4768,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 2
+        },
+        {
+          "id": "abridge-10",
+          "order": 10,
+          "title": "你接触的每一个音频文件、转写文本和病历记录里都有 PHI。这会如何塑造架构，什么内容可以发给第三方模型 API？",
+          "titleEn": "Every audio file, transcript and note you touch contains PHI. How does that shape the architecture, and what can be sent to a third-party model API?",
+          "file": "公司题库/abridge/10-PHI-与第三方-API-的约束.md",
+          "level": "高阶",
+          "tags": [
+            "PHI",
+            "BAA",
+            "去标识化",
+            "最小必要",
+            "数据驻留"
+          ],
+          "topic": "safety",
+          "askedAt": [],
+          "related": [
+            "abridge-02",
+            "abridge-08",
+            "abridge-11",
+            "harvey-09",
+            "safety-03"
+          ],
+          "sources": [
+            {
+              "title": "HIPAA Privacy Rule: De-identification of Protected Health Information（延伸）",
+              "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/",
+              "author": "U.S. Department of Health and Human Services",
+              "published": "2012-11-26"
+            },
+            {
+              "title": "OWASP Top 10 for Large Language Model Applications（延伸）",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "author": "OWASP",
+              "published": "2023-08-01"
+            },
+            {
+              "title": "Designing Data-Intensive Applications（延伸）",
+              "url": "https://dataintensive.net/",
+              "author": "Martin Kleppmann",
+              "published": "2017-03-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4852,
+          "topicName": "安全、安保与负责任 AI",
+          "topicOrder": 3
+        },
+        {
+          "id": "abridge-11",
+          "order": 11,
+          "title": "我们的音频来自诊室：两三个说话人、背景噪声、口音，以及满是药名的词汇表。你会如何为这种场景构建并改进 ASR？",
+          "titleEn": "Our audio comes from exam rooms: two or three speakers, background noise, accents, and a vocabulary full of drug names. How would you build and improve ASR for that?",
+          "file": "公司题库/abridge/11-诊室音频的-ASR.md",
+          "level": "高阶",
+          "tags": [
+            "远场 ASR",
+            "角色错配",
+            "加权错误率",
+            "两遍解码",
+            "切片评测"
+          ],
+          "topic": "multimodal",
+          "askedAt": [],
+          "related": [
+            "abridge-02",
+            "abridge-03",
+            "abridge-08",
+            "abridge-10",
+            "multimodal-02"
+          ],
+          "sources": [
+            {
+              "title": "Whisper: Robust Speech Recognition via Large-Scale Weak Supervision（延伸）",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "author": "Radford et al. (OpenAI)",
+              "published": "2022-12-06"
+            },
+            {
+              "title": "Contextual Biasing for Speech Recognition（延伸）",
+              "url": "https://arxiv.org/abs/2305.12441",
+              "author": "Zhang et al.",
+              "published": "2023-05-21"
+            },
+            {
+              "title": "Conformer: Convolution-augmented Transformer for Speech Recognition（延伸）",
+              "url": "https://arxiv.org/abs/2005.08100",
+              "author": "Gulati et al. (Google)",
+              "published": "2020-05-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4742,
+          "topicName": "多模态、语音与声音 AI",
+          "topicOrder": 1
         }
       ]
     },
