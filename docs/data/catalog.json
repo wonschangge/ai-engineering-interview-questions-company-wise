@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T19:38:24.240Z",
+  "generated": "2026-09-30T19:39:16.335Z",
   "stats": {
     "topics": 10,
     "questions": 119,
@@ -18842,7 +18842,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4783,
+          "chars": 5264,
           "topicName": "AI 系统设计",
           "topicOrder": 2
         },
@@ -18889,7 +18889,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4691,
+          "chars": 5083,
           "topicName": "行为与文化",
           "topicOrder": 1
         }
