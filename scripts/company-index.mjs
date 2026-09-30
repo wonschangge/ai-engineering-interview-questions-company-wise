@@ -144,6 +144,7 @@ const en = parseEnglishReadme(path.join(ROOT, 'README.md'));
 
 const out = [];
 let enMissing = 0;
+const badSlug = [];
 for (const c of outline.companies) {
   // SLUGS 与 EN_COMPANY 的键是 README.zh-CN.md 的小节标题原文（如「Amazon（AWS）」「智谱 AI（GLM）」），
   // 而 outline 的 name 已被规范成公司目录的 canonical name（「Amazon」「智谱」）。
@@ -151,6 +152,10 @@ for (const c of outline.companies) {
   // 34 道题被误报成「缺英文题面」。
   const sectionName = c.readmeName || c.name;
   const slug = SLUGS[sectionName] || sectionName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  // 纯中文小节名一旦不在 SLUGS 里，slug 会退化成空串，于是写出 scripts/batches/company-.json
+  // 这种没有公司标识的垃圾文件——它在 3aee70a 被删掉过一次，又在 a334b34 长了回来。
+  // 这里直接拒绝并让 CI 失败，而不是默默产出一个空名文件。
+  if (!slug) { badSlug.push(sectionName); continue; }
   const enName = EN_COMPANY[sectionName] || sectionName;
   const ce = en.find((x) => x.name === enName) || null;
   // 英文按「小节名（译回中文）+ 题序」建立索引
@@ -213,3 +218,7 @@ console.log(`已写入 ${path.relative(ROOT, OUT_DIR)}/company-*.json`);
 // 中英题面缺配应当让 CI 失败：以前这里写的是 process.exitCode = 0（等于什么都没做），
 // 于是「缺英文题面」永远不会阻断任何流程。
 if (enMissing) process.exitCode = 1;
+if (badSlug.length) {
+  console.error(`✗ ${badSlug.length} 家公司算不出 slug（${badSlug.join('、')}）：请把它们补进 SLUGS 映射，否则会写出 company-.json`);
+  process.exitCode = 1;
+}

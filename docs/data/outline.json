@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T10:05:15.988Z",
+  "generated": "2026-09-30T15:48:26.972Z",
   "stats": {
     "topics": 10,
     "topicQuestions": 119,
@@ -1939,7 +1939,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Anthropic"
+      "readmeName": "Anthropic",
+      "id": "anthropic"
     },
     {
       "name": "OpenAI",
@@ -2220,7 +2221,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "OpenAI"
+      "readmeName": "OpenAI",
+      "id": "openai"
     },
     {
       "name": "Google DeepMind 与 Google AI",
@@ -2414,7 +2416,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Google DeepMind 与 Google AI"
+      "readmeName": "Google DeepMind 与 Google AI",
+      "id": "google-deepmind"
     },
     {
       "name": "Meta（超级智能实验室、FAIR、Llama）",
@@ -2670,7 +2673,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Meta（超级智能实验室、FAIR、Llama）"
+      "readmeName": "Meta（超级智能实验室、FAIR、Llama）",
+      "id": "meta"
     },
     {
       "name": "xAI",
@@ -2772,7 +2776,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "xAI"
+      "readmeName": "xAI",
+      "id": "xai"
     },
     {
       "name": "Mistral AI",
@@ -2896,7 +2901,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Mistral AI"
+      "readmeName": "Mistral AI",
+      "id": "mistral"
     },
     {
       "name": "Cohere",
@@ -3014,7 +3020,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Cohere"
+      "readmeName": "Cohere",
+      "id": "cohere"
     },
     {
       "name": "DeepSeek",
@@ -3131,7 +3138,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "DeepSeek"
+      "readmeName": "DeepSeek",
+      "id": "deepseek"
     },
     {
       "name": "Moonshot AI（Kimi）",
@@ -3272,7 +3280,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Moonshot AI（Kimi）"
+      "readmeName": "Moonshot AI（Kimi）",
+      "id": "moonshot"
     },
     {
       "name": "智谱",
@@ -3419,7 +3428,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "智谱 AI（GLM）"
+      "readmeName": "智谱 AI（GLM）",
+      "id": "zhipu"
     },
     {
       "name": "阿里巴巴（Qwen）",
@@ -3557,7 +3567,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "阿里巴巴（Qwen）"
+      "readmeName": "阿里巴巴（Qwen）",
+      "id": "alibaba"
     },
     {
       "name": "Sarvam AI",
@@ -3738,7 +3749,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Sarvam AI"
+      "readmeName": "Sarvam AI",
+      "id": "sarvam-ai"
     },
     {
       "name": "Microsoft",
@@ -3873,7 +3885,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Microsoft"
+      "readmeName": "Microsoft",
+      "id": "microsoft"
     },
     {
       "name": "Amazon",
@@ -4134,7 +4147,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Amazon（AWS）"
+      "readmeName": "Amazon（AWS）",
+      "id": "amazon"
     },
     {
       "name": "Apple",
@@ -4290,7 +4304,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Apple"
+      "readmeName": "Apple",
+      "id": "apple"
     },
     {
       "name": "NVIDIA",
@@ -4439,7 +4454,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "NVIDIA"
+      "readmeName": "NVIDIA",
+      "id": "nvidia"
     },
     {
       "name": "Tesla",
@@ -4553,7 +4569,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Tesla"
+      "readmeName": "Tesla",
+      "id": "tesla"
     },
     {
       "name": "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）",
@@ -4675,7 +4692,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）"
+      "readmeName": "面向消费者的规模化 ML 公司（Uber、Netflix、LinkedIn、Airbnb、Pinterest、Spotify）",
+      "id": "consumer-ml"
     },
     {
       "name": "Databricks",
@@ -4766,7 +4784,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Databricks"
+      "readmeName": "Databricks",
+      "id": "databricks"
     },
     {
       "name": "Groq",
@@ -4900,7 +4919,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Groq"
+      "readmeName": "Groq",
+      "id": "groq"
     },
     {
       "name": "Together AI",
@@ -5003,7 +5023,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Together AI"
+      "readmeName": "Together AI",
+      "id": "together"
     },
     {
       "name": "Hugging Face",
@@ -5120,7 +5141,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Hugging Face"
+      "readmeName": "Hugging Face",
+      "id": "huggingface"
     },
     {
       "name": "Scale AI",
@@ -5253,7 +5275,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Scale AI"
+      "readmeName": "Scale AI",
+      "id": "scale-ai"
     },
     {
       "name": "Perplexity",
@@ -5428,7 +5451,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Perplexity"
+      "readmeName": "Perplexity",
+      "id": "perplexity"
     },
     {
       "name": "Cursor（Anysphere）",
@@ -5615,7 +5639,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Cursor（Anysphere）"
+      "readmeName": "Cursor（Anysphere）",
+      "id": "cursor"
     },
     {
       "name": "Cognition（Devin、Windsurf）",
@@ -5726,7 +5751,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Cognition（Devin、Windsurf）"
+      "readmeName": "Cognition（Devin、Windsurf）",
+      "id": "cognition"
     },
     {
       "name": "Sierra",
@@ -5870,7 +5896,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Sierra"
+      "readmeName": "Sierra",
+      "id": "sierra"
     },
     {
       "name": "Harvey",
@@ -5994,7 +6021,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Harvey"
+      "readmeName": "Harvey",
+      "id": "harvey"
     },
     {
       "name": "Glean",
@@ -6112,7 +6140,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Glean"
+      "readmeName": "Glean",
+      "id": "glean"
     },
     {
       "name": "Character.AI",
@@ -6260,7 +6289,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Character.AI"
+      "readmeName": "Character.AI",
+      "id": "character-ai"
     },
     {
       "name": "ElevenLabs",
@@ -6346,7 +6376,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "ElevenLabs"
+      "readmeName": "ElevenLabs",
+      "id": "elevenlabs"
     },
     {
       "name": "Abridge",
@@ -6465,7 +6496,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Abridge"
+      "readmeName": "Abridge",
+      "id": "abridge"
     },
     {
       "name": "Figure AI",
@@ -6575,7 +6607,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Figure AI"
+      "readmeName": "Figure AI",
+      "id": "figure-ai"
     },
     {
       "name": "Waymo",
@@ -6685,7 +6718,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Waymo"
+      "readmeName": "Waymo",
+      "id": "waymo"
     },
     {
       "name": "Palantir",
@@ -6853,7 +6887,8 @@
         }
       ],
       "questions": [],
-      "readmeName": "Palantir"
+      "readmeName": "Palantir",
+      "id": "palantir"
     }
   ]
 }

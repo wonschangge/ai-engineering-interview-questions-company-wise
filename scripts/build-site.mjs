@@ -39,6 +39,7 @@ const TOPIC_SLUGS = {
 const REQUIRED_SECTIONS = ['一句话答案', '面试官在考什么', '原理与推导', '数值与代码验证', '常见追问'];
 const TRAILING_SECTIONS = ['相关题目', '参考资料与归属'];
 const LEVELS = ['入门', '进阶', '高阶'];
+const DOC_TYPES = ['question', 'topic', 'company'];
 const COMPANY_GROUPS = new Set(['前沿 AI 实验室', '大型科技公司的 AI 组织', 'AI 基础设施与平台公司', 'AI 原生产品公司', '前置部署与企业级 AI']);
 const SKIP_DIRS = new Set(['assets', 'data']);
 const COMPANY_ROOT = '公司题库';
@@ -137,7 +138,8 @@ const firstHeading = (md) => (stripFences(md).match(/^#{1,6}\s+(.+)$/m) || [, ''
 function validateQuestion(doc, file, seenIds) {
   const { data, body } = doc;
   const at = rel(file);
-  for (const field of ['id', 'topic', 'order', 'question', 'level', 'sources', 'related']) {
+  // asked_at 以前不在必备字段里：漏写它会静默当成「没有公司考过」，题目就从「公司变体」统计里消失。
+  for (const field of ['id', 'topic', 'order', 'question', 'level', 'sources', 'related', 'asked_at']) {
     // 同时覆盖 undefined 与 null：YAML 里写成 `question:` 的空键以前会解析成 []（truthy）
     // 而骗过检查，现在解析成 null，必须在这里被拦住。
     if (data[field] === undefined || data[field] === null) errors.push(`${at}: front matter 缺少字段 ${field}`);
@@ -149,6 +151,11 @@ function validateQuestion(doc, file, seenIds) {
   }
   if (data.order !== undefined && !Number.isInteger(Number(data.order))) errors.push(`${at}: order 必须是整数`);
   if (data.level && !LEVELS.includes(data.level)) errors.push(`${at}: level 必须是 ${LEVELS.join(' / ')} 之一（当前 ${data.level}）`);
+  // related 写成标量时 `for (const rid of data.related)` 会按字符遍历，
+  // 把 "llm-internals-01" 拆成一堆单字符 id 再报一堆莫名其妙的错。
+  if (data.related !== undefined && data.related !== null && !Array.isArray(data.related)) {
+    errors.push(`${at}: related 必须是行内列表（如 related: [a-01, b-02]），当前是 ${typeof data.related}`);
+  }
   if (!Array.isArray(data.sources) || data.sources.length === 0) errors.push(`${at}: sources 至少一条`);
   else data.sources.forEach((s, i) => {
     if (!s || typeof s !== 'object' || !s.url) errors.push(`${at}: sources[${i}] 缺少 url`);
@@ -174,8 +181,10 @@ function validateQuestion(doc, file, seenIds) {
   const prose = stripFences(body).replace(/`[^`\n]*`/g, '');
   const dollars = countMatches(prose, /(?<!\\)\$/g);   // 转义美元符号（\$47）不参与配对
   if (dollars % 2 !== 0) errors.push(`${at}: 正文 $ 数量为奇数（${dollars}），KaTeX 公式可能未闭合`);
-  const fences = countMatches(body, /^```/gm);
-  if (fences % 2 !== 0) errors.push(`${at}: 代码围栏数量为奇数（${fences}）`);
+  // 围栏配对必须与 stripFences 用同一套判定：原来这里只数行首的 ```，
+  // 于是 ~~~ 围栏与缩进围栏既不参与剥离也不参与配对，两边口径不一致。
+  const unclosed = unclosedFence(body);
+  if (unclosed) errors.push(`${at}: 代码围栏未闭合（最后一个 ${unclosed} 围栏没有配对的收尾）`);
 
   const words = toPlain(body).length;
   if (words < 800) warnings.push(`${at}: 正文只有 ${words} 字，可能过于简略（参考 150–300 行）`);
@@ -220,9 +229,23 @@ function stripFences(md) {
   return out.join('\n');
 }
 
+/** 与 stripFences 同一套围栏判定：返回未闭合的围栏字符（``` 或 ~），全部闭合时返回 null */
+function unclosedFence(md) {
+  let fence = null;
+  for (const line of md.split('\n')) {
+    const m = line.match(/^\s*(```+|~~~+)/);
+    if (!m) continue;
+    if (!fence) fence = m[1][0];
+    else if (m[1][0] === fence) fence = null;
+  }
+  return fence ? fence.repeat(3) : null;
+}
+
 /** 校验文档里的相对链接（站内 .md 与指向仓库其它文件）是否真实存在 */
 function checkLocalLinks(file, body) {
-  const text = stripFences(body);
+  // 先剥围栏再剥行内代码：正文里常拿 `[文字](路径.md)` 当反例讲链接写法，
+  // 那些是代码而不是真链接，不该参与存在性校验。
+  const text = stripFences(body).replace(/`[^`\n]*`/g, '');
   const baseDir = path.dirname(file);
   // 目标可以含空格（仓库里已有「LLM 内部原理….md」这类路径），
   // 但不能含换行；括号允许一层嵌套。旧正则的 [^()\s]+ 会让含空格的链接整条漏检。
@@ -250,6 +273,11 @@ const companyDocs = [];
 for (const file of mdFiles) {
   const doc = readDoc(file);
   const inCompanyRoot = path.relative(DOCS, file).split(path.sep)[0] === COMPANY_ROOT;
+  // type 以前没有枚举校验：写错一个字母（如 `type: questions`）会静默落进默认分支，
+  // 文档被当成另一种类型处理，而构建全绿。
+  if (doc.data.type !== undefined && doc.data.type !== null && !DOC_TYPES.includes(doc.data.type)) {
+    errors.push(`${rel(file)}: type 必须是 ${DOC_TYPES.join(' / ')} 之一（当前 ${doc.data.type}）`);
+  }
   const type = doc.data.type || (path.basename(file) === 'README.md' ? (inCompanyRoot ? 'company' : 'topic') : 'question');
   if (type === 'company') companyDocs.push({ file, ...doc, _kind: 'overview' });
   else if (type === 'topic') { validateTopic(doc, file); topics.push({ file, ...doc }); }
@@ -330,42 +358,14 @@ for (const topic of topicById.values()) {
 }
 const topicList = [...topicById.values()].sort((a, b) => a.order - b.order);
 const topicIds = new Set(topicList.map((t) => t.id));
-// 提前构建 outline：related 与正文双链的校验需要「全站题单」来判断一个 id 是
-// 「尚未撰写」还是「压根写错了」。
+// 提前构建 outline（公司绑定与 related 校验都要用它）。
+// 注意 plannedIds 不在这里算：公司题目的 id 前缀取自公司目录的 id（amazon-04），
+// 而 README 抽出来的小节此刻只有小节标题（Amazon）。早算会拼出大小写不符的「Amazon-04」，
+// 让真实存在的题解被误判成「指向不存在的题目」。它被挪到公司小节绑定之后。
 const outline = buildOutline();
-const plannedIds = outline
-  ? new Set([
-    ...outline.topics.flatMap((t) => t.questions.map((q) => `${t.id}-${String(q.order).padStart(2, '0')}`)),
-    ...outline.companies.flatMap((c) => [
-      ...c.questions.map((q) => `${c.id || c.name}-${String(q.order).padStart(2, '0')}`),
-      ...c.topics.flatMap((t) => t.questions.map((q) => `${c.id || c.name}-${String(q.order).padStart(2, '0')}`))
-    ])
-  ])
-  : null;
 for (const q of companyQuestions) {
   const slug = TOPIC_SLUGS[q.data.topic] || q.data.topic;
   if (q.data.topic && !topicIds.has(slug) && !COMPANY_SECTION_SLUGS.has(slug)) errors.push(`${rel(q.file)}: topic 字段（${q.data.topic}）不是已知专题或公司专属小节`);
-}
-const knownIds = new Set([...questions, ...companyQuestions].map((x) => x.data.id));
-for (const q of [...questions, ...companyQuestions]) {
-  for (const rid of q.data.related || []) {
-    if (topicIds.has(rid)) continue;   // 允许指向整个专题
-    if (!knownIds.has(rid)) {
-      // 关键区分：id 在全站题单里（outline）但还没写 -> warning；
-      // id 压根不存在 -> error。否则「写错了 id」会被「尚未撰写」这句话长期掩盖。
-      if (plannedIds && plannedIds.has(rid)) warnings.push(`${rel(q.file)}: related 指向尚未撰写的题目 ${rid}`);
-      else errors.push(`${rel(q.file)}: related 里的 id 不存在：${rid}`);
-    }
-  }
-  // 正文双链此前完全不校验，死链会在站点上永久渲染成「待撰写」标签而构建全绿。
-  // 必须先剥代码围栏与行内代码：Python 里的 boxes[[i]]、torch.tensor([[-100, …]]) 都长得像双链。
-  const proseBody = stripFences(String(q.body || '')).replace(/`[^`\n]*`/g, '');
-  for (const m of proseBody.matchAll(/\[\[([^\]]+)\]\]/g)) {
-    const rid = m[1].trim();
-    if (knownIds.has(rid) || topicIds.has(rid)) continue;
-    if (plannedIds && plannedIds.has(rid)) warnings.push(`${rel(q.file)}: 正文双链指向尚未撰写的题目 [[${rid}]]`);
-    else errors.push(`${rel(q.file)}: 正文双链的 id 不存在：[[${rid}]]`);
-  }
 }
 
 /* ------------------------------------------------- 公司集合（docs/公司题库/<公司名>/） */
@@ -573,6 +573,10 @@ if (outline) {
     // 两者不一致时详情页会取不到数据、渲染成空白。原始小节标题保留在 readmeName 里备查。
     o.readmeName = o.name;
     o.name = c.name;
+    // 同时把公司目录的 id 带过来。plannedIds（本文件上方）用 `${c.id || c.name}-NN` 拼题目 id，
+    // outline 的小节没有 id 字段，于是会拼出「Amazon-04」这种大写 id；而真实题解文件的 id 是
+    // 「amazon-04」。大小写不一致会让真实存在的题目被误判成「指向不存在的题目」。
+    o.id = c.id;
     c.readmeSection = o.readmeName;
     c.group = o.group;
     c.declaredTotal = o.questions.length + o.topics.reduce((s2, t) => s2 + t.questions.length, 0);
@@ -598,6 +602,48 @@ if (outline) {
     if (n > 0 && !o.readmeName) {
       errors.push(`README.zh-CN.md 的公司小节「${o.name}」（${n} 题）没有任何公司目录与之绑定`);
     }
+  }
+}
+
+/* ------------------------------------ related 与正文双链校验（须在公司绑定之后） */
+
+// 放在这里的原因：plannedIds 需要公司小节的 id 前缀，而该前缀由上面的绑定阶段从公司目录贴上来。
+// 公司题目的序号必须是「全公司连续序号」，不能是子小节内序号：题解文件名里的编号来自
+// company-index.mjs 的全局计数器（顶层 questions 之后按子小节顺序一路累加），例如 Anthropic
+// 的 37 篇是 anthropic-01..37。若每个子小节各从 1 数起，只会产出 anthropic-01..12 这一段，
+// 于是 13..37 之间任何「已规划未撰写」的题目都会被误报成「id 不存在」。
+const plannedIds = outline
+  ? new Set([
+    ...outline.topics.flatMap((t) => t.questions.map((q) => `${t.id}-${String(q.order).padStart(2, '0')}`)),
+    ...outline.companies.flatMap((c) => {
+      const ids = [];
+      let n = 0;
+      const add = () => { n += 1; ids.push(`${c.id || c.name}-${String(n).padStart(2, '0')}`); };
+      for (const q of c.questions) add();
+      for (const t of c.topics) for (const q of t.questions) add();
+      return ids;
+    })
+  ])
+  : null;
+const knownIds = new Set([...questions, ...companyQuestions].map((x) => x.data.id));
+for (const q of [...questions, ...companyQuestions]) {
+  for (const rid of q.data.related || []) {
+    if (topicIds.has(rid)) continue;   // 允许指向整个专题
+    if (!knownIds.has(rid)) {
+      // 关键区分：id 在全站题单里（outline）但还没写 -> warning；
+      // id 压根不存在 -> error。否则「写错了 id」会被「尚未撰写」这句话长期掩盖。
+      if (plannedIds && plannedIds.has(rid)) warnings.push(`${rel(q.file)}: related 指向尚未撰写的题目 ${rid}`);
+      else errors.push(`${rel(q.file)}: related 里的 id 不存在：${rid}`);
+    }
+  }
+  // 正文双链此前完全不校验，死链会在站点上永久渲染成「待撰写」标签而构建全绿。
+  // 必须先剥代码围栏与行内代码：Python 里的 boxes[[i]]、torch.tensor([[-100, …]]) 都长得像双链。
+  const proseBody = stripFences(String(q.body || '')).replace(/`[^`\n]*`/g, '');
+  for (const m of proseBody.matchAll(/\[\[([^\]]+)\]\]/g)) {
+    const rid = m[1].trim();
+    if (knownIds.has(rid) || topicIds.has(rid)) continue;
+    if (plannedIds && plannedIds.has(rid)) warnings.push(`${rel(q.file)}: 正文双链指向尚未撰写的题目 [[${rid}]]`);
+    else errors.push(`${rel(q.file)}: 正文双链的 id 不存在：[[${rid}]]`);
   }
 }
 const searchIndex = buildSearchIndex(catalog, outline);
