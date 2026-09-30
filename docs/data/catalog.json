@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T04:46:42.040Z",
+  "generated": "2026-09-30T05:21:28.529Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 471,
+    "companyQuestions": 474,
     "companies": 35,
     "planned": 598
   },
@@ -7352,6 +7352,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5816
+        },
+        {
+          "id": "amazon-16",
+          "order": 16,
+          "title": "某个客户托管在 Bedrock 上的工作负载成本过高。请在不造成不可接受的质量损失的前提下，大幅削减推理成本。",
+          "titleEn": "A customer's Bedrock-hosted workload costs too much. Cut inference cost substantially without unacceptable quality loss.",
+          "file": "公司题库/amazon/16-削减推理成本.md",
+          "level": "高阶",
+          "tags": [
+            "输出单价 5 倍",
+            "提示缓存",
+            "路由",
+            "成本归因",
+            "质量护栏"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "amazon-15",
+            "amazon-18",
+            "inference-serving-01",
+            "inference-serving-04",
+            "system-design-02"
+          ],
+          "sources": [
+            {
+              "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance（原始论文）",
+              "url": "https://arxiv.org/abs/2305.05176",
+              "author": "Chen, Zaharia & Zou (Stanford)",
+              "published": "2023-05-09"
+            },
+            {
+              "title": "RouteLLM: Learning to Route LLMs with Preference Data（原始论文）",
+              "url": "https://arxiv.org/abs/2406.18665",
+              "author": "Ong et al. (UC Berkeley)",
+              "published": "2024-06-26"
+            },
+            {
+              "title": "Efficiently Scaling Transformer Inference（原始论文）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5020
+        },
+        {
+          "id": "amazon-17",
+          "order": 17,
+          "title": "设计一个操作网页浏览器完成多步任务的 agent。如何让它可靠到可以上线？",
+          "titleEn": "Design an agent that operates a web browser to complete multi-step tasks. How would you make it reliable enough to ship?",
+          "file": "公司题库/amazon/17-浏览器-agent-的可靠性.md",
+          "level": "高阶",
+          "tags": [
+            "观察表示",
+            "误差复利",
+            "结构化接口",
+            "幂等",
+            "上线判据"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "amazon-16",
+            "amazon-18",
+            "agents-02",
+            "agents-05",
+            "system-design-05"
+          ],
+          "sources": [
+            {
+              "title": "Set-of-Mark Prompting Unleashes Extraordinary Visual Grounding in GPT-4V（原始论文）",
+              "url": "https://arxiv.org/abs/2310.11441",
+              "author": "Yang et al. (Microsoft)",
+              "published": "2023-10-17"
+            },
+            {
+              "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents（原始论文）",
+              "url": "https://arxiv.org/abs/2307.13854",
+              "author": "Zhou et al. (CMU)",
+              "published": "2023-07-25"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（原始论文）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (Princeton & Google)",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5540
+        },
+        {
+          "id": "amazon-18",
+          "order": 18,
+          "title": "设计一个多租户推理平台，向数千家客户提供多种基础模型的服务（类似 Bedrock 的形态）。",
+          "titleEn": "Design a multi-tenant inference platform serving many foundation models to thousands of customers, similar in shape to Bedrock.",
+          "file": "公司题库/amazon/18-多租户推理平台.md",
+          "level": "高阶",
+          "tags": [
+            "隔离与利用率",
+            "长尾模型",
+            "冷启动",
+            "KV 隔离",
+            "分层容量"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "amazon-15",
+            "amazon-16",
+            "amazon-17",
+            "inference-serving-01",
+            "system-design-01"
+          ],
+          "sources": [
+            {
+              "title": "Orca: A Distributed Serving System for Transformer-Based Generative Models（原始论文）",
+              "url": "https://www.usenix.org/conference/osdi22/presentation/yu",
+              "author": "Yu et al. (Seoul National University)",
+              "published": "2022-07-11"
+            },
+            {
+              "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention（原始论文）",
+              "url": "https://arxiv.org/abs/2309.06180",
+              "author": "Kwon et al. (UC Berkeley)",
+              "published": "2023-09-12"
+            },
+            {
+              "title": "ServerlessLLM: Low-Latency Serverless Inference for Large Language Models（原始论文）",
+              "url": "https://arxiv.org/abs/2401.14351",
+              "author": "Fu et al. (Edinburgh)",
+              "published": "2024-01-25"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5354
         }
       ]
     },
