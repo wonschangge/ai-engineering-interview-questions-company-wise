@@ -166,11 +166,13 @@ $$\text{score}(q,d)=\sum_{i\in q}\max_{j\in d}\ \mathbf{E}_{q_i}\cdot\mathbf{E}_
 
 ## 数值与代码验证
 
-### 表 1：算力与延迟、能负担的候选数、索引体积（见代码输出）
+### 表 1：算力与延迟、能负担的候选数、索引体积（由下方代码实跑得到）
 
 | 项 | 数值 |
-| --- | --- |
-| 见输出 | 见输出 |
+|--- |--- |
+| 三种 reranker 的算力与延迟（对 50 个候选；H100 bf16 989 TFLOPs、MFU 40% → 有效 396 TFLOPs） | **cross-encoder（110M、50 篇 × 512 token）→ 5.63 TF / 14.2 ms（可行）**；**ColBERT（在线只算 MaxSim）→ 0.00 TF / 0.0 ms（可行）**；**LLM reranker（7B、50 篇 × 1000 token）→ 700.00 TF / 1769.5 ms（不可行）**；**LLM reranker（70B）→ 7000.00 TF / 17694.6 ms（不可行）**——LLM rerank 只能用于 top-5 量级 |
+| 反推「每种方案能负担多少候选」（给定 300 ms 的 rerank 预算） | **cross-encoder（110M、512 token）→ 单篇 112.64 GF、300ms 能处理 1,054 篇（够用）**；**LLM reranker（7B、1000 token）→ 14000.00 GF / 8 篇（只能重排 top-8）**；**LLM reranker（70B）→ 140000.00 GF / 1 篇（一篇都不行，0.8 篇）**——「LLM 重排」必须配「先粗排到 top-10」 |
+| 索引体积：ColBERT 的「多向量」代价（10 亿文档） | 单向量（768 维 fp32）→ 每文档 **3.0 KB**、**3.1 TB**；单向量（int8）→ 0.8 KB / 0.8 TB；**ColBERT（32 × 128 fp32）→ 16.0 KB / 16.4 TB**；ColBERT（int8）→ 4.0 KB / 4.1 TB——**ColBERT 的索引是单向量的约 5.3 倍**（量化到 int8 整体降 4 倍但相对单向量仍是 5 倍） |
 
 ### 可运行代码
 
