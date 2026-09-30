@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-30T00:27:23.267Z",
+  "generated": "2026-09-30T00:36:24.940Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 435,
-    "companies": 32,
+    "companyQuestions": 438,
+    "companies": 33,
     "planned": 598
   },
   "topics": [
@@ -14577,6 +14577,157 @@
           "chars": 5028,
           "topicName": "多模态、语音与声音 AI",
           "topicOrder": 3
+        }
+      ]
+    },
+    {
+      "id": "company-glean",
+      "name": "glean",
+      "group": "",
+      "summary": "",
+      "updated": null,
+      "dir": "glean",
+      "overviewFile": null,
+      "overviewTitle": "glean",
+      "declaredTotal": null,
+      "questions": [
+        {
+          "id": "glean-01",
+          "order": 1,
+          "title": "把来自 N 个连接器分片的排序结果合并成全局 top-k，并施加按用户维度的权限过滤。要求实现得足够高效。",
+          "titleEn": "Merge sorted results from N connector shards into a global top-k, with per-user permission filtering applied. Make it efficient.",
+          "file": "公司题库/glean/01-带权限的-topk-归并.md",
+          "level": "高阶",
+          "tags": [
+            "堆归并",
+            "权限下推",
+            "早停",
+            "ACL 展开",
+            "缓存"
+          ],
+          "topic": "coding",
+          "askedAt": [],
+          "related": [
+            "glean-02",
+            "glean-03",
+            "glean-07",
+            "coding-01",
+            "system-design-02"
+          ],
+          "sources": [
+            {
+              "title": "The Threshold Algorithm / Fagin\\u2019s Algorithm（延伸）",
+              "url": "https://dl.acm.org/doi/10.1145/304181.304187",
+              "author": "Fagin (IBM)",
+              "published": "1998-06-01"
+            },
+            {
+              "title": "Zanzibar: Google\\u2019s Consistent, Global Authorization System（延伸）",
+              "url": "https://research.google/pubs/pub48190/",
+              "author": "Pang et al. (Google)",
+              "published": "2019-07-10"
+            },
+            {
+              "title": "Introduction to Algorithms: Merging Sorted Lists（延伸）",
+              "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+              "author": "Cormen et al.",
+              "published": "2022-04-05"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4879
+        },
+        {
+          "id": "glean-02",
+          "order": 2,
+          "title": "请给我梳理一次查询的 latency 预算：查询理解 → retrieval → rerank → LLM 回答。时间主要花在哪里，又该从哪里削减？",
+          "titleEn": "Walk me through the latency budget of a query: understanding, retrieval, rerank, LLM answer. Where does the time go, and where do you cut?",
+          "file": "公司题库/glean/02-查询的延迟预算.md",
+          "level": "高阶",
+          "tags": [
+            "延迟预算",
+            "重排候选数",
+            "流式输出",
+            "TTFT",
+            "边际收益排序"
+          ],
+          "topic": "inference-serving",
+          "askedAt": [],
+          "related": [
+            "glean-01",
+            "glean-03",
+            "glean-08",
+            "apple-04",
+            "inference-02"
+          ],
+          "sources": [
+            {
+              "title": "Efficiently Scaling Transformer Inference（延伸）",
+              "url": "https://arxiv.org/abs/2211.05102",
+              "author": "Pope et al. (Google)",
+              "published": "2022-11-09"
+            },
+            {
+              "title": "The Tail at Scale（延伸）",
+              "url": "https://research.google/pubs/pub40801/",
+              "author": "Dean & Barroso (Google)",
+              "published": "2013-02-01"
+            },
+            {
+              "title": "Passage Re-ranking with BERT（延伸）",
+              "url": "https://arxiv.org/abs/1901.04085",
+              "author": "Nogueira & Cho (Waterloo)",
+              "published": "2019-01-31"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4975
+        },
+        {
+          "id": "glean-03",
+          "order": 3,
+          "title": "你会如何对异构的企业内容做 chunk 与 embedding：Slack 会话串、Jira 工单、Google Docs、PDF？",
+          "titleEn": "How would you chunk and embed heterogeneous enterprise content: Slack threads, Jira tickets, Google Docs, PDFs?",
+          "file": "公司题库/glean/03-异构企业内容的切分.md",
+          "level": "高阶",
+          "tags": [
+            "异构切分",
+            "自然语义单元",
+            "上下文头",
+            "Slack thread",
+            "统一嵌入空间"
+          ],
+          "topic": "rag",
+          "askedAt": [],
+          "related": [
+            "glean-01",
+            "glean-02",
+            "glean-07",
+            "glean-08",
+            "harvey-01"
+          ],
+          "sources": [
+            {
+              "title": "Dense Passage Retrieval for Open-Domain Question Answering（延伸）",
+              "url": "https://arxiv.org/abs/2004.04906",
+              "author": "Karpukhin et al. (Facebook AI)",
+              "published": "2020-04-10"
+            },
+            {
+              "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction（延伸）",
+              "url": "https://arxiv.org/abs/2004.12832",
+              "author": "Khattab & Zaharia (Stanford)",
+              "published": "2020-04-27"
+            },
+            {
+              "title": "SentencePiece: A Simple and Language Independent Subword Tokenizer（延伸）",
+              "url": "https://arxiv.org/abs/1808.06226",
+              "author": "Kudo & Richardson (Google)",
+              "published": "2018-08-13"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4732
         }
       ]
     },
