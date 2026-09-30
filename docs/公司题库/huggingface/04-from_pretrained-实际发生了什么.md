@@ -165,11 +165,15 @@ $$\text{KV}=2\cdot L\cdot H_{kv}\cdot d_h\cdot T\cdot b$$
 
 ## 数值与代码验证
 
-### 表 1：十个步骤、dtype 内存、三种模型大小、实际放置、KV 冲突（见代码输出）
+### 表 1：十个步骤、dtype 内存、三种模型大小、实际放置、KV 冲突（由下方代码实跑得到）
 
 | 项 | 数值 |
-| --- | --- |
-| 见输出 | 见输出 |
+|--- |--- |
+| from_pretrained 的十个步骤 | 解析仓库（先查本地缓存）→ 取 config.json → 判断权重格式（**优先 safetensors**）→ torch_dtype=auto → **在 meta 设备上建模型（关键技巧，让「建 70B 结构」不花内存）** → device_map=auto → 逐张量加载（**assign 而不是 copy**）→ 绑定权重 → 分发到各设备 → 后处理 |
+| torch_dtype=auto 的语义（8B 模型） | fp32 **32.0 GB** / bf16 **16.0 GB** / fp16 16.0 GB / int8 8.0 GB / int4 4.0 GB——**auto 的语义是「用 config 里声明的 dtype」而不是「自动选最优」**（config 写 fp32 而你想要 bf16 就必须显式传） |
+| device_map=auto 的放置（8B / 70B / 405B） | 层数 32 / 80 / 126；hidden 4096 / 8192 / 16384；bf16 权重 **19.3 / 176.0 / 1,090.8 GB**；fp32 权重 38.6 / 352.0 / 2,181.5 GB（用 meta 张量算出来、没有真分配） |
+| 真实推断：24 GB 显存 + 64 GB 内存放 70B | **GPU 只放 10 层、31 层在 CPU、41 个模块被卸载到磁盘**（共 80 层）——磁盘卸载意味着每步都要读盘 |
+| device_map 不知道的事：KV cache 会 OOM | 上下文 2,048 → KV 0.7 GB、GPU 剩余 1.1 GB（**放得下**）；8,192 → KV **2.7 GB**、剩余 1.1 GB（**OOM**） |
 
 ### 可运行代码
 
