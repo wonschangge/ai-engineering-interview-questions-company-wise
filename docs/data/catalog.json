@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T00:16:11.111Z",
+  "generated": "2026-09-30T00:19:02.285Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 427,
+    "companyQuestions": 430,
     "companies": 32,
     "planned": 598
   },
@@ -5720,6 +5720,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 4619
+        },
+        {
+          "id": "abridge-04",
+          "order": 4,
+          "title": "设计一个服务，把对话转成医嘱草稿：检验、影像、转诊、处方，通过针对 EHR 的 tool calls 完成。",
+          "titleEn": "Design a service that turns a conversation into order drafts -- labs, imaging, referrals, prescriptions -- via EHR tool calls.",
+          "file": "公司题库/abridge/04-医嘱草稿的-tool-calls.md",
+          "level": "高阶",
+          "tags": [
+            "医嘱草稿",
+            "tool calls",
+            "编码解析",
+            "过敏校验",
+            "幂等"
+          ],
+          "topic": "agents",
+          "askedAt": [],
+          "related": [
+            "abridge-01",
+            "abridge-05",
+            "abridge-08",
+            "agents-01",
+            "agents-02"
+          ],
+          "sources": [
+            {
+              "title": "Toolformer: Language Models Can Teach Themselves to Use Tools（延伸）",
+              "url": "https://arxiv.org/abs/2302.04761",
+              "author": "Schick et al. (Meta)",
+              "published": "2023-02-09"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (Princeton)",
+              "published": "2022-10-06"
+            },
+            {
+              "title": "FHIR R4 Specification（延伸）",
+              "url": "https://hl7.org/fhir/R4/",
+              "author": "HL7",
+              "published": "2019-11-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4310
+        },
+        {
+          "id": "abridge-05",
+          "order": 5,
+          "title": "请讲讲如何把完成的病历记录写回 Epic。哪里会出问题？",
+          "titleEn": "Walk me through writing the finished note back into Epic. Where does it go wrong?",
+          "file": "公司题库/abridge/05-病历写回-Epic-会出什么问题.md",
+          "level": "高阶",
+          "tags": [
+            "Epic 写回",
+            "身份校验",
+            "幂等键",
+            "确认丢失",
+            "状态机"
+          ],
+          "topic": "system-design",
+          "askedAt": [],
+          "related": [
+            "abridge-02",
+            "abridge-04",
+            "abridge-08",
+            "system-design-01",
+            "system-design-03"
+          ],
+          "sources": [
+            {
+              "title": "FHIR R4 Specification（延伸）",
+              "url": "https://hl7.org/fhir/R4/",
+              "author": "HL7",
+              "published": "2019-11-01"
+            },
+            {
+              "title": "Google SRE Book: Release Engineering（延伸）",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "author": "Google",
+              "published": "2016-01-01"
+            },
+            {
+              "title": "Designing Data-Intensive Applications（延伸）",
+              "url": "https://dataintensive.net/",
+              "author": "Martin Kleppmann",
+              "published": "2017-03-16"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4545
+        },
+        {
+          "id": "abridge-06",
+          "order": 6,
+          "title": "两位优秀的医生对同一次就诊会写出不同的病历记录。那你究竟该如何评估病历记录质量？",
+          "titleEn": "Two excellent doctors will write different notes for the same visit. So how do you actually evaluate note quality?",
+          "file": "公司题库/abridge/06-如何评估病历记录质量.md",
+          "level": "高阶",
+          "tags": [
+            "评分者一致性",
+            "天花板效应",
+            "检查清单",
+            "κ",
+            "样本量"
+          ],
+          "topic": "evaluation",
+          "askedAt": [],
+          "related": [
+            "abridge-01",
+            "abridge-05",
+            "abridge-07",
+            "abridge-09",
+            "evaluation-01"
+          ],
+          "sources": [
+            {
+              "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（延伸）",
+              "url": "https://arxiv.org/abs/2306.05685",
+              "author": "Zheng et al. (UC Berkeley)",
+              "published": "2023-06-09"
+            },
+            {
+              "title": "Holistic Evaluation of Language Models（延伸）",
+              "url": "https://arxiv.org/abs/2211.09110",
+              "author": "Liang et al. (Stanford)",
+              "published": "2022-11-16"
+            },
+            {
+              "title": "Measuring Nominal Scale Agreement Among Many Raters（延伸）",
+              "url": "https://psycnet.apa.org/record/1972-00001-001",
+              "author": "Fleiss (Columbia)",
+              "published": "1971-01-01"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4791
         }
       ]
     },
