@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-30T01:04:42.248Z",
+  "generated": "2026-09-30T01:08:16.575Z",
   "stats": {
     "topics": 10,
     "questions": 119,
-    "companyQuestions": 451,
+    "companyQuestions": 454,
     "companies": 34,
     "planned": 598
   },
@@ -28876,6 +28876,144 @@
           ],
           "updated": "2026-09-28",
           "chars": 5037
+        },
+        {
+          "id": "zhipu-07",
+          "order": 7,
+          "title": "GLM-4.5 是一个混合推理模型，既有思考模式，也有直接回答模式。你如何构建一个两者兼得的模型，训练和服务上又会受到什么影响？",
+          "titleEn": "GLM-4.5 is a hybrid reasoning model with both a thinking mode and a direct-answer mode. How do you build a model that does both, and what does it cost in training and serving?",
+          "file": "公司题库/zhipu/07-混合推理模型.md",
+          "level": "高阶",
+          "tags": [
+            "混合推理",
+            "模式标记",
+            "数据配比",
+            "路由",
+            "输出成本"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "zhipu-04",
+            "zhipu-06",
+            "zhipu-09",
+            "finetuning-02",
+            "finetuning-05"
+          ],
+          "sources": [
+            {
+              "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning（原始论文）",
+              "url": "https://arxiv.org/abs/2501.12948",
+              "author": "DeepSeek-AI",
+              "published": "2025-01-22"
+            },
+            {
+              "title": "s1: Simple Test-Time Scaling（原始论文）",
+              "url": "https://arxiv.org/abs/2501.19393",
+              "author": "Muennighoff et al. (Stanford)",
+              "published": "2025-01-31"
+            },
+            {
+              "title": "RouteLLM: Learning to Route LLMs with Preference Data（原始论文）",
+              "url": "https://arxiv.org/abs/2406.18665",
+              "author": "Ong et al. (UC Berkeley)",
+              "published": "2024-06-26"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4861
+        },
+        {
+          "id": "zhipu-08",
+          "order": 8,
+          "title": "为什么长周期 agentic RL 需要像 slime 框架那样采用分离式、异步的设计，而不是同机同步（colocated-synchronous）的设计？",
+          "titleEn": "Why does long-horizon agentic RL need a disaggregated, asynchronous design like the slime framework rather than a colocated-synchronous one?",
+          "file": "公司题库/zhipu/08-分离式异步的-agentic-RL.md",
+          "level": "高阶",
+          "tags": [
+            "分离式 RL",
+            "长尾轨迹",
+            "工具等待",
+            "版本窗口",
+            "off-policy"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "zhipu-03",
+            "zhipu-06",
+            "zhipu-10",
+            "finetuning-06",
+            "inference-06"
+          ],
+          "sources": [
+            {
+              "title": "Proximal Policy Optimization Algorithms（原始论文）",
+              "url": "https://arxiv.org/abs/1707.06347",
+              "author": "Schulman et al. (OpenAI)",
+              "published": "2017-07-20"
+            },
+            {
+              "title": "Asynchronous Methods for Deep Reinforcement Learning（原始论文）",
+              "url": "https://arxiv.org/abs/1602.01783",
+              "author": "Mnih et al. (DeepMind)",
+              "published": "2016-02-04"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in Language Models（原始论文）",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "author": "Yao et al. (Princeton)",
+              "published": "2022-10-06"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 5014
+        },
+        {
+          "id": "zhipu-09",
+          "order": 9,
+          "title": "GLM-4.5 的后训练先按领域训练专家模型，再用自蒸馏把它们统一起来。请说明为什么要先训练专家模型再合并它们。",
+          "titleEn": "GLM-4.5’s post-training first trains domain experts and then unifies them by self-distillation. Why train experts first and then merge them?",
+          "file": "公司题库/zhipu/09-先训专家再自蒸馏.md",
+          "level": "高阶",
+          "tags": [
+            "领域专家",
+            "自蒸馏",
+            "数据不均衡",
+            "专家塌缩",
+            "权重合并"
+          ],
+          "topic": "finetuning",
+          "askedAt": [],
+          "related": [
+            "zhipu-01",
+            "zhipu-07",
+            "finetuning-02",
+            "finetuning-07",
+            "llm-06"
+          ],
+          "sources": [
+            {
+              "title": "Distilling the Knowledge in a Neural Network（原始论文）",
+              "url": "https://arxiv.org/abs/1503.02531",
+              "author": "Hinton, Vinyals & Dean (Google)",
+              "published": "2015-03-09"
+            },
+            {
+              "title": "Model Soup: Averaging Weights Leads to Better Out-of-Distribution Generalization（原始论文）",
+              "url": "https://arxiv.org/abs/2203.05482",
+              "author": "Wortsman et al. (UW)",
+              "published": "2022-03-10"
+            },
+            {
+              "title": "TIES-Merging: Resolving Interference When Merging Models（原始论文）",
+              "url": "https://arxiv.org/abs/2306.01708",
+              "author": "Yadav et al. (UNC)",
+              "published": "2023-06-02"
+            }
+          ],
+          "updated": "2026-09-28",
+          "chars": 4800
         }
       ]
     }
