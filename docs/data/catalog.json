@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T23:53:56.334Z",
+  "generated": "2026-10-01T00:00:19.727Z",
   "stats": {
     "topics": 10,
     "questions": 119,
@@ -27538,7 +27538,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4230,
+          "chars": 4706,
           "topicName": "行为与文化",
           "topicOrder": 1
         },
@@ -27585,7 +27585,7 @@
             }
           ],
           "updated": "2026-09-28",
-          "chars": 4644,
+          "chars": 5139,
           "topicName": "行为与文化",
           "topicOrder": 2
         }
